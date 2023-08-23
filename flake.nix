@@ -39,6 +39,7 @@
         system = "x86_64-linux";
         specialArgs = inputs;
         modules = [
+          ./hardware/hermes.nix
           ./configuration.nix
           ./desktop/cosmic.nix
           ./desktop/desktop.nix
@@ -46,11 +47,11 @@
           ./networking.nix
           ./packages.nix
           ./system.nix
-          ./users.nix
+          ./user/keanu/users.nix
           home-manager.nixosModules.home-manager {
             home-manager.useUserPackages = true;
 		    home-manager.useGlobalPkgs = true;
-		    home-manager.users.keanu = import ./home.nix;
+		    home-manager.users.keanu = import ./user/keanu/home.nix;
           }
         ];
       };

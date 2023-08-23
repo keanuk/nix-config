@@ -12,6 +12,6 @@
     cosmic-settings.packages."${pkgs.system}".default
     cosmic-settings-daemon.packages."${pkgs.system}".default
     cosmic-session.packages."${pkgs.system}".default
-    # xdg-desktop-portal-cosmic.packages."${pkgs.system}".default
+    xdg-desktop-portal-cosmic.packages."${pkgs.system}".default
   ];
 }
