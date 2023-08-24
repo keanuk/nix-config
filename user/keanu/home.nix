@@ -1,7 +1,6 @@
 
 {
 	nixpkgs.config.allowUnfree = true;
-	# home.packages = with pkgs; [];
     programs.fish = {
    	  enable = true;
     };
@@ -30,9 +29,10 @@
   	  enableAutosuggestions = true;
 	  syntaxHighlighting.enable = true;
 	  shellAliases = {
+	    cleanup = "nix-store --gc && nix-store --optimize";
         ll = "ls -l";
-        rebuild = "sudo nixos-rebuild switch";
-        upgrade = "sudo nixos-rebuild switch --upgrade";
+        rebuild = "sudo nixos-rebuild switch --upgrade";
+        update = "nix flake update";
       };
       oh-my-zsh = {
       	enable = true;

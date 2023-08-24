@@ -39,14 +39,14 @@
         system = "x86_64-linux";
         specialArgs = inputs;
         modules = [
-          ./hardware/hermes.nix
-          ./configuration.nix
           ./desktop/cosmic.nix
           ./desktop/desktop.nix
           ./desktop/gnome.nix
-          ./networking.nix
-          ./packages.nix
-          ./system.nix
+          ./hardware/hermes.nix
+          ./nix/configuration.nix
+          ./packages/packages.nix
+          ./system/network.nix
+          ./system/system.nix
           ./user/keanu/users.nix
           home-manager.nixosModules.home-manager {
             home-manager.useUserPackages = true;
