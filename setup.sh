@@ -8,13 +8,18 @@ mv /etc/nixos/hardware-configuration.nix /etc/nixos/hardware-configuration.nix.b
 mv /etc/nixos/configuration.nix /etc/nixos/configuration.nix.bak
 
 # Create directories in /etc/nixos
+mkdir /etc/nixos/desktop
 mkdir /etc/nixos/hardware
+mkdir /etc/nixos/nix
+mkdir /etc/nixos/packages
+mkdir /etc/nixos/system
 mkdir /etc/nixos/user
 mkdir /etc/nixos/user/keanu
-mkdir /etc/nixos/desktop
 
 # Symlink configuration files to /etc/nixos
-ln -s /home/$USER/.config/nixos-config/* /etc/nixos/
-ln -s /home/$USER/.config/nixos-config/hardware/* /etc/nixos/hardware/
-ln -s /home/$USER/.config/nixos-config/user/keanu/* /etc/nixos/user/keanu/
-ln -s /home/$USER/.config/nixos-config/desktop/* /etc/nixos/desktop/
+ln -sf $PWD/desktop/* /etc/nixos/desktop/
+ln -sf $PWD/hardware/* /etc/nixos/hardware/
+ln -sf $PWD/nix/* /etc/nixos/nix/
+ln -sf $PWD/packages/* /etc/nixos/packages/
+ln -sf $PWD/system/* /etc/nixos/system/
+ln -sf $PWD/user/keanu/* /etc/nixos/user/keanu/
