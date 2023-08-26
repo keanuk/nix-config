@@ -12,6 +12,7 @@
     pciutils
     powerline-fonts
     psmisc
+    sbctl
     SDL2
     snapper
     snapper-gui

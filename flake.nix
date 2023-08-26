@@ -10,6 +10,12 @@
       inputs.nixpkgs.follows = "nixpkgs";	
     };
 
+    # Secure Boot
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # COSMIC Desktop
     # cosmic-epoch.url = "github:pop-os/cosmic-epoch";
     cosmic-applets.url = "github:pop-os/cosmic-applets";
@@ -33,7 +39,7 @@
     xdg-desktop-portal-cosmic.url = "github:pop-os/xdg-desktop-portal-cosmic";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, ... }: {
+  outputs = inputs@{ self, nixpkgs, home-manager, lanzaboote, ... }: {
     nixosConfigurations = {
       hermes = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -53,6 +59,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.users.keanu = import ./user/keanu/home.nix;
           }
+          lanzaboote.nixosModules.lanzaboote
         ];
       };
     };

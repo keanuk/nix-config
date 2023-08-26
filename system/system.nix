@@ -1,19 +1,28 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
-  # Kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # Boot
+  boot = {
+    # Animation
+     plymouth.enable = true;
 
-  # SecureBoot
-  boot.bootspec.enable = true;
+    # Init
+    initrd.systemd.enable = true;
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+    # Installation
+    loader.efi.canTouchEfiVariables = true;
 
-  # Use boot animation
-  boot.plymouth.enable = true;
-  boot.initrd.systemd.enable = true;
+    # Kernel
+    kernelPackages = pkgs.linuxPackages_latest;
+
+    # Secure Boot
+    bootspec.enable = true;
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/etc/secureboot";
+    };
+    loader.systemd-boot.enable = lib.mkForce false;
+  };
 
   # Upgrades
   system.autoUpgrade = {
@@ -36,11 +45,13 @@
   swapDevices = [ { device = "/swap/swapfile"; } ];
 
   # Systemd
-  services.homed.enable = true;
-
+  services = {
+    dbus.apparmor = "enabled";
+    homed.enable = true;
+  };
+  
   # Security
   security.apparmor.enable = true;
-  services.dbus.apparmor = "enabled";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
