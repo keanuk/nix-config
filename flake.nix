@@ -41,6 +41,26 @@
 
   outputs = inputs@{ self, nixpkgs, home-manager, lanzaboote, ... }: {
     nixosConfigurations = {
+      enterprise = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = inputs;
+        modules = [
+          ./desktop/desktop.nix
+          ./desktop/gnome.nix
+          # ./hardware/enterprise.nix
+          ./nix/configuration.nix
+          ./packages/packages.nix
+          ./system/network.nix
+          ./system/system.nix
+          ./user/keanu/users.nix
+          home-manager.nixosModules.home-manager {
+            home-manager.useUserPackages = true;
+            home-manager.useGlobalPkgs = true;
+            home-manager.users.keanu = import ./user/keanu/home.nix;
+          }
+          lanzaboote.nixosModules.lanzaboote
+        ];
+      };
       hermes = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = inputs;
@@ -49,6 +69,26 @@
           ./desktop/desktop.nix
           ./desktop/gnome.nix
           ./hardware/hermes.nix
+          ./nix/configuration.nix
+          ./packages/packages.nix
+          ./system/network.nix
+          ./system/system.nix
+          ./user/keanu/users.nix
+          home-manager.nixosModules.home-manager {
+            home-manager.useUserPackages = true;
+            home-manager.useGlobalPkgs = true;
+            home-manager.users.keanu = import ./user/keanu/home.nix;
+          }
+          lanzaboote.nixosModules.lanzaboote
+        ];
+      };
+      titan = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = inputs;
+        modules = [
+          ./desktop/desktop.nix
+          ./desktop/gnome.nix
+          # ./hardware/titan.nix
           ./nix/configuration.nix
           ./packages/packages.nix
           ./system/network.nix
