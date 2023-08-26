@@ -16,9 +16,11 @@
   boot.initrd.systemd.enable = true;
 
   # Upgrades
-  system.autoUpgrade.enable = true;
-  system.autoUpgrade.allowReboot = false;
-  system.autoUpgrade.channel = "https://channels.nixos.org/nixos-unstable";
+  system.autoUpgrade = {
+  	enable = true;
+  	allowReboot = false;
+  	channel = "https://channels.nixos.org/nixos-unstable";
+  };
 
   # Mount options
   fileSystems = {
