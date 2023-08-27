@@ -3,6 +3,9 @@
 {
   # Nix
   nix = {
+    gc = {
+      automatic = true;
+    };
     settings = {
       allowed-users = [ "@users" ];
       auto-optimise-store = true;

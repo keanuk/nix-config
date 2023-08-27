@@ -45,6 +45,9 @@
         system = "x86_64-linux";
         specialArgs = inputs;
         modules = [
+          {
+            networking.hostName = "enterprise";
+          }
           ./desktop/desktop.nix
           ./desktop/gnome.nix
           # ./hardware/enterprise.nix
@@ -65,6 +68,9 @@
         system = "x86_64-linux";
         specialArgs = inputs;
         modules = [
+          {
+            networking.hostName = "hermes";
+          }
           ./desktop/cosmic.nix
           ./desktop/desktop.nix
           ./desktop/gnome.nix
@@ -86,9 +92,13 @@
         system = "x86_64-linux";
         specialArgs = inputs;
         modules = [
+          {
+   	        networking.hostName = "titan";
+          }
+          ./desktop/desktop.nix
           ./desktop/desktop.nix
           ./desktop/gnome.nix
-          # ./hardware/titan.nix
+          ./hardware/titan.nix
           ./nix/configuration.nix
           ./packages/packages.nix
           ./system/network.nix

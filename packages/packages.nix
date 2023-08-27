@@ -27,6 +27,8 @@
     flutter
     gcc
     gh
+    gnomeExtensions.dash-to-dock
+    gnomeExtensions.night-theme-switcher
     go
     htop
     jdk
@@ -37,8 +39,6 @@
     nodejs
     nodePackages."@angular/cli"
     nodePackages.typescript
-    protonvpn-cli
-    protonvpn-gui
     python3Full
     rustc
     steam-run
