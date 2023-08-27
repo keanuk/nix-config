@@ -27,7 +27,9 @@
     flutter
     gcc
     gh
+    gnomeExtensions.caffeine
     gnomeExtensions.dash-to-dock
+    gnomeExtensions.forge
     gnomeExtensions.night-theme-switcher
     go
     htop
