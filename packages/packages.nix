@@ -5,6 +5,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     acpid
+    distrobox
     font-awesome
     libglvnd
 	libxkbcommon
@@ -21,6 +22,9 @@
   ];
 
   users.users.keanu.packages = with pkgs; [
+    android-studio
+    androidStudioPackages.beta
+    androidStudioPackages.dev
     android-tools
     btop
     cargo
@@ -34,6 +38,9 @@
     go
     htop
     jdk
+    jetbrains.idea-community
+    jetbrains.jdk
+    jetbrains.pycharm-community
     kotlin
     neofetch
     netbird-ui

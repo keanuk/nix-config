@@ -53,6 +53,7 @@
           # ./hardware/enterprise.nix
           ./nix/configuration.nix
           ./packages/packages.nix
+          ./system/amd.nix
           ./system/network.nix
           ./system/system.nix
           ./user/keanu/users.nix
@@ -101,6 +102,7 @@
           ./hardware/titan.nix
           ./nix/configuration.nix
           ./packages/packages.nix
+          ./system/amd.nix
           ./system/network.nix
           ./system/system.nix
           ./user/keanu/users.nix
