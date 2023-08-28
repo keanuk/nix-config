@@ -27,18 +27,18 @@
   	  autocd = true;
   	  enableCompletion = true;
   	  enableAutosuggestions = true;
-	  syntaxHighlighting.enable = true;
-	  shellAliases = {
-	    cleanup = "nix-store --gc && nix-store --optimize";
-        ll = "ls -l";
-        rebuild = "sudo nixos-rebuild switch --upgrade";
-        update = "nix flake update ~/.config/nixos-config";
+	    syntaxHighlighting.enable = true;
+	    shellAliases = {
+	      cleanup = "nix-store --gc && nix-store --optimize";
+          ll = "ls -l";
+          rebuild = "sudo nixos-rebuild switch --upgrade";
+          update = "nix flake update ~/.config/nixos-config";
       };
       oh-my-zsh = {
       	enable = true;
       	theme = "fletcherm";
       	plugins = [
-		  "gh"
+		      "gh"
       	  "git"
       	  "golang"
       	  "rust"

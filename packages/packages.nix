@@ -8,7 +8,7 @@
     distrobox
     font-awesome
     libglvnd
-	libxkbcommon
+	  libxkbcommon
     nerdfonts
     pciutils
     powerline-fonts
@@ -19,6 +19,7 @@
     snapper-gui
     source-code-pro
     usbutils
+    xorg.xkill
   ];
 
   users.users.keanu.packages = with pkgs; [

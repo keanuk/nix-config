@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Copy hardware-configuration and backup original
-cp /etc/nixos/hardware-configuration.nix ./hardware/$HOST
+cp /etc/nixos/hardware-configuration.nix ./hardware/$HOST.nix
 mv /etc/nixos/hardware-configuration.nix /etc/nixos/hardware-configuration.nix.bak
 
 # Backup original configuration.nix
