@@ -29,6 +29,7 @@
     android-tools
     btop
     cargo
+    dotnet-sdk_8
     flutter
     gcc
     gh
@@ -43,8 +44,10 @@
     jetbrains.jdk
     jetbrains.pycharm-community
     kotlin
+    mono
     neofetch
     netbird-ui
+    nim
     nixfmt
     nodejs
     nodePackages."@angular/cli"
@@ -52,6 +55,7 @@
     python3Full
     rustc
     steam-run
+    swift
     tealdeer
     tree
     vim
