@@ -17,6 +17,7 @@ mkdir /etc/nixos/user
 mkdir /etc/nixos/user/keanu
 
 # Symlink configuration files to /etc/nixos
+ln -sf $PWD/flake.* /etc/nixos/
 ln -sf $PWD/desktop/* /etc/nixos/desktop/
 ln -sf $PWD/hardware/* /etc/nixos/hardware/
 ln -sf $PWD/nix/* /etc/nixos/nix/
