@@ -38,6 +38,7 @@
     gnomeExtensions.forge
     gnomeExtensions.night-theme-switcher
     go
+    helix
     htop
     jdk
     jetbrains.idea-community
