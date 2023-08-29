@@ -26,9 +26,9 @@
 
   # Upgrades
   system.autoUpgrade = {
-  	enable = true;
-  	allowReboot = false;
-  	channel = "https://channels.nixos.org/nixos-unstable";
+    enable = true;
+    allowReboot = false;
+    channel = "https://channels.nixos.org/nixos-unstable";
   };
 
   # Mount options

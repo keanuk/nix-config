@@ -50,10 +50,10 @@
           }
           ./desktop/desktop.nix
           ./desktop/gnome.nix
-          # ./hardware/enterprise.nix
+          ./hardware/enterprise.nix
           ./nix/configuration.nix
           ./packages/packages.nix
-          ./system/amd.nix
+          # ./system/amd.nix
           ./system/network.nix
           ./system/system.nix
           ./user/keanu/users.nix

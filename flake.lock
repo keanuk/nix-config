@@ -53,11 +53,11 @@
         "rust": "rust"
       },
       "locked": {
-        "lastModified": 1691617865,
-        "narHash": "sha256-TrOb0g3gnN8+8cU4L4zuGjKW7qct0VDD80fLS9xvWJQ=",
+        "lastModified": 1693237510,
+        "narHash": "sha256-aWVPJjqIRn+Gs7h7hWxR8ibJHK7OUx6oAWY0/iMPwgY=",
         "owner": "pop-os",
         "repo": "cosmic-comp",
-        "rev": "1f3761a5daeb4ba64c586713ca35725fabdbba2e",
+        "rev": "d92fba9609bd233fbb076e54f63423a235d429f8",
         "type": "github"
       },
       "original": {
@@ -1670,11 +1670,11 @@
     },
     "nixpkgs_13": {
       "locked": {
-        "lastModified": 1693099187,
-        "narHash": "sha256-FXCc6OIghv9k4xYOhSMZI6bj7o56S8BJKzKtTKzdUVQ=",
+        "lastModified": 1693158576,
+        "narHash": "sha256-aRTTXkYvhXosGx535iAFUaoFboUrZSYb1Ooih/auGp0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "cf2004afe4d4b95a295c63c911e949e40915eedb",
+        "rev": "a999c1cc0c9eb2095729d5aa03e0d8f7ed256780",
         "type": "github"
       },
       "original": {
@@ -2640,11 +2640,11 @@
         "nixpkgs": "nixpkgs_14"
       },
       "locked": {
-        "lastModified": 1692306346,
-        "narHash": "sha256-vTal/L9ktG4CvfGH5/5GiL84aGa78OlVo1U5EEKJ44o=",
+        "lastModified": 1693243442,
+        "narHash": "sha256-Vmpv8fd+r/8p5lPUXNbhvWXJ3rN6wwpMDH+WR97y+DQ=",
         "owner": "pop-os",
         "repo": "xdg-desktop-portal-cosmic",
-        "rev": "3c7a2e5c0d9d1f02ab9d57f833f47e3d516b2f31",
+        "rev": "04cc83baf05e893bd758abc689f7b83c0773c726",
         "type": "github"
       },
       "original": {
