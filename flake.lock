@@ -75,11 +75,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1692988129,
-        "narHash": "sha256-9zbP5AHskMYZiN1wFALL60oEVFvgrfoxChquhuFZaKU=",
+        "lastModified": 1693343684,
+        "narHash": "sha256-ydQLSOSmdUZKYgl9RT5ldZ4Q1pVJfXd9c6ccXrS4/40=",
         "owner": "pop-os",
         "repo": "cosmic-launcher",
-        "rev": "4440f7daecb522ff4d8f3b14f87b30261eafe13c",
+        "rev": "769abf9c9a43ecf1c940daaeb1a619f1f44a41f4",
         "type": "github"
       },
       "original": {
@@ -1670,11 +1670,11 @@
     },
     "nixpkgs_13": {
       "locked": {
-        "lastModified": 1693158576,
-        "narHash": "sha256-aRTTXkYvhXosGx535iAFUaoFboUrZSYb1Ooih/auGp0=",
+        "lastModified": 1693250523,
+        "narHash": "sha256-y3up5gXMTbnCsXrNEB5j+7TVantDLUYyQLu/ueiXuyg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a999c1cc0c9eb2095729d5aa03e0d8f7ed256780",
+        "rev": "3efb0f6f404ec8dae31bdb1a9b17705ce0d6986e",
         "type": "github"
       },
       "original": {

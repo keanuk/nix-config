@@ -54,6 +54,7 @@
           ./nix/configuration.nix
           ./packages/packages.nix
           # ./system/amd.nix
+          ./system/battery.nix
           ./system/network.nix
           ./system/system.nix
           ./user/keanu/users.nix
@@ -78,6 +79,7 @@
           ./hardware/hermes.nix
           ./nix/configuration.nix
           ./packages/packages.nix
+          ./system/battery.nix
           ./system/network.nix
           ./system/system.nix
           ./user/keanu/users.nix
