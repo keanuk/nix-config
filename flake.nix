@@ -47,6 +47,7 @@
         modules = [
           {
             networking.hostName = "enterprise";
+            system.stateVersion = "23.05";
           }
           ./desktop/desktop.nix
           ./desktop/gnome.nix
@@ -61,7 +62,10 @@
           home-manager.nixosModules.home-manager {
             home-manager.useUserPackages = true;
             home-manager.useGlobalPkgs = true;
-            home-manager.users.keanu = import ./user/keanu/home.nix;
+            home-manager.users.keanu = {
+              imports = [ ./user/keanu/home.nix ];
+              home.stateVersion = "23.11";
+            };
           }
           lanzaboote.nixosModules.lanzaboote
         ];
@@ -72,6 +76,7 @@
         modules = [
           {
             networking.hostName = "hermes";
+            system.stateVersion = "23.05";
           }
           ./desktop/cosmic.nix
           ./desktop/desktop.nix
@@ -86,7 +91,10 @@
           home-manager.nixosModules.home-manager {
             home-manager.useUserPackages = true;
             home-manager.useGlobalPkgs = true;
-            home-manager.users.keanu = import ./user/keanu/home.nix;
+            home-manager.users.keanu = {
+              imports = [ ./user/keanu/home.nix ];
+              home.stateVersion = "23.11";
+            };
           }
           lanzaboote.nixosModules.lanzaboote
         ];
@@ -97,6 +105,7 @@
         modules = [
           {
    	        networking.hostName = "titan";
+            system.stateVersion = "23.05";
           }
           ./desktop/desktop.nix
           ./desktop/desktop.nix
@@ -111,7 +120,10 @@
           home-manager.nixosModules.home-manager {
             home-manager.useUserPackages = true;
             home-manager.useGlobalPkgs = true;
-            home-manager.users.keanu = import ./user/keanu/home.nix;
+            home-manager.users.keanu = {
+              imports = [ ./user/keanu/home.nix ];
+              home.stateVersion = "23.11";
+            };
           }
           lanzaboote.nixosModules.lanzaboote
         ];

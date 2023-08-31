@@ -1,56 +1,66 @@
 
 {
 	nixpkgs.config.allowUnfree = true;
-    programs.fish = {
-   	  enable = true;
+  home = {
+    sessionVariables = {
+      EDITOR = "micro";
+      SYSTEMD_EDITOR = "micro";
+      VISUAL = "micro";
     };
-    programs.git = {
+  };
+  programs = {
+    fish = {
+      enable = true;
+    };
+    git = {
       enable = true;
       userName = "Keanu Kerr";
       userEmail = "keanu@kerr.us";
     };
-    programs.micro = {
+    micro = {
       enable = true;
       settings.colorscheme = "simple";
     };
-    programs.neovim = {
+    neovim = {
       enable = true;
       defaultEditor = false;	
     };
-    programs.starship = {
+    starship = {
       enable = true;
       enableTransience = true;
       settings = import ./starship.nix;
     };
-    programs.zsh = {
-  	  enable = true;
-  	  autocd = true;
-  	  enableCompletion = true;
-  	  enableAutosuggestions = true;
-	    syntaxHighlighting.enable = true;
-	    shellAliases = {
-	      cleanup = "nix-store --gc && nix-store --optimize";
+    zellij = {
+      enable = true;
+      # enableBashIntegration = true;
+      # enableZshIntegration = true;
+      # enableFishIntegration = true;
+    };
+    zsh = {
+      enable = true;
+      autocd = true;
+      enableCompletion = true;
+      enableAutosuggestions = true;
+      syntaxHighlighting.enable = true;
+      shellAliases = {
+        cleanup = "nix-store --gc && nix-store --optimize";
           ll = "ls -l";
           rebuild = "sudo nixos-rebuild switch --upgrade";
           update = "nix flake update ~/.config/nixos-config";
       };
       oh-my-zsh = {
-      	enable = true;
-      	theme = "fletcherm";
-      	plugins = [
-		      "gh"
-      	  "git"
-      	  "golang"
-      	  "rust"
-      	  "sudo"
-      	  "systemd"
-      	];
+        enable = true;
+        theme = "fletcherm";
+        plugins = [
+          "gh"
+          "git"
+          "golang"
+          "rust"
+          "sudo"
+          "systemd"
+        ];
       };
     };
-    home.sessionVariables = {
-      EDITOR = "micro";
-      SYSTEMD_EDITOR = "micro";
-      VISUAL = "micro";
-    };
-    home.stateVersion = "23.11";
+  };
+  # home.stateVersion = "23.11";
 }

@@ -6,18 +6,14 @@
   environment.systemPackages = with pkgs; [
     acpid
     distrobox
-    font-awesome
     libglvnd
 	  libxkbcommon
-    nerdfonts
     pciutils
-    powerline-fonts
     psmisc
     sbctl
     SDL2
     snapper
     snapper-gui
-    source-code-pro
     usbutils
     xorg.xkill
   ];
@@ -65,6 +61,19 @@
     wl-clipboard
     xclip
   ];
+
+  fonts = {
+    fontDir.enable = true;
+    packages = with pkgs; [
+      font-awesome
+      nerdfonts
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      powerline-fonts
+      source-code-pro
+    ];
+  };
 
   # Shell
   programs.zsh.enable = true;
