@@ -53,11 +53,11 @@
         "rust": "rust"
       },
       "locked": {
-        "lastModified": 1693237510,
-        "narHash": "sha256-aWVPJjqIRn+Gs7h7hWxR8ibJHK7OUx6oAWY0/iMPwgY=",
+        "lastModified": 1693482810,
+        "narHash": "sha256-7l3nGJcLYLaqbh7qH09Lqxi9/tNfwH7H0BWpRuEWGfk=",
         "owner": "pop-os",
         "repo": "cosmic-comp",
-        "rev": "d92fba9609bd233fbb076e54f63423a235d429f8",
+        "rev": "2bc9f9425513c48146a29ca9e4819d83353f7809",
         "type": "github"
       },
       "original": {

@@ -47,7 +47,13 @@
   # Systemd
   services = {
     dbus.apparmor = "enabled";
+    fwupd.enable = true;
     homed.enable = true;
+    smartd.enable = true;
+  };
+
+  systemd = {
+    oomd.enable = true;
   };
   
   # Security
@@ -56,6 +62,14 @@
       enable = true;
       killUnconfinedConfinables = true;
     };
+    audit.enable = true;
+    auditd.enable = true;
+  };
+
+  # Containers
+  virtualisation = {
+    containerd.enable = true;
+    podman.enable = true;
   };
 
   # Select internationalisation properties.
