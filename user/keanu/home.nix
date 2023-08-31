@@ -19,7 +19,19 @@
     };
     micro = {
       enable = true;
-      settings.colorscheme = "simple";
+      settings = {
+        autosu = true;
+        colorscheme = "simple";
+        ignorecase = true;
+        savecursor = true;
+        saveundo = true;
+        tabsize = 4;
+        wordwrap = true;
+        ft.nix = {
+          tabsize = 2;
+          tabstospaces = true;
+        };
+      };
     };
     neovim = {
       enable = true;
