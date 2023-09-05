@@ -23,16 +23,13 @@
     androidStudioPackages.beta
     androidStudioPackages.dev
     android-tools
+    bat
     btop
     cargo
     dotnet-sdk_8
     flutter
     gcc
     gh
-    gnomeExtensions.caffeine
-    gnomeExtensions.dash-to-dock
-    gnomeExtensions.forge
-    gnomeExtensions.night-theme-switcher
     go
     helix
     htop
@@ -46,6 +43,7 @@
     netbird-ui
     nim
     nixfmt
+    nmap
     nodejs
     nodePackages."@angular/cli"
     nodePackages.typescript
