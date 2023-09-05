@@ -11,7 +11,15 @@
   services = {
     fail2ban.enable = true;
     netbird.enable = true;
-    # openssh.enable = true;
+    openssh = {
+      enable = true;
+      ports = [
+      	22
+      ];
+      settings = {
+      	PasswordAuthentication = false;
+      };
+    };
     printing.enable = true;
     resolved.enable = true;
   };
