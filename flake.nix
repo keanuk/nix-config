@@ -3,11 +3,18 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    stable.url = "github:NixOS/nixpkgs/nixos-23.05";
 
     # Home Manager
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";	
+    };
+
+    # Home Manager
+    home-manager-stable = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "stable";	
     };
 
     # Secure Boot
@@ -39,7 +46,7 @@
     xdg-desktop-portal-cosmic.url = "github:pop-os/xdg-desktop-portal-cosmic";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, lanzaboote, ... }: {
+  outputs = { self, nixpkgs, stable, home-manager, home-manager-stable, lanzaboote, ... }@inputs: {
     nixosConfigurations = {
       enterprise = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -53,9 +60,13 @@
           ./desktop/gnome.nix
           ./hardware/enterprise.nix
           ./nix/configuration.nix
+          ./packages/desktop.nix
           ./packages/packages.nix
           # ./system/amd.nix
           ./system/battery.nix
+          ./system/btrfs.nix
+          ./system/desktop.nix
+          ./system/lanzaboote.nix
           ./system/network.nix
           ./system/system.nix
           ./user/keanu/users.nix
@@ -83,8 +94,12 @@
           ./desktop/gnome.nix
           ./hardware/hermes.nix
           ./nix/configuration.nix
+          ./packages/desktop.nix
           ./packages/packages.nix
           ./system/battery.nix
+          ./system/btrfs.nix
+          ./system/desktop.nix
+          ./system/lanzaboote.nix
           ./system/network.nix
           ./system/system.nix
           ./user/keanu/users.nix
@@ -97,6 +112,34 @@
             };
           }
           lanzaboote.nixosModules.lanzaboote
+        ];
+      };
+      terra = stable.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = inputs;
+        modules = [
+          {
+            networking.hostName = "terra";
+            system.stateVersion = "23.05";
+          }
+          ./hardware/terra.nix
+          ./nix/configuration.nix
+          ./packages/packages.nix
+          ./packages/server.nix
+          ./system/btrfs.nix
+          ./system/network.nix
+          ./system/server.nix
+          ./system/system.nix
+          ./system/systemd-boot.nix
+          ./user/keanu/users.nix
+          home-manager.nixosModules.home-manager {
+            home-manager.useUserPackages = true;
+            home-manager.useGlobalPkgs = true;
+            home-manager.users.keanu = {
+              imports = [ ./user/keanu/home.nix ];
+              home.stateVersion = "23.05";
+            };
+          }
         ];
       };
       titan = nixpkgs.lib.nixosSystem {
@@ -112,8 +155,12 @@
           ./desktop/gnome.nix
           ./hardware/titan.nix
           ./nix/configuration.nix
+          ./packages/desktop.nix
           ./packages/packages.nix
           ./system/amd.nix
+          ./system/btrfs.nix
+          ./system/desktop.nix
+          ./system/lanzaboote.nix
           ./system/network.nix
           ./system/system.nix
           ./user/keanu/users.nix

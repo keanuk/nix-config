@@ -38,7 +38,7 @@
   # Or disable the firewall altogether.
   networking = {
     firewall.enable = true;
-    firewall.trustedInterfaces = [ "wt0" ];
+    # firewall.trustedInterfaces = [ "wt0" ];
     networkmanager.enable = true;
   };
 }

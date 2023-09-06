@@ -5,59 +5,32 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     acpid
-    distrobox
-    libglvnd
-	  libxkbcommon
     pciutils
+    polkit
     psmisc
     sbctl
-    SDL2
     snapper
-    snapper-gui
     usbutils
-    xorg.xkill
   ];
 
   users.users.keanu.packages = with pkgs; [
-    android-studio
-    androidStudioPackages.beta
-    androidStudioPackages.dev
-    android-tools
     bat
     btop
     cargo
-    dotnet-sdk_8
-    flutter
     gcc
     gh
     go
     helix
     htop
-    jdk
-    jetbrains.idea-community
-    jetbrains.jdk
-    jetbrains.pycharm-community
-    kotlin
     mono
     neofetch
-    netbird-ui
-    nim
     nixfmt
     nmap
-    nodejs
-    nodePackages."@angular/cli"
-    nodePackages.typescript
-    python3Full
     rustc
-    steam-run
-    swift
     tealdeer
     tree
     vim
-    vscode-fhs
     wget
-    wl-clipboard
-    xclip
   ];
 
   fonts = {
