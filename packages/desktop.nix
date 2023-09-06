@@ -39,8 +39,18 @@
     xclip
   ];
 
-  fonts.packages = with pkgs; [
-  ];
+  fonts = {
+    fontDir.enable = true;
+    packages = with pkgs; [
+      font-awesome
+      nerdfonts
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      powerline-fonts
+      source-code-pro
+    ];
+  };
 
   environment.sessionVariables = {};
 }
