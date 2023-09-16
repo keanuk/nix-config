@@ -11,9 +11,8 @@
       inputs.nixpkgs.follows = "nixpkgs";	
     };
 
-    # Home Manager
     home-manager-stable = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "stable";	
     };
 
@@ -22,6 +21,9 @@
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # VSCode Server
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
 
     # COSMIC Desktop
     # cosmic-epoch.url = "github:pop-os/cosmic-epoch";
@@ -46,7 +48,7 @@
     xdg-desktop-portal-cosmic.url = "github:pop-os/xdg-desktop-portal-cosmic";
   };
 
-  outputs = { self, nixpkgs, stable, home-manager, home-manager-stable, lanzaboote, ... }@inputs: {
+  outputs = { self, nixpkgs, stable, home-manager, home-manager-stable, lanzaboote, vscode-server, ... }@inputs: {
     nixosConfigurations = {
       enterprise = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -79,6 +81,7 @@
             };
           }
           lanzaboote.nixosModules.lanzaboote
+          vscode-server.nixosModules.default
         ];
       };
       hermes = nixpkgs.lib.nixosSystem {
@@ -112,6 +115,7 @@
             };
           }
           lanzaboote.nixosModules.lanzaboote
+          vscode-server.nixosModules.default
         ];
       };
       terra = stable.lib.nixosSystem {
@@ -173,6 +177,7 @@
             };
           }
           lanzaboote.nixosModules.lanzaboote
+          vscode-server.nixosModules.default
         ];
       };
     };
