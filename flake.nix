@@ -64,19 +64,22 @@
           ./nix/configuration.nix
           ./packages/desktop.nix
           ./packages/packages.nix
-          # ./system/amd.nix
-          ./system/battery.nix
+          ./system/amd.nix
           ./system/btrfs.nix
           ./system/desktop.nix
           ./system/lanzaboote.nix
           ./system/network.nix
+          ./system/power.nix
           ./system/system.nix
           ./user/keanu/users.nix
           home-manager.nixosModules.home-manager {
             home-manager.useUserPackages = true;
             home-manager.useGlobalPkgs = true;
             home-manager.users.keanu = {
-              imports = [ ./user/keanu/home.nix ];
+              imports = [ 
+                ./user/keanu/desktop.nix
+                ./user/keanu/home.nix
+              ];
               home.stateVersion = "23.11";
             };
           }
@@ -99,18 +102,21 @@
           ./nix/configuration.nix
           ./packages/desktop.nix
           ./packages/packages.nix
-          ./system/battery.nix
           ./system/btrfs.nix
           ./system/desktop.nix
           ./system/lanzaboote.nix
           ./system/network.nix
+          ./system/power.nix
           ./system/system.nix
           ./user/keanu/users.nix
           home-manager.nixosModules.home-manager {
             home-manager.useUserPackages = true;
             home-manager.useGlobalPkgs = true;
             home-manager.users.keanu = {
-              imports = [ ./user/keanu/home.nix ];
+              imports = [ 
+                ./user/keanu/desktop.nix 
+                ./user/keanu/home.nix 
+              ];
               home.stateVersion = "23.11";
             };
           }
@@ -136,11 +142,15 @@
           ./system/system.nix
           ./system/systemd-boot.nix
           ./user/keanu/users.nix
-          home-manager.nixosModules.home-manager {
+          home-manager-stable.nixosModules.home-manager {
             home-manager.useUserPackages = true;
             home-manager.useGlobalPkgs = true;
             home-manager.users.keanu = {
-              imports = [ ./user/keanu/home.nix ];
+              imports = [ 
+                ./user/keanu/home.nix
+                ./user/keanu/server.nix 
+              ];
+              #manual.manpages.enable = false;
               home.stateVersion = "23.05";
             };
           }
@@ -172,7 +182,10 @@
             home-manager.useUserPackages = true;
             home-manager.useGlobalPkgs = true;
             home-manager.users.keanu = {
-              imports = [ ./user/keanu/home.nix ];
+              imports = [ 
+                ./user/keanu/desktop.nix 
+                ./user/keanu/home.nix 
+              ];
               home.stateVersion = "23.11";
             };
           }

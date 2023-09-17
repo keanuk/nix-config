@@ -1,6 +1,6 @@
 
 {
-	nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = true;
   home = {
     sessionVariables = {
       EDITOR = "micro";
@@ -39,7 +39,7 @@
     };
     starship = {
       enable = true;
-      enableTransience = true;
+#      enableTransience = true;
       settings = import ./starship.nix;
     };
     zellij = {
@@ -53,7 +53,7 @@
       autocd = true;
       enableCompletion = true;
       enableAutosuggestions = true;
-      syntaxHighlighting.enable = true;
+#      syntaxHighlighting.enable = true;
       shellAliases = {
         cleanup = "nix-store --gc && nix-store --optimize";
           ll = "ls -l";
