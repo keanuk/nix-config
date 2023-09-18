@@ -64,7 +64,6 @@
           ./nix/configuration.nix
           ./packages/desktop.nix
           ./packages/packages.nix
-          ./system/amd.nix
           ./system/btrfs.nix
           ./system/desktop.nix
           ./system/lanzaboote.nix
