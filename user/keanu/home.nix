@@ -14,6 +14,9 @@
         theme = "base16";
       };
     };
+    bottom = {
+      enable = true;
+    };
     fish = {
       enable = true;
     };
