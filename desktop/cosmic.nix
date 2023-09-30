@@ -1,4 +1,4 @@
-{ config, pkgs, cosmic-applets, cosmic-applibrary, cosmic-comp, cosmic-launcher, cosmic-notifications, cosmic-osd, cosmic-panel, cosmic-settings, cosmic-settings-daemon, cosmic-session, xdg-desktop-portal-cosmic, ... }:
+{ config, pkgs, ... }:
 
 {
   environment.systemPackages = with pkgs; [

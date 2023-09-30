@@ -23,21 +23,64 @@
     };
 
     # VSCode Server
-    vscode-server.url = "github:nix-community/nixos-vscode-server";
+    vscode-server = {
+      url = "github:nix-community/nixos-vscode-server";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # COSMIC Desktop
-    # cosmic-epoch.url = "github:pop-os/cosmic-epoch";
-    cosmic-applets.url = "github:pop-os/cosmic-applets";
-    cosmic-applibrary.url = "github:pop-os/cosmic-applibrary";
-    cosmic-comp.url = "github:pop-os/cosmic-comp";
-    cosmic-launcher.url = "github:pop-os/cosmic-launcher";
-    cosmic-notifications.url = "github:pop-os/cosmic-notifications";
-    cosmic-osd.url = "github:pop-os/cosmic-osd";
-    cosmic-panel.url = "github:pop-os/cosmic-panel";
+    cosmic-applets = {
+      url = "github:pop-os/cosmic-applets";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
+    cosmic-applibrary = {
+      url = "github:pop-os/cosmic-applibrary";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
+    cosmic-comp = {
+      url = "github:pop-os/cosmic-comp";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
+    cosmic-launcher = {
+      url = "github:pop-os/cosmic-launcher";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
+    cosmic-notifications = {
+      url = "github:pop-os/cosmic-notifications";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
+    cosmic-osd = {
+      url = "github:pop-os/cosmic-osd";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
+    cosmic-panel = {
+      url = "github:pop-os/cosmic-panel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
     # cosmic-protocols.url = "github:pop-os/cosmic-protocols";
-    cosmic-settings.url = "github:pop-os/cosmic-settings";
-    cosmic-settings-daemon.url = "github:pop-os/cosmic-settings-daemon";
-    cosmic-session.url = "github:pop-os/cosmic-session";
+    
+    cosmic-settings = {
+      url = "github:pop-os/cosmic-settings";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
+    cosmic-settings-daemon = {
+      url = "github:pop-os/cosmic-settings-daemon";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
+    cosmic-session = {
+      url = "github:pop-os/cosmic-session";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
     # cosmic-text.url = "github:pop-os/cosmic-text";
     # cosmic-text-editor.url = "github:pop-os/cosmic-text-editor";
     # cosmic-theme.url = "github:pop-os/cosmic-theme";
@@ -45,10 +88,17 @@
     # cosmic-time.url = "github:pop-os/cosmic-time";
     # cosmic-workspaces-epoch.url = "github:pop-os/cosmic-workspaces-epoch";
     # libcosmic.url = "github:pop-os/libcosmic";
-    xdg-desktop-portal-cosmic.url = "github:pop-os/xdg-desktop-portal-cosmic";
+    
+    xdg-desktop-portal-cosmic = {
+      url = "github:pop-os/xdg-desktop-portal-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
   };
 
-  outputs = { self, nixpkgs, stable, home-manager, home-manager-stable, lanzaboote, vscode-server, ... }@inputs: {
+  outputs = inputs@{ self, nixpkgs, stable, home-manager, home-manager-stable, lanzaboote, vscode-server, 
+    cosmic-applets, cosmic-applibrary, cosmic-comp, cosmic-launcher, cosmic-notifications, cosmic-osd,
+    cosmic-panel, cosmic-settings, cosmic-settings-daemon, cosmic-session, xdg-desktop-portal-cosmic, ... }: {
     nixosConfigurations = {
       enterprise = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";

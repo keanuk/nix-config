@@ -1,4 +1,3 @@
-
 {
   nixpkgs.config.allowUnfree = true;
   home = {
@@ -16,6 +15,35 @@
       enable = true;
       userName = "Keanu Kerr";
       userEmail = "keanu@kerr.us";
+    };
+    helix = {
+      enable = true;
+      # defaultEditor = true;
+      settings = {
+        theme = "base16_terminal";
+        editor = {
+          lsp.display-messages = true;
+        };
+        keys.normal = {
+          space.space = "file_picker";
+        };
+      };
+      languages = {
+        language = [
+          {
+            name = "go";
+            auto-format = true;
+          }
+          {
+            name = "nix";
+            auto-format = true;
+          }
+          {
+            name = "rust";
+            auto-format = true;
+          }
+        ];
+      };
     };
     micro = {
       enable = true;
@@ -74,5 +102,4 @@
       };
     };
   };
-  # home.stateVersion = "23.11";
 }

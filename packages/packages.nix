@@ -20,7 +20,6 @@
     gcc
     gh
     go
-    helix
     htop
     mono
     neofetch
@@ -29,7 +28,6 @@
     rustc
     tealdeer
     tree
-    vim
     wget
   ];
 
