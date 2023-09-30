@@ -8,6 +8,12 @@
     };
   };
   programs = {
+    bat = {
+      enable = true;
+      config = {
+        theme = "base16";
+      };
+    };
     fish = {
       enable = true;
     };
@@ -15,6 +21,9 @@
       enable = true;
       userName = "Keanu Kerr";
       userEmail = "keanu@kerr.us";
+      delta = {
+        enable = true;
+      };
     };
     helix = {
       enable = true;
@@ -23,9 +32,6 @@
         theme = "base16_terminal";
         editor = {
           lsp.display-messages = true;
-        };
-        keys.normal = {
-          space.space = "file_picker";
         };
       };
       languages = {

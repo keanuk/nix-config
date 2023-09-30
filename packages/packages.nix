@@ -14,7 +14,6 @@
   ];
 
   users.users.keanu.packages = with pkgs; [
-    bat
     btop
     cargo
     gcc
