@@ -38,6 +38,11 @@
       url = "github:pop-os/cosmic-applibrary";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    cosmic-bg = {
+      url = "github:pop-os/cosmic-bg";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     
     cosmic-comp = {
       url = "github:pop-os/cosmic-comp";
@@ -97,7 +102,7 @@
   };
 
   outputs = inputs@{ self, nixpkgs, stable, home-manager, home-manager-stable, lanzaboote, vscode-server, 
-    cosmic-applets, cosmic-applibrary, cosmic-comp, cosmic-launcher, cosmic-notifications, cosmic-osd,
+    cosmic-applets, cosmic-applibrary, cosmic-bg, cosmic-comp, cosmic-launcher, cosmic-notifications, cosmic-osd,
     cosmic-panel, cosmic-settings, cosmic-settings-daemon, cosmic-session, xdg-desktop-portal-cosmic, ... }: {
     nixosConfigurations = {
       enterprise = nixpkgs.lib.nixosSystem {
