@@ -40,4 +40,15 @@
     containerd.enable = true;
     podman.enable = true;
   };
+
+  # Console
+  console = {
+    earlySetup = true;
+    font = "Lat2-Terminus16";
+    # keyMap = "us";
+    useXkbConfig = true; # use xkbOptions in tty.
+    packages = with pkgs; [
+      terminus_font
+    ];
+  };
 }

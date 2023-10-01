@@ -73,12 +73,10 @@
     };
     neovim = {
       enable = true;
-      defaultEditor = false;	
     };
     starship = {
       enable = true;
-#      enableTransience = true;
-      settings = import ./starship.nix;
+      settings = import ./starship_nerd.nix;
     };
     zellij = {
       enable = true;
@@ -91,7 +89,7 @@
       autocd = true;
       enableCompletion = true;
       enableAutosuggestions = true;
-#      syntaxHighlighting.enable = true;
+      # syntaxHighlighting.enable = true;
       shellAliases = {
         cleanup = "nix-store --gc && nix-store --optimize";
           ll = "ls -l";

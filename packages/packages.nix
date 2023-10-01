@@ -23,6 +23,7 @@
     mono
     neofetch
     nixfmt
+    nix-index
     nmap
     rustc
     tealdeer

@@ -18,6 +18,7 @@
     androidStudioPackages.dev
     android-tools
     appimage-run
+    blackbox-terminal
     dotnet-sdk_8
     flutter
     gh
