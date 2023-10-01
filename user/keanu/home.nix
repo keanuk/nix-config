@@ -32,11 +32,12 @@
       enable = true;
       # defaultEditor = true;
       settings = {
-        theme = "base16_terminal";
+        theme = "base16_default";
         editor = {
           lsp.display-messages = true;
         };
       };
+      themes = import ./helix_theme.nix;
       languages = {
         language = [
           {
