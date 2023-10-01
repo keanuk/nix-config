@@ -105,6 +105,42 @@
     cosmic-applets, cosmic-applibrary, cosmic-bg, cosmic-comp, cosmic-launcher, cosmic-notifications, cosmic-osd,
     cosmic-panel, cosmic-settings, cosmic-settings-daemon, cosmic-session, xdg-desktop-portal-cosmic, ... }: {
     nixosConfigurations = {
+      earth = stable.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = inputs;
+        modules = [
+          {
+            networking.hostName = "earth";
+            system.stateVersion = "23.05";
+          }
+          ./hardware/terra.nix
+          ./nix/configuration.nix
+          ./packages/packages.nix
+          ./packages/server.nix
+          ./server/data.nix
+          ./server/download.nix
+          ./server/media.nix
+          ./server/network.nix
+          ./system/btrfs.nix
+          ./system/network.nix
+          ./system/server.nix
+          ./system/system.nix
+          ./system/systemd-boot.nix
+          ./user/keanu/users.nix
+          home-manager-stable.nixosModules.home-manager {
+            home-manager.useUserPackages = true;
+            home-manager.useGlobalPkgs = true;
+            home-manager.users.keanu = {
+              imports = [ 
+                ./user/keanu/home.nix
+                ./user/keanu/server.nix 
+              ];
+              #manual.manpages.enable = false;
+              home.stateVersion = "23.05";
+            };
+          }
+        ];
+      };
       enterprise = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = inputs;
@@ -190,6 +226,10 @@
           ./nix/configuration.nix
           ./packages/packages.nix
           ./packages/server.nix
+          ./server/data.nix
+          ./server/download.nix
+          ./server/media.nix
+          ./server/network.nix
           ./system/btrfs.nix
           ./system/network.nix
           ./system/server.nix

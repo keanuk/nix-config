@@ -12,6 +12,7 @@ mkdir /etc/nixos/desktop
 mkdir /etc/nixos/hardware
 mkdir /etc/nixos/nix
 mkdir /etc/nixos/packages
+mkdir /etc/nixos/server
 mkdir /etc/nixos/system
 mkdir /etc/nixos/user
 mkdir /etc/nixos/user/keanu
@@ -22,5 +23,6 @@ ln -sf $PWD/desktop/* /etc/nixos/desktop/
 ln -sf $PWD/hardware/* /etc/nixos/hardware/
 ln -sf $PWD/nix/* /etc/nixos/nix/
 ln -sf $PWD/packages/* /etc/nixos/packages/
+ln -sf $PWD/server/* /etc/nixos/server/
 ln -sf $PWD/system/* /etc/nixos/system/
 ln -sf $PWD/user/keanu/* /etc/nixos/user/keanu/
