@@ -52,4 +52,24 @@
     "warning" = yellow;
     "error" = red;
   };
+  base16_default = let
+    transparent = "none";
+    gray = "#665c54";
+    dark-gray = "#3c3836";
+    white = "#fbf1c7";
+    black = "#282828";
+    red = "#fb4934";
+    green = "#b8bb26";
+    yellow = "#fabd2f";
+    orange = "#fe8019";
+    blue = "#83a598";
+    magenta = "#d3869b";
+    cyan = "#8ec07c";
+  in {
+    ui.cursor = {
+      select = { bg = dark-gray; };
+      modifiers = [ "reversed" ];
+    };
+    ui.gutter = { bg = transparent; };
+  };
 }
