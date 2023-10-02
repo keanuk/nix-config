@@ -8,6 +8,8 @@
 
     plex = {
       enable = true;
+      user = "keanu";
+      openFirewall = true;
     };
   };
 }

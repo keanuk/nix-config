@@ -22,7 +22,6 @@ com.obsproject.Studio
 com.play0ad.zeroad
 com.plexamp.Plexamp
 com.protonvpn.www
-com.raggesilver.BlackBox
 com.rawtherapee.RawTherapee
 com.simplenote.Simplenote
 com.sindresorhus.Caprine
