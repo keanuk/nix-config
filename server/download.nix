@@ -1,10 +1,9 @@
-{ config, pkgs, lib, ... }
+{ config, pkgs, lib, ... }:
 
 {
   services = {
 
     # Media management
-
     lidarr = {
       enable = true;
     };
@@ -22,7 +21,6 @@
     };
 
     # Download
-
     transmission = {
       enable = true;
     };
