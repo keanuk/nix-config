@@ -224,7 +224,7 @@
     # format = "([\[$all_status$ahead_behind\]]($style) )";
     format = "([$all_status$ahead_behind]($style) )";
     style = "red bold";
-    stashed = "\$";
+    stashed = "S";
     ahead = "⇡";
     behind = "⇣";
     diverged = "⇕";

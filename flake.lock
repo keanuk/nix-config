@@ -83,11 +83,11 @@
         "rust": "rust"
       },
       "locked": {
-        "lastModified": 1696009308,
-        "narHash": "sha256-KIMuo6yEdWjYD4lcAHFVC1hjSxoq5DFLx9I2ajnGaFg=",
+        "lastModified": 1696281568,
+        "narHash": "sha256-dDoWd5vMO14TJwbHUcWadqH9oZXYcWoSUO9+UKv3Btk=",
         "owner": "pop-os",
         "repo": "cosmic-comp",
-        "rev": "d051f41de6d2daf1f0c5fa3d70d16d8b1b13b64b",
+        "rev": "a149b4262ff4e13e133eb75cbc67402e6737335a",
         "type": "github"
       },
       "original": {
@@ -107,11 +107,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1695751086,
-        "narHash": "sha256-ZagapmQildJzOeXZqCOByy1RKkEIWEQKJAMGZ1LOCKo=",
+        "lastModified": 1696255817,
+        "narHash": "sha256-0bhoQqmUhp17jRvJxahj09ZothBFczyIEdHjxZiSxRc=",
         "owner": "pop-os",
         "repo": "cosmic-launcher",
-        "rev": "5c272d8edcbaed19ecc3b3150fb3187dd5c6fbf6",
+        "rev": "54bf15293b6ae648f99c1280c2fd3f7894e55bdc",
         "type": "github"
       },
       "original": {
