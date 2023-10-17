@@ -10,6 +10,8 @@
     loader.efi.canTouchEfiVariables = true;
   };
 
+  hardware.enableAllFirmware = true;
+
   # Swap file
   swapDevices = [ { device = "/swap/swapfile"; } ];
 
