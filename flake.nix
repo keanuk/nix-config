@@ -149,6 +149,7 @@
             networking.hostName = "enterprise";
             system.stateVersion = "23.05";
           }
+          ./desktop/cosmic.nix
           ./desktop/desktop.nix
           ./desktop/gnome.nix
           ./hardware/enterprise.nix
@@ -258,7 +259,7 @@
    	        networking.hostName = "titan";
             system.stateVersion = "23.05";
           }
-          ./desktop/desktop.nix
+          ./desktop/cosmic.nix
           ./desktop/desktop.nix
           ./desktop/gnome.nix
           ./hardware/titan.nix

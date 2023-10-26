@@ -9,7 +9,7 @@
     distrobox
     SDL2
     snapper-gui
-    xorg.xkill
+   xorg.xkill
   ];
 
   users.users.keanu.packages = with pkgs; [
@@ -18,6 +18,7 @@
     androidStudioPackages.dev
     android-tools
     appimage-run
+    beeper
     blackbox-terminal
     dotnet-sdk_8
     flutter
@@ -34,7 +35,6 @@
     nodePackages.typescript
     python3Full
     steam-run
-    swift
     vscode-fhs
     wl-clipboard
     xclip
