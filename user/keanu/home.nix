@@ -94,6 +94,7 @@
         cleanup = "nix-store --gc && nix-store --optimize";
           ll = "ls -l";
           rebuild = "sudo nixos-rebuild switch --upgrade";
+          repair = "sudo nix-store --verify --check-contents --repair";
           update = "nix flake update ~/.config/nixos-config";
       };
       oh-my-zsh = {
