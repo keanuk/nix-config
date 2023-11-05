@@ -5,6 +5,7 @@
     
     nextcloud = {
       enable = true;
+      hostName = builtins.getEnv "HOST";
     };
 
     nfs.server = {
