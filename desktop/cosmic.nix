@@ -5,7 +5,9 @@ cosmic-panel, cosmic-settings, cosmic-settings-daemon, cosmic-session, xdg-deskt
   environment.systemPackages = with pkgs; [
     cosmic-applets
     cosmic-comp
+    cosmic-icons
     cosmic-panel
+    cosmic-settings
     # cosmic-applets.packages."${pkgs.system}".default
     # cosmic-applibrary.packages."${pkgs.system}".default
     # cosmic-comp.packages."${pkgs.system}".default
