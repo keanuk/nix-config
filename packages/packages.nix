@@ -27,6 +27,7 @@
     nmap
     rustc
     tealdeer
+    texlive.combined.scheme-full
     tree
     wget
   ];
