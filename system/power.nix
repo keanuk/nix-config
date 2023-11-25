@@ -5,7 +5,6 @@
   services = {
     power-profiles-daemon.enable = true;
   	thermald.enable = true;
-  	auto-cpufreq.enable = true;
   };
 
   powerManagement = {
