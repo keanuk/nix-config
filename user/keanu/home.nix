@@ -19,6 +19,18 @@
     };
     fish = {
       enable = true;
+      interactiveShellInit = ''
+        function fish_greeting
+          neofetch
+        end 
+      '';
+      shellAliases = {
+        cleanup = "nix-store --gc && nix-store --optimize";
+        ll = "ls -l";
+        rebuild = "sudo nixos-rebuild switch --upgrade";
+        repair = "sudo nix-store --verify --check-contents --repair";
+        update = "nix flake update ~/.config/nixos-config";
+      };
     };
     git = {
       enable = true;
@@ -76,6 +88,7 @@
     };
     starship = {
       enable = true;
+      enableTransience = true;
       settings = import ./starship_nerd.nix;
     };
     zellij = {
@@ -92,10 +105,10 @@
       # syntaxHighlighting.enable = true;
       shellAliases = {
         cleanup = "nix-store --gc && nix-store --optimize";
-          ll = "ls -l";
-          rebuild = "sudo nixos-rebuild switch --upgrade";
-          repair = "sudo nix-store --verify --check-contents --repair";
-          update = "nix flake update ~/.config/nixos-config";
+        ll = "ls -l";
+        rebuild = "sudo nixos-rebuild switch --upgrade";
+        repair = "sudo nix-store --verify --check-contents --repair";
+        update = "nix flake update ~/.config/nixos-config";
       };
       oh-my-zsh = {
         enable = true;

@@ -16,6 +16,7 @@
   users.users.keanu.packages = with pkgs; [
     btop
     cargo
+    fortune
     gcc
     gh
     go

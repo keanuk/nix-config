@@ -7,7 +7,7 @@
     home = "/home/keanu";
     description = "Keanu Kerr";
     extraGroups = [ "wheel" "networkmanager" ];
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
     initialPassword = "keanu";
   };
 }
