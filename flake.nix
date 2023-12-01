@@ -5,6 +5,9 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     stable.url = "github:NixOS/nixpkgs/nixos-23.05";
 
+    # Nix hardware
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    
     # Home Manager
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -101,7 +104,7 @@
     
   };
 
-  outputs = inputs@{ self, nixpkgs, stable, home-manager, home-manager-stable, lanzaboote, vscode-server, 
+  outputs = inputs@{ self, nixpkgs, stable, nixos-hardware, home-manager, home-manager-stable, lanzaboote, vscode-server, 
     cosmic-applets, cosmic-applibrary, cosmic-bg, cosmic-comp, cosmic-launcher, cosmic-notifications, cosmic-osd,
     cosmic-panel, cosmic-settings, cosmic-settings-daemon, cosmic-session, xdg-desktop-portal-cosmic, ... }: {
     nixosConfigurations = {
@@ -149,6 +152,7 @@
             networking.hostName = "enterprise";
             system.stateVersion = "23.05";
           }
+          nixos-hardware.nixosModules.hp-elitebook-845g7
           ./desktop/cosmic.nix
           ./desktop/desktop.nix
           ./desktop/gnome.nix

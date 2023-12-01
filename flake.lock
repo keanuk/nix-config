@@ -1720,6 +1720,22 @@
         "type": "github"
       }
     },
+    "nixos-hardware": {
+      "locked": {
+        "lastModified": 1701250978,
+        "narHash": "sha256-ohu3cz4edjpGxs2qUTgbs0WrnewOX4crnUJNEB6Jox4=",
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "rev": "8772491ed75f150f02552c60694e1beff9f46013",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "master",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1701068326,
@@ -1820,6 +1836,7 @@
         "home-manager": "home-manager",
         "home-manager-stable": "home-manager-stable",
         "lanzaboote": "lanzaboote",
+        "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "stable": "stable",
         "vscode-server": "vscode-server",
