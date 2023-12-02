@@ -8,8 +8,10 @@ cosmic-panel, cosmic-settings, cosmic-settings-daemon, cosmic-session, xdg-deskt
     cosmic-edit
     cosmic-greeter
     cosmic-icons
+    cosmic-osd
     cosmic-panel
     cosmic-settings
+    cosmic-workspaces-epoch
     # cosmic-applets.packages."${pkgs.system}".default
     # cosmic-applibrary.packages."${pkgs.system}".default
     # cosmic-comp.packages."${pkgs.system}".default
