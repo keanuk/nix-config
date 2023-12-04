@@ -10,7 +10,14 @@
     loader.efi.canTouchEfiVariables = true;
   };
 
-  hardware.enableAllFirmware = true;
+  hardware = {
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+    enableAllFirmware = true;
+    enableRedistributableFirmware = true;
+  };
 
   # Swap file
   swapDevices = [ { device = "/swap/swapfile"; } ];
