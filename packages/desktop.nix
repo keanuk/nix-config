@@ -25,7 +25,6 @@
     gh
     jdk
     jetbrains.idea-community
-    jetbrains.jdk
     jetbrains.pycharm-community
     kotlin
     netbird-ui
