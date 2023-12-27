@@ -17,6 +17,7 @@
     androidStudioPackages.beta
     androidStudioPackages.dev
     android-tools
+    anytype
     appimage-run
     beeper
     blackbox-terminal
