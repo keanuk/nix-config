@@ -6,7 +6,7 @@
     stable.url = "github:NixOS/nixpkgs/nixos-23.11";
 
     # Nix hardware
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-hardware.url = "github:keanuk/nixos-hardware/hp-elitebook-845-g8";
     
     # Home Manager
     home-manager = {
@@ -152,7 +152,7 @@
             networking.hostName = "enterprise";
             system.stateVersion = "23.05";
           }
-          nixos-hardware.nixosModules.hp-elitebook-845g7
+          nixos-hardware.nixosModules.hp-elitebook-845g8
           ./desktop/cosmic.nix
           ./desktop/desktop.nix
           ./desktop/gnome.nix
