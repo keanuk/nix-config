@@ -41,7 +41,6 @@
       killUnconfinedConfinables = true;
     };
     audit.enable = true;
-    auditd.enable = true;
   };
 
   # Containers
