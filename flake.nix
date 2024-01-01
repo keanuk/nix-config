@@ -6,7 +6,7 @@
     stable.url = "github:NixOS/nixpkgs/nixos-23.11";
 
     # Nix hardware
-    nixos-hardware.url = "github:keanuk/nixos-hardware/hp-elitebook-845-g8";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     
     # Home Manager
     home-manager = {

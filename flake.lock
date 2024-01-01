@@ -1660,16 +1660,16 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1704111545,
+        "lastModified": 1704124233,
         "narHash": "sha256-lBHs/yUtkcGgapHRS31oOb5NqvnVrikvktGOW8rK+sE=",
-        "owner": "keanuk",
+        "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "8b34e972fb99dd7561b6a8d3aacdfb36878c1c5a",
+        "rev": "f752581d6723a10da7dfe843e917a3b5e4d8115a",
         "type": "github"
       },
       "original": {
-        "owner": "keanuk",
-        "ref": "hp-elitebook-845-g8",
+        "owner": "NixOS",
+        "ref": "master",
         "repo": "nixos-hardware",
         "type": "github"
       }
