@@ -16,6 +16,7 @@
   users.users.keanu.packages = with pkgs; [
     btop
     cargo
+    direnv
     fortune
     gcc
     gh
