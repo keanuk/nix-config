@@ -19,7 +19,6 @@
     direnv
     fortune
     gcc
-    gh
     go
     htop
     mono
