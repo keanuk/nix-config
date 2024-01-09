@@ -39,7 +39,7 @@
       "x86_64-linux"
       "aarch64-darwin"
       "x86_64-darwin"
-    ]
+    ];
     forAllSystems = nixpkgs.lib.genAttrs systems;
   in {
     packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
@@ -50,8 +50,7 @@
 
     nixosConfigurations = {
       earth = stable.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = inputs;
+        specialArgs = {inherit inputs outputs;};
         modules = [
           {
             networking.hostName = "earth";
@@ -79,35 +78,14 @@
                 ./user/keanu/home.nix
                 ./user/keanu/server.nix 
               ];
-              #manual.manpages.enable = false;
               home.stateVersion = "23.05";
             };
           }
         ];
       };
       enterprise = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = inputs;
+        specialArgs = {inherit inputs outputs;};
         modules = [
-          {
-            networking.hostName = "enterprise";
-            system.stateVersion = "23.05";
-          }
-          nixos-hardware.nixosModules.hp-elitebook-845g8
-          ./desktop/cosmic.nix
-          ./desktop/desktop.nix
-          ./desktop/gnome.nix
-          ./hardware/enterprise.nix
-          ./nix/configuration.nix
-          ./packages/desktop.nix
-          ./packages/packages.nix
-          ./system/btrfs.nix
-          ./system/desktop.nix
-          ./system/lanzaboote.nix
-          ./system/network.nix
-          ./system/power.nix
-          ./system/system.nix
-          ./user/keanu/users.nix
           home-manager.nixosModules.home-manager {
             home-manager.useUserPackages = true;
             home-manager.useGlobalPkgs = true;
@@ -123,8 +101,7 @@
         ];
       };
       hermes = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = inputs;
+        specialArgs = {inherit inputs outputs;};
         modules = [
           {
             networking.hostName = "hermes";
@@ -159,8 +136,7 @@
         ];
       };
       terra = stable.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = inputs;
+        specialArgs = {inherit inputs outputs;};
         modules = [
           {
             networking.hostName = "terra";
@@ -188,15 +164,13 @@
                 ./user/keanu/home.nix
                 ./user/keanu/server.nix 
               ];
-              #manual.manpages.enable = false;
               home.stateVersion = "23.05";
             };
           }
         ];
       };
       titan = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = inputs;
+        specialArgs = {inherit inputs outputs;};
         modules = [
           {
    	        networking.hostName = "titan";
