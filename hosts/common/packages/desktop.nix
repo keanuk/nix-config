@@ -53,7 +53,5 @@
     ];
   };
 
-  services.vscode-server.enable = true;
-
   environment.sessionVariables = {};
 }

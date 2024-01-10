@@ -1,9 +1,10 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, outputs, ... }: {
 	imports = [
 		./hardware-configuration.nix
 
     inputs.nixos-hardware.nixosModules.hp-elitebook-845g8
     inputs.home-manager.nixosModules.home-manager
+    inputs.lanzaboote.nixosModules.lanzaboote
     ../common/desktop/cosmic.nix
     ../common/desktop/desktop.nix
     ../common/desktop/gnome.nix
@@ -27,8 +28,8 @@
     useGlobalPkgs = true;
     users.keanu = {
       imports = [ 
-        ./user/keanu/desktop.nix
-        ./user/keanu/home.nix
+        ../common/user/keanu/desktop.nix
+        ../common/user/keanu/home.nix
       ];
       home.stateVersion = "23.11";
     };

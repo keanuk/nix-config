@@ -2,24 +2,23 @@
 	imports = [
 		./hardware-configuration.nix
 
-    inputs.home-manager.nixosModules.home-manager
-    inputs.lanzaboote.nixosModules.lanzaboote
-		../common/desktop/cosmic.nix
-		../common/desktop/desktop.nix
-		../common/desktop/gnome.nix
+		inputs.home-manager.nixosModules.home-manager
 		../common/nix/configuration.nix
-		../common/packages/desktop.nix
 		../common/packages/packages.nix
+		../common/packages/server.nix
+		../common/server/data.nix
+		../common/server/download.nix
+		../common/server/media.nix
+		../common/server/network.nix
 		../common/system/btrfs.nix
-		../common/system/desktop.nix
-		../common/system/lanzaboote.nix
 		../common/system/network.nix
-		../common/system/power.nix
+		../common/system/server.nix
 		../common/system/system.nix
+		../common/system/systemd-boot.nix
 		../common/user/keanu/users.nix
 	];
 
-  networking.hostName = "hermes";
+  networking.hostName = "earth";
 
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
@@ -27,10 +26,10 @@
     useGlobalPkgs = true;
     users.keanu = {
       imports = [ 
-        ../common/user/keanu/desktop.nix
+        ../common/user/keanu/server.nix
         ../common/user/keanu/home.nix
       ];
-      home.stateVersion = "23.11";
+      home.stateVersion = "23.05";
     };
   };
 
