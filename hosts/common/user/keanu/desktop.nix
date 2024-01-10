@@ -1,4 +1,3 @@
-
 {
   dconf.settings = {
     "org/gnome/desktop/datetime" = { 
