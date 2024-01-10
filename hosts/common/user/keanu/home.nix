@@ -29,7 +29,7 @@
         ll = "ls -l";
         rebuild = "sudo nixos-rebuild switch --upgrade";
         repair = "sudo nix-store --verify --check-contents --repair";
-        update = "nix flake update ~/.config/nixos-config";
+        update = "nix flake update ~/nix-config";
       };
     };
     gh = {
