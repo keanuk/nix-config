@@ -1,5 +1,7 @@
 # nix-config
+
 Personal configuration files for Nix.
 
-### Setup
+## Setup
+
 Run setup.sh as superuser from directory where you want to keep configs.
