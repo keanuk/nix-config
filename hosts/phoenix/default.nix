@@ -1,10 +1,8 @@
 { pkgs, inputs, outputs, ... }: {
 	imports = [
+		./hardware-configuration.nix
+
     inputs.home-manager.nixosModules.home-manager
-    ../common/nix/configuration.nix
-    ../common/packages/desktop.nix
-    ../common/packages/packages.nix
-    ../common/user/keanu/users.nix
 	];
 
   networking.hostName = "phoenix";
@@ -15,10 +13,8 @@
     useGlobalPkgs = true;
     users.keanu = {
       imports = [ 
-        ../common/user/keanu/desktop.nix
-        ../common/user/keanu/home.nix
       ];
-      home.stateVersion = "23.11";
+      home.stateVersion = "24.05";
     };
   };
 }

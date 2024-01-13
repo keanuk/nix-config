@@ -5,6 +5,11 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     stable.url = "github:NixOS/nixpkgs/nixos-23.11";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    darwin = {
+      url = "github:LnL7/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -26,7 +31,8 @@
     self, 
     nixpkgs, 
     stable, 
-    nixos-hardware, 
+    nixos-hardware,
+    darwin,
     home-manager, 
     home-manager-stable, 
     lanzaboote, 
@@ -67,6 +73,12 @@
       titan = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [ ./hosts/titan ];
+      };
+    };
+    darwinConfigurations = {
+      phoenix = darwin.lib.darwinSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [ ./hosts/phoenix ];
       };
     };
   };
