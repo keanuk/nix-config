@@ -3,19 +3,19 @@
 		./hardware-configuration.nix
 
 		inputs.home-manager.nixosModules.home-manager
-		../common/nix/configuration.nix
-		../common/packages/packages.nix
-		../common/packages/server.nix
-		../common/server/data.nix
-		../common/server/download.nix
-		../common/server/media.nix
-		../common/server/network.nix
-		../common/system/btrfs.nix
-		../common/system/network.nix
-		../common/system/server.nix
-		../common/system/system.nix
-		../common/system/systemd-boot.nix
-		../common/user/keanu/users.nix
+		../common/nixos/nix/configuration.nix
+		../common/nixos/packages/packages.nix
+		../common/nixos/packages/server.nix
+		../common/nixos/server/data.nix
+		../common/nixos/server/download.nix
+		../common/nixos/server/media.nix
+		../common/nixos/server/network.nix
+		../common/nixos/system/btrfs.nix
+		../common/nixos/system/network.nix
+		../common/nixos/system/server.nix
+		../common/nixos/system/system.nix
+		../common/nixos/system/systemd-boot.nix
+		../common/nixos/user/keanu/users.nix
 	];
 
   networking.hostName = "earth";
@@ -26,8 +26,8 @@
     useGlobalPkgs = true;
     users.keanu = {
       imports = [ 
-        ../common/user/keanu/server.nix
-        ../common/user/keanu/home.nix
+        ../common/home-manager/default.nix
+        ../common/home-manager/server.nix
       ];
       home.stateVersion = "23.05";
     };

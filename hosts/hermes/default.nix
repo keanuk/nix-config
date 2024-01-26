@@ -4,19 +4,19 @@
 
     inputs.home-manager.nixosModules.home-manager
     inputs.lanzaboote.nixosModules.lanzaboote
-		../common/desktop/cosmic.nix
-		../common/desktop/desktop.nix
-		../common/desktop/gnome.nix
-		../common/nix/configuration.nix
-		../common/packages/desktop.nix
-		../common/packages/packages.nix
-		../common/system/btrfs.nix
-		../common/system/desktop.nix
-		../common/system/lanzaboote.nix
-		../common/system/network.nix
-		../common/system/power.nix
-		../common/system/system.nix
-		../common/user/keanu/users.nix
+		../common/nixos/desktop/cosmic.nix
+		../common/nixos/desktop/desktop.nix
+		../common/nixos/desktop/gnome.nix
+		../common/nixos/nix/configuration.nix
+		../common/nixos/packages/desktop.nix
+		../common/nixos/packages/packages.nix
+		../common/nixos/system/btrfs.nix
+		../common/nixos/system/desktop.nix
+		../common/nixos/system/lanzaboote.nix
+		../common/nixos/system/network.nix
+		../common/nixos/system/power.nix
+		../common/nixos/system/system.nix
+		../common/nixos/user/keanu/users.nix
 	];
 
   networking.hostName = "hermes";
@@ -27,8 +27,8 @@
     useGlobalPkgs = true;
     users.keanu = {
       imports = [ 
-        ../common/user/keanu/desktop.nix
-        ../common/user/keanu/home.nix
+        ../common/home-manager/default.nix
+        ../common/home-manager/desktop.nix
       ];
       home.stateVersion = "23.11";
     };

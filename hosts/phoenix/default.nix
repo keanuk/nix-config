@@ -3,7 +3,7 @@
 		./hardware-configuration.nix
 
     # inputs.home-manager.nixosModules.home-manager
-		../common-darwin/nix/configuration.nix
+		../common/darwin/default.nix
 	];
 
   networking.hostName = "phoenix";
