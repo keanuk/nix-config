@@ -1,15 +1,10 @@
 { config, pkgs, ... }:
 
 {
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
-    libglvnd
-	  libxkbcommon
     distrobox
-    SDL2
     snapper-gui
-   xorg.xkill
+    xorg.xkill
   ];
 
   users.users.keanu.packages = with pkgs; [
@@ -28,6 +23,7 @@
     jetbrains.idea-community
     jetbrains.pycharm-community
     kotlin
+    libadwaita
     netbird-ui
     nim
     nodejs
@@ -35,6 +31,7 @@
     nodePackages.typescript
     python3Full
     steam-run
+    texlive.combined.scheme-full
     vscode-fhs
     wl-clipboard
     xclip

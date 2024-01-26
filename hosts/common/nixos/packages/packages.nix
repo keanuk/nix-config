@@ -1,8 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     acpid
     pciutils
@@ -28,7 +26,6 @@
     nmap
     rustc
     tealdeer
-    texlive.combined.scheme-full
     tree
     wget
   ];
@@ -38,7 +35,7 @@
   programs.fish.enable = true;
   services.atuin.enable = true;
 
-  # Nix Packages
+  # nixpkgs
   nixpkgs.config = {
     allowUnfree = true;
     # permittedInsecurePackages = [];
