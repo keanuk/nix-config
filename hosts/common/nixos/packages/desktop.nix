@@ -18,7 +18,6 @@
     blackbox-terminal
     dotnet-sdk_8
     flutter
-    gh
     jdk
     jetbrains.idea-community
     jetbrains.pycharm-community
@@ -31,7 +30,7 @@
     nodePackages.typescript
     python3Full
     steam-run
-    texlive.combined.scheme-full
+    typst
     vscode-fhs
     wl-clipboard
     xclip
