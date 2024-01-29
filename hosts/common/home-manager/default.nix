@@ -21,8 +21,8 @@
       enable = true;
       interactiveShellInit = ''
         function fish_greeting
-          neofetch
-        end 
+          fastfetch
+        end
       '';
       shellAliases = {
         cleanup = "nix-store --gc && nix-store --optimize";
@@ -84,7 +84,7 @@
         ignorecase = true;
         savecursor = true;
         saveundo = true;
-        tabsize = 4;
+        tabsize = 2;
         wordwrap = true;
         ft.nix = {
           tabsize = 2;

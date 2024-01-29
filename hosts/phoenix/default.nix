@@ -1,9 +1,9 @@
 { pkgs, inputs, outputs, ... }: {
 	imports = [
-		./hardware-configuration.nix
+	  ./hardware-configuration.nix
 
-    # inputs.home-manager.nixosModules.home-manager
-		../common/darwin/default.nix
+      # inputs.home-manager.nixosModules.home-manager
+	  ../common/darwin/default.nix
 	];
 
   networking.hostName = "phoenix";
@@ -13,7 +13,8 @@
   #   useUserPackages = true;
   #   useGlobalPkgs = true;
   #   users.keanu = {
-  #     imports = [ 
+  #     imports = [
+  #       ../common/home-manager/default.nix
   #     ];
   #     home.stateVersion = "24.05";
   #   };
@@ -23,5 +24,5 @@
   services.nix-daemon.enable = true;
   nix.package = pkgs.nix;
 
-	system.stateVersion = 4;
+  system.stateVersion = 4;
 }

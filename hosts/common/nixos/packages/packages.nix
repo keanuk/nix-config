@@ -14,16 +14,19 @@
   users.users.keanu.packages = with pkgs; [
     btop
     cargo
+    cpufetch
     direnv
+    fastfetch
     fortune
     gcc
     go
     htop
     mono
-    neofetch
     nixfmt
     nix-index
     nmap
+    onefetch
+    ramfetch
     rustc
     tealdeer
     tree
