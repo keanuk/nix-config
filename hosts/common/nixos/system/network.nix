@@ -2,7 +2,7 @@
 
 {
   # Set your time zone.
-  time.timeZone = lib.mkForce null;
+  # time.timeZone = lib.mkForce null;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -11,6 +11,7 @@
   services = {
     automatic-timezoned.enable = true;
     fail2ban.enable = true;
+    localtimed.enable = true;
     netbird.enable = true;
     openssh = {
       enable = true;
