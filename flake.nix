@@ -3,49 +3,45 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    stable.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     darwin = {
-      url = "github:LnL7/nix-darwin/master";
+      url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";	
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     home-manager-stable = {
-      url = "github:nix-community/home-manager/release-23.05";
-      inputs.nixpkgs.follows = "stable";	
+      url = "github:nix-community/home-manager/release-23.11";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
-    };    
+    };
   };
 
-  outputs = { 
-    self, 
-    nixpkgs, 
-    stable, 
+  outputs = {
+    self,
+    nixpkgs,
+    nixpkgs-stable,
     nixos-hardware,
     darwin,
-    home-manager, 
-    home-manager-stable, 
-    lanzaboote, 
-    ... 
+    home-manager,
+    home-manager-stable,
+    lanzaboote,
+    ...
   } @ inputs: let
     inherit (self) outputs;
-    systems = [
-      "aarch64-linux"
-      "x86_64-linux"
-      "aarch64-darwin"
-      "x86_64-darwin"
-    ];
-    forAllSystems = nixpkgs.lib.genAttrs systems;
+    linuxSystems = [ "aarch64-linux" "x86_64-linux" ];
+    darwinSystems = [ "aarch64-darwin" "x86_64-darwin" ];
+    forAllSystems = nixpkgs.lib.genAttrs (linuxSystems ++ darwinSystems);
   in {
     packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixpkgs-fmt);
@@ -54,30 +50,36 @@
     homeManagerModules = import ./modules/home-manager;
 
     nixosConfigurations = {
-      earth = stable.lib.nixosSystem {
+      earth = nixpkgs-stable.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
+        system = "x86_64-linux";
         modules = [ ./hosts/earth ];
       };
       enterprise = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
+        system = "x86_64-linux";
         modules = [ ./hosts/enterprise ];
       };
       hermes = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
+        system = "x86_64-linux";
         modules = [ ./hosts/hermes ];
       };
-      terra = stable.lib.nixosSystem {
+      terra = nixpkgs-stable.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
+        system = "x86_64-linux";
         modules = [ ./hosts/terra ];
       };
       titan = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
+        system = "x86_64-linux";
         modules = [ ./hosts/titan ];
       };
     };
     darwinConfigurations = {
       phoenix = darwin.lib.darwinSystem {
         specialArgs = {inherit inputs outputs;};
+        system = "x86_64-darwin";
         modules = [ ./hosts/phoenix ];
       };
     };

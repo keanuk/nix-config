@@ -1,8 +1,8 @@
-{ pkgs, inputs, outputs, ... }: {
+{ pkgs, lib, inputs, outputs, ... }: {
 	imports = [
 	  ./hardware-configuration.nix
 
-      # inputs.home-manager.nixosModules.home-manager
+      inputs.home-manager.darwinModules.home-manager
 	  ../common/darwin/default.nix
 	];
 
@@ -22,7 +22,8 @@
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
-  nix.package = pkgs.nix;
+  nix.package = pkgs.nixUnstable;
 
+  nixpkgs.hostPlatform = "x86_64-darwin";
   system.stateVersion = 4;
 }
