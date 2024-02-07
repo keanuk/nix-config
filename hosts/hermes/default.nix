@@ -4,10 +4,10 @@
 
     inputs.home-manager.nixosModules.home-manager
     inputs.lanzaboote.nixosModules.lanzaboote
+		../common/nixos/default.nix
 		../common/nixos/desktop/cosmic.nix
 		../common/nixos/desktop/desktop.nix
 		../common/nixos/desktop/gnome.nix
-		../common/nixos/nix/configuration.nix
 		../common/nixos/packages/desktop.nix
 		../common/nixos/packages/packages.nix
 		../common/nixos/system/btrfs.nix

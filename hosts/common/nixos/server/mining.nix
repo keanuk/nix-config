@@ -3,7 +3,7 @@
 {
   services = {
     xmrig = {
-      enable = false;
+      enable = true;
       settings = {
         autosave = true;
         cpu = true;

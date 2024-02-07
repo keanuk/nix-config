@@ -1,18 +1,17 @@
 { config, pkgs, lib, ... }:
 
 {
-  # Set your time zone.
-  # time.timeZone = lib.mkForce null;
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
   services = {
     automatic-timezoned.enable = true;
     fail2ban.enable = true;
     localtimed.enable = true;
-    netbird.enable = true;
+    # netbird.enable = true;
+    nextdns = {
+      enable = true;
+      arguments = [ 
+        "-config" "c773e8" 
+        ];
+    };
     openssh = {
       enable = true;
       ports = [
@@ -23,21 +22,19 @@
       };
     };
     printing.enable = true;
-    resolved.enable = true;
+    resolved = { 
+      enable = true;
+      extraConfig = ''
+        DNS=45.90.28.0#c773e8.dns.nextdns.io
+        DNS=2a07:a8c0::#c773e8.dns.nextdns.io
+        DNS=45.90.30.0#c773e8.dns.nextdns.io
+        DNS=2a07:a8c1::#c773e8.dns.nextdns.io
+        DNSOverTLS=yes
+      '';
+    };
+    tailscale.enable = true;
   };
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
   networking = {
     firewall.enable = true;
     # firewall.trustedInterfaces = [ "wt0" ];

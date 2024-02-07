@@ -3,7 +3,7 @@
 		./hardware-configuration.nix
 
     inputs.home-manager.nixosModules.home-manager
-    ../common/nixos/nix/configuration.nix
+    ../common/nixos/default.nix
     ../common/nixos/packages/packages.nix
     ../common/nixos/packages/server.nix
     ../common/nixos/server/data.nix
