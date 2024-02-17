@@ -2,8 +2,6 @@
 
 {
   services = {
-
-    # Media management
     lidarr = {
       enable = true;
     };
@@ -24,6 +22,5 @@
     transmission = {
       enable = true;
     };
-    
   };
 }

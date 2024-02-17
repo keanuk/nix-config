@@ -5,19 +5,17 @@
     inputs.home-manager.nixosModules.home-manager
     inputs.lanzaboote.nixosModules.lanzaboote
     ../common/nixos/default.nix
-    ../common/nixos/desktop/cosmic.nix
-    ../common/nixos/desktop/desktop.nix
+    ../common/nixos/desktop/default.nix
     ../common/nixos/desktop/gnome.nix
+    ../common/nixos/packages/default.nix
     ../common/nixos/packages/desktop.nix
-    ../common/nixos/packages/packages.nix
     # ../common/nixos/server/mining.nix
     ../common/nixos/system/amd.nix
     ../common/nixos/system/btrfs.nix
-    ../common/nixos/system/desktop.nix
+    ../common/nixos/system/default.nix
     ../common/nixos/system/lanzaboote.nix
-    ../common/nixos/system/network.nix
-    ../common/nixos/system/system.nix
-    ../common/nixos/user/keanu/users.nix
+    ../common/nixos/system/nix-unstable.nix
+    ../common/nixos/user/keanu/default.nix
 	];
 
   networking.hostName = "titan";

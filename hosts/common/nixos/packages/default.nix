@@ -3,7 +3,6 @@
 {
   environment.systemPackages = with pkgs; [
     acpid
-    nextdns
     pciutils
     polkit
     psmisc

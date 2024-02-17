@@ -2,7 +2,6 @@
 
 {
   services = {
-    
     nextcloud = {
       enable = true;
       hostName = builtins.getEnv "HOST";
@@ -15,6 +14,5 @@
     samba = {
       enable = true;
     };
-  
   };
 }
