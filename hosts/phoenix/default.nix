@@ -8,17 +8,17 @@
 
   networking.hostName = "phoenix";
 
-  # home-manager = {
-  #   extraSpecialArgs = { inherit inputs outputs; };
-  #   useUserPackages = true;
-  #   useGlobalPkgs = true;
-  #   users.keanu = {
-  #     imports = [
-  #       ../common/home-manager/default.nix
-  #     ];
-  #     home.stateVersion = "24.05";
-  #   };
-  # };
+  home-manager = {
+    extraSpecialArgs = { inherit inputs outputs; };
+    useUserPackages = true;
+    useGlobalPkgs = true;
+    users.keanu = {
+      imports = [
+        ../common/home-manager/default.nix
+      ];
+      home.stateVersion = "24.05";
+    };
+  };
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
