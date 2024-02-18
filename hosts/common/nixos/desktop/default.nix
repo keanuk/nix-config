@@ -1,15 +1,8 @@
 { config, pkgs, lib, ... }:
 
 {
-  # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Configure keymap in X11
-  # services.xserver.layout = "us";
-  # services.xserver.xkbOptions = "eurosign:e,caps:escape";
-
-  # Enable sound.
-  # sound.enable = true;
   hardware.pulseaudio.enable = false;
 
   security.rtkit.enable = true;
@@ -21,7 +14,6 @@
     jack.enable = true;
   };
 
-  # Flatpak
   services.flatpak.enable = true;
   services.dbus.enable = true;
 

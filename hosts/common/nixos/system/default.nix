@@ -1,12 +1,8 @@
 { config, pkgs, lib, ... }:
 
 {
-  # Boot
   boot = {
-    # Init
     initrd.systemd.enable = true;
-
-    # Installation
     loader.efi.canTouchEfiVariables = true;
   };
 
@@ -19,20 +15,26 @@
     enableRedistributableFirmware = true;
   };
 
-  # Swap file
   swapDevices = [ { device = "/swap/swapfile"; } ];
 
-  # Systemd
   services = {
     automatic-timezoned.enable = true;
     dbus.apparmor = "enabled";
     fail2ban.enable = true;
     fwupd.enable = true;
-    geoclue2.enable = true;
+    geoclue2 = {
+      enable = true;
+      enableDemoAgent = lib.mkForce true;
+      geoProviderUrl = "https://location.services.mozilla.com/v1/geolocate?key=geoclue";
+      enableWifi = false;
+      appConfig.localtimed.isAllowed = true;
+      appConfig.localtimed.isSystem = true;
+    };
     homed.enable = true;
     localtimed.enable = true;
     # netbird.enable = true;
     printing.enable = true;
+    power-profiles-daemon.enable = true;
     resolved = { 
       enable = true;
       extraConfig = ''
@@ -45,10 +47,11 @@
     };
     smartd.enable = true;
     tailscale.enable = true;
+    thermald.enable = true;
   };
 
   systemd = {
-    network.enable = true;
+    # network.enable = true;
     oomd.enable = true;
   };
 
@@ -57,8 +60,10 @@
     # firewall.trustedInterfaces = [ "wt0" ];
     networkmanager.enable = true;
   };
+
+  location.provider = "geoclue2";
+  time.timeZone = lib.mkForce null;
   
-  # Security
   security = {
     apparmor = { 
       enable = true;
@@ -67,30 +72,20 @@
     audit.enable = true;
   };
 
-  # Power management
-  services = {
-    power-profiles-daemon.enable = true;
-  	thermald.enable = true;
-  };
-
-  # Containers
   virtualisation = {
     containerd.enable = true;
     podman.enable = true;
   };
 
-  # Console
   console = {
     earlySetup = true;
     font = "Lat2-Terminus16";
-    # keyMap = "us";
-    useXkbConfig = true; # use xkbOptions in tty.
+    useXkbConfig = true;
     packages = with pkgs; [
       terminus_font
     ];
   };
 
-  # Internationalisation
   i18n = {
     defaultLocale = "en_US.UTF-8";
     supportedLocales = [
