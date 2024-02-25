@@ -46,7 +46,7 @@
       extraConfig = {
         github.user = "keanuk";
         init.defaultBranch = "main";
-        pull.rebase = true;
+        pull.rebase = false;
       };
     };
     helix = {
