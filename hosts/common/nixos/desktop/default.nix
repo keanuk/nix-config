@@ -17,7 +17,7 @@
   services.flatpak.enable = true;
   services.dbus.enable = true;
 
-  # Enable touchpad support (enabled default in most desktopManager).
+  # Enable touchpad support (enabled default in most desktopManager)
   services.xserver.libinput.enable = true;
 
   # Fingerprint login
