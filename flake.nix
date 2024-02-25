@@ -79,7 +79,7 @@
         modules = [ ./hosts/hermes ];
       };
       terra = nixpkgs-stable.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs- secrets;};
+        specialArgs = {inherit inputs outputs secrets;};
         system = "x86_64-linux";
         modules = [ ./hosts/terra ];
       };
