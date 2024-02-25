@@ -2,9 +2,9 @@
   nixpkgs.config.allowUnfree = true;
   home = {
     sessionVariables = {
-      EDITOR = "micro";
-      SYSTEMD_EDITOR = "micro";
-      VISUAL = "micro";
+      # EDITOR = "micro";
+      # SYSTEMD_EDITOR = "micro";
+      # VISUAL = "micro";
     };
   };
   programs = {
@@ -51,7 +51,7 @@
     };
     helix = {
       enable = true;
-      # defaultEditor = true;
+      defaultEditor = true;
       settings = {
         theme = "base16_default";
         editor = {

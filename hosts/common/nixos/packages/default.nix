@@ -3,6 +3,8 @@
 {
   environment.systemPackages = with pkgs; [
     acpid
+    bcachefs-tools
+    just
     pciutils
     polkit
     psmisc
@@ -12,6 +14,7 @@
   ];
 
   users.users.keanu.packages = with pkgs; [
+    age
     btop
     cargo
     cpufetch
@@ -19,6 +22,7 @@
     fastfetch
     fortune
     gcc
+    git-crypt
     go
     htop
     mono
@@ -28,6 +32,8 @@
     onefetch
     ramfetch
     rustc
+    sops
+    ssh-to-age
     tealdeer
     tree
     wget

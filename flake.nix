@@ -25,6 +25,16 @@
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -36,12 +46,15 @@
     home-manager,
     home-manager-stable,
     lanzaboote,
+    disko,
+    sops-nix,
     ...
   } @ inputs: let
     inherit (self) outputs;
     linuxSystems = [ "aarch64-linux" "x86_64-linux" ];
     darwinSystems = [ "aarch64-darwin" "x86_64-darwin" ];
     forAllSystems = nixpkgs.lib.genAttrs (linuxSystems ++ darwinSystems);
+    secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/git/secrets.json");
   in {
     packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixpkgs-fmt);
@@ -51,34 +64,34 @@
 
     nixosConfigurations = {
       earth = nixpkgs-stable.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit inputs outputs secrets;};
         system = "x86_64-linux";
         modules = [ ./hosts/earth ];
       };
       enterprise = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit inputs outputs secrets;};
         system = "x86_64-linux";
         modules = [ ./hosts/enterprise ];
       };
       hermes = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit inputs outputs secrets;};
         system = "x86_64-linux";
         modules = [ ./hosts/hermes ];
       };
       terra = nixpkgs-stable.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit inputs outputs- secrets;};
         system = "x86_64-linux";
         modules = [ ./hosts/terra ];
       };
       titan = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit inputs outputs secrets;};
         system = "x86_64-linux";
         modules = [ ./hosts/titan ];
       };
     };
     darwinConfigurations = {
       phoenix = darwin.lib.darwinSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit inputs outputs secrets;};
         system = "x86_64-darwin";
         modules = [ ./hosts/phoenix ];
       };

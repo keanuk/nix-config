@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, secrets, ... }:
 
 {
   boot = {
@@ -17,6 +17,9 @@
 
   swapDevices = [ { device = "/swap/swapfile"; } ];
 
+  location.provider = "geoclue2";
+  time.timeZone = lib.mkForce null;
+
   services = {
     automatic-timezoned.enable = true;
     dbus.apparmor = "enabled";
@@ -24,11 +27,7 @@
     fwupd.enable = true;
     geoclue2 = {
       enable = true;
-      enableDemoAgent = lib.mkForce true;
-      geoProviderUrl = "https://location.services.mozilla.com/v1/geolocate?key=geoclue";
-      enableWifi = false;
-      appConfig.localtimed.isAllowed = true;
-      appConfig.localtimed.isSystem = true;
+      geoProviderUrl = "https://www.googleapis.com/geolocation/v1/geolocate?key=${secrets.google_maps.token}";
     };
     homed.enable = true;
     localtimed.enable = true;
@@ -38,10 +37,10 @@
     resolved = { 
       enable = true;
       extraConfig = ''
-        DNS=45.90.28.0#c773e8.dns.nextdns.io
-        DNS=2a07:a8c0::#c773e8.dns.nextdns.io
-        DNS=45.90.30.0#c773e8.dns.nextdns.io
-        DNS=2a07:a8c1::#c773e8.dns.nextdns.io
+        DNS=45.90.28.0#${secrets.nextdns.id}.dns.nextdns.io
+        DNS=2a07:a8c0::#${secrets.nextdns.id}.dns.nextdns.io
+        DNS=45.90.30.0#${secrets.nextdns.id}.dns.nextdns.io
+        DNS=2a07:a8c1::#${secrets.nextdns.id}.dns.nextdns.io
         DNSOverTLS=yes
       '';
     };
@@ -60,9 +59,6 @@
     # firewall.trustedInterfaces = [ "wt0" ];
     networkmanager.enable = true;
   };
-
-  location.provider = "geoclue2";
-  time.timeZone = lib.mkForce null;
   
   security = {
     apparmor = { 
