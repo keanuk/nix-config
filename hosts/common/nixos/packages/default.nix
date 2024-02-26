@@ -20,6 +20,7 @@
     cpufetch
     direnv
     fastfetch
+    ffmpeg
     fortune
     gcc
     git-crypt
@@ -37,6 +38,7 @@
     tealdeer
     tree
     wget
+    yt-dlp
   ];
 
   # Shell
