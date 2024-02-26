@@ -36,13 +36,13 @@
     power-profiles-daemon.enable = true;
     resolved = { 
       enable = true;
-    #  extraConfig = ''
-    #    DNS=45.90.28.0#${secrets.nextdns.id}.dns.nextdns.io
-    #    DNS=2a07:a8c0::#${secrets.nextdns.id}.dns.nextdns.io
-    #    DNS=45.90.30.0#${secrets.nextdns.id}.dns.nextdns.io
-    #    DNS=2a07:a8c1::#${secrets.nextdns.id}.dns.nextdns.io
-    #    DNSOverTLS=yes
-    #  '';
+      # extraConfig = ''
+      #   DNS=45.90.28.0#${secrets.nextdns.id}.dns.nextdns.io
+      #   DNS=2a07:a8c0::#${secrets.nextdns.id}.dns.nextdns.io
+      #   DNS=45.90.30.0#${secrets.nextdns.id}.dns.nextdns.io
+      #   DNS=2a07:a8c1::#${secrets.nextdns.id}.dns.nextdns.io
+      #   DNSOverTLS=yes
+      # '';
     };
     smartd.enable = true;
     tailscale.enable = true;
@@ -59,6 +59,10 @@
     # firewall.trustedInterfaces = [ "wt0" ];
     networkmanager.enable = true;
   };
+
+  # Workaround for https://github.com/NixOS/nixpkgs/issues/180175
+  systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+  systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
   
   security = {
     apparmor = { 
