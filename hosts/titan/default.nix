@@ -6,10 +6,9 @@
     inputs.lanzaboote.nixosModules.lanzaboote
     ../common/nixos/default.nix
     ../common/nixos/desktop/default.nix
-    ../common/nixos/desktop/gnome.nix
+    ../common/nixos/desktop/plasma.nix
     ../common/nixos/packages/default.nix
     ../common/nixos/packages/desktop.nix
-    # ../common/nixos/server/mining.nix
     ../common/nixos/system/amd.nix
     ../common/nixos/system/btrfs.nix
     ../common/nixos/system/default.nix
