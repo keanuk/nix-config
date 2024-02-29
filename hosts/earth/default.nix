@@ -2,12 +2,9 @@
 	imports = [
 		./hardware-configuration.nix
 
-		inputs.home-manager.nixosModules.home-manager
+		inputs.home-manager-stable.nixosModules.home-manager
     ../common/nixos/default.nix
-    ../common/nixos/desktop/default.nix
-    ../common/nixos/desktop/gnome.nix
     ../common/nixos/packages/default.nix
-    ../common/nixos/packages/desktop.nix
     ../common/nixos/services/data.nix
     ../common/nixos/services/download.nix
     ../common/nixos/services/media.nix
@@ -28,7 +25,6 @@
     users.keanu = {
       imports = [ 
         ../common/home-manager/default.nix
-        ../common/home-manager/server.nix
       ];
       home.stateVersion = "23.11";
     };

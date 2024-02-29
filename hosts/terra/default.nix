@@ -4,10 +4,7 @@
 
     inputs.home-manager.nixosModules.home-manager
     ../common/nixos/default.nix
-    ../common/nixos/desktop/default.nix
-    ../common/nixos/desktop/gnome.nix
     ../common/nixos/packages/default.nix
-    ../common/nixos/packages/desktop.nix
     # ../common/nixos/services/data.nix
     # ../common/nixos/services/download.nix
     # ../common/nixos/services/media.nix
