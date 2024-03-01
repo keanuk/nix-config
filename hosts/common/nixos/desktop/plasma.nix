@@ -10,4 +10,8 @@
     wlr.enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
+
+  environment.systemPackages = [
+    pkgs.kdePackages.discover
+  ];
 }
