@@ -5,6 +5,6 @@
 		defaultEditor = false;
 		plugins = with pkgs.vimPlugins; [
 			vim-nix
-		]
+		];
 	};
 }
