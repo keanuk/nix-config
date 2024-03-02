@@ -26,7 +26,7 @@
     users.keanu = {
       imports = [ 
         ../common/home-manager/default.nix
-        ../common/home-manager/desktop.nix
+        ../common/home-manager/desktop/default.nix
       ];
       home.stateVersion = "23.11";
     };
