@@ -1,7 +1,9 @@
 keys:
   - &enterprise age1prznrk5pmrza0vn2yc4z5d20500qttjvjrdlj6s9fjzd5j0x74hqrm0702
+  - &titan age17as93405vg0pteudgg3w0ek8p8n4kkqnzjx94nyc3tfzzz6mhads2j4q73
 creation_rules:
-  - path_regex: secrets/secrets.yaml$
+  - path_regex: secrets/sops/secrets.yaml$
     key_groups:
     - age:
       - *enterprise
+      - *titan
