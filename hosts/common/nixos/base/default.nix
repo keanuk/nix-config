@@ -50,6 +50,7 @@
     localtimed.enable = true;
     printing.enable = true;
     power-profiles-daemon.enable = true;
+    resolved = true;
     smartd.enable = true;
     thermald.enable = true;
   };
