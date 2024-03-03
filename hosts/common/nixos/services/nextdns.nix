@@ -1,9 +1,9 @@
-{ config, pkgs, ... }:
+{ config, secrets, ... }:
 
 {
 	nextdns = {
 		enable = true;
-		arguments = [ "-config" "c773e8" ];
+		arguments = [ "-config" "${secrets.nextdns.id}" ];
 	};
 
 	environment.systemPackages = with pkgs; [

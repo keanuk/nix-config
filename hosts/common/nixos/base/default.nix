@@ -1,6 +1,11 @@
 { config, pkgs, lib, secrets, ... }:
 
 {
+  imports = [
+    ./packages.nix
+    ./sops.nix
+  ];
+
   boot = {
     initrd.systemd.enable = true;
     loader.efi.canTouchEfiVariables = true;
@@ -16,6 +21,19 @@
   };
 
   swapDevices = [ { device = "/swap/swapfile"; } ];
+
+  nix = {
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
+    settings = {
+      allowed-users = [ "@users" ];
+      auto-optimise-store = true;
+      experimental-features = [ "nix-command" "flakes" ];
+    };
+  };
 
   location.provider = "geoclue2";
   time.timeZone = lib.mkForce null;

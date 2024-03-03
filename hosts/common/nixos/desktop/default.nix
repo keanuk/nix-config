@@ -1,10 +1,12 @@
 { config, pkgs, lib, ... }:
 
 {
+  imports = [
+		./packages.nix
+	];
+
   services.xserver.enable = true;
-
   hardware.pulseaudio.enable = false;
-
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -16,8 +18,6 @@
 
   services.flatpak.enable = true;
   services.dbus.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager)
   services.xserver.libinput.enable = true;
 
   # Fingerprint login

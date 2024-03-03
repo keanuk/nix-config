@@ -3,16 +3,10 @@
 		./hardware-configuration.nix
 
     inputs.home-manager.nixosModules.home-manager
-    ../common/nixos/default.nix
-    ../common/nixos/packages/default.nix
-    # ../common/nixos/services/data.nix
-    # ../common/nixos/services/download.nix
-    # ../common/nixos/services/media.nix
-    # ../common/nixos/services/network.nix
-    ../common/nixos/system/btrfs.nix
-    ../common/nixos/system/default.nix
-    ../common/nixos/system/nix-unstable.nix
-    ../common/nixos/system/systemd-boot.nix
+    ../common/nixos/base/btrfs.nix
+    ../common/nixos/base/default.nix
+    ../common/nixos/base/nix-unstable.nix
+    ../common/nixos/base/systemd-boot.nix
     ../common/nixos/user/keanu/default.nix
 	];
 
