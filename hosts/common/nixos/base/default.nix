@@ -43,14 +43,13 @@
 
   services = {
     automatic-timezoned.enable = true;
-    dbus.apparmor = "enabled";
     fail2ban.enable = true;
     fwupd.enable = true;
     homed.enable = true;
     localtimed.enable = true;
     printing.enable = true;
     power-profiles-daemon.enable = true;
-    resolved = true;
+    resolved.enable = true;
     smartd.enable = true;
     thermald.enable = true;
   };
