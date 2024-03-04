@@ -2,6 +2,13 @@
 
 {
 	services.transmission = {
-		enable = true;
+    enable = true;
+    openFirewall = true;
+    user = "keanu";
+    home = "";
+    settings = {
+      download-dir = "";
+      incomplete-dir = "";
+    };
 	};
 }

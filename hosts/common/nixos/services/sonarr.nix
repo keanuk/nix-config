@@ -2,6 +2,7 @@
 
 {
 	services.sonarr = {
-		enable = true;
+    enable = true;
+    openFirewall = true;
 	};
 }

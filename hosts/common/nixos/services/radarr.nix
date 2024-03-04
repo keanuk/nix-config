@@ -2,6 +2,7 @@
 
 {
 	services.radarr = {
-		enable = true;
+    enable = true;
+    openFirewall = true;
 	};
 }

@@ -2,6 +2,8 @@
 
 {
 	services.plex = {
-		enable = true;
+    enable = true;
+    openFirewall = true;
+    user = "keanu";
 	};
 }
