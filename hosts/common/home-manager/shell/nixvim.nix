@@ -12,6 +12,8 @@
     viAlias = true;
     vimAlias = true;
 
+    clipboard.providers.wl-copy.enable = true;
+
     options = {
       autochdir = true;
 
@@ -28,23 +30,28 @@
       hlsearch = true;
       ignorecase = true;
       showmatch = true;
-      
+
+      #background = "light";
       number = true;
       relativenumber = false;
       termguicolors = true;
     };
     
-    plugins.lightline.enable = true;
+    plugins = {
+      bufferline.enable = true;
+      lightline.enable = true;
+      nix.enable = true;
+      nix-develop.enable = true;
+      nvim-autopairs.enable = true;
+      nvim-tree.enable = true;
+      telescope.enable = true;
+      treesitter.enable = true;
+    };
 
     extraPlugins = with pkgs.vimPlugins; [
-      bufferline-nvim
-      nvim-tree-lua
-      nvim-treesitter.withAllGrammars
       nvim-web-devicons
-      telescope-nvim
-      vim-nix
     ];
 
-    colorschemes.gruvbox.enable = true;
+    #colorschemes.gruvbox.enable = true;
   };
 }
