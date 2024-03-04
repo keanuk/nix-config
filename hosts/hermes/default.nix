@@ -3,7 +3,6 @@
 		./hardware-configuration.nix
 
     inputs.home-manager.nixosModules.home-manager
-    inputs.lanzaboote.nixosModules.lanzaboote
     ../common/nixos/base/btrfs.nix
     ../common/nixos/base/default.nix
     ../common/nixos/base/lanzaboote.nix

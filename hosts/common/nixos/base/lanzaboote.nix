@@ -1,8 +1,11 @@
-{ config, pkgs, lib, ... }:
+{ config, lib, inputs, ... }:
 
 {
+  imports = [
+    inputs.lanzaboote.nixosModules.lanzaboote  
+  ];
+  
   boot = {
-    # Secure Boot
     bootspec.enable = true;
     lanzaboote = {
       enable = true;

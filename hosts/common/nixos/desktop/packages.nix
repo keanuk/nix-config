@@ -39,7 +39,9 @@
   fonts = {
     fontDir.enable = true;
     packages = with pkgs; [
+      cantarell-fonts
       font-awesome
+      inter
       nerdfonts
       noto-fonts
       noto-fonts-cjk

@@ -7,7 +7,6 @@
 		./git.nix
 		./helix.nix
 		./micro.nix
-		./neovim.nix
 		./starship.nix
 		./zellij.nix
   ];

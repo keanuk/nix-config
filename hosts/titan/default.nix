@@ -3,7 +3,6 @@
 		./hardware-configuration.nix
 
     inputs.home-manager.nixosModules.home-manager
-    inputs.lanzaboote.nixosModules.lanzaboote
     ../common/nixos/base/amd.nix
     ../common/nixos/base/btrfs.nix
     ../common/nixos/base/default.nix
@@ -24,6 +23,7 @@
       imports = [
         ../common/home-manager/default.nix
         ../common/home-manager/desktop/default.nix
+        ../common/home-manager/shell/nixvim.nix
       ];
       home.stateVersion = "23.11";
     };

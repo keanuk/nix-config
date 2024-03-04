@@ -21,6 +21,16 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixvim-stable = {
+      url = "github:nix-community/nixvim/nixos-23.11";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
+    
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -45,6 +55,8 @@
     darwin,
     home-manager,
     home-manager-stable,
+    nixvim,
+    nixvim-stable,
     lanzaboote,
     disko,
     sops-nix,
