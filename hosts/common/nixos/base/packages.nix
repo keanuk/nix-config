@@ -27,6 +27,7 @@
     go
     htop
     mono
+    nil
     nixfmt
     nix-index
     nmap

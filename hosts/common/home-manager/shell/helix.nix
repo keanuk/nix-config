@@ -22,7 +22,7 @@
 					hidden = false;
 					deduplicate-links = false;
 				};
-				indent-guides.render = true;
+				# indent-guides.render = true;
 				lsp = {
 					display-inlay-hints = true;
 					display-messages = true;
