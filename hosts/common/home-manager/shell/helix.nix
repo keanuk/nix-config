@@ -4,7 +4,6 @@
 	programs.helix = {
 		enable = true;
 		defaultEditor = true;
-		# package = inputs.helix.packages."${pkgs.system}".helix;
 		settings = {
 			theme = "tokyonight";
 			editor = {
@@ -22,7 +21,6 @@
 					hidden = false;
 					deduplicate-links = false;
 				};
-				# indent-guides.render = true;
 				lsp = {
 					display-inlay-hints = true;
 					display-messages = true;
@@ -34,11 +32,6 @@
           mode.select = "SELECT";
         };
 				true-color = true;
-				whitespace = {
-					# characters.tab = ">";
-					# characters.tabpad = "·";
-					# render.tab = "all";
-				};
 			};
 			keys = {
 				insert = { };
@@ -49,21 +42,5 @@
 			};				
 		};
 		themes = import ../theme/helix.nix;
-		# languages = {
-		# 	language = [
-		# 		{
-		# 			name = "go";
-		# 			auto-format = true;
-		# 		}
-		# 		{
-		# 			name = "nix";
-		# 			auto-format = true;
-		# 		}
-		# 		{
-		# 			name = "rust";
-		# 			auto-format = true;
-		# 		}
-		# 	];
-		# };
 	};
 }
