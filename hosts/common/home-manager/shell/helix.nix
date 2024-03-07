@@ -6,13 +6,13 @@
 		defaultEditor = true;
 		# package = inputs.helix.packages."${pkgs.system}".helix;
 		settings = {
-			theme = "base16_default";
+			theme = "tokyonight";
 			editor = {
 				auto-save = true;
 				bufferline = "multiple";
 				color-modes = true;
 				cursorline = true;
-				cursorcolumn = true;
+				cursorcolumn = false;
 				cursor-shape = {
           insert = "bar";
           normal = "block";
@@ -49,21 +49,21 @@
 			};				
 		};
 		themes = import ../theme/helix.nix;
-		languages = {
-			language = [
-				{
-					name = "go";
-					auto-format = true;
-				}
-				{
-					name = "nix";
-					auto-format = true;
-				}
-				{
-					name = "rust";
-					auto-format = true;
-				}
-			];
-		};
+		# languages = {
+		# 	language = [
+		# 		{
+		# 			name = "go";
+		# 			auto-format = true;
+		# 		}
+		# 		{
+		# 			name = "nix";
+		# 			auto-format = true;
+		# 		}
+		# 		{
+		# 			name = "rust";
+		# 			auto-format = true;
+		# 		}
+		# 	];
+		# };
 	};
 }

@@ -45,7 +45,7 @@
     "diff.delta" = yellow;
     "diff.minus" = red;
     "diagnostic" = { modifiers = [ "underlined" ]; };
-    "ui.gutter" = { bg = black; };
+    "ui.gutter" = { bg = transparent; };
     "info" = blue;
     "hint" = dark-gray;
     "debug" = dark-gray;

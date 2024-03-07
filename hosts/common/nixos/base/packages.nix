@@ -1,10 +1,14 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
+
+  imports = [
+    ../dev/default.nix
+  ];
+
   environment.systemPackages = with pkgs; [
     acpid
     bcachefs-tools
-    just
     pciutils
     polkit
     psmisc
@@ -16,7 +20,6 @@
   users.users.keanu.packages = with pkgs; [
     age
     btop
-    cargo
     cpufetch
     direnv
     fastfetch
@@ -24,16 +27,12 @@
     fortune
     gcc
     git-crypt
-    go
     htop
-    mono
-    nil
-    nixfmt
+    just
     nix-index
     nmap
     onefetch
     ramfetch
-    rustc
     sops
     ssh-to-age
     tealdeer
