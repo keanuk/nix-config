@@ -8,7 +8,7 @@
     ../common/nixos/base/nix-unstable.nix
     ../common/nixos/base/systemd-boot.nix
     ../common/nixos/user/keanu/default.nix
-	];
+  ];
 
   networking.hostName = "terra";
   services.logrotate.checkConfig = false;

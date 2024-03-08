@@ -1,4 +1,4 @@
-{ config, pkgs, lib, secrets, ... }:
+{ pkgs, lib, secrets, ... }:
 
 {
   imports = [
@@ -14,6 +14,18 @@
     loader.efi.canTouchEfiVariables = true;
   };
 
+  zramSwap = {
+    enable = true;
+    priority = 1;
+  };
+
+  swapDevices = [ 
+    { 
+      device = "/swap/swapfile";
+      priority = 0;
+    } 
+  ];
+
   hardware = {
     bluetooth = {
       enable = true;
@@ -22,8 +34,6 @@
     enableAllFirmware = true;
     enableRedistributableFirmware = true;
   };
-
-  swapDevices = [ { device = "/swap/swapfile"; } ];
 
   nix = {
     gc = {

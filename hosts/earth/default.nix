@@ -1,5 +1,6 @@
 { pkgs, inputs, outputs, ... }: {
 	imports = [
+    ./disks.nix
 		./hardware-configuration.nix
 
 		inputs.home-manager-stable.nixosModules.home-manager
