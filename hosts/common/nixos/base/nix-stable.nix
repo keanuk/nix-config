@@ -3,7 +3,7 @@
 {
   boot = {
     plymouth.enable = false;
-    kernelPackages = pkgs.linuxPackages_hardened;
+    kernelPackages = pkgs.linuxPackages_latest;
   };
 
   system.autoUpgrade = {

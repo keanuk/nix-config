@@ -5,6 +5,7 @@
     ../dev/flutter.nix
     ../dev/ide.nix
     ../dev/java.nix
+    ../dev/nim.nix
     ../dev/node.nix
   ];
 

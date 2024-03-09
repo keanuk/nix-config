@@ -4,8 +4,8 @@ in
 {
   disko.devices = {
     disk = {
-      sda = {
-        device = "/dev/sda";
+      main = {
+        device = "/dev/sdb";
         type = "disk";
         content = {
           type = "gpt";
@@ -22,11 +22,9 @@ in
               };
             };
             root = {
-              start = "1024MiB";
-              end = "100%";
+              size = "100%";
               content = {
                 type = "btrfs";
-                extraArgs = [ "-f" ];
                 subvolumes = {
                   "@" = {
                     mountpoint = "/";
@@ -50,7 +48,7 @@ in
                   };
                   "@swap" = {
                     mountpoint = "/swap";
-                    swap.swapfile.size = "32Gib";
+                    swap.swapfile.size = "32G";
                   };
                 };
               };
@@ -58,26 +56,24 @@ in
           };
         };
       };
-      sdb = {
-        device = "/dev/sdb";
-        type = "disk";
-        content = {
-          type = "gpt";
-          extraArgs = [ "-f" ];
-          partitions = {
-            data = {
-              name = "data";
-              start = "0%";
-              end = "100%";
-              content = {
-                type = "filesystem";
-                format = "bcachefs";
-                mountpoint = "/mnt/data";
-              };
-            };
-          };
-        };
-      };
+      # data = {
+      #  device = "/dev/sda";
+      #  type = "disk";
+      #  content = {
+      #    type = "gpt";
+      #    partitions = {
+      #      data = {
+      #        name = "data";
+      #        size = "100%";
+      #        content = {
+      #          type = "filesystem";
+      #          format = "bcachefs";
+      #          mountpoint = "/data";
+      #        };
+      #      };
+      #    };
+      #  };
+      # };
     };
   };
 }
