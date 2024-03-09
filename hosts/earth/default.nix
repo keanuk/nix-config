@@ -1,4 +1,4 @@
-{ inputs, outputs, pkgs, ... }: {
+{ inputs, outputs, ... }: {
 	imports = [
     ./disks.nix
 		./hardware-configuration.nix
@@ -9,6 +9,8 @@
     ../common/nixos/base/nix-stable.nix
     ../common/nixos/base/systemd-boot.nix
     ../common/nixos/user/keanu/default.nix
+
+    ../common/nixos/services/plex.nix
 	];
 
   networking.hostName = "earth";
