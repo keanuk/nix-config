@@ -1,4 +1,4 @@
-{ inputs, outputs, ... }: {
+{ inputs, outputs, pkgs, ... }: {
 	imports = [
     ./disks.nix
 		./hardware-configuration.nix

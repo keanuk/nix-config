@@ -4,7 +4,7 @@
   additions = final: _prev: import ../pkgs {pkgs = final;};
 
   modifications = final: prev: {
-    bcachefs-tools = final.unstable.bcachefs-tools;
+    # bcachefs-tools = final.unstable.bcachefs-tools;
   };
 
   unstable-packages = final: _prev: {
