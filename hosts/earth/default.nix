@@ -1,4 +1,4 @@
-{ inputs, outputs, ... }: {
+{ inputs, outputs, pkgs, ... }: {
 	imports = [
     ./disks.nix
 		./hardware-configuration.nix
@@ -17,6 +17,10 @@
 
   nixpkgs.overlays = [
     outputs.overlays.unstable-packages
+  ];
+
+  environment.systemPackages = with pkgs; [
+    unstable.bcachefs-tools
   ];
 
   home-manager = {
