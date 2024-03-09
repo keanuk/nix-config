@@ -1,4 +1,4 @@
-{ pkgs, inputs, outputs, ... }: {
+{ inputs, outputs, ... }: {
 	imports = [
     ./disks.nix
 		./hardware-configuration.nix
@@ -12,6 +12,10 @@
 	];
 
   networking.hostName = "earth";
+
+  nixpkgs.overlays = [
+    outputs.overlays.unstable-packages
+  ];
 
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
