@@ -14,14 +14,6 @@
 
   networking.hostName = "earth";
 
-  nixpkgs.overlays = [
-    outputs.overlays.unstable-packages
-  ];
-
-  environment.systemPackages = with pkgs; [
-    unstable.bcachefs-tools
-  ];
-
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
     useUserPackages = true;
