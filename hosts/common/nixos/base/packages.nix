@@ -8,7 +8,8 @@
 
   environment.systemPackages = with pkgs; [
     acpid
-    unstable.bcachefs-tools
+    bcachefs-tools
+    lsof
     pciutils
     polkit
     psmisc

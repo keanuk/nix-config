@@ -21,13 +21,13 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
+    helix = {
+      url = "github:helix-editor/helix/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    helix = {
-      url = "github:helix-editor/helix/master";
+    nixvim = {
+      url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -50,6 +50,11 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixarr = {
+      url = "github:rasmus-kirk/nixarr";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -66,6 +71,7 @@
     lanzaboote,
     disko,
     sops-nix,
+    nixarr,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -81,7 +87,7 @@
     homeManagerModules = import ./modules/home-manager;
 
     nixosConfigurations = {
-      earth = nixpkgs-stable.lib.nixosSystem {
+      earth = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs secrets;};
         system = "x86_64-linux";
         modules = [ ./hosts/earth ];
