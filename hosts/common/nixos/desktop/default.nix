@@ -3,6 +3,8 @@
 {
   imports = [
 		./packages.nix
+
+    ../services/geoclue2.nix
 	];
 
   services.xserver.enable = true;

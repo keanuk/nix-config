@@ -7,7 +7,6 @@
     ../common/nixos/base/btrfs.nix
     ../common/nixos/base/default.nix
     ../common/nixos/base/lanzaboote.nix
-    ../common/nixos/base/nix-unstable.nix
     ../common/nixos/desktop/default.nix
     ../common/nixos/desktop/plasma.nix
     ../common/nixos/user/keanu/default.nix    

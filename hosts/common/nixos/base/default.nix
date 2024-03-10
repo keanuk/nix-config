@@ -1,17 +1,32 @@
-{ pkgs, lib, secrets, ... }:
+{ inputs, outputs, pkgs, lib, secrets, ... }:
 
 {
   imports = [
     ./packages.nix
 
     ../services/apparmor.nix
-    ../services/geoclue2.nix
     ../services/tailscale.nix
   ];
 
   boot = {
     initrd.systemd.enable = true;
     loader.efi.canTouchEfiVariables = true;
+    plymouth.enable = true;
+    kernelPackages = pkgs.linuxPackages_latest;
+  };
+
+  system.autoUpgrade = {
+    enable = true;
+    allowReboot = false;
+    flake = inputs.self.outPath;
+    flags = [
+      "--update-input"
+      "nixpkgs"
+      "--no-write-lock-file"
+      "-L" # print build logs
+    ];
+    dates = "02:00";
+    randomizedDelaySec = "45min";
   };
 
   zramSwap = {
@@ -48,7 +63,10 @@
     };
   };
 
-  location.provider = "geoclue2";
+  nixpkgs.overlays = [
+    outputs.overlays.unstable-packages
+  ];
+
   time.timeZone = lib.mkForce null;
 
   services = {

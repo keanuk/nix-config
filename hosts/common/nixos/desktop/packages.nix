@@ -10,7 +10,6 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    bcachefs-tools
     distrobox
     snapper-gui
     xorg.xkill
