@@ -1,3 +1,5 @@
+{ ... }:
+
 {
   imports = [
     ./shell/default.nix

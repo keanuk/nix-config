@@ -1,8 +1,11 @@
+{ ... }:
+
 {
   imports = [
     ./bat.nix
     ./bottom.nix
 		./fish.nix
+    ./fzf.nix
 		./gh.nix
 		./git.nix
 		./helix.nix

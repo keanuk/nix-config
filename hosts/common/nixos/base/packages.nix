@@ -26,6 +26,7 @@
     fastfetch
     ffmpeg
     fortune
+    fzf
     git-crypt
     htop
     just

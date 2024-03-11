@@ -1,4 +1,10 @@
+{ ... }:
+
 {
+  imports = [
+    ./alacritty.nix  
+  ];
+  
   programs = {
     starship = {
       enableTransience = true;

@@ -1,7 +1,13 @@
+{ inputs, ... }:
+
 let
   defaultBtrfsOpts = [ "defaults" "compress=zstd" "ssd" "noatime" "nodiratime" ];
 in
 {
+  imports = [
+    inputs.disko.nixosModules.disko
+  ];
+  
   disko.devices = {
     disk = {
       main = {
@@ -56,24 +62,6 @@ in
           };
         };
       };
-      # data = {
-      #  device = "/dev/sda";
-      #  type = "disk";
-      #  content = {
-      #    type = "gpt";
-      #    partitions = {
-      #      data = {
-      #        name = "data";
-      #        size = "100%";
-      #        content = {
-      #          type = "filesystem";
-      #          format = "bcachefs";
-      #          mountpoint = "/data";
-      #        };
-      #      };
-      #    };
-      #  };
-      # };
     };
   };
 }

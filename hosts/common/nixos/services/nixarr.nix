@@ -8,9 +8,12 @@
   nixarr = {
     enable = true;
 
+    mediaDir = "/data/Media";
+    stateDir = "/data/Media/.state";
+
     vpn = {
       enable = true;
-      wgConf = "/home/keanu/.secret/wg0.conf";
+      wgConf = "/home/keanu/.secrets/wg0.conf";
     };
 
     transmission = {

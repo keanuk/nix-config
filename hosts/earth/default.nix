@@ -1,10 +1,10 @@
 { inputs, outputs, ... }: {
 	imports = [
-    ./disks.nix
+    inputs.home-manager.nixosModules.home-manager
+   
+    ./disko-configuration.nix
 		./hardware-configuration.nix
 
-    inputs.home-manager.nixosModules.home-manager
-    inputs.disko.nixosModules.disko
     ../common/nixos/base/default.nix
     ../common/nixos/base/systemd-boot.nix
     ../common/nixos/user/keanu/default.nix
