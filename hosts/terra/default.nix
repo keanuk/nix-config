@@ -7,6 +7,9 @@
     ../common/nixos/base/default.nix
     ../common/nixos/base/systemd-boot.nix
     ../common/nixos/user/keanu/default.nix
+
+    # Change during next reinstall
+    ../common/nixos/base/swapfile.nix
   ];
 
   networking.hostName = "terra";

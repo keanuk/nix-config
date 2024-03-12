@@ -1,4 +1,4 @@
-{ pkgs, inputs, outputs, ... }: {
+{ inputs, outputs, ... }: {
 	imports = [
 		./hardware-configuration.nix
 
@@ -9,6 +9,9 @@
     ../common/nixos/desktop/default.nix
     ../common/nixos/desktop/gnome.nix
     ../common/nixos/user/keanu/default.nix
+    
+    # Change during next reinstall
+    ../common/nixos/base/swapfile.nix
 	];
 
   networking.hostName = "hermes";

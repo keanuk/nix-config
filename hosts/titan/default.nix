@@ -1,4 +1,4 @@
-{ pkgs, inputs, outputs, ... }: {
+{ inputs, outputs, ... }: {
 	imports = [
 		./hardware-configuration.nix
 
@@ -9,7 +9,10 @@
     ../common/nixos/base/lanzaboote.nix
     ../common/nixos/desktop/default.nix
     ../common/nixos/desktop/plasma.nix
-    ../common/nixos/user/keanu/default.nix    
+    ../common/nixos/user/keanu/default.nix
+        
+    # Change during next reinstall
+    ../common/nixos/base/swapfile.nix
   ];
 
   networking.hostName = "titan";

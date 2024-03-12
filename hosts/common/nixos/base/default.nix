@@ -1,4 +1,4 @@
-{ inputs, outputs, pkgs, lib, secrets, ... }:
+{ inputs, outputs, pkgs, lib, ... }:
 
 {
   imports = [
@@ -31,15 +31,8 @@
 
   zramSwap = {
     enable = true;
-    priority = 1;
+    priority = 5;
   };
-
-  swapDevices = [ 
-    { 
-      device = "/swap/swapfile";
-      priority = 0;
-    } 
-  ];
 
   hardware = {
     bluetooth = {

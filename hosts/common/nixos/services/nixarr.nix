@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, lib, ... }:
 
 {
 	imports = [
@@ -8,8 +8,8 @@
   nixarr = {
     enable = true;
 
-    mediaDir = "/data/Media";
-    stateDir = "/data/Media/.state";
+    # mediaDir = "/data/Media";
+    # stateDir = "/data/Media/.state";
 
     vpn = {
       enable = true;
@@ -18,7 +18,10 @@
 
     transmission = {
       enable = true;
-      vpn.enable = true;      
+      vpn.enable = true;
+      extraSettings = {
+        trash-original-torrent-files = true;
+      };      
     };
 
     jellyfin = {
