@@ -43,7 +43,7 @@
       nix.enable = true;
       nix-develop.enable = true;
       nvim-autopairs.enable = true;
-      nvim-cmp.enable = true;
+      cmp.enable = true;
       nvim-colorizer.enable = true;
       nvim-tree.enable = true;
       telescope.enable = true;

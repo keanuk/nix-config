@@ -2,7 +2,7 @@
 
 {
   services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma6.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   # Needed if not using GNOME
   xdg.portal = {
