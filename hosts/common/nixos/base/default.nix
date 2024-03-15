@@ -84,12 +84,9 @@
     firewall.enable = true;
     # firewall.trustedInterfaces = [ "wt0" ];
     networkmanager.enable = true;
+    nftables.enable = true;
   };
 
-  # Workaround for https://github.com/NixOS/nixpkgs/issues/180175
-  systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
-  systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
-  
   security.audit.enable = true;
 
   virtualisation = {

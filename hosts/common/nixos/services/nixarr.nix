@@ -8,7 +8,7 @@
   nixarr = {
     enable = true;
 
-    mediaDir = "/data/Media";
+    mediaDir = "/internal/media";
     stateDir = "/var/lib/nixarr";
 
     vpn = {
@@ -18,7 +18,11 @@
 
     transmission = {
       enable = true;
-      vpn.enable = true;
+      openFirewall = true;
+      # vpn.enable = true;
+      peerPort = 50000;
+      uiPort = 9091;
+      flood.enable = true;
     };
 
     jellyfin = {
