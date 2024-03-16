@@ -13,7 +13,7 @@
 
     # vpn = {
     #   enable = true;
-    #   wgConf = "/home/keanu/.secrets/wg0.conf";
+    #   wgConf = "/internal/.secrets/wg0.conf";
     # };
 
     transmission = {
@@ -21,15 +21,15 @@
       openFirewall = true;
       # vpn.enable = true;
       # peerPort = 50000;
-      uiPort = 9091;
-      # flood.enable = true;
+      # uiPort = 9091;
       extraAllowedIps = [
-        "10.19.5.10"
+        "10.19.5.*"
       ];
     };
 
     jellyfin = {
       enable = true;
+      # vpn.enable = true;
     };
 
     sonarr.enable = true;
