@@ -18,7 +18,7 @@
 
     home-manager-stable = {
       url = "github:nix-community/home-manager/release-23.11";
-      inputs.nixpkgs-stable.follows = "nixpkgs-stable";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
     hyprland = {
