@@ -7,6 +7,5 @@
     androidStudioPackages.dev
     jetbrains.idea-community
     jetbrains.pycharm-community
-    vscode-fhs
   ];
 }

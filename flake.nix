@@ -21,6 +21,16 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+  
     helix = {
       url = "github:helix-editor/helix/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -70,6 +80,8 @@
     darwin,
     home-manager,
     home-manager-stable,
+    hyprland,
+    hyprland-plugins,
     helix,
     nixvim,
     nixvim-stable,

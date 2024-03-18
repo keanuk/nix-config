@@ -2,7 +2,11 @@
 
 {
   imports = [
-    ./alacritty.nix  
+    ./alacritty.nix
+    ./chromium.nix
+    ./firefox.nix
+    ./thunderbird.nix
+    ./vscode.nix
   ];
   
   programs = {
