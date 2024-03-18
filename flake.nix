@@ -18,7 +18,7 @@
 
     home-manager-stable = {
       url = "github:nix-community/home-manager/release-23.11";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
+      inputs.nixpkgs-stable.follows = "nixpkgs-stable";
     };
 
     hyprland = {
@@ -40,12 +40,7 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    nixvim-stable = {
-      url = "github:nix-community/nixvim/nixos-23.11";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
-    };
-    
+  
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -84,7 +79,6 @@
     hyprland-plugins,
     helix,
     nixvim,
-    nixvim-stable,
     lanzaboote,
     disko,
     sops-nix,
