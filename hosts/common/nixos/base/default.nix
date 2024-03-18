@@ -5,6 +5,7 @@
     ./packages.nix
 
     ../services/apparmor.nix
+    ../services/btrfs.nix
     ../services/tailscale.nix
   ];
 

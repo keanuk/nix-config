@@ -51,7 +51,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    vpnconfinement = {
+    vpn-confinement = {
       url = "github:Maroka-chan/VPN-Confinement";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -76,7 +76,7 @@
     lanzaboote,
     disko,
     sops-nix,
-    vpnconfinement,
+    vpn-confinement,
     nixarr,
     ...
   } @ inputs: let

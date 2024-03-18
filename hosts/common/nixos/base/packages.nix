@@ -30,6 +30,7 @@
     git-crypt
     htop
     just
+    libnatpmp
     nix-index
     nmap
     onefetch

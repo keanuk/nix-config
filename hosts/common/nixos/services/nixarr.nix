@@ -13,14 +13,13 @@
 
     vpn = {
       enable = true;
-      wgConf = "/internal/.secrets/wg0.conf";
+      wgConf = "/home/keanu/secrets/wg0.conf";
     };
 
     transmission = {
       enable = true;
-      openFirewall = true;
-      # vpn.enable = true;
-      peerPort = 50000;
+      vpn.enable = true;
+      peerPort = 1909;
       uiPort = 9091;
       extraAllowedIps = [
         "10.19.5.*"
@@ -31,10 +30,11 @@
       enable = true;
     };
 
-    sonarr.enable = true;
-    radarr.enable = true;
-    prowlarr.enable = true;
-    readarr.enable = true;
+    bazarr.enable = true;
     lidarr.enable = true;
+    prowlarr.enable = true;
+    radarr.enable = true;
+    readarr.enable = true;
+    sonarr.enable = true;
   };
 }

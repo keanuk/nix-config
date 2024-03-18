@@ -4,7 +4,7 @@
 
     inputs.home-manager.nixosModules.home-manager
     ../common/nixos/base/amd.nix
-    ../common/nixos/base/btrfs.nix
+    ../common/nixos/base/fs.nix
     ../common/nixos/base/default.nix
     ../common/nixos/base/lanzaboote.nix
     ../common/nixos/desktop/default.nix
