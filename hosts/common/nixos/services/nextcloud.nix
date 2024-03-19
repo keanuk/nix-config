@@ -2,7 +2,7 @@
 
 {
   services.nextcloud = {
-		enable = true;
-		hostName = builtins.getEnv "HOST";
-	};
+    enable = true;
+    hostName = builtins.getEnv "HOST";
+  };
 }

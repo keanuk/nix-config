@@ -1,8 +1,8 @@
 { ... }:
 
 {
-	services.lidarr = {
-		enable = true;
+  services.lidarr = {
+    enable = true;
     openFirewall = true;
   };
 }

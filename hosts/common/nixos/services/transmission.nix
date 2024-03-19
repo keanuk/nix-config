@@ -5,7 +5,7 @@
     inputs.vpn-confinement.nixosModules.default
   ];
 
-	services.transmission = {
+  services.transmission = {
     enable = true;
     openPeerPorts = true;
     user = "keanu";
@@ -15,9 +15,9 @@
       incomplete-dir = "/internal/incomplete";
       rpc-bind-address = "10.19.6.2";
     };
-	};
-  
-	vpnnamespaces.wg = {
+  };
+
+  vpnnamespaces.wg = {
     enable = true;
     wireguardConfigFile = "/home/keanu/secrets/wg0.conf";
     namespaceAddress = "10.19.6.1";

@@ -36,7 +36,7 @@
       relativenumber = false;
       termguicolors = true;
     };
-    
+
     plugins = {
       bufferline.enable = true;
       lightline.enable = true;

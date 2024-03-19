@@ -43,5 +43,5 @@
     ];
   };
 
-  environment.sessionVariables = {};
+  environment.sessionVariables = { };
 }

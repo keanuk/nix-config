@@ -15,6 +15,6 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    radeontop  
+    radeontop
   ];
 }

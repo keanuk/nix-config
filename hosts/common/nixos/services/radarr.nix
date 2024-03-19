@@ -1,8 +1,8 @@
 { ... }:
 
 {
-	services.radarr = {
+  services.radarr = {
     enable = true;
     openFirewall = true;
-	};
+  };
 }

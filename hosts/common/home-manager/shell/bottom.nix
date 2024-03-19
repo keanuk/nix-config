@@ -2,6 +2,6 @@
 
 {
   programs.bottom = {
-		enable = true;
-	};
+    enable = true;
+  };
 }

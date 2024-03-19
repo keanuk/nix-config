@@ -451,4 +451,4 @@
     symbol = "↯ ";
     style = "bold yellow";
   };
- }
+}

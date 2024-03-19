@@ -1,9 +1,9 @@
 { inputs, ... }:
 
 {
-	imports = [
+  imports = [
     inputs.nixarr.nixosModules.default
-	];
+  ];
 
   nixarr = {
     enable = true;

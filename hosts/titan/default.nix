@@ -1,6 +1,6 @@
 { inputs, outputs, ... }: {
-	imports = [
-		./hardware-configuration.nix
+  imports = [
+    ./hardware-configuration.nix
 
     inputs.home-manager.nixosModules.home-manager
     ../common/nixos/base/amd.nix
@@ -9,7 +9,7 @@
     ../common/nixos/desktop/default.nix
     ../common/nixos/desktop/plasma.nix
     ../common/nixos/user/keanu/default.nix
-        
+
     # Change during next reinstall
     ../common/nixos/base/swapfile.nix
     ../common/nixos/base/fs.nix

@@ -2,10 +2,10 @@
 
 {
   imports = [
-		./packages.nix
+    ./packages.nix
 
     ../services/geoclue2.nix
-	];
+  ];
 
   services.xserver.enable = true;
   hardware.pulseaudio.enable = false;

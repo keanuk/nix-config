@@ -1,9 +1,9 @@
 { inputs, outputs, ... }: {
-	imports = [
+  imports = [
     inputs.home-manager.nixosModules.home-manager
-   
+
     ./disko-configuration.nix
-		./hardware-configuration.nix
+    ./hardware-configuration.nix
 
     ../common/nixos/base/default.nix
     ../common/nixos/base/systemd-boot.nix
@@ -17,7 +17,7 @@
     ../common/nixos/services/radarr.nix
     ../common/nixos/services/sonarr.nix
     ../common/nixos/services/transmission.nix
-	];
+  ];
 
   networking.hostName = "earth";
 
@@ -26,7 +26,7 @@
     useUserPackages = true;
     useGlobalPkgs = true;
     users.keanu = {
-      imports = [ 
+      imports = [
         ../common/home-manager/default.nix
       ];
       home.stateVersion = "23.11";

@@ -1,10 +1,10 @@
 { pkgs, lib, inputs, outputs, ... }: {
-	imports = [
-	  ./hardware-configuration.nix
+  imports = [
+    ./hardware-configuration.nix
 
-      inputs.home-manager.darwinModules.home-manager
-	  ../common/darwin/default.nix
-	];
+    inputs.home-manager.darwinModules.home-manager
+    ../common/darwin/default.nix
+  ];
 
   networking.hostName = "phoenix";
 

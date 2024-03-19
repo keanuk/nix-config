@@ -1,7 +1,7 @@
 { config, ... }:
 
 {
-	services.adguardhome = {
-		enable = true;
-	};
+  services.adguardhome = {
+    enable = true;
+  };
 }

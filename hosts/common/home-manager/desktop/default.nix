@@ -7,7 +7,7 @@
     ./thunderbird.nix
     ./vscode.nix
   ];
-  
+
   programs = {
     starship = {
       enableTransience = true;

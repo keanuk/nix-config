@@ -1,10 +1,10 @@
 { config, ... }:
 
 {
-  security.apparmor = { 
-		enable = true;
-		killUnconfinedConfinables = true;
-	};
+  security.apparmor = {
+    enable = true;
+    killUnconfinedConfinables = true;
+  };
 
-	services.dbus.apparmor = "enabled";
+  services.dbus.apparmor = "enabled";
 }

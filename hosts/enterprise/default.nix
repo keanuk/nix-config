@@ -1,6 +1,6 @@
 { inputs, outputs, ... }: {
-	imports = [
-		./hardware-configuration.nix
+  imports = [
+    ./hardware-configuration.nix
 
     inputs.nixos-hardware.nixosModules.hp-elitebook-845g8
     inputs.home-manager.nixosModules.home-manager
@@ -23,7 +23,7 @@
     useUserPackages = true;
     useGlobalPkgs = true;
     users.keanu = {
-      imports = [ 
+      imports = [
         ../common/home-manager/default.nix
         ../common/home-manager/desktop/default.nix
         ../common/home-manager/desktop/gnome.nix

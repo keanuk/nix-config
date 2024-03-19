@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usbhid" "ums_realtek" "usb_storage" "sd_mod" "sdhci_pci" ];
@@ -14,43 +15,50 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/8a943e1a-9063-4201-bbd5-14092bcabaff";
+    {
+      device = "/dev/disk/by-uuid/8a943e1a-9063-4201-bbd5-14092bcabaff";
       fsType = "btrfs";
       options = [ "subvol=@" ];
     };
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/8a943e1a-9063-4201-bbd5-14092bcabaff";
+    {
+      device = "/dev/disk/by-uuid/8a943e1a-9063-4201-bbd5-14092bcabaff";
       fsType = "btrfs";
       options = [ "subvol=@nix" ];
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/8a943e1a-9063-4201-bbd5-14092bcabaff";
+    {
+      device = "/dev/disk/by-uuid/8a943e1a-9063-4201-bbd5-14092bcabaff";
       fsType = "btrfs";
       options = [ "subvol=@home" ];
     };
 
   fileSystems."/.snapshots" =
-    { device = "/dev/disk/by-uuid/8a943e1a-9063-4201-bbd5-14092bcabaff";
+    {
+      device = "/dev/disk/by-uuid/8a943e1a-9063-4201-bbd5-14092bcabaff";
       fsType = "btrfs";
       options = [ "subvol=@snapshots" ];
     };
 
   fileSystems."/var/log" =
-    { device = "/dev/disk/by-uuid/8a943e1a-9063-4201-bbd5-14092bcabaff";
+    {
+      device = "/dev/disk/by-uuid/8a943e1a-9063-4201-bbd5-14092bcabaff";
       fsType = "btrfs";
       options = [ "subvol=@var_log" ];
     };
 
   fileSystems."/swap" =
-    { device = "/dev/disk/by-uuid/8a943e1a-9063-4201-bbd5-14092bcabaff";
+    {
+      device = "/dev/disk/by-uuid/8a943e1a-9063-4201-bbd5-14092bcabaff";
       fsType = "btrfs";
       options = [ "subvol=@swap" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/FA12-A2E8";
+    {
+      device = "/dev/disk/by-uuid/FA12-A2E8";
       fsType = "vfat";
     };
 

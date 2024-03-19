@@ -1,6 +1,6 @@
 { pkgs, inputs, outputs, ... }: {
-	imports = [
-		./hardware-configuration.nix
+  imports = [
+    ./hardware-configuration.nix
 
     inputs.home-manager.nixosModules.home-manager
     ../common/nixos/base/fs.nix
@@ -19,7 +19,7 @@
     useUserPackages = true;
     useGlobalPkgs = true;
     users.keanu = {
-      imports = [ 
+      imports = [
         ../common/home-manager/default.nix
       ];
       home.stateVersion = "23.05";

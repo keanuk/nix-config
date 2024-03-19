@@ -2,9 +2,9 @@
 
 {
   imports = [
-    inputs.lanzaboote.nixosModules.lanzaboote  
+    inputs.lanzaboote.nixosModules.lanzaboote
   ];
-  
+
   boot = {
     bootspec.enable = true;
     lanzaboote = {

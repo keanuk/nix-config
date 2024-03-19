@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "nvme" "ahci" "xhci_pci" "usb_storage" "usbhid" "sd_mod" ];
@@ -14,7 +15,8 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
+    {
+      device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
       fsType = "btrfs";
       options = [ "subvol=@" ];
     };
@@ -22,37 +24,43 @@
   boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/a7a50ee6-ebfa-4901-bdd7-f6d6d2e5bdc0";
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
+    {
+      device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
       fsType = "btrfs";
       options = [ "subvol=@nix" ];
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
+    {
+      device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
       fsType = "btrfs";
       options = [ "subvol=@home" ];
     };
 
   fileSystems."/.snapshots" =
-    { device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
+    {
+      device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
       fsType = "btrfs";
       options = [ "subvol=@snapshots" ];
     };
 
   fileSystems."/var/log" =
-    { device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
+    {
+      device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
       fsType = "btrfs";
       options = [ "subvol=@var_log" ];
     };
 
   fileSystems."/swap" =
-    { device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
+    {
+      device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
       fsType = "btrfs";
       options = [ "subvol=@swap" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/2578-2131";
+    {
+      device = "/dev/disk/by-uuid/2578-2131";
       fsType = "vfat";
     };
 

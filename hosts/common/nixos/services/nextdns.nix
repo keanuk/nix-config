@@ -1,12 +1,12 @@
 { config, secrets, ... }:
 
 {
-	nextdns = {
-		enable = true;
-		arguments = [ "-config" "${secrets.nextdns.id}" ];
-	};
+  nextdns = {
+    enable = true;
+    arguments = [ "-config" "${secrets.nextdns.id}" ];
+  };
 
-	environment.systemPackages = with pkgs; [
-		nextdns
-	];
+  environment.systemPackages = with pkgs; [
+    nextdns
+  ];
 }

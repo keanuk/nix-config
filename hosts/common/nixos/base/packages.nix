@@ -54,5 +54,5 @@
     # permittedInsecurePackages = [];
   };
 
-  environment.sessionVariables = {};
+  environment.sessionVariables = { };
 }
