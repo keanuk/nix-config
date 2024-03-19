@@ -11,6 +11,6 @@
   };
 
   home-manager.users.keanu.imports = [ 
-    ../common/home-manager/desktop/hyprland.nix
+    ../../../common/home-manager/desktop/hyprland.nix
   ];
 }
