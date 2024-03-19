@@ -12,6 +12,7 @@
   environment.systemPackages = with pkgs; [
     distrobox
     snapper-gui
+    wireplumber
     xorg.xkill
   ];
 

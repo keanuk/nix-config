@@ -31,6 +31,11 @@
       inputs.hyprland.follows = "hyprland";
     };
 
+    waybar = {
+      url = "github:Alexays/Waybar";
+      inputs.hyprland.follows = "hyprland";
+    };
+
     helix = {
       url = "github:helix-editor/helix/master";
       inputs.nixpkgs.follows = "nixpkgs";

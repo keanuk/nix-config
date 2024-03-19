@@ -4,23 +4,40 @@
   imports = [
     ./alacritty.nix
     ./kitty.nix
+    ./waybar.nix
   ];
 
   home.packages = with pkgs; [
     brightnessctl
     grim
     grimblast
+    hyprpaper
+    hyprpicker
     pamixer
     playerctl
+    rofi-wayland
+    swaynotificationcenter
+    swww
+    wayvnc
+    wev
+    wf-recorder
+    kdePackages.polkit-kde-agent-1
   ];
 
   wayland.windowManager.hyprland = {
     enable = true;
+    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
     systemd.enable = true;
     xwayland.enable = true;
 
     settings = {
       "$mod" = "SUPER";
+      "$altMod" = "ALT";
+      "$shiftMod" = "SHIFT";
+
+      exec-once = [
+        # "waybar"
+      ];
 
       animations = {
         enabled = true;
@@ -73,6 +90,8 @@
         "$mod, RETURN, exec, alacritty"
         "$mod, F, exec, firefox-devedition"
         ", Print, exec, grimblast copy area"
+        "$mod, SPACE, exec, rofi -show drun"
+        "$altMod, SPACE, exec, rofi -show drun"
       ] ++ (
         # workspaces
         # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
@@ -102,6 +121,7 @@
 
         # volume control: mute
         ", XF86AudioMute, exec, pamixer -t"
+        ", XF86AudioMicMute, exec, pamixer --default-source -t"
       ];
 
       bindel = [

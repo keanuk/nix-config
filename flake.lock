@@ -172,6 +172,22 @@
         "type": "github"
       }
     },
+    "flake-compat_4": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1696426674,
+        "narHash": "sha256-kvjfFW7WAETZlt09AgDn1MrtKzP7t90Vf7vypd3OL1U=",
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "rev": "0f9255e01c2351cc7d116c072cb317785dd33b33",
+        "type": "github"
+      },
+      "original": {
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -394,11 +410,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1710846990,
-        "narHash": "sha256-+GUWAhVtqo4NLiHKtOKcElkL4vo4QV1NubQGLA1nLjQ=",
+        "lastModified": 1710865899,
+        "narHash": "sha256-ZoxlwWtQpaGR/G5w8hdCK4I6FrNHtx/XfzabJc42bzc=",
         "owner": "helix-editor",
         "repo": "helix",
-        "rev": "6a22d7d1cad8fde27d8ba02629c3d33ab535f7b5",
+        "rev": "bcf7b26393cd2a32e38c187f69b602be018798f4",
         "type": "github"
       },
       "original": {
@@ -509,11 +525,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1710816831,
-        "narHash": "sha256-8PyLk/gfMo4asjbqsoXw1I3zfnkCPSSX0r6UCJP3ctw=",
+        "lastModified": 1710886375,
+        "narHash": "sha256-FDf3awfkx6zF4mDQcUkETYteObkR9gFS6mExiBdDihA=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "05c84304ccb1169b550504830139e07e28500a3b",
+        "rev": "07ab3b8cd654561ba346e40e16d44e918afa0ba0",
         "type": "github"
       },
       "original": {
@@ -534,11 +550,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1710512163,
-        "narHash": "sha256-bj3waHL6vTBWPw4f+vUdJ1MC5I8UWv2mNX3v/FPHBKQ=",
+        "lastModified": 1710886727,
+        "narHash": "sha256-2NWYodcoRkeSUgLjS/oNxPJ4hsBR+cZdXUpEHupFG5Y=",
         "owner": "hyprwm",
         "repo": "hyprland-plugins",
-        "rev": "50758aa0244372af3d6f058dce39970a8d96ce2d",
+        "rev": "4c9d83b981ad4668b89b8a3dc24d6f3ea7ad08fd",
         "type": "github"
       },
       "original": {
@@ -710,11 +726,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1710631334,
-        "narHash": "sha256-rL5LSYd85kplL5othxK5lmAtjyMOBg390sGBTb3LRMM=",
+        "lastModified": 1710806803,
+        "narHash": "sha256-qrxvLS888pNJFwJdK+hf1wpRCSQcqA6W5+Ox202NDa0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c75037bbf9093a2acb617804ee46320d6d1fea5a",
+        "rev": "b06025f1533a1e07b6db3e75151caa155d1c7eb3",
         "type": "github"
       },
       "original": {
@@ -772,6 +788,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1704538339,
+        "narHash": "sha256-1734d3mQuux9ySvwf6axRWZRBhtcZA9Q8eftD6EZg6U=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "46ae0210ce163b3cba6c7da08840c1d63de9c701",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixvim": {
       "inputs": {
         "devshell": "devshell_2",
@@ -785,11 +817,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1710844277,
-        "narHash": "sha256-fywETkJWkJkvWxj/Oy8elbKQML8wtKtSVN0lDRV+pFA=",
+        "lastModified": 1710856562,
+        "narHash": "sha256-JM24d2f60/9q7D7nzyhGm0gcH+HQsrY8Q0rGOFcJzeQ=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "50038f6c8f1460784320a2f022750c1d39781ef4",
+        "rev": "0a5e0c68b829f9fec135f479e3ec34332660f93d",
         "type": "github"
       },
       "original": {
@@ -873,7 +905,8 @@
         "nixpkgs-stable": "nixpkgs-stable_2",
         "nixvim": "nixvim",
         "sops-nix": "sops-nix",
-        "vpn-confinement": "vpn-confinement"
+        "vpn-confinement": "vpn-confinement",
+        "waybar": "waybar"
       }
     },
     "rust-overlay": {
@@ -1111,6 +1144,25 @@
       "original": {
         "owner": "Maroka-chan",
         "repo": "VPN-Confinement",
+        "type": "github"
+      }
+    },
+    "waybar": {
+      "inputs": {
+        "flake-compat": "flake-compat_4",
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1710885397,
+        "narHash": "sha256-aHCaKB9zAQJwiGpWlaQ3IW2LryorgcCt0bvAWCj0SJE=",
+        "owner": "Alexays",
+        "repo": "Waybar",
+        "rev": "cbe42a85366661ac01a5cf5cb11deb6b535349af",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Alexays",
+        "repo": "Waybar",
         "type": "github"
       }
     },
