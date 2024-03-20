@@ -9,6 +9,7 @@
     ./nix.nix
     ./python.nix
     ./rust.nix
+    ./virtualization.nix
   ];
 
   environment.systemPackages = with pkgs; [
@@ -16,7 +17,6 @@
   ];
 
   users.users.keanu.packages = with pkgs; [
-    dockerfile-language-server-nodejs
     nodePackages_latest.bash-language-server
   ];
 }

@@ -90,11 +90,6 @@
 
   security.audit.enable = true;
 
-  virtualisation = {
-    containerd.enable = true;
-    podman.enable = true;
-  };
-
   console = {
     earlySetup = true;
     font = "Lat2-Terminus16";

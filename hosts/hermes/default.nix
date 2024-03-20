@@ -7,6 +7,7 @@
     ../common/nixos/base/lanzaboote.nix
     ../common/nixos/desktop/default.nix
     ../common/nixos/desktop/gnome.nix
+    ../common/nixos/desktop/hyprland.nix
     ../common/nixos/user/keanu/default.nix
 
     # Change during next reinstall

@@ -7,6 +7,7 @@
 
     ../common/nixos/base/default.nix
     ../common/nixos/base/systemd-boot.nix
+    ../common/nixos/desktop/hyprland.nix
     ../common/nixos/user/keanu/default.nix
 
     # ../common/nixos/services/nixarr.nix
