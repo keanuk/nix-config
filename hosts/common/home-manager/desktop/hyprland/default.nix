@@ -1,10 +1,10 @@
-{ inputs, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 
 {
   imports = [
-    ./alacritty.nix
-    ./kitty.nix
-    ./waybar.nix
+    ../alacritty.nix
+    ../kitty.nix
+    ../waybar.nix
   ];
 
   home.packages = with pkgs; [
@@ -13,11 +13,14 @@
     grimblast
     hyprpaper
     hyprpicker
+    hyprlock
+    hypridle
     pamixer
     playerctl
     rofi-wayland
     swaynotificationcenter
     swww
+    tailscale-systray
     wayvnc
     wev
     wf-recorder
@@ -27,7 +30,14 @@
   wayland.windowManager.hyprland = {
     enable = true;
     package = inputs.hyprland.packages."${pkgs.system}".hyprland;
-    systemd.enable = true;
+    systemd = {
+      enable = true;
+      variables = [ "--all" ];
+      extraCommands = [
+        "systemctl --user stop graphical-session.target"
+        "systemctl --user start hyprland-session.target"
+      ];
+    };
     xwayland.enable = true;
 
     settings = {
@@ -36,7 +46,8 @@
       "$shiftMod" = "SHIFT";
 
       exec-once = [
-        # "waybar"
+        "hyprpaper"
+        "hyprpicker"
       ];
 
       animations = {
@@ -88,10 +99,17 @@
 
       bind = [
         "$mod, RETURN, exec, alacritty"
-        "$mod, F, exec, firefox-devedition"
+        "$mod, F, exec, fullscreen"
         ", Print, exec, grimblast copy area"
         "$mod, SPACE, exec, rofi -show drun"
         "$altMod, SPACE, exec, rofi -show drun"
+        "$mod, TAB, exec, cyclenext"
+        "$altMod, TAB, exec, cyclenext"
+        "$mod, X, exec, togglefloating"
+        "$altMod, X, exec, togglefloating"
+        "$mod, Q, exec, killactive"
+        "$mod, W, exec, closewindow"
+        "$mod, L, exec, hyprlock"
       ] ++ (
         # workspaces
         # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}

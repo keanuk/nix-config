@@ -97,6 +97,8 @@
       darwinSystems = [ "aarch64-darwin" "x86_64-darwin" ];
       forAllSystems = nixpkgs.lib.genAttrs (linuxSystems ++ darwinSystems);
       secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/git/secrets.json");
+      username = "keanu";
+      libx = import ./lib { inherit self inputs outputs secrets username; };
     in
     {
       packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
@@ -138,6 +140,9 @@
           system = "x86_64-darwin";
           modules = [ ./hosts/phoenix ];
         };
+      };
+      homeConfigurations = {
+        # for non-NixOS/Darwin systems
       };
     };
 }
