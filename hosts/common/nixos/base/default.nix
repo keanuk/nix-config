@@ -14,6 +14,7 @@
     loader.efi.canTouchEfiVariables = true;
     plymouth.enable = true;
     kernelPackages = pkgs.linuxPackages_latest;
+    kernelModules = [ "iptable_raw" ];
   };
 
   system.autoUpgrade = {

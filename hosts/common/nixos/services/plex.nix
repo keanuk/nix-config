@@ -4,8 +4,12 @@
   services.plex = {
     enable = true;
     openFirewall = true;
-    user = "keanu";
-    group = "plex";
+    user = "plex";
+    group = "media";
     dataDir = "/var/lib/plex";
   };
+
+  users.users.plex.extraGroups = [
+    "data"
+  ];
 }

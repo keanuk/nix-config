@@ -1,14 +1,14 @@
 { ... }:
 
 {
-  services.jellyfin = {
+  services.readarr = {
     enable = true;
     openFirewall = true;
-    user = "jellyfin";
+    user = "readarr";
     group = "media";
   };
 
-  users.users.jellyfin.extraGroups = [
+  users.users.readarr.extraGroups = [
     "data"
   ];
 }

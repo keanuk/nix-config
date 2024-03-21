@@ -19,7 +19,7 @@
     transmission = {
       enable = true;
       vpn.enable = true;
-      peerPort = 1909;
+      peerPort = 51413;
       uiPort = 9091;
       extraAllowedIps = [
         "10.19.5.*"

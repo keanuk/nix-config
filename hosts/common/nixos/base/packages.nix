@@ -9,6 +9,7 @@
   environment.systemPackages = with pkgs; [
     acpid
     bcachefs-tools
+    iptables
     lsof
     pciutils
     polkit
@@ -16,6 +17,7 @@
     sbctl
     snapper
     usbutils
+    wireguard-tools
   ];
 
   users.users.keanu.packages = with pkgs; [
@@ -38,6 +40,7 @@
     sops
     ssh-to-age
     tealdeer
+    transmission
     tree
     wget
     yt-dlp

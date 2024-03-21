@@ -1,14 +1,14 @@
 { ... }:
 
 {
-  services.jellyfin = {
+  services.bazarr = {
     enable = true;
     openFirewall = true;
-    user = "jellyfin";
+    user = "bazarr";
     group = "media";
   };
 
-  users.users.jellyfin.extraGroups = [
+  users.users.bazarr.extraGroups = [
     "data"
   ];
 }
