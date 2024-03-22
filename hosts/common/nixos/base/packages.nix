@@ -17,6 +17,7 @@
     sbctl
     snapper
     usbutils
+    util-linux
     wireguard-tools
   ];
 

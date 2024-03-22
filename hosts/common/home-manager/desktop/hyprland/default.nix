@@ -9,7 +9,7 @@
 
     ../alacritty.nix
     ../kitty.nix
-    # ../waybar.nix
+    ../waybar.nix
   ];
 
   home.packages = with pkgs; [
