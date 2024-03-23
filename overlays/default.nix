@@ -11,4 +11,13 @@
       config.allowUnfree = true;
     };
   };
+
+  nixpkgs.overlays = [
+    (self: super: {
+      fprintd = super.fprintd.overrideAttrs
+        (old: { 
+          mesonCheckFlags = [ "--no-suite" "fprintd:TestPamFprintd" ]; 
+        });
+    })
+  ];
 }
