@@ -525,11 +525,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1711296505,
-        "narHash": "sha256-+znePg+GlmAQMwQY392rqqIsmWT1hStEz2Pn+LAxUPk=",
+        "lastModified": 1711309196,
+        "narHash": "sha256-KV0rVdp7TwDS/IXX3Itii73+WKiJ2f8hVHV4OWHiIZU=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "5cc4bf699cfe4d5915b8ea9f2a7c8449cdc7bd2f",
+        "rev": "294ff8609f80b8e9d16233de94e49f992d5de33a",
         "type": "github"
       },
       "original": {
@@ -1097,11 +1097,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1711289997,
-        "narHash": "sha256-BeUcHb7mpZn7M3OFSEtyjBSVsCQhnt7gwdOFKnIELN4=",
+        "lastModified": 1711303689,
+        "narHash": "sha256-XelIFUk1AdOzPuotnhCzj4jYJ9LlrJ3qEptzkYppQMk=",
         "owner": "Maroka-chan",
         "repo": "VPN-Confinement",
-        "rev": "ba61fc42139281ea1aa300e3d3d5ef45f3eb3bf3",
+        "rev": "5964d68b584799ed9b4eb3d41b81b0c0bb1f7720",
         "type": "github"
       },
       "original": {
