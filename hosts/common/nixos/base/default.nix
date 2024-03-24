@@ -66,8 +66,10 @@
 
   services = {
     automatic-timezoned.enable = true;
+    devmon.enable = true;
     fail2ban.enable = true;
     fwupd.enable = true;
+    gvfs.enable = true;
     homed.enable = true;
     localtimed.enable = true;
     printing.enable = true;
@@ -75,6 +77,7 @@
     resolved.enable = true;
     smartd.enable = true;
     thermald.enable = true;
+    udisks2.enable = true;
   };
 
   systemd = {
