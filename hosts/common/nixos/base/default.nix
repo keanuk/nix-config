@@ -79,6 +79,7 @@
 
   services = {
     automatic-timezoned.enable = true;
+    avahi.enable = true;
     devmon.enable = true;
     fail2ban.enable = true;
     fwupd.enable = true;
@@ -105,7 +106,10 @@
     nftables.enable = true;
   };
 
-  security.audit.enable = true;
+  security = {
+    audit.enable = true;
+    auditd.enable = true;
+  };
 
   console = {
     earlySetup = true;
