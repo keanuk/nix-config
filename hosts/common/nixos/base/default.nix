@@ -31,6 +31,13 @@
     randomizedDelaySec = "45min";
   };
 
+  # workaround for https://github.com/NixOS/nixpkgs/issues/180175
+  systemd.services.NetworkManager-wait-online = {
+    serviceConfig = {
+      ExecStart = [ "" "${pkgs.networkmanager}/bin/nm-online -q" ];
+    };
+  };
+
   zramSwap = {
     enable = true;
     priority = 5;
@@ -60,6 +67,12 @@
 
   nixpkgs.overlays = [
     outputs.overlays.unstable-packages
+    (self: super: {
+      fprintd = super.fprintd.overrideAttrs
+        (old: { 
+          mesonCheckFlags = [ "--no-suite" "fprintd:TestPamFprintd" ]; 
+        });
+    })
   ];
 
   time.timeZone = lib.mkForce null;
