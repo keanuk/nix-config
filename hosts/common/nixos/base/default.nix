@@ -70,8 +70,8 @@
     outputs.overlays.unstable-packages
     (self: super: {
       fprintd = super.fprintd.overrideAttrs
-        (old: { 
-          mesonCheckFlags = [ "--no-suite" "fprintd:TestPamFprintd" ]; 
+        (old: {
+          mesonCheckFlags = [ "--no-suite" "fprintd:TestPamFprintd" ];
         });
     })
   ];
