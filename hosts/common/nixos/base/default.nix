@@ -50,6 +50,7 @@
     };
     enableAllFirmware = true;
     enableRedistributableFirmware = true;
+    ksm.enable = true;
   };
 
   nix = {
@@ -78,6 +79,7 @@
   time.timeZone = lib.mkForce null;
 
   services = {
+    accounts-daemon.enable = true;
     automatic-timezoned.enable = true;
     avahi.enable = true;
     devmon.enable = true;
@@ -85,13 +87,20 @@
     fwupd.enable = true;
     gvfs.enable = true;
     homed.enable = true;
+    irqbalance.enable = true;
     localtimed.enable = true;
+    pcscd.enable = true;
     printing.enable = true;
     power-profiles-daemon.enable = true;
     resolved.enable = true;
+    resolved.dnssec = "allow-downgrade";
     smartd.enable = true;
+    sssd.enable = true;
+    sysstat.enable = true;
     thermald.enable = true;
     udisks2.enable = true;
+    upower.enable = true;
+    xinetd.enable = true;
   };
 
   systemd = {
@@ -109,6 +118,8 @@
   security = {
     audit.enable = true;
     auditd.enable = true;
+    polkit.enable = true;
+    rtkit.enable = true;
   };
 
   console = {

@@ -11,6 +11,10 @@
     };
   };
 
+  services = {
+    gpm.enable = true;
+  };
+
   environment.systemPackages = with pkgs; [
     arion
     docker-compose
