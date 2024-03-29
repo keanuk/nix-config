@@ -24,7 +24,7 @@
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # Fingerprint login
-  services.fprintd.enable = false;
+  services.fprintd.enable = true;
   security.pam.services.login.fprintAuth = false;
   security.pam.services.gdm-fingerprint = lib.mkIf (config.services.fprintd.enable) {
     text = ''
