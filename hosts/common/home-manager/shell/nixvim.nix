@@ -14,7 +14,7 @@
 
     clipboard.providers.wl-copy.enable = true;
 
-    options = {
+    opts = {
       autochdir = true;
 
       autoindent = true;
