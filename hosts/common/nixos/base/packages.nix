@@ -28,6 +28,7 @@
     cpufetch
     direnv
     fastfetch
+    fd
     ffmpeg
     fortune
     fzf
@@ -39,6 +40,7 @@
     nmap
     onefetch
     ramfetch
+    ripgrep
     sops
     ssh-to-age
     tealdeer

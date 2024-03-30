@@ -46,6 +46,7 @@
     signal-desktop
     skypeforlinux
     steam-run
+    sublime-music
     telegram-desktop
     transmission-gtk
     typst
