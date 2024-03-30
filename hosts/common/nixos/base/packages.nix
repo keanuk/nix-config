@@ -23,6 +23,7 @@
 
   users.users.keanu.packages = with pkgs; [
     age
+    bitwarden-cli
     btop
     cpufetch
     direnv
