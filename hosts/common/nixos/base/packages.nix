@@ -10,6 +10,7 @@
     acpid
     bcachefs-tools
     iptables
+    linux-wifi-hotspot
     lsof
     pciutils
     polkit

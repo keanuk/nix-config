@@ -14,6 +14,9 @@
     # Change during next reinstall
     ../common/nixos/base/swapfile.nix
     ../common/nixos/base/fs.nix
+
+    # Temporary
+    # ../common/nixos/services/hotspot.nix
   ];
 
   networking.hostName = "enterprise";
