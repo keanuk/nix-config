@@ -20,13 +20,40 @@
     android-tools
     anytype
     appimage-run
+    audacity
     beeper
+    bitwarden-desktop
+    darktable
+    discord
+    element-desktop
+    endeavour
+    gimp
+    github-desktop
+    gnome-builder
+    inkscape
+    krita
+    kodi-wayland
     libadwaita
+    libreoffice
+    logseq
     netbird-ui
+    obs-studio
+    pitivi
+    protonmail-bridge
+    protonmail-bridge-gui
+    protonmail-desktop
+    protonvpn-gui
+    signal-desktop
+    skypeforlinux
     steam-run
+    telegram-desktop
+    transmission-gtk
     typst
+    vlc
     wl-clipboard
     xclip
+
+    kdePackages.kdenlive
   ];
 
   fonts = {

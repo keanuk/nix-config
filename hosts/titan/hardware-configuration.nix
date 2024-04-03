@@ -22,6 +22,7 @@
     };
 
   boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/a7a50ee6-ebfa-4901-bdd7-f6d6d2e5bdc0";
+  boot.initrd.luks.devices."cryptroot2".device = "/dev/disk/by-uuid/ea72ef0b-520a-436e-b9b4-0f7484325ad1";
 
   fileSystems."/nix" =
     {

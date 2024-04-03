@@ -21,6 +21,8 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
+    nix-colors.url = "github:misterio77/nix-colors";
+
     hyprland = {
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -29,6 +31,11 @@
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
+    };
+
+    hyprwm-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     waybar = {
@@ -80,8 +87,10 @@
     , darwin
     , home-manager
     , home-manager-stable
+    , nix-colors
     , hyprland
     , hyprland-plugins
+    , hyprwm-contrib
     , helix
     , nixvim
     , lanzaboote

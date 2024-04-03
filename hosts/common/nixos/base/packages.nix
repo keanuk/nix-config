@@ -10,6 +10,7 @@
     acpid
     bcachefs-tools
     iptables
+    linux-wifi-hotspot
     lsof
     pciutils
     polkit
@@ -23,10 +24,12 @@
 
   users.users.keanu.packages = with pkgs; [
     age
+    bitwarden-cli
     btop
     cpufetch
     direnv
     fastfetch
+    fd
     ffmpeg
     fortune
     fzf
@@ -38,6 +41,7 @@
     nmap
     onefetch
     ramfetch
+    ripgrep
     sops
     ssh-to-age
     tealdeer
