@@ -44,6 +44,7 @@
     protonvpn-gui
     signal-desktop
     skypeforlinux
+    standardnotes
     steam-run
     telegram-desktop
     transmission-gtk
