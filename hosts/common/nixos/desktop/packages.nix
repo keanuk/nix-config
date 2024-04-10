@@ -29,7 +29,6 @@
     endeavour
     gimp
     github-desktop
-    gnome-builder
     inkscape
     krita
     kodi-wayland
