@@ -5,7 +5,7 @@
     android-studio
     androidStudioPackages.beta
     androidStudioPackages.dev
-    gnome-builder
+    # gnome-builder
     zed-editor
 
     jetbrains.idea-community
