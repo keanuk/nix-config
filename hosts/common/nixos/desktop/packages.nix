@@ -37,7 +37,7 @@
     logseq
     netbird-ui
     obs-studio
-    pitivi
+    # pitivi
     protonmail-bridge
     protonmail-bridge-gui
     protonmail-desktop
