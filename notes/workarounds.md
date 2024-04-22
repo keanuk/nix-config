@@ -1,7 +1,6 @@
 # Workarounds
 
 ## Disabled packages
-- gnome-builder: dev/ide.nix
 - pitivi: desktop/packages.nix
 
 ## Services
