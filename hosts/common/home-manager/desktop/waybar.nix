@@ -3,7 +3,7 @@
 {
   programs.waybar = {
     enable = true;
-    # package = inputs.waybar.packages."${pkgs.system}".waybar;
+    package = inputs.waybar.packages."${pkgs.system}".waybar;
     systemd = {
       enable = true;
       target = "hyprland-session.target";
