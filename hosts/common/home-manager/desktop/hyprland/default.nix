@@ -3,7 +3,7 @@
 {
   imports = [
     ./binds.nix
-    # ./hypridle.nix
+    ./hypridle.nix
     # ./hyprpaper.nix
     ./settings.nix
 
