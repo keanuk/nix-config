@@ -23,6 +23,8 @@
 
     nix-colors.url = "github:misterio77/nix-colors";
 
+    stylix.url = "github:danth/stylix";
+
     hyprland = {
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -88,6 +90,7 @@
     , home-manager
     , home-manager-stable
     , nix-colors
+    , stylix
     , hyprland
     , hyprland-plugins
     , hyprwm-contrib

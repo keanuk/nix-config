@@ -23,6 +23,13 @@
   services.libinput.enable = true;
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
+  environment.systemPackages = with pkgs; [ 
+    iio-sensor-proxy
+
+    xorg.xbacklight 
+  ];
+
+
   # Fingerprint login
   services.fprintd.enable = true;
   security.pam.services.login.fprintAuth = false;
