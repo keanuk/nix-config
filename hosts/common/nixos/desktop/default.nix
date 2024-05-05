@@ -23,9 +23,9 @@
   services.libinput.enable = true;
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  environment.systemPackages = with pkgs; [ 
-    iio-sensor-proxy
+  hardware.sensor.iio.enable = true;
 
+  environment.systemPackages = with pkgs; [ 
     xorg.xbacklight 
   ];
 

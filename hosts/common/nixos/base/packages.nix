@@ -9,6 +9,7 @@
   environment.systemPackages = with pkgs; [
     acpid
     bcachefs-tools
+    hwdata
     iptables
     linux-wifi-hotspot
     lsof
