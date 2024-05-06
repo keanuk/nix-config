@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./atuin.nix
     ./bat.nix
     ./bottom.nix
     ./fish.nix
