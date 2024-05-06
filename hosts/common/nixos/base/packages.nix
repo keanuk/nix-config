@@ -30,7 +30,7 @@
     fastfetch
     ffmpeg
     fortune
-    git-crypttlrc
+    git-crypt
     just
     libnatpmp
     nix-index
