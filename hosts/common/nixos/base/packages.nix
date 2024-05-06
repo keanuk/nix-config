@@ -26,16 +26,11 @@
   users.users.keanu.packages = with pkgs; [
     age
     bitwarden-cli
-    btop
     cpufetch
-    direnv
     fastfetch
-    fd
     ffmpeg
     fortune
-    fzf
-    git-crypt
-    htop
+    git-crypttlrc
     just
     libnatpmp
     nix-index
@@ -45,7 +40,7 @@
     ripgrep
     sops
     ssh-to-age
-    tealdeer
+    tlrc
     transmission
     tree
     wget
