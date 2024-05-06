@@ -50,6 +50,7 @@
     tree
     wget
     yt-dlp
+    zoxide
   ];
 
   # Shell
