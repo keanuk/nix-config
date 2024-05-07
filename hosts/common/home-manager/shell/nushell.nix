@@ -3,7 +3,7 @@
 {
   programs.nushell = {
     enable = true;
-    configFile = { 
+    configFile = {
       text = ''
         let $config = {
           filesize_metric: true
