@@ -7,27 +7,33 @@
     ../services/geoclue2.nix
   ];
 
-  services.xserver.enable = true;
-  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
+  services = {
+    dbus.enable = true;
+    flatpak.enable = true;    
+    libinput.enable = true;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+    };
+    xserver.enable = true;
   };
 
-  services.flatpak.enable = true;
-  services.dbus.enable = true;
-  services.libinput.enable = true;
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  hardware.sensor.iio.enable = true;
+  hardware = {
+    pulseaudio.enable = false;
+    sensor.iio.enable = true;
+  };  
 
-  environment.systemPackages = with pkgs; [ 
-    xorg.xbacklight 
-  ];
+  environment = {
+    sessionVariables.NIXOS_OZONE_WL = "1";
+    systemPackages = with pkgs; [ 
+      xorg.xbacklight 
+    ];
+  };
 
 
   # Fingerprint login

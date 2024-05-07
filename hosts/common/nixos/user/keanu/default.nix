@@ -12,7 +12,7 @@
       "podman"
       "docker"
     ];
-    shell = pkgs.fish;
+    shell = pkgs.nushell;
     initialPassword = "keanu";
   };
 }
