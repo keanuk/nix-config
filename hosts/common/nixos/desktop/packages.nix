@@ -11,6 +11,7 @@
 
   environment.systemPackages = with pkgs; [
     distrobox
+    ptyxis
     snapper-gui
     wireplumber
     xorg.xkill
@@ -37,7 +38,7 @@
     logseq
     netbird-ui
     obs-studio
-    # pitivi
+    pitivi
     protonmail-bridge
     protonmail-bridge-gui
     protonmail-desktop
