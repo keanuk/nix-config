@@ -80,6 +80,12 @@
       url = "github:rasmus-kirk/nixarr";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };  
+    
   };
 
   outputs =
@@ -102,6 +108,7 @@
     , sops-nix
     , vpn-confinement
     , nixarr
+    , nixos-cosmic
     , ...
     } @ inputs:
     let
