@@ -136,7 +136,9 @@
         enterprise = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs secrets; };
           system = "x86_64-linux";
-          modules = [ ./hosts/enterprise ];
+          modules = [ 
+            ./hosts/enterprise 
+          ];
         };
         hermes = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs secrets; };
