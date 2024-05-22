@@ -976,11 +976,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1716309012,
-        "narHash": "sha256-G/yn1ygK8CcCAd/Y4J0uUz9ClkMgVwyFSVHb9DbhqNs=",
+        "lastModified": 1716331220,
+        "narHash": "sha256-jZitztDB+sXVP20ze1I0OJrycx/tqM/bZ+ToOssXqg8=",
         "owner": "lilyinstarlight",
         "repo": "nixos-cosmic",
-        "rev": "9c01a06f81fdc3673c2b96575b835693ca763bad",
+        "rev": "9b0ff482b5fffbd5593dd7177b3c4079ad409f8a",
         "type": "github"
       },
       "original": {
