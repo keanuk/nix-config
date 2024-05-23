@@ -115,7 +115,8 @@
     } @ inputs:
     let
       inherit (self) outputs;
-      lib = nixpkgs.lib // home-manager.lib;
+      lib = nixpkgs.lib // home-manager.lib // darwin.lib;
+      lib-stable = nixpkgs-stable.lib // home-manager-stable.lib;
       forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
       pkgsFor = lib.genAttrs (import systems) (
         system:
@@ -139,29 +140,35 @@
       formatter = forEachSystem (pkgs: pkgs.nixpkgs-fmt);
 
       nixosConfigurations = {
-        earth = nixpkgs.lib.nixosSystem {
+        # Intel NUC 10 i7
+        earth = lib.nixosSystem {
           specialArgs = { inherit inputs outputs secrets; };
           modules = [ ./hosts/earth ];
         };
-        enterprise = nixpkgs.lib.nixosSystem {
+        # HP EliteBook 845 G8
+        enterprise = lib.nixosSystem {
           specialArgs = { inherit inputs outputs secrets; };
           modules = [ ./hosts/enterprise ];
         };
-        hermes = nixpkgs.lib.nixosSystem {
+        # HP EliteBook 1030 G2
+        hermes = lib.nixosSystem {
           specialArgs = { inherit inputs outputs secrets; };
           modules = [ ./hosts/hermes ];
         };
-        terra = nixpkgs.lib.nixosSystem {
+        # Zotac ZBox
+        terra = lib.nixosSystem {
           specialArgs = { inherit inputs outputs secrets; };
           modules = [ ./hosts/terra ];
         };
-        titan = nixpkgs.lib.nixosSystem {
+        # CyberPowerPC
+        titan = lib.nixosSystem {
           specialArgs = { inherit inputs outputs secrets; };
           modules = [ ./hosts/titan ];
         };
       };
       darwinConfigurations = {
-        phoenix = darwin.lib.darwinSystem {
+        # MacBook Air 2018
+        phoenix = lib.darwinSystem {
           specialArgs = { inherit inputs outputs secrets; };
           modules = [ ./hosts/phoenix ];
         };
