@@ -1,10 +1,20 @@
 {
   description = "Keanu's Nix";
 
+  nixConfig = {
+    extra-substituters = [
+      "https://keanu.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "keanu.cachix.org-1:bnYEu6tJzXfwM5JkEhc90uEjR7cAHwaa4fwHRCYdFGg="
+    ];
+  };
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    systems.url = "github:nix-systems/default";
 
     darwin = {
       url = "github:LnL7/nix-darwin";
@@ -20,7 +30,12 @@
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
-
+    
+    hydra = {
+      url = "github:nixos/hydra";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };   
+    
     nix-colors.url = "github:misterio77/nix-colors";
 
     stylix.url = "github:danth/stylix";
@@ -92,74 +107,62 @@
     { self
     , nixpkgs
     , nixpkgs-stable
-    , nixos-hardware
+    , systems
     , darwin
     , home-manager
     , home-manager-stable
-    , nix-colors
-    , stylix
-    , hyprland
-    , hyprland-plugins
-    , hyprwm-contrib
-    , helix
-    , nixvim
-    , lanzaboote
-    , disko
-    , sops-nix
-    , vpn-confinement
-    , nixarr
-    , nixos-cosmic
     , ...
     } @ inputs:
     let
       inherit (self) outputs;
-      linuxSystems = [ "aarch64-linux" "x86_64-linux" ];
-      darwinSystems = [ "aarch64-darwin" "x86_64-darwin" ];
-      forAllSystems = nixpkgs.lib.genAttrs (linuxSystems ++ darwinSystems);
+      lib = nixpkgs.lib // home-manager.lib;
+      forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
+      pkgsFor = lib.genAttrs (import systems) (
+        system:
+          import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+          }
+      );      
       secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/git/secrets.json");
       username = "keanu";
-      libx = import ./lib { inherit self inputs outputs secrets username; };
-    in
-    {
-      packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixpkgs-fmt);
-      overlays = import ./overlays { inherit inputs; };
+    in {
+      inherit lib;
       nixosModules = import ./modules/nixos;
       homeManagerModules = import ./modules/home-manager;
+
+      overlays = import ./overlays {inherit inputs outputs;};
+      hydraJobs = import ./hydra.nix {inherit inputs outputs;};
+
+      packages = forEachSystem (pkgs: import ./pkgs {inherit pkgs;});
+      devShells = forEachSystem (pkgs: import ./shells.nix {inherit pkgs;});
+      formatter = forEachSystem (pkgs: pkgs.nixpkgs-fmt);
 
       nixosConfigurations = {
         earth = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs secrets; };
-          system = "x86_64-linux";
           modules = [ ./hosts/earth ];
         };
         enterprise = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs secrets; };
-          system = "x86_64-linux";
-          modules = [ 
-            ./hosts/enterprise 
-          ];
+          modules = [ ./hosts/enterprise ];
         };
         hermes = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs secrets; };
-          system = "x86_64-linux";
           modules = [ ./hosts/hermes ];
         };
         terra = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs secrets; };
-          system = "x86_64-linux";
           modules = [ ./hosts/terra ];
         };
         titan = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs secrets; };
-          system = "x86_64-linux";
           modules = [ ./hosts/titan ];
         };
       };
       darwinConfigurations = {
         phoenix = darwin.lib.darwinSystem {
           specialArgs = { inherit inputs outputs secrets; };
-          system = "x86_64-darwin";
           modules = [ ./hosts/phoenix ];
         };
       };
