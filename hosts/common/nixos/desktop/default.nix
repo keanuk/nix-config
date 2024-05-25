@@ -5,6 +5,7 @@
     ./packages.nix
 
     ../services/geoclue2.nix
+    ../services/udev.nix
   ];
 
   security.rtkit.enable = true;
