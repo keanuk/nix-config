@@ -1,6 +1,6 @@
 { ... }:
 
-{  
+{
   # Stadia conroller fixes
   services.udev.extraRules = ''
     # SDP protocol

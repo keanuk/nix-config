@@ -1,16 +1,16 @@
 {
   description = "Keanu's Nix";
 
-  nixConfig = {
-    extra-substituters = [
-      "https://keanu.cachix.org"
-      "https://nix-community.cachix.org"
-    ];
-    extra-trusted-public-keys = [
-      "keanu.cachix.org-1:bnYEu6tJzXfwM5JkEhc90uEjR7cAHwaa4fwHRCYdFGg="
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    ];
-  };
+  # nixConfig = {
+  #   extra-substituters = [
+  #     "https://keanu.cachix.org"
+  #     "https://nix-community.cachix.org"
+  #   ];
+  #   extra-trusted-public-keys = [
+  #     "keanu.cachix.org-1:bnYEu6tJzXfwM5JkEhc90uEjR7cAHwaa4fwHRCYdFGg="
+  #     "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+  #   ];
+  # };
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -32,12 +32,12 @@
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
-    
+
     hydra = {
       url = "github:nixos/hydra";
       inputs.nixpkgs.follows = "nixpkgs";
-    };   
-    
+    };
+
     nix-colors.url = "github:misterio77/nix-colors";
 
     stylix.url = "github:danth/stylix";
@@ -101,8 +101,8 @@
     nixos-cosmic = {
       url = "github:lilyinstarlight/nixos-cosmic";
       inputs.nixpkgs.follows = "nixpkgs";
-    };  
-    
+    };
+
   };
 
   outputs =
@@ -122,23 +122,24 @@
       forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
       pkgsFor = lib.genAttrs (import systems) (
         system:
-          import nixpkgs {
-            inherit system;
-            config.allowUnfree = true;
-          }
-      );      
+        import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        }
+      );
       secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/git/secrets.json");
       username = "keanu";
-    in {
+    in
+    {
       inherit lib lib-stable;
       nixosModules = import ./modules/nixos;
       homeManagerModules = import ./modules/home-manager;
 
-      overlays = import ./overlays {inherit inputs outputs;};
-      hydraJobs = import ./hydra.nix {inherit inputs outputs;};
+      overlays = import ./overlays { inherit inputs outputs; };
+      hydraJobs = import ./hydra.nix { inherit inputs outputs; };
 
-      packages = forEachSystem (pkgs: import ./pkgs {inherit pkgs;});
-      devShells = forEachSystem (pkgs: import ./shells.nix {inherit pkgs;});
+      packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
+      devShells = forEachSystem (pkgs: import ./shells.nix { inherit pkgs; });
       formatter = forEachSystem (pkgs: pkgs.nixpkgs-fmt);
 
       nixosConfigurations = {

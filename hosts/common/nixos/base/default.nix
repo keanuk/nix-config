@@ -60,10 +60,10 @@
       auto-optimise-store = true;
       warn-dirty = false;
       allowed-users = [ "@users" ];
-      experimental-features = [ 
-        "nix-command" 
-        "flakes" 
-        "ca-derivations" 
+      experimental-features = [
+        "nix-command"
+        "flakes"
+        "ca-derivations"
       ];
       system-features = [
         "big-parallel"
@@ -74,9 +74,9 @@
         "https://cache.nixos.org"
       ];
       trusted-public-keys = [ ];
-      trusted-users = [ 
-        "root" 
-        "@wheel" 
+      trusted-users = [
+        "root"
+        "@wheel"
       ];
     };
     gc = {
