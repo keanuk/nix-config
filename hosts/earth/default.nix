@@ -1,6 +1,6 @@
 { inputs, outputs, ... }: {
   imports = [
-    inputs.home-manager.nixosModules.home-manager
+    inputs.home-manager-stable.nixosModules.home-manager
 
     ./disko-configuration.nix
     ./hardware-configuration.nix
