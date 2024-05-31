@@ -1,20 +1,22 @@
 {
   description = "Keanu's Nix";
 
-  # nixConfig = {
-  #   extra-substituters = [
-  #     "https://keanu.cachix.org"
-  #     "https://nix-community.cachix.org"
-  #   ];
-  #   extra-trusted-public-keys = [
-  #     "keanu.cachix.org-1:bnYEu6tJzXfwM5JkEhc90uEjR7cAHwaa4fwHRCYdFGg="
-  #     "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-  #   ];
-  # };
+  nixConfig = {
+    # extra-substituters = [
+    #   "https://keanu.cachix.org"
+    #   "https://nix-community.cachix.org"
+    #   "https://hyprland.cachix.org"
+    # ];
+    # extra-trusted-public-keys = [
+    #   "keanu.cachix.org-1:bnYEu6tJzXfwM5JkEhc90uEjR7cAHwaa4fwHRCYdFGg="
+    #   "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    #   "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+    # ];
+  };
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     systems.url = "github:nix-systems/default";
 
@@ -29,7 +31,7 @@
     };
 
     home-manager-stable = {
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
@@ -45,7 +47,6 @@
     hyprland = {
       # url = "github:hyprwm/Hyprland";
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hyprland-plugins = {
