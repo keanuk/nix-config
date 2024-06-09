@@ -1,6 +1,6 @@
 { inputs, outputs, ... }: {
   imports = [
-    inputs.home-manager-stable.nixosModules.home-manager
+    # inputs.home-manager-stable.nixosModules.home-manager
 
     ./disko-configuration.nix
     ./hardware-configuration.nix
@@ -11,10 +11,10 @@
     ../common/nixos/user/keanu/default.nix
     ../common/nixos/user/keanu/data-groups.nix
 
-    # ../common/nixos/services/nixarr.nix
     ../common/nixos/services/bazarr.nix
     ../common/nixos/services/jellyfin.nix
     ../common/nixos/services/lidarr.nix
+    # ../common/nixos/services/nixarr.nix
     ../common/nixos/services/prowlarr.nix
     ../common/nixos/services/plex.nix
     ../common/nixos/services/radarr.nix
@@ -30,7 +30,7 @@
   #   allowedUDPPorts = [ 9091 51413 51820 ];
   # };
 
-  home-manager = {
+  lib-stable.home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
     useUserPackages = true;
     useGlobalPkgs = true;

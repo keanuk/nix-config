@@ -35,6 +35,8 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
+    nur.url = "github:nix-community/NUR";
+
     hydra = {
       url = "github:nixos/hydra";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -176,7 +178,16 @@
         };
       };
       homeConfigurations = {
-        # for non-NixOS/Darwin systems
+        "keanu@earth" = lib-stable.homeManagerConfiguration {
+          extraSpecialArgs = { inherit inputs outputs; };
+          # useUserPackages = true;
+          # useGlobalPkgs = true;
+          pkgs = pkgsFor.x86_64-linux;
+          modules = [
+              ./hosts/common/home-manager/earth.nix 
+              ./hosts/common/home-manager/default.nix
+          ];
+        };
       };
     };
 }
