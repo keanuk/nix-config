@@ -1,7 +1,5 @@
-{ inputs, outputs, ... }: {
+{ ... }: {
   imports = [
-    # inputs.home-manager-stable.nixosModules.home-manager
-
     ./disko-configuration.nix
     ./hardware-configuration.nix
 
@@ -29,18 +27,6 @@
   #   allowedTCPPorts = [ 9091 51413 51820 ];
   #   allowedUDPPorts = [ 9091 51413 51820 ];
   # };
-
-  lib-stable.home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
-    useUserPackages = true;
-    useGlobalPkgs = true;
-    users.keanu = {
-      imports = [
-        ../common/home-manager/default.nix
-      ];
-      home.stateVersion = "23.11";
-    };
-  };
 
   system.stateVersion = "23.11";
 }
