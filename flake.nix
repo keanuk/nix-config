@@ -180,13 +180,35 @@
       homeConfigurations = {
         "keanu@earth" = lib-stable.homeManagerConfiguration {
           extraSpecialArgs = { inherit inputs outputs; };
+          pkgs = pkgsFor.x86_64-linux;
+          modules = [ ./home/earth.nix ];
+        };
+        "keanu@enterprise" = lib.homeManagerConfiguration {
+          extraSpecialArgs = { inherit inputs outputs; };
           # useUserPackages = true;
           # useGlobalPkgs = true;
           pkgs = pkgsFor.x86_64-linux;
-          modules = [
-              ./hosts/common/home-manager/earth.nix 
-              ./hosts/common/home-manager/default.nix
-          ];
+          modules = [ ./home/enterprise.nix ];
+        };
+        "keanu@hermes" = lib.homeManagerConfiguration {
+          extraSpecialArgs = { inherit inputs outputs; };
+          pkgs = pkgsFor.x86_64-linux;
+          modules = [ ./home/hermes.nix ];
+        };
+        "keanu@phoenix" = lib.homeManagerConfiguration {
+          extraSpecialArgs = { inherit inputs outputs; };
+          pkgs = pkgsFor.x86_64-darwin;
+          modules = [ ./home/phoenix.nix ];
+        };
+        "keanu@terra" = lib.homeManagerConfiguration {
+          extraSpecialArgs = { inherit inputs outputs; };
+          pkgs = pkgsFor.x86_64-linux;
+          modules = [ ./home/terra.nix ];
+        };
+        "keanu@titan" = lib.homeManagerConfiguration {
+          extraSpecialArgs = { inherit inputs outputs; };
+          pkgs = pkgsFor.x86_64-linux;
+          modules = [ ./home/titan.nix ];
         };
       };
     };

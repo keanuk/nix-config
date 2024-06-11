@@ -2,8 +2,8 @@
   imports = [
     ./hardware-configuration.nix
 
-    inputs.nixos-hardware.nixosModules.hp-elitebook-845g8
     inputs.home-manager.nixosModules.home-manager
+    inputs.nixos-hardware.nixosModules.hp-elitebook-845g8
     ../common/nixos/base/default.nix
     ../common/nixos/base/lanzaboote.nix
     ../common/nixos/desktop/default.nix
@@ -23,11 +23,7 @@
     useUserPackages = true;
     useGlobalPkgs = true;
     users.keanu = {
-      imports = [
-        ../common/home-manager/default.nix
-        ../common/home-manager/desktop/default.nix
-        ../common/home-manager/desktop/gnome.nix
-      ];
+      imports = [ ../../home/enterprise.nix ];
       home.stateVersion = "23.11";
     };
   };

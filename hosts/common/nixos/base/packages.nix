@@ -10,15 +10,21 @@
     acpid
     bcachefs-tools
     cachix
+    fish
+    git
+    helix
+    home-manager
     hwdata
     iptables
     linux-wifi-hotspot
     lsof
+    nushell
     pciutils
     polkit
     psmisc
     sbctl
     snapper
+    starship
     usbutils
     util-linux
     wireguard-tools

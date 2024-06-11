@@ -23,11 +23,7 @@
     useUserPackages = true;
     useGlobalPkgs = true;
     users.keanu = {
-      imports = [
-        ../common/home-manager/default.nix
-        ../common/home-manager/desktop/default.nix
-        ../common/home-manager/shell/nixvim.nix
-      ];
+      imports = [ ../../home/titan.nix ];
       home.stateVersion = "23.11";
     };
   };

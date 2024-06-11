@@ -22,14 +22,10 @@
     useUserPackages = true;
     useGlobalPkgs = true;
     users.keanu = {
-      imports = [
-        ../common/home-manager/default.nix
-        ../common/home-manager/desktop/default.nix
-        ../common/home-manager/desktop/gnome.nix
-      ];
+      imports = [ ../../home/hermes.nix ];
       home.stateVersion = "23.11";
     };
   };
-
+  
   system.stateVersion = "23.05";
 }

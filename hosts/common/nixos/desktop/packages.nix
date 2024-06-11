@@ -18,19 +18,23 @@
   ];
 
   users.users.keanu.packages = with pkgs; [
+    alacritty
     android-tools
     anytype
     appimage-run
     audacity
     beeper
     bitwarden-desktop
+    chromium
     darktable
     discord
     element-desktop
     endeavour
+    firefox-devedition
     gimp
     github-desktop
     inkscape
+    kitty
     krita
     kodi-wayland
     libadwaita
@@ -48,6 +52,7 @@
     standardnotes
     steam-run
     telegram-desktop
+    thunderbird
     transmission-gtk
     typst
     vlc

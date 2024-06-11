@@ -1,4 +1,4 @@
-{ pkgs, inputs, outputs, ... }: {
+{ inputs, outputs, ... }: {
   imports = [
     ./hardware-configuration.nix
 
@@ -15,15 +15,14 @@
 
   networking.hostName = "terra";
   services.logrotate.checkConfig = false;
+
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
     useUserPackages = true;
     useGlobalPkgs = true;
     users.keanu = {
-      imports = [
-        ../common/home-manager/default.nix
-      ];
-      home.stateVersion = "23.05";
+      imports = [ ../../home/terra.nix ];
+      home.stateVersion = "23.11";
     };
   };
 

@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, outputs, ... }: {
+{ pkgs, inputs, outputs, ... }: {
   imports = [
     ./hardware-configuration.nix
 
@@ -13,9 +13,7 @@
     useUserPackages = true;
     useGlobalPkgs = true;
     users.keanu = {
-      imports = [
-        ../common/home-manager/default.nix
-      ];
+      imports = [ ../../home/phoenix.nix ];
       home.stateVersion = "24.05";
     };
   };
