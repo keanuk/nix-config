@@ -1,8 +1,9 @@
-{ ... }: {
+{ inputs, outputs, ... }: {
   imports = [
     ./disko-configuration.nix
     ./hardware-configuration.nix
 
+    inputs.home-manager-stable.nixosModules.home-manager
     ../common/nixos/base/default.nix
     ../common/nixos/base/systemd-boot.nix
     ../common/nixos/desktop/hyprland.nix
@@ -28,5 +29,15 @@
   #   allowedUDPPorts = [ 9091 51413 51820 ];
   # };
 
+  home-manager = {
+    extraSpecialArgs = { inherit inputs outputs; };
+    useUserPackages = true;
+    useGlobalPkgs = true;
+    users.keanu = {
+      imports = [ ../../home/earth.nix ];
+      home.stateVersion = "23.11";
+    };
+  };
+  
   system.stateVersion = "23.11";
 }
