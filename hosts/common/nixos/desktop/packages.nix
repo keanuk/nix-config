@@ -14,6 +14,7 @@
     ptyxis
     snapper-gui
     wireplumber
+
     xorg.xkill
   ];
 
@@ -43,6 +44,7 @@
     netbird-ui
     obs-studio
     pitivi
+    proton-pass
     protonmail-bridge
     protonmail-bridge-gui
     protonmail-desktop
