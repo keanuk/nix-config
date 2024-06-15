@@ -38,6 +38,6 @@
       home.stateVersion = "23.11";
     };
   };
-  
+
   system.stateVersion = "23.11";
 }

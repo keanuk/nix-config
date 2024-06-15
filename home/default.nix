@@ -4,7 +4,7 @@
   imports = [
     ./shell/default.nix
   ];
-  
+
   nixpkgs.config.allowUnfree = true;
 
   services.home-manager.autoUpgrade = {
@@ -18,7 +18,7 @@
   };
 
   news.display = "notify";
-  
+
   home = {
     sessionVariables = {
       # EDITOR = "micro";
