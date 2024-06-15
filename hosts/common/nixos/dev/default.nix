@@ -17,6 +17,7 @@
   ];
 
   users.users.keanu.packages = with pkgs; [
+    bash-language-server
     shellcheck
   ];
 }
