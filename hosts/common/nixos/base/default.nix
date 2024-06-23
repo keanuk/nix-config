@@ -42,6 +42,11 @@
     };
   };
 
+  # workaround for outdated electron
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-28.3.3"
+  ];
+
   zramSwap = {
     enable = true;
     priority = 5;
