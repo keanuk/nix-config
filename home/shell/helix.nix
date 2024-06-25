@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, lib, ... }:
 
 {
   programs.helix = {
@@ -6,7 +6,7 @@
     package = inputs.helix.packages."${pkgs.system}".helix;
     defaultEditor = true;
     settings = {
-      theme = "tokyonight";
+      theme = lib.mkDefault "tokyonight";
       editor = {
         auto-save = true;
         bufferline = "multiple";

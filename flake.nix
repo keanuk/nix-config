@@ -188,8 +188,6 @@
         };
         "keanu@enterprise" = lib.homeManagerConfiguration {
           extraSpecialArgs = { inherit inputs outputs; };
-          # useUserPackages = true;
-          # useGlobalPkgs = true;
           pkgs = pkgsFor.x86_64-linux;
           modules = [ ./home/enterprise.nix ];
         };

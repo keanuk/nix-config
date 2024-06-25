@@ -3,6 +3,7 @@
 {
   imports = [
     ./shell/default.nix
+    # ./theme/stylix.nix
   ];
 
   nixpkgs.config.allowUnfree = true;

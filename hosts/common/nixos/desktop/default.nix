@@ -3,6 +3,7 @@
 {
   imports = [
     ./packages.nix
+    ./theme/stylix.nix
 
     ../services/geoclue2.nix
     ../services/udev.nix

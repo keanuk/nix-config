@@ -16,7 +16,7 @@
     home-manager
     hwdata
     iptables
-    linux-wifi-hotspot
+    # linux-wifi-hotspot
     lsof
     nushell
     pciutils
