@@ -59,7 +59,7 @@
     steam-run
     telegram-desktop
     thunderbird
-    transmission-gtk
+    transmission_4-gtk
     typst
     vlc
     wl-clipboard
