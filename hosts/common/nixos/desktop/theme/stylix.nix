@@ -15,7 +15,7 @@
       name = "Adwaita";
       size = 22;
     };
-    
+
     fonts = {
       serif = {
         package = pkgs.inter;
@@ -36,6 +36,6 @@
         package = pkgs.noto-fonts-emoji;
         name = "Noto Color Emoji";
       };
-    };  
+    };
   };
 }
