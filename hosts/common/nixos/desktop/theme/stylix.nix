@@ -5,7 +5,7 @@
 
   stylix = {
     enable = true;
-    image = ../../../../../lib/wallpapers/galaxy.jpg;
+    image = ../../../../../lib/wallpapers/blue-clouds.jpg;
     # image = config.lib.stylix.pixel "base0A";    
     base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
     polarity = "dark";
