@@ -7,7 +7,7 @@
     enable = true;
     image = ../../../../../lib/wallpapers/galaxy.jpg;
     # image = config.lib.stylix.pixel "base0A";    
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
     polarity = "dark";
 
     cursor = {
@@ -18,22 +18,22 @@
 
     fonts = {
       serif = {
-        package = pkgs.inter;
-        name = "Inter Serif";
+        package = pkgs.noto-fonts;
+        name = "Noto Serif";
       };
 
       sansSerif = {
-        package = pkgs.inter;
-        name = "Inter Sans";
+        package = pkgs.noto-fonts;
+        name = "Noto Sans";
       };
 
       monospace = {
-        package = pkgs.inter;
-        name = "Inter Mono";
+        package = pkgs.noto-fonts;
+        name = "NotoMono Nerd Font";
       };
 
       emoji = {
-        package = pkgs.noto-fonts-emoji;
+        package = pkgs.noto-fonts;
         name = "Noto Color Emoji";
       };
     };
