@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ../dev/default.nix
     ../dev/flutter.nix
     ../dev/ide.nix
     ../dev/java.nix

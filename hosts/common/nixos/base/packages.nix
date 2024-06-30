@@ -3,7 +3,7 @@
 {
 
   imports = [
-    ../dev/default.nix
+    # ../dev/default.nix
   ];
 
   environment.systemPackages = with pkgs; [
