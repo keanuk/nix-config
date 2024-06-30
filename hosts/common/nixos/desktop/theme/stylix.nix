@@ -7,8 +7,10 @@
     enable = true;
     image = ../../../../../lib/wallpapers/blue-clouds.jpg;
     # image = config.lib.stylix.pixel "base0A";    
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
     polarity = "dark";
+    # targets.gnome.enable = false;
+    # targets.gtk.enable = false;
 
     cursor = {
       package = pkgs.libadwaita;

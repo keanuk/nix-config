@@ -1,4 +1,4 @@
-{ inputs, lib, pkgs, ... }:
+{ inputs, ouptus, config, lib, pkgs, ... }:
 
 {
   programs.waybar = {
