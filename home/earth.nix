@@ -3,7 +3,7 @@
 {
   imports = [
     ./default.nix
-    ./desktop/hyprland/default.nix
+    # ./desktop/hyprland/default.nix
   ];
 
   home = {

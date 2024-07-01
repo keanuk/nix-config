@@ -4,6 +4,7 @@
 
   imports = [
     # ../dev/default.nix
+    ../dev/virtualization.nix
   ];
 
   environment.systemPackages = with pkgs; [
@@ -16,7 +17,7 @@
     home-manager
     hwdata
     iptables
-    # linux-wifi-hotspot
+    linux-wifi-hotspot
     lsof
     nushell
     pciutils
