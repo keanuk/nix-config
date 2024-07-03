@@ -7,7 +7,7 @@
     enable = true;
     image = ../../../../../lib/wallpapers/blue-clouds.jpg;
     # image = config.lib.stylix.pixel "base0A";    
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-moon.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-city-dark.yaml";
     polarity = "dark";
     # targets.gnome.enable = false;
     # targets.gtk.enable = false;
@@ -15,7 +15,7 @@
     cursor = {
       package = pkgs.libadwaita;
       name = "Adwaita";
-      size = 22;
+      size = 24;
     };
 
     fonts = {
