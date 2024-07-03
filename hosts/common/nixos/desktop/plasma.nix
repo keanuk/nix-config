@@ -1,7 +1,12 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  services.displayManager.sddm.enable = true;
+  services.displayManager = {
+    sddm.enable = true;
+    defaultSession = "plasma";
+    sddm.wayland.enable = true;  
+  };
+  
   services.desktopManager.plasma6.enable = true;
 
   # Needed if not using GNOME
@@ -14,4 +19,6 @@
   environment.systemPackages = [
     pkgs.kdePackages.discover
   ];
-}
+
+  qt.enable = true;
+} 

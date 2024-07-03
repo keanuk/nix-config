@@ -7,7 +7,7 @@
     enable = true;
     image = ../../../../../lib/wallpapers/blue-clouds.jpg;
     # image = config.lib.stylix.pixel "base0A";    
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-city-dark.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyodark.yaml";
     polarity = "dark";
     # targets.gnome.enable = false;
     # targets.gtk.enable = false;
