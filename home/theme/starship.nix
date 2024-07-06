@@ -90,7 +90,7 @@
     disabled = false;
     format = "via [$symbol$version]($style) ";
     symbol = "喝 ";
-    style = "bold blue";
+   style = "bold blue";
   };
 
   cmd_duration = {
