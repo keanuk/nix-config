@@ -117,6 +117,7 @@
     , darwin
     , home-manager
     , home-manager-stable
+    , nur
     , ...
     } @ inputs:
     let

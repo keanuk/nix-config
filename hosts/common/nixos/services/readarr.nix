@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   services.readarr = {
@@ -6,6 +6,7 @@
     openFirewall = true;
     user = "readarr";
     group = "media";
+    package = pkgs.unstable.readarr;
   };
 
   users.users.readarr.extraGroups = [

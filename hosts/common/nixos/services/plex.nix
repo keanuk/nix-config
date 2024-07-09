@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   services.plex = {
@@ -7,6 +7,7 @@
     user = "plex";
     group = "media";
     dataDir = "/var/lib/plex";
+    package = pkgs.unstable.plex;
   };
 
   users.users.plex.extraGroups = [

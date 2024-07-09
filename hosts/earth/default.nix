@@ -1,9 +1,10 @@
 { inputs, outputs, ... }: {
   imports = [
+    inputs.home-manager-stable.nixosModules.home-manager
+
     ./disko-configuration.nix
     ./hardware-configuration.nix
 
-    inputs.home-manager-stable.nixosModules.home-manager
     ../common/nixos/base/default.nix
     ../common/nixos/base/systemd-boot.nix
     # ../common/nixos/desktop/hyprland.nix
@@ -11,6 +12,7 @@
     ../common/nixos/user/keanu/data-groups.nix
 
     ../common/nixos/services/bazarr.nix
+    ../common/nixos/services/flaresolverr.nix
     ../common/nixos/services/jellyfin.nix
     ../common/nixos/services/lidarr.nix
     # ../common/nixos/services/nixarr.nix

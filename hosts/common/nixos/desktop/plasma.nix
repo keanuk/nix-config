@@ -4,9 +4,9 @@
   services.displayManager = {
     sddm.enable = true;
     defaultSession = "plasma";
-    sddm.wayland.enable = true;  
+    sddm.wayland.enable = true;
   };
-  
+
   services.desktopManager.plasma6.enable = true;
 
   # Needed if not using GNOME

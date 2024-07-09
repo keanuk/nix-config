@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   services.sonarr = {
@@ -6,6 +6,7 @@
     openFirewall = true;
     user = "sonarr";
     group = "media";
+    package = pkgs.unstable.sonarr;
   };
 
   users.users.sonarr.extraGroups = [

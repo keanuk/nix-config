@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   services.lidarr = {
@@ -6,6 +6,7 @@
     openFirewall = true;
     user = "lidarr";
     group = "media";
+    package = pkgs.unstable.lidarr;
   };
 
   users.users.lidarr.extraGroups = [

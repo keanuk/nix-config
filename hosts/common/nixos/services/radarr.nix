@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   services.radarr = {
@@ -6,6 +6,7 @@
     openFirewall = true;
     user = "radarr";
     group = "media";
+    package = pkgs.unstable.radarr;
   };
 
   users.users.radarr.extraGroups = [
