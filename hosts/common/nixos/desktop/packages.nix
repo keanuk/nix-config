@@ -45,7 +45,7 @@
     kodi-wayland
     libadwaita
     libreoffice
-    # logseq
+    logseq
     netbird-ui
     obs-studio
     pitivi
