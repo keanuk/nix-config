@@ -33,7 +33,7 @@
   };
 
   # workaround for 'too many open files' on nixos-rebuild
-  systemd.extraConfig = "DefaultLimitNOFILE=2048";
+  # systemd.extraConfig = "DefaultLimitNOFILE=2048";
 
   # workaround for https://github.com/NixOS/nixpkgs/issues/180175
   systemd.services.NetworkManager-wait-online = {
