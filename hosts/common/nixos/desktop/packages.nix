@@ -17,7 +17,7 @@
   environment.systemPackages = with pkgs; [
     distrobox
     ptyxis
-    # snapper-gui
+    snapper-gui
     wireplumber
 
     xorg.xkill
@@ -32,7 +32,7 @@
     beeper
     bitwarden-desktop
     chromium
-    # darktable
+    darktable
     discord
     element-desktop
     endeavour

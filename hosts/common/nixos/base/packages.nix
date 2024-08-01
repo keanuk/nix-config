@@ -24,7 +24,7 @@
     polkit
     psmisc
     sbctl
-    # snapper
+    snapper
     starship
     usbutils
     util-linux
