@@ -1,15 +1,11 @@
-{ inputs, config, pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
-  imports = [
-    inputs.nur.nixosModules.nur
-  ];
-
-  systemd.services.flaresolverr = {
+  imports = [ "${inputs.nixpkgs}/nixos/modules/services/misc/flaresolverr.nix" ];
+  
+  services.flaresolverr = {
     enable = true;
-    serviceConfig = {
-      ExecStart = "${config.nur.repos.xddxdd.flaresolverr}/bin/flaresolverr";
-    };
-    wantedBy = [ "multi-user.target" ];
+    openFirewall = true;
+    package = pkgs.unstable.flaresolverr;
   };
 }
