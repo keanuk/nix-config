@@ -12,6 +12,7 @@
 
   nixpkgs.config.permittedInsecurePackages = [
     "electron-27.3.11"
+    "jitsi-meet-1.0.8043"
   ];
 
   environment.systemPackages = with pkgs; [
@@ -40,6 +41,7 @@
     gimp
     github-desktop
     inkscape
+    jitsi-meet
     kitty
     krita
     kodi-wayland
