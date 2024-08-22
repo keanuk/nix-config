@@ -10,10 +10,7 @@
     ../dev/node.nix
   ];
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-27.3.11"
-    "jitsi-meet-1.0.8043"
-  ];
+  nixpkgs.config.permittedInsecurePackages = [];
 
   environment.systemPackages = with pkgs; [
     distrobox
@@ -41,7 +38,7 @@
     gimp
     github-desktop
     inkscape
-    jitsi-meet
+    # jitsi-meet
     kitty
     krita
     kodi-wayland
@@ -50,7 +47,7 @@
     # logseq
     netbird-ui
     obs-studio
-    pitivi
+    # pitivi
     proton-pass
     protonmail-bridge
     protonmail-bridge-gui
