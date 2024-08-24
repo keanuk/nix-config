@@ -6,7 +6,7 @@
     description = "Mount RAID configuration";
     wantedBy = ["multi-user.target"];
     script = ''
-      /run/current-system/sw/bin/bcachefs
+      /run/current-system/sw/bin/bcachefs unlock -k 
     '';
   };
 }
