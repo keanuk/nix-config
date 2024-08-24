@@ -10,16 +10,19 @@
     ../dev/node.nix
   ];
 
-  nixpkgs.config.permittedInsecurePackages = [];
+  nixpkgs.config.permittedInsecurePackages = [ ];
 
-  environment.systemPackages = with pkgs; [
-    distrobox
-    ptyxis
-    snapper-gui
-    wireplumber
+  environment = {
+    sessionVariables = { };
+    systemPackages = with pkgs; [
+      distrobox
+      ptyxis
+      snapper-gui
+      wireplumber
 
-    xorg.xkill
-  ];
+      xorg.xkill
+    ];
+  };
 
   users.users.keanu.packages = with pkgs; [
     alacritty
@@ -84,5 +87,4 @@
     ];
   };
 
-  environment.sessionVariables = { };
 }

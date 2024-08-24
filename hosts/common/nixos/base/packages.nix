@@ -7,6 +7,17 @@
     ../dev/virtualization.nix
   ];
 
+  programs.zsh.enable = true;
+  programs.fish.enable = true;
+  services.atuin.enable = true;
+
+  nixpkgs.config = {
+    allowUnfree = true;
+    permittedInsecurePackages = [ ];
+  };
+
+  environment.sessionVariables = { };
+
   environment.systemPackages = with pkgs; [
     acpid
     bcachefs-tools
@@ -17,6 +28,7 @@
     home-manager
     hwdata
     iptables
+    libsecret
     linux-wifi-hotspot
     lsof
     nushell
@@ -54,17 +66,4 @@
     wget
     yt-dlp
   ];
-
-  # Shell
-  programs.zsh.enable = true;
-  programs.fish.enable = true;
-  services.atuin.enable = true;
-
-  # nixpkgs
-  nixpkgs.config = {
-    allowUnfree = true;
-    # permittedInsecurePackages = [];
-  };
-
-  environment.sessionVariables = { };
 }
