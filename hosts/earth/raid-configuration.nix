@@ -1,20 +1,25 @@
-{ ... }:
+{ secrets, ... }:
 
 {
   systemd.services.mount-raid = {
     enable = true;
     description = "Mount RAID configuration";
-    wantedBy = ["multi-user.target"];
+    wantedBy = ["default.target"];
+    restartIfChanged = false;
     script = ''
-      /run/current-system/sw/bin/bcachefs unlock -f /home/keanu/bcachefs-server.keyfile /dev/sdc
-      /run/current-system/sw/bin/bcachefs unlock -f /home/keanu/bcachefs-server.keyfile /dev/sdd
-      /run/current-system/sw/bin/bcachefs unlock -f /home/keanu/bcachefs-server.keyfile /dev/sde
-      /run/current-system/sw/bin/bcachefs unlock -f /home/keanu/bcachefs-server.keyfile /dev/sdf
-      /run/current-system/sw/bin/bcachefs unlock -f /home/keanu/bcachefs-server.keyfile /dev/sdg
-      /run/current-system/sw/bin/bcachefs unlock -f /home/keanu/bcachefs-server.keyfile /dev/sdh
-      /run/current-system/sw/bin/bcachefs unlock -f /home/keanu/bcachefs-server.keyfile /dev/sdi
-      /run/current-system/sw/bin/bcachefs unlock -f /home/keanu/bcachefs-server.keyfile /dev/sdj
-      /run/current-system/sw/bin/bcachefs mount -f /home/keanu/bcachefs-server.keyfile /dev/sdc:/dev/sdd:/dev/sde:/dev/sdf:/dev/sdg:/dev/sdh:/dev/sdi:/dev/sdj /data
+      /run/current-system/sw/bin/bash -c "echo '${secrets.earth_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdc"
+      /run/current-system/sw/bin/bash -c "echo '${secrets.earth_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdd"
+      /run/current-system/sw/bin/bash -c "echo '${secrets.earth_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sde"
+      /run/current-system/sw/bin/bash -c "echo '${secrets.earth_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdf"
+      /run/current-system/sw/bin/bash -c "echo '${secrets.earth_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdg"
+      /run/current-system/sw/bin/bash -c "echo '${secrets.earth_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdh"
+      /run/current-system/sw/bin/bash -c "echo '${secrets.earth_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdi"
+      /run/current-system/sw/bin/bash -c "echo '${secrets.earth_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdj"
+      /run/current-system/sw/bin/bash -c "echo '${secrets.earth_raid.password}' | /run/current-system/sw/bin/bcachefs mount /dev/sdc:/dev/sdd:/dev/sde:/dev/sdf:/dev/sdg:/dev/sdh:/dev/sdi:/dev/sdj /data"
     '';
+    serviceConfig = {
+      RemainAfterExit = true;
+      Type = "oneshot";
+    };
   };
 }
