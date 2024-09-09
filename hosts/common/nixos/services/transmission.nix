@@ -14,7 +14,7 @@
     settings = {
       download-dir = "/internal/downloads";
       incomplete-dir = "/internal/incomplete";
-      # rpc-bind-address = "0.0.0.0";
+      rpc-bind-address = "0.0.0.0";
     };
   };
 
