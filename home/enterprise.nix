@@ -5,7 +5,7 @@
     ./default.nix
     ./desktop/default.nix
     ./desktop/gnome.nix
-    # ./desktop/hyprland/default.nix
+    ./desktop/hyprland/default.nix
   ];
 
   home = {
