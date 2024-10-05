@@ -4,7 +4,7 @@
   imports = [
     ./binds.nix
     ./hypridle.nix
-    # ./hyprpaper.nix
+    ./hyprpaper.nix
     ./settings.nix
 
     ../alacritty.nix
