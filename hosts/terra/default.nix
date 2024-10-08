@@ -20,6 +20,7 @@
     extraSpecialArgs = { inherit inputs outputs; };
     useUserPackages = true;
     useGlobalPkgs = true;
+    backupFileExtension = "backup";
     users.keanu = {
       imports = [ ../../home/terra.nix ];
       home.stateVersion = "23.11";

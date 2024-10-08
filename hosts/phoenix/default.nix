@@ -12,6 +12,7 @@
     extraSpecialArgs = { inherit inputs outputs; };
     useUserPackages = true;
     useGlobalPkgs = true;
+    backupFileExtension = "backup";
     users.keanu = {
       imports = [ ../../home/phoenix.nix ];
       home.stateVersion = "24.05";

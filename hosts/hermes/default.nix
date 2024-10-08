@@ -22,6 +22,7 @@
     extraSpecialArgs = { inherit inputs outputs; };
     useUserPackages = true;
     useGlobalPkgs = true;
+    backupFileExtension = "backup";
     users.keanu = {
       imports = [ ../../home/hermes.nix ];
       home.stateVersion = "23.11";
