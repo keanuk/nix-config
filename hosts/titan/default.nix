@@ -3,6 +3,7 @@
     ./hardware-configuration.nix
 
     inputs.home-manager.nixosModules.home-manager
+    inputs.nixos-cosmic.nixosModules.default
     ../common/nixos/base/amd.nix
     ../common/nixos/base/default.nix
     ../common/nixos/base/lanzaboote.nix

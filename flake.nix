@@ -118,6 +118,7 @@
     , home-manager
     , home-manager-stable
     , nur
+    , nixos-cosmic
     , ...
     } @ inputs:
     let

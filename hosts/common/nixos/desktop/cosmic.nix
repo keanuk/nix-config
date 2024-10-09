@@ -1,8 +1,8 @@
 { pkgs, ... }:
 
 {
-  # services.desktopManager.cosmic.enable = true; 
-  # services.displayManager.cosmic-greeter.enable = true;
+  services.desktopManager.cosmic.enable = true; 
+  services.displayManager.cosmic-greeter.enable = true;
 
   environment.systemPackages = with pkgs; [
     cosmic-applets
@@ -20,8 +20,10 @@
     cosmic-protocols
     cosmic-randr
     cosmic-screenshot
+    cosmic-session
     cosmic-settings
     cosmic-settings-daemon
+    cosmic-store
     cosmic-term
     cosmic-workspaces-epoch
     xdg-desktop-portal-cosmic
