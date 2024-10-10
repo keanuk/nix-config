@@ -744,11 +744,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1728337164,
-        "narHash": "sha256-VdRTjJFyq4Q9U7Z/UoC2Q5jK8vSo6E86lHc2OanXtvc=",
+        "lastModified": 1728598744,
+        "narHash": "sha256-sSfvyO5xH3HObHHmh6lp/hcvo7tMjFKd/HXpxyrRnoE=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "038630363e7de57c36c417fd2f5d7c14773403e4",
+        "rev": "342a1d682386d3a1d74f9555cb327f2f311dda6e",
         "type": "github"
       },
       "original": {
@@ -884,11 +884,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1728467929,
-        "narHash": "sha256-lqUWXwhO2jpbi1lDFXnEwUzE/c8C8TOE7UNObI+qqxM=",
+        "lastModified": 1728554473,
+        "narHash": "sha256-wzVeYNRedx8aAi8NsUvBbPJAilozHp+mC49NUKYk73c=",
         "ref": "refs/heads/main",
-        "rev": "6ae89940c761d4ed4317df0af29e8df41d472091",
-        "revCount": 5323,
+        "rev": "b65773bea9b912a41cfcbc789fb2e60a07e3d0c1",
+        "revCount": 5325,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
@@ -1199,11 +1199,11 @@
         "rust-overlay": "rust-overlay_4"
       },
       "locked": {
-        "lastModified": 1728443929,
-        "narHash": "sha256-WFy8+K/bUTXwT9nMPT/Y23dPbW5I2rLEjgTuPC8y3lA=",
+        "lastModified": 1728591802,
+        "narHash": "sha256-/HefSuC9DgRAVfiZ64+E32L5WHu9mpqrcnnZA9em2iY=",
         "owner": "lilyinstarlight",
         "repo": "nixos-cosmic",
-        "rev": "a8960f9c66a0c4f2c24ae029da0886df4a68af33",
+        "rev": "7a40bf82de534822d22503e195f2b71715277ad6",
         "type": "github"
       },
       "original": {
@@ -1341,11 +1341,11 @@
     },
     "nixpkgs-stable_4": {
       "locked": {
-        "lastModified": 1728328465,
-        "narHash": "sha256-a0a0M1TmXMK34y3M0cugsmpJ4FJPT/xsblhpiiX1CXo=",
+        "lastModified": 1728500571,
+        "narHash": "sha256-dOymOQ3AfNI4Z337yEwHGohrVQb4yPODCW9MDUyAc4w=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "1bfbbbe5bbf888d675397c66bfdb275d0b99361c",
+        "rev": "d51c28603def282a24fa034bcb007e2bcb5b5dd0",
         "type": "github"
       },
       "original": {
@@ -1373,11 +1373,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1728241625,
-        "narHash": "sha256-yumd4fBc/hi8a9QgA9IT8vlQuLZ2oqhkJXHPKxH/tRw=",
+        "lastModified": 1728492678,
+        "narHash": "sha256-9UTxR8eukdg+XZeHgxW5hQA9fIKHsKCdOIUycTryeVw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c31898adf5a8ed202ce5bea9f347b1c6871f32d1",
+        "rev": "5633bcff0c6162b9e4b5f1264264611e950c8ec7",
         "type": "github"
       },
       "original": {
@@ -1418,11 +1418,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1728428263,
-        "narHash": "sha256-TG/ojDMLuLJI4nEo0waZawgAq4r30n7xJ8klEKpFcd0=",
+        "lastModified": 1728593423,
+        "narHash": "sha256-xM3+7mvWwM5i+RXD97wQ/fSoQDFidVxNszIfKIv9msE=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "eda14029813906b1ef355823de237d86fea59908",
+        "rev": "af650ba9401501352d6eaaced192bbb4abfaec87",
         "type": "github"
       },
       "original": {
@@ -1433,11 +1433,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1728471017,
-        "narHash": "sha256-4Qcwnl7ePUSk/Jb0VsyRRU7toVu+lVzrdzhDqzIS1R8=",
+        "lastModified": 1728599318,
+        "narHash": "sha256-efSY2E89fi+CL5dZJAfjzgEVn3yHZ76v1WswyPAqYZ4=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "3fce8e9b3b18bc6e599dd439d5c9973c6e63438c",
+        "rev": "61e853a9915313fe85f7900187d1878170c4780b",
         "type": "github"
       },
       "original": {
@@ -1455,11 +1455,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1728423244,
-        "narHash": "sha256-+YwNsyIFj3dXyLVQd1ry4pCNmtOpbceKUrkNS8wp9Ho=",
+        "lastModified": 1728513479,
+        "narHash": "sha256-yAR9M1jvuAoahYNxo3RNnPMcua1TAIPurFKmH2/g3lg=",
         "owner": "NuschtOS",
         "repo": "search",
-        "rev": "f276cc3b391493ba3a8b30170776860f9520b7fa",
+        "rev": "5cb7ef512ec20a5b7d60fc70dba014560559698a",
         "type": "github"
       },
       "original": {
@@ -1622,11 +1622,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1728354625,
-        "narHash": "sha256-r+Sa1NRRT7LXKzCaVaq75l1GdZcegODtF06uaxVVVbI=",
+        "lastModified": 1728461096,
+        "narHash": "sha256-cd0cXB85B3kGpm+iumP9xCnqFErspXL9Z/2X59kQ6c4=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "d216ade5a0091ce60076bf1f8bc816433a1fc5da",
+        "rev": "e310b9bd71fa6c6a9fec0a8cf5af43ce798a0ad6",
         "type": "github"
       },
       "original": {
@@ -1673,16 +1673,17 @@
         "tinted-tmux": "tinted-tmux"
       },
       "locked": {
-        "lastModified": 1728312564,
-        "narHash": "sha256-z01cTK5VeLFOUekhAXrJHLDzE74uAxxMwE2p6+Wp9Sg=",
+        "lastModified": 1728508267,
+        "narHash": "sha256-JH2+RXJNooFtZIN6ZhaGZWn2KChMrso4H7Fkp1Ujrdo=",
         "owner": "danth",
         "repo": "stylix",
-        "rev": "63426a59e714c4389c5a8e559dee05a0087a3043",
+        "rev": "ed91a20c84a80a525780dcb5ea3387dddf6cd2de",
         "type": "github"
       },
       "original": {
         "owner": "danth",
         "repo": "stylix",
+        "rev": "ed91a20c84a80a525780dcb5ea3387dddf6cd2de",
         "type": "github"
       }
     },
@@ -1802,16 +1803,17 @@
     "tinted-kitty": {
       "flake": false,
       "locked": {
-        "lastModified": 1665001328,
-        "narHash": "sha256-aRaizTYPpuWEcvoYE9U+YRX+Wsc8+iG0guQJbvxEdJY=",
+        "lastModified": 1716423189,
+        "narHash": "sha256-2xF3sH7UIwegn+2gKzMpFi3pk5DlIlM18+vj17Uf82U=",
         "owner": "tinted-theming",
         "repo": "tinted-kitty",
-        "rev": "06bb401fa9a0ffb84365905ffbb959ae5bf40805",
+        "rev": "eb39e141db14baef052893285df9f266df041ff8",
         "type": "github"
       },
       "original": {
         "owner": "tinted-theming",
         "repo": "tinted-kitty",
+        "rev": "eb39e141db14baef052893285df9f266df041ff8",
         "type": "github"
       }
     },

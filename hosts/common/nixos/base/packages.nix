@@ -32,6 +32,8 @@
     linux-wifi-hotspot
     lsof
     nushell
+    pass
+    pass-wayland
     pciutils
     polkit
     psmisc
