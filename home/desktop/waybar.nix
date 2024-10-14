@@ -1,4 +1,4 @@
-{ inputs, ouptus, config, lib, pkgs, ... }:
+{ inputs, lib, pkgs, ... }:
 
 {
   programs.waybar = {
@@ -15,8 +15,15 @@
       layer = "top";
       height = 32;
 
-      modules-left = [ "hyprland/workspaces" ];
-      modules-center = [ "clock" "idle_inhibitor" ];
+      modules-left = [ 
+        "hyprland/workspaces" 
+      ];
+      
+      modules-center = [ 
+        "clock" 
+        "idle_inhibitor" 
+      ];
+      
       modules-right = [
         "network"
         "battery"
@@ -28,15 +35,6 @@
 
       "hyprland/workspaces" = {
         format = "{icon}";
-        format-icons = {
-          "1" = "";
-          "2" = "";
-          "3" = "󰙀";
-          "4" = "";
-          "5" = "";
-          "6" = "";
-          "7" = "";
-        };
         on-click = "activate";
       };
 

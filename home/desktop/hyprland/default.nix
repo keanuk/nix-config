@@ -9,6 +9,7 @@
 
     ../alacritty.nix
     ../kitty.nix
+    ../rofi.nix
     ../waybar.nix
   ];
 
@@ -16,6 +17,7 @@
     brightnessctl
     grim
     grimblast
+    hyprcursor
     hyprpaper
     hyprpicker
     hyprlock
@@ -46,6 +48,8 @@
     xwayland.enable = true;
     plugins = [
       inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
+      # inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+      # inputs.hyprland-plugins.packages.${pkgs.system}.hyprtrails
     ];
   };
 }

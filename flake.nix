@@ -48,6 +48,8 @@
 
     stylix.url = "github:danth/stylix";
 
+    # ========== Hypr ==========    
+    
     hyprland = {
       type = "git";
       url = "https://github.com/hyprwm/Hyprland";
@@ -59,8 +61,8 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    hyprpaper = {
-      url = "github:hyprwm/hyprpaper";
+    hyprcursor = {
+      url = "github:hyprwm/hyprcursor";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -69,11 +71,28 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprpaper = {
+      url = "github:hyprwm/hyprpaper";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprsunset = {
+      url = "github:hyprwm/hyprsunset";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprsysteminfo = {
+      url = "github:hyprwm/hyprsysteminfo";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     hyprwm-contrib = {
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # ====================   
+     
     waybar = {
       url = "github:Alexays/Waybar";
       inputs.nixpkgs.follows = "nixpkgs";
