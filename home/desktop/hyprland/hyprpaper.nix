@@ -1,14 +1,22 @@
 { pkgs, inputs, lib, ... }:
 
 {
-  # systemd.user.services.hyprpaper = {
-  #   Unit = {
-  #     Description = "Hyprland wallpaper daemon";
-  #     PartOf = ["graphical-session.target"];
-  #   };
-  #   Service = {
-  #     ExecStart = "${lib.getExe inputs.hyprpaper.packages.${pkgs.system}.default}";
-  #     Restart = "on-failure";
-  #   };
-  # };
+  services.hyprpaper = {
+    enable = true;
+    package = inputs.hyprpaper.packages."${pkgs.system}".default;
+    settings = {
+      ipc = "on";
+      splash = false;
+      splash_offset = 2.0;
+
+      preload = [
+        "../../../lib/wallpapers/blue-clouds.jpg"
+        "../../../lib/wallpapers/pink-clouds.jpg"
+      ];
+
+      wallpaper = [
+        ", ../../../lib/wallpapers/blue-clouds.jpg"
+      ];
+    };
+  };
 }
