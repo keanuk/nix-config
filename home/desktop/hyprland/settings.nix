@@ -3,8 +3,6 @@
 {
   wayland.windowManager.hyprland.settings = {
     exec-once = [
-      "hyprpaper"
-      "hyprpicker"
     ];
 
     animations = {
@@ -40,7 +38,7 @@
     gestures = {
       workspace_swipe = true;
       workspace_swipe_create_new = true;
-      workspace_swipe_direction_lock = false;
+      workspace_swipe_direction_lock = true;
       workspace_swipe_fingers = 3;
       workspace_swipe_forever = true;
     };
