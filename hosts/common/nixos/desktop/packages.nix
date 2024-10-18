@@ -51,7 +51,7 @@
     libreoffice
     netbird-ui
     obs-studio
-    # pitivi
+    pitivi
     proton-pass
     protonmail-bridge
     protonmail-bridge-gui
