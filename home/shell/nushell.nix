@@ -50,7 +50,7 @@
       rebuild-offline = "sudo nixos-rebuild switch --option substitute false";
       repair = "sudo nix-store --verify --check-contents --repair";
       top = "btm";
-      update = "nix flake update ~/.config/nix-config";
+      update = "nix flake update --flake ~/.config/nix-config";
       vi = "hx";
       vim = "nvim";
     };

@@ -33,7 +33,7 @@
     appimage-run
     audacity
     beeper
-    bitwarden-desktop
+    # bitwarden-desktop
     chromium
     darktable
     discord
@@ -49,7 +49,6 @@
     kodi-wayland
     libadwaita
     libreoffice
-    # logseq
     netbird-ui
     obs-studio
     # pitivi
