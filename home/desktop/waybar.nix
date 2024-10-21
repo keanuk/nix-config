@@ -1,9 +1,9 @@
-{ inputs, lib, pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   programs.waybar = {
     enable = true;
-    package = inputs.waybar.packages."${pkgs.system}".waybar;
+    package = pkgs.waybar;
     systemd = {
       enable = true;
       target = "hyprland-session.target";

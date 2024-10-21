@@ -1,9 +1,9 @@
-{ pkgs, inputs, lib, ... }:
+{ pkgs, ... }:
 
 {
   services.hyprpaper = {
     enable = true;
-    package = inputs.hyprpaper.packages."${pkgs.system}".default;
+    package = pkgs.hyprpaper;
     settings = {
       ipc = "on";
       splash = false;
