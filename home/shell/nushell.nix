@@ -40,12 +40,13 @@
     shellAliases = {
       cat = "bat";
       cd = "z";
-      cleanup = "nix-store --gc and nix-store --optimize";
+      cleanup = "nix-store --gc";
       find = "fd";
       grep = "rg";
       ll = "eza -l";
       ls = "eza";
       nano = "micro";
+      optimize = "nix-store --optimize";
       rebuild = "sudo nixos-rebuild switch --upgrade";
       rebuild-offline = "sudo nixos-rebuild switch --option substitute false";
       repair = "sudo nix-store --verify --check-contents --repair";

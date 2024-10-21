@@ -9,8 +9,9 @@
       			end
       		'';
     shellAliases = {
-      cleanup = "nix-store --gc && nix-store --optimize";
+      cleanup = "nix-store --gc";
       ll = "ls -l";
+      optimize = "nix-store --optimize";
       rebuild = "sudo nixos-rebuild switch --upgrade";
       rebuild-offline = "sudo nixos-rebuild switch --option substitute false";
       repair = "sudo nix-store --verify --check-contents --repair";

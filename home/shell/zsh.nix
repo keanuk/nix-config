@@ -7,8 +7,9 @@
     enableCompletion = true;
     enableAutosuggestions = true;
     shellAliases = {
-      cleanup = "nix-store --gc && nix-store --optimize";
+      cleanup = "nix-store --gc";
       ll = "ls -l";
+      optimize = "nix-store --optimize";
       rebuild = "sudo nixos-rebuild switch --upgrade";
       repair = "sudo nix-store --verify --check-contents --repair";
       update = "nix flake update ~/.config/nixos-config";
