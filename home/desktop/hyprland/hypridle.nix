@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   services.hypridle = {
     enable = true;
-    package = pkgs.hypridle;
+    package = inputs.hypridle.packages."${pkgs.system}".default;
     settings = {
       general = {
         after_sleep_cmd = "hyprctl dispatch dpms on";

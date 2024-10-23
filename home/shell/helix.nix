@@ -5,6 +5,7 @@
     enable = true;
     package = inputs.helix.packages."${pkgs.system}".helix;
     defaultEditor = true;
+    themes = import ../theme/helix.nix;
     settings = {
       theme = lib.mkDefault "tokyonight";
       editor = {
@@ -42,6 +43,5 @@
         select = { };
       };
     };
-    themes = import ../theme/helix.nix;
   };
 }
