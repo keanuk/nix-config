@@ -16,18 +16,18 @@
       layer = "top";
       height = 32;
 
-      modules-left = [ 
-        "hyprland/workspaces" 
+      modules-left = [
+        "hyprland/workspaces"
       ];
-      
-      modules-center = [ 
-        "clock" 
+
+      modules-center = [
+        "clock"
       ];
-      
+
       modules-right = [
         "temparature#cpu"
         "cpu"
-        "idle_inhibitor" 
+        "idle_inhibitor"
         "custom/music"
         "pulseaudio#source"
         "wireplumber"
@@ -132,16 +132,16 @@
         tooltip = false;
       };
 
-      "clock" = { 
+      "clock" = {
         format = "{:%d %b %H:%M}";
-        "format-alt" = "{:%d/%m/%Y}"; 
+        "format-alt" = "{:%d/%m/%Y}";
         "tooltip-format" = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
       };
 
       "backlight" = {
         "device" = "intel_backlight";
         "format" = "{icon}";
-        "format-icons" = ["" "" "" "" "" "" "" "" ""];
+        "format-icons" = [ "" "" "" "" "" "" "" "" "" ];
       };
 
       "wireplumber" = {
@@ -161,13 +161,13 @@
       };
 
       "custom/music" = {
-          "format" = "  {}";
-          "escape" = true;
-          "interval" = 5;
-          "tooltip" = false;
-          "exec" = "playerctl metadata --format='{{ title }}'";
-          "on-click" = "playerctl play-pause";
-          "max-length" = 50;
+        "format" = "  {}";
+        "escape" = true;
+        "interval" = 5;
+        "tooltip" = false;
+        "exec" = "playerctl metadata --format='{{ title }}'";
+        "on-click" = "playerctl play-pause";
+        "max-length" = 50;
       };
 
       "cpu" = {
