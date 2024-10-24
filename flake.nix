@@ -7,12 +7,14 @@
       "https://nix-community.cachix.org"
       "https://hyprland.cachix.org"
       "https://cosmic.cachix.org"
+      "https://nix-gaming.cachix.org"
     ];
     extra-trusted-public-keys = [
       "keanu.cachix.org-1:bnYEu6tJzXfwM5JkEhc90uEjR7cAHwaa4fwHRCYdFGg="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
+      "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
     ];
   };
 
@@ -21,6 +23,7 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     systems.url = "github:nix-systems/default";
+    impermanence.url = "github:nix-community/impermanence";
 
     darwin = {
       url = "github:LnL7/nix-darwin";
@@ -41,6 +44,11 @@
 
     hydra = {
       url = "github:nixos/hydra";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-gl = {
+      url = "github:nix-community/nixgl";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -70,6 +78,21 @@
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-ld = {
+      url = "github:Mic92/nix-ld";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-gaming = {
+      url = "github:fufexan/nix-gaming";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -220,7 +243,6 @@
         }
       );
       secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/git/secrets.json");
-      username = "keanu";
     in
     {
       inherit lib lib-stable;
@@ -270,32 +292,32 @@
       };
       homeConfigurations = {
         "keanu@earth" = lib-stable.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs; };
+          extraSpecialArgs = { inherit inputs outputs secrets; };
           pkgs = pkgsFor.x86_64-linux;
           modules = [ ./home/earth.nix ];
         };
         "keanu@enterprise" = lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs; };
+          extraSpecialArgs = { inherit inputs outputs secrets; };
           pkgs = pkgsFor.x86_64-linux;
           modules = [ ./home/enterprise.nix ];
         };
         "keanu@hermes" = lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs; };
+          extraSpecialArgs = { inherit inputs outputs secrets; };
           pkgs = pkgsFor.x86_64-linux;
           modules = [ ./home/hermes.nix ];
         };
         "keanu@phoenix" = lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs; };
+          extraSpecialArgs = { inherit inputs outputs secrets; };
           pkgs = pkgsFor.x86_64-darwin;
           modules = [ ./home/phoenix.nix ];
         };
         "keanu@terra" = lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs; };
+          extraSpecialArgs = { inherit inputs outputs secrets; };
           pkgs = pkgsFor.x86_64-linux;
           modules = [ ./home/terra.nix ];
         };
         "keanu@titan" = lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs; };
+          extraSpecialArgs = { inherit inputs outputs secrets; };
           pkgs = pkgsFor.x86_64-linux;
           modules = [ ./home/titan.nix ];
         };

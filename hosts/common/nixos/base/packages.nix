@@ -1,14 +1,19 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 {
-
   imports = [
+    inputs.nix-ld.nixosModules.nix-ld
+
     # ../dev/default.nix
     ../dev/virtualization.nix
   ];
 
-  programs.zsh.enable = true;
-  programs.fish.enable = true;
+  programs = {
+    fish.enable = true;
+    nix-ld.dev.enable = true;
+    zsh.enable = true;
+  };
+
   services.atuin.enable = true;
 
   nixpkgs.config = {
