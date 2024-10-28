@@ -25,6 +25,7 @@
     cosmic-settings-daemon
     cosmic-store
     cosmic-term
+    cosmic-wallpapers
     cosmic-workspaces-epoch
     xdg-desktop-portal-cosmic
   ];

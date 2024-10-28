@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -36,7 +36,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    package = pkgs.hyprland;
     xwayland.enable = true;
     systemd = {
       enable = true;
@@ -47,9 +47,9 @@
       ];
     };
     plugins = [
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprtrails
+        pkgs.hyprlandPlugins.hyprbars
+        pkgs.hyprlandPlugins.hyprexpo
+        pkgs.hyprlandPlugins.hyprtrails
     ];
   };
 }
