@@ -13,6 +13,7 @@
   services = {
     dbus.enable = true;
     flatpak.enable = true;
+    fprintd.enable = true;
     libinput.enable = true;
     pipewire = {
       enable = true;

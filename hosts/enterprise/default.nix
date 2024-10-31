@@ -8,7 +8,6 @@
     ../common/nixos/base/default.nix
     ../common/nixos/base/lanzaboote.nix
     ../common/nixos/desktop/default.nix
-    ../common/nixos/desktop/fprint.nix
     ../common/nixos/desktop/cosmic.nix
     ../common/nixos/desktop/hyprland.nix
     ../common/nixos/user/keanu/default.nix
