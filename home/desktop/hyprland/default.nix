@@ -47,9 +47,9 @@
       ];
     };
     plugins = [
-        pkgs.hyprlandPlugins.hyprbars
-        pkgs.hyprlandPlugins.hyprexpo
-        pkgs.hyprlandPlugins.hyprtrails
+      pkgs.hyprlandPlugins.hyprbars
+      pkgs.hyprlandPlugins.hyprexpo
+      pkgs.hyprlandPlugins.hyprtrails
     ];
   };
 }
