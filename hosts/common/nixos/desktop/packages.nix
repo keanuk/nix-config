@@ -16,9 +16,7 @@
     sessionVariables = { };
     systemPackages = with pkgs; [
       distrobox
-      gnome-keyring
       ptyxis
-      seahorse
       snapper-gui
       wireplumber
 

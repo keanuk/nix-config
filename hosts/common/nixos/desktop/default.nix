@@ -14,7 +14,9 @@
     dbus.enable = true;
     flatpak.enable = true;
     fprintd.enable = true;
+    gnome.gnome-keyring.enable = true;
     libinput.enable = true;
+    passSecretService.enable = true;
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -25,6 +27,10 @@
     xserver.enable = true;
   };
 
+  programs = {
+    gnupg.agent.enable = true;
+    seahorse.enable = true;
+  };
 
   hardware = {
     pulseaudio.enable = false;
