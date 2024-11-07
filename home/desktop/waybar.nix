@@ -1,9 +1,9 @@
-{ inputs, lib, pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   programs.waybar = {
     enable = true;
-    package = inputs.waybar.packages."${pkgs.system}".waybar;
+    package = pkgs.waybar;
     style = "../theme/waybar.css";
     systemd = {
       enable = true;

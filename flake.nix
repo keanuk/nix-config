@@ -52,6 +52,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-colors.url = "github:misterio77/nix-colors";
 
     stylix.url = "github:danth/stylix";
@@ -98,123 +103,7 @@
 
     vpn-confinement.url = "github:Maroka-chan/VPN-Confinement";
 
-    nixarr = {
-      url = "github:rasmus-kirk/nixarr";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    waybar = {
-      url = "github:Alexays/Waybar";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # COSMIC
-    nixos-cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    cosmic-applets = {
-      url = "github:pop-os/cosmic-applets";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    cosmic-applibrary = {
-      url = "github:pop-os/cosmic-applibrary";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    cosmic-bg = {
-      url = "github:pop-os/cosmic-bg";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    cosmic-comp = {
-      url = "github:pop-os/cosmic-comp";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    cosmic-launcher = {
-      url = "github:pop-os/cosmic-launcher";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    cosmic-notifications = {
-      url = "github:pop-os/cosmic-notifications";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    cosmic-osd = {
-      url = "github:pop-os/cosmic-osd";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    cosmic-panel = {
-      url = "github:pop-os/cosmic-panel";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    cosmic-settings = {
-      url = "github:pop-os/cosmic-settings";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    cosmic-settings-daemon = {
-      url = "github:pop-os/cosmic-settings-daemon";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    cosmic-session = {
-      url = "github:pop-os/cosmic-session";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    xdg-desktop-portal-cosmic = {
-      url = "github:pop-os/xdg-desktop-portal-cosmic";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Hypr
-    hyprland = {
-      type = "git";
-      url = "https://github.com/hyprwm/Hyprland";
-      submodules = true;
-    };
-
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-
-    hyprcursor = {
-      url = "github:hyprwm/hyprcursor";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    hypridle = {
-      url = "github:hyprwm/hypridle";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    hyprpaper = {
-      url = "github:hyprwm/hyprpaper";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    hyprsunset = {
-      url = "github:hyprwm/hyprsunset";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    hyprsysteminfo = {
-      url = "github:hyprwm/hyprsysteminfo";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    hyprwm-contrib = {
-      url = "github:hyprwm/contrib";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixarr.url = "github:rasmus-kirk/nixarr";
   };
 
   outputs =
