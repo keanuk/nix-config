@@ -47,6 +47,7 @@
     kodi-wayland
     libadwaita
     libreoffice
+    netbird-dashboard
     netbird-ui
     obs-studio
     pitivi
