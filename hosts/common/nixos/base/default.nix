@@ -7,7 +7,7 @@
     ../services/apparmor.nix
     ../services/btrfs.nix
     ../services/nh.nix
-    ../services/netbird.nix
+    ../services/tailscale.nix
   ];
 
   boot = {
