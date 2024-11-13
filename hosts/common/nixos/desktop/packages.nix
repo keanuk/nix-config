@@ -47,6 +47,8 @@
     kodi-wayland
     libadwaita
     libreoffice
+    netbird-dashboard
+    netbird-ui    
     obs-studio
     pitivi
     proton-pass
@@ -61,6 +63,7 @@
     telegram-desktop
     thunderbird
     transmission_4-gtk
+    trayscale
     typst
     vlc
     wl-clipboard
