@@ -24,7 +24,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     systems.url = "github:nix-systems/default";
     impermanence.url = "github:nix-community/impermanence";
-    inputs.determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/0.1";
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/0.1";
 
     darwin = {
       url = "github:LnL7/nix-darwin";
@@ -171,6 +171,11 @@
         };
       };
       darwinConfigurations = {
+        # MacBook Pro 2020
+        paladin = lib.darwinSystem {
+          specialArgs = { inherit inputs outputs secrets; };
+          modules = [ ./hosts/paladin ];
+        };
         # MacBook Air 2018
         phoenix = lib.darwinSystem {
           specialArgs = { inherit inputs outputs secrets; };
@@ -192,6 +197,11 @@
           extraSpecialArgs = { inherit inputs outputs secrets; };
           pkgs = pkgsFor.x86_64-linux;
           modules = [ ./home/hermes.nix ];
+        };
+        "keanu@paladin" = lib.homeManagerConfiguration {
+          extraSpecialArgs = { inherit inputs outputs secrets; };
+          pkgs = pkgsFor.x86_64-darwin;
+          modules = [ ./home/paladin.nix ];
         };
         "keanu@phoenix" = lib.homeManagerConfiguration {
           extraSpecialArgs = { inherit inputs outputs secrets; };
