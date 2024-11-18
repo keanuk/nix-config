@@ -5,6 +5,7 @@
     inputs.determinate.darwinModules.default
     inputs.home-manager.darwinModules.home-manager
     ../common/darwin/default.nix
+    ../common/darwin/user/keanu/default.nix
   ];
 
   networking.hostName = "paladin";
@@ -15,7 +16,7 @@
     useGlobalPkgs = true;
     backupFileExtension = "backup";
     users.keanu = {
-      imports = [ ../../home/phoenix.nix ];
+      imports = [ ../../home/paladin.nix ];
       home.stateVersion = "24.05";
     };
   };
