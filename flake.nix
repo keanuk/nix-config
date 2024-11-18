@@ -24,6 +24,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     systems.url = "github:nix-systems/default";
     impermanence.url = "github:nix-community/impermanence";
+    inputs.determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/0.1";
 
     darwin = {
       url = "github:LnL7/nix-darwin";

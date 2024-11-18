@@ -7,7 +7,7 @@
     ../common/darwin/default.nix
   ];
 
-  networking.hostName = "phoenix";
+  networking.hostName = "paladin";
 
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
