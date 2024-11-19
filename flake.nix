@@ -25,10 +25,26 @@
     systems.url = "github:nix-systems/default";
     impermanence.url = "github:nix-community/impermanence";
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/0.1";
+    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
 
     darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
+
+    homebrew-bundle = {
+      url = "github:homebrew/homebrew-bundle";
+      flake = false;
     };
 
     home-manager = {

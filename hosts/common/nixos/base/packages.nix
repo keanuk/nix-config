@@ -11,7 +11,6 @@
   programs = {
     fish.enable = true;
     nix-ld.dev.enable = true;
-    nushell.enable = true;
     zsh.enable = true;
   };
 

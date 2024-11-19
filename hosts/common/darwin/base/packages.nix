@@ -3,67 +3,79 @@
 {
   programs = {
     fish.enable = true;
-    nushell.enable = true;
     zsh.enable = true;
   };
-
-  services.atuin.enable = true;
 
   nixpkgs.config = {
     allowUnfree = true;
     permittedInsecurePackages = [ ];
   };
 
-  environment.sessionVariables = { };
-
   environment.systemPackages = with pkgs; [
-    acpid
-    bcachefs-tools
     cachix
     fish
     git
     helix
     home-manager
     hwdata
-    iptables
-    libsecret
-    linux-wifi-hotspot
     lsof
     nushell
     pass
-    pass-wayland
     pciutils
-    polkit
-    psmisc
-    sbctl
-    snapper
     starship
-    usbutils
-    util-linux
     wireguard-tools
   ];
 
   users.users.keanu.packages = with pkgs; [
     age
-    bitwarden-cli
+    alacritty
+    android-tools
+    audacity
     cpufetch
+    darktable
+    discord
+    element-desktop
     fastfetch
     ffmpeg
     fortune
+    gimp
     git-crypt
+    inkscape
     just
+    kitty
     libnatpmp
+    netbird-dashboard
+    netbird-ui
     nix-index
     nmap
     onefetch
-    ramfetch
+    protonmail-bridge
+    protonmail-desktop
     ripgrep
+    signal-desktop
     sops
     ssh-to-age
+    telegram-desktop
     tlrc
     transmission_4
+    transmission_4-gtk
     tree
+    typst
     wget
     yt-dlp
+    zlib-ng
   ];
+
+  fonts = {
+    packages = with pkgs; [
+      font-awesome
+      inter
+      nerdfonts
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-emoji
+      powerline-fonts
+      source-code-pro
+    ];
+  };
 }
