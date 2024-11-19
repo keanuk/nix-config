@@ -4,7 +4,6 @@
 
     inputs.determinate.darwinModules.default
     inputs.home-manager.darwinModules.home-manager
-    inputs.nix-homebrew.darwinModules.nix-homebrew
     ../common/darwin/base/default.nix
     ../common/darwin/user/keanu/default.nix
   ];

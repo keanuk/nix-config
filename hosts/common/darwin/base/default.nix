@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./brew.nix
+    ./homebrew.nix
     ./packages.nix
   ];
 
