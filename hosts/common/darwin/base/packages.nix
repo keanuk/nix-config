@@ -58,7 +58,6 @@
     telegram-desktop
     tlrc
     transmission_4
-    transmission_4-gtk
     tree
     typst
     wget
