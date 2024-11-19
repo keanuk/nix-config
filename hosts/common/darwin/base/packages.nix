@@ -1,16 +1,8 @@
 { inputs, pkgs, ... }:
 
 {
-  imports = [
-    inputs.nix-ld.nixosModules.nix-ld
-
-    # ../dev/default.nix
-    ../dev/virtualization.nix
-  ];
-
   programs = {
     fish.enable = true;
-    nix-ld.dev.enable = true;
     nushell.enable = true;
     zsh.enable = true;
   };

@@ -1,16 +1,23 @@
 { ... }:
 
 {
+  imports = [
+    ./packages.nix
+  ];
+
   nix = {
     gc = {
       user = "keanu";
       automatic = true;
-      interval = { Weekday = 0; Hour = 0; Minute = 0; };
+      interval = { Weekday = 1; Hour = 0; Minute = 0; };
       options = "--delete-older-than 30d";
     };
+    optimise = {
+      user = "keanu";
+      automatic = true;
+    };
     settings = {
-      allowed-users = [ "@users" ];
-      auto-optimise-store = true;
+      allowed-users = [ "@users" "keanu" "root" ];
       experimental-features = [ "nix-command" "flakes" ];
     };
   };
