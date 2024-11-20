@@ -3,9 +3,6 @@
 {
   imports = [
     inputs.nix-ld.nixosModules.nix-ld
-
-    # ../dev/default.nix
-    ../dev/virtualization.nix
   ];
 
   programs = {

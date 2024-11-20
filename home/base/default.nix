@@ -2,16 +2,11 @@
 
 {
   imports = [
-    ./shell/default.nix
+    ../shell/default.nix
     # ./theme/stylix.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
-
-  services.home-manager.autoUpgrade = {
-    enable = true;
-    frequency = "weekly";
-  };
 
   programs.home-manager = {
     enable = true;

@@ -2,7 +2,9 @@
 
 {
   imports = [
-    ./default.nix
+    ./base/default.nix
+    ./base/home-manager.nix
+
     ./desktop/hyprland/default.nix
   ];
 

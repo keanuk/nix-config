@@ -1,15 +1,6 @@
 { pkgs, ... }:
 
 {
-  imports = [
-    ../dev/default.nix
-    ../dev/flutter.nix
-    ../dev/ide.nix
-    ../dev/java.nix
-    ../dev/nim.nix
-    ../dev/node.nix
-  ];
-
   nixpkgs.config.permittedInsecurePackages = [ ];
 
   environment = {
@@ -48,7 +39,7 @@
     libadwaita
     libreoffice
     netbird-dashboard
-    netbird-ui    
+    netbird-ui
     obs-studio
     pitivi
     proton-pass

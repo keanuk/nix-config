@@ -5,6 +5,13 @@
     ./packages.nix
     ./theme/stylix.nix
 
+    ../../dev/default.nix
+    ../../dev/flutter.nix
+    ../../dev/ide.nix
+    ../../dev/java.nix
+    ../../dev/nim.nix
+    ../../dev/node.nix
+
     ../services/geoclue2.nix
     ../services/udev.nix
   ];
