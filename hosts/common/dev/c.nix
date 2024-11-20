@@ -2,7 +2,7 @@
 
 {
   users.users.keanu.packages = with pkgs; [
-    clang-tools
+    # clang-tools
     cmake
     cmake-language-server
     libclang

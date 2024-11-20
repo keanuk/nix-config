@@ -7,7 +7,6 @@
 
     ../../dev/default.nix
     ../../dev/flutter.nix
-    ../../dev/ide.nix
     ../../dev/java.nix
     ../../dev/nim.nix
     ../../dev/node.nix
@@ -49,5 +48,4 @@
       ];
     };
   };
-  programs.zsh.enable = true;
 }

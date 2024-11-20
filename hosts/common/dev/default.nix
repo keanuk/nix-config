@@ -9,7 +9,6 @@
     ./nix.nix
     ./python.nix
     ./rust.nix
-    ./virtualization.nix
   ];
 
   environment.systemPackages = with pkgs; [

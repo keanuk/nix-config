@@ -5,6 +5,6 @@
     name = "keanu";
     home = "/Users/keanu";
     description = "Keanu Kerr";
-    shell = pkgs.zsh;
+    shell = pkgs.nushell;
   };
 }
