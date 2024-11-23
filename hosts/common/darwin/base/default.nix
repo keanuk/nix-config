@@ -5,6 +5,8 @@
     ./homebrew.nix
     ./packages.nix
 
+    ../services/virtualization.nix
+
     ../../dev/default.nix
     ../../dev/flutter.nix
     ../../dev/java.nix
