@@ -23,6 +23,7 @@
     pass
     pciutils
     starship
+    tailscale
     wireguard-tools
   ];
 

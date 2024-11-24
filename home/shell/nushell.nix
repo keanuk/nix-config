@@ -24,13 +24,13 @@
           partial: true
           algorithm: "fuzzy"
           external: {
-            enable: true 
-            max_results: 100 
+            enable: true
+            max_results: 100
             completer: $carapace_completer
           }
         }
-      } 
-      $env.PATH = ($env.PATH | 
+      }
+      $env.PATH = ($env.PATH |
       split row (char esep) |
       prepend /home/myuser/.apps |
       append /usr/bin/env
@@ -41,6 +41,7 @@
       cat = "bat";
       cd = "z";
       cleanup = "nix-store --gc";
+      drebuild = "darwin-rebuild switch --flake ~/.config/nix-config";
       find = "fd";
       grep = "rg";
       ll = "eza -l";

@@ -51,6 +51,7 @@
       "skype@preview"
       "standard-notes"
       "steam"
+      "tailscale"
       "telegram"
       "thunderbird"
       "thunderbird@beta"
