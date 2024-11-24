@@ -34,6 +34,7 @@
     cpufetch
     darktable
     discord
+    docker
     element-desktop
     fastfetch
     ffmpeg
@@ -49,6 +50,7 @@
     nix-index
     nmap
     onefetch
+    podman
     protonmail-bridge
     protonmail-desktop
     ripgrep

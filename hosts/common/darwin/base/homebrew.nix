@@ -46,6 +46,7 @@
       "proton-pass"
       "protonmail-bridge"
       "protonvpn"
+      "reader"
       "signal"
       "skype@preview"
       "standard-notes"
