@@ -7,7 +7,7 @@
       "homebrew/cask"
       "homebrew/core"
     ];
-    brews = [];
+    brews = [ ];
     casks = [
       "alacritty"
       "audacity"

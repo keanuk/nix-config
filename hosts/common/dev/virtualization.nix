@@ -22,6 +22,7 @@
 
   users.users.keanu.packages = with pkgs; [
     dockerfile-language-server-nodejs
+    kind
     kubernetes
   ];
 }

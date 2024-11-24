@@ -13,6 +13,8 @@
 
   environment.systemPackages = with pkgs; [
     cachix
+    docker
+    docker-compose
     fish
     git
     helix
@@ -22,6 +24,7 @@
     nushell
     pass
     pciutils
+    podman
     starship
     tailscale
     wireguard-tools
@@ -35,7 +38,6 @@
     cpufetch
     darktable
     discord
-    docker
     element-desktop
     fastfetch
     ffmpeg
@@ -44,14 +46,15 @@
     git-crypt
     inkscape
     just
+    kind
     kitty
+    kubectl
     libnatpmp
     netbird-dashboard
     netbird-ui
     nix-index
     nmap
     onefetch
-    podman
     protonmail-bridge
     protonmail-desktop
     ripgrep
