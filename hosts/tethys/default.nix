@@ -13,7 +13,7 @@
     ../common/nixos/base/swapfile.nix
   ];
 
-  networking.hostName = "terra";
+  networking.hostName = "tethys";
   services.logrotate.checkConfig = false;
 
   home-manager = {
@@ -22,7 +22,7 @@
     useGlobalPkgs = true;
     backupFileExtension = "backup";
     users.keanu = {
-      imports = [ ../../home/terra.nix ];
+      imports = [ ../../home/tethys.nix ];
       home.stateVersion = "23.11";
     };
   };

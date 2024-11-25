@@ -15,7 +15,7 @@
     radios = {
       wlp1s0 = {
         networks.wlp1s0 = {
-          ssid = "enterprise";
+          ssid = "electronic-thumb";
           authentication.saePasswords = [{ password = "keanukerr"; }];
         };
       };

@@ -15,7 +15,7 @@
     ../common/nixos/base/fs.nix
   ];
 
-  networking.hostName = "hermes";
+  networking.hostName = "miranda";
 
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
@@ -23,7 +23,7 @@
     useGlobalPkgs = true;
     backupFileExtension = "backup";
     users.keanu = {
-      imports = [ ../../home/hermes.nix ];
+      imports = [ ../../home/miranda.nix ];
       home.stateVersion = "23.11";
     };
   };

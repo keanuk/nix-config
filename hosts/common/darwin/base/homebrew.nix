@@ -49,6 +49,7 @@
       "reader"
       "signal"
       "skype@preview"
+      "slack@beta"
       "standard-notes"
       "steam"
       "tailscale"

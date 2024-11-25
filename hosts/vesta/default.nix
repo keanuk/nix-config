@@ -8,7 +8,7 @@
     ../common/darwin/user/keanu/default.nix
   ];
 
-  networking.hostName = "paladin";
+  networking.hostName = "vesta";
 
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
@@ -16,7 +16,7 @@
     useGlobalPkgs = true;
     backupFileExtension = "backup";
     users.keanu = {
-      imports = [ ../../home/paladin.nix ];
+      imports = [ ../../home/vesta.nix ];
       home.stateVersion = "24.05";
     };
   };

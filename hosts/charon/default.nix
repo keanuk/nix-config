@@ -8,7 +8,7 @@
     ../common/darwin/user/keanu/default.nix
   ];
 
-  networking.hostName = "phoenix";
+  networking.hostName = "charon";
 
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
@@ -16,7 +16,7 @@
     useGlobalPkgs = true;
     backupFileExtension = "backup";
     users.keanu = {
-      imports = [ ../../home/phoenix.nix ];
+      imports = [ ../../home/charon.nix ];
       home.stateVersion = "24.05";
     };
   };

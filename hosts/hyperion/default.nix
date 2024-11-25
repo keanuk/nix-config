@@ -17,7 +17,7 @@
     ../common/nixos/base/fs.nix
   ];
 
-  networking.hostName = "enterprise";
+  networking.hostName = "hyperion";
 
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
@@ -25,7 +25,7 @@
     useGlobalPkgs = true;
     backupFileExtension = "backup";
     users.keanu = {
-      imports = [ ../../home/enterprise.nix ];
+      imports = [ ../../home/hyperion.nix ];
       home.stateVersion = "23.11";
     };
   };
