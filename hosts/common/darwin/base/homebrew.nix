@@ -13,6 +13,7 @@
       "audacity"
       "battle-net"
       "beeper"
+      "bitwarden"
       "bruno"
       "calibre"
       "chromium"
