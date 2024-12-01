@@ -63,20 +63,4 @@
 
     kdePackages.kdenlive
   ];
-
-  fonts = {
-    fontDir.enable = true;
-    packages = with pkgs; [
-      cantarell-fonts
-      font-awesome
-      inter
-      nerdfonts
-      noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-emoji
-      powerline-fonts
-      source-code-pro
-    ];
-  };
-
 }

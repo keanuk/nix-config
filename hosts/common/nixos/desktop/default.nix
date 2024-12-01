@@ -15,6 +15,8 @@
 
     ../services/geoclue2.nix
     ../services/udev.nix
+
+    ../../desktop/fonts.nix
   ];
 
   security.rtkit.enable = true;

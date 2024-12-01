@@ -10,6 +10,8 @@
     ../../dev/java.nix
     ../../dev/nim.nix
     ../../dev/node.nix
+
+    ../../desktop/fonts.nix
   ];
 
   nix = {
