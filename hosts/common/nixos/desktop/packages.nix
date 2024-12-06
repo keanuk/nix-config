@@ -43,7 +43,6 @@
     obs-studio
     pitivi
     proton-pass
-    protonmail-bridge
     protonmail-bridge-gui
     protonmail-desktop
     protonvpn-gui

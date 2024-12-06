@@ -14,7 +14,7 @@
     ../../dev/virtualization.nix
 
     ../services/geoclue2.nix
-    ../services/pass.nix
+    ../services/protonmail.nix
     ../services/udev.nix
 
     ../../desktop/fonts.nix
