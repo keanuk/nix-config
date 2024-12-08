@@ -1,8 +1,6 @@
 { pkgs, ... }:
 
 {
-  nixpkgs.config.permittedInsecurePackages = [ ];
-
   environment = {
     sessionVariables = { };
     systemPackages = with pkgs; [
