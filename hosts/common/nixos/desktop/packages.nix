@@ -41,7 +41,7 @@
     obs-studio
     pitivi
     proton-pass
-    protonmail-bridge-gui
+    # protonmail-bridge-gui
     protonmail-desktop
     protonvpn-gui
     signal-desktop
