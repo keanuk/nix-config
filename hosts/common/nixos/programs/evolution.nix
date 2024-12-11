@@ -1,0 +1,5 @@
+{ ... }: {
+  programs.evolution = {
+    enable = true;
+  };
+}

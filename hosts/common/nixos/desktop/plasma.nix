@@ -16,9 +16,12 @@
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
-  environment.systemPackages = [
-    pkgs.kdePackages.discover
+  environment.systemPackages = with pkgs; [
+    kdePackages.discover
+    kdePackages.kmail
+    kdePackages.konversation
+    kdePackages.neochat
   ];
 
   qt.enable = true;
-} 
+}

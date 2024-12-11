@@ -4,7 +4,7 @@
   imports = [
     ./chromium.nix
     ./firefox.nix
-    ./pass.nix
+    # ./pass.nix
     ./thunderbird.nix
     ./vscode.nix
   ];
