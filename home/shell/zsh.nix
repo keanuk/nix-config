@@ -6,6 +6,7 @@
     autocd = true;
     enableCompletion = true;
     enableAutosuggestions = true;
+    syntaxHighlighting.enable = true;
     shellAliases = {
       cat = "bat";
       cd = "z";

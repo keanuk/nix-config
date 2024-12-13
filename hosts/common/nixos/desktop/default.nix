@@ -17,7 +17,6 @@
 
     ../programs/evolution.nix
     ../programs/steam.nix
-    ../programs/thunderbird.nix
 
     ../../desktop/fonts.nix
   ];

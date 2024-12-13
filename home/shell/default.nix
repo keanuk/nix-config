@@ -17,6 +17,7 @@
     ./helix.nix
     ./micro.nix
     ./nushell.nix
+    ./packages.nix
     ./ripgrep.nix
     ./starship.nix
     ./thefuck.nix
