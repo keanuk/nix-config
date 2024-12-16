@@ -3,9 +3,12 @@
 {
   virtualisation = {
     containerd.enable = true;
+    docker = {
+      enable = true;
+    };
     podman = {
       enable = true;
-      dockerCompat = true;
+      # dockerCompat = true;
     };
 
     oci-containers = {
@@ -19,6 +22,7 @@
 
   environment.systemPackages = with pkgs; [
     arion
+    docker-compose
     podman-compose
     podman-desktop
     podman-tui
