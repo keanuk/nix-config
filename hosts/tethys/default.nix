@@ -1,4 +1,4 @@
-{ inputs, outputs, ... }: {
+{ inputs, outputs, nix-colors, ... }: {
   imports = [
     ./hardware-configuration.nix
 
@@ -17,7 +17,7 @@
   services.logrotate.checkConfig = false;
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
+    extraSpecialArgs = { inherit inputs outputs nix-colors; };
     useUserPackages = true;
     useGlobalPkgs = true;
     backupFileExtension = "backup";

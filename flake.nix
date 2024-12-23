@@ -115,6 +115,7 @@
     , darwin
     , home-manager
     , home-manager-stable
+    , nix-colors
     , ...
     } @ inputs:
     let
@@ -146,75 +147,75 @@
       nixosConfigurations = {
         # Intel NUC 10 i7
         earth = lib-stable.nixosSystem {
-          specialArgs = { inherit inputs outputs secrets; };
+          specialArgs = { inherit inputs outputs secrets nix-colors; };
           modules = [ ./hosts/earth ];
         };
         # HP EliteBook 845 G8
         hyperion = lib.nixosSystem {
-          specialArgs = { inherit inputs outputs secrets; };
+          specialArgs = { inherit inputs outputs secrets nix-colors; };
           modules = [ ./hosts/hyperion ];
         };
         # HP EliteBook 1030 G2
         miranda = lib.nixosSystem {
-          specialArgs = { inherit inputs outputs secrets; };
+          specialArgs = { inherit inputs outputs secrets nix-colors; };
           modules = [ ./hosts/miranda ];
         };
         # Zotac ZBox
         tethys = lib.nixosSystem {
-          specialArgs = { inherit inputs outputs secrets; };
+          specialArgs = { inherit inputs outputs secrets nix-colors; };
           modules = [ ./hosts/tethys ];
         };
         # CyberPowerPC
         titan = lib.nixosSystem {
-          specialArgs = { inherit inputs outputs secrets; };
+          specialArgs = { inherit inputs outputs secrets nix-colors; };
           modules = [ ./hosts/titan ];
         };
       };
       darwinConfigurations = {
         # MacBook Pro 2020
         vesta = lib.darwinSystem {
-          specialArgs = { inherit inputs outputs secrets; };
+          specialArgs = { inherit inputs outputs secrets nix-colors; };
           modules = [ ./hosts/vesta ];
         };
         # MacBook Air 2018
         charon = lib.darwinSystem {
-          specialArgs = { inherit inputs outputs secrets; };
+          specialArgs = { inherit inputs outputs secrets nix-colors; };
           modules = [ ./hosts/charon ];
         };
       };
       homeConfigurations = {
         "keanu@earth" = lib-stable.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs secrets; };
+          extraSpecialArgs = { inherit inputs outputs secrets nix-colors; };
           pkgs = pkgsFor.x86_64-linux;
           modules = [ ./home/earth.nix ];
         };
         "keanu@hyperion" = lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs secrets; };
+          extraSpecialArgs = { inherit inputs outputs secrets nix-colors; };
           pkgs = pkgsFor.x86_64-linux;
           modules = [ ./home/hyperion.nix ];
         };
         "keanu@miranda" = lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs secrets; };
+          extraSpecialArgs = { inherit inputs outputs secrets nix-colors; };
           pkgs = pkgsFor.x86_64-linux;
           modules = [ ./home/miranda.nix ];
         };
         "keanu@vesta" = lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs secrets; };
+          extraSpecialArgs = { inherit inputs outputs secrets nix-colors; };
           pkgs = pkgsFor.x86_64-darwin;
           modules = [ ./home/vesta.nix ];
         };
         "keanu@charon" = lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs secrets; };
+          extraSpecialArgs = { inherit inputs outputs secrets nix-colors; };
           pkgs = pkgsFor.x86_64-darwin;
           modules = [ ./home/charon.nix ];
         };
         "keanu@tethys" = lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs secrets; };
+          extraSpecialArgs = { inherit inputs outputs secrets nix-colors; };
           pkgs = pkgsFor.x86_64-linux;
           modules = [ ./home/tethys.nix ];
         };
         "keanu@titan" = lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs secrets; };
+          extraSpecialArgs = { inherit inputs outputs secrets nix-colors; };
           pkgs = pkgsFor.x86_64-linux;
           modules = [ ./home/titan.nix ];
         };

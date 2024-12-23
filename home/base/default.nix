@@ -1,9 +1,10 @@
-{ ... }:
+{ nix-colors, ... }:
 
 {
   imports = [
+    nix-colors.homeManagerModules.default
+
     ../shell/default.nix
-    # ./theme/stylix.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -22,4 +23,6 @@
       # VISUAL = "micro";
     };
   };
+
+  colorScheme = nix-colors.colorSchemes.catppuccin-mocha;
 }

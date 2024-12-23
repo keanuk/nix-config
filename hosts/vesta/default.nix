@@ -1,4 +1,4 @@
-{ pkgs, inputs, outputs, lib, ... }: {
+{ pkgs, inputs, outputs, lib, nix-colors, ... }: {
   imports = [
     ./hardware-configuration.nix
 
@@ -11,7 +11,7 @@
   networking.hostName = "vesta";
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
+    extraSpecialArgs = { inherit inputs outputs nix-colors; };
     useUserPackages = true;
     useGlobalPkgs = true;
     backupFileExtension = "backup";
