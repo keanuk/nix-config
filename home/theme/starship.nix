@@ -215,13 +215,12 @@
     bisect = "BISECTING";
     am = "AM";
     am_or_rebase = "AM/REBASE";
-    style = "bold yellow";
+    style = "bold yellow dimmed";
     format = "\([$state( $progress_current/$progress_total)]($style)\) ";
   };
 
   git_status = {
     disabled = false;
-    # format = "([\[$all_status$ahead_behind\]]($style) )";
     format = "([$all_status$ahead_behind]($style) )";
     style = "red bold";
     stashed = "S";
@@ -247,7 +246,7 @@
     disabled = false;
     format = "via [$symbol$version]($style) ";
     symbol = "⎈ ";
-    style = "bold white";
+    style = "bold yellow";
   };
 
   hostname = {
@@ -363,7 +362,7 @@
     disabled = false;
     format = "via [$symbol$version]($style) ";
     symbol = "<=> ";
-    style = "bold white";
+    style = "bold yellow";
   };
 
   python = {
@@ -428,9 +427,9 @@
   };
 
   time = {
-    disabled = true;
-    format = "at [$time]($style) ";
-    style = "bold yellow";
+    disabled = false;
+    format = "[$time]($style) ";
+    style = "bold yellow dimmed";
     use_12hr = false;
     time_format = "";
     utc_time_offset = "local";
@@ -441,7 +440,7 @@
     disabled = false;
     format = "[$user]($style) in ";
     style_root = "red bold";
-    style_user = "yellow bold";
+    style_user = "yellow bold dimmed";
     show_always = true;
   };
 

@@ -3,7 +3,6 @@
 {
   imports = [
     ./packages.nix
-    ./theme/stylix.nix
 
     ../../dev/flutter.nix
     ../../dev/java.nix

@@ -1,13 +1,16 @@
-{ inputs, pkgs, lib, ... }:
+{ inputs, pkgs, lib, config, ... }:
 
+let
+  themeName = builtins.replaceStrings ["-" "_"] "${config.colorScheme.name}";
+in
 {
   programs.helix = {
     enable = true;
     package = inputs.helix.packages."${pkgs.system}".helix;
     defaultEditor = true;
-    themes = import ../theme/helix.nix;
+    # themes = import ../theme/helix.nix;
     settings = {
-      theme = lib.mkDefault "tokyonight";
+      theme = lib.mkDefault "catppuccin_mocha";
       editor = {
         auto-save = true;
         bufferline = "multiple";

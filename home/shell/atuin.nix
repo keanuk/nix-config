@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   programs.atuin = {
@@ -7,5 +7,9 @@
     enableFishIntegration = true;
     enableNushellIntegration = true;
     enableZshIntegration = true;
+    package = pkgs.atuin;
+    settings = {
+      style = "auto";
+    };
   };
 }

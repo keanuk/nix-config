@@ -1,11 +1,11 @@
-{ ... }:
+{ lib, ... }:
 
 {
   programs.micro = {
     enable = true;
     settings = {
       autosu = true;
-      colorscheme = "simple";
+      colorscheme = lib.mkDefault "simple";
       ignorecase = true;
       savecursor = true;
       saveundo = true;

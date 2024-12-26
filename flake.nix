@@ -62,6 +62,8 @@
 
     stylix.url = "github:danth/stylix";
 
+    catppuccin.url = "github:catppuccin/nix";
+
     helix = {
       url = "github:helix-editor/helix/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -116,6 +118,7 @@
     , home-manager
     , home-manager-stable
     , nix-colors
+    , catppuccin
     , ...
     } @ inputs:
     let
