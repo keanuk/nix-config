@@ -1,14 +1,10 @@
-{ inputs, pkgs, lib, config, ... }:
+{ pkgs, lib, ... }:
 
-let
-  themeName = builtins.replaceStrings ["-" "_"] "${config.colorScheme.name}";
-in
 {
   programs.helix = {
     enable = true;
-    package = inputs.helix.packages."${pkgs.system}".helix;
+    package = pkgs.helix;
     defaultEditor = true;
-    # themes = import ../theme/helix.nix;
     settings = {
       theme = lib.mkDefault "catppuccin_mocha";
       editor = {
@@ -47,4 +43,8 @@ in
       };
     };
   };
+
+  home.packages = with pkgs; [
+    helix-gpt
+  ];
 }
