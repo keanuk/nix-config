@@ -1,6 +1,5 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    alacritty
     amberol
     android-studio
     android-tools
@@ -9,7 +8,7 @@
     audacity
     beeper
     bitwarden-desktop
-    bottles
+    # bottles
     calibre
     cameractrls
     caprine
@@ -20,6 +19,7 @@
     foliate
     fractal
     fragments
+    ghostty
     gimp
     github-desktop
     gnome-builder
@@ -27,7 +27,6 @@
     jellyfin-media-player
     jitsi
     joplin-desktop
-    kitty
     krita
     kodi-wayland
     libadwaita

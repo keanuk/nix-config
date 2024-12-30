@@ -1,8 +1,9 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   programs.alacritty = {
     enable = true;
+    package = pkgs.alacritty;
     settings = {
       window = {
         decorations = "none";
