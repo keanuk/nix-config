@@ -6,7 +6,7 @@
 
   # OpenCL tools
   hardware.graphics.extraPackages = with pkgs; [
-    rocmPackages.clr.icd
+    # rocmPackages.clr.icd
   ];
 
   environment.systemPackages = with pkgs; [
