@@ -8,7 +8,7 @@
     audacity
     beeper
     bitwarden-desktop
-    # bottles
+    bottles
     calibre
     cameractrls
     caprine
