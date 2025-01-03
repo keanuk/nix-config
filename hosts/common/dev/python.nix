@@ -3,6 +3,6 @@
 {
   users.users.keanu.packages = with pkgs; [
     python3
-    python313Packages.python-lsp-server
+    python312Packages.python-lsp-server
   ];
 }

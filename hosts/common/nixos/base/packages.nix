@@ -1,13 +1,14 @@
 { inputs, pkgs, ... }:
 
 {
+  # TODO: re-enable nix-ld
   imports = [
-    inputs.nix-ld.nixosModules.nix-ld
+    # inputs.nix-ld.nixosModules.nix-ld
   ];
 
   programs = {
     fish.enable = true;
-    nix-ld.dev.enable = true;
+    # nix-ld.dev.enable = true;
     zsh.enable = true;
   };
 
