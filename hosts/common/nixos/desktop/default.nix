@@ -35,6 +35,7 @@
       pulse.enable = true;
       jack.enable = true;
     };
+    pulseaudio.enable = false;
     xserver.enable = true;
   };
 
@@ -44,7 +45,6 @@
   };
 
   hardware = {
-    pulseaudio.enable = false;
     sensor.iio.enable = true;
   };
 
