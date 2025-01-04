@@ -5,19 +5,6 @@
     inputs.vpn-confinement.nixosModules.default
   ];
 
-  services.transmission = {
-    enable = true;
-    openPeerPorts = true;
-    openRPCPort = true;
-    user = "keanu";
-    group = "transmission";
-    settings = {
-      download-dir = "/internal/downloads";
-      incomplete-dir = "/internal/incomplete";
-      rpc-bind-address = "0.0.0.0";
-    };
-  };
-
   vpnnamespaces.wg = {
     enable = true;
     wireguardConfigFile = "/home/keanu/secrets/wg0.conf";
@@ -35,4 +22,18 @@
     enable = true;
     vpnnamespace = "wg";
   };
+
+  services.transmission = {
+    enable = true;
+    openPeerPorts = true;
+    openRPCPort = true;
+    user = "keanu";
+    group = "transmission";
+    settings = {
+      download-dir = "/internal/downloads";
+      incomplete-dir = "/internal/incomplete";
+      rpc-bind-address = "0.0.0.0";
+    };
+  };
+
 }
