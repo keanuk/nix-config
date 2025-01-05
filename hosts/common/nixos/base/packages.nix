@@ -1,7 +1,6 @@
 { inputs, pkgs, ... }:
 
 {
-  # TODO: re-enable nix-ld
   imports = [
     # inputs.nix-ld.nixosModules.nix-ld
   ];
