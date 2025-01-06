@@ -56,8 +56,9 @@
     steam-run
     stellarium
     telegram-desktop
-    transmission_4
+    transmission_4-gtk
     trayscale
+    tremotesf
     tuba
     typst
     vlc
