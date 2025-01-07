@@ -7,8 +7,6 @@
     ./hyprpaper.nix
     ./settings.nix
 
-    ../alacritty.nix
-    ../kitty.nix
     ../rofi.nix
     ../waybar.nix
   ];

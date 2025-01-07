@@ -19,7 +19,6 @@
     foliate
     fractal
     fragments
-    ghostty
     gimp
     github-desktop
     gnome-builder
