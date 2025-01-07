@@ -9,5 +9,8 @@
     installBatSyntax = true;
     installVimSyntax = true;
     package = pkgs.ghostty;
+    settings = {
+      theme = "catppuccin-frappe";
+    };
   };
 }
