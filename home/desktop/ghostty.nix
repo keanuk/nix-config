@@ -10,7 +10,7 @@
     installVimSyntax = true;
     package = pkgs.ghostty;
     settings = {
-      theme = "catppuccin-frappe";
+      theme = "dark:catppuccin-frappe,light:catppuccin-latte";
     };
   };
 }
