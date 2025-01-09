@@ -38,12 +38,13 @@
     };
 
     plugins = {
+      cmp.enable = true;
       bufferline.enable = true;
       lightline.enable = true;
+      lualine.enable = true;
       nix.enable = true;
       nix-develop.enable = true;
       nvim-autopairs.enable = true;
-      cmp.enable = true;
       nvim-colorizer.enable = true;
       nvim-tree.enable = true;
       telescope.enable = true;
@@ -54,6 +55,6 @@
       nvim-web-devicons
     ];
 
-    #colorschemes.gruvbox.enable = true;
+    colorschemes.catppuccin.enable = true;
   };
 }
