@@ -3,6 +3,7 @@
     ./hardware-configuration.nix
 
     inputs.home-manager.nixosModules.home-manager
+    inputs.nur.modules.nixos.default
     inputs.nixos-hardware.nixosModules.hp-elitebook-845g8
     inputs.nixos-cosmic.nixosModules.default
     inputs.catppuccin.nixosModules.catppuccin

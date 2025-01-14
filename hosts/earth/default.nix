@@ -1,6 +1,7 @@
 { inputs, outputs, nix-colors, ... }: {
   imports = [
     inputs.home-manager-stable.nixosModules.home-manager
+    inputs.nur.modules.nixos.default
 
     ./disko-configuration.nix
     ./hardware-configuration.nix
