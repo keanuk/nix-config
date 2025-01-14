@@ -12,7 +12,7 @@
     user = "transmission";
     group = "transmission";
     credentialsFile = "/home/keanu/secrets/transmission/settings.json";
-    package = pkgs.transmission_4;
+    package = pkgs.unstable.transmission_4;
     settings = {
       download-dir = "/internal/Downloads/Torrent/complete";
       incomplete-dir = "/internal/Downloads/Torrent/incomplete";
@@ -21,6 +21,7 @@
       rpc-whitelist = "127.0.0.1,10.19.5.*";
       watch-dir-enabled = true;
       watch-dir = "/internal/Downloads/Watch";
+      rpc-authentication-required = true;
     };
   };
 
