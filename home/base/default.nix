@@ -26,6 +26,6 @@
   };
 
   colorScheme = nix-colors.colorSchemes.catppuccin-mocha;
-  catppuccin.flavor = "frappe";
+  catppuccin.flavor = "mocha";
   catppuccin.enable = true;
 }
