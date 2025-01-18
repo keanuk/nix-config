@@ -17,6 +17,7 @@
     sops
     ssh-to-age
     tlrc
+    transmission_4
     tree
     wget
     yt-dlp

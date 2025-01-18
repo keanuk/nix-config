@@ -23,7 +23,7 @@
     ../common/nixos/services/radarr.nix
     ../common/nixos/services/readarr.nix
     ../common/nixos/services/sonarr.nix
-    ../common/nixos/services/transmission.nix
+    # ../common/nixos/services/transmission.nix
   ];
 
   networking.hostName = "earth";
