@@ -40,6 +40,7 @@
     sbctl
     snapper
     starship
+    transmission_4
     usbutils
     util-linux
     wireguard-tools
