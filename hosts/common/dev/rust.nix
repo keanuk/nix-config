@@ -9,9 +9,4 @@
     crate2nix
     rust-analyzer
   ];
-
-  environment.variables = {
-    RUST_LOG = "debug";
-    # RUST_SRC_PATH = "${pkgs.rust.pacakges.stable.rustPlatform.rustLibSrc}";
-  };
 }

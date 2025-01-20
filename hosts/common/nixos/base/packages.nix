@@ -1,13 +1,8 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  imports = [
-    inputs.nix-ld.nixosModules.nix-ld
-  ];
-
   programs = {
     fish.enable = true;
-    nix-ld.dev.enable = true;
     zsh.enable = true;
   };
 
