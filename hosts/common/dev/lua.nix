@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  users.users.keanu.packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     lua
     lua-language-server
   ];

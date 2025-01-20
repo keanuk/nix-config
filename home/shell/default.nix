@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -26,4 +26,8 @@
     ./zellij.nix
     ./zoxide.nix
   ];
+
+  home.sessionVariables = {
+    PKG_CONFIG_PATH = "${pkgs.libxkbcommon.dev}/lib/pkgconfig";
+  };
 }

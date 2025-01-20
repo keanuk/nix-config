@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  users.users.keanu.packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     dotnet-sdk_8
     mono
   ];
