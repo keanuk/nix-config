@@ -85,7 +85,7 @@
     shattered-pixel-dungeon
     superTux
     superTuxKart
-    wesnoth
+    # wesnoth
     xonotic
   ];
 }
