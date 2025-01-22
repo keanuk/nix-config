@@ -14,7 +14,7 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  
+
   fileSystems."/internal" =
     {
       device = "/dev/disk/by-uuid/58c9074e-ad9b-49cd-9072-0e58629c33b6";

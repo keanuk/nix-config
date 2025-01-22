@@ -40,7 +40,6 @@
     plexamp
     polari
     proton-pass
-    # protonmail-bridge-gui
     protonmail-desktop
     protonvpn-gui
     rawtherapee
