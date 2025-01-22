@@ -8,7 +8,6 @@
     ./ghostty.nix
     ./kitty.nix
     ./packages.nix
-    ./pass.nix
     ./thunderbird.nix
     ./vscode.nix
   ];
