@@ -6,7 +6,8 @@
 
   # OpenCL tools
   hardware.graphics.extraPackages = with pkgs; [
-    rocmPackages.clr.icd
+    # TODO: Re-enable when the build succeeds
+    # rocmPackages.clr.icd
   ];
 
   environment.systemPackages = with pkgs; [
