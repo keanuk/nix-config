@@ -85,8 +85,7 @@
     shattered-pixel-dungeon
     superTux
     superTuxKart
-    # TODO: Re-enable when the build succeeds
-    # wesnoth
+    wesnoth
     xonotic
   ];
 }
