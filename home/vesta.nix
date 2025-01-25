@@ -3,6 +3,8 @@
 {
   imports = [
     ./base/default.nix
+
+    ./darwin/default.nix
   ];
 
   home = {

@@ -3,6 +3,8 @@
 {
   imports = [
     ./base/default.nix
+
+    ./shell/packages.nix
   ];
 
   home = {

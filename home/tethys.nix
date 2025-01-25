@@ -6,6 +6,8 @@
     ./base/home-manager.nix
 
     ./desktop/hyprland/default.nix
+
+    ./shell/packages.nix
   ];
 
   home = {

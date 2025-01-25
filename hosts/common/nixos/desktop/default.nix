@@ -39,6 +39,8 @@
     xserver.enable = true;
   };
 
+  fonts.fontDir.enable = true;
+
   programs = {
     gnupg.agent.enable = true;
     seahorse.enable = true;
