@@ -261,11 +261,11 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1737777799,
-        "narHash": "sha256-YDDKpj1j9MqGZgrugfu8mQWjpiy4r7fZ1FMJL58NasM=",
+        "lastModified": 1737864207,
+        "narHash": "sha256-pmww5SaFlgqYxgzAZ5He/LWMLFWyh37kebwLHBDNvQk=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "9a96d7b0485be4654b6f2237efeccb1144d1ba54",
+        "rev": "6770d28ffd09fee64fcded7b9f1cbeaf2883a9f6",
         "type": "gitlab"
       },
       "original": {
@@ -760,11 +760,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1737831134,
-        "narHash": "sha256-0YXJKUSu5icocKnQQrEEdSDNpubKDVveY6Mvx1Bl3UA=",
+        "lastModified": 1737868873,
+        "narHash": "sha256-kZe1ME1ZI4tDw4+mFxlet8dxGdp5GN67Y167fqSqcbs=",
         "owner": "helix-editor",
         "repo": "helix",
-        "rev": "899afad4a69a7dd7971b64a99370876d9984f0c4",
+        "rev": "aac0ce5fd13df7f275b6523da58dec1ec054a8c8",
         "type": "github"
       },
       "original": {
@@ -1487,11 +1487,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1737858227,
-        "narHash": "sha256-mPemduUVl9iPHKn8OmtgH3xGHN/m/bneHNzAtrOVi9U=",
+        "lastModified": 1737897819,
+        "narHash": "sha256-oVr0st3IHSgIPLDCoDtbI/TiLcMqs85KGBfLqFV3xQU=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "66c0e4240faf6dbc6f5270e0aeb4469ff0308327",
+        "rev": "ee6e560d3cbfdbb2d92d1d95c83aaa434ed42dc5",
         "type": "github"
       },
       "original": {
