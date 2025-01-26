@@ -3,6 +3,12 @@
 {
   homebrew = {
     enable = true;
+    global.autoUpdate = true;
+    onActivation = {
+        autoUpdate = true;
+        cleanup = "uninstall";
+        upgrade = true;
+    };
     taps = [
       "homebrew/cask"
       "homebrew/core"
@@ -26,6 +32,7 @@
       "epic-games"
       "firefox"
       "firefox@developer-edition"
+      "ghostty"
       "gimp"
       "github@beta"
       "google-drive"
@@ -36,6 +43,7 @@
       "kdenlive"
       "kitty"
       "libreoffice"
+      "logi-options+"
       "messenger"
       "microsoft-teams"
       "nvidia-geforce-now"
