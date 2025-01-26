@@ -158,6 +158,11 @@
           specialArgs = { inherit inputs outputs secrets nix-colors; };
           modules = [ ./hosts/miranda ];
         };
+        # ThinkPad P14s AMD Gen 5
+        phoebe = lib.nixosSystem {
+          specialArgs = { inherit inputs outputs secrets nix-colors; };
+          modules = [ ./hosts/phoebe ];
+        };
         # Zotac ZBox
         tethys = lib.nixosSystem {
           specialArgs = { inherit inputs outputs secrets nix-colors; };
@@ -182,6 +187,11 @@
         };
       };
       homeConfigurations = {
+        "keanu@charon" = lib.homeManagerConfiguration {
+          extraSpecialArgs = { inherit inputs outputs secrets nix-colors; };
+          pkgs = pkgsFor.x86_64-darwin;
+          modules = [ ./home/charon.nix ];
+        };
         "keanu@earth" = lib-stable.homeManagerConfiguration {
           extraSpecialArgs = { inherit inputs outputs secrets nix-colors; };
           pkgs = pkgsFor.x86_64-linux;
@@ -197,15 +207,10 @@
           pkgs = pkgsFor.x86_64-linux;
           modules = [ ./home/miranda.nix ];
         };
-        "keanu@vesta" = lib.homeManagerConfiguration {
+        "keanu@phoebe" = lib.homeManagerConfiguration {
           extraSpecialArgs = { inherit inputs outputs secrets nix-colors; };
-          pkgs = pkgsFor.x86_64-darwin;
-          modules = [ ./home/vesta.nix ];
-        };
-        "keanu@charon" = lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs secrets nix-colors; };
-          pkgs = pkgsFor.x86_64-darwin;
-          modules = [ ./home/charon.nix ];
+          pkgs = pkgsFor.x86_64-linux;
+          modules = [ ./home/phoebe.nix ];
         };
         "keanu@tethys" = lib.homeManagerConfiguration {
           extraSpecialArgs = { inherit inputs outputs secrets nix-colors; };
@@ -216,6 +221,11 @@
           extraSpecialArgs = { inherit inputs outputs secrets nix-colors; };
           pkgs = pkgsFor.x86_64-linux;
           modules = [ ./home/titan.nix ];
+        };
+        "keanu@vesta" = lib.homeManagerConfiguration {
+          extraSpecialArgs = { inherit inputs outputs secrets nix-colors; };
+          pkgs = pkgsFor.x86_64-darwin;
+          modules = [ ./home/vesta.nix ];
         };
       };
     };
