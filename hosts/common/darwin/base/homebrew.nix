@@ -9,6 +9,7 @@
         cleanup = "uninstall";
         upgrade = true;
     };
+    masApps = { };
     taps = [
       "homebrew/cask"
       "homebrew/core"
@@ -75,6 +76,7 @@
       "wireshark"
       "zed"
       "zed@preview"
+      "zen-browser"
       "zoom"
     ];
   };
