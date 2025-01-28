@@ -11,50 +11,64 @@ in
   disko.devices = {
     disk = {
       main = {
-        device = "/dev/sdb";
         type = "disk";
+        device = "/dev/sdb";
         content = {
           type = "gpt";
           partitions = {
             ESP = {
               start = "0%";
-              end = "1024MiB";
+              end = "4096MiB";
               type = "EF00";
               content = {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = [ "defaults" ];
+                mountOptions = [ "defaults" "umask=0077" ];
               };
             };
-            root = {
+            luks = {
               size = "100%";
               content = {
-                type = "btrfs";
-                subvolumes = {
-                  "@" = {
-                    mountpoint = "/";
-                    mountOptions = defaultBtrfsOpts;
-                  };
-                  "@nix" = {
-                    mountpoint = "/nix";
-                    mountOptions = defaultBtrfsOpts;
-                  };
-                  "@home" = {
-                    mountpoint = "/home";
-                    mountOptions = defaultBtrfsOpts;
-                  };
-                  "@var" = {
-                    mountpoint = "/var";
-                    mountOptions = defaultBtrfsOpts;
-                  };
-                  "@snapshots" = {
-                    mountpoint = "/.snapshots";
-                    mountOptions = defaultBtrfsOpts;
-                  };
-                  "@swap" = {
-                    mountpoint = "/swap";
-                    swap.swapfile.size = "32G";
+                type = "luks";
+                name = "crypted";
+                passwordFile = "/tmp/secret.key";
+                settings = {
+                  allowDiscards = true;
+                };
+                additionalKeyFiles = [ "tmp/additionalSecret.key" ];
+                content = {
+                  type = "btrfs";
+                  extraArgs = [ "-f" ];
+                  subvolumes = {
+                    "@" = {
+                      mountpoint = "/";
+                      mountOptions = defaultBtrfsOpts;
+                    };
+                    "@nix" = {
+                      mountpoint = "/nix";
+                      mountOptions = defaultBtrfsOpts;
+                    };
+                    "@home" = {
+                      mountpoint = "/home";
+                      mountOptions = defaultBtrfsOpts;
+                    };
+                    "@var" = {
+                      mountpoint = "/var";
+                      mountOptions = defaultBtrfsOpts;
+                    };
+                    "@persist" = {
+                      mountpoint = "/persist";
+                      mountOptions = defaultBtrfsOpts;
+                    };
+                    "@snapshots" = {
+                      mountpoint = "/.snapshots";
+                      mountOptions = defaultBtrfsOpts;
+                    };
+                    "@swap" = {
+                      mountpoint = "/swap";
+                      swap.swapfile.size = "8G";
+                    };
                   };
                 };
               };

@@ -54,6 +54,8 @@
     sbctl
     snapper
     starship
+    tpm2-tools
+    tpm2-tss
     transmission_4
     usbutils
     util-linux
