@@ -36,7 +36,6 @@ in
                 settings = {
                   allowDiscards = true;
                 };
-                additionalKeyFiles = [ "tmp/additionalSecret.key" ];
                 content = {
                   type = "btrfs";
                   extraArgs = [ "-f" ];

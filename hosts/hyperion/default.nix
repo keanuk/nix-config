@@ -27,10 +27,7 @@
     useUserPackages = true;
     useGlobalPkgs = true;
     backupFileExtension = "backup";
-    users.keanu = {
-      imports = [ ../../home/hyperion.nix ];
-      home.stateVersion = "23.11";
-    };
+    users.keanu.imports = [ ../../home/hyperion.nix ];
   };
 
   system.stateVersion = "23.05";

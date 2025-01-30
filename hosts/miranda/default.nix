@@ -5,9 +5,10 @@
     inputs.home-manager.nixosModules.home-manager
     inputs.nur.modules.nixos.default
     ../common/nixos/base/default.nix
+    ../common/nixos/base/impermanence.nix
     ../common/nixos/base/lanzaboote.nix
     ../common/nixos/desktop/default.nix
-    ../common/nixos/desktop/gnome.nix
+    ../common/nixos/desktop/cosmic.nix
     ../common/nixos/desktop/hyprland.nix
     ../common/nixos/user/keanu/default.nix
 
@@ -23,11 +24,8 @@
     useUserPackages = true;
     useGlobalPkgs = true;
     backupFileExtension = "backup";
-    users.keanu = {
-      imports = [ ../../home/miranda.nix ];
-      home.stateVersion = "23.11";
-    };
+    users.keanu.imports = [ ../../home/miranda.nix ];
   };
 
-  system.stateVersion = "23.05";
+  system.stateVersion = "24.11";
 }

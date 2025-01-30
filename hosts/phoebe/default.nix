@@ -25,10 +25,7 @@
     useUserPackages = true;
     useGlobalPkgs = true;
     backupFileExtension = "backup";
-    users.keanu = {
-      imports = [ ../../home/phoebe.nix ];
-      home.stateVersion = "24.11";
-    };
+    users.keanu.imports = [ ../../home/phoebe.nix ];
   };
 
   system.stateVersion = "24.11";

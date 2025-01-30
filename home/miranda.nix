@@ -4,10 +4,11 @@
   imports = [
     ./base/default.nix
     ./base/home-manager.nix
+    ./base/impermanence.nix
 
     ./desktop/default.nix
     ./desktop/gnome.nix
-    ./desktop/hyprland/default.nix
+    # ./desktop/hyprland/default.nix
 
     ./shell/packages.nix
   ];

@@ -15,10 +15,7 @@
     useUserPackages = true;
     useGlobalPkgs = true;
     backupFileExtension = "backup";
-    users.keanu = {
-      imports = [ ../../home/vesta.nix ];
-      home.stateVersion = "24.05";
-    };
+    users.keanu.imports = [ ../../home/vesta.nix ];
   };
 
   services.nix-daemon.enable = true;

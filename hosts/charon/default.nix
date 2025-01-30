@@ -15,10 +15,7 @@
     useUserPackages = true;
     useGlobalPkgs = true;
     backupFileExtension = "backup";
-    users.keanu = {
-      imports = [ ../../home/charon.nix ];
-      home.stateVersion = "24.05";
-    };
+    users.keanu.imports = [ ../../home/charon.nix ];
   };
 
   services.nix-daemon.enable = true;
