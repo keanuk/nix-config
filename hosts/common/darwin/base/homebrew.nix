@@ -9,10 +9,13 @@
         cleanup = "uninstall";
         upgrade = true;
     };
-    masApps = { };
+    masApps = {
+      Xcode = 497799835;
+    };
     taps = [
       "homebrew/cask"
       "homebrew/core"
+      "netbirdio/tap/netbird"
     ];
     brews = [ ];
     casks = [
@@ -47,8 +50,10 @@
       "logi-options+"
       "messenger"
       "microsoft-teams"
+      "netbirdio/tap/netbird-ui"
       "nvidia-geforce-now"
       "obs"
+      "pocket-casts"
       "podman-desktop"
       "postman"
       "proton-drive"

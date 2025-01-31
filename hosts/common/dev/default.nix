@@ -10,6 +10,7 @@
     ./nix.nix
     ./python.nix
     ./rust.nix
+    ./zig
   ];
 
   environment.systemPackages = with pkgs; [

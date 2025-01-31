@@ -3,36 +3,23 @@
 {
   home.packages = with pkgs; [
     age
-    alacritty
     android-tools
-    audacity
     cpufetch
-    discord
-    element-desktop
     fastfetch
     ffmpeg
     fortune
-    gimp
     git-crypt
-    inkscape
     just
     kind
-    kitty
     kubectl
     libnatpmp
-    netbird-dashboard
-    netbird-ui
     nix-index
     nmap
     onefetch
-    protonmail-bridge
     ripgrep
-    signal-desktop
     sops
     ssh-to-age
-    telegram-desktop
     tlrc
-    transmission_4
     tree
     typst
     wget

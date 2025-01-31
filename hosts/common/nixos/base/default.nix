@@ -4,7 +4,6 @@
   imports = [
     ./packages.nix
 
-    ../../dev/default.nix
     ../../dev/virtualization.nix
 
     ../services/apparmor.nix

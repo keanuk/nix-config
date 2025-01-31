@@ -17,8 +17,7 @@ in
           type = "gpt";
           partitions = {
             ESP = {
-              start = "0%";
-              end = "4096MiB";
+              size = "1024M";
               type = "EF00";
               content = {
                 type = "filesystem";
@@ -52,8 +51,8 @@ in
                       mountpoint = "/home";
                       mountOptions = defaultBtrfsOpts;
                     };
-                    "@var" = {
-                      mountpoint = "/var";
+                    "@log" = {
+                      mountpoint = "/var/log";
                       mountOptions = defaultBtrfsOpts;
                     };
                     "@persist" = {

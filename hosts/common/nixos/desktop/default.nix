@@ -4,11 +4,11 @@
   imports = [
     ./packages.nix
 
+    ../../dev/default.nix
     ../../dev/flutter.nix
     ../../dev/java.nix
     ../../dev/nim.nix
     ../../dev/node.nix
-    ../../dev/virtualization.nix
 
     ../services/geoclue2.nix
     ../services/protonmail.nix
