@@ -26,7 +26,6 @@
     pciutils
     podman
     starship
-    tailscale
     wireguard-tools
   ];
 }
