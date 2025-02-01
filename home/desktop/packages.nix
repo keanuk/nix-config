@@ -22,6 +22,7 @@
     gimp
     github-desktop
     gnome-builder
+    gnome-disk-utility
     inkscape
     jellyfin-media-player
     jitsi
