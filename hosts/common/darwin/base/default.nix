@@ -6,10 +6,6 @@
     ./packages.nix
 
     ../../dev/default.nix
-    ../../dev/flutter.nix
-    ../../dev/java.nix
-    ../../dev/nim.nix
-    ../../dev/node.nix
 
     ../../desktop/fonts.nix
   ];
