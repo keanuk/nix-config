@@ -6,8 +6,8 @@
     inputs.home-manager.nixosModules.home-manager
     inputs.nur.modules.nixos.default
     ../common/nixos/base/default.nix
-    # ../common/nixos/base/ephemeral-boot-luks-btrfs.nix
-    # ../common/nixos/base/impermanence.nix
+    ../common/nixos/base/ephemeral-boot-luks-btrfs.nix
+    ../common/nixos/base/impermanence.nix
     ../common/nixos/base/lanzaboote.nix
     ../common/nixos/desktop/default.nix
     ../common/nixos/desktop/gnome.nix
