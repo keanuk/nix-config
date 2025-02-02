@@ -12,7 +12,7 @@ in
     disk = {
       main = {
         type = "disk";
-        device = "/dev/sdb";
+        device = "/dev/disk/by-id/nvme-THNSN5512GPUK_TOSHIBA_27MS11HET52T";
         content = {
           type = "gpt";
           partitions = {
@@ -31,7 +31,7 @@ in
               content = {
                 type = "luks";
                 name = "crypted";
-                passwordFile = "/tmp/secret.key";
+                # passwordFile = "/tmp/secret.key";
                 settings = {
                   allowDiscards = true;
                 };
