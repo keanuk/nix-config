@@ -26,7 +26,16 @@
     flatpak.enable = true;
     fprintd.enable = true;
     gnome.gnome-keyring.enable = true;
-    libinput.enable = true;
+    libinput = {
+      enable = true;
+      mouse = {
+        naturalScrolling = true;
+      };
+      touchpad = {
+        naturalScrolling = true;
+        tapping = true;
+      };
+    };
     passSecretService.enable = true;
     pipewire = {
       enable = true;
