@@ -21,6 +21,7 @@
       ".local/share/direnv"
 
       ".config/gh"
+      ".config/cosmic"
       {
         directory = ".local/share/Steam";
         method = "symlink";
