@@ -7,11 +7,11 @@
     inputs.nur.modules.nixos.default
     ../common/nixos/base/default.nix
     ../common/nixos/base/ephemeral-boot-luks-btrfs.nix
-    # ../common/nixos/base/impermanence.nix
+    ../common/nixos/base/impermanence.nix
     # ../common/nixos/base/lanzaboote.nix
     ../common/nixos/base/systemd-boot.nix
     ../common/nixos/desktop/default.nix
-    ../common/nixos/desktop/gnome.nix
+    ../common/nixos/desktop/cosmic.nix
     ../common/nixos/desktop/hyprland.nix
     ../common/nixos/user/keanu/default.nix
 
@@ -30,5 +30,5 @@
     users.keanu.imports = [ ../../home/miranda.nix ];
   };
 
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
 }

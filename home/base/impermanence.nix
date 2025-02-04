@@ -19,6 +19,8 @@
       ".nixops"
       ".local/share/keyrings"
       ".local/share/direnv"
+
+      ".config/gh"
       {
         directory = ".local/share/Steam";
         method = "symlink";
