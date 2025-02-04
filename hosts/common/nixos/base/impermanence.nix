@@ -6,7 +6,7 @@
   ];
   
   programs.fuse.userAllowOther = true;
-
+  fileSystems."/persist".neededForBoot = true;
   environment.persistence."/persist" = {
     enable = true;
     hideMounts = true;
