@@ -5,9 +5,9 @@
     enable = true;
     global.autoUpdate = true;
     onActivation = {
-        autoUpdate = true;
-        cleanup = "uninstall";
-        upgrade = true;
+      autoUpdate = true;
+      cleanup = "uninstall";
+      upgrade = true;
     };
     masApps = {
       "Affinity Designer" = 824171161;
