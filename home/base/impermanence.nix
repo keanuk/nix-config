@@ -20,11 +20,17 @@
       "go"
 
       ".gnupg"
-      ".ssh"
       ".nixops"
+      ".ssh"
+      ".steam"
 
-      ".local/share/keyrings"
       ".local/share/direnv"
+      ".local/share/keyrings"
+      ".local/share/protonmail"
+      ".local/share/Steam"
+      ".local/state/cosmic"
+      ".local/state/cosmic-comp"
+      ".local/state/pop-launcher"
 
       ".config/Bitwarden"
       ".config/cosmic"
