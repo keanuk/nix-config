@@ -11,8 +11,7 @@
     ../common/nixos/base/default.nix
     ../common/nixos/base/ephemeral-boot-luks-btrfs.nix
     ../common/nixos/base/impermanence.nix
-    # ../common/nixos/base/lanzaboote.nix
-    ../common/nixos/base/systemd-boot.nix
+    ../common/nixos/base/lanzaboote.nix
     ../common/nixos/desktop/default.nix
     ../common/nixos/desktop/cosmic.nix
     ../common/nixos/desktop/hyprland.nix

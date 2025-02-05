@@ -7,21 +7,29 @@
 
   home.persistence."/persist/home/keanu" = {
     directories = [
+      "Bilder"
+      "Dokumente"
       "Downloads"
-      "Documents"
+      "Musik"
       "Projects"
-      "Pictures"
-      "Music"
+      "Schreibtisch"
       "Videos"
+      "Vorlagen"
+      "Öffentlich"
+
       "go"
+
       ".gnupg"
       ".ssh"
       ".nixops"
+
       ".local/share/keyrings"
       ".local/share/direnv"
 
-      ".config/gh"
       ".config/cosmic"
+      ".config/gh"
+      ".config/gtk-3.0"
+      ".config/gtk-4.0"     
       {
         directory = ".local/share/Steam";
         method = "symlink";

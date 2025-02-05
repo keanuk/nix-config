@@ -31,7 +31,6 @@ in
               content = {
                 type = "luks";
                 name = "crypted";
-                # passwordFile = "/tmp/secret.key";
                 settings = {
                   allowDiscards = true;
                 };
