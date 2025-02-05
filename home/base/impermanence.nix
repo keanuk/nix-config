@@ -26,10 +26,12 @@
       ".local/share/keyrings"
       ".local/share/direnv"
 
+      ".config/Bitwarden"
       ".config/cosmic"
       ".config/gh"
       ".config/gtk-3.0"
-      ".config/gtk-4.0"     
+      ".config/gtk-4.0"
+      ".config/protonmail"   
       {
         directory = ".local/share/Steam";
         method = "symlink";
