@@ -9,7 +9,7 @@
     inputs.catppuccin.nixosModules.catppuccin
 
     ../common/nixos/base/default.nix
-    ../common/nixos/base/ephemeral-boot-luks-btrfs.nix
+    # ../common/nixos/base/ephemeral-boot-luks-btrfs.nix
     ../common/nixos/base/impermanence.nix
     ../common/nixos/base/lanzaboote.nix
     ../common/nixos/desktop/default.nix
