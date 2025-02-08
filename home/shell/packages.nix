@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
     age
-    bitwarden-cli
+    # bitwarden-cli
     cpufetch
     fastfetch
     ffmpeg

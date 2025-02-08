@@ -6,6 +6,6 @@
     cmake
     cmake-language-server
     libclang
-    lldb
+    # lldb
   ];
 }

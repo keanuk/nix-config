@@ -37,7 +37,7 @@
     nextcloud-client
     obs-studio
     pitivi
-    plex-desktop
+    # plex-desktop
     plexamp
     polari
     proton-pass
