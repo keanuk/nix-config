@@ -42,6 +42,7 @@
     polari
     proton-pass
     protonmail-desktop
+    protonmail-bridge-gui
     protonvpn-gui
     rawtherapee
     remmina

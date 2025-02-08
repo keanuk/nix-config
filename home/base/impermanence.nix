@@ -27,7 +27,6 @@
       ".local/share/direnv"
       ".local/share/keyrings"
       ".local/share/protonmail"
-      ".local/share/Steam"
       ".local/state/cosmic"
       ".local/state/cosmic-comp"
       ".local/state/pop-launcher"
@@ -37,7 +36,8 @@
       ".config/gh"
       ".config/gtk-3.0"
       ".config/gtk-4.0"
-      ".config/protonmail"   
+      ".config/protonmail"
+      ".config/sops"
       {
         directory = ".local/share/Steam";
         method = "symlink";
