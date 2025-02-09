@@ -37,6 +37,7 @@
   environment.systemPackages = with pkgs; [
     acpid
     bcachefs-tools
+    busybox
     cachix
     fish
     git

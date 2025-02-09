@@ -3,8 +3,8 @@
 {
   programs.zellij = {
     enable = true;
-    # enableBashIntegration = true;
-    # enableZshIntegration = true;
-    # enableFishIntegration = true;
+    enableBashIntegration = false;
+    enableZshIntegration = false;
+    enableFishIntegration = false;
   };
 }

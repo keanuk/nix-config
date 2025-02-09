@@ -12,7 +12,7 @@ in
     disk = {
       main = {
         type = "disk";
-        device = "/dev/sdb";
+        device = "/dev/disk/by-id/nvme-ADATA_LEGEND_800_GOLD_2O412L121NKC";
         content = {
           type = "gpt";
           partitions = {
@@ -31,7 +31,6 @@ in
               content = {
                 type = "luks";
                 name = "crypted";
-                passwordFile = "/tmp/secret.key";
                 settings = {
                   allowDiscards = true;
                 };

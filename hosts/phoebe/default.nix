@@ -1,6 +1,7 @@
 { inputs, outputs, nix-colors, ... }: {
   imports = [
     ./hardware-configuration.nix
+    ./disko-configuration.nix
 
     inputs.home-manager.nixosModules.home-manager
     inputs.nur.modules.nixos.default
@@ -13,9 +14,6 @@
     ../common/nixos/desktop/cosmic.nix
     ../common/nixos/desktop/hyprland.nix
     ../common/nixos/user/keanu/default.nix
-
-    ../common/nixos/base/swapfile.nix
-    ../common/nixos/base/fs.nix
   ];
 
   networking.hostName = "phoebe";
