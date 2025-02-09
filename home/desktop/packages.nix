@@ -16,6 +16,8 @@
     discord
     element-desktop
     endeavour
+    ente-auth
+    ente-cli
     foliate
     fractal
     fragments

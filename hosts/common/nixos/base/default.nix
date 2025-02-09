@@ -35,9 +35,6 @@
     randomizedDelaySec = "45min";
   };
 
-  # workaround for 'too many open files' on nixos-rebuild
-  # systemd.extraConfig = "DefaultLimitNOFILE=2048";
-
   # workaround for https://github.com/NixOS/nixpkgs/issues/180175
   systemd.services.NetworkManager-wait-online = {
     serviceConfig = {
@@ -45,15 +42,10 @@
     };
   };
 
-  # workaround for outdated electron
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-28.3.3"
-  ];
-
   zramSwap = {
     enable = true;
     priority = 5;
-    memoryPercent = 30;
+    memoryPercent = 25;
   };
 
   hardware = {
@@ -67,7 +59,6 @@
   };
 
   nix = {
-    # package = pkgs.inputs.nix.nix;
     settings = {
       auto-optimise-store = true;
       warn-dirty = false;
@@ -147,7 +138,7 @@
 
   networking = {
     firewall.enable = true;
-    # firewall.trustedInterfaces = [ "wt0" ];
+    firewall.trustedInterfaces = [ "wt0" ];
     networkmanager.enable = true;
     nftables.enable = true;
   };
