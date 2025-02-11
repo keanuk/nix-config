@@ -65,6 +65,7 @@
       "docker"
       "element"
       "ente"
+      "ente-auth"
       "epic-games"
       "firefox"
       "firefox@developer-edition"
