@@ -11,6 +11,8 @@
   ];
 
   nix = {
+    # Disabled for Determinate Nix
+    enable = false;
     gc = {
       automatic = true;
       interval = { Weekday = 1; Hour = 0; Minute = 0; };
