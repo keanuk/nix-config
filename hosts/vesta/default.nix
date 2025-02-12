@@ -18,7 +18,6 @@
     users.keanu.imports = [ ../../home/vesta.nix ];
   };
 
-  services.nix-daemon.enable = true;
   nix.package = lib.mkDefault pkgs.nixVersions.latest;
 
   nixpkgs.hostPlatform = "x86_64-darwin";
