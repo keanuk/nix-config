@@ -19,6 +19,7 @@
 
   environment.systemPackages = with pkgs; [
     bash-language-server
+    devenv
     gcc
     shellcheck
 
