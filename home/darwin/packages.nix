@@ -13,6 +13,8 @@
     kind
     kubectl
     libnatpmp
+    leetcode-cli
+    leetgo
     nix-index
     nmap
     onefetch

@@ -31,6 +31,8 @@
     joplin-desktop
     krita
     kodi-wayland
+    leetcode-cli
+    leetgo
     libadwaita
     libreoffice
     lollypop
