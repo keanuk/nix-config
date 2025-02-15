@@ -10,5 +10,7 @@
     ./packages.nix
     ./thunderbird.nix
     ./vscode.nix
+    
+    ../dev/nim.nix
   ];
 }

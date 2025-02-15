@@ -9,7 +9,6 @@
     ./java.nix
     ./lua.nix
     ./markup.nix
-    ./nim.nix
     ./nix.nix
     ./node.nix
     ./python.nix
