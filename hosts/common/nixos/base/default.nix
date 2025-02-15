@@ -4,11 +4,10 @@
   imports = [
     ./packages.nix
 
-    ../../dev/virtualization.nix
-
     ../services/apparmor.nix
     ../services/btrfs.nix
     ../services/tailscale.nix
+    ../services/virtualization.nix
 
     ../programs/nh.nix
   ];

@@ -4,11 +4,7 @@
   imports = [
     ./packages.nix
 
-    ../../dev/default.nix
-    ../../dev/nim.nix
-
     ../services/geoclue2.nix
-    # ../services/protonmail.nix
     ../services/udev.nix
 
     ../programs/evolution.nix

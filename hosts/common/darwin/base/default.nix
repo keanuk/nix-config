@@ -5,8 +5,6 @@
     ./homebrew.nix
     ./packages.nix
 
-    ../../dev/default.nix
-
     ../../desktop/fonts.nix
   ];
 

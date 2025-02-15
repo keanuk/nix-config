@@ -6,6 +6,7 @@
     inputs.catppuccin.homeManagerModules.catppuccin
 
     ../shell/default.nix
+    ../dev/default.nix
   ];
 
   nixpkgs.config.allowUnfree = true;

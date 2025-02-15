@@ -1,11 +1,10 @@
 { pkgs, ... }:
 
 {
-  environment.systemPackages = with pkgs; [
+  home.packages = with pkgs; [
     clang-tools
     cmake
     cmake-language-server
-    libclang
     # lldb
   ];
 }
