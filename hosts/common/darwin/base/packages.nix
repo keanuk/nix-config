@@ -15,7 +15,6 @@
     cachix
     docker
     docker-compose
-    fish
     git
     helix
     home-manager
