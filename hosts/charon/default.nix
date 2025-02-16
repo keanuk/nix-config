@@ -13,7 +13,7 @@
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs nix-colors; };
     useUserPackages = true;
-    useGlobalPkgs = true;
+    useGlobalPkgs = false;
     backupFileExtension = "backup";
     users.keanu.imports = [ ../../home/charon.nix ];
   };
