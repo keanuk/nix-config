@@ -98,6 +98,7 @@
       "signal"
       "skype@preview"
       "standard-notes"
+      "stats"
       "steam"
       "thunderbird"
       "thunderbird@beta"
