@@ -15,7 +15,7 @@
     useUserPackages = true;
     useGlobalPkgs = false;
     backupFileExtension = "backup";
-    users.keanu.imports = [ ../../home/charon.nix ];
+    users.keanu.imports = [ ../../home/charon/keanu.nix ];
   };
 
   nixpkgs.hostPlatform = "x86_64-darwin";

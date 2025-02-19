@@ -23,7 +23,7 @@
     useUserPackages = true;
     useGlobalPkgs = false;
     backupFileExtension = "backup";
-    users.keanu.imports = [ ../../home/phoebe.nix ];
+    users.keanu.imports = [ ../../home/phoebe/keanu.nix ];
   };
 
   system.stateVersion = "25.05";

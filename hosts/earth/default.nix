@@ -37,7 +37,7 @@
     useUserPackages = true;
     useGlobalPkgs = false;
     backupFileExtension = "backup";
-    users.keanu.imports = [ ../../home/earth.nix ];
+    users.keanu.imports = [ ../../home/earth/keanu.nix ];
   };
 
   system.stateVersion = "23.11";

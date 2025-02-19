@@ -34,6 +34,8 @@
     randomizedDelaySec = "45min";
   };
 
+  users.defaultUserShell = pkgs.fish;
+
   # workaround for https://github.com/NixOS/nixpkgs/issues/180175
   systemd.services.NetworkManager-wait-online = {
     serviceConfig = {
@@ -159,7 +161,7 @@
   };
 
   i18n = {
-    defaultLocale = "de_DE.UTF-8";
+    defaultLocale = lib.mkDefault "de_DE.UTF-8";
     supportedLocales = [
       "all"
     ];

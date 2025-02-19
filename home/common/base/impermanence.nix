@@ -36,6 +36,7 @@
       ".config/gh"
       ".config/gtk-3.0"
       ".config/gtk-4.0"
+      ".config/nix-config"
       ".config/protonmail"
       ".config/sops"
       {

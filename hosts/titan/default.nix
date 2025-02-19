@@ -26,7 +26,7 @@
     useUserPackages = true;
     useGlobalPkgs = false;
     backupFileExtension = "backup";
-    users.keanu.imports = [ ../../home/titan.nix ];
+    users.keanu.imports = [ ../../home/titan/keanu.nix ];
   };
 
   system.stateVersion = "23.05";

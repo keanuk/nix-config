@@ -2,9 +2,9 @@
 
 {
   imports = [
-    ./base/default.nix
+    ../common/base/default.nix
 
-    ./darwin/default.nix
+    ../common/darwin/default.nix
   ];
 
   home = {

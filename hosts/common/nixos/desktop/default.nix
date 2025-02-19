@@ -57,5 +57,6 @@
     systemPackages = with pkgs; [
       xorg.xbacklight
     ];
+    shells = with pkgs; [ bashInteractive fish nushell zsh ];
   };
 }

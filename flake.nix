@@ -189,42 +189,42 @@
         "keanu@charon" = lib.homeManagerConfiguration {
           extraSpecialArgs = { inherit inputs outputs secrets nix-colors; };
           pkgs = pkgsFor.x86_64-darwin;
-          modules = [ ./home/charon.nix ];
+          modules = [ ./home/charon/keanu.nix ];
         };
         "keanu@earth" = lib-stable.homeManagerConfiguration {
           extraSpecialArgs = { inherit inputs outputs secrets nix-colors; };
           pkgs = pkgsFor.x86_64-linux;
-          modules = [ ./home/earth.nix ];
+          modules = [ ./home/earth/keanu.nix ];
         };
         "keanu@hyperion" = lib.homeManagerConfiguration {
           extraSpecialArgs = { inherit inputs outputs secrets nix-colors; };
           pkgs = pkgsFor.x86_64-linux;
-          modules = [ ./home/hyperion.nix ];
+          modules = [ ./home/hyperion/keanu.nix ];
         };
         "keanu@miranda" = lib.homeManagerConfiguration {
           extraSpecialArgs = { inherit inputs outputs secrets nix-colors; };
           pkgs = pkgsFor.x86_64-linux;
-          modules = [ ./home/miranda.nix ];
+          modules = [ ./home/miranda/keanu.nix ];
         };
         "keanu@phoebe" = lib.homeManagerConfiguration {
           extraSpecialArgs = { inherit inputs outputs secrets nix-colors; };
           pkgs = pkgsFor.x86_64-linux;
-          modules = [ ./home/phoebe.nix ];
+          modules = [ ./home/phoebe/keanu.nix ];
         };
         "keanu@tethys" = lib.homeManagerConfiguration {
           extraSpecialArgs = { inherit inputs outputs secrets nix-colors; };
           pkgs = pkgsFor.x86_64-linux;
-          modules = [ ./home/tethys.nix ];
+          modules = [ ./home/tethys/keanu.nix ];
         };
         "keanu@titan" = lib.homeManagerConfiguration {
           extraSpecialArgs = { inherit inputs outputs secrets nix-colors; };
           pkgs = pkgsFor.x86_64-linux;
-          modules = [ ./home/titan.nix ];
+          modules = [ ./home/titan/keanu.nix ];
         };
         "keanu@vesta" = lib.homeManagerConfiguration {
           extraSpecialArgs = { inherit inputs outputs secrets nix-colors; };
           pkgs = pkgsFor.x86_64-darwin;
-          modules = [ ./home/vesta.nix ];
+          modules = [ ./home/vesta/keanu.nix ];
         };
       };
     };

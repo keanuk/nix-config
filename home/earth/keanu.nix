@@ -2,10 +2,10 @@
 
 {
   imports = [
-    ./base/default.nix
-    ./base/home-manager.nix
+    ../common/base/default.nix
+    ../common/base/home-manager.nix
 
-    ./shell/packages.nix
+    ../common/shell/packages.nix
   ];
 
   home = {

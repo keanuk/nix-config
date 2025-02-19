@@ -22,7 +22,7 @@
     useUserPackages = true;
     useGlobalPkgs = false;
     backupFileExtension = "backup";
-    users.keanu.imports = [ ../../home/tethys.nix ];
+    users.keanu.imports = [ ../../home/tethys/keanu.nix ];
   };
 
   system.stateVersion = "23.05";

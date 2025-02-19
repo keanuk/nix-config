@@ -2,9 +2,9 @@
 
 {
   imports = [
-    ./base/default.nix
+    ../common/base/default.nix
 
-    ./shell/packages.nix
+    ../common/shell/packages.nix
   ];
 
   home = {

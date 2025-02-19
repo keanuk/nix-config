@@ -15,7 +15,7 @@
     useUserPackages = true;
     useGlobalPkgs = false;
     backupFileExtension = "backup";
-    users.keanu.imports = [ ../../home/vesta.nix ];
+    users.keanu.imports = [ ../../home/vesta/keanu.nix ];
   };
 
   nixpkgs.hostPlatform = "x86_64-darwin";
