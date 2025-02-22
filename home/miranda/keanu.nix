@@ -4,7 +4,6 @@
   imports = [
     ../common/base/default.nix
     ../common/base/home-manager.nix
-    ../common/base/impermanence.nix
 
     ../common/desktop/default.nix
     ../common/desktop/gnome.nix
