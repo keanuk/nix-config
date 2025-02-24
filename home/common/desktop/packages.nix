@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
+    alpaca
     amberol
     android-studio
     android-tools
@@ -12,6 +13,8 @@
     calibre
     cameractrls
     caprine
+    # TODO: un-comment when the build works again
+    # catppuccin
     darktable
     discord
     element-desktop

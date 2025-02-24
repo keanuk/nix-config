@@ -86,6 +86,8 @@
       # "netbirdio/tap/netbird-ui"
       "nvidia-geforce-now"
       "obs"
+      "ollama"
+      "ollamac"
       "pocket-casts"
       "podman-desktop"
       "postman"

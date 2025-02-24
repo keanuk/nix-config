@@ -6,8 +6,8 @@
     inputs.home-manager.nixosModules.home-manager
     inputs.nur.modules.nixos.default
     inputs.nixos-cosmic.nixosModules.default
-    inputs.catppuccin.nixosModules.catppuccin
 
+    ../common/nixos/base/amd.nix
     ../common/nixos/base/default.nix
     ../common/nixos/base/lanzaboote.nix
     ../common/nixos/desktop/default.nix

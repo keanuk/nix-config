@@ -11,6 +11,7 @@
       "networkmanager"
       "podman"
       "docker"
+      "ollama"
     ];
     shell = pkgs.nushell;
     initialPassword = "keanu";

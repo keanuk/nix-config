@@ -3,7 +3,6 @@
 {
   imports = [
     ./c.nix
-    ./flutter.nix
     ./go.nix
     ./haskell.nix
     ./java.nix

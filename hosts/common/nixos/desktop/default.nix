@@ -5,6 +5,7 @@
     ./packages.nix
 
     ../services/geoclue2.nix
+    ../services/ollama.nix
     ../services/udev.nix
 
     ../programs/evolution.nix

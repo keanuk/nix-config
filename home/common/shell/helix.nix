@@ -45,6 +45,6 @@
   };
 
   home.packages = with pkgs; [
-    # helix-gpt
+    helix-gpt
   ];
 }

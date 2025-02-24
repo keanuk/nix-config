@@ -12,4 +12,6 @@
   environment.systemPackages = with pkgs; [
     radeontop
   ];
+
+  nixpkgs.config.rocmSupport = true;
 }
