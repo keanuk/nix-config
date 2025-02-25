@@ -23,7 +23,8 @@
     nushell
     pass
     pciutils
-    podman
+    # TODO: Re-enable when the build succeeds
+    # podman
     starship
     wireguard-tools
   ];
