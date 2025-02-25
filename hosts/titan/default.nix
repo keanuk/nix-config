@@ -1,4 +1,4 @@
-{ inputs, outputs, nix-colors, ... }: {
+{ inputs, outputs, lib, nix-colors, ... }: {
   imports = [
     ./hardware-configuration.nix
 
@@ -29,5 +29,7 @@
     users.keanu.imports = [ ../../home/titan/keanu.nix ];
   };
 
+  services.ollama.rocmOverrideGfx = lib.mkForce "10.3.0";
+  
   system.stateVersion = "23.05";
 }

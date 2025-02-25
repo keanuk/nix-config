@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   # Enable AMD GPU drivers
@@ -14,4 +14,5 @@
   ];
 
   nixpkgs.config.rocmSupport = true;
+  services.ollama.acceleration = lib.mkForce "rocm";
 }

@@ -6,8 +6,9 @@
       enable = true;
       package = pkgs.ollama;
       loadModels = [
-        "llama3.3"
+        "codestral"
         "mistral"
+        "mistral-small"
       ];
     };
     nextjs-ollama-llm-ui = {
