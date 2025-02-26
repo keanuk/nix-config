@@ -30,6 +30,6 @@
   };
 
   services.ollama.rocmOverrideGfx = lib.mkForce "10.3.0";
-  
+
   system.stateVersion = "23.05";
 }

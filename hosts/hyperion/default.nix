@@ -24,7 +24,7 @@
 
   networking.hostName = "hyperion";
 
-  
+
   i18n.defaultLocale = lib.mkForce "en_US.UTF-8";
 
   home-manager = {

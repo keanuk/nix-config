@@ -5,6 +5,9 @@
     enable = true;
     package = pkgs.helix;
     defaultEditor = true;
+    extraPackages = with pkgs; [
+      lsp-ai
+    ];
     settings = {
       theme = lib.mkDefault "catppuccin_mocha";
       editor = {
@@ -42,9 +45,28 @@
         select = { };
       };
     };
-  };
+    languages = {
+      language-server = {
+        lsp-ai = {
+          command = "lsp-ai";
+          args = [ "--use-seperate-log-file" ];
+          config = {
+            memory.file_store = { };
+            models = {
+              codestral-ollama = {
+                type = "ollama";
+                model = "codestral";
+              };
+            };
+            chat = {
+              trigger = "!C";
+              action_display_name = "Chat";
+              model = "codestral-ollama";
 
-  home.packages = with pkgs; [
-    helix-gpt
-  ];
+            };
+          };
+        };
+      };
+    };
+  };
 }
