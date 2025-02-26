@@ -1,4 +1,4 @@
-{ inputs, outputs, nix-colors, ... }: {
+{ inputs, outputs, lib, nix-colors, ... }: {
   imports = [
     ./hardware-configuration.nix
     ./disko-configuration.nix
@@ -25,6 +25,8 @@
     backupFileExtension = "backup";
     users.keanu.imports = [ ../../home/phoebe/keanu.nix ];
   };
+
+  services.ollama.rocmOverrideGfx = lib.mkForce "11.0.2";
 
   system.stateVersion = "25.05";
 }
