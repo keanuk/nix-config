@@ -7,6 +7,7 @@
       package = pkgs.ollama;
       loadModels = [
         "codestral"
+        "deepseek-r1"
         "mistral"
         "mistral-small"
       ];

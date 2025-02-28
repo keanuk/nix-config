@@ -39,7 +39,6 @@
     libadwaita
     libreoffice
     lollypop
-    lsp-ai
     netbird-dashboard
     netbird-ui
     nextcloud-client

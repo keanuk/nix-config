@@ -16,9 +16,11 @@
   ];
 
   home.packages = with pkgs; [
+    aider-chat
     bash-language-server
     devenv
     gcc
+    lsp-ai
     shellcheck
   ];
 }
