@@ -53,15 +53,31 @@
           config = {
             memory.file_store = { };
             models = {
-              codestral-ollama = {
+              model1 = {
                 type = "ollama";
                 model = "codestral";
+              };
+              model2 = {
+                type = "ollama";
+                model = "deepseek-r1";
+              };
+            };
+            completion = {
+              model = "model1";
+              parameters = {
+                max-tokens = 64;
+                max-context = 1024;
               };
             };
             chat = {
               trigger = "!C";
               action_display_name = "Chat";
-              model = "codestral-ollama";
+              model = "model2";
+              paramters = {
+                max-tokens = 1024;
+                max-context = 4096;
+                system = "You are a helpful coding assistant.";
+              };
             };
           };
         };
