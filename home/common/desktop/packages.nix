@@ -63,7 +63,6 @@
     standardnotes
     steam-run
     stellarium
-    teams
     telegram-desktop
     transmission_4-gtk
     trayscale
