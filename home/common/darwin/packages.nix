@@ -2,6 +2,7 @@
 
 {
   home.packages = with pkgs; [
+    aichat
     age
     android-tools
     cpufetch

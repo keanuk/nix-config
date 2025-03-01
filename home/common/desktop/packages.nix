@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
+    aichat
     alpaca
     amberol
     android-studio
@@ -62,6 +63,7 @@
     standardnotes
     steam-run
     stellarium
+    teams
     telegram-desktop
     transmission_4-gtk
     trayscale
