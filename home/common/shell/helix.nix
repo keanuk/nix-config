@@ -62,7 +62,6 @@
               trigger = "!C";
               action_display_name = "Chat";
               model = "codestral-ollama";
-
             };
           };
         };
