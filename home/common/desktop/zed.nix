@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   programs.zed-editor = {
@@ -47,8 +47,8 @@
       buffer_font_size = 16;
       theme = {
         mode = "system";
-        light = "Catppuccin Latte";
-        dark = "Catppuccin Mocha";
+        light = lib.mkDefault "Catppuccin Latte";
+        dark = lib.mkDefault "Catppuccin Mocha";
       };
     };
   };
