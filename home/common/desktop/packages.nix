@@ -74,7 +74,6 @@
     wl-clipboard
     xclip
     xournalpp
-    zed-editor
     zlib-ng
 
     androidStudioPackages.beta
