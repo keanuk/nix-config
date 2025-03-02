@@ -47,8 +47,8 @@
       buffer_font_size = 16;
       theme = {
         mode = "system";
-        light = lib.mkDefault "Catppuccin Latte";
-        dark = lib.mkDefault "Catppuccin Mocha";
+        light = lib.mkForce "Catppuccin Latte";
+        dark = lib.mkForce "Catppuccin Mocha";
       };
     };
   };
