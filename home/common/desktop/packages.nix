@@ -14,8 +14,7 @@
     calibre
     cameractrls
     caprine
-    # TODO: un-comment when the build works again
-    # catppuccin
+    catppuccin
     darktable
     discord
     element-desktop
@@ -35,10 +34,12 @@
     joplin-desktop
     krita
     kodi-wayland
+    ladybird
     leetcode-cli
     leetgo
     libadwaita
     libreoffice
+    librewolf
     lollypop
     netbird-dashboard
     netbird-ui

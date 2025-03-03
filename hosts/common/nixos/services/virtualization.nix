@@ -27,7 +27,8 @@
     kind
     kubernetes
     podman-compose
-    podman-desktop
+    # TODO: re-enable when the build succeeds
+    # podman-desktop
     podman-tui
   ];
 }
