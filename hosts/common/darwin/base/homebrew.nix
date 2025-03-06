@@ -98,7 +98,6 @@
       "protonvpn"
       "reader"
       "signal"
-      "skype@preview"
       "standard-notes"
       "stats"
       "steam"

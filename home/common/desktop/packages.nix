@@ -59,7 +59,6 @@
     shortwave
     shotwell
     signal-desktop
-    skypeforlinux
     slack
     standardnotes
     steam-run
