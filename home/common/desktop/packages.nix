@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: {
   home.packages = with pkgs; [
     aichat
     alpaca
@@ -81,6 +81,8 @@
 
     kdePackages.kdenlive
     kdePackages.kdevelop
+    
+    inputs.zen-browser.packages."${system}".default
 
     # Games
     airshipper

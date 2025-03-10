@@ -98,6 +98,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+
     vpn-confinement.url = "github:Maroka-chan/VPN-Confinement";
 
     nixarr.url = "github:rasmus-kirk/nixarr";
