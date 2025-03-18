@@ -53,6 +53,7 @@
     polkit
     psmisc
     sbctl
+    smartmontools
     snapper
     starship
     tpm2-tools
