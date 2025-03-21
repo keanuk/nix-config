@@ -88,6 +88,7 @@
       "obs"
       "ollama"
       "ollamac"
+      "orion"
       "pocket-casts"
       "podman-desktop"
       "postman"
