@@ -3,7 +3,7 @@
 {
   imports = [
     nix-colors.homeManagerModules.default
-    inputs.catppuccin.homeManagerModules.catppuccin
+    inputs.catppuccin.homeModules.catppuccin
 
     ../shell/default.nix
   ];
