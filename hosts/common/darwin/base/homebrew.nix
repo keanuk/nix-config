@@ -90,6 +90,7 @@
       "ollama"
       "ollamac"
       "orion"
+      "plex"
       "pocket-casts"
       "podman-desktop"
       "postman"
