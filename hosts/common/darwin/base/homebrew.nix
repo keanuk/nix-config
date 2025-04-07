@@ -61,6 +61,7 @@
       "cmake"
       "darktable"
       "dbeaver-community"
+      "deepl"
       "discord"
       "docker"
       "element"
