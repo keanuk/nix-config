@@ -58,7 +58,7 @@
     session-desktop
     shortwave
     shotwell
-    signal-desktop
+    signal-desktop-bin
     slack
     standardnotes
     steam-run
