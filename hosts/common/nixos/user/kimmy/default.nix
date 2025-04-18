@@ -9,7 +9,7 @@
     extraGroups = [
       "networkmanager"
     ];
-    shell = pkgs.nushell;
+    shell = pkgs.fish;
     initialPassword = "kimmy";
   };
 }

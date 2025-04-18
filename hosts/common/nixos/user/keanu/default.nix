@@ -13,7 +13,7 @@
       "docker"
       "ollama"
     ];
-    shell = pkgs.nushell;
+    shell = pkgs.fish;
     initialPassword = "keanu";
   };
 }
