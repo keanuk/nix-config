@@ -62,7 +62,8 @@
     slack
     standardnotes
     steam-run
-    stellarium
+    # TODO: re-enable when the build succeeds
+    # stellarium
     telegram-desktop
     transmission_4-gtk
     trayscale
@@ -90,9 +91,11 @@
     flightgear
     heroic
     lutris
-    nanosaur
+    # TODO: re-enable when the build succeeds
+    # nanosaur
     nanosaur2
-    otto-matic
+    # TODO: re-enable when the build succeeds
+    # otto-matic
     shattered-pixel-dungeon
     superTux
     superTuxKart
