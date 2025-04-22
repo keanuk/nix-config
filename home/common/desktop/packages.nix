@@ -62,8 +62,7 @@
     slack
     standardnotes
     steam-run
-    # TODO: re-enable when the build succeeds
-    # stellarium
+    stellarium
     telegram-desktop
     transmission_4-gtk
     trayscale
@@ -82,7 +81,7 @@
 
     kdePackages.kdenlive
     kdePackages.kdevelop
-    
+
     inputs.zen-browser.packages."${system}".default
 
     # Games
@@ -91,11 +90,9 @@
     flightgear
     heroic
     lutris
-    # TODO: re-enable when the build succeeds
-    # nanosaur
+    nanosaur
     nanosaur2
-    # TODO: re-enable when the build succeeds
-    # otto-matic
+    otto-matic
     shattered-pixel-dungeon
     superTux
     superTuxKart
