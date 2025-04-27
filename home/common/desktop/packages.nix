@@ -52,8 +52,7 @@
     proton-pass
     protonmail-desktop
     protonmail-bridge-gui
-    # TODO: re-enable when the build succeeds
-    # protonvpn-gui
+    protonvpn-gui
     rawtherapee
     remmina
     session-desktop
