@@ -23,10 +23,13 @@
       "lua"
       "make"
       "nix"
+      "pylsp"
       "scss"
-      "svelte"
       "sql"
+      "svelte"
+      "swift"
       "toml"
+      "vue"
       "xml"
       "zig"
     ];
@@ -39,7 +42,7 @@
       assistant = {
         default_model = {
           provider = "ollama";
-          model = "deepseek-r1:latest";
+          model = "qwen3:latest";
         };
         version = "2";
       };
