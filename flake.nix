@@ -52,11 +52,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nix-colors.url = "github:misterio77/nix-colors";
 
     stylix.url = "github:danth/stylix";
