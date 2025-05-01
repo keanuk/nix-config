@@ -1,11 +1,10 @@
 { pkgs, ... }: {
-  services.desktopManager = {
-    cosmic = {
-      enable = true;
-      xwayland.enable = true;
-    };
-    cosmic-greeter.enable = true;
+  services.desktopManager.cosmic = {
+    enable = true;
+    xwayland.enable = true;
   };
+
+  services.displayManager.cosmic-greeter.enable = true;
 
   environment.systemPackages = with pkgs; [
     tasks
