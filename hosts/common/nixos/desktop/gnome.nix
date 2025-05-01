@@ -5,10 +5,8 @@
     displayManager.gdm.enable = true;
     desktopManager.gnome = {
       enable = true;
-      extraGSettingsOverridePackages = [ pkgs.mutter ];
+      # extraGSettingsOverridePackages = [ pkgs.mutter ];
       extraGSettingsOverrides = ''
-        [org.gnome.mutter]
-        experimental-features=['variable-refresh-rate', 'scale-monitor-framebuffer']
         [org.gnome.system]
         location='true'
       '';
