@@ -2,12 +2,13 @@
   home.packages = with pkgs; [
     age
     # TODO: Uncomment when the build succeeds again
-    # bitwarden-cli
+    bitwarden-cli
     cpufetch
     fastfetch
     ffmpeg
     fortune
     git-crypt
+    gnome-themes-extra
     just
     libnatpmp
     nix-index

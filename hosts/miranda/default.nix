@@ -1,4 +1,4 @@
-{ inputs, outputs, nix-colors, ... }: {
+{ inputs, outputs, ... }: {
   imports = [
     ./hardware-configuration.nix
     ./disko-configuration.nix
@@ -17,7 +17,7 @@
   networking.hostName = "miranda";
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs outputs nix-colors; };
+    extraSpecialArgs = { inherit inputs outputs; };
     useUserPackages = true;
     useGlobalPkgs = false;
     backupFileExtension = "backup";

@@ -1,4 +1,4 @@
-{ inputs, outputs, nix-colors, ... }: {
+{ inputs, outputs, ... }: {
   imports = [
     inputs.home-manager-stable.nixosModules.home-manager
     inputs.nur.modules.nixos.default
@@ -33,7 +33,7 @@
   # };
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs outputs nix-colors; };
+    extraSpecialArgs = { inherit inputs outputs; };
     useUserPackages = true;
     useGlobalPkgs = false;
     backupFileExtension = "backup";

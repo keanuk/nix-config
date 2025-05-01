@@ -1,4 +1,4 @@
-{ inputs, outputs, lib, nix-colors, ... }: {
+{ inputs, outputs, lib, ... }: {
   imports = [
     ./hardware-configuration.nix
 
@@ -27,7 +27,7 @@
   i18n.defaultLocale = lib.mkForce "en_US.UTF-8";
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs outputs nix-colors; };
+    extraSpecialArgs = { inherit inputs outputs; };
     useUserPackages = true;
     useGlobalPkgs = false;
     backupFileExtension = "backup";

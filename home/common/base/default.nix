@@ -1,8 +1,7 @@
-{ inputs, nix-colors, ... }:
+{ inputs, ... }:
 
 {
   imports = [
-    nix-colors.homeManagerModules.default
     inputs.catppuccin.homeModules.catppuccin
 
     ../shell/default.nix
@@ -25,7 +24,6 @@
     };
   };
 
-  colorScheme = nix-colors.colorSchemes.catppuccin-mocha;
   catppuccin.flavor = "mocha";
   catppuccin.enable = true;
 }
