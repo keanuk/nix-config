@@ -163,7 +163,14 @@
   i18n = {
     defaultLocale = lib.mkDefault "de_DE.UTF-8";
     extraLocales = [
-      "all"
+      "de_CH.UTF-8"
+      "de_DE.UTF-8"
+      "en_AU.UTF-8"
+      "en_CA.UTF-8"
+      "en_GB.UTF-8"
+      "en_US.UTF-8"
+      "es_ES.UTF-8"
+      "fr_FR.UTF-8"
     ];
   };
 }
