@@ -1,7 +1,6 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
     age
-    # TODO: Uncomment when the build succeeds again
     bitwarden-cli
     cpufetch
     fastfetch

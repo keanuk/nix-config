@@ -8,7 +8,6 @@
 
   nixpkgs.config = {
     allowUnfree = true;
-    permittedInsecurePackages = [ ];
   };
 
   environment.systemPackages = with pkgs; [

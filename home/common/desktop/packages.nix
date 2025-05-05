@@ -1,4 +1,6 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, ... }:
+
+{
   home.packages = with pkgs; [
     aichat
     alpaca
@@ -62,8 +64,7 @@
     slack
     standardnotes
     steam-run
-    # TODO: re-enable when the build succeeds
-    # stellarium
+    stellarium
     telegram-desktop
     transmission_4-gtk
     trayscale

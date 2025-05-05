@@ -60,12 +60,11 @@
     ];
     shells = with pkgs; [ bashInteractive fish nushell zsh ];
   };
-  
+
   # Needed if not using GNOME
   xdg.portal = {
     enable = true;
     wlr.enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    configPackages = [ pkgs.xdg-desktop-portal-gtk ];
   };
 }
