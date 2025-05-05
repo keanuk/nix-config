@@ -24,8 +24,8 @@
     };
   };
 
-  catppuccin.flavor = "mocha";
   catppuccin.enable = true;
+  catppuccin.flavor = "mocha";
 
   # TODO: remove when issue is resolved https://github.com/catppuccin/nix/issues/552
   catppuccin.mako.enable = false;

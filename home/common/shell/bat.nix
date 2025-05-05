@@ -4,7 +4,7 @@
   programs.bat = {
     enable = true;
     config = {
-      theme = lib.mkDefault "${config.colorScheme.name}";
+      theme = lib.mkDefault "Catppuccin Mocha";
     };
     package = pkgs.bat;
     extraPackages = with pkgs.bat-extras; [

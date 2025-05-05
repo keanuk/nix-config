@@ -14,12 +14,12 @@
     ../../desktop/fonts.nix
   ];
 
-  security.rtkit.enable = true;
   services = {
     dbus.enable = true;
     flatpak.enable = true;
     fprintd.enable = true;
     gnome.gnome-keyring.enable = true;
+    gnome.at-spi2-core.enable = true;
     libinput = {
       enable = true;
       mouse = {
@@ -59,5 +59,13 @@
       xorg.xbacklight
     ];
     shells = with pkgs; [ bashInteractive fish nushell zsh ];
+  };
+  
+  # Needed if not using GNOME
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    configPackages = [ pkgs.xdg-desktop-portal-gtk ];
   };
 }

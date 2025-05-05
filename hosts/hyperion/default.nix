@@ -10,8 +10,8 @@
     ../common/nixos/base/lanzaboote.nix
 
     ../common/nixos/desktop/default.nix
+    # ../common/nixos/desktop/hyprland.nix
     ../common/nixos/desktop/pantheon.nix
-    ../common/nixos/desktop/hyprland.nix
 
     ../common/nixos/user/keanu/default.nix
     ../common/nixos/user/kimmy/default.nix
