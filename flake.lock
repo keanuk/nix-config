@@ -671,11 +671,11 @@
         "nuschtosSearch": "nuschtosSearch"
       },
       "locked": {
-        "lastModified": 1746447077,
-        "narHash": "sha256-X8WxNgbkLISjU9tE0J8AiYlFXQ+8DhUQJemma5O/DhQ=",
+        "lastModified": 1746447915,
+        "narHash": "sha256-955/FGj6Te7a1czeUYZwhrnDYekubNT+EC7PpNw8l/w=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "ce5d708018e11865e5079514319429081e4e194b",
+        "rev": "4016854bccf192d6a5d7fdd5860571dfa1ece55c",
         "type": "github"
       },
       "original": {
