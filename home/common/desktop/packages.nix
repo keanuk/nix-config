@@ -23,6 +23,7 @@
     endeavour
     ente-auth
     ente-cli
+    ente-desktop
     foliate
     fractal
     fragments
