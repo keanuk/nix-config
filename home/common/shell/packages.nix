@@ -1,4 +1,6 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+
+{
   home.packages = with pkgs; [
     age
     bitwarden-cli
@@ -7,7 +9,6 @@
     ffmpeg
     fortune
     git-crypt
-    gnome-themes-extra
     just
     libnatpmp
     nix-index
