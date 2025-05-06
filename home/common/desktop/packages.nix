@@ -4,7 +4,6 @@
   home.packages = with pkgs; [
     aichat
     alpaca
-    amberol
     android-studio
     android-tools
     anytype
@@ -31,6 +30,7 @@
     github-desktop
     gnome-builder
     gnome-disk-utility
+    gnome-maps
     inkscape
     jellyfin-media-player
     jitsi
