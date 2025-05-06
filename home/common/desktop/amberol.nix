@@ -4,7 +4,7 @@
   services.amberol = {
     enable = true;
     enableRecoloring = true;
-    replayagain = "album";
+    replaygain = "album";
     package = pkgs.amberol;
   };
 }
