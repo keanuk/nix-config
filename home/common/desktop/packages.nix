@@ -43,6 +43,7 @@
     libadwaita
     libreoffice
     librewolf
+    lmstudio
     lollypop
     netbird-dashboard
     netbird-ui

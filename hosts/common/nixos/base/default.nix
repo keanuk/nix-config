@@ -149,6 +149,7 @@
     auditd.enable = true;
     polkit.enable = true;
     rtkit.enable = true;
+    sudo-rs.enable = true;
   };
 
   console = {
