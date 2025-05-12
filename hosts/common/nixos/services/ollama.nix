@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
 {
+  # TODO: re-enable when the build succeeds
   # imports = [
   #   ./open-webui.nix
   # ];

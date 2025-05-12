@@ -87,7 +87,7 @@
       "logi-options+"
       "microsoft-teams"
       # "netbirdio/tap/netbird"
-      "netbirdio/tap/netbird-ui"
+      # "netbirdio/tap/netbird-ui"
       "nvidia-geforce-now"
       "obs"
       "ollama"

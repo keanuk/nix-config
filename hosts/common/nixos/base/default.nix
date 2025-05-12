@@ -161,6 +161,7 @@
     ];
   };
 
+  # TODO: add "all" to extraLocales when that works again
   i18n = {
     defaultLocale = lib.mkDefault "de_DE.UTF-8";
     extraLocales = [

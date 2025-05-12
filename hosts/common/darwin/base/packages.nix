@@ -14,14 +14,10 @@
     cachix
     docker
     docker-compose
-    git
-    helix
     home-manager
     hwdata
     lsof
-    nushell
     pass
     pciutils
-    starship
   ];
 }
