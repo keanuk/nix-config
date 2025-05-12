@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   services.lidarr = {
     enable = true;
     openFirewall = true;

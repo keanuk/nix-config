@@ -1,4 +1,9 @@
-{ inputs, outputs, lib, ... }: {
+{
+  inputs,
+  outputs,
+  lib,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
 
@@ -23,11 +28,11 @@
   networking.hostName = "titan";
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
+    extraSpecialArgs = {inherit inputs outputs;};
     useUserPackages = true;
     useGlobalPkgs = false;
     backupFileExtension = "backup";
-    users.keanu.imports = [ ../../home/titan/keanu.nix ];
+    users.keanu.imports = [../../home/titan/keanu.nix];
   };
 
   services.ollama.rocmOverrideGfx = lib.mkForce "10.3.0";

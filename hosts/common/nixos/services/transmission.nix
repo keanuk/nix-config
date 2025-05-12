@@ -1,6 +1,8 @@
-{ inputs, pkgs, ... }:
-
 {
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     inputs.vpn-confinement.nixosModules.default
   ];
@@ -43,10 +45,16 @@
       "10.19.5.0/24"
     ];
     portMappings = [
-      { from = 9091; to = 9091; }
+      {
+        from = 9091;
+        to = 9091;
+      }
     ];
     openVPNPorts = [
-      { port = 12340; protocol = "both"; }
+      {
+        port = 12340;
+        protocol = "both";
+      }
     ];
   };
 
@@ -54,5 +62,4 @@
     enable = true;
     vpnnamespace = "wg";
   };
-
 }

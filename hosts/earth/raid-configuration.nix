@@ -1,10 +1,8 @@
-{ secrets, ... }:
-
-{
+{secrets, ...}: {
   systemd.services.mount-raid = {
     enable = true;
     description = "Mount RAID configuration";
-    wantedBy = [ "default.target" ];
+    wantedBy = ["default.target"];
     restartIfChanged = false;
     script = ''
       /run/current-system/sw/bin/bash -c "echo '${secrets.earth_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdc"

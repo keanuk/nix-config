@@ -1,8 +1,10 @@
-{ pkgs, lib, ... }:
-
 {
+  pkgs,
+  lib,
+  ...
+}: {
   # Enable AMD GPU drivers
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  services.xserver.videoDrivers = ["amdgpu"];
 
   # OpenCL tools
   hardware.graphics.extraPackages = with pkgs; [

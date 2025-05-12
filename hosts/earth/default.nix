@@ -1,4 +1,8 @@
-{ inputs, outputs, ... }: {
+{
+  inputs,
+  outputs,
+  ...
+}: {
   imports = [
     inputs.home-manager-stable.nixosModules.home-manager
     inputs.nur.modules.nixos.default
@@ -33,11 +37,11 @@
   # };
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
+    extraSpecialArgs = {inherit inputs outputs;};
     useUserPackages = true;
     useGlobalPkgs = false;
     backupFileExtension = "backup";
-    users.keanu.imports = [ ../../home/earth/keanu.nix ];
+    users.keanu.imports = [../../home/earth/keanu.nix];
   };
 
   system.stateVersion = "23.11";

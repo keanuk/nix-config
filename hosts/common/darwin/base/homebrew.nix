@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{...}: {
   homebrew = {
     enable = true;
     global.autoUpdate = true;
@@ -49,7 +47,7 @@
       # "homebrew/core"
       # "netbirdio/tap/netbird"
     ];
-    brews = [ ];
+    brews = [];
     casks = [
       "alacritty"
       "audacity"

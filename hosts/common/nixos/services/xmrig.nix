@@ -1,6 +1,4 @@
-{ config, ... }:
-
-{
+{config, ...}: {
   services.xmrig = {
     enable = true;
     settings = {
@@ -22,7 +20,7 @@
         #  pass = "x";
         #  keepalive = true;
         #  tls = true;
-        #}        
+        #}
       ];
     };
   };

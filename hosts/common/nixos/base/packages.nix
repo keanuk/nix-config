@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   programs = {
     fish.enable = true;
     zsh.enable = true;
@@ -29,10 +27,10 @@
 
   nixpkgs.config = {
     allowUnfree = true;
-    permittedInsecurePackages = [ ];
+    permittedInsecurePackages = [];
   };
 
-  environment.sessionVariables = { };
+  environment.sessionVariables = {};
 
   environment.systemPackages = with pkgs; [
     acpid

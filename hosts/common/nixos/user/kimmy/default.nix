@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   users.users.kimmy = {
     isNormalUser = true;
     uid = 1001;

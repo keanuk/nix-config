@@ -72,10 +72,12 @@
     charging_symbol = "";
     discharging_symbol = "";
     format = "[$symbol$percentage]($style) ";
-    display = [{
-      threshold = 10;
-      style = "red bold";
-    }];
+    display = [
+      {
+        threshold = 10;
+        style = "red bold";
+      }
+    ];
   };
 
   character = {

@@ -1,13 +1,11 @@
-{ ... }:
-
-{
+{...}: {
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
-      			function fish_greeting
-      				fastfetch
-      			end
-      		'';
+      function fish_greeting
+      	fastfetch
+      end
+    '';
     shellAliases = {
       cat = "bat";
       cd = "z";

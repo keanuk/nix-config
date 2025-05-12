@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   virtualisation = {
     containerd.enable = true;
     docker = {

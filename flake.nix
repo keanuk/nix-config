@@ -96,127 +96,125 @@
     nixarr.url = "github:rasmus-kirk/nixarr";
   };
 
-  outputs =
-    { self
-    , nixpkgs
-    , nixpkgs-stable
-    , systems
-    , darwin
-    , home-manager
-    , home-manager-stable
-    , ...
-    } @ inputs:
-    let
-      inherit (self) outputs;
-      lib = nixpkgs.lib // home-manager.lib // darwin.lib;
-      lib-stable = nixpkgs-stable.lib // home-manager-stable.lib;
-      forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
-      pkgsFor = lib.genAttrs (import systems) (
-        system:
+  outputs = {
+    self,
+    nixpkgs,
+    nixpkgs-stable,
+    systems,
+    darwin,
+    home-manager,
+    home-manager-stable,
+    ...
+  } @ inputs: let
+    inherit (self) outputs;
+    lib = nixpkgs.lib // home-manager.lib // darwin.lib;
+    lib-stable = nixpkgs-stable.lib // home-manager-stable.lib;
+    forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
+    pkgsFor = lib.genAttrs (import systems) (
+      system:
         import nixpkgs {
           inherit system;
           config.allowUnfree = true;
         }
-      );
-      secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/git/secrets.json");
-    in
-    {
-      inherit lib lib-stable;
-      nixosModules = import ./modules/nixos;
-      homeManagerModules = import ./modules/home-manager;
+    );
+    secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/git/secrets.json");
+  in {
+    inherit lib lib-stable;
+    nixosModules = import ./modules/nixos;
+    homeManagerModules = import ./modules/home-manager;
 
-      overlays = import ./overlays { inherit inputs outputs; };
-      hydraJobs = import ./hydra.nix { inherit inputs outputs; };
+    overlays = import ./overlays {inherit inputs outputs;};
+    hydraJobs = import ./hydra.nix {inherit inputs outputs;};
 
-      packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
-      devShells = forEachSystem (pkgs: import ./shells.nix { inherit pkgs; });
-      formatter = forEachSystem (pkgs: pkgs.nixpkgs-fmt);
+    packages = forEachSystem (pkgs: import ./pkgs {inherit pkgs;});
+    devShells = forEachSystem (pkgs: import ./shells.nix {inherit pkgs;});
+    formatter = forEachSystem (pkgs: pkgs.alejandra);
 
-      nixosConfigurations = {
-        # Intel NUC 10 i7
-        earth = lib-stable.nixosSystem {
-          specialArgs = { inherit inputs outputs secrets; };
-          modules = [ ./hosts/earth ];
-        };
-        # HP EliteBook 845 G8
-        hyperion = lib.nixosSystem {
-          specialArgs = { inherit inputs outputs secrets; };
-          modules = [ ./hosts/hyperion ];
-        };
-        # HP EliteBook 1030 G2
-        miranda = lib.nixosSystem {
-          specialArgs = { inherit inputs outputs secrets; };
-          modules = [ ./hosts/miranda ];
-        };
-        # ThinkPad P14s AMD Gen 5
-        phoebe = lib.nixosSystem {
-          specialArgs = { inherit inputs outputs secrets; };
-          modules = [ ./hosts/phoebe ];
-        };
-        # Zotac ZBox
-        tethys = lib.nixosSystem {
-          specialArgs = { inherit inputs outputs secrets; };
-          modules = [ ./hosts/tethys ];
-        };
-        # CyberPowerPC
-        titan = lib.nixosSystem {
-          specialArgs = { inherit inputs outputs secrets; };
-          modules = [ ./hosts/titan ];
-        };
+    nixosConfigurations = {
+      # Intel NUC 10 i7
+      earth = lib-stable.nixosSystem {
+        specialArgs = {inherit inputs outputs secrets;};
+        modules = [./hosts/earth];
       };
-      darwinConfigurations = {
-        # MacBook Pro 2020
-        vesta = lib.darwinSystem {
-          specialArgs = { inherit inputs outputs secrets; };
-          modules = [ ./hosts/vesta ];
-        };
-        # MacBook Air 2018
-        charon = lib.darwinSystem {
-          specialArgs = { inherit inputs outputs secrets; };
-          modules = [ ./hosts/charon ];
-        };
+      # HP EliteBook 845 G8
+      hyperion = lib.nixosSystem {
+        specialArgs = {inherit inputs outputs secrets;};
+        modules = [./hosts/hyperion];
       };
-      homeConfigurations = {
-        "keanu@charon" = lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs secrets; };
-          pkgs = pkgsFor.x86_64-darwin;
-          modules = [ ./home/charon/keanu.nix ];
-        };
-        "keanu@earth" = lib-stable.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs secrets; };
-          pkgs = pkgsFor.x86_64-linux;
-          modules = [ ./home/earth/keanu.nix ];
-        };
-        "keanu@hyperion" = lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs secrets; };
-          pkgs = pkgsFor.x86_64-linux;
-          modules = [ ./home/hyperion/keanu.nix ];
-        };
-        "keanu@miranda" = lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs secrets; };
-          pkgs = pkgsFor.x86_64-linux;
-          modules = [ ./home/miranda/keanu.nix ];
-        };
-        "keanu@phoebe" = lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs secrets; };
-          pkgs = pkgsFor.x86_64-linux;
-          modules = [ ./home/phoebe/keanu.nix ];
-        };
-        "keanu@tethys" = lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs secrets; };
-          pkgs = pkgsFor.x86_64-linux;
-          modules = [ ./home/tethys/keanu.nix ];
-        };
-        "keanu@titan" = lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs secrets; };
-          pkgs = pkgsFor.x86_64-linux;
-          modules = [ ./home/titan/keanu.nix ];
-        };
-        "keanu@vesta" = lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs secrets; };
-          pkgs = pkgsFor.x86_64-darwin;
-          modules = [ ./home/vesta/keanu.nix ];
-        };
+      # HP EliteBook 1030 G2
+      miranda = lib.nixosSystem {
+        specialArgs = {inherit inputs outputs secrets;};
+        modules = [./hosts/miranda];
+      };
+      # ThinkPad P14s AMD Gen 5
+      phoebe = lib.nixosSystem {
+        specialArgs = {inherit inputs outputs secrets;};
+        modules = [./hosts/phoebe];
+      };
+      # Zotac ZBox
+      tethys = lib.nixosSystem {
+        specialArgs = {inherit inputs outputs secrets;};
+        modules = [./hosts/tethys];
+      };
+      # CyberPowerPC
+      titan = lib.nixosSystem {
+        specialArgs = {inherit inputs outputs secrets;};
+        modules = [./hosts/titan];
       };
     };
+    darwinConfigurations = {
+      # MacBook Pro 2020
+      vesta = lib.darwinSystem {
+        specialArgs = {inherit inputs outputs secrets;};
+        modules = [./hosts/vesta];
+      };
+      # MacBook Air 2018
+      charon = lib.darwinSystem {
+        specialArgs = {inherit inputs outputs secrets;};
+        modules = [./hosts/charon];
+      };
+    };
+    homeConfigurations = {
+      "keanu@charon" = lib.homeManagerConfiguration {
+        extraSpecialArgs = {inherit inputs outputs secrets;};
+        pkgs = pkgsFor.x86_64-darwin;
+        modules = [./home/charon/keanu.nix];
+      };
+      "keanu@earth" = lib-stable.homeManagerConfiguration {
+        extraSpecialArgs = {inherit inputs outputs secrets;};
+        pkgs = pkgsFor.x86_64-linux;
+        modules = [./home/earth/keanu.nix];
+      };
+      "keanu@hyperion" = lib.homeManagerConfiguration {
+        extraSpecialArgs = {inherit inputs outputs secrets;};
+        pkgs = pkgsFor.x86_64-linux;
+        modules = [./home/hyperion/keanu.nix];
+      };
+      "keanu@miranda" = lib.homeManagerConfiguration {
+        extraSpecialArgs = {inherit inputs outputs secrets;};
+        pkgs = pkgsFor.x86_64-linux;
+        modules = [./home/miranda/keanu.nix];
+      };
+      "keanu@phoebe" = lib.homeManagerConfiguration {
+        extraSpecialArgs = {inherit inputs outputs secrets;};
+        pkgs = pkgsFor.x86_64-linux;
+        modules = [./home/phoebe/keanu.nix];
+      };
+      "keanu@tethys" = lib.homeManagerConfiguration {
+        extraSpecialArgs = {inherit inputs outputs secrets;};
+        pkgs = pkgsFor.x86_64-linux;
+        modules = [./home/tethys/keanu.nix];
+      };
+      "keanu@titan" = lib.homeManagerConfiguration {
+        extraSpecialArgs = {inherit inputs outputs secrets;};
+        pkgs = pkgsFor.x86_64-linux;
+        modules = [./home/titan/keanu.nix];
+      };
+      "keanu@vesta" = lib.homeManagerConfiguration {
+        extraSpecialArgs = {inherit inputs outputs secrets;};
+        pkgs = pkgsFor.x86_64-darwin;
+        modules = [./home/vesta/keanu.nix];
+      };
+    };
+  };
 }

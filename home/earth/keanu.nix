@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{...}: {
   imports = [
     ../common/base/default.nix
     ../common/base/home-manager.nix

@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   users.users.keanu = {
     name = "keanu";
     home = "/Users/keanu";

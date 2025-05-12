@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   fonts.packages = with pkgs; [
     cantarell-fonts
     fira-code

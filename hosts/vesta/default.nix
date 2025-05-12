@@ -1,4 +1,8 @@
-{ inputs, outputs, ... }: {
+{
+  inputs,
+  outputs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
 
@@ -11,11 +15,11 @@
   networking.hostName = "vesta";
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
+    extraSpecialArgs = {inherit inputs outputs;};
     useUserPackages = true;
     useGlobalPkgs = false;
     backupFileExtension = "backup";
-    users.keanu.imports = [ ../../home/vesta/keanu.nix ];
+    users.keanu.imports = [../../home/vesta/keanu.nix];
   };
 
   nixpkgs.hostPlatform = "x86_64-darwin";

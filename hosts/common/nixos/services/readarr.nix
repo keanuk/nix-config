@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   services.readarr = {
     enable = true;
     openFirewall = true;

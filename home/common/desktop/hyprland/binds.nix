@@ -1,44 +1,41 @@
-{ ... }:
-
-{
+{...}: {
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
     "$altMod" = "ALT";
     "$shiftMod" = "SHIFT";
 
-    bind = [
-      "$mod, RETURN, exec, alacritty"
-      "$mod, F, exec, fullscreen"
-      ", Print, exec, grimblast copy area"
-      "$mod, SPACE, exec, rofi -show drun"
-      "$altMod, SPACE, exec, rofi -show drun"
-      "$mod, TAB, exec, cyclenext"
-      "$altMod, TAB, exec, cyclenext"
-      "$mod, X, exec, togglefloating"
-      "$altMod, X, exec, togglefloating"
-      "$mod, Q, exec, killactive"
-      "$mod, W, exec, closewindow"
-      "$mod, L, exec, hyprlock"
-    ] ++ (
-      # workspaces
-      # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
-      builtins.concatLists (builtins.genList
-        (
-          x:
-          let
-            ws =
-              let
+    bind =
+      [
+        "$mod, RETURN, exec, alacritty"
+        "$mod, F, exec, fullscreen"
+        ", Print, exec, grimblast copy area"
+        "$mod, SPACE, exec, rofi -show drun"
+        "$altMod, SPACE, exec, rofi -show drun"
+        "$mod, TAB, exec, cyclenext"
+        "$altMod, TAB, exec, cyclenext"
+        "$mod, X, exec, togglefloating"
+        "$altMod, X, exec, togglefloating"
+        "$mod, Q, exec, killactive"
+        "$mod, W, exec, closewindow"
+        "$mod, L, exec, hyprlock"
+      ]
+      ++ (
+        # workspaces
+        # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
+        builtins.concatLists (builtins.genList
+          (
+            x: let
+              ws = let
                 c = (x + 1) / 10;
               in
-              builtins.toString (x + 1 - (c * 10));
-          in
-          [
-            "$mod, ${ws}, workspace, ${toString (x + 1)}"
-            "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
-          ]
-        )
-        10)
-    );
+                builtins.toString (x + 1 - (c * 10));
+            in [
+              "$mod, ${ws}, workspace, ${toString (x + 1)}"
+              "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+            ]
+          )
+          10)
+      );
 
     bindl = [
       # media control
@@ -61,4 +58,4 @@
       ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
     ];
   };
-} 
+}

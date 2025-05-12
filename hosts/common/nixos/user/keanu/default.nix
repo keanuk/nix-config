@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   users.users.keanu = {
     isNormalUser = true;
     uid = 1000;

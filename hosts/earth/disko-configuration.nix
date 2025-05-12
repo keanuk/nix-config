@@ -1,9 +1,6 @@
-{ inputs, ... }:
-
-let
-  defaultBtrfsOpts = [ "defaults" "compress=zstd" "ssd" "noatime" "nodiratime" ];
-in
-{
+{inputs, ...}: let
+  defaultBtrfsOpts = ["defaults" "compress=zstd" "ssd" "noatime" "nodiratime"];
+in {
   imports = [
     inputs.disko.nixosModules.disko
   ];
@@ -24,7 +21,7 @@ in
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = [ "defaults" ];
+                mountOptions = ["defaults"];
               };
             };
             root = {

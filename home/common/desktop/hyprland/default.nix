@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   imports = [
     ./binds.nix
     ./hypridle.nix
@@ -38,7 +36,7 @@
     xwayland.enable = true;
     systemd = {
       enable = true;
-      variables = [ "--all" ];
+      variables = ["--all"];
       extraCommands = [
         "systemctl --user stop graphical-session.target"
         "systemctl --user start hyprland-session.target"

@@ -1,4 +1,8 @@
-{ inputs, outputs, ... }: {
+{
+  inputs,
+  outputs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     ./disko-configuration.nix
@@ -19,11 +23,11 @@
   networking.hostName = "miranda";
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
+    extraSpecialArgs = {inherit inputs outputs;};
     useUserPackages = true;
     useGlobalPkgs = false;
     backupFileExtension = "backup";
-    users.keanu.imports = [ ../../home/miranda/keanu.nix ];
+    users.keanu.imports = [../../home/miranda/keanu.nix];
   };
 
   system.stateVersion = "25.05";

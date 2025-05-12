@@ -1,4 +1,9 @@
-{ inputs, outputs, lib, ... }: {
+{
+  inputs,
+  outputs,
+  lib,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
 
@@ -23,16 +28,15 @@
 
   networking.hostName = "hyperion";
 
-
   i18n.defaultLocale = lib.mkForce "en_US.UTF-8";
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
+    extraSpecialArgs = {inherit inputs outputs;};
     useUserPackages = true;
     useGlobalPkgs = false;
     backupFileExtension = "backup";
-    users.keanu.imports = [ ../../home/hyperion/keanu.nix ];
-    users.kimmy.imports = [ ../../home/hyperion/kimmy.nix ];
+    users.keanu.imports = [../../home/hyperion/keanu.nix];
+    users.kimmy.imports = [../../home/hyperion/kimmy.nix];
   };
 
   system.stateVersion = "23.05";

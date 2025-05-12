@@ -1,6 +1,8 @@
-{ pkgs, inputs, ... }:
-
 {
+  pkgs,
+  inputs,
+  ...
+}: {
   home.packages = with pkgs; [
     aichat
     alpaca
@@ -31,6 +33,8 @@
     gnome-builder
     gnome-disk-utility
     gnome-maps
+    gollama
+    gpt4all
     inkscape
     jellyfin-media-player
     jitsi
@@ -94,11 +98,9 @@
     flightgear
     heroic
     lutris
-    # TODO: re-enable when the build succeeds
-    # nanosaur
+    nanosaur
     nanosaur2
-    # TODO: re-enable when the build succeeds
-    # otto-matic
+    otto-matic
     shattered-pixel-dungeon
     superTux
     superTuxKart

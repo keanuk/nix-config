@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   services = {
     gnome-keyring.enable = true;
     pass-secret-service = {

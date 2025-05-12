@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   programs.evolution = {
     enable = true;
   };

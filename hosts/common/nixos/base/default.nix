@@ -1,6 +1,10 @@
-{ inputs, outputs, pkgs, lib, ... }:
-
 {
+  inputs,
+  outputs,
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     ./packages.nix
 
@@ -17,7 +21,7 @@
     loader.efi.canTouchEfiVariables = true;
     plymouth.enable = true;
     kernelPackages = pkgs.linuxPackages_latest;
-    kernelModules = [ "iptable_raw" ];
+    kernelModules = ["iptable_raw"];
   };
 
   system.autoUpgrade = {
@@ -39,7 +43,7 @@
   # workaround for https://github.com/NixOS/nixpkgs/issues/180175
   systemd.services.NetworkManager-wait-online = {
     serviceConfig = {
-      ExecStart = [ "" "${pkgs.networkmanager}/bin/nm-online -q" ];
+      ExecStart = ["" "${pkgs.networkmanager}/bin/nm-online -q"];
     };
   };
 
@@ -63,7 +67,7 @@
     settings = {
       auto-optimise-store = true;
       warn-dirty = false;
-      allowed-users = [ "@users" ];
+      allowed-users = ["@users"];
       experimental-features = [
         "nix-command"
         "flakes"
@@ -139,7 +143,7 @@
 
   networking = {
     firewall.enable = true;
-    firewall.trustedInterfaces = [ "wt0" ];
+    firewall.trustedInterfaces = ["wt0"];
     networkmanager.enable = true;
     nftables.enable = true;
   };

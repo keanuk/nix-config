@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   imports = [
     ./packages.nix
 
@@ -58,13 +56,13 @@
     systemPackages = with pkgs; [
       xorg.xbacklight
     ];
-    shells = with pkgs; [ bashInteractive fish nushell zsh ];
+    shells = with pkgs; [bashInteractive fish nushell zsh];
   };
 
   # Needed if not using GNOME
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
 }

@@ -1,6 +1,8 @@
-{ pkgs, lib, ... }:
-
 {
+  pkgs,
+  lib,
+  ...
+}: {
   programs.helix = {
     enable = true;
     package = pkgs.helix;
@@ -38,20 +40,20 @@
         true-color = true;
       };
       keys = {
-        insert = { };
+        insert = {};
         normal = {
           space.space = "file_picker";
         };
-        select = { };
+        select = {};
       };
     };
     languages = {
       language-server = {
         lsp-ai = {
           command = "lsp-ai";
-          args = [ "--use-seperate-log-file" ];
+          args = ["--use-seperate-log-file"];
           config = {
-            memory.file_store = { };
+            memory.file_store = {};
             models = {
               model1 = {
                 type = "ollama";
