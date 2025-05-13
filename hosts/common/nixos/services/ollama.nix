@@ -12,11 +12,11 @@
   services.ollama = {
     enable = true;
     package = pkgs.ollama;
+    port = 11434;
+    openFirewall = false;
     user = "ollama";
     group = "ollama";
     home = "/var/lib/ollama";
-    port = 11434;
-    openFirewall = false;
     loadModels = [
       "codestral"
       "deepseek-r1"
