@@ -31,7 +31,7 @@
   i18n = {
     defaultLocale = lib.mkForce "en_US.UTF-8";
     extraLocaleSettings = lib.mkForce {
-        LC_ALL = "en_US.UTF-8";
+      LC_ALL = "en_US.UTF-8";
     };
   };
 

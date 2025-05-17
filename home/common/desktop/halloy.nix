@@ -1,12 +1,12 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.halloy = {
     enable = true;
     package = pkgs.halloy;
     settings = {
-      "buffer.channel.topic" = {
+      buffer.channel.topic = {
         enabled = true;
       };
-      "servers.liberachat" = {
+      servers.liberachat = {
         channels = [
           "#halloy"
         ];
