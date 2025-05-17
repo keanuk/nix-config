@@ -5,6 +5,7 @@
     ./chromium.nix
     ./firefox.nix
     ./ghostty.nix
+    ./halloy.nix
     ./kitty.nix
     ./packages.nix
     ./thunderbird.nix

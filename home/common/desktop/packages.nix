@@ -35,7 +35,6 @@
     gnome-maps
     gollama
     gpt4all
-    halloy
     inkscape
     jellyfin-media-player
     jitsi
