@@ -40,13 +40,9 @@
       "WireGuard" = 1451685025;
       "Xcode" = 497799835;
     };
-    taps = [
-      # "homebrew/cask"
-      # "homebrew/core"
-    ];
+    taps = [];
     brews = [];
     casks = [
-      "alacritty"
       "audacity"
       "battle-net"
       "beeper"
@@ -76,7 +72,6 @@
       "iterm2@beta"
       "jetbrains-toolbox"
       "kdenlive"
-      "kitty"
       "kodi"
       "libreoffice"
       "logi-options+"
@@ -109,8 +104,6 @@
       "vlc"
       "vscodium"
       "wireshark"
-      "zed"
-      "zed@preview"
       "zen-browser"
       "zoom"
     ];

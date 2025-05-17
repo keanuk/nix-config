@@ -62,8 +62,19 @@
         };
         version = "2";
       };
-      ui_font_size = 20;
-      buffer_font_size = 20;
+      ui_font_size = 18;
+      buffer_font_size = 18;
+      terminal = {
+        button = true;
+        dock = "bottom";
+        font_family = null;
+        font_features = null;
+        font_size = null;
+        line_height = "comfortable";
+        shell = "fish";
+        toolbar.breadcrumbs = true;
+        working_directory = "current_project_directory";
+      };
       theme = {
         mode = "system";
         light = lib.mkForce "Catppuccin Latte";
