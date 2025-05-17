@@ -28,7 +28,12 @@
 
   networking.hostName = "hyperion";
 
-  i18n.defaultLocale = lib.mkForce "en_US.UTF-8";
+  i18n = {
+    defaultLocale = lib.mkForce "en_US.UTF-8";
+    extraLocaleSettings = lib.mkForce {
+        LC_ALL = "en_US.UTF-8";
+    };
+  };
 
   home-manager = {
     extraSpecialArgs = {inherit inputs outputs;};
