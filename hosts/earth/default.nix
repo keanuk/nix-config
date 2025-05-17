@@ -16,10 +16,13 @@
     ../common/nixos/user/keanu/default.nix
     ../common/nixos/user/keanu/data-groups.nix
 
+    # TODO: Finish setting up disabled services
     ../common/nixos/services/bazarr.nix
     ../common/nixos/services/flaresolverr.nix
+    # ../common/nixos/services/home-assistant.nix
     ../common/nixos/services/jellyfin.nix
     ../common/nixos/services/lidarr.nix
+    # ../common/nixos/services/nextcloud.nix
     # ../common/nixos/services/nixarr.nix
     ../common/nixos/services/prowlarr.nix
     ../common/nixos/services/plex.nix

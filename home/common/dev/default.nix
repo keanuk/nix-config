@@ -21,6 +21,7 @@
     gcc
     lsp-ai
     shellcheck
+    # TODO: re-enable when the build succeeds again
     # systemd-language-server
   ];
 }

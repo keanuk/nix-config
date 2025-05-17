@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./atuin.nix
+    ./bash.nix
     ./bat.nix
     ./bottom.nix
     ./broot.nix
