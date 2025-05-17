@@ -8,6 +8,7 @@
     ffmpeg
     fortune
     git-crypt
+    halloy
     just
     kind
     kubectl
