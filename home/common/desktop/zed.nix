@@ -71,7 +71,7 @@
         font_features = null;
         font_size = null;
         line_height = "comfortable";
-        shell = "fish";
+        shell.program = "fish";
         toolbar.breadcrumbs = true;
         working_directory = "current_project_directory";
       };
