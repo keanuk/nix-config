@@ -23,8 +23,6 @@
       "Messenger" = 1480068668;
       "NextDNS" = 1464122853;
       "Numbers" = 409203825;
-      "Okta Verify" = 490179405;
-      "Omnivore: Read-it-later" = 1564031042;
       "Pages" = 409201541;
       "Pixelmator Pro" = 1289583905;
       "Save to Pocket" = 1477385213;
@@ -45,7 +43,6 @@
     taps = [
       # "homebrew/cask"
       # "homebrew/core"
-      # "netbirdio/tap/netbird"
     ];
     brews = [];
     casks = [
@@ -84,8 +81,6 @@
       "libreoffice"
       "logi-options+"
       "microsoft-teams"
-      # "netbirdio/tap/netbird"
-      # "netbirdio/tap/netbird-ui"
       "nvidia-geforce-now"
       "obs"
       "ollama"
