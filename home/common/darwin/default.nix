@@ -5,6 +5,9 @@
     ../desktop/alacritty.nix
     ../desktop/halloy.nix
     ../desktop/kitty.nix
+    # ../desktop/ollama.nix
+    # ../desktop/thunderbird.nix
+    # ../desktop/vscode.nix
     ../desktop/zed.nix
 
     ../dev/default.nix
