@@ -5,6 +5,7 @@
 }: {
   home.packages = with pkgs; [
     aichat
+    aider-chat
     alpaca
     android-studio
     android-tools
@@ -14,11 +15,13 @@
     beeper
     bitwarden-desktop
     bottles
+    bruno
     calibre
     cameractrls
     caprine
     catppuccin
     darktable
+    dbeaver-bin
     discord
     element-desktop
     endeavour
@@ -28,14 +31,16 @@
     foliate
     fractal
     fragments
-    gimp
+    gimp3-with-plugins
     github-desktop
     gnome-builder
     gnome-disk-utility
     gnome-maps
     gollama
     gpt4all
+    handbrake
     inkscape
+    insomnia
     jellyfin-media-player
     jitsi
     joplin-desktop
@@ -56,6 +61,7 @@
     pitivi
     plex-desktop
     plexamp
+    pocket-casts
     polari
     proton-pass
     protonmail-desktop
@@ -82,7 +88,9 @@
     wl-clipboard
     xclip
     xournalpp
+    youtube-music
     zlib-ng
+    zoom-us
 
     androidStudioPackages.beta
     androidStudioPackages.dev
