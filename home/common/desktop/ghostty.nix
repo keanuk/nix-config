@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   programs.ghostty = {
     enable = true;
     enableBashIntegration = true;
@@ -9,7 +13,7 @@
     package = pkgs.ghostty;
     settings = {
       theme = "dark:catppuccin-mocha,light:catppuccin-latte";
-      font-size = 13;
+      font-size = lib.mkDefault 14;
       font-family = "FiraCode Nerd Font";
     };
   };

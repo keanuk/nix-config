@@ -62,12 +62,12 @@
         };
         version = "2";
       };
-      ui_font_size = 18;
-      buffer_font_size = 18;
+      ui_font_size = lib.mkDefault 14;
+      buffer_font_size = lib.mkDefault 14;
       terminal = {
         button = true;
         dock = "bottom";
-        font_family = null;
+        font_family = "FiraCode Nerd Font";
         font_features = null;
         font_size = null;
         line_height = "comfortable";
