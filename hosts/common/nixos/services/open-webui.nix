@@ -2,7 +2,7 @@
   services.open-webui = {
     enable = true;
     package = pkgs.open-webui;
-    openFirewall = false;
+    openFirewall = true;
     port = 11435;
   };
 }

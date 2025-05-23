@@ -4,11 +4,6 @@
   config,
   ...
 }: {
-  # TODO: re-enable when the build succeeds
-  # imports = [
-  #   ./open-webui.nix
-  # ];
-
   services.ollama = {
     enable = true;
     package = pkgs.ollama;
@@ -20,6 +15,7 @@
     loadModels = [
       "codestral"
       "deepseek-r1"
+      "devstral"
       "gemma3"
       "mistral"
       "mistral-small"

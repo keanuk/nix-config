@@ -16,7 +16,8 @@
 
     ../common/nixos/desktop/default.nix
     ../common/nixos/desktop/gnome.nix
-    # ../common/nixos/desktop/hyprland.nix
+
+    ../common/nixos/services/open-webui.nix
 
     ../common/nixos/user/keanu/default.nix
 

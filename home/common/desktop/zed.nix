@@ -58,7 +58,7 @@
       assistant = {
         default_model = {
           provider = "ollama";
-          model = "qwen3:latest";
+          model = "devstral:latest";
         };
         version = "2";
       };
