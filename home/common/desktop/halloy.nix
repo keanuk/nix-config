@@ -3,7 +3,6 @@
     enable = true;
     package = pkgs.halloy;
     settings = {
-      # theme = "{ light = \"ferra-light\", dark = \"ferra\" }";
       theme = {
         light = "ferra-light";
         dark = "ferra";
