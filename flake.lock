@@ -653,11 +653,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1747945641,
-        "narHash": "sha256-Ts16c+kptbC3YDwPcB/NqXFVMHPNYKeFD7LkiawbWCU=",
+        "lastModified": 1748002592,
+        "narHash": "sha256-8yic+bT/oCfZSh7XTPnZ/idLP2M/Xfns2HFXDntdwJo=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "46fd0b184cbc5f1bdc5a8325cb973fc54e49ab68",
+        "rev": "380aabb981a9307c3236cf43442e0ae3b2950698",
         "type": "github"
       },
       "original": {
