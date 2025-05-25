@@ -8,6 +8,7 @@
     typescript
     typescript-language-server
 
-    nodePackages_latest.svelte-check
+    # TODO: re-enable when the build succeeds
+    # nodePackages_latest.svelte-check
   ];
 }
