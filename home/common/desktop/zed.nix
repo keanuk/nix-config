@@ -49,7 +49,7 @@
     ];
     userSettings = {
       features = {
-        edit_prediction_provider = "none";
+        edit_prediction_provider = "copilot";
       };
       autosave = "on_focus_change";
       assistant.enabled = true;
