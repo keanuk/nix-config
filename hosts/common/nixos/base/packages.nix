@@ -37,26 +37,19 @@
     bcachefs-tools
     busybox
     cachix
-    fish
-    git
-    helix
-    home-manager
     hwdata
     iptables
     libsecret
     linux-wifi-hotspot
     lsof
-    nushell
     pciutils
     polkit
     psmisc
     sbctl
     smartmontools
     snapper
-    starship
     tpm2-tools
     tpm2-tss
-    transmission_4
     usbutils
     util-linux
     wireguard-tools
