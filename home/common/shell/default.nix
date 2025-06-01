@@ -17,7 +17,7 @@
     ./micro.nix
     ./ripgrep.nix
     ./starship.nix
-    ./thefuck.nix
+    ./pay-respects.nix
     ./yazi.nix
     ./yt-dlp.nix
     ./zellij.nix
