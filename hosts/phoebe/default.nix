@@ -8,6 +8,7 @@
     ./hardware-configuration.nix
     ./disko-configuration.nix
 
+    inputs.determinate.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
     inputs.nur.modules.nixos.default
 

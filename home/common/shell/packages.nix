@@ -5,6 +5,7 @@
     cpufetch
     fastfetch
     ffmpeg
+    fh
     fortune
     git-crypt
     just

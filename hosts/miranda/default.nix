@@ -7,6 +7,7 @@
     ./hardware-configuration.nix
     ./disko-configuration.nix
 
+    inputs.determinate.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
     inputs.nur.modules.nixos.default
 
@@ -15,7 +16,7 @@
 
     ../common/nixos/desktop/default.nix
     ../common/nixos/desktop/cosmic.nix
-    # ../common/nixos/desktop/hyprland.nix
+    ../common/nixos/desktop/hyprland.nix
 
     ../common/nixos/user/keanu/default.nix
   ];

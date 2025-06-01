@@ -6,8 +6,10 @@
   imports = [
     ./hardware-configuration.nix
 
+    inputs.determinate.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
     inputs.nur.modules.nixos.default
+
     ../common/nixos/base/fs.nix
     ../common/nixos/base/default.nix
     ../common/nixos/base/systemd-boot.nix

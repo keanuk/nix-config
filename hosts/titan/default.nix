@@ -7,6 +7,7 @@
   imports = [
     ./hardware-configuration.nix
 
+    inputs.determinate.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
     inputs.nur.modules.nixos.default
 
