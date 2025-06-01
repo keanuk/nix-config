@@ -1,11 +1,17 @@
-{...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   programs.starship = {
     enable = true;
+    package = pkgs.starship;
+    enableTransience = true;
+    enableInteractive = true;
     enableBashIntegration = true;
     enableFishIntegration = true;
     enableNushellIntegration = true;
     enableZshIntegration = true;
-    enableTransience = true;
-    settings = import ../theme/starship.nix;
+    settings = lib.importTOML ../theme/starship.toml;
   };
 }

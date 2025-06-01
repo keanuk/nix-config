@@ -16,7 +16,7 @@
     ../common/nixos/base/lanzaboote.nix
 
     ../common/nixos/desktop/default.nix
-    ../common/nixos/desktop/gnome.nix
+    ../common/nixos/desktop/cosmic.nix
 
     ../common/nixos/services/open-webui.nix
 

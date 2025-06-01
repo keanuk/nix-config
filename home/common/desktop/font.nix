@@ -1,13 +1,9 @@
-{pkgs, ...}: {
-  fontProfiles = {
+{...}: {
+  fonts.fontconfig = {
     enable = true;
-    monospace = {
-      family = "FiraCode Nerd Font";
-      package = pkgs.nerdfonts.override {fonts = ["FiraCode"];};
-    };
-    regular = {
-      family = "Fira Sans";
-      package = pkgs.fira;
-    };
+    defaultFonts.sansSerif = ["Roboto"];
+    defaultFonts.serif = ["Roboto Slab"];
+    defaultFonts.monospace = ["Roboto Mono"];
+    defaultFonts.emoji = ["Noto Color Emoji"];
   };
 }

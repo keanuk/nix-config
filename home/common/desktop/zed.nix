@@ -55,6 +55,7 @@
       assistant.enabled = true;
       restore_on_startup = "last_session";
       tab_size = 2;
+      vim_mode = true;
       assistant = {
         default_model = {
           provider = "ollama";
@@ -67,10 +68,10 @@
       terminal = {
         button = true;
         dock = "bottom";
-        font_family = "FiraCode Nerd Font";
+        font_family = "RobotoMono Nerd Font";
         font_features = null;
         font_size = null;
-        line_height = "comfortable";
+        line_height = "standard";
         shell.program = "fish";
         toolbar.breadcrumbs = true;
         working_directory = "current_project_directory";

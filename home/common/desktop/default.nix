@@ -4,6 +4,7 @@
     ./amberol.nix
     ./chromium.nix
     ./firefox.nix
+    ./font.nix
     ./ghostty.nix
     ./halloy.nix
     ./kitty.nix
