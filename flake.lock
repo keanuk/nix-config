@@ -662,6 +662,22 @@
         "type": "github"
       }
     },
+    "nixos-hardware-keanu": {
+      "locked": {
+        "lastModified": 1748775903,
+        "narHash": "sha256-3XWkHwE0hUGjg0CWsMMAQfBfYWnLJaQgkDEsuxQyoRE=",
+        "owner": "keanuk",
+        "repo": "nixos-hardware",
+        "rev": "e9dcc95a38974bcc05718a08a3a1c1629b0b35c3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "keanuk",
+        "ref": "lenovo-thinkpad-p14s-amd-gen5",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1744463964,
@@ -865,11 +881,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1748773608,
-        "narHash": "sha256-n8mJr+GaUgxusGfdq5LM9pcA9NT5NQH2CqWIy5X0UrA=",
+        "lastModified": 1748774976,
+        "narHash": "sha256-CsvrhnicH7ylxkIw+9rmRkGxIsDJpf2Rp3ak0MT76rY=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "47d3c41fec4b799bf8fed559bcda2c02e2c9353d",
+        "rev": "c8bbbd0e989a7ba644859534d4a3825eb793137c",
         "type": "github"
       },
       "original": {
@@ -943,6 +959,7 @@
         "nix-gl": "nix-gl",
         "nixarr": "nixarr",
         "nixos-hardware": "nixos-hardware",
+        "nixos-hardware-keanu": "nixos-hardware-keanu",
         "nixpkgs": "nixpkgs_5",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixvim": "nixvim",

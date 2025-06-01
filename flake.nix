@@ -24,6 +24,8 @@
     systems.url = "github:nix-systems/default";
     impermanence.url = "github:nix-community/impermanence";
 
+    nixos-hardware-keanu.url = "github:keanuk/nixos-hardware/lenovo-thinkpad-p14s-amd-gen5";
+
     darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -98,7 +100,6 @@
     darwin,
     home-manager,
     home-manager-stable,
-    determinate,
     ...
   } @ inputs: let
     inherit (self) outputs;

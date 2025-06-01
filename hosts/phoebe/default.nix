@@ -10,6 +10,7 @@
 
     inputs.determinate.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
+    inputs.nixos-hardware-keanu.nixosModules.lenovo-thinkpad-p14s-amd-gen5
     inputs.nur.modules.nixos.default
 
     ../common/nixos/base/amd.nix
