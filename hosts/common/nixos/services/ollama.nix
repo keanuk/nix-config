@@ -19,6 +19,7 @@
       "gemma3"
       "mistral"
       "mistral-small"
+      "qwen2.5-coder"
       "qwen3"
     ];
   };

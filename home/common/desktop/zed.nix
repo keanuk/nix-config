@@ -59,7 +59,7 @@
       assistant = {
         default_model = {
           provider = "ollama";
-          model = "devstral:latest";
+          model = "qwen3:latest";
         };
         version = "2";
       };
