@@ -16,7 +16,7 @@
     nodePackages_latest.nodejs
     # TODO: enable when the build succeeds
     # nodePackages_latest.postcss
-    nodePackages.prettier
+    # nodePackages.prettier
     nodePackages_latest.svelte-check
   ];
 }

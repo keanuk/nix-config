@@ -53,6 +53,7 @@
     libreoffice
     librewolf
     lmstudio
+    logseq
     lollypop
     netbird-dashboard
     netbird-ui
