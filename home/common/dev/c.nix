@@ -3,6 +3,6 @@
     clang-tools
     cmake
     cmake-language-server
-    # lldb
+    lldb
   ];
 }

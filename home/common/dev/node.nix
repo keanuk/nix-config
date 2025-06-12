@@ -14,9 +14,7 @@
     typescript-language-server
 
     nodePackages_latest.nodejs
-    # TODO: enable when the build succeeds
-    # nodePackages_latest.postcss
-    # nodePackages.prettier
+    nodePackages_latest.postcss
     nodePackages_latest.svelte-check
   ];
 }

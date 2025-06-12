@@ -17,6 +17,7 @@
       "deepseek-r1"
       "devstral"
       "gemma3"
+      "magistral"
       "mistral"
       "mistral-small"
       "qwen2.5-coder"
