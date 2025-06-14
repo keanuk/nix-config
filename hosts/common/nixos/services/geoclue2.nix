@@ -6,7 +6,8 @@
   services.geoclue2 = {
     enable = true;
     package = pkgs.geoclue2;
-    geoProviderUrl = "https://www.googleapis.com/geolocation/v1/geolocate?key=${secrets.google_maps.token}";
+    # geoProviderUrl = "https://www.googleapis.com/geolocation/v1/geolocate?key=${secrets.google_maps.token}";
+    geoProviderUrl = "https://api.beacondb.net/v1/geolocate";
   };
 
   location.provider = "geoclue2";
