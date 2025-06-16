@@ -13,7 +13,7 @@
     ../services/tailscale.nix
     ../services/virtualization.nix
 
-    ../../programs/nh.nix
+    ../programs/nh.nix
   ];
 
   boot = {

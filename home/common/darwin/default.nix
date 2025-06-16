@@ -11,6 +11,8 @@
     ../desktop/vscode.nix
     ../desktop/zed.nix
 
+    ../shell/nh.nix
+
     ../dev/default.nix
   ];
 }
