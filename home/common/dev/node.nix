@@ -12,9 +12,5 @@
     tailwindcss-language-server
     typescript
     typescript-language-server
-
-    nodePackages_latest.nodejs
-    nodePackages_latest.postcss
-    nodePackages_latest.svelte-check
   ];
 }

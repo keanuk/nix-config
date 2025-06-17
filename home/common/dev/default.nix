@@ -21,6 +21,5 @@
     gcc
     lsp-ai
     shellcheck
-    systemd-language-server
   ];
 }

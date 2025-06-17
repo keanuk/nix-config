@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  lib,
+  ...
+}: {
   imports = [
     inputs.catppuccin.homeModules.catppuccin
 
@@ -16,4 +20,6 @@
 
   catppuccin.enable = true;
   catppuccin.flavor = "mocha";
+
+  programs.nh.flake = lib.mkForce "/Users/keanu/.config/nix-config";
 }
