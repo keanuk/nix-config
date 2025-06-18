@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{...}: {
   imports = [
     ./atuin.nix
     ./bash.nix
@@ -10,7 +10,7 @@
     ./eza.nix
     ./fd.nix
     ./fish.nix
-    ./fzf.nix
+    ./skim.nix
     ./gh.nix
     ./git.nix
     ./helix.nix
@@ -23,8 +23,4 @@
     ./zellij.nix
     ./zoxide.nix
   ];
-
-  home.sessionVariables = {
-    PKG_CONFIG_PATH = "${pkgs.libxkbcommon.dev}/lib/pkgconfig";
-  };
 }

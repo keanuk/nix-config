@@ -3,6 +3,7 @@
   cd = "z";
   cleanup = "nix-store --gc";
   find = "fd";
+  fzf = "sk";
   grep = "rg";
   ll = "eza -l";
   ls = "eza";
