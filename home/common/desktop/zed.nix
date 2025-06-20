@@ -56,6 +56,10 @@
       restore_on_startup = "last_session";
       tab_size = 2;
       vim_mode = true;
+      vim = {
+        default_mode = "helix_normal";
+        toggle_relative_line_numbers = true;
+      };
       assistant = {
         default_model = {
           provider = "ollama";
