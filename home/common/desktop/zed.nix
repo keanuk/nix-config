@@ -48,24 +48,13 @@
       "zig"
     ];
     userSettings = {
-      features = {
-        edit_prediction_provider = "copilot";
-      };
       autosave = "on_focus_change";
-      assistant.enabled = true;
       restore_on_startup = "last_session";
       tab_size = 2;
       vim_mode = true;
       vim = {
         default_mode = "helix_normal";
         toggle_relative_line_numbers = true;
-      };
-      assistant = {
-        default_model = {
-          provider = "ollama";
-          model = "qwen3:latest";
-        };
-        version = "2";
       };
       ui_font_size = lib.mkDefault 14;
       buffer_font_size = lib.mkDefault 14;
@@ -103,6 +92,17 @@
         nix.binary.path_lookup = true;
         rust-analyzer.binary.path_lookup = true;
         zls.binary.path_lookup = true;
+      };
+      features = {
+        edit_prediction_provider = "copilot";
+      };
+      assistant = {
+        enabled = true;
+        default_model = {
+          provider = "ollama";
+          model = "qwen3:latest";
+        };
+        version = "2";
       };
     };
   };
