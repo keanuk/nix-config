@@ -104,6 +104,14 @@
         };
         version = "2";
       };
+      agent = {
+        enabled = true;
+        button = true;
+        default_model = {
+          provider = "ollama";
+          model = "qwen3:latest";
+        };
+      };
     };
   };
 }
