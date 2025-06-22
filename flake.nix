@@ -157,6 +157,11 @@
       };
     };
     darwinConfigurations = {
+      # Mac Mini 2024
+      salacia = lib.darwinSystem {
+        specialArgs = {inherit inputs outputs secrets;};
+        modules = [./hosts/salacia];
+      };
       # MacBook Pro 2020
       vesta = lib.darwinSystem {
         specialArgs = {inherit inputs outputs secrets;};
@@ -193,6 +198,11 @@
         extraSpecialArgs = {inherit inputs outputs secrets;};
         pkgs = pkgsFor.x86_64-linux;
         modules = [./home/phoebe/keanu.nix];
+      };
+      "keanu@salacia" = lib.homeManagerConfiguration {
+        extraSpecialArgs = {inherit inputs outputs secrets;};
+        pkgs = pkgsFor.aarch64-darwin;
+        modules = [./home/salacia/keanu.nix];
       };
       "keanu@tethys" = lib.homeManagerConfiguration {
         extraSpecialArgs = {inherit inputs outputs secrets;};

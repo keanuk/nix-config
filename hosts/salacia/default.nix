@@ -12,15 +12,15 @@
     ../common/darwin/user/keanu/default.nix
   ];
 
-  networking.hostName = "vesta";
+  networking.hostName = "salacia";
 
   home-manager = {
     extraSpecialArgs = {inherit inputs outputs;};
     useUserPackages = true;
     useGlobalPkgs = false;
     backupFileExtension = "backup";
-    users.keanu.imports = [../../home/vesta/keanu.nix];
+    users.keanu.imports = [../../home/salacia/keanu.nix];
   };
 
-  system.stateVersion = 4;
+  system.stateVersion = 6;
 }
