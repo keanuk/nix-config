@@ -60,7 +60,8 @@
     nextcloud-client
     obs-studio
     pitivi
-    plex-desktop
+    # TODO: re-enable when the build succeeds
+    # plex-desktop
     plexamp
     pocket-casts
     polari
