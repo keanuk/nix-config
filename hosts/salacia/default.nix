@@ -14,6 +14,8 @@
 
   networking.hostName = "salacia";
 
+  homebrew.caskArgs.appdir = "/Volumes/SALACIA-EXT/Applications";
+
   home-manager = {
     extraSpecialArgs = {inherit inputs outputs;};
     useUserPackages = true;

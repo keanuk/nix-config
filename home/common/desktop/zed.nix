@@ -99,8 +99,8 @@
       assistant = {
         enabled = true;
         default_model = {
-          provider = "ollama";
-          model = "qwen3:latest";
+          provider = "copilot";
+          model = "Gpt4o";
         };
         version = "2";
       };
@@ -108,8 +108,8 @@
         enabled = true;
         button = true;
         default_model = {
-          provider = "ollama";
-          model = "qwen3:latest";
+          provider = "copilot";
+          model = "Claude3_7Sonnet";
         };
       };
     };
