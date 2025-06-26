@@ -17,7 +17,8 @@
     aider-chat
     awk-language-server
     bash-language-server
-    devenv
+    # TODO: re-enable when build succeeds
+    # devenv
     gcc
     lsp-ai
     shellcheck

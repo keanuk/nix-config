@@ -10,8 +10,6 @@
 
   environment.systemPackages = with pkgs; [
     cachix
-    docker
-    docker-compose
     home-manager
     hwdata
     lsof

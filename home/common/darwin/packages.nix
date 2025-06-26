@@ -4,18 +4,12 @@
     aider-chat
     age
     android-tools
-    audacity
-    bruno
     cmake
     cpufetch
-    darktable
-    dbeaver-bin
     fastfetch
     ffmpeg
     fortune
     git-crypt
-    insomnia
-    iterm2
     just
     kind
     kubectl
@@ -24,23 +18,16 @@
     leetgo
     nix-index
     nmap
+    ollama
     onefetch
     ripgrep
-    signal-desktop-bin
     sops
     ssh-to-age
-    stats
-    teams
     tlrc
-    transmission_4
     tree
     typst
-    vlc-bin
     wget
-    wireshark
-    youtube-music
     yt-dlp
     zlib-ng
-    zoom-us
   ];
 }

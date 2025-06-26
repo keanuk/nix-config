@@ -7,9 +7,6 @@
     enable = true;
     package = pkgs.zed-editor;
     installRemoteServer = true;
-    extraPackages = with pkgs; [
-      lsp-ai
-    ];
     extensions = [
       "asciidoc"
       "basher"
@@ -96,13 +93,14 @@
       features = {
         edit_prediction_provider = "copilot";
       };
-      assistant = {
-        enabled = true;
-        version = "2";
-      };
       agent = {
         enabled = true;
         button = true;
+        version = "2";
+        default_model = {
+          provider = "copilot_chat";
+          model = "gpt-4o";
+        };
       };
     };
   };

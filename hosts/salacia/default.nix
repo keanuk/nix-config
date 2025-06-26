@@ -9,6 +9,8 @@
     inputs.home-manager.darwinModules.home-manager
 
     ../common/darwin/base/default.nix
+    ../common/darwin/base/homebrew-aarch.nix
+
     ../common/darwin/user/keanu/default.nix
   ];
 
