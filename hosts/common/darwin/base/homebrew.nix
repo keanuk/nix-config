@@ -15,7 +15,6 @@
       "Apple Developer" = 640199958;
       "Bitwarden" = 1352778147;
       "Dark Reader for Safari" = 1438243180;
-      "Fakespot for Safari®" = 1592541616;
       "GarageBand" = 682658836;
       "iMovie" = 408981434;
       "Kagi for Safari" = 1622835804;
@@ -25,7 +24,6 @@
       "Numbers" = 409203825;
       "Pages" = 409201541;
       "Pixelmator Pro" = 1289583905;
-      "Save to Pocket" = 1477385213;
       "Save to Reader" = 1640236961;
       "Shazam: Identify Songs" = 897118787;
       "Slack for Desktop" = 803453959;
@@ -49,7 +47,7 @@
       "chromium"
       "deepl"
       "discord"
-      "docker"
+      "docker-desktop"
       "ea"
       "element"
       "ente"
@@ -60,7 +58,7 @@
       "github@beta"
       "gog-galaxy"
       "google-drive"
-      "handbrake"
+      "handbrake-app"
       "kdenlive"
       "kodi"
       "libreoffice"
@@ -81,7 +79,7 @@
       "standard-notes"
       "steam"
       "virtualbox"
-      "zen-browser"
+      "zen"
     ];
   };
 }

@@ -98,19 +98,11 @@
       };
       assistant = {
         enabled = true;
-        default_model = {
-          provider = "copilot";
-          model = "Gpt4o";
-        };
         version = "2";
       };
       agent = {
         enabled = true;
         button = true;
-        default_model = {
-          provider = "copilot";
-          model = "Claude3_7Sonnet";
-        };
       };
     };
   };
