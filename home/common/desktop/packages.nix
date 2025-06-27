@@ -116,5 +116,6 @@
     superTuxKart
     wesnoth
     xonotic
+    zeroad
   ];
 }

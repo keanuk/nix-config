@@ -105,6 +105,7 @@
       "zen"
 
       # Games
+      "0-ad"
       "bugdom"
       "bugdom2"
       "cro-mag-rally"
@@ -112,7 +113,9 @@
       "nanosaur2"
       "otto-matic"
       "shattered-pixel-dungeon"
+      "superTuxKart"
       "the-battle-for-wesnoth"
+      "xonotic"
     ];
   };
 }
