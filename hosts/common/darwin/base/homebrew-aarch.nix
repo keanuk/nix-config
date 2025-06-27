@@ -1,7 +1,7 @@
 {...}: {
   homebrew = {
     casks = [
-      "lm-studio"  
+      "lm-studio"
     ];
   };
 }

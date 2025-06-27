@@ -82,7 +82,7 @@
       "podman-desktop"
       {
         name = "proton-drive";
-        args = { appdir = "/Applications"; };
+        args = {appdir = "/Applications";};
       }
       "proton-mail"
       "proton-pass"
@@ -103,6 +103,16 @@
       "ytmdesktop-youtube-music"
       "zed"
       "zen"
+
+      # Games
+      "bugdom"
+      "bugdom2"
+      "cro-mag-rally"
+      "nanosaur"
+      "nanosaur2"
+      "otto-matic"
+      "shattered-pixel-dungeon"
+      "the-battle-for-wesnoth"
     ];
   };
 }
