@@ -16,6 +16,7 @@
     libnatpmp
     leetcode-cli
     leetgo
+    mas
     nix-index
     nmap
     ollama

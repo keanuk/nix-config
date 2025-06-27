@@ -95,12 +95,12 @@
       "steam"
       "thunderbird"
       "thunderbird@beta"
+      "th-ch/youtube-music/youtube-music"
       "transmission"
       "virtualbox"
       "visual-studio-code"
       "visual-studio-code@insiders"
       "vlc"
-      "ytmdesktop-youtube-music"
       "zed"
       "zen"
 
