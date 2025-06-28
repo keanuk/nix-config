@@ -38,7 +38,9 @@
       "WireGuard" = 1451685025;
       "Xcode" = 497799835;
     };
-    taps = [];
+    taps = [
+      "th-ch/youtube-music"
+    ];
     brews = [];
     casks = [
       "alacritty"
@@ -80,6 +82,7 @@
       "kodi"
       "libreoffice"
       "logi-options+"
+      "logseq"
       "nvidia-geforce-now"
       "obs"
       "ollamac"
@@ -106,12 +109,12 @@
       "steam"
       "thunderbird"
       "thunderbird@beta"
-      "th-ch/youtube-music/youtube-music"
       "transmission"
       "virtualbox"
       "visual-studio-code"
       "visual-studio-code@insiders"
       "vlc"
+      "youtube-music"
       {
         name = "zed";
         args = {appdir = "/Applications";};
