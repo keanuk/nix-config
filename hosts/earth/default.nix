@@ -27,7 +27,6 @@
     ../common/nixos/services/prowlarr.nix
     ../common/nixos/services/plex.nix
     ../common/nixos/services/radarr.nix
-    ../common/nixos/services/readarr.nix
     ../common/nixos/services/sonarr.nix
     # ../common/nixos/services/transmission.nix
   ];
