@@ -12,5 +12,7 @@
     tailwindcss-language-server
     typescript
     typescript-language-server
+
+    nodePackages.nodejs
   ];
 }
