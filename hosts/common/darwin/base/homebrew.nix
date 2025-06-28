@@ -60,7 +60,10 @@
       "epic-games"
       "firefox"
       "firefox@developer-edition"
-      "ghostty"
+      {
+        name = "ghostty";
+        args = {appdir = "/Applications";};
+      }
       "gimp"
       "github@beta"
       "gog-galaxy"
@@ -80,7 +83,10 @@
       "nvidia-geforce-now"
       "obs"
       "ollamac"
-      "orion"
+      {
+        name = "orion";
+        args = {appdir = "/Applications";};
+      }
       "plex"
       "pocket-casts"
       "podman-desktop"
@@ -105,8 +111,14 @@
       "visual-studio-code"
       "visual-studio-code@insiders"
       "vlc"
-      "zed"
-      "zen"
+      {
+        name = "zed";
+        args = {appdir = "/Applications";};
+      }
+      {
+        name = "zen";
+        args = {appdir = "/Applications";};
+      }
 
       # Games
       "0-ad"
