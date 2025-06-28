@@ -70,7 +70,7 @@
     protonmail-bridge-gui
     protonvpn-gui
     rawtherapee
-    remmina
+    rustdesk-flutter
     session-desktop
     shortwave
     shotwell

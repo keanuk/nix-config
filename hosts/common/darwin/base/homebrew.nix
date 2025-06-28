@@ -99,6 +99,7 @@
       "proton-mail-bridge"
       "protonvpn"
       "reader"
+      "rustdesk"
       "signal"
       "standard-notes"
       "stats"
