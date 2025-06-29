@@ -1,7 +1,10 @@
 {...}: {
   homebrew = {
     casks = [
-      "lm-studio"
+      {
+        name = "lm-studio";
+        args = {appdir = "/Applications";};
+      }
     ];
   };
 }
