@@ -25,7 +25,6 @@
     kind
     kubernetes
     podman-compose
-    podman-desktop
     podman-tui
   ];
 }

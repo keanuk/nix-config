@@ -63,6 +63,7 @@
     plex-desktop
     plexamp
     pocket-casts
+    podman-desktop
     polari
     proton-pass
     protonmail-desktop

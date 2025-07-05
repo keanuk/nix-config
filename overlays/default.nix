@@ -7,6 +7,10 @@
     unstable = import inputs.nixpkgs {
       system = final.system;
       config.allowUnfree = true;
+      # TODO: Remove when podman-desktop no longer depends on this
+      permittedInsecurePackages = [
+        "electron-34.5.8"
+      ];
     };
   };
 
