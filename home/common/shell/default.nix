@@ -10,12 +10,13 @@
     ./eza.nix
     ./fd.nix
     ./fish.nix
-    ./skim.nix
     ./gh.nix
     ./git.nix
     ./helix.nix
+    ./lazygit.nix
     ./micro.nix
     ./ripgrep.nix
+    ./skim.nix
     ./starship.nix
     ./pay-respects.nix
     ./yazi.nix
