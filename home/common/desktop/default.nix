@@ -8,6 +8,7 @@
     ./ghostty.nix
     ./halloy.nix
     ./kitty.nix
+    ./lazygit.nix
     ./packages.nix
     ./thunderbird.nix
     ./vscode.nix
