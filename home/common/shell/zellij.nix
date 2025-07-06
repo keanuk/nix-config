@@ -6,7 +6,7 @@
     enableZshIntegration = false;
     enableFishIntegration = true;
     attachExistingSession = true;
-    exitOnShellExit = true;
+    exitShellOnExit = true;
     settings = {
       default_shell = "fish";
       mouse_mode = true;
