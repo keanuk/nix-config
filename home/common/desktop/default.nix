@@ -9,6 +9,7 @@
     ./halloy.nix
     ./kitty.nix
     ./packages.nix
+    ./ptyxis.nix
     ./thunderbird.nix
     ./vscode.nix
     ./zed.nix

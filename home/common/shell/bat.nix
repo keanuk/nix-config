@@ -1,15 +1,14 @@
 {
   lib,
   pkgs,
-  config,
   ...
 }: {
   programs.bat = {
     enable = true;
+    package = pkgs.bat;
     config = {
       theme = lib.mkDefault "Catppuccin Mocha";
     };
-    package = pkgs.bat;
     extraPackages = with pkgs.bat-extras; [
       batdiff
       batgrep

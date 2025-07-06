@@ -8,6 +8,7 @@
     ./carapace.nix
     ./direnv.nix
     ./eza.nix
+    ./fastfetch.nix
     ./fd.nix
     ./fish.nix
     ./gh.nix

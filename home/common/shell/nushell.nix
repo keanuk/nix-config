@@ -1,6 +1,7 @@
-{...}: {
+{pkgs, ...}: {
   programs.nushell = {
     enable = true;
+    package = pkgs.nushell;
     shellAliases = import ./config/aliases.nix;
     configFile = {
       text = ''

@@ -1,6 +1,11 @@
-{lib, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   programs.micro = {
     enable = true;
+    package = pkgs.micro;
     settings = {
       autosu = true;
       colorscheme = lib.mkDefault "simple";

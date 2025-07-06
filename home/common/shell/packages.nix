@@ -3,7 +3,6 @@
     age
     bitwarden-cli
     cpufetch
-    fastfetch
     ffmpeg
     fh
     fortune
@@ -14,12 +13,10 @@
     nmap
     onefetch
     ramfetch
-    ripgrep
     sops
     ssh-to-age
     tlrc
     tree
     wget
-    yt-dlp
   ];
 }
