@@ -1,11 +1,12 @@
 {pkgs, ...}: {
   programs.atuin = {
     enable = true;
+    package = pkgs.atuin;
     enableBashIntegration = true;
     enableFishIntegration = true;
     enableNushellIntegration = true;
     enableZshIntegration = true;
-    package = pkgs.atuin;
+    daemon.enable = true;
     settings = {
       style = "auto";
     };
