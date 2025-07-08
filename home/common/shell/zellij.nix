@@ -9,7 +9,7 @@
     enableBashIntegration = false;
     enableZshIntegration = false;
     enableFishIntegration = true;
-    attachExistingSession = true;
+    attachExistingSession = false;
     exitShellOnExit = true;
     settings = {
       default_shell = "fish";
