@@ -3,7 +3,7 @@
     enable = true;
     defaultFonts.sansSerif = ["Roboto"];
     defaultFonts.serif = ["Roboto Slab"];
-    defaultFonts.monospace = ["Roboto Mono"];
+    defaultFonts.monospace = ["RobotoMono Nerd Font"];
     defaultFonts.emoji = ["Noto Color Emoji"];
   };
 }
