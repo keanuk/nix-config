@@ -2,6 +2,7 @@
   home.packages = with pkgs; [
     age
     bitwarden-cli
+    circumflex
     cpufetch
     ffmpeg
     fh
