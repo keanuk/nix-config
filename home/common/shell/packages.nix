@@ -1,7 +1,8 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     age
-    bitwarden-cli
+    # TODO: uncomment when issue is resolved: https://github.com/bitwarden/clients/issues/15000
+    # bitwarden-cli
     circumflex
     cpufetch
     ffmpeg
@@ -13,7 +14,6 @@
     nix-index
     nmap
     onefetch
-    ramfetch
     sops
     ssh-to-age
     tlrc

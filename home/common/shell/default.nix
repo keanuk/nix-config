@@ -16,6 +16,7 @@
     ./helix.nix
     ./lazygit.nix
     ./micro.nix
+    ./packages.nix
     ./ripgrep.nix
     ./skim.nix
     ./starship.nix

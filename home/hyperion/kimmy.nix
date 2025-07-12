@@ -5,8 +5,6 @@
 
     ../common/desktop/default.nix
     ../common/desktop/gnome.nix
-
-    ../common/shell/packages.nix
   ];
 
   home = {

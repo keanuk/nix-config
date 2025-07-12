@@ -2,32 +2,14 @@
   home.packages = with pkgs; [
     aichat
     aider-chat
-    age
     android-tools
     cmake
-    cpufetch
-    fastfetch
-    ffmpeg
-    fortune
-    git-crypt
-    just
     kind
     kubectl
-    libnatpmp
     leetcode-cli
     leetgo
     mas
-    nix-index
-    nmap
-    ollama
-    onefetch
-    ripgrep
-    sops
-    ssh-to-age
-    tlrc
-    tree
     typst
-    wget
     yt-dlp
     zlib-ng
   ];

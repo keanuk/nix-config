@@ -2,8 +2,6 @@
   imports = [
     ../common/base/default.nix
     ../common/base/home-manager.nix
-
-    ../common/shell/packages.nix
   ];
 
   home = {
