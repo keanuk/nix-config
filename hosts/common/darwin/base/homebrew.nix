@@ -16,6 +16,7 @@
       "Bitwarden" = 1352778147;
       "Dark Reader for Safari" = 1438243180;
       "GarageBand" = 682658836;
+      "HacKit" = 1549557075;
       "iMovie" = 408981434;
       "Kagi for Safari" = 1622835804;
       "Keynote" = 409183694;
