@@ -4,8 +4,6 @@
   ...
 }: {
   home.packages = with pkgs; [
-    aichat
-    aider-chat
     alpaca
     android-studio
     android-tools
@@ -20,7 +18,8 @@
     cameractrls
     caprine
     catppuccin
-    darktable
+    # TODO: re-enable when build succeeds
+    # darktable
     dbeaver-bin
     discord
     element-desktop
@@ -37,7 +36,6 @@
     gnome-disk-utility
     gnome-maps
     gollama
-    gpt4all
     handbrake
     inkscape
     insomnia
@@ -46,7 +44,6 @@
     joplin-desktop
     krita
     kodi-wayland
-    ladybird
     leetcode-cli
     leetgo
     libadwaita

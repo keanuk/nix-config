@@ -25,11 +25,6 @@
 
   services.atuin.enable = true;
 
-  nixpkgs.config = {
-    allowUnfree = true;
-    permittedInsecurePackages = [];
-  };
-
   environment.sessionVariables = {};
 
   environment.systemPackages = with pkgs; [

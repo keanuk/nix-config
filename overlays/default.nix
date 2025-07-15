@@ -1,16 +1,17 @@
 {inputs, ...}: {
-  additions = final: _prev: import ../pkgs {pkgs = final;};
+  additions = final: prev: import ../pkgs {pkgs = final;};
 
-  modifications = final: prev: {};
+  modifications = final: prev: {
+    openjdk8 = prev.openjdk8.overrideAttrs  { 
+      separateDebugInfo = false;
+      __structuredAttrs = false;
+    };
+  };
 
   unstable-packages = final: _prev: {
     unstable = import inputs.nixpkgs {
       system = final.system;
       config.allowUnfree = true;
-      # TODO: Remove when podman-desktop no longer depends on this
-      permittedInsecurePackages = [
-        "electron-34.5.8"
-      ];
     };
   };
 

@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     aichat
-    aider-chat
     android-tools
     cmake
     kind

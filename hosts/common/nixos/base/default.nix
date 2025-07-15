@@ -99,9 +99,17 @@
     };
   };
 
-  nixpkgs.overlays = [
-    outputs.overlays.unstable-packages
-  ];
+  nixpkgs = {
+    overlays = [
+      outputs.overlays.unstable-packages
+      outputs.overlays.stable-packages
+      outputs.overlays.additions
+      outputs.overlays.modifications
+    ];
+    config = {
+      allowUnfree = true;
+    };  
+  };
 
   time.timeZone = lib.mkForce null;
 
