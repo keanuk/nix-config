@@ -10,12 +10,9 @@
     anytype
     appimage-run
     audacity
-    beeper
     bitwarden-desktop
     bottles
-    bruno
     calibre
-    cameractrls
     caprine
     catppuccin
     # TODO: re-enable when build succeeds
@@ -35,7 +32,6 @@
     gnome-builder
     gnome-disk-utility
     gnome-maps
-    gollama
     handbrake
     inkscape
     insomnia
@@ -46,7 +42,6 @@
     kodi-wayland
     leetcode-cli
     leetgo
-    libadwaita
     libreoffice
     librewolf
     lmstudio
@@ -86,7 +81,6 @@
     wireshark
     wl-clipboard
     xclip
-    xournalpp
     youtube-music
     zlib-ng
     zoom-us

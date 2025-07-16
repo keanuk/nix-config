@@ -2,7 +2,8 @@
   additions = final: prev: import ../pkgs {pkgs = final;};
 
   modifications = final: prev: {
-    openjdk8 = prev.openjdk8.overrideAttrs  { 
+    # TODO: Remove this once the issue with openjdk8 is resolved
+    openjdk8 = prev.openjdk8.overrideAttrs {
       separateDebugInfo = false;
       __structuredAttrs = false;
     };

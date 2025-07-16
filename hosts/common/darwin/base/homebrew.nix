@@ -47,7 +47,6 @@
       "alacritty"
       "audacity"
       "battle-net"
-      "beeper"
       "bruno"
       "calibre"
       "chromium"
