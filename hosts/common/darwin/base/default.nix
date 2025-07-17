@@ -18,6 +18,6 @@
     ];
     config = {
       allowUnfree = true;
-    };  
+    };
   };
 }

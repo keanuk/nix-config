@@ -108,7 +108,7 @@
     ];
     config = {
       allowUnfree = true;
-    };  
+    };
   };
 
   time.timeZone = lib.mkForce null;

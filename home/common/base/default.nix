@@ -19,7 +19,7 @@
     ];
     config = {
       allowUnfree = true;
-    };  
+    };
   };
 
   programs.home-manager = {
