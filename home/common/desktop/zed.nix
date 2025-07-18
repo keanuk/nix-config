@@ -86,9 +86,6 @@
       };
       lsp = {
         nil.initialization_options.formatting.command = ["alejandra"];
-        nix.binary.path_lookup = true;
-        rust-analyzer.binary.path_lookup = true;
-        zls.binary.path_lookup = true;
       };
       features = {
         edit_prediction_provider = "copilot";
@@ -96,7 +93,6 @@
       agent = {
         enabled = true;
         button = true;
-        version = "2";
         default_model = {
           provider = "copilot_chat";
           model = "gpt-4o";
