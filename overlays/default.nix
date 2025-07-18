@@ -1,13 +1,7 @@
 {inputs, ...}: {
   additions = final: prev: import ../pkgs {pkgs = final;};
 
-  modifications = final: prev: {
-    # TODO: Remove this once the issue with openjdk8 is resolved
-    openjdk8 = prev.openjdk8.overrideAttrs {
-      separateDebugInfo = false;
-      __structuredAttrs = false;
-    };
-  };
+  modifications = final: prev: {};
 
   unstable-packages = final: _prev: {
     unstable = import inputs.nixpkgs {

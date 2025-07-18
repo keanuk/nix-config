@@ -15,8 +15,7 @@
     calibre
     caprine
     catppuccin
-    # TODO: re-enable when build succeeds
-    # darktable
+    darktable
     dbeaver-bin
     discord
     element-desktop
