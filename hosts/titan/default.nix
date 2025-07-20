@@ -16,9 +16,8 @@
     ../common/nixos/base/lanzaboote.nix
 
     ../common/nixos/desktop/default.nix
-    ../common/nixos/desktop/gnome.nix
+    ../common/nixos/desktop/cosmic.nix
 
-    # TODO: re-enable when the issue is resolved: https://github.com/NixOS/nixpkgs/issues/421822
     # ../common/nixos/services/open-webui.nix
 
     ../common/nixos/user/keanu/default.nix
