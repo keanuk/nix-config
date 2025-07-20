@@ -32,6 +32,7 @@
     bcachefs-tools
     busybox
     cachix
+    dmidecode
     hwdata
     iptables
     libsecret
