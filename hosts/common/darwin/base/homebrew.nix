@@ -44,6 +44,27 @@
     ];
     brews = [];
     casks = [
+      {
+        name = "ghostty";
+        args = {appdir = "/Applications";};
+      }
+      {
+        name = "orion";
+        args = {appdir = "/Applications";};
+      }
+      {
+        name = "proton-drive";
+        args = {appdir = "/Applications";};
+      }
+      {
+        name = "zed";
+        args = {appdir = "/Applications";};
+      }
+      {
+        name = "zen";
+        args = {appdir = "/Applications";};
+      }
+
       "alacritty"
       "audacity"
       "battle-net"
@@ -62,10 +83,6 @@
       "epic-games"
       "firefox"
       "firefox@developer-edition"
-      {
-        name = "ghostty";
-        args = {appdir = "/Applications";};
-      }
       "gimp"
       "github@beta"
       "gog-galaxy"
@@ -85,18 +102,10 @@
       "logseq"
       "nvidia-geforce-now"
       "obs"
-      "ollamac"
-      {
-        name = "orion";
-        args = {appdir = "/Applications";};
-      }
+      "ollama"
       "plex"
       "pocket-casts"
       "podman-desktop"
-      {
-        name = "proton-drive";
-        args = {appdir = "/Applications";};
-      }
       "proton-mail"
       "proton-pass"
       "proton-mail-bridge"
@@ -115,14 +124,6 @@
       "visual-studio-code@insiders"
       "vlc"
       "youtube-music"
-      {
-        name = "zed";
-        args = {appdir = "/Applications";};
-      }
-      {
-        name = "zen";
-        args = {appdir = "/Applications";};
-      }
 
       # Games
       "0-ad"
