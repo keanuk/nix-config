@@ -18,6 +18,7 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     systems.url = "github:nix-systems/default";
+    preservation.url = "github:nix-community/preservation";
     impermanence.url = "github:nix-community/impermanence";
 
     darwin = {
