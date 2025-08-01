@@ -9,13 +9,14 @@
     android-tools
     anytype
     appimage-run
-    audacity
+    # TODO: re-enable when build succeeds
+    # audacity
     bitwarden-desktop
     bottles
     calibre
     caprine
     catppuccin
-    # TODO: re-enable when build succeeds
+    # TODO: re-enable when issue is resolved: https://github.com/NixOS/nixpkgs/issues/429268
     # darktable
     dbeaver-bin
     discord
