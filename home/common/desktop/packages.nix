@@ -7,10 +7,8 @@
     alpaca
     android-studio
     android-tools
-    anytype
     appimage-run
-    # TODO: re-enable when build succeeds
-    # audacity
+    audacity
     bitwarden-desktop
     bottles
     calibre
@@ -84,7 +82,6 @@
     xclip
     youtube-music
     zlib-ng
-    zoom-us
 
     androidStudioPackages.beta
     androidStudioPackages.dev

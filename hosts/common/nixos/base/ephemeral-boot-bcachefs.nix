@@ -1,20 +1,5 @@
 {...}: {
-  boot.initrd.systemd.mounts = [
-    {
-      what = "/dev/disk/by-partlabel/persist";
-      where = "/persist";
-      type = "bcachefs";
-      after = ["bcachefs-unlock@dev-disk-by\\x2dpartlabel-persist.service"];
-      requires = ["bcachefs-unlock@dev-disk-by\\x2dpartlabel-persist.service"];
-    }
-    {
-      what = "/persist/@root";
-      where = "/sysroot";
-      options = "bind";
-    }
-  ];
-
-  boot.initrd.systemd.services.rollback-root = {
+  boot.initrd.systemd.services.rollback = {
     description = "Rollback Root Filesystem to Blank Snapshot";
     wantedBy = ["initrd.target"];
     after = ["persist.mount"];

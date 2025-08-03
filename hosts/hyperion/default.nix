@@ -9,8 +9,9 @@
 
     inputs.determinate.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
-    inputs.nixos-hardware.nixosModules.hp-elitebook-845g8
     inputs.nur.modules.nixos.default
+
+    inputs.nixos-hardware.nixosModules.hp-elitebook-845g8
 
     ../common/nixos/base/default.nix
     ../common/nixos/base/lanzaboote.nix

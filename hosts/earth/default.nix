@@ -4,8 +4,13 @@
   ...
 }: {
   imports = [
+    inputs.determinate.nixosModules.default
     inputs.home-manager-stable.nixosModules.home-manager
     inputs.nur.modules.nixos.default
+
+    inputs.nixos-hardware.nixosModules.common-cpu-intel
+    inputs.nixos-hardware.nixosModules.common-pc
+    inputs.nixos-hardware.nixosModules.common-pc-ssd
 
     ./disko-configuration.nix
     ./hardware-configuration.nix

@@ -10,9 +10,17 @@
     hideMounts = true;
     directories = [
       "/var/lib/bluetooth"
+      "/var/lib/fprint"
+      "/var/lib/fwupd"
+      "/var/lib/libvirt"
       "/var/lib/nixos"
+      "/var/lib/power-profiles-daemon"
       "/var/lib/sbctl"
       "/var/lib/systemd/coredump"
+      "/var/lib/systemd/rfkill"
+      "/var/lib/systemd/timers"
+      "/var/log"
+      "/etc/secureboot"
       "/etc/NetworkManager/system-connections"
       "/etc/nixos"
       {

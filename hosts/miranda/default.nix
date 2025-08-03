@@ -11,6 +11,10 @@
     inputs.home-manager.nixosModules.home-manager
     inputs.nur.modules.nixos.default
 
+    inputs.nixos-hardware.nixosModules.common-cpu-intel
+    inputs.nixos-hardware.nixosModules.common-pc-laptop
+    inputs.nixos-hardware.nixosModules.common-pc-ssd
+
     ../common/nixos/base/default.nix
     ../common/nixos/base/lanzaboote.nix
 

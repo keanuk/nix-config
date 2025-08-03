@@ -6,12 +6,13 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    ./disko-configuration.nix
+    ./disko-bcachefs.nix
 
     inputs.determinate.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
-    inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p14s-amd-gen5
     inputs.nur.modules.nixos.default
+
+    inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p14s-amd-gen5
 
     ../common/nixos/base/amd.nix
     ../common/nixos/base/default.nix

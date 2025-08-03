@@ -10,6 +10,10 @@
     inputs.home-manager.nixosModules.home-manager
     inputs.nur.modules.nixos.default
 
+    inputs.nixos-hardware.nixosModules.common-cpu-intel
+    inputs.nixos-hardware.nixosModules.common-pc
+    inputs.nixos-hardware.nixosModules.common-pc-ssd
+
     ../common/nixos/base/fs.nix
     ../common/nixos/base/default.nix
     ../common/nixos/base/server.nix
