@@ -16,6 +16,8 @@
     ../common/nixos/base/default.nix
     ../common/nixos/base/lanzaboote.nix
 
+    ../common/nixos/services/btrfs.nix
+
     ../common/nixos/desktop/default.nix
     ../common/nixos/desktop/pantheon.nix
 

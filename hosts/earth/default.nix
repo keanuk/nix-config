@@ -25,6 +25,7 @@
 
     # TODO: Finish setting up disabled services
     ../common/nixos/services/bazarr.nix
+    ../common/nixos/services/btrfs.nix
     ../common/nixos/services/flaresolverr.nix
     # ../common/nixos/services/home-assistant.nix
     ../common/nixos/services/jellyfin.nix

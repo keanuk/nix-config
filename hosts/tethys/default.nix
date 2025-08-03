@@ -19,7 +19,10 @@
     ../common/nixos/base/server.nix
     ../common/nixos/base/systemd-boot.nix
 
+    ../common/nixos/services/btrfs.nix
+
     ../common/nixos/desktop/hyprland.nix
+
     ../common/nixos/user/keanu/default.nix
 
     # Change during next reinstall

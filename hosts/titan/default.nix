@@ -23,6 +23,7 @@
     ../common/nixos/desktop/default.nix
     ../common/nixos/desktop/cosmic.nix
 
+    ../common/nixos/services/btrfs.nix
     # ../common/nixos/services/open-webui.nix
 
     ../common/nixos/user/keanu/default.nix
