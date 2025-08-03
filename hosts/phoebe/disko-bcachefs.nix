@@ -26,43 +26,12 @@ in {
             root = {
               name = "root";
               end = "-32G";
-              type = "bcachefs_filesystem";
-              passwordFile = "/tmp/secret.key";
-              extraFormatArgs = [
-                "--force"
-                "--compression=lz4"
-                "--background_compression=lz4"
-                "--discard"
-                "--encrypted"
-              ];
-              settings = {
-                allowDiscards = true;
-              };
-              subvolumes = {
-                "@" = {
-                  mountpoint = "/";
-                  mountOptions = defaultBcachefsOpts;
-                };
-                "@nix" = {
-                  mountpoint = "/nix";
-                  mountOptions = defaultBcachefsOpts;
-                };
-                "@home" = {
-                  mountpoint = "/home";
-                  mountOptions = defaultBcachefsOpts;
-                };
-                "@log" = {
-                  mountpoint = "/var/log";
-                  mountOptions = defaultBcachefsOpts;
-                };
-                "@persist" = {
-                  mountpoint = "/persist";
-                  mountOptions = defaultBcachefsOpts;
-                };
-                "@snapshots" = {
-                  mountpoint = "/.snapshots";
-                  mountOptions = defaultBcachefsOpts;
-                };
+              content = {
+                type = "bcachefs";
+                filesystem = "default_subvolumes";
+                extraFormatArgs = [
+                  "--force"
+                ];
               };
             };
             swap = {
@@ -73,7 +42,47 @@ in {
                 priority = 100;
                 discardPolicy = "both";
                 resumeDevice = true;
-            }
+              };
+            };
+          };
+        };
+      };
+    };
+    bcachefs_filesystems = {
+      default_subvolumes = {
+        type = "bcachefs_filesystem";
+        passwordFile = "/tmp/secret.key";
+        extraFormatArgs = [
+          "--compression=lz4"
+          "--background_compression=lz4"
+        ];
+        settings = {
+          allowDiscards = true;
+        };
+        subvolumes = {
+          "@" = {
+            mountpoint = "/";
+            mountOptions = defaultBcachefsOpts;
+          };
+          "@nix" = {
+            mountpoint = "/nix";
+            mountOptions = defaultBcachefsOpts;
+          };
+          "@home" = {
+            mountpoint = "/home";
+            mountOptions = defaultBcachefsOpts;
+          };
+          "@log" = {
+            mountpoint = "/var/log";
+            mountOptions = defaultBcachefsOpts;
+          };
+          "@persist" = {
+            mountpoint = "/persist";
+            mountOptions = defaultBcachefsOpts;
+          };
+          "@snapshots" = {
+            mountpoint = "/.snapshots";
+            mountOptions = defaultBcachefsOpts;
           };
         };
       };
