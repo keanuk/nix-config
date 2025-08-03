@@ -56,9 +56,6 @@ in {
           "--compression=lz4"
           "--background_compression=lz4"
         ];
-        settings = {
-          allowDiscards = true;
-        };
         subvolumes = {
           "@" = {
             mountpoint = "/";
