@@ -1,11 +1,15 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   programs.halloy = {
     enable = true;
     package = pkgs.halloy;
     settings = {
-      theme = {
-        light = "ferra-light";
-        dark = "ferra";
+      theme = lib.mkDefault {
+        light = lib.mkDefault "catppuccin-latte";
+        dark = lib.mkDefault "catppuccin-mocha";
       };
       font = {
         family = "Iosevka Term";
