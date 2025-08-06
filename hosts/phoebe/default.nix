@@ -6,7 +6,7 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    ./disko-bcachefs.nix
+    ./disko-btrfs.nix
 
     inputs.determinate.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
@@ -20,6 +20,8 @@
 
     ../common/nixos/desktop/default.nix
     ../common/nixos/desktop/cosmic.nix
+
+    ../common/nixos/services/btrfs.nix
 
     ../common/nixos/user/keanu/default.nix
   ];
@@ -36,5 +38,5 @@
 
   services.ollama.rocmOverrideGfx = lib.mkForce "11.0.2";
 
-  system.stateVersion = "25.05";
+  system.stateVersion = "25.11";
 }
