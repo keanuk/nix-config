@@ -1,7 +1,3 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
-  boot.loader.systemd-boot.enable = true;
+{lib, ...}: {
+  boot.loader.systemd-boot.enable = lib.mkDefault true;
 }
