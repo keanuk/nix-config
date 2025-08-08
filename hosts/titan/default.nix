@@ -19,9 +19,11 @@
     ../common/nixos/base/amd.nix
     ../common/nixos/base/default.nix
     ../common/nixos/base/lanzaboote.nix
+    ../common/nixos/base/pc.nix
+    ../common/nixos/base/systemd-boot.nix
 
     ../common/nixos/desktop/default.nix
-    ../common/nixos/desktop/cosmic.nix
+    ../common/nixos/desktop/gnome.nix
 
     ../common/nixos/services/btrfs.nix
     # ../common/nixos/services/open-webui.nix

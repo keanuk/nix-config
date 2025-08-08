@@ -15,6 +15,8 @@
 
     ../common/nixos/base/default.nix
     ../common/nixos/base/lanzaboote.nix
+    ../common/nixos/base/laptop.nix
+    ../common/nixos/base/systemd-boot.nix
 
     ../common/nixos/services/btrfs.nix
 
