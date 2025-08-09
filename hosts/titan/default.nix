@@ -26,6 +26,7 @@
     ../common/nixos/desktop/gnome.nix
 
     ../common/nixos/services/btrfs.nix
+    ../common/nixos/services/ollama.nix
     # ../common/nixos/services/open-webui.nix
 
     ../common/nixos/user/keanu/default.nix

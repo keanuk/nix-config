@@ -24,6 +24,7 @@
     ../common/nixos/desktop/cosmic.nix
 
     ../common/nixos/services/btrfs.nix
+    ../common/nixos/services/ollama.nix
 
     ../common/nixos/user/keanu/default.nix
   ];

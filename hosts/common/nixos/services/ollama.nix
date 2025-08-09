@@ -17,23 +17,25 @@
       "deepseek-r1"
       "devstral"
       "gemma3"
+      "gemma3n"
       "magistral"
       "mistral"
       "mistral-small"
       "qwen2.5-coder"
       "qwen3"
+      "qwen3-coder"
     ];
   };
 
   # Workaround for: https://github.com/NixOS/nixpkgs/issues/357604
-  systemd.services.ollama.serviceConfig = let
-    cfg = config.services.ollama;
-    ollamaPackage = cfg.package.override {inherit (cfg) acceleration;};
-  in
-    lib.mkForce {
-      Type = "exec";
-      ExecStart = "${lib.getExe ollamaPackage} serve";
-      WorkingDirectory = cfg.home;
-      SupplementaryGroups = ["render"];
-    };
+  # systemd.services.ollama.serviceConfig = let
+  #   cfg = config.services.ollama;
+  #   ollamaPackage = cfg.package.override {inherit (cfg) acceleration;};
+  # in
+  #   lib.mkForce {
+  #     Type = "exec";
+  #     ExecStart = "${lib.getExe ollamaPackage} serve";
+  #     WorkingDirectory = cfg.home;
+  #     SupplementaryGroups = ["render"];
+  #   };
 }

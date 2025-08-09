@@ -1,5 +1,5 @@
 {...}: {
   services = {
     thermald.enable = true;
-  }
+  };
 }

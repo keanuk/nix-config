@@ -61,7 +61,7 @@
               };
               model2 = {
                 type = "ollama";
-                model = "deepseek-r1";
+                model = "qwen3-coder";
               };
             };
             completion = {
