@@ -23,7 +23,7 @@
     ../common/nixos/base/systemd-boot.nix
 
     ../common/nixos/desktop/default.nix
-    ../common/nixos/desktop/gnome.nix
+    ../common/nixos/desktop/pantheon.nix
 
     ../common/nixos/services/btrfs.nix
     ../common/nixos/services/ollama.nix

@@ -1,17 +1,16 @@
 {
   pkgs,
   lib,
-  config,
   ...
 }: {
   services.ollama = {
     enable = true;
     package = pkgs.ollama;
-    port = 11434;
-    openFirewall = false;
+    port = lib.mkDefault 11434;
+    openFirewall = lib.mkDefault false;
     user = "ollama";
     group = "ollama";
-    home = "/var/lib/ollama";
+    home = lib.mkDefault "/var/lib/ollama";
     loadModels = [
       "codestral"
       "deepseek-r1"
@@ -26,16 +25,4 @@
       "qwen3-coder"
     ];
   };
-
-  # Workaround for: https://github.com/NixOS/nixpkgs/issues/357604
-  # systemd.services.ollama.serviceConfig = let
-  #   cfg = config.services.ollama;
-  #   ollamaPackage = cfg.package.override {inherit (cfg) acceleration;};
-  # in
-  #   lib.mkForce {
-  #     Type = "exec";
-  #     ExecStart = "${lib.getExe ollamaPackage} serve";
-  #     WorkingDirectory = cfg.home;
-  #     SupplementaryGroups = ["render"];
-  #   };
 }
