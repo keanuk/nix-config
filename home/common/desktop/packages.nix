@@ -14,8 +14,7 @@
     calibre
     caprine
     catppuccin
-    # TODO: re-enable when issue is resolved: https://github.com/NixOS/nixpkgs/issues/429268
-    # darktable
+    darktable
     dbeaver-bin
     discord
     element-desktop
