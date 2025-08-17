@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   programs.atuin = {
     enable = true;
     package = pkgs.atuin;
@@ -6,7 +10,7 @@
     enableFishIntegration = true;
     enableNushellIntegration = true;
     enableZshIntegration = true;
-    daemon.enable = true;
+    daemon.enable = lib.mkDefault true;
     settings = {
       style = "auto";
     };

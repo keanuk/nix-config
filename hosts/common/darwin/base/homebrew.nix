@@ -49,10 +49,6 @@
         args = {appdir = "/Applications";};
       }
       {
-        name = "ollama";
-        args = {appdir = "/Applications";};
-      }
-      {
         name = "orion";
         args = {appdir = "/Applications";};
       }

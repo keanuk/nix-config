@@ -1,4 +1,4 @@
-{
+{lib, ...}: {
   imports = [
     ./packages.nix
 
@@ -6,4 +6,6 @@
 
     ../dev/default.nix
   ];
+
+  programs.atuin.daemon.enable = lib.mkForce false;
 }

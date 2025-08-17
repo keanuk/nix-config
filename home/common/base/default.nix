@@ -1,7 +1,6 @@
 {
   inputs,
   outputs,
-  lib,
   ...
 }: {
   imports = [
@@ -31,6 +30,4 @@
 
   catppuccin.enable = true;
   catppuccin.flavor = "mocha";
-
-  programs.nh.flake = lib.mkForce "/Users/keanu/.config/nix-config";
 }
