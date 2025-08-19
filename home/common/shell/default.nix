@@ -1,29 +1,30 @@
 {...}: {
   imports = [
-    ./atuin.nix
-    ./bash.nix
-    ./bat.nix
-    ./bottom.nix
-    ./broot.nix
-    ./carapace.nix
-    ./direnv.nix
-    ./eza.nix
-    ./fastfetch.nix
-    ./fd.nix
-    ./fish.nix
-    ./gh.nix
-    ./git.nix
-    ./helix.nix
-    ./lazygit.nix
-    ./micro.nix
     ./packages.nix
-    ./ripgrep.nix
-    ./skim.nix
-    ./starship.nix
-    ./pay-respects.nix
-    ./yazi.nix
-    ./yt-dlp.nix
-    ./zellij.nix
-    ./zoxide.nix
+
+    ./atuin/atuin.nix
+    ./bash/bash.nix
+    ./bat/bat.nix
+    ./bottom/bottom.nix
+    ./broot/broot.nix
+    ./carapace/carapace.nix
+    ./direnv/direnv.nix
+    ./eza/eza.nix
+    ./fastfetch/fastfetch.nix
+    ./fd/fd.nix
+    ./fish/fish.nix
+    ./gh/gh.nix
+    ./git/git.nix
+    ./helix/helix.nix
+    ./lazygit/lazygit.nix
+    ./micro/micro.nix
+    ./ripgrep/ripgrep.nix
+    ./skim/skim.nix
+    ./starship/starship.nix
+    ./pay-respects/pay-respects.nix
+    ./yazi/yazi.nix
+    ./yt-dlp/yt-dlp.nix
+    ./zellij/zellij.nix
+    ./zoxide/zoxide.nix
   ];
 }

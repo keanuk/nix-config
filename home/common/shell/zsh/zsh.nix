@@ -6,7 +6,7 @@
     enableCompletion = true;
     enableAutosuggestions = true;
     syntaxHighlighting.enable = true;
-    shellAliases = import ./config/aliases.nix;
+    shellAliases = import ../common/aliases.nix;
     oh-my-zsh = {
       enable = true;
       theme = "fletcherm";

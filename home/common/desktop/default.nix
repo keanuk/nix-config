@@ -1,18 +1,19 @@
 {...}: {
   imports = [
-    ./alacritty.nix
-    ./amberol.nix
-    ./chromium.nix
-    ./firefox.nix
     ./font.nix
-    ./ghostty.nix
-    ./halloy.nix
-    ./kitty.nix
     ./packages.nix
-    ./ptyxis.nix
-    ./thunderbird.nix
-    ./vscode.nix
-    ./zed.nix
+
+    ./alacritty/alacritty.nix
+    ./amberol/amberol.nix
+    ./chromium/chromium.nix
+    ./firefox/firefox.nix
+    ./ghostty/ghostty.nix
+    ./halloy/halloy.nix
+    ./kitty/kitty.nix
+    ./ptyxis/ptyxis.nix
+    ./thunderbird/thunderbird.nix
+    ./vscode/vscode.nix
+    ./zed/zed.nix
 
     ../dev/default.nix
     ../dev/nim.nix

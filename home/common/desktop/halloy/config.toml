@@ -1,0 +1,34 @@
+[buffer.channel.topic]
+enabled = true
+
+[font]
+family = "Iosevka Term"
+size = 18
+
+[servers.hackint]
+channels = ["#nixos"]
+nickname = "keanu-darwin"
+port = 6697
+server = "irc.hackint.org"
+
+[servers.liberachat]
+channels = [
+    "#archlinux",
+    "#gnome",
+    "#halloy",
+    "#halloy-dev",
+    "#libera",
+    "#linux",
+    "#nixos",
+    "#nixos-chat",
+    "#nixos-dev",
+    "#nix-darwin",
+    "#plug",
+]
+nickname = "keanu-salacia"
+port = 6697
+server = "irc.libera.chat"
+
+[theme]
+dark = "ferra"
+light = "ferra-light"

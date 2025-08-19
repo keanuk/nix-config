@@ -4,7 +4,7 @@
     ../common/base/home-manager.nix
 
     ../common/desktop/default.nix
-    ../common/desktop/gnome.nix
+    ../common/desktop/gnome/gnome.nix
   ];
 
   home = {

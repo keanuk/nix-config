@@ -12,6 +12,6 @@
     enableFishIntegration = true;
     enableNushellIntegration = true;
     enableZshIntegration = true;
-    settings = lib.importTOML ../config/starship.toml;
+    settings = lib.importTOML ./starship.toml;
   };
 }

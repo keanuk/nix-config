@@ -6,7 +6,7 @@
   programs.waybar = {
     enable = true;
     package = pkgs.waybar;
-    style = "../config/waybar.css";
+    style = "./waybar.css";
     systemd = {
       enable = true;
       target = "hyprland-session.target";

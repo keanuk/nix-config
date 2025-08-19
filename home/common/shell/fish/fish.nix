@@ -7,6 +7,6 @@
       	fastfetch
       end
     '';
-    shellAliases = import ./config/aliases.nix;
+    shellAliases = import ../common/aliases.nix;
   };
 }

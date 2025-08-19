@@ -1,11 +1,14 @@
-{lib, ...}: {
+{...}: {
   imports = [
     ./packages.nix
 
-    ../shell/nh.nix
+    ../desktop/ghostty/darwin.nix
+    ../desktop/halloy/darwin.nix
+    ../desktop/zed/darwin.nix
+
+    ../shell/atuin/darwin.nix
+    ../shell/nh/nh.nix
 
     ../dev/default.nix
   ];
-
-  programs.atuin.daemon.enable = lib.mkForce false;
 }
