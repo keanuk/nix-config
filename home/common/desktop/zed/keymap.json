@@ -1,0 +1,52 @@
+[
+  {
+    "bindings": {
+      "escape": "vim::SwitchToHelixNormalMode"
+    },
+    "context": "((Editor && vim_mode == waiting) && (vim_operator == ys || vim_operator == cs))"
+  },
+  {
+    "bindings": {
+      "ctrl-[": "vim::SwitchToHelixNormalMode",
+      "escape": "vim::SwitchToHelixNormalMode"
+    },
+    "context": "(VimControl && !menu)"
+  },
+  {
+    "bindings": {
+      "escape": "vim::SwitchToHelixNormalMode"
+    },
+    "context": "vim_mode == helix_normal"
+  },
+  {
+    "bindings": {
+      "escape": "vim::SwitchToHelixNormalMode",
+      "ctrl-[": "vim::SwitchToHelixNormalMode",
+      "ctrl-c": "vim::SwitchToHelixNormalMode",
+      "ctrl-o": "vim::SwitchToHelixNormalMode"
+    },
+    "context": "vim_mode == insert"
+  },
+  {
+    "bindings": {
+      "escape": "vim::SwitchToHelixNormalMode"
+    },
+    "context": "vim_mode == normal"
+  },
+  {
+    "bindings": {
+      "escape": "vim::SwitchToHelixNormalMode",
+      "ctrl-[": "vim::SwitchToHelixNormalMode",
+      "ctrl-c": "vim::SwitchToHelixNormalMode"
+    },
+    "context": "vim_mode == replace"
+  },
+  {
+    "bindings": {
+      "escape": "vim::SwitchToHelixNormalMode",
+      "ctrl-[": "vim::SwitchToHelixNormalMode",
+      "ctrl-c": "vim::SwitchToHelixNormalMode"
+    },
+    "context": "vim_mode == visual"
+  }
+]
