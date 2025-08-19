@@ -7,7 +7,7 @@ size = 18
 
 [servers.hackint]
 channels = ["#nixos"]
-nickname = "keanu-darwin"
+nickname = "keanu2"
 port = 6697
 server = "irc.hackint.org"
 
@@ -25,7 +25,7 @@ channels = [
     "#nix-darwin",
     "#plug",
 ]
-nickname = "keanu-salacia"
+nickname = "keanu2"
 port = 6697
 server = "irc.libera.chat"
 
