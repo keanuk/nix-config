@@ -36,6 +36,11 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nur.url = "github:nix-community/NUR";
 
     hydra = {
@@ -85,6 +90,7 @@
     darwin,
     home-manager,
     home-manager-stable,
+    stylix,
     ...
   } @ inputs: let
     inherit (self) outputs;

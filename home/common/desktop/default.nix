@@ -1,10 +1,11 @@
 {...}: {
   imports = [
-    ./font.nix
     ./packages.nix
 
     ./alacritty/alacritty.nix
     ./amberol/amberol.nix
+    ./appearance/font.nix
+    ./appearance/gtk.nix
     ./chromium/chromium.nix
     ./firefox/firefox.nix
     ./ghostty/ghostty.nix

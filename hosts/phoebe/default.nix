@@ -11,6 +11,7 @@
     inputs.determinate.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
     inputs.nur.modules.nixos.default
+    inputs.stylix.nixosModules.stylix
 
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p14s-amd-gen5
 
