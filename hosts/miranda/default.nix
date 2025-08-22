@@ -10,6 +10,7 @@
     inputs.determinate.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
     inputs.nur.modules.nixos.default
+    inputs.stylix.nixosModules.stylix
 
     inputs.nixos-hardware.nixosModules.common-cpu-intel
     inputs.nixos-hardware.nixosModules.common-pc-laptop

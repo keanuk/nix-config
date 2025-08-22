@@ -6,8 +6,8 @@
   gtk = {
     enable = true;
     iconTheme = {
-      package = pkgs.qogir-icon-theme;
+      package = lib.mkDefault pkgs.qogir-icon-theme;
       name = lib.mkDefault "Qogir-Light";
-    }
+    };
   };
 }
