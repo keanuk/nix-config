@@ -8,9 +8,9 @@
     ./hardware-configuration.nix
 
     inputs.determinate.nixosModules.default
+    inputs.disko.nixosModules.disko
     inputs.home-manager.nixosModules.home-manager
     inputs.nur.modules.nixos.default
-    inputs.stylix.nixosModules.stylix
 
     inputs.nixos-hardware.nixosModules.hp-elitebook-845g8
 

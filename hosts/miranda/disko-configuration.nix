@@ -1,10 +1,6 @@
-{inputs, ...}: let
+{...}: let
   defaultBtrfsOpts = ["defaults" "compress=zstd" "ssd" "noatime" "nodiratime"];
 in {
-  imports = [
-    inputs.disko.nixosModules.disko
-  ];
-
   disko.devices = {
     disk = {
       main = {

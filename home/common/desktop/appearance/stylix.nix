@@ -1,4 +1,8 @@
 {pkgs, ...}: {
+  imports = [
+    inputs.stylix.nixosModules.stylix
+  ];
+
   stylix = {
     enable = true;
     image = "../../../../lib/wallpapers/pink-clouds.jpg"

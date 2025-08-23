@@ -1,10 +1,6 @@
-{inputs, ...}: let
+{...}: let
   defaultBcachefsOpts = ["defaults" "compress=lz4" "ssd" "noatime" "nodiratime"];
 in {
-  imports = [
-    inputs.disko.nixosModules.disko
-  ];
-
   disko.devices = {
     disk = {
       main = {

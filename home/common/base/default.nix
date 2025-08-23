@@ -4,8 +4,6 @@
   ...
 }: {
   imports = [
-    inputs.catppuccin.homeModules.catppuccin
-
     ../shell/default.nix
   ];
 
@@ -27,7 +25,4 @@
   };
 
   news.display = "notify";
-
-  catppuccin.enable = true;
-  catppuccin.flavor = "mocha";
 }

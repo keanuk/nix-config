@@ -8,9 +8,9 @@
     ./disko-configuration.nix
 
     inputs.determinate.nixosModules.default
+    inputs.disko.nixosModules.disko
     inputs.home-manager.nixosModules.home-manager
     inputs.nur.modules.nixos.default
-    inputs.stylix.nixosModules.stylix
 
     inputs.nixos-hardware.nixosModules.common-cpu-intel
     inputs.nixos-hardware.nixosModules.common-pc-laptop
