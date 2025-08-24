@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  imports [
+  imports = [
     inputs.stylix.darwinModules.stylix
   ];
 

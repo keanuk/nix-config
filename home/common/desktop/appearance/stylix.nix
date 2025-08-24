@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{inputs, pkgs, ...}: {
   imports = [
     inputs.stylix.nixosModules.stylix
   ];
@@ -13,7 +13,7 @@
       package = pkgs.qogir-icon-theme;
       light = "qogir-light";
       dark = "qogir-dark";
-    }
+    };
     fonts = {
       sansSerif = {
         package = pkgs.roboto;
