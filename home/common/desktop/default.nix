@@ -6,7 +6,6 @@
     ./amberol/amberol.nix
     ./appearance/catppuccin.nix
     ./appearance/font.nix
-    ./appearance/gtk.nix
     ./chromium/chromium.nix
     ./firefox/firefox.nix
     ./ghostty/ghostty.nix
