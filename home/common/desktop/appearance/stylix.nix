@@ -5,7 +5,7 @@
 
   stylix = {
     enable = true;
-    image = "../../../../lib/wallpapers/pink-clouds.jpg"
+    image = "../../../../lib/wallpapers/pink-clouds.jpg";
     polarity = "either";
     base16Scheme = "catppuccin-mocha";
     icons = {
