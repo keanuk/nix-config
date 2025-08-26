@@ -14,7 +14,8 @@
     calibre
     caprine
     catppuccin
-    darktable
+    # TODO: switch back to unstable when build succeeds
+    stable.darktable
     dbeaver-bin
     discord
     element-desktop

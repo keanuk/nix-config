@@ -66,11 +66,13 @@
     settings = {
       auto-optimise-store = true;
       warn-dirty = false;
+      auto-allocate-uids = true;
       allowed-users = ["@users"];
       experimental-features = [
         "nix-command"
         "flakes"
         "ca-derivations"
+        "auto-allocate-uids"
       ];
       system-features = [
         "big-parallel"
