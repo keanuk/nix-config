@@ -6,14 +6,18 @@
   unstable-packages = final: prev: {
     unstable = import inputs.nixpkgs {
       system = final.system;
-      config.allowUnfree = true;
+      config = {
+        allowUnfree = true;
+      };
     };
   };
 
   stable-packages = final: prev: {
     stable = import inputs.nixpkgs-stable {
       system = final.system;
-      config.allowUnfree = true;
+      config = {
+        allowUnfree = true;
+      };
     };
   };
 }
