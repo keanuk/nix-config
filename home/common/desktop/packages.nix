@@ -14,8 +14,7 @@
     calibre
     caprine
     catppuccin
-    # TODO: switch back to unstable when build succeeds
-    stable.darktable
+    darktable
     dbeaver-bin
     discord
     element-desktop
@@ -61,6 +60,7 @@
     protonmail-bridge-gui
     protonvpn-gui
     rawtherapee
+    rnote
     rustdesk-flutter
     session-desktop
     shortwave

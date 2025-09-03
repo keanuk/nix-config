@@ -12,6 +12,7 @@
     ];
     config = {
       allowUnfree = true;
+      # TODO: Remove when this is no longer required
       permittedInsecurePackages = [
         "qtwebengine-5.15.19"
       ];
