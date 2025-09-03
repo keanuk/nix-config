@@ -2,4 +2,4 @@ command = /etc/profiles/per-user/keanu/bin/fish --login --interactive
 shell-integration = fish
 font-size = 13
 font-family = "FiraCode Nerd Font"
-theme = dark:"Apple System Colors",light:"Apple System Colors Light"
+theme = dark:"catppuccin-mocha",light:"catppuccin-latte"

@@ -1335,11 +1335,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1756876659,
-        "narHash": "sha256-B2bpNR7VOoZuKfuNnASfWI/jGveetP2yhG44S3XnI/k=",
+        "lastModified": 1756898789,
+        "narHash": "sha256-D246bgKaIIub9ghsPRwRQy6CP+sfPMxhMjbx97sUVTE=",
         "owner": "0xc000022070",
         "repo": "zen-browser-flake",
-        "rev": "07c14b39cad581d9a8bb2dc8959a59e17d26d529",
+        "rev": "05372738e7abf086f370069718d9aeb4f541a462",
         "type": "github"
       },
       "original": {

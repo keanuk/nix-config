@@ -33,6 +33,7 @@
     "swift": true,
     "terraform": true,
     "toml": true,
+    "typst": true,
     "vue": true,
     "xml": true,
     "zig": true
@@ -80,8 +81,8 @@
     "working_directory": "current_project_directory"
   },
   "theme": {
-    "dark": "macOS Classic Dark2",
-    "light": "macOS Classic Light",
+    "dark": "Catppuccin Mocha",
+    "light": "Catppuccin Latte",
     "mode": "system"
   },
   "ui_font_size": 14,

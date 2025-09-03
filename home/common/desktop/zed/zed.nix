@@ -40,6 +40,7 @@
       "swift"
       "terraform"
       "toml"
+      "typst"
       "vue"
       "xml"
       "zig"
