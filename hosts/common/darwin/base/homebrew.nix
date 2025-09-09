@@ -8,8 +8,6 @@
       upgrade = true;
     };
     masApps = {
-      "Affinity Designer" = 824171161;
-      "Affinity Photo" = 824183456;
       "Amphetamine" = 937984704;
       "Apple Configurator" = 1037126344;
       "Apple Developer" = 640199958;
