@@ -104,6 +104,13 @@
           config.allowUnfree = true;
         }
     );
+    pkgsFor-stable = lib.genAttrs (import systems) (
+      system:
+        import nixpkgs-stable {
+          inherit system;
+          config.allowUnfree = true;
+        }
+    );
     secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/git/secrets.json");
   in {
     inherit lib lib-stable;
@@ -174,7 +181,7 @@
       };
       "keanu@earth" = lib-stable.homeManagerConfiguration {
         extraSpecialArgs = {inherit inputs outputs secrets;};
-        pkgs = pkgsFor.x86_64-linux;
+        pkgs = pkgsFor-stable.x86_64-linux;
         modules = [./home/earth/keanu.nix];
       };
       "keanu@hyperion" = lib.homeManagerConfiguration {

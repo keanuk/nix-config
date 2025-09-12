@@ -5,8 +5,8 @@
     ./hyprpaper.nix
     ./settings.nix
 
-    ../rofi.nix
-    ../waybar.nix
+    ./rofi.nix
+    ./waybar.nix
   ];
 
   home.packages = with pkgs; [
