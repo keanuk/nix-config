@@ -49,6 +49,7 @@
     netbird-ui
     nextcloud-client
     obs-studio
+    papers
     pitivi
     plex-desktop
     plexamp
