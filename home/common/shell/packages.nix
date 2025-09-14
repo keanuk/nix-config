@@ -1,7 +1,8 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     age
-    bitwarden-cli
+    # TODO: re-enable when no longer marked as broken on Darwin
+    # bitwarden-cli
     circumflex
     cpufetch
     ffmpeg
