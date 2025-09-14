@@ -1,8 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     age
-    # TODO: uncomment when issue is resolved: https://github.com/bitwarden/clients/issues/15000
-    # bitwarden-cli
+    bitwarden-cli
     circumflex
     cpufetch
     ffmpeg

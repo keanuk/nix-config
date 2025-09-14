@@ -33,7 +33,8 @@
     handbrake
     inkscape
     insomnia
-    jellyfin-media-player
+    # TODO: re-enable when issue is resolved: https://github.com/NixOS/nixpkgs/issues/437865
+    # jellyfin-media-player
     jitsi
     joplin-desktop
     krita
