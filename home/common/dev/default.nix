@@ -18,6 +18,7 @@
     bash-language-server
     devenv
     gcc
+    prettier
     shellcheck
   ];
 }

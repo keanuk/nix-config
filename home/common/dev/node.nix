@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     angular-language-server
-    autoprefixer
     bun
     deno
     eslint

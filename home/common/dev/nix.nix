@@ -5,5 +5,6 @@
     nixd
     nixdoc
     nixfmt-rfc-style
+    nix-diff
   ];
 }
