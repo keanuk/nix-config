@@ -31,9 +31,9 @@
       "Telegram" = 747648890;
       "TestFlight" = 899247664;
       "Transporter" = 1450874784;
+      "uBlock Origin Lite" = 6745342698;
       "Unsplash Wallpapers" = 1284863847;
       "WhatsApp Messenger" = 310633997;
-      "Wipr" = 1320666476;
       "WireGuard" = 1451685025;
       "Xcode" = 497799835;
     };
