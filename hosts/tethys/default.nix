@@ -22,7 +22,7 @@
 
     ../common/nixos/services/btrfs.nix
 
-    ../common/nixos/desktop/hyprland.nix
+    ../common/nixos/desktop/cosmic.nix
 
     ../common/nixos/user/keanu/default.nix
 
