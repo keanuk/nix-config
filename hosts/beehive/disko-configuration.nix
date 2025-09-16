@@ -4,8 +4,8 @@ in {
   disko.devices = {
     disk = {
       main = {
-        device = "/dev/sdb";
         type = "disk";
+        device = "/dev/disk/by-id/nvme-CT1000P3PSSD8_25054DEBB585";
         content = {
           type = "gpt";
           partitions = {
