@@ -65,6 +65,7 @@
 
       "alacritty"
       "audacity"
+      "balenaetcher"
       "battle-net"
       "bruno"
       "calibre"
