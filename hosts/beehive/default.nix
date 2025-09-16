@@ -15,7 +15,7 @@
 
     ./disko-configuration.nix
     ./hardware-configuration.nix
-    # ./raid-configuration.nix
+    ./raid-configuration.nix
 
     ../common/nixos/base/default.nix
     ../common/nixos/base/server.nix

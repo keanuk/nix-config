@@ -1,4 +1,5 @@
 keys:
+  - &beehive age1qmxe7ka2wnyl23yedcccgs5pjnl00ndugptx4lun2hxnywn5r5hswusplc 
   - &enterprise age1prznrk5pmrza0vn2yc4z5d20500qttjvjrdlj6s9fjzd5j0x74hqrm0702
   - &phoebe age18lx82lrvujvlhn43hwkf8j0rpp4qr2f960zslw540t7er2kfqdxqfyjz3h
   - &salacia age13xkeqkwq4a97p06wvyvt354rzf897qatzf8vzr8zzn6hcujlucdqn7dsdm
@@ -7,6 +8,7 @@ creation_rules:
   - path_regex: secrets/sops/secrets.yaml$
     key_groups:
     - age:
+      - *beehive
       - *enterprise
       - *phoebe
       - *salacia
