@@ -10,6 +10,7 @@
     "docker-compose": true,
     "dockerfile": true,
     "env": true,
+    "git-firefly": true,
     "golangci-lint": true,
     "gosum": true,
     "graphql": true,

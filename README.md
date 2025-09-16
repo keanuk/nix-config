@@ -8,6 +8,7 @@ Personal NixOS and nix-darwin configuration files using Nix flakes. This reposit
 
 | Device | Description | Architecture | Role | Notes |
 |--------|-------------|--------------|------|-------|
+| **beehive** | Beelink SER9 Pro | x86_64 | Home Server | Media server with Jellyfin, Plex, *arr stack |
 | **earth** | Intel NUC 10 i7 | x86_64 | Home Server | Media server with Jellyfin, Plex, *arr stack |
 | **hyperion** | HP EliteBook 845 G8 | x86_64 | Laptop | Desktop with Pantheon DE |
 | **miranda** | HP EliteBook 1030 G2 | x86_64 | Laptop | Portable workstation |

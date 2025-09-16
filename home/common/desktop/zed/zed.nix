@@ -17,6 +17,7 @@
       "dockerfile"
       "docker-compose"
       "env"
+      "git-firefly"
       "golangci-lint"
       "gosum"
       "graphql"

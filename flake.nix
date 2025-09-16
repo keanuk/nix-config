@@ -125,6 +125,11 @@
     formatter = forEachSystem (pkgs: pkgs.alejandra);
 
     nixosConfigurations = {
+      # Beelink SER9 Pro
+      beehive = lib-stable.nixosSystem {
+        specialArgs = {inherit inputs outputs secrets;};
+        modules = [./hosts/beehive];
+      };
       # Intel NUC 10 i7
       earth = lib-stable.nixosSystem {
         specialArgs = {inherit inputs outputs secrets;};
@@ -174,6 +179,11 @@
       };
     };
     homeConfigurations = {
+      "keanu@beehive" = lib-stable.homeManagerConfiguration {
+        extraSpecialArgs = {inherit inputs outputs secrets;};
+        pkgs = pkgsFor.x86_64-linux;
+        modules = [./home/beehive/keanu.nix];
+      };
       "keanu@charon" = lib.homeManagerConfiguration {
         extraSpecialArgs = {inherit inputs outputs secrets;};
         pkgs = pkgsFor.x86_64-darwin;
