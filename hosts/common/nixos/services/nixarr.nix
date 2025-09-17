@@ -1,21 +1,21 @@
-{inputs, ...}: {
+{inputs, pkgs, ...}: {
   imports = [
     inputs.nixarr.nixosModules.default
   ];
 
   nixarr = {
     enable = true;
-
-    mediaDir = "/internal/media";
-    stateDir = "/var/lib/nixarr";
+    mediaDir = "/data/Media";
+    stateDir = "/data/.state/nixarr";
 
     vpn = {
       enable = true;
-      wgConf = "/home/keanu/secrets/wg0.conf";
+      wgConf = "/data/.secret/wg.conf";
     };
 
     transmission = {
       enable = true;
+      package = pkgs.unstable.transmission_4;
       vpn.enable = true;
       peerPort = 51413;
       uiPort = 9091;
@@ -25,13 +25,52 @@
     };
 
     jellyfin = {
-      enable = true;
+      enable = false;
+      package = pkgs.unstable.jellyfin;
+      openFirewall = true;
+      stateDir = "/data/.state/jellyfin";
     };
 
-    bazarr.enable = true;
-    lidarr.enable = true;
-    prowlarr.enable = true;
-    radarr.enable = true;
-    sonarr.enable = true;
+    audiobookshelf = {
+      enable = true;
+      package = pkgs.unstable.audiobookshelf;
+      openFirewall = true;
+      stateDir = "/data/.state/audiobookshelf";
+    };
+
+    bazarr = {
+      enable = true;
+      package = pkgs.unstable.bazarr;
+      openFirewall = true;
+      stateDir = "/data/.state/bazarr";
+    };
+    
+    lidarr = {
+      enable = true;
+      package = pkgs.unstable.lidarr;
+      openFirewall = true;
+      stateDir = "/data/.state/lidarr";
+    };
+    
+    prowlarr = {
+      enable = true;
+      package = pkgs.unstable.prowlarr;
+      openFirewall = true;
+      stateDir = "/data/.state/prowlarr";
+    };
+
+    radarr = {
+      enable = true;
+      package = pkgs.unstable.radarr;
+      openFirewall = true;
+      stateDir = "/data/.state/radarr";
+    };
+    
+    sonarr = {
+      enable = true;
+      package = pkgs.unstable.sonarr;
+      openFirewall = true;
+      stateDir = "/data/.state/sonarr";
+    };
   };
 }
