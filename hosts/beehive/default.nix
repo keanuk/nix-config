@@ -23,7 +23,7 @@
     ../common/nixos/base/systemd-boot.nix
 
     ../common/nixos/user/keanu/default.nix
-    ../common/nixos/user/keanu/data-groups.nix
+    # ../common/nixos/user/keanu/data-groups.nix
 
     # TODO: Finish setting up disabled services
     # ../common/nixos/services/audiobookshelf.nix
@@ -31,10 +31,10 @@
     ../common/nixos/services/btrfs.nix
     ../common/nixos/services/flaresolverr.nix
     # ../common/nixos/services/home-assistant.nix
-    ../common/nixos/services/jellyfin.nix
+    # ../common/nixos/services/jellyfin.nix
     # ../common/nixos/services/lidarr.nix
     # ../common/nixos/services/nextcloud.nix
-    # ../common/nixos/services/nixarr.nix
+    ../common/nixos/services/nixarr.nix
     ../common/nixos/services/ollama.nix
     ../common/nixos/services/open-webui.nix
     # ../common/nixos/services/prowlarr.nix

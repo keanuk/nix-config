@@ -5,8 +5,9 @@
 
   nixarr = {
     enable = true;
-    mediaDir = "/data/Media";
     stateDir = "/data/.state/nixarr";
+    mediaDir = "/data/Media";
+    mediaUsers = [ "keanu" "plex" ];
 
     vpn = {
       enable = true;
@@ -24,8 +25,15 @@
       ];
     };
 
-    jellyfin = {
+    plex = {
       enable = false;
+      package = pkgs.unstable.plex;
+      openFirewall = true;
+      stateDir = "/data/.state/plex";
+    };
+
+    jellyfin = {
+      enable = true;
       package = pkgs.unstable.jellyfin;
       openFirewall = true;
       stateDir = "/data/.state/jellyfin";
