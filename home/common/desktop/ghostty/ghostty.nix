@@ -12,8 +12,8 @@
     installBatSyntax = true;
     installVimSyntax = true;
     settings = {
-      theme = "dark:catppuccin-mocha,light:catppuccin-latte";
-      font-size = lib.mkDefault 12;
+      theme = "dark:Catppuccin Mocha,light:Catppuccin Latte";
+      font-size = lib.mkDefault 13;
       font-family = "RobotoMono Nerd Font";
     };
   };

@@ -1,4 +1,8 @@
-{inputs, pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     inputs.nixarr.nixosModules.default
   ];
@@ -7,7 +11,7 @@
     enable = true;
     stateDir = "/data/.state/nixarr";
     mediaDir = "/data/Media";
-    mediaUsers = [ "keanu" "plex" ];
+    mediaUsers = ["keanu" "plex"];
 
     vpn = {
       enable = true;
@@ -52,14 +56,14 @@
       openFirewall = true;
       stateDir = "/data/.state/bazarr";
     };
-    
+
     lidarr = {
       enable = true;
       package = pkgs.unstable.lidarr;
       openFirewall = true;
       stateDir = "/data/.state/lidarr";
     };
-    
+
     prowlarr = {
       enable = true;
       package = pkgs.unstable.prowlarr;
@@ -73,7 +77,7 @@
       openFirewall = true;
       stateDir = "/data/.state/radarr";
     };
-    
+
     sonarr = {
       enable = true;
       package = pkgs.unstable.sonarr;

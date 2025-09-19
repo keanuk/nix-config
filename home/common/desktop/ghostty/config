@@ -1,5 +1,5 @@
 command = /etc/profiles/per-user/keanu/bin/fish --login --interactive
 shell-integration = fish
 font-size = 13
-font-family = "FiraCode Nerd Font"
-theme = dark:"catppuccin-mocha",light:"catppuccin-latte"
+font-family = "RobotoMono Nerd Font"
+theme = dark:"Catppuccin Mocha",light:"Catppuccin Latte"

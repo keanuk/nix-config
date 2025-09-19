@@ -21,7 +21,7 @@
   environment.systemPackages = with pkgs; [
     arion
     docker-compose
-    dockerfile-language-server-nodejs
+    dockerfile-language-server
     kind
     kubernetes
     podman-compose
