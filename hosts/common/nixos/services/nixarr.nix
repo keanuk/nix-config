@@ -11,7 +11,11 @@
     enable = true;
     stateDir = "/data/.state/nixarr";
     mediaDir = "/data/Media";
-    mediaUsers = ["keanu" "plex"];
+    mediaUsers = [
+      "keanu"
+      "plex"
+      "transmission"
+    ];
 
     vpn = {
       enable = true;
