@@ -34,6 +34,7 @@
     ../common/nixos/services/ollama.nix
     ../common/nixos/services/open-webui.nix
     ../common/nixos/services/plex.nix
+    # ../common/nixos/services/transmission.nix
   ];
 
   networking.hostName = "beehive";
