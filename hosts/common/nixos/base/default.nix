@@ -131,7 +131,8 @@
     resolved.enable = true;
     resolved.dnssec = "allow-downgrade";
     smartd.enable = true;
-    sssd.enable = true;
+    # TODO: re-enable when system service succeeds
+    # sssd.enable = true;
     sysstat.enable = true;
     udisks2.enable = true;
     upower.enable = true;

@@ -12,6 +12,9 @@
     ];
     config = {
       allowUnfree = true;
+      permittedInsecurePackages = [
+        "electron-35.7.5"
+      ];
     };
   };
 
