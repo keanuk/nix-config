@@ -131,7 +131,7 @@
         modules = [./hosts/beehive];
       };
       # Intel NUC 10 i7
-      earth = lib-stable.nixosSystem {
+      earth = lib.nixosSystem {
         specialArgs = {inherit inputs outputs secrets;};
         modules = [./hosts/earth];
       };
@@ -189,7 +189,7 @@
         pkgs = pkgsFor.x86_64-darwin;
         modules = [./home/charon/keanu.nix];
       };
-      "keanu@earth" = lib-stable.homeManagerConfiguration {
+      "keanu@earth" = lib.homeManagerConfiguration {
         extraSpecialArgs = {inherit inputs outputs secrets;};
         pkgs = pkgsFor-stable.x86_64-linux;
         modules = [./home/earth/keanu.nix];

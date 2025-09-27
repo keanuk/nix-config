@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   services.ollama = {
     enable = true;
-    package = pkgs.ollama;
+    package = pkgs.unstable.ollama;
     port = 11434;
     acceleration = null;
   };

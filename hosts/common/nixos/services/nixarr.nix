@@ -10,11 +10,9 @@
   nixarr = {
     enable = true;
     stateDir = "/data/.state/nixarr";
-    mediaDir = "/data/Media";
+    mediaDir = "/data/nixarr";
     mediaUsers = [
       "keanu"
-      "plex"
-      "transmission"
     ];
 
     vpn = {
@@ -35,7 +33,7 @@
     };
 
     plex = {
-      enable = false;
+      enable = true;
       package = pkgs.unstable.plex;
       openFirewall = true;
     };
