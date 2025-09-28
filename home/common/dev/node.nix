@@ -13,5 +13,6 @@
     typescript-language-server
 
     nodePackages.nodejs
+    nodePackages_latest.svelte-check
   ];
 }
