@@ -11,6 +11,7 @@
     audacity
     bitwarden-desktop
     bottles
+    bruno
     calibre
     caprine
     catppuccin
@@ -33,8 +34,7 @@
     handbrake
     inkscape
     insomnia
-    # TODO: re-enable when issue is resolved: https://github.com/NixOS/nixpkgs/issues/437865
-    # jellyfin-media-player
+    jellyfin-media-player
     jitsi
     joplin-desktop
     krita
