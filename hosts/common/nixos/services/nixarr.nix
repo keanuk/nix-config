@@ -39,13 +39,13 @@
     };
 
     jellyfin = {
-      enable = true;
+      enable = false;
       package = pkgs.unstable.jellyfin;
       openFirewall = true;
     };
 
     audiobookshelf = {
-      enable = true;
+      enable = false;
       package = pkgs.unstable.audiobookshelf;
       openFirewall = true;
     };

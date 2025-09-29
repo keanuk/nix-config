@@ -28,9 +28,9 @@
     ../common/nixos/services/flaresolverr.nix
     ../common/nixos/services/home-assistant.nix
     # ../common/nixos/services/nextcloud.nix
-    ../common/nixos/services/nixarr.nix
-    ../common/nixos/services/ollama.nix
-    ../common/nixos/services/open-webui.nix
+    # ../common/nixos/services/nixarr.nix
+    # ../common/nixos/services/ollama.nix
+    # ../common/nixos/services/open-webui.nix
   ];
 
   networking.hostName = "beehive";
