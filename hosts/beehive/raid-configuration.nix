@@ -2,10 +2,18 @@
   systemd.services.mount-raid = {
     enable = true;
     description = "Mount RAID configuration";
-    wantedBy = ["default.target"];
+    wantedBy = ["multi-user.target"];
     restartIfChanged = false;
+
+    unitConfig = {
+      After = ["local-fs-pre.target"];
+      Wants = ["local-fs-pre.target"];
+    };
+
     script = ''
       set -euo pipefail
+
+      /run/current-system/sw/bin/udevadm settle || true
 
       printf '%s' '${secrets.beehive_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sda
       printf '%s' '${secrets.beehive_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdb
@@ -25,8 +33,9 @@
       printf '%s' '${secrets.beehive_raid.password}' | /run/current-system/sw/bin/bcachefs mount /dev/sda:/dev/sdb:/dev/sdc:/dev/sdd:/dev/sde:/dev/sdf:/dev/sdg:/dev/sdh:/dev/sdi:/dev/sdj:/dev/sdk:/dev/sdl:/dev/sdm:/dev/sdn /data
     '';
     serviceConfig = {
-      RemainAfterExit = true;
       Type = "oneshot";
+      RemainAfterExit = true;
+      TimeoutStartSec = "10min";
     };
   };
 }

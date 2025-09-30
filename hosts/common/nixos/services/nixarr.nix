@@ -1,8 +1,22 @@
 {
   inputs,
   pkgs,
+  lib,
   ...
-}: {
+}: let
+  services = [
+    "wg"
+    "transmission"
+    "plex"
+    # "jellyfin"
+    # "audiobookshelf"
+    "bazarr"
+    "lidarr"
+    "prowlarr"
+    "radarr"
+    "sonarr"
+  ];
+in {
   imports = [
     inputs.nixarr.nixosModules.default
   ];
@@ -81,59 +95,11 @@
     };
   };
 
-  systemd.services = {
-    transmission = {
-      requires = [ "mount-raid.service" ];
-      after    = [ "mount-raid.service" ];
-      serviceConfig.ConditionPathIsMountPoint = "/data";
+  systemd.services = lib.genAttrs services (_: {
+    unitConfig = {
+      After = ["mount-raid.service"];
+      Requires = ["mount-raid.service"];
+      AssertPathIsMountPoint = "/data";
     };
-
-    plex = {
-      requires = [ "mount-raid.service" ];
-      after    = [ "mount-raid.service" ];
-      serviceConfig.ConditionPathIsMountPoint = "/data";
-    };
-
-    jellyfin = {
-      requires = [ "mount-raid.service" ];
-      after    = [ "mount-raid.service" ];
-      serviceConfig.ConditionPathIsMountPoint = "/data";
-    };
-
-    audiobookshelf = {
-      requires = [ "mount-raid.service" ];
-      after    = [ "mount-raid.service" ];
-      serviceConfig.ConditionPathIsMountPoint = "/data";
-    };
-
-    bazarr = {
-      requires = [ "mount-raid.service" ];
-      after    = [ "mount-raid.service" ];
-      serviceConfig.ConditionPathIsMountPoint = "/data";
-    };
-
-    lidarr = {
-      requires = [ "mount-raid.service" ];
-      after    = [ "mount-raid.service" ];
-      serviceConfig.ConditionPathIsMountPoint = "/data";
-    };
-
-    prowlarr = {
-      requires = [ "mount-raid.service" ];
-      after    = [ "mount-raid.service" ];
-      serviceConfig.ConditionPathIsMountPoint = "/data";
-    };
-
-    radarr = {
-      requires = [ "mount-raid.service" ];
-      after    = [ "mount-raid.service" ];
-      serviceConfig.ConditionPathIsMountPoint = "/data";
-    };
-
-    sonarr = {
-      requires = [ "mount-raid.service" ];
-      after    = [ "mount-raid.service" ];
-      serviceConfig.ConditionPathIsMountPoint = "/data";
-    };
-  };
+  });
 }
