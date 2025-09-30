@@ -9,7 +9,7 @@
     inputs.home-manager-stable.nixosModules.home-manager
     inputs.nur.modules.nixos.default
 
-    inputs.nixos-hardware.nixosModules.common-cpu-intel
+    inputs.nixos-hardware.nixosModules.common-cpu-amd
     inputs.nixos-hardware.nixosModules.common-pc
     inputs.nixos-hardware.nixosModules.common-pc-ssd
 
@@ -17,6 +17,7 @@
     ./hardware-configuration.nix
     ./raid-configuration.nix
 
+    ../common/nixos/base/amd.nix
     ../common/nixos/base/default.nix
     ../common/nixos/base/server.nix
     ../common/nixos/base/systemd-boot.nix
@@ -28,7 +29,7 @@
     ../common/nixos/services/flaresolverr.nix
     ../common/nixos/services/home-assistant.nix
     # ../common/nixos/services/nextcloud.nix
-    # ../common/nixos/services/nixarr.nix
+    ../common/nixos/services/nixarr.nix
     # ../common/nixos/services/ollama.nix
     # ../common/nixos/services/open-webui.nix
   ];

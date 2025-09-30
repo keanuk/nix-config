@@ -5,21 +5,24 @@
     wantedBy = ["default.target"];
     restartIfChanged = false;
     script = ''
-      /run/current-system/sw/bin/bash -c "echo '${secrets.earth_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sda"
-      /run/current-system/sw/bin/bash -c "echo '${secrets.earth_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdb"
-      /run/current-system/sw/bin/bash -c "echo '${secrets.earth_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdc"
-      /run/current-system/sw/bin/bash -c "echo '${secrets.earth_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdd"
-      /run/current-system/sw/bin/bash -c "echo '${secrets.earth_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sde"
-      /run/current-system/sw/bin/bash -c "echo '${secrets.earth_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdf"
-      /run/current-system/sw/bin/bash -c "echo '${secrets.earth_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdg"
-      /run/current-system/sw/bin/bash -c "echo '${secrets.earth_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdh"
-      /run/current-system/sw/bin/bash -c "echo '${secrets.earth_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdi"
-      /run/current-system/sw/bin/bash -c "echo '${secrets.earth_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdj"
-      /run/current-system/sw/bin/bash -c "echo '${secrets.earth_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdk"
-      /run/current-system/sw/bin/bash -c "echo '${secrets.earth_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdl"
-      /run/current-system/sw/bin/bash -c "echo '${secrets.earth_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdm"
-      /run/current-system/sw/bin/bash -c "echo '${secrets.earth_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdn"
-      /run/current-system/sw/bin/bash -c "echo '${secrets.earth_raid.password}' | /run/current-system/sw/bin/bcachefs mount /dev/sda:/dev/sdb:/dev/sdc:/dev/sdd:/dev/sde:/dev/sdf:/dev/sdg:/dev/sdh:/dev/sdi:/dev/sdj:/dev/sdk:/dev/sdl:/dev/sdm:/dev/sdn /data"
+      set -euo pipefail
+
+      printf '%s' '${secrets.beehive_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sda
+      printf '%s' '${secrets.beehive_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdb
+      printf '%s' '${secrets.beehive_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdc
+      printf '%s' '${secrets.beehive_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdd
+      printf '%s' '${secrets.beehive_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sde
+      printf '%s' '${secrets.beehive_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdf
+      printf '%s' '${secrets.beehive_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdg
+      printf '%s' '${secrets.beehive_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdh
+      printf '%s' '${secrets.beehive_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdi
+      printf '%s' '${secrets.beehive_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdj
+      printf '%s' '${secrets.beehive_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdk
+      printf '%s' '${secrets.beehive_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdl
+      printf '%s' '${secrets.beehive_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdm
+      printf '%s' '${secrets.beehive_raid.password}' | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdn
+
+      printf '%s' '${secrets.beehive_raid.password}' | /run/current-system/sw/bin/bcachefs mount /dev/sda:/dev/sdb:/dev/sdc:/dev/sdd:/dev/sde:/dev/sdf:/dev/sdg:/dev/sdh:/dev/sdi:/dev/sdj:/dev/sdk:/dev/sdl:/dev/sdm:/dev/sdn /data
     '';
     serviceConfig = {
       RemainAfterExit = true;

@@ -80,4 +80,60 @@
       openFirewall = true;
     };
   };
+
+  systemd.services = {
+    transmission = {
+      requires = [ "mount-raid.service" ];
+      after    = [ "mount-raid.service" ];
+      serviceConfig.ConditionPathIsMountPoint = "/data";
+    };
+
+    plex = {
+      requires = [ "mount-raid.service" ];
+      after    = [ "mount-raid.service" ];
+      serviceConfig.ConditionPathIsMountPoint = "/data";
+    };
+
+    jellyfin = {
+      requires = [ "mount-raid.service" ];
+      after    = [ "mount-raid.service" ];
+      serviceConfig.ConditionPathIsMountPoint = "/data";
+    };
+
+    audiobookshelf = {
+      requires = [ "mount-raid.service" ];
+      after    = [ "mount-raid.service" ];
+      serviceConfig.ConditionPathIsMountPoint = "/data";
+    };
+
+    bazarr = {
+      requires = [ "mount-raid.service" ];
+      after    = [ "mount-raid.service" ];
+      serviceConfig.ConditionPathIsMountPoint = "/data";
+    };
+
+    lidarr = {
+      requires = [ "mount-raid.service" ];
+      after    = [ "mount-raid.service" ];
+      serviceConfig.ConditionPathIsMountPoint = "/data";
+    };
+
+    prowlarr = {
+      requires = [ "mount-raid.service" ];
+      after    = [ "mount-raid.service" ];
+      serviceConfig.ConditionPathIsMountPoint = "/data";
+    };
+
+    radarr = {
+      requires = [ "mount-raid.service" ];
+      after    = [ "mount-raid.service" ];
+      serviceConfig.ConditionPathIsMountPoint = "/data";
+    };
+
+    sonarr = {
+      requires = [ "mount-raid.service" ];
+      after    = [ "mount-raid.service" ];
+      serviceConfig.ConditionPathIsMountPoint = "/data";
+    };
+  };
 }
