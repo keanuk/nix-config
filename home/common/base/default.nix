@@ -12,10 +12,6 @@
     ];
     config = {
       allowUnfree = true;
-      # TODO: remove electron when pocket-casts no longer depends on this
-      permittedInsecurePackages = [
-        "electron-35.7.5"
-      ];
     };
   };
 
