@@ -9,11 +9,14 @@
     "transmission"
     "plex"
     # "jellyfin"
+    # "jellyseerr"
     # "audiobookshelf"
+    "autobrr"
     "bazarr"
     "lidarr"
     "prowlarr"
     "radarr"
+    # "recyclarr"
     "sonarr"
   ];
 in {
@@ -58,10 +61,20 @@ in {
       openFirewall = true;
     };
 
+    jellyseerr = {
+      enable = false;
+      package = pkgs.unstable.jellyseerr;
+    };
+
     audiobookshelf = {
       enable = false;
       package = pkgs.unstable.audiobookshelf;
       openFirewall = true;
+    };
+
+    autobrr = {
+      enable = true;
+      package = pkgs.unstable.autobrr;
     };
 
     bazarr = {
@@ -86,6 +99,11 @@ in {
       enable = true;
       package = pkgs.unstable.radarr;
       openFirewall = true;
+    };
+
+    recyclarr = {
+      enable = false;
+      package = pkgs.unstable.recyclarr;
     };
 
     sonarr = {
