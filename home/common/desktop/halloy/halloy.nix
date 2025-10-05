@@ -44,6 +44,14 @@
           "#nixos"
         ];
       };
+      servers.oftc = {
+        server = "irc.oftc.net";
+        port = 6697;
+        nickname = "keanu";
+        channels = [
+          "#bcache"
+        ];
+      };
     };
   };
 }
