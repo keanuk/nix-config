@@ -6,7 +6,7 @@
         args = {appdir = "/Applications";};
       }
       {
-        name = "ollama";
+        name = "ollama-app";
         args = {appdir = "/Applications";};
       }
     ];
