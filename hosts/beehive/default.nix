@@ -15,7 +15,7 @@
 
     ./disko-configuration.nix
     ./hardware-configuration.nix
-    ./raid-configuration.nix
+    # ./raid-configuration.nix
 
     ../common/nixos/base/amd.nix
     ../common/nixos/base/default.nix
@@ -29,7 +29,7 @@
     ../common/nixos/services/flaresolverr.nix
     ../common/nixos/services/home-assistant.nix
     # ../common/nixos/services/nextcloud.nix
-    ../common/nixos/services/nixarr.nix
+    # ../common/nixos/services/nixarr.nix
     # ../common/nixos/services/ollama.nix
     # ../common/nixos/services/open-webui.nix
   ];

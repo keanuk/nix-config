@@ -10,7 +10,7 @@
 
   environment.systemPackages = with pkgs; [
     acpid
-    bcachefs-tools
+    unstable.bcachefs-tools
     busybox
     cachix
     dmidecode
