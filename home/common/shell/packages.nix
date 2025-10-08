@@ -12,6 +12,7 @@
     just
     libnatpmp
     nix-index
+    nix-tree
     nmap
     onefetch
     sops
