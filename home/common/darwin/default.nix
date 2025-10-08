@@ -9,6 +9,6 @@
     ../shell/atuin/darwin.nix
     ../shell/nh/nh.nix
 
-    ../dev/default.nix
+    ../dev/darwin.nix
   ];
 }

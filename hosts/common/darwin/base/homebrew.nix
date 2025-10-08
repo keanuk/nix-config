@@ -122,6 +122,7 @@
       "visual-studio-code@insiders"
       "vlc"
       "youtube-music"
+      "zig"
 
       # Games
       "0-ad"

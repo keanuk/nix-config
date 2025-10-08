@@ -6,9 +6,9 @@
   programs.zellij = {
     enable = true;
     package = pkgs.zellij;
-    enableBashIntegration = false;
-    enableZshIntegration = false;
-    enableFishIntegration = true;
+    enableBashIntegration = lib.mkDefault false;
+    enableZshIntegration = lib.mkDefault true;
+    enableFishIntegration = lib.mkDefault true;
     attachExistingSession = false;
     exitShellOnExit = true;
     settings = {
