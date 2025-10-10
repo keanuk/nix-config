@@ -35,6 +35,9 @@ in {
     vpn = {
       enable = true;
       wgConf = "/data/.secret/wg.conf";
+      accessibleFrom = [
+        "10.19.5.0/24"
+      ];
     };
 
     transmission = {
