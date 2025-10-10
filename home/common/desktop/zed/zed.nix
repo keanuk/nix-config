@@ -12,6 +12,8 @@
       "basher"
       "cargo-tom"
       "catppuccin"
+      "catpuccin-blur"
+      "catpuccin-icons"
       "csv"
       "dart"
       "dockerfile"
@@ -50,7 +52,7 @@
       autosave = "on_focus_change";
       restore_on_startup = "last_session";
       tab_size = 2;
-      vim_mode = true;
+      helix_mode = true;
       vim = {
         default_mode = "helix_normal";
         toggle_relative_line_numbers = true;
