@@ -4,6 +4,7 @@
     "basher": true,
     "cargo-tom": true,
     "catppuccin": true,
+    "catppuccin-blur": true,
     "catppuccin-icons": true,
     "csv": true,
     "dart": true,
@@ -82,12 +83,12 @@
     "working_directory": "current_project_directory"
   },
   "theme": {
-    "dark": "Catppuccin Mocha",
-    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Mocha (Blur)",
+    "light": "Catppuccin Latte (Blur)",
     "mode": "system"
   },
   "ui_font_size": 14,
-  "vim_mode": true,
+  "helix_mode": true,
   "vim": {
     "default_mode": "helix_normal",
     "toggle_relative_line_numbers": true

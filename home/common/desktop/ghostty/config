@@ -3,3 +3,5 @@ shell-integration = fish
 font-size = 13
 font-family = "RobotoMono Nerd Font"
 theme = dark:"Catppuccin Mocha",light:"Catppuccin Latte"
+background-opacity = 0.9
+background-blur = true

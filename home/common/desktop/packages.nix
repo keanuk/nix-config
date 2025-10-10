@@ -27,6 +27,7 @@
     fractal
     fragments
     gimp3-with-plugins
+    github-copilot-cli
     github-desktop
     gnome-builder
     gnome-disk-utility
