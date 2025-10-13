@@ -10,6 +10,7 @@
     ./node.nix
     ./python.nix
     ./rust.nix
+    ./zig.nix
   ];
 
   home.packages = with pkgs; [

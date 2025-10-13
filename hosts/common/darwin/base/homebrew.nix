@@ -44,23 +44,33 @@
     casks = [
       {
         name = "ghostty";
-        args = {appdir = "/Applications";};
+        args = {
+          appdir = "/Applications";
+        };
       }
       {
         name = "orion";
-        args = {appdir = "/Applications";};
+        args = {
+          appdir = "/Applications";
+        };
       }
       {
         name = "proton-drive";
-        args = {appdir = "/Applications";};
+        args = {
+          appdir = "/Applications";
+        };
       }
       {
         name = "zed";
-        args = {appdir = "/Applications";};
+        args = {
+          appdir = "/Applications";
+        };
       }
       {
         name = "zen";
-        args = {appdir = "/Applications";};
+        args = {
+          appdir = "/Applications";
+        };
       }
 
       "alacritty"
@@ -122,7 +132,6 @@
       "visual-studio-code@insiders"
       "vlc"
       "youtube-music"
-      "zig"
 
       # Games
       "0-ad"

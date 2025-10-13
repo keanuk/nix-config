@@ -90,12 +90,12 @@
   "ui_font_size": 14,
   "helix_mode": true,
   "vim": {
-    "default_mode": "helix_normal",
+    "default_mode": "normal",
     "toggle_relative_line_numbers": true
   },
   "agent": {
     "default_model": {
-      "model": "claude-sonnet-4",
+      "model": "claude-sonnet-4-5",
       "provider": "copilot_chat"
     },
     "enabled": true,

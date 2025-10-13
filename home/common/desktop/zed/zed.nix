@@ -54,7 +54,7 @@
       tab_size = 2;
       helix_mode = true;
       vim = {
-        default_mode = "helix_normal";
+        default_mode = "normal";
         toggle_relative_line_numbers = true;
         use_system_clipboard = "always";
       };
@@ -100,7 +100,7 @@
         button = true;
         default_model = {
           provider = "copilot_chat";
-          model = "claude-sonnet-4";
+          model = "claude-sonnet-4-5";
         };
       };
     };

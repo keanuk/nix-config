@@ -21,7 +21,7 @@
     plymouth.enable = true;
     kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = ["iptable_raw"];
-    supportedFilesystems = [ "bcachefs" ];
+    supportedFilesystems = ["bcachefs"];
   };
 
   system.autoUpgrade = {

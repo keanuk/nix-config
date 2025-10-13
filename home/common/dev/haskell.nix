@@ -1,5 +1,5 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    haskell.compiler.ghcHEAD
+    haskell.compiler.ghc98
   ];
 }
