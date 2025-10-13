@@ -40,8 +40,7 @@
     jitsi
     joplin-desktop
     krita
-    # TODO: re-enable when CMAKE builds are resovled https://github.com/NixOS/nixpkgs/issues/445447
-    # kodi-wayland
+    kodi-wayland
     leetcode-cli
     leetgo
     libreoffice
@@ -78,8 +77,7 @@
     telegram-desktop
     transmission_4-gtk
     trayscale
-    # TODO: re-enable when CMAKE builds are resovled https://github.com/NixOS/nixpkgs/issues/445447
-    # tremotesf
+    tremotesf
     tuba
     typst
     vlc
@@ -100,21 +98,17 @@
     # Games
     airshipper
     bugdom
-    # TODO: re-enable when CMAKE builds are resovled https://github.com/NixOS/nixpkgs/issues/445447
-    # flightgear
+    flightgear
     heroic
     lutris
     nanosaur
     nanosaur2
     otto-matic
     shattered-pixel-dungeon
-    # TODO: re-enable when CMAKE builds are resovled https://github.com/NixOS/nixpkgs/issues/445447
-    # superTux
-    # TODO: re-enable when CMAKE builds are resovled https://github.com/NixOS/nixpkgs/issues/445447
-    # superTuxKart
+    superTux
+    superTuxKart
     wesnoth
     xonotic
-    # TODO: re-enable when CMAKE builds are resovled https://github.com/NixOS/nixpkgs/issues/445447
-    # zeroad
+    zeroad
   ];
 }
