@@ -129,9 +129,9 @@
     pcscd.enable = true;
     printing.enable = true;
     power-profiles-daemon.enable = true;
-    resolved.enable = true;
-    resolved.dnssec = "allow-downgrade";
-    smartd.enable = true;
+    resolved.enable = lib.mkDefault true;
+    resolved.dnssec = lib.mkDefault "allow-downgrade";
+    smartd.enable = lib.mkDefault true;
     # TODO: re-enable when system service succeeds
     # sssd.enable = true;
     sysstat.enable = true;
@@ -142,7 +142,7 @@
 
   systemd = {
     # network.enable = true;
-    oomd.enable = true;
+    oomd.enable = lib.mkDefault true;
   };
 
   networking = {
@@ -154,7 +154,7 @@
 
   security = {
     audit.enable = true;
-    auditd.enable = true;
+    auditd.enable = lib.mkDefault true;
     polkit.enable = true;
     rtkit.enable = true;
     sudo-rs.enable = true;

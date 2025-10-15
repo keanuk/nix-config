@@ -21,6 +21,8 @@
     preservation.url = "github:nix-community/preservation";
     impermanence.url = "github:nix-community/impermanence";
 
+    wsl.url = "github:nix-community/NixOS-WSL/main";
+
     darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -87,6 +89,7 @@
     nixpkgs,
     nixpkgs-stable,
     systems,
+    wsl,
     darwin,
     home-manager,
     home-manager-stable,
@@ -139,6 +142,11 @@
       hyperion = lib.nixosSystem {
         specialArgs = {inherit inputs outputs secrets;};
         modules = [./hosts/hyperion];
+      };
+      # ThinkPad X13s Gen 1
+      mars = lib.nixosSystem {
+        specialArgs = {inherit inputs outputs secrets;};
+        modules = [./hosts/mars];
       };
       # HP EliteBook 1030 G2
       miranda = lib.nixosSystem {
@@ -198,6 +206,11 @@
         extraSpecialArgs = {inherit inputs outputs secrets;};
         pkgs = pkgsFor.x86_64-linux;
         modules = [./home/hyperion/keanu.nix];
+      };
+      "keanu@mars" = lib.homeManagerConfiguration {
+        extraSpecialArgs = {inherit inputs outputs secrets;};
+        pkgs = pkgsFor.aarch64-linux;
+        modules = [./home/mars/keanu.nix];
       };
       "keanu@miranda" = lib.homeManagerConfiguration {
         extraSpecialArgs = {inherit inputs outputs secrets;};
