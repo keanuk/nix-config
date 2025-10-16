@@ -4,17 +4,17 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   imports = [
     ./packages.nix
 
     ../services/apparmor.nix
+    ../services/comin.nix
     ../services/tailscale.nix
     ../services/virtualization.nix
 
     ../programs/nh.nix
-
-    ../../git/comin.nix
   ];
 
   boot = {
@@ -22,8 +22,8 @@
     loader.efi.canTouchEfiVariables = true;
     plymouth.enable = true;
     kernelPackages = pkgs.linuxPackages_latest;
-    kernelModules = ["iptable_raw"];
-    supportedFilesystems = ["bcachefs"];
+    kernelModules = [ "iptable_raw" ];
+    supportedFilesystems = [ "bcachefs" ];
   };
 
   system.autoUpgrade = {
@@ -45,7 +45,10 @@
   # workaround for https://github.com/NixOS/nixpkgs/issues/180175
   systemd.services.NetworkManager-wait-online = {
     serviceConfig = {
-      ExecStart = ["" "${pkgs.networkmanager}/bin/nm-online -q"];
+      ExecStart = [
+        ""
+        "${pkgs.networkmanager}/bin/nm-online -q"
+      ];
     };
   };
 
@@ -70,7 +73,7 @@
       auto-optimise-store = true;
       warn-dirty = false;
       auto-allocate-uids = true;
-      allowed-users = ["@users"];
+      allowed-users = [ "@users" ];
       experimental-features = [
         "nix-command"
         "flakes"
@@ -149,7 +152,7 @@
 
   networking = {
     firewall.enable = true;
-    firewall.trustedInterfaces = ["wt0"];
+    firewall.trustedInterfaces = [ "wt0" ];
     networkmanager.enable = true;
     nftables.enable = true;
   };
