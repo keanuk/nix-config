@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  wsl.defaultUser = "keanu"; 
+  wsl.defaultUser = "keanu";
   users.users.keanu = {
     isNormalUser = true;
     uid = 1000;

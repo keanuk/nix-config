@@ -6,9 +6,8 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    
+
     inputs.wsl.nixosModules.default
-    # inputs.determinate.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
     inputs.nur.modules.nixos.default
 

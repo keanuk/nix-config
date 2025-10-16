@@ -2,7 +2,9 @@
   imports = [
     ./packages.nix
 
-    ../../desktop/fonts.nix
+    ../../nixos/services/tailscale.nix
+
+    ../../nixos/programs/nh.nix
   ];
 
   wsl.enable = true;
