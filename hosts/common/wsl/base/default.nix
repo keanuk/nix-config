@@ -5,6 +5,8 @@
     ../../nixos/services/tailscale.nix
 
     ../../nixos/programs/nh.nix
+
+    ../../git/comin.nix
   ];
 
   wsl.enable = true;

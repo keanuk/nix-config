@@ -4,6 +4,8 @@
     ./packages.nix
 
     ../../desktop/fonts.nix
+
+    ../../git/comin.nix
   ];
 
   # Disabled for Determinate Nix

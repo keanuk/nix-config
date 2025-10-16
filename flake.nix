@@ -50,6 +50,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    comin = {
+      url = "github:nlewo/comin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-gl = {
       url = "github:nix-community/nixgl";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -94,6 +99,7 @@
     home-manager,
     home-manager-stable,
     stylix,
+    comin,
     ...
   } @ inputs: let
     inherit (self) outputs;

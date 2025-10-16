@@ -13,6 +13,8 @@
     ../services/virtualization.nix
 
     ../programs/nh.nix
+
+    ../../git/comin.nix
   ];
 
   boot = {
