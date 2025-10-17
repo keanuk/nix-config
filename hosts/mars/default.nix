@@ -12,7 +12,7 @@
 
     ../common/nixos/base/wsl.nix
 
-    ../common/nixos/user/keanu/default.nix
+    ../common/nixos/user/keanu/no-uid.nix
   ];
 
   networking.hostName = "mars";
