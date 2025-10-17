@@ -1,7 +1,6 @@
 {
   inputs,
   outputs,
-  lib,
   ...
 }: {
   imports = [
@@ -11,9 +10,9 @@
     inputs.home-manager.nixosModules.home-manager
     inputs.nur.modules.nixos.default
 
-    ../common/wsl/base/default.nix
+    ../common/nixos/base/wsl.nix
 
-    ../common/wsl/user/keanu/default.nix
+    ../common/nixos/user/keanu/default.nix
   ];
 
   networking.hostName = "mars";

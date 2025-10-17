@@ -1,22 +1,10 @@
-{ outputs, ... }:
-{
-  imports = [
-    ./packages.nix
-
-    ../../nixos/services/comin.nix
-    ../../nixos/services/tailscale.nix
-
-    ../../nixos/programs/nh.nix
-  ];
-
-  wsl.enable = true;
-
+{outputs, ...}: {
   nix = {
     settings = {
       auto-optimise-store = true;
       warn-dirty = false;
       auto-allocate-uids = true;
-      allowed-users = [ "@users" ];
+      allowed-users = ["@users"];
       experimental-features = [
         "nix-command"
         "flakes"

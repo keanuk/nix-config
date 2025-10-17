@@ -2,8 +2,7 @@
   imports = [
     ../common/base/default.nix
     ../common/base/home-manager.nix
-
-    ../common/wsl/default.nix
+    ../common/base/wsl.nix
   ];
 
   home = {

@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   homebrew = {
     enable = true;
     global.autoUpdate = true;
@@ -40,7 +41,10 @@
     taps = [
       "th-ch/youtube-music"
     ];
-    brews = [];
+    brews = [
+      "zig"
+      "zls"
+    ];
     casks = [
       {
         name = "ghostty";

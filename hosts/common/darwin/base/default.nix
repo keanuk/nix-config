@@ -1,10 +1,10 @@
-{ outputs, ... }:
-{
+{outputs, ...}: {
   imports = [
     ./homebrew.nix
     ./packages.nix
 
-    ../services/comin.nix
+    # TODO: Figure out how to make it work with determinate nix
+    # ../services/comin.nix
 
     ../../desktop/fonts.nix
   ];

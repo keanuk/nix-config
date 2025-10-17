@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   imports = [
     ./c.nix
     ./go.nix
@@ -10,7 +11,8 @@
     ./node.nix
     ./python.nix
     ./rust.nix
-    ./zig.nix
+    # TODO: re-enable when no longer marked as broken
+    # ./zig.nix
   ];
 
   home.packages = with pkgs; [
