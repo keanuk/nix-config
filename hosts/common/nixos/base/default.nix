@@ -86,8 +86,7 @@
     resolved.enable = lib.mkDefault true;
     resolved.dnssec = lib.mkDefault "allow-downgrade";
     smartd.enable = lib.mkDefault true;
-    # TODO: re-enable when system service succeeds
-    # sssd.enable = true;
+    sssd.enable = true;
     sysstat.enable = true;
     udisks2.enable = true;
     upower.enable = true;
