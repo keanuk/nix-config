@@ -6,7 +6,7 @@
 }: {
   imports = [
     ./packages.nix
-    ./nix
+    ./nix.nix
 
     ../services/apparmor.nix
     ../services/comin.nix
