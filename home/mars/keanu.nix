@@ -1,8 +1,8 @@
 {...}: {
   imports = [
-    ../common/base/default.nix
-    ../common/base/home-manager.nix
-    ../common/base/wsl.nix
+    ../_mixins/base/default.nix
+    ../_mixins/base/home-manager.nix
+    ../_mixins/base/wsl.nix
   ];
 
   home = {

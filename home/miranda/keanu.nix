@@ -1,11 +1,11 @@
 {...}: {
   imports = [
-    ../common/base/default.nix
-    ../common/base/home-manager.nix
+    ../_mixins/base/default.nix
+    ../_mixins/base/home-manager.nix
 
-    ../common/desktop/default.nix
-    ../common/desktop/gnome/gnome.nix
-    ../common/desktop/hyprland/default.nix
+    ../_mixins/desktop/default.nix
+    ../_mixins/desktop/gnome/gnome.nix
+    ../_mixins/desktop/hyprland/default.nix
   ];
 
   home = {

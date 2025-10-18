@@ -1,8 +1,8 @@
 {...}: {
   imports = [
-    ../common/base/default.nix
+    ../_mixins/base/default.nix
 
-    ../common/shell/packages.nix
+    ../_mixins/darwin/default.nix
   ];
 
   home = {
