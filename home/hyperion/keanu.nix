@@ -4,7 +4,7 @@
     ../_mixins/base/home-manager.nix
 
     ../_mixins/desktop/default.nix
-    ../_mixins/desktop/gnome/gnome.nix
+    ../_mixins/desktop/gnome/default.nix
   ];
 
   home = {
