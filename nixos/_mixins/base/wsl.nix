@@ -10,4 +10,5 @@
   ];
 
   wsl.enable = true;
+  wsl.defaultUser = "keanu";
 }

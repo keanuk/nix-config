@@ -12,7 +12,7 @@
 
     ../_mixins/base/wsl.nix
 
-    ../_mixins/user/keanu/no-uid.nix
+    ../_mixins/user/keanu/default.nix
   ];
 
   networking.hostName = "mars";
