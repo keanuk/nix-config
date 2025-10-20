@@ -28,6 +28,7 @@
     ../_mixins/services/btrfs/default.nix
     ../_mixins/services/flaresolverr/default.nix
     ../_mixins/services/home-assistant/default.nix
+    ../_mixins/services/immich/default.nix
     ../_mixins/services/nextcloud/default.nix
     ../_mixins/services/nixarr/default.nix
     # ../_mixins/services/ollama/default.nix

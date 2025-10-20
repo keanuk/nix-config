@@ -1,15 +1,6 @@
 {pkgs, ...}: {
   environment.etc."nextcloud-admin-pass".text = "PWD";
 
-  # Create directories with correct ownership before Nextcloud starts
-  systemd.tmpfiles.rules = [
-    "d /data/nextcloud 0750 nextcloud nextcloud -"
-    "d /data/nextcloud/config 0750 nextcloud nextcloud -"
-    "d /data/nextcloud/data 0750 nextcloud nextcloud -"
-    "d /data/.state 0755 root root -"
-    "d /data/.state/nextcloud 0750 nextcloud nextcloud -"
-  ];
-
   services.nextcloud = {
     enable = true;
     configureRedis = true;
