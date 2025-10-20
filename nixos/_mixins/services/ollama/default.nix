@@ -5,7 +5,7 @@
 }: {
   services.ollama = {
     enable = true;
-    package = pkgs.ollama;
+    package = pkgs.unstable.ollama;
     port = lib.mkDefault 11434;
     openFirewall = lib.mkDefault false;
     user = "ollama";
@@ -20,7 +20,6 @@
       "magistral"
       "mistral"
       "mistral-small"
-      "qwen2.5-coder"
       "qwen3"
       "qwen3-coder"
     ];
