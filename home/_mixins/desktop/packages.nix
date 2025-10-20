@@ -62,7 +62,6 @@
     proton-pass
     protonmail-desktop
     protonmail-bridge-gui
-    protonplus
     protonvpn-gui
     rawtherapee
     rnote
@@ -82,8 +81,6 @@
     tuba
     typst
     vlc
-    wine
-    wine-staging
     wireshark
     wl-clipboard
     xclip
@@ -101,6 +98,7 @@
     # Games
     airshipper
     bugdom
+    cartridges
     flightgear
     heroic
     lutris

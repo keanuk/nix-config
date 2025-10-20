@@ -1,16 +1,24 @@
-{...}: {
+{pkgs, ...}: {
   programs.git = {
     enable = true;
-    userName = "Keanu Kerr";
-    userEmail = "keanu@kerr.us";
+    package = pkgs.git;
     lfs.enable = true;
-    delta = {
-      enable = true;
-    };
-    extraConfig = {
+    settings = {
+      user = {
+        name = "Keanu Kerr";
+        email = "keanu@kerr.us";
+      };
       github.user = "keanuk";
       init.defaultBranch = "main";
       pull.rebase = false;
+    };
+  };
+
+  programs.delta = {
+    enable = true;
+    options = {
+      navigate = true;
+      side-by-side = true;
     };
   };
 }
