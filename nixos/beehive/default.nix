@@ -24,14 +24,13 @@
 
     ../_mixins/user/keanu/default.nix
 
-    # TODO: Finish setting up disabled services
     ../_mixins/services/btrfs/default.nix
     ../_mixins/services/flaresolverr/default.nix
     ../_mixins/services/home-assistant/default.nix
     ../_mixins/services/immich/default.nix
     ../_mixins/services/nextcloud/default.nix
     ../_mixins/services/nixarr/default.nix
-    # ../_mixins/services/ollama/default.nix
+    ../_mixins/services/ollama/default.nix
     ../_mixins/services/open-webui/default.nix
   ];
 

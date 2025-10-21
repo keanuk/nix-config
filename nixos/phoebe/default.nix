@@ -26,6 +26,7 @@
 
     ../_mixins/services/btrfs/default.nix
     ../_mixins/services/ollama/default.nix
+    ../_mixins/services/open-webui/default.nix
 
     ../_mixins/user/keanu/default.nix
   ];
