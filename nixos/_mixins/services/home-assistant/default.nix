@@ -21,17 +21,6 @@
       "zha"
       "zigbee"
 
-      # Popular device integrations
-      "shelly"
-      "tasmota"
-      "tuya"
-      "wled"
-      "xiaomi_miio"
-      "yeelight"
-      "tplink"
-      "unifi"
-      "upnp"
-
       # Media integrations
       "cast"
       "dlna_dmr"
