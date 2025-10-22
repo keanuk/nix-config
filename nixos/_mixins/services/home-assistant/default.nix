@@ -1,24 +1,77 @@
-{ pkgs, ...}: {
+{pkgs, ...}: {
   services.home-assistant = {
     enable = true;
     package = pkgs.unstable.home-assistant;
     openFirewall = true;
-    config = {
-      default_config = {};
-      homeassistant = {
-        name = "Home";
-        unit_system = "metric";
-        time_zone = "EST";  
-      };
-    };
+    configDir = "/data/.state/home-assistant";
+    config = null;
     extraComponents = [
-      "analytics"
-      "google_translate"
-      "isal"
+      # Core components (needed for basic functionality)
+      "default_config"
       "met"
+      "esphome"
+
+      # Common smart home platforms
+      "homekit"
+      "homekit_controller"
+      "hue"
+      "mqtt"
+      "zeroconf"
+      "ssdp"
+      "zha"
+      "zigbee"
+
+      # Popular device integrations
+      "shelly"
+      "tasmota"
+      "tuya"
+      "wled"
+      "xiaomi_miio"
+      "yeelight"
+      "tplink"
+      "unifi"
+      "upnp"
+
+      # Media integrations
+      "cast"
+      "dlna_dmr"
+      "plex"
+      "media_player"
+
+      # Network and discovery
+      "dhcp"
+      "bluetooth"
+      "usb"
+      "network"
+
+      # Sensors and utilities
+      "sun"
+      "weather"
+      "systemmonitor"
+      "speedtest"
+
+      # Additional useful components
+      "google_translate"
+      "shopping_list"
       "mobile_app"
       "radio_browser"
-      "shopping_list"
+      "wake_on_lan"
+      "rest"
+      "webhook"
+      "template"
+
+      # Performance
+      "isal"
+      "stream"
     ];
+  };
+
+  # Ensure Home Assistant starts after RAID is mounted
+  systemd.services.home-assistant = {
+    after = ["mount-raid.service"];
+    requires = ["mount-raid.service"];
+    unitConfig = {
+      AssertPathIsMountPoint = "/data";
+    };
   };
 }
