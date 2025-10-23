@@ -2,7 +2,6 @@
   services.home-assistant = {
     enable = true;
     package = pkgs.unstable.home-assistant;
-    openFirewall = true;
     configDir = "/data/.state/home-assistant";
     config = null;
     extraComponents = [
@@ -15,11 +14,6 @@
       "homekit"
       "homekit_controller"
       "hue"
-      "mqtt"
-      "zeroconf"
-      "ssdp"
-      "zha"
-      "zigbee"
 
       # Media integrations
       "cast"
@@ -37,7 +31,6 @@
       "sun"
       "weather"
       "systemmonitor"
-      "speedtest"
 
       # Additional useful components
       "google_translate"
@@ -63,4 +56,7 @@
       AssertPathIsMountPoint = "/data";
     };
   };
+
+  # Open firewall for Home Assistant web interface
+  networking.firewall.allowedTCPPorts = [8123];
 }
