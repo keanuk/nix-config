@@ -20,9 +20,9 @@
         "beehive"
         "localhost"
         "beehive.local"
-        "10.19.5.10"      # Main network IP
-        "100.91.10.104"   # Tailscale IP
-        "192.168.15.5"    # WireGuard IP
+        "10.19.5.10" # Main network IP
+        "100.91.10.104" # Tailscale IP
+        "192.168.15.5" # WireGuard IP
       ];
       trusted_proxies = ["127.0.0.1" "::1"];
     };

@@ -17,7 +17,6 @@
 
   programs.home-manager = {
     enable = true;
-    path = "$HOME/.config/nix-config";
   };
 
   news.display = "notify";

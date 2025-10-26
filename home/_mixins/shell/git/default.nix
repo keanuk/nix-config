@@ -2,12 +2,10 @@
   programs.git = {
     enable = true;
     package = pkgs.git;
+    lfs.enable = true;
     userName = "Keanu Kerr";
     userEmail = "keanu@kerr.us";
-    lfs.enable = true;
-    delta = {
-      enable = true;
-    };
+    delta.enable = true;
     extraConfig = {
       github.user = "keanuk";
       init.defaultBranch = "main";

@@ -1,6 +1,7 @@
 {
-  description = "Keanu's Nix";
+  description = "Keanu's Nix Configuration - Multi-platform NixOS and nix-darwin setup";
 
+  # Binary cache configuration for faster builds
   nixConfig = {
     extra-substituters = [
       "https://keanu.cachix.org"
@@ -12,15 +13,24 @@
     ];
   };
 
+  # Flake inputs - external dependencies
   inputs = {
+    # Determinate Systems Nix installer and tooling
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+
+    # Nixpkgs - main package repository
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
+
+    # Hardware configurations and system support
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     systems.url = "github:nix-systems/default";
+
+    # Stateful data management
     preservation.url = "github:nix-community/preservation";
     impermanence.url = "github:nix-community/impermanence";
 
+    # WSL support for Windows Subsystem for Linux
     wsl.url = "github:nix-community/NixOS-WSL/main";
 
     darwin = {

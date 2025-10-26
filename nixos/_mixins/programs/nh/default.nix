@@ -1,8 +1,12 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   programs.nh = {
     enable = true;
     package = pkgs.nh;
-    flake = "/home/keanu/.config/nix-config";
+    flake = "${config.users.users.keanu.home}/.config/nix-config";
     clean.enable = false;
   };
 

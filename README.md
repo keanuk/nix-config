@@ -147,27 +147,85 @@ home-manager switch --flake .#username@hostname
 ├── flake.nix                 # Main flake configuration
 ├── flake.lock               # Locked dependency versions
 ├── justfile                 # Task runner commands
-├── hosts/                   # Host-specific configurations
-│   ├── common/             # Shared host configurations
+│
+├── nixos/                   # NixOS configurations
+│   ├── _mixins/            # Reusable NixOS configuration modules
+│   │   ├── base/           # Base system configs (boot, impermanence, laptop, server, etc.)
+│   │   ├── desktop/        # Desktop environments (COSMIC, GNOME, Hyprland, Pantheon, Plasma)
+│   │   ├── programs/       # System programs (nh, Steam, Evolution)
+│   │   ├── services/       # System services (Jellyfin, Plex, *arr, Tailscale, etc.)
+│   │   ├── user/           # User account configurations
+│   │   └── virtualization/ # Virtualization configs
+│   ├── beehive/            # Beelink SER9 Pro
 │   ├── earth/              # Intel NUC server
 │   ├── hyperion/           # HP EliteBook 845 G8
 │   ├── miranda/            # HP EliteBook 1030 G2
 │   ├── phoebe/             # ThinkPad P14s AMD Gen 5
-│   ├── salacia/            # Mac Mini 2024
 │   ├── tethys/             # Zotac ZBox
 │   ├── titan/              # CyberPowerPC desktop
+│   └── mars/               # ThinkPad X13s Gen 1 (WSL)
+│
+├── darwin/                  # macOS (nix-darwin) configurations
+│   ├── _mixins/            # Reusable Darwin configuration modules
+│   │   ├── base/           # Base macOS configs
+│   │   ├── desktop/        # Desktop-related macOS configs
+│   │   ├── services/       # macOS services
+│   │   └── user/           # User account configurations
+│   ├── salacia/            # Mac Mini 2024
 │   ├── vesta/              # MacBook Pro 2020
 │   └── charon/             # MacBook Air 2018
-├── home/                   # Home Manager configurations
-│   ├── common/             # Shared home configurations
-│   └── [hostname]/         # Host-specific user configs
-├── modules/                # Custom NixOS and Home Manager modules
+│
+├── home/                    # Home Manager configurations
+│   ├── _mixins/            # Reusable Home Manager modules
+│   │   ├── base/           # Base home configs (default, impermanence, server, wsl)
+│   │   ├── darwin/         # Darwin-specific home configs
+│   │   ├── desktop/        # Desktop apps (Firefox, VSCode, GNOME, Kitty, Thunderbird, Zed, etc.)
+│   │   ├── dev/            # Language toolchains (C, Rust, Python, Go, Nix, Java, etc.)
+│   │   └── shell/          # Shell tools (Fish, Starship, Atuin, Git, Neovim, Helix, etc.)
+│   └── [hostname]/         # Per-host user configurations (e.g., hyperion/keanu.nix)
+│
+├── modules/                 # Custom NixOS and Home Manager modules
 │   ├── nixos/              # NixOS modules
 │   └── home-manager/       # Home Manager modules
 ├── overlays/               # Package overlays
 ├── pkgs/                   # Custom packages
 └── secrets/                # Encrypted secrets (SOPS)
 ```
+
+### The _mixins Pattern
+
+This configuration uses a **_mixins pattern** for modular, composable system configuration. Instead of a monolithic `common/` directory, configurations are organized into small, focused modules that can be mixed and matched per host.
+
+**How it works:**
+
+1. **Mixins are organized by category** - Each `_mixins/` directory contains subdirectories grouping related functionality (e.g., `base/`, `desktop/`, `services/`)
+
+2. **Host configurations import only what they need** - Each host's `default.nix` imports specific mixins:
+   ```nix-config/example-host.nix#L1-10
+   # Example: nixos/hyperion/default.nix
+   imports = [
+     ../_mixins/base/default.nix
+     ../_mixins/base/laptop.nix
+     ../_mixins/desktop/pantheon/default.nix
+     ../_mixins/services/tailscale/default.nix
+   ];
+   ```
+
+3. **Fine-grained composition** - Mix and match exactly the features needed:
+   - A laptop gets `base/laptop.nix`, a server gets `base/server.nix`
+   - Desktop systems import specific DE mixins (GNOME, Pantheon, Hyprland, etc.)
+   - Media servers import only the services they need (Jellyfin, Plex, Sonarr, etc.)
+
+4. **Consistent across platforms** - The same pattern is used for:
+   - **NixOS** (`nixos/_mixins/`) - System-level configuration
+   - **Darwin** (`darwin/_mixins/`) - macOS system configuration
+   - **Home Manager** (`home/_mixins/`) - User-level configuration
+
+**Benefits:**
+- **Clarity** - Easy to see exactly what features a host uses
+- **Reusability** - Mixins are shared across hosts without duplication
+- **Flexibility** - Add or remove features by changing imports
+- **Discoverability** - Browse `_mixins/` to see available options
 
 ## 🔧 Configuration Details
 
