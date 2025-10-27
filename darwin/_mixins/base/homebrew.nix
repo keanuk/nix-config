@@ -46,6 +46,12 @@
     ];
     casks = [
       {
+        name = "nvidia-geforce-now";
+        args = {
+          appdir = "/Applications";
+        };
+      }
+      {
         name = "ghostty";
         args = {
           appdir = "/Applications";
@@ -112,7 +118,6 @@
       "libreoffice"
       "logi-options+"
       "logseq"
-      "nvidia-geforce-now"
       "obs"
       "plex"
       "pocket-casts"
