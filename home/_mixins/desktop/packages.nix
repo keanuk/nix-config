@@ -3,6 +3,15 @@
   inputs,
   ...
 }: {
+  nixpkgs.config = {
+    permittedInsecurePackages = [
+      # TODO: remove when gfn-electron is updated to a secure version
+      "electron-35.7.5"
+      # TODO: remove when issue is resolved: https://github.com/NixOS/nixpkgs/issues/437865
+      "qtwebengine-5.15.19"
+    ];
+  };
+
   home.packages = with pkgs; [
     alpaca
     android-studio
@@ -35,8 +44,7 @@
     handbrake
     inkscape
     insomnia
-    # TODO: re-enable when issue is resolved: https://github.com/NixOS/nixpkgs/issues/437865
-    # jellyfin-media-player
+    jellyfin-media-player
     jitsi
     joplin-desktop
     krita
@@ -95,11 +103,12 @@
 
     inputs.zen-browser.packages."${system}".default
 
-    # Games
+    # Gaming
     airshipper
     bugdom
     cartridges
     flightgear
+    gfn-electron
     heroic
     lutris
     nanosaur
