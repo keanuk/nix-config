@@ -1,0 +1,36 @@
+name: Build and Cache
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-cache:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v9
+
+      - name: Configure Nix cache
+        uses: DeterminateSystems/magic-nix-cache-action@v3
+
+      - name: Install Cachix
+        uses: cachix/cachix-action@v14
+        with:
+          name: keanu
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+
+      - name: Build and push packages
+        run: |
+          nix build .#packages.x86_64-linux --json \
+            | jq -r '.[].outputs | to_entries[].value' \
+            | cachix push keanu
+
+          # Build a few key configurations
+          nix build .#nixosConfigurations.titan.config.system.build.toplevel --json \
+            | jq -r '.[].outputs | to_entries[].value' \
+            | cachix push keanu

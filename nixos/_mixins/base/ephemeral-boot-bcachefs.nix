@@ -1,4 +1,4 @@
-{...}: {
+_: {
   boot.initrd.systemd.services.rollback = {
     description = "Rollback Root Filesystem to Blank Snapshot";
     wantedBy = ["initrd.target"];

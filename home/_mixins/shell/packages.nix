@@ -5,6 +5,7 @@
     # bitwarden-cli
     circumflex
     cpufetch
+    deadnix
     ffmpeg
     fh
     fortune
@@ -17,6 +18,7 @@
     onefetch
     sops
     ssh-to-age
+    statix
     tlrc
     tree
     wget

@@ -1,0 +1,67 @@
+name: Build Check
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  check-flake:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v9
+
+      - name: Configure Nix cache
+        uses: DeterminateSystems/magic-nix-cache-action@v3
+
+      - name: Check flake
+        run: nix flake check --all-systems --show-trace
+
+  build-nixos:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        host: [beehive, earth, hyperion, mars, miranda, phoebe, tethys, titan]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v9
+
+      - name: Configure Nix cache
+        uses: DeterminateSystems/magic-nix-cache-action@v3
+
+      - name: Build NixOS configuration for ${{ matrix.host }}
+        run: |
+          nix build .#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel \
+            --print-build-logs \
+            --fallback
+
+  build-darwin:
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        host: [salacia, vesta, charon]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v9
+
+      - name: Configure Nix cache
+        uses: DeterminateSystems/magic-nix-cache-action@v3
+
+      - name: Build Darwin configuration for ${{ matrix.host }}
+        run: |
+          nix build .#darwinConfigurations.${{ matrix.host }}.system \
+            --print-build-logs \
+            --fallback

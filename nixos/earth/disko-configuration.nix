@@ -1,4 +1,4 @@
-{...}: let
+_: let
   defaultBtrfsOpts = ["defaults" "compress=zstd" "ssd" "noatime" "nodiratime"];
 in {
   disko.devices = {

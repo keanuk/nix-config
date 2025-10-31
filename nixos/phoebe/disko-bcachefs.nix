@@ -1,4 +1,4 @@
-{...}: let
+_: let
   defaultBcachefsOpts = ["defaults" "compress=lz4" "ssd" "noatime" "nodiratime"];
 in {
   disko.devices = {

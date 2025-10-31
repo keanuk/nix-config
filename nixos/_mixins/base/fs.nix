@@ -1,4 +1,4 @@
-{...}: {
+_: {
   # Mount options
   fileSystems = {
     "/".options = ["noatime" "compress=zstd" "space_cache=v2"];
