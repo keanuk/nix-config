@@ -22,7 +22,7 @@ jobs:
         uses: cachix/cachix-action@v14
         with:
           name: keanu
-          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: Build and push packages
         run: |
@@ -30,7 +30,10 @@ jobs:
             | jq -r '.[].outputs | to_entries[].value' \
             | cachix push keanu
 
-          # Build a few key configurations
-          nix build .#nixosConfigurations.titan.config.system.build.toplevel --json \
-            | jq -r '.[].outputs | to_entries[].value' \
-            | cachix push keanu
+          # Build key configurations (excluding beehive which requires git-crypt secrets)
+          for host in titan earth hyperion miranda phoebe tethys; do
+            echo "Building $host..."
+            nix build .#nixosConfigurations.$host.config.system.build.toplevel --json \
+              | jq -r '.[].outputs | to_entries[].value' \
+              | cachix push keanu
+          done

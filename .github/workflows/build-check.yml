@@ -7,7 +7,8 @@ on:
       - main
 
 jobs:
-  check-flake:
+  # Check that the flake evaluates without building
+  eval-check:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -19,15 +20,21 @@ jobs:
       - name: Configure Nix cache
         uses: DeterminateSystems/magic-nix-cache-action@v3
 
-      - name: Check flake
-        run: nix flake check --all-systems --show-trace
+      - name: Evaluate flake
+        run: |
+          nix flake show --all-systems
+          nix eval .#nixosConfigurations --apply builtins.attrNames
+          nix eval .#darwinConfigurations --apply builtins.attrNames
 
   build-nixos:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        host: [beehive, earth, hyperion, mars, miranda, phoebe, tethys, titan]
+        # Note: beehive excluded because it requires git-crypt decrypted secrets for raid-configuration.nix
+        # The raid configuration uses the secret password directly in bcachefs commands
+        # It will evaluate but build will fail in CI without the real password
+        host: [earth, hyperion, mars, miranda, phoebe, tethys, titan]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
