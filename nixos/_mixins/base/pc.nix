@@ -1,4 +1,4 @@
-{...}: {
+_: {
   networking.networkmanager.wifi.powersave = false;
   boot.extraModprobeConfig = ''
     options rtw88_core disable_lps_deep=y

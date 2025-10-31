@@ -1,4 +1,4 @@
-{...}: {
+_: {
   users.groups.data = {
     gid = 554;
   };

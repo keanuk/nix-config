@@ -13,7 +13,7 @@
     builtins.foldl'
     (acc: overlay: acc // (overlay final prev))
     {}
-    (map (path: import path) fixes);
+    (map import fixes);
 in {
   # Custom packages defined in ../pkgs
   additions = final: prev: import ../pkgs {pkgs = final;};
@@ -24,7 +24,7 @@ in {
   # Access to nixpkgs unstable
   unstable-packages = final: prev: {
     unstable = import inputs.nixpkgs {
-      system = final.system;
+      inherit (final) system;
       config = {
         allowUnfree = true;
       };
@@ -34,7 +34,7 @@ in {
   # Access to nixpkgs stable
   stable-packages = final: prev: {
     stable = import inputs.nixpkgs-stable {
-      system = final.system;
+      inherit (final) system;
       config = {
         allowUnfree = true;
       };

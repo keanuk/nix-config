@@ -1,0 +1,74 @@
+name: Build Check
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  # Check that the flake evaluates without building
+  eval-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v9
+
+      - name: Configure Nix cache
+        uses: DeterminateSystems/magic-nix-cache-action@v3
+
+      - name: Evaluate flake
+        run: |
+          nix flake show --all-systems
+          nix eval .#nixosConfigurations --apply builtins.attrNames
+          nix eval .#darwinConfigurations --apply builtins.attrNames
+
+  build-nixos:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # Note: beehive excluded because it requires git-crypt decrypted secrets for raid-configuration.nix
+        # The raid configuration uses the secret password directly in bcachefs commands
+        # It will evaluate but build will fail in CI without the real password
+        host: [earth, hyperion, mars, miranda, phoebe, tethys, titan]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v9
+
+      - name: Configure Nix cache
+        uses: DeterminateSystems/magic-nix-cache-action@v3
+
+      - name: Build NixOS configuration for ${{ matrix.host }}
+        run: |
+          nix build .#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel \
+            --print-build-logs \
+            --fallback
+
+  build-darwin:
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        host: [salacia, vesta, charon]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v9
+
+      - name: Configure Nix cache
+        uses: DeterminateSystems/magic-nix-cache-action@v3
+
+      - name: Build Darwin configuration for ${{ matrix.host }}
+        run: |
+          nix build .#darwinConfigurations.${{ matrix.host }}.system \
+            --print-build-logs \
+            --fallback

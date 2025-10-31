@@ -77,8 +77,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # TODO: Remove rust-overlay follow when issue is resolved: https://github.com/nix-community/lanzaboote/issues/485
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        rust-overlay.follows = "rust-overlay";
+      };
+    };
+
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -130,7 +139,24 @@
           config.allowUnfree = true;
         }
     );
-    secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/git/secrets.json");
+    # Load secrets if available (git-crypt decrypted), otherwise use empty defaults for CI
+    secretsPath = "${self}/secrets/git/secrets.json";
+    defaultSecrets = {
+      google_maps.token = "";
+      nextdns.id = "000000";
+      beehive_raid.password = "";
+    };
+    secrets =
+      if builtins.pathExists secretsPath
+      then let
+        content = builtins.readFile secretsPath;
+        # Check if content is valid JSON (not encrypted binary)
+        parsed = builtins.tryEval (builtins.fromJSON content);
+      in
+        if parsed.success
+        then parsed.value
+        else defaultSecrets
+      else defaultSecrets;
   in {
     inherit lib lib-stable;
     nixosModules = import ./modules/nixos;

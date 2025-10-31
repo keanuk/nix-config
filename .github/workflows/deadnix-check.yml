@@ -1,0 +1,24 @@
+name: Dead Code Check
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  deadnix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v9
+
+      - name: Configure Nix cache
+        uses: DeterminateSystems/magic-nix-cache-action@v3
+
+      - name: Check for dead code
+        run: |
+          nix run nixpkgs#deadnix -- --fail .
