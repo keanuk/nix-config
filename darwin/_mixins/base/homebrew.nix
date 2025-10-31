@@ -46,13 +46,31 @@
     ];
     casks = [
       {
-        name = "nvidia-geforce-now";
+        name = "discord";
+        args = {
+          appdir = "/Applications";
+        };
+      }
+      {
+        name = "element";
+        args = {
+          appdir = "/Applications";
+        };
+      }
+      {
+        name = "ente";
         args = {
           appdir = "/Applications";
         };
       }
       {
         name = "ghostty";
+        args = {
+          appdir = "/Applications";
+        };
+      }
+      {
+        name = "nvidia-geforce-now";
         args = {
           appdir = "/Applications";
         };
@@ -92,11 +110,8 @@
       "darktable"
       "dbeaver-community"
       "deepl"
-      "discord"
       "docker-desktop"
       "ea"
-      "element"
-      "ente"
       "ente-auth"
       "epic-games"
       "firefox"
