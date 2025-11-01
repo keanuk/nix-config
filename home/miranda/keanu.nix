@@ -4,6 +4,7 @@
     ../_mixins/base/home-manager.nix
 
     ../_mixins/desktop/default.nix
+    ../_mixins/desktop/cosmic/default.nix
     ../_mixins/desktop/gnome/default.nix
   ];
 

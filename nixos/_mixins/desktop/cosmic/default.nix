@@ -7,6 +7,7 @@
   services.displayManager.cosmic-greeter.enable = true;
 
   environment.systemPackages = with pkgs; [
-    tasks
+    cosmic-ext-applet-caffeine
+    cosmic-ext-tweaks
   ];
 }
