@@ -87,11 +87,29 @@
     resolved.enable = lib.mkDefault true;
     resolved.dnssec = lib.mkDefault "allow-downgrade";
     smartd.enable = lib.mkDefault true;
-    sssd.enable = true;
     sysstat.enable = true;
     udisks2.enable = true;
     upower.enable = true;
     xinetd.enable = true;
+
+    sssd = {
+      enable = true;
+      settings = {
+        "domain/shadowutils" = {
+          auth_provider = "proxy";
+          id_provider = "proxy";
+          proxy_fast_alias = true;
+          proxy_lib_name = "files";
+          proxy_pam_target = "sssd-shadowutils";
+        };
+        nss = {};
+        pam = {};
+        sssd = {
+          domains = "shadowutils";
+          services = "nss, pam";
+        };
+      };
+    };
   };
 
   systemd = {

@@ -77,17 +77,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # TODO: Remove rust-overlay follow when issue is resolved: https://github.com/nix-community/lanzaboote/issues/485
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        rust-overlay.follows = "rust-overlay";
-      };
-    };
-
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

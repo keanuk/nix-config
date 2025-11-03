@@ -3,8 +3,6 @@
   # Comment out any fixes that are no longer needed
   fixes = [
     ./fixes/batgrep.nix
-    ./fixes/mercantile.nix
-    ./fixes/qt6-packages.nix
     ./fixes/macos-ruby.nix
   ];
 
