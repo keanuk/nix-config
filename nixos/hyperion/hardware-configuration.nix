@@ -12,11 +12,13 @@
   ];
 
   boot = {
-    initrd.availableKernelModules = ["xhci_pci" "nvme" "usb_storage" "sd_mod"];
-    initrd.kernelModules = [];
+    initrd = {
+      availableKernelModules = ["xhci_pci" "nvme" "usb_storage" "sd_mod"];
+      kernelModules = [];
+      luks.devices."cryptroot".device = "/dev/disk/by-uuid/a0b9696f-8a05-4344-ae94-8758738b35a1";
+    };
     kernelModules = ["kvm-amd"];
     extraModulePackages = [];
-    initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/a0b9696f-8a05-4344-ae94-8758738b35a1";
   };
 
   fileSystems = {

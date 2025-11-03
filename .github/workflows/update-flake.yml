@@ -19,10 +19,6 @@ jobs:
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@v9
 
-      - name: Configure Nix cache
-        uses: DeterminateSystems/magic-nix-cache-action@v3
-        continue-on-error: true
-
       - name: Update flake.lock
         run: nix flake update
 

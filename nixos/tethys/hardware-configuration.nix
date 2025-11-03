@@ -13,8 +13,10 @@
   ];
 
   boot = {
-    initrd.availableKernelModules = ["xhci_pci" "ehci_pci" "ahci" "usbhid" "ums_realtek" "usb_storage" "sd_mod" "sdhci_pci"];
-    initrd.kernelModules = [];
+    initrd = {
+      availableKernelModules = ["xhci_pci" "ehci_pci" "ahci" "usbhid" "ums_realtek" "usb_storage" "sd_mod" "sdhci_pci"];
+      kernelModules = [];
+    };
     kernelModules = ["kvm-intel"];
     extraModulePackages = [];
   };
