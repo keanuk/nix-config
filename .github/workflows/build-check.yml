@@ -17,24 +17,18 @@ jobs:
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@v9
 
-      - name: Configure Nix cache
-        uses: DeterminateSystems/magic-nix-cache-action@v3
-        continue-on-error: true
-
       - name: Evaluate flake
         run: |
           nix flake show --all-systems
           nix eval .#nixosConfigurations --apply builtins.attrNames
           nix eval .#darwinConfigurations --apply builtins.attrNames
 
-  build-nixos:
+  eval-nixos:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        # Note: beehive excluded because it requires git-crypt decrypted secrets for raid-configuration.nix
-        # The raid configuration uses the secret password directly in bcachefs commands
-        # It will evaluate but build will fail in CI without the real password
+        # Note: beehive excluded because it requires git-crypt decrypted secrets
         host: [earth, hyperion, mars, miranda, phoebe, tethys, titan]
     steps:
       - name: Checkout repository
@@ -43,17 +37,13 @@ jobs:
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@v9
 
-      - name: Configure Nix cache
-        uses: DeterminateSystems/magic-nix-cache-action@v3
-        continue-on-error: true
-
-      - name: Build NixOS configuration for ${{ matrix.host }}
+      - name: Evaluate NixOS configuration for ${{ matrix.host }}
         run: |
-          nix build .#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel \
-            --print-build-logs \
-            --fallback
+          echo "Evaluating ${{ matrix.host }}..."
+          nix eval .#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel.drvPath
+          echo "✓ ${{ matrix.host }} configuration evaluates successfully"
 
-  build-darwin:
+  eval-darwin:
     runs-on: macos-latest
     strategy:
       fail-fast: false
@@ -66,12 +56,8 @@ jobs:
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@v9
 
-      - name: Configure Nix cache
-        uses: DeterminateSystems/magic-nix-cache-action@v3
-        continue-on-error: true
-
-      - name: Build Darwin configuration for ${{ matrix.host }}
+      - name: Evaluate Darwin configuration for ${{ matrix.host }}
         run: |
-          nix build .#darwinConfigurations.${{ matrix.host }}.system \
-            --print-build-logs \
-            --fallback
+          echo "Evaluating ${{ matrix.host }}..."
+          nix eval .#darwinConfigurations.${{ matrix.host }}.system.drvPath
+          echo "✓ ${{ matrix.host }} configuration evaluates successfully"

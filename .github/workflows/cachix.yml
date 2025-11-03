@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build-packages:
+  build-and-cache-packages:
     runs-on: ubuntu-latest
     steps:
       - name: Free up disk space
@@ -26,10 +26,6 @@ jobs:
 
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@v9
-
-      - name: Configure Nix cache
-        uses: DeterminateSystems/magic-nix-cache-action@v3
-        continue-on-error: true
 
       - name: Install Cachix
         uses: cachix/cachix-action@v14
@@ -39,49 +35,11 @@ jobs:
 
       - name: Build and push packages
         run: |
+          echo "Building and caching packages..."
           nix build .#packages.x86_64-linux --json \
             | jq -r '.[].outputs | to_entries[].value' \
             | cachix push keanu
 
-  build-nixos:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        # Excluding beehive which requires git-crypt secrets
-        host: [titan, earth, hyperion, miranda, phoebe, tethys]
-    steps:
-      - name: Free up disk space
-        run: |
-          echo "Disk space before cleanup:"
-          df -h
-          sudo rm -rf /usr/share/dotnet
-          sudo rm -rf /usr/local/lib/android
-          sudo rm -rf /opt/ghc
-          sudo rm -rf /opt/hostedtoolcache/CodeQL
-          sudo docker image prune --all --force
-          echo "Disk space after cleanup:"
-          df -h
-
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@v9
-
-      - name: Configure Nix cache
-        uses: DeterminateSystems/magic-nix-cache-action@v3
-        continue-on-error: true
-
-      - name: Install Cachix
-        uses: cachix/cachix-action@v14
-        with:
-          name: keanu
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
-
-      - name: Build and push ${{ matrix.host }}
-        run: |
-          echo "Building ${{ matrix.host }}..."
-          nix build .#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel --json \
-            | jq -r '.[].outputs | to_entries[].value' \
-            | cachix push keanu
+          echo "✓ Packages built and cached successfully"
+          echo "Note: Full system configurations are not built in CI due to disk space limitations (~75GB required vs ~30GB available)"
+          echo "System configurations are evaluated in the build-check workflow to ensure they are valid"

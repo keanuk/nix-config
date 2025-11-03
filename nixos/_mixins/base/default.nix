@@ -92,24 +92,25 @@
     upower.enable = true;
     xinetd.enable = true;
 
-    sssd = {
-      enable = true;
-      settings = {
-        "domain/shadowutils" = {
-          auth_provider = "proxy";
-          id_provider = "proxy";
-          proxy_fast_alias = true;
-          proxy_lib_name = "files";
-          proxy_pam_target = "sssd-shadowutils";
-        };
-        nss = {};
-        pam = {};
-        sssd = {
-          domains = "shadowutils";
-          services = "nss, pam";
-        };
-      };
-    };
+    # TODO: uncomment after upgrade to NixOS 25.11
+    # sssd = {
+    #   enable = true;
+    #   settings = {
+    #     "domain/shadowutils" = {
+    #       auth_provider = "proxy";
+    #       id_provider = "proxy";
+    #       proxy_fast_alias = true;
+    #       proxy_lib_name = "files";
+    #       proxy_pam_target = "sssd-shadowutils";
+    #     };
+    #     nss = {};
+    #     pam = {};
+    #     sssd = {
+    #       domains = "shadowutils";
+    #       services = "nss, pam";
+    #     };
+    #   };
+    # };
   };
 
   systemd = {
