@@ -12,50 +12,54 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "ehci_pci" "ahci" "usbhid" "ums_realtek" "usb_storage" "sd_mod" "sdhci_pci"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-intel"];
-  boot.extraModulePackages = [];
-
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/8a943e1a-9063-4201-bbd5-14092bcabaff";
-    fsType = "btrfs";
-    options = ["subvol=@"];
+  boot = {
+    initrd.availableKernelModules = ["xhci_pci" "ehci_pci" "ahci" "usbhid" "ums_realtek" "usb_storage" "sd_mod" "sdhci_pci"];
+    initrd.kernelModules = [];
+    kernelModules = ["kvm-intel"];
+    extraModulePackages = [];
   };
 
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/8a943e1a-9063-4201-bbd5-14092bcabaff";
-    fsType = "btrfs";
-    options = ["subvol=@nix"];
-  };
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/8a943e1a-9063-4201-bbd5-14092bcabaff";
+      fsType = "btrfs";
+      options = ["subvol=@"];
+    };
 
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/8a943e1a-9063-4201-bbd5-14092bcabaff";
-    fsType = "btrfs";
-    options = ["subvol=@home"];
-  };
+    "/nix" = {
+      device = "/dev/disk/by-uuid/8a943e1a-9063-4201-bbd5-14092bcabaff";
+      fsType = "btrfs";
+      options = ["subvol=@nix"];
+    };
 
-  fileSystems."/.snapshots" = {
-    device = "/dev/disk/by-uuid/8a943e1a-9063-4201-bbd5-14092bcabaff";
-    fsType = "btrfs";
-    options = ["subvol=@snapshots"];
-  };
+    "/home" = {
+      device = "/dev/disk/by-uuid/8a943e1a-9063-4201-bbd5-14092bcabaff";
+      fsType = "btrfs";
+      options = ["subvol=@home"];
+    };
 
-  fileSystems."/var/log" = {
-    device = "/dev/disk/by-uuid/8a943e1a-9063-4201-bbd5-14092bcabaff";
-    fsType = "btrfs";
-    options = ["subvol=@var_log"];
-  };
+    "/.snapshots" = {
+      device = "/dev/disk/by-uuid/8a943e1a-9063-4201-bbd5-14092bcabaff";
+      fsType = "btrfs";
+      options = ["subvol=@snapshots"];
+    };
 
-  fileSystems."/swap" = {
-    device = "/dev/disk/by-uuid/8a943e1a-9063-4201-bbd5-14092bcabaff";
-    fsType = "btrfs";
-    options = ["subvol=@swap"];
-  };
+    "/var/log" = {
+      device = "/dev/disk/by-uuid/8a943e1a-9063-4201-bbd5-14092bcabaff";
+      fsType = "btrfs";
+      options = ["subvol=@var_log"];
+    };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/FA12-A2E8";
-    fsType = "vfat";
+    "/swap" = {
+      device = "/dev/disk/by-uuid/8a943e1a-9063-4201-bbd5-14092bcabaff";
+      fsType = "btrfs";
+      options = ["subvol=@swap"];
+    };
+
+    "/boot" = {
+      device = "/dev/disk/by-uuid/FA12-A2E8";
+      fsType = "vfat";
+    };
   };
 
   swapDevices = [];

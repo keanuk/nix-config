@@ -29,19 +29,21 @@
   };
 
   # Ensure Nextcloud services start after RAID is mounted and tmpfiles are created
-  systemd.services.nextcloud-setup = {
-    after = ["mount-raid.service" "systemd-tmpfiles-setup.service" "postgresql.service"];
-    requires = ["mount-raid.service" "systemd-tmpfiles-setup.service" "postgresql.service"];
-  };
+  systemd.services = {
+    nextcloud-setup = {
+      after = ["mount-raid.service" "systemd-tmpfiles-setup.service" "postgresql.service"];
+      requires = ["mount-raid.service" "systemd-tmpfiles-setup.service" "postgresql.service"];
+    };
 
-  systemd.services.nextcloud-cron = {
-    after = ["mount-raid.service" "systemd-tmpfiles-setup.service" "postgresql.service"];
-    requires = ["mount-raid.service" "systemd-tmpfiles-setup.service" "postgresql.service"];
-  };
+    nextcloud-cron = {
+      after = ["mount-raid.service" "systemd-tmpfiles-setup.service" "postgresql.service"];
+      requires = ["mount-raid.service" "systemd-tmpfiles-setup.service" "postgresql.service"];
+    };
 
-  systemd.services.phpfpm-nextcloud = {
-    after = ["mount-raid.service" "systemd-tmpfiles-setup.service" "postgresql.service"];
-    requires = ["mount-raid.service" "systemd-tmpfiles-setup.service" "postgresql.service"];
+    phpfpm-nextcloud = {
+      after = ["mount-raid.service" "systemd-tmpfiles-setup.service" "postgresql.service"];
+      requires = ["mount-raid.service" "systemd-tmpfiles-setup.service" "postgresql.service"];
+    };
   };
 
   networking.firewall.allowedTCPPorts = [

@@ -1,9 +1,11 @@
 {lib, ...}: {
   fonts.fontconfig = {
     enable = true;
-    defaultFonts.sansSerif = lib.mkDefault ["Roboto"];
-    defaultFonts.serif = lib.mkDefault ["Roboto Slab"];
-    defaultFonts.monospace = lib.mkDefault ["RobotoMono Nerd Font"];
-    defaultFonts.emoji = lib.mkDefault ["Noto Color Emoji"];
+    defaultFonts = {
+      sansSerif = lib.mkDefault ["Roboto"];
+      serif = lib.mkDefault ["Roboto Slab"];
+      monospace = lib.mkDefault ["RobotoMono Nerd Font"];
+      emoji = lib.mkDefault ["Noto Color Emoji"];
+    };
   };
 }

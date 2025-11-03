@@ -33,9 +33,11 @@
         };
         scrolloff = 10;
         statusline = {
-          mode.normal = "NORMAL";
-          mode.insert = "INSERT";
-          mode.select = "SELECT";
+          mode = {
+            normal = "NORMAL";
+            insert = "INSERT";
+            select = "SELECT";
+          };
         };
         true-color = true;
       };

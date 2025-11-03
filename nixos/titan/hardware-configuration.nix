@@ -12,53 +12,56 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["nvme" "ahci" "xhci_pci" "usb_storage" "usbhid" "sd_mod"];
-  boot.initrd.kernelModules = ["amdgpu"];
-  boot.kernelModules = ["kvm-amd"];
-  boot.extraModulePackages = [];
-
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
-    fsType = "btrfs";
-    options = ["subvol=@"];
+  boot = {
+    initrd.availableKernelModules = ["nvme" "ahci" "xhci_pci" "usb_storage" "usbhid" "sd_mod"];
+    initrd.kernelModules = ["amdgpu"];
+    kernelModules = ["kvm-amd"];
+    extraModulePackages = [];
+    initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/a7a50ee6-ebfa-4901-bdd7-f6d6d2e5bdc0";
+    initrd.luks.devices."cryptroot2".device = "/dev/disk/by-uuid/ea72ef0b-520a-436e-b9b4-0f7484325ad1";
   };
 
-  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/a7a50ee6-ebfa-4901-bdd7-f6d6d2e5bdc0";
-  boot.initrd.luks.devices."cryptroot2".device = "/dev/disk/by-uuid/ea72ef0b-520a-436e-b9b4-0f7484325ad1";
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
+      fsType = "btrfs";
+      options = ["subvol=@"];
+    };
 
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
-    fsType = "btrfs";
-    options = ["subvol=@nix"];
-  };
+    "/nix" = {
+      device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
+      fsType = "btrfs";
+      options = ["subvol=@nix"];
+    };
 
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
-    fsType = "btrfs";
-    options = ["subvol=@home"];
-  };
+    "/home" = {
+      device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
+      fsType = "btrfs";
+      options = ["subvol=@home"];
+    };
 
-  fileSystems."/.snapshots" = {
-    device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
-    fsType = "btrfs";
-    options = ["subvol=@snapshots"];
-  };
+    "/.snapshots" = {
+      device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
+      fsType = "btrfs";
+      options = ["subvol=@snapshots"];
+    };
 
-  fileSystems."/var/log" = {
-    device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
-    fsType = "btrfs";
-    options = ["subvol=@var_log"];
-  };
+    "/var/log" = {
+      device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
+      fsType = "btrfs";
+      options = ["subvol=@var_log"];
+    };
 
-  fileSystems."/swap" = {
-    device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
-    fsType = "btrfs";
-    options = ["subvol=@swap"];
-  };
+    "/swap" = {
+      device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
+      fsType = "btrfs";
+      options = ["subvol=@swap"];
+    };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/2578-2131";
-    fsType = "vfat";
+    "/boot" = {
+      device = "/dev/disk/by-uuid/2578-2131";
+      fsType = "vfat";
+    };
   };
 
   swapDevices = [];

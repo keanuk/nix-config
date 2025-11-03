@@ -1,14 +1,16 @@
 _: {
-  users.groups.data = {
-    gid = 554;
-  };
+  users = {
+    groups.data = {
+      gid = 554;
+    };
 
-  users.groups.media = {
-    gid = 555;
-  };
+    groups.media = {
+      gid = 555;
+    };
 
-  users.users.keanu.extraGroups = [
-    "data"
-    "media"
-  ];
+    users.keanu.extraGroups = [
+      "data"
+      "media"
+    ];
+  };
 }
