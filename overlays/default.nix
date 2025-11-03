@@ -14,13 +14,13 @@
     (map import fixes);
 in {
   # Custom packages defined in ../pkgs
-  additions = final: prev: import ../pkgs {pkgs = final;};
+  additions = final: _prev: import ../pkgs {pkgs = final;};
 
   # Package modifications and temporary fixes
   modifications = combinedFixes;
 
   # Access to nixpkgs unstable
-  unstable-packages = final: prev: {
+  unstable-packages = final: _prev: {
     unstable = import inputs.nixpkgs {
       inherit (final) system;
       config = {
@@ -30,7 +30,7 @@ in {
   };
 
   # Access to nixpkgs stable
-  stable-packages = final: prev: {
+  stable-packages = final: _prev: {
     stable = import inputs.nixpkgs-stable {
       inherit (final) system;
       config = {

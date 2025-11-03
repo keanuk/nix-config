@@ -17,7 +17,10 @@
     pkgs;
 
   getConfigTopLevel = _: cfg: cfg.config.system.build.toplevel;
+
+  # Filter out hosts that require secrets not available in CI
+  nixosConfigsForCI = lib.filterAttrs (name: _: name != "beehive") outputs.nixosConfigurations;
 in {
   pkgs = lib.mapAttrs filterValidPkgs outputs.packages;
-  hosts = lib.mapAttrs getConfigTopLevel outputs.nixosConfigurations;
+  hosts = lib.mapAttrs getConfigTopLevel nixosConfigsForCI;
 }

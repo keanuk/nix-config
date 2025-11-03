@@ -3,7 +3,7 @@
 # Workaround: Description of the fix applied
 # Status: [temporary|permanent] - whether this is expected to be needed long-term
 # Last checked: YYYY-MM-DD - when you last verified this is still needed
-final: prev: {
+_final: _prev: {
   # Example: Disable tests for a package
   # package-name = prev.package-name.overrideAttrs (oldAttrs: {
   #   doCheck = false;

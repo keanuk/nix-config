@@ -104,12 +104,9 @@
     nixpkgs,
     nixpkgs-stable,
     systems,
-    wsl,
     darwin,
     home-manager,
     home-manager-stable,
-    stylix,
-    comin,
     ...
   } @ inputs: let
     inherit (self) outputs;
