@@ -5,8 +5,7 @@
 }: {
   nixpkgs.config = {
     permittedInsecurePackages = [
-      # TODO: remove when gfn-electron is updated to a secure version
-      "electron-35.7.5"
+      "electron-36.9.5"
       # TODO: remove when issue is resolved: https://github.com/NixOS/nixpkgs/issues/437865
       "qtwebengine-5.15.19"
     ];
@@ -108,7 +107,6 @@
     bugdom
     cartridges
     flightgear
-    gfn-electron
     heroic
     lutris
     nanosaur
