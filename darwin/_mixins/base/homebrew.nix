@@ -70,6 +70,12 @@ _: {
         };
       }
       {
+        name = "github@beta";
+        args = {
+          appdir = "/Applications";
+        };
+      }
+      {
         name = "nvidia-geforce-now";
         args = {
           appdir = "/Applications";
@@ -117,7 +123,6 @@ _: {
       "firefox"
       "firefox@developer-edition"
       "gimp"
-      "github@beta"
       "gog-galaxy"
       "google-chrome"
       "google-chrome@beta"
