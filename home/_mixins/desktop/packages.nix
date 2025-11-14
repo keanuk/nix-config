@@ -6,6 +6,8 @@
   nixpkgs.config = {
     permittedInsecurePackages = [
       "electron-36.9.5"
+      # TODO: remove when element is updated: https://github.com/NixOS/nixpkgs/issues/461359
+      "jitsi-meet-1.0.8792"
       # TODO: remove when issue is resolved: https://github.com/NixOS/nixpkgs/issues/437865
       "qtwebengine-5.15.19"
     ];
