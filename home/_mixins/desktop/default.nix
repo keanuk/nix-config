@@ -10,6 +10,7 @@
     ./ghostty/default.nix
     ./halloy/default.nix
     ./kitty/default.nix
+    ./lutris/default.nix
     ./ptyxis/default.nix
     ./thunderbird/default.nix
     ./vscode/default.nix

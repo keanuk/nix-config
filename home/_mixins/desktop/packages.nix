@@ -110,7 +110,6 @@
     cartridges
     flightgear
     heroic
-    lutris
     nanosaur
     nanosaur2
     otto-matic
