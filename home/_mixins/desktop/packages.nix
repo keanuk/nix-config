@@ -87,7 +87,7 @@
     transmission_4-gtk
     trayscale
     tremotesf
-    tuba
+    # tuba  # Temporarily disabled - fails to build with Vala 0.56.18+ BreakpointCondition errors
     typst
     vlc
     wireshark
