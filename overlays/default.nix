@@ -5,7 +5,6 @@
     ./fixes/batgrep.nix
     ./fixes/macos-ruby.nix
     ./fixes/proton-core.nix
-    ./fixes/tuba.nix
   ];
 
   # Combine all fix overlays into a single overlay
