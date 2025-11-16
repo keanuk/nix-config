@@ -5,11 +5,8 @@
 }: {
   nixpkgs.config = {
     permittedInsecurePackages = [
-      "electron-36.9.5"
-      # TODO: remove when element is updated: https://github.com/NixOS/nixpkgs/issues/461359
-      "jitsi-meet-1.0.8792"
       # TODO: remove when issue is resolved: https://github.com/NixOS/nixpkgs/issues/437865
-      "qtwebengine-5.15.19"
+      # "qtwebengine-5.15.19"
     ];
   };
 
@@ -44,20 +41,18 @@
     gnome-maps
     handbrake
     inkscape
-    insomnia
-    jellyfin-media-player
+    # TODO: re-enable when build succeeds
+    # jellyfin-media-player
     jitsi
     joplin-desktop
     krita
     kodi-wayland
-    leetcode-cli
     leetgo
     libreoffice
     librewolf
     lmstudio
     logseq
     lollypop
-    netbird-dashboard
     netbird-ui
     nextcloud-client
     obs-studio
@@ -74,7 +69,8 @@
     protonvpn-gui
     rawtherapee
     rnote
-    rustdesk-flutter
+    # TODO: re-enable when build succeeds
+    # rustdesk-flutter
     session-desktop
     shortwave
     shotwell
@@ -87,7 +83,8 @@
     transmission_4-gtk
     trayscale
     tremotesf
-    tuba
+    # TODO: re-enable when build succeeds
+    # tuba
     typst
     vlc
     wireshark
@@ -108,7 +105,8 @@
     airshipper
     bugdom
     cartridges
-    flightgear
+    # TODO: re-enable when build succeeds
+    # flightgear
     heroic
     nanosaur
     nanosaur2
