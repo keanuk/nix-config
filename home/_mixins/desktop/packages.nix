@@ -69,8 +69,7 @@
     protonvpn-gui
     rawtherapee
     rnote
-    # TODO: re-enable when build succeeds
-    # rustdesk-flutter
+    rustdesk-flutter
     session-desktop
     shortwave
     shotwell
@@ -105,8 +104,7 @@
     airshipper
     bugdom
     cartridges
-    # TODO: re-enable when build succeeds
-    # flightgear
+    flightgear
     heroic
     nanosaur
     nanosaur2
