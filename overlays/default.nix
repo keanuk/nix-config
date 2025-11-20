@@ -1,10 +1,6 @@
 {inputs, ...}: let
-  # Import all fixes from the fixes directory
-  # Comment out any fixes that are no longer needed
   fixes = [
-    ./fixes/batgrep.nix
     ./fixes/macos-ruby.nix
-    ./fixes/proton-core.nix
   ];
 
   # Combine all fix overlays into a single overlay
@@ -23,7 +19,7 @@ in {
   # Access to nixpkgs unstable
   unstable-packages = final: _prev: {
     unstable = import inputs.nixpkgs {
-      inherit (final) system;
+      system = final.stdenv.hostPlatform.system;
       config = {
         allowUnfree = true;
       };
@@ -33,7 +29,7 @@ in {
   # Access to nixpkgs stable
   stable-packages = final: _prev: {
     stable = import inputs.nixpkgs-stable {
-      inherit (final) system;
+      system = final.stdenv.hostPlatform.system;
       config = {
         allowUnfree = true;
       };

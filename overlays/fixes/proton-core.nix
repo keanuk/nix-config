@@ -9,16 +9,16 @@
 # Last checked: 2025-01-26
 _final: prev: {
   python3 = prev.python3.override {
-    packageOverrides = pyfinal: pyprev: {
-      proton-core = pyprev.proton-core.overridePythonAttrs (oldAttrs: {
+    packageOverrides = _: pyprev: {
+      proton-core = pyprev.proton-core.overridePythonAttrs (_: {
         doCheck = false;
       });
     };
   };
 
   python313 = prev.python313.override {
-    packageOverrides = pyfinal: pyprev: {
-      proton-core = pyprev.proton-core.overridePythonAttrs (oldAttrs: {
+    packageOverrides = _: pyprev: {
+      proton-core = pyprev.proton-core.overridePythonAttrs (_: {
         doCheck = false;
       });
     };
