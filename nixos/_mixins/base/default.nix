@@ -52,6 +52,10 @@
     };
   };
 
+  # TODO: Remove when issue is resolved
+  # workaround for https://github.com/NixOS/nixpkgs/issues/462935
+  systemd.user.services.orca.wantedBy = lib.mkForce [];
+
   zramSwap = {
     enable = true;
     priority = 5;
