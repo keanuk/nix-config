@@ -15,6 +15,10 @@
     ../services/tailscale/default.nix
 
     ../virtualization/default.nix
+
+    # TODO: remove when issues are resolved in Nixpkgs
+    ../fixes/network-manager-wait-online-timeout.nix
+    ../fixes/orca-always-enabled.nix
   ];
 
   boot = {
@@ -41,20 +45,6 @@
   };
 
   users.defaultUserShell = pkgs.fish;
-
-  # workaround for https://github.com/NixOS/nixpkgs/issues/180175
-  systemd.services.NetworkManager-wait-online = {
-    serviceConfig = {
-      ExecStart = [
-        ""
-        "${pkgs.networkmanager}/bin/nm-online -q"
-      ];
-    };
-  };
-
-  # TODO: Remove when issue is resolved
-  # workaround for https://github.com/NixOS/nixpkgs/issues/462935
-  systemd.user.services.orca.wantedBy = lib.mkForce [];
 
   zramSwap = {
     enable = true;

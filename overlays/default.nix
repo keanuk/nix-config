@@ -1,6 +1,5 @@
 {inputs, ...}: let
   fixes = [
-    ./fixes/macos-ruby.nix
   ];
 
   # Combine all fix overlays into a single overlay
