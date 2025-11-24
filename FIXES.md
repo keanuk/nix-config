@@ -92,6 +92,22 @@ warnings = lib.optional (lib.versionAtLeast lib.version "24.11")
   "Check if workaround in ${__curPos.file} is still needed";
 ```
 
+### Dead Code Checking
+
+This project uses [deadnix](https://github.com/astro/deadnix) to check for unused code. Template files use underscore-prefixed parameters to indicate they're intentionally unused examples.
+
+To run deadnix locally:
+
+```bash
+# Run with the same settings as CI
+deadnix --fail --no-underscore .
+
+# Auto-fix issues (use with caution)
+deadnix --edit --no-underscore .
+```
+
+The `--no-underscore` flag allows template files to have unused parameters prefixed with `_`.
+
 ## Examples by Layer
 
 ### Overlay Fixes (Package Level)
@@ -139,6 +155,7 @@ Use for:
 5. **Update regularly** - Review fixes quarterly or when updating nixpkgs
 6. **Comment inline** - Add TODO comments in the code for extra clarity
 7. **Test removal** - Before deleting, verify the issue is actually fixed
+8. **Use underscore prefix** - For intentionally unused template parameters, prefix with `_`
 
 ## Finding Fixes to Remove
 
@@ -153,6 +170,9 @@ grep -r "Last checked:" */fixes/
 
 # Look for version-specific removal conditions
 grep -r "Remove after:" */fixes/
+
+# Check for issues that might be closed
+grep -r "Issue:" */fixes/ | grep -o "issues/[0-9]*"
 ```
 
 ## Questions?

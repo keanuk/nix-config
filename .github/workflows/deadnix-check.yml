@@ -18,4 +18,4 @@ jobs:
 
       - name: Check for dead code
         run: |
-          nix run nixpkgs#deadnix -- --fail .
+          nix run nixpkgs#deadnix -- --fail --no-underscore .

@@ -6,9 +6,9 @@
 # Last checked: YYYY-MM-DD - when you last verified this is still needed
 # Remove after: nixpkgs > XX.XX or YYYY-MM-DD (condition when safe to remove)
 {
-  config,
-  lib,
-  pkgs,
+  _config,
+  _lib,
+  _pkgs,
   ...
 }: {
   # Optional: Add assertion to remind yourself to check if fix is still needed
