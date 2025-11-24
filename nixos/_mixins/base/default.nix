@@ -16,9 +16,7 @@
 
     ../virtualization/default.nix
 
-    # TODO: remove when issues are resolved in Nixpkgs
-    ../fixes/network-manager-wait-online-timeout.nix
-    ../fixes/orca-always-enabled.nix
+    ../fixes/default.nix
   ];
 
   boot = {

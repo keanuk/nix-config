@@ -1,6 +1,8 @@
 {outputs, ...}: {
   imports = [
     ../shell/default.nix
+
+    ../fixes/default.nix
   ];
 
   nixpkgs = {

@@ -7,6 +7,8 @@
     # ../services/comin.nix
 
     ../desktop/fonts.nix
+
+    ../fixes/default.nix
   ];
 
   # Disabled for Determinate Nix
