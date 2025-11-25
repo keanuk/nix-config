@@ -31,6 +31,7 @@
     ../_mixins/services/nextcloud/default.nix
     ../_mixins/services/nixarr/default.nix
     ../_mixins/services/ollama/default.nix
+    ../_mixins/services/openvscode-server/default.nix
     ../_mixins/services/open-webui/default.nix
   ];
 

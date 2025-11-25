@@ -107,6 +107,7 @@ _: {
       }
 
       "alacritty"
+      "antigravity"
       "audacity"
       "balenaetcher"
       "battle-net"

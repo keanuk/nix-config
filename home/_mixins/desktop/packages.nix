@@ -14,6 +14,7 @@
     alpaca
     android-studio
     android-tools
+    antigravity-fhs
     appimage-run
     audacity
     bitwarden-desktop
