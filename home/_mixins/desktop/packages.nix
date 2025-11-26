@@ -6,7 +6,7 @@
   nixpkgs.config = {
     permittedInsecurePackages = [
       # TODO: remove when issue is resolved: https://github.com/NixOS/nixpkgs/issues/437865
-      "qtwebengine-5.15.19"
+      # "qtwebengine-5.15.19"
     ];
   };
 
@@ -42,7 +42,8 @@
     gnome-maps
     handbrake
     inkscape
-    jellyfin-media-player
+    # TODO: re-enable when build is fixed
+    # jellyfin-media-player
     jitsi
     joplin-desktop
     krita
