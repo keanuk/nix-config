@@ -8,7 +8,7 @@
 
     ../desktop/fonts.nix
 
-    ../fixes/default.nix
+    ../fixes
   ];
 
   # Disabled for Determinate Nix

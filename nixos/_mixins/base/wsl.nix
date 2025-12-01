@@ -3,10 +3,10 @@
     ./packages.nix
     ./nix.nix
 
-    ../services/comin/default.nix
-    ../services/tailscale/default.nix
+    ../services/comin
+    ../services/tailscale
 
-    ../programs/nh/default.nix
+    ../programs/nh
   ];
 
   wsl.enable = true;

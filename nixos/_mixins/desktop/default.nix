@@ -3,11 +3,11 @@
     ./packages.nix
     ./fonts.nix
 
-    ../programs/evolution/default.nix
-    ../programs/steam/default.nix
+    ../programs/evolution
+    ../programs/steam
 
-    ../services/geoclue2/default.nix
-    ../services/udev/default.nix
+    ../services/geoclue2
+    ../services/udev
   ];
 
   services = {

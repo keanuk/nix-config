@@ -1,6 +1,6 @@
 {...}: {
   imports = [
-    ../_mixins/base/default.nix
+    ../_mixins/base
     ../_mixins/base/home-manager.nix
     ../_mixins/base/server.nix
   ];

@@ -16,17 +16,17 @@
     ./disko-configuration.nix
     ./hardware-configuration.nix
 
-    ../_mixins/base/default.nix
+    ../_mixins/base
     ../_mixins/base/pc.nix
     ../_mixins/base/systemd-boot.nix
 
-    ../_mixins/user/keanu/default.nix
+    ../_mixins/user/keanu
 
-    ../_mixins/desktop/default.nix
-    ../_mixins/desktop/cosmic/default.nix
+    ../_mixins/desktop
+    ../_mixins/desktop/cosmic
 
-    ../_mixins/services/btrfs/default.nix
-    ../_mixins/services/ollama/default.nix
+    ../_mixins/services/btrfs
+    ../_mixins/services/ollama
   ];
 
   networking.hostName = "earth";

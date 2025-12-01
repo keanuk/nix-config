@@ -14,18 +14,18 @@
 
     inputs.nixos-hardware.nixosModules.hp-elitebook-845g8
 
-    ../_mixins/base/default.nix
+    ../_mixins/base
     ../_mixins/base/lanzaboote.nix
     ../_mixins/base/laptop.nix
     ../_mixins/base/systemd-boot.nix
 
-    ../_mixins/services/btrfs/default.nix
+    ../_mixins/services/btrfs
 
-    ../_mixins/desktop/default.nix
-    ../_mixins/desktop/pantheon/default.nix
+    ../_mixins/desktop
+    ../_mixins/desktop/pantheon
 
-    ../_mixins/user/keanu/default.nix
-    ../_mixins/user/kimmy/default.nix
+    ../_mixins/user/keanu
+    ../_mixins/user/kimmy
 
     # TODO: change during next reinstall
     ../_mixins/base/swapfile.nix

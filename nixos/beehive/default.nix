@@ -18,21 +18,21 @@
     ./raid-configuration.nix
 
     ../_mixins/base/amd.nix
-    ../_mixins/base/default.nix
+    ../_mixins/base
     ../_mixins/base/server.nix
     ../_mixins/base/systemd-boot.nix
 
-    ../_mixins/user/keanu/default.nix
+    ../_mixins/user/keanu
 
-    ../_mixins/services/btrfs/default.nix
-    ../_mixins/services/flaresolverr/default.nix
-    ../_mixins/services/home-assistant/default.nix
-    ../_mixins/services/immich/default.nix
-    ../_mixins/services/nextcloud/default.nix
-    ../_mixins/services/nixarr/default.nix
-    ../_mixins/services/ollama/default.nix
-    ../_mixins/services/openvscode-server/default.nix
-    ../_mixins/services/open-webui/default.nix
+    ../_mixins/services/btrfs
+    ../_mixins/services/flaresolverr
+    ../_mixins/services/home-assistant
+    ../_mixins/services/immich
+    ../_mixins/services/nextcloud
+    ../_mixins/services/nixarr
+    ../_mixins/services/ollama
+    ../_mixins/services/openvscode-server
+    ../_mixins/services/open-webui
   ];
 
   networking.hostName = "beehive";

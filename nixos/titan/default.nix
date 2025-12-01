@@ -18,18 +18,18 @@
     inputs.nixos-hardware.nixosModules.common-pc-ssd
 
     ../_mixins/base/amd.nix
-    ../_mixins/base/default.nix
+    ../_mixins/base
     ../_mixins/base/lanzaboote.nix
     ../_mixins/base/pc.nix
     ../_mixins/base/systemd-boot.nix
 
-    ../_mixins/desktop/default.nix
-    ../_mixins/desktop/gnome/default.nix
+    ../_mixins/desktop
+    ../_mixins/desktop/gnome
 
-    ../_mixins/services/btrfs/default.nix
-    ../_mixins/services/ollama/default.nix
+    ../_mixins/services/btrfs
+    ../_mixins/services/ollama
 
-    ../_mixins/user/keanu/default.nix
+    ../_mixins/user/keanu
 
     # Change during next reinstall
     ../_mixins/base/swapfile.nix

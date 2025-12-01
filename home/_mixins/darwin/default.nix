@@ -7,7 +7,7 @@
     ../desktop/zed/darwin.nix
 
     ../shell/atuin/darwin.nix
-    ../shell/nh/default.nix
+    ../shell/nh
 
     ../dev/darwin.nix
   ];

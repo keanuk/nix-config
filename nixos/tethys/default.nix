@@ -16,16 +16,16 @@
     inputs.nixos-hardware.nixosModules.common-pc-ssd
 
     ../_mixins/base/fs.nix
-    ../_mixins/base/default.nix
+    ../_mixins/base
     ../_mixins/base/server.nix
     ../_mixins/base/systemd-boot.nix
 
-    ../_mixins/services/btrfs/default.nix
+    ../_mixins/services/btrfs
 
-    ../_mixins/desktop/default.nix
-    ../_mixins/desktop/cosmic/default.nix
+    ../_mixins/desktop
+    ../_mixins/desktop/cosmic
 
-    ../_mixins/user/keanu/default.nix
+    ../_mixins/user/keanu
 
     # Change during next reinstall
     ../_mixins/base/swapfile.nix

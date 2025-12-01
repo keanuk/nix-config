@@ -2,21 +2,21 @@
   imports = [
     ./packages.nix
 
-    ./alacritty/default.nix
-    ./amberol/default.nix
-    ./appearance/default.nix
-    ./chromium/default.nix
-    ./firefox/default.nix
-    ./ghostty/default.nix
-    ./halloy/default.nix
-    ./kitty/default.nix
-    ./lutris/default.nix
-    ./ptyxis/default.nix
-    ./thunderbird/default.nix
-    ./vscode/default.nix
-    ./zed/default.nix
+    ./alacritty
+    ./amberol
+    ./appearance
+    ./chromium
+    ./firefox
+    ./ghostty
+    ./halloy
+    ./kitty
+    ./lutris
+    ./ptyxis
+    ./thunderbird
+    ./vscode
+    ./zed
 
-    ../dev/default.nix
+    ../dev
     ../dev/nim.nix
   ];
 

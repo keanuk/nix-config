@@ -8,15 +8,15 @@
     ./packages.nix
     ./nix.nix
 
-    ../programs/nh/default.nix
+    ../programs/nh
 
-    ../services/apparmor/default.nix
-    ../services/comin/default.nix
-    ../services/tailscale/default.nix
+    ../services/apparmor
+    ../services/comin
+    ../services/tailscale
 
-    ../virtualization/default.nix
+    ../virtualization
 
-    ../fixes/default.nix
+    ../fixes
   ];
 
   boot = {

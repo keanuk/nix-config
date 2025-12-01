@@ -8,10 +8,10 @@
 
     inputs.home-manager.darwinModules.home-manager
 
-    ../_mixins/base/default.nix
+    ../_mixins/base
     ../_mixins/base/homebrew-aarch.nix
 
-    ../_mixins/user/keanu/default.nix
+    ../_mixins/user/keanu
   ];
 
   networking.hostName = "salacia";
