@@ -28,21 +28,37 @@
     };
   };
 
-  # Ensure Nextcloud services start after RAID is mounted and tmpfiles are created
+  # Ensure Nextcloud services start after RAID is mounted
+  # Using raid-online.target as a synchronization point with bindsTo for strong dependency
   systemd.services = {
     nextcloud-setup = {
-      after = ["mount-raid.service" "systemd-tmpfiles-setup.service" "postgresql.service"];
-      requires = ["mount-raid.service" "systemd-tmpfiles-setup.service" "postgresql.service"];
+      after = ["raid-online.target" "systemd-tmpfiles-setup.service" "postgresql.service"];
+      bindsTo = ["raid-online.target"];
+      requires = ["systemd-tmpfiles-setup.service" "postgresql.service"];
+      serviceConfig = {
+        Restart = "on-failure";
+        RestartSec = "10s";
+      };
     };
 
     nextcloud-cron = {
-      after = ["mount-raid.service" "systemd-tmpfiles-setup.service" "postgresql.service"];
-      requires = ["mount-raid.service" "systemd-tmpfiles-setup.service" "postgresql.service"];
+      after = ["raid-online.target" "systemd-tmpfiles-setup.service" "postgresql.service"];
+      bindsTo = ["raid-online.target"];
+      requires = ["systemd-tmpfiles-setup.service" "postgresql.service"];
+      serviceConfig = {
+        Restart = "on-failure";
+        RestartSec = "10s";
+      };
     };
 
     phpfpm-nextcloud = {
-      after = ["mount-raid.service" "systemd-tmpfiles-setup.service" "postgresql.service"];
-      requires = ["mount-raid.service" "systemd-tmpfiles-setup.service" "postgresql.service"];
+      after = ["raid-online.target" "systemd-tmpfiles-setup.service" "postgresql.service"];
+      bindsTo = ["raid-online.target"];
+      requires = ["systemd-tmpfiles-setup.service" "postgresql.service"];
+      serviceConfig = {
+        Restart = "on-failure";
+        RestartSec = "10s";
+      };
     };
   };
 

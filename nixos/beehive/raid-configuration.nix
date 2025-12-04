@@ -1,4 +1,13 @@
 {secrets, ...}: {
+  # Define a target that other services can depend on
+  # This provides a clean synchronization point for services that need the RAID
+  systemd.targets.raid-online = {
+    description = "RAID Array Mounted and Ready";
+    after = ["mount-raid.service"];
+    requires = ["mount-raid.service"];
+    wantedBy = ["multi-user.target"];
+  };
+
   systemd.services.mount-raid = {
     enable = true;
     description = "Mount RAID configuration";

@@ -50,10 +50,11 @@
 
   # Ensure Home Assistant starts after RAID is mounted
   systemd.services.home-assistant = {
-    after = ["mount-raid.service"];
-    requires = ["mount-raid.service"];
-    unitConfig = {
-      AssertPathIsMountPoint = "/data";
+    after = ["raid-online.target"];
+    bindsTo = ["raid-online.target"];
+    serviceConfig = {
+      Restart = "on-failure";
+      RestartSec = "10s";
     };
   };
 

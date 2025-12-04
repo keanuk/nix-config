@@ -4,8 +4,9 @@
   lib,
   ...
 }: let
-  services = [
-    "wg"
+  # Services that need to wait for the RAID array to be mounted
+  # These are the actual systemd service names created by nixarr
+  raidDependentServices = [
     "transmission"
     "plex"
     # "jellyfin"
@@ -19,6 +20,23 @@
     "recyclarr"
     "sonarr"
   ];
+
+  # VPN namespace service name (from vpn-confinement module via nixarr.vpn)
+  # The vpnNamespaces.wg creates a service called "wg.service"
+  vpnNamespaceServices = [
+    "wg"
+  ];
+
+  # Common dependency configuration for services that need the RAID
+  raidDependencyConfig = {
+    after = ["raid-online.target"];
+    bindsTo = ["raid-online.target"];
+    serviceConfig = {
+      # Restart the service if it fails due to missing mount
+      Restart = "on-failure";
+      RestartSec = "10s";
+    };
+  };
 in {
   imports = [
     inputs.nixarr.nixosModules.default
@@ -116,11 +134,12 @@ in {
     };
   };
 
-  systemd.services = lib.genAttrs services (_: {
-    unitConfig = {
-      After = ["mount-raid.service"];
-      Requires = ["mount-raid.service"];
-      AssertPathIsMountPoint = "/data";
-    };
-  });
+  # Configure all nixarr services to depend on the RAID being online
+  systemd.services = lib.mkMerge [
+    # Regular nixarr services
+    (lib.genAttrs raidDependentServices (_: raidDependencyConfig))
+
+    # VPN namespace services need the RAID because the wg config is stored on /data
+    (lib.genAttrs vpnNamespaceServices (_: raidDependencyConfig))
+  ];
 }
