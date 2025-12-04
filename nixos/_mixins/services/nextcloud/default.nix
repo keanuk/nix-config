@@ -35,30 +35,21 @@
       after = ["raid-online.target" "systemd-tmpfiles-setup.service" "postgresql.service"];
       bindsTo = ["raid-online.target"];
       requires = ["systemd-tmpfiles-setup.service" "postgresql.service"];
-      serviceConfig = {
-        Restart = "on-failure";
-        RestartSec = "10s";
-      };
+      unitConfig.AssertPathIsMountPoint = "/data";
     };
 
     nextcloud-cron = {
       after = ["raid-online.target" "systemd-tmpfiles-setup.service" "postgresql.service"];
       bindsTo = ["raid-online.target"];
       requires = ["systemd-tmpfiles-setup.service" "postgresql.service"];
-      serviceConfig = {
-        Restart = "on-failure";
-        RestartSec = "10s";
-      };
+      unitConfig.AssertPathIsMountPoint = "/data";
     };
 
     phpfpm-nextcloud = {
       after = ["raid-online.target" "systemd-tmpfiles-setup.service" "postgresql.service"];
       bindsTo = ["raid-online.target"];
       requires = ["systemd-tmpfiles-setup.service" "postgresql.service"];
-      serviceConfig = {
-        Restart = "on-failure";
-        RestartSec = "10s";
-      };
+      unitConfig.AssertPathIsMountPoint = "/data";
     };
   };
 

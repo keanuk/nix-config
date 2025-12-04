@@ -31,11 +31,7 @@
   raidDependencyConfig = {
     after = ["raid-online.target"];
     bindsTo = ["raid-online.target"];
-    serviceConfig = {
-      # Restart the service if it fails due to missing mount
-      Restart = "on-failure";
-      RestartSec = "10s";
-    };
+    unitConfig.AssertPathIsMountPoint = "/data";
   };
 in {
   imports = [

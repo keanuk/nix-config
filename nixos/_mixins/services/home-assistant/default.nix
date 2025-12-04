@@ -52,10 +52,7 @@
   systemd.services.home-assistant = {
     after = ["raid-online.target"];
     bindsTo = ["raid-online.target"];
-    serviceConfig = {
-      Restart = "on-failure";
-      RestartSec = "10s";
-    };
+    unitConfig.AssertPathIsMountPoint = "/data";
   };
 
   # Open firewall for Home Assistant web interface
