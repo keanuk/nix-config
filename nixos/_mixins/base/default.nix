@@ -84,25 +84,24 @@
     upower.enable = true;
     xinetd.enable = true;
 
-    # TODO: uncomment after upgrade to NixOS 25.11
-    # sssd = {
-    #   enable = true;
-    #   settings = {
-    #     "domain/shadowutils" = {
-    #       auth_provider = "proxy";
-    #       id_provider = "proxy";
-    #       proxy_fast_alias = true;
-    #       proxy_lib_name = "files";
-    #       proxy_pam_target = "sssd-shadowutils";
-    #     };
-    #     nss = {};
-    #     pam = {};
-    #     sssd = {
-    #       domains = "shadowutils";
-    #       services = "nss, pam";
-    #     };
-    #   };
-    # };
+    sssd = {
+      enable = true;
+      settings = {
+        "domain/shadowutils" = {
+          auth_provider = "proxy";
+          id_provider = "proxy";
+          proxy_fast_alias = true;
+          proxy_lib_name = "files";
+          proxy_pam_target = "sssd-shadowutils";
+        };
+        nss = {};
+        pam = {};
+        sssd = {
+          domains = "shadowutils";
+          services = "nss, pam";
+        };
+      };
+    };
   };
 
   systemd = {
@@ -118,11 +117,11 @@
   };
 
   security = {
-    audit.enable = true;
+    audit.enable = lib.mkDefault true;
     auditd.enable = lib.mkDefault true;
-    polkit.enable = true;
-    rtkit.enable = true;
-    sudo-rs.enable = true;
+    polkit.enable = lib.mkDefault true;
+    rtkit.enable = lib.mkDefault true;
+    sudo-rs.enable = lib.mkDefault true;
   };
 
   console = {

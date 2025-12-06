@@ -25,14 +25,6 @@
     ../_mixins/user/keanu
 
     ../_mixins/services/btrfs
-    ../_mixins/services/flaresolverr
-    ../_mixins/services/home-assistant
-    ../_mixins/services/immich
-    ../_mixins/services/nextcloud
-    ../_mixins/services/nixarr
-    ../_mixins/services/ollama
-    ../_mixins/services/openvscode-server
-    ../_mixins/services/open-webui
   ];
 
   networking.hostName = "beehive";

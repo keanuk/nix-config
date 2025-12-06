@@ -12,16 +12,16 @@
     group = "ollama";
     home = lib.mkDefault "/var/lib/ollama";
     loadModels = [
-      "codestral"
-      "deepseek-r1"
-      "devstral"
-      "gemma3"
-      "gemma3n"
-      "magistral"
-      "mistral"
-      "mistral-small"
-      "qwen3"
-      "qwen3-coder"
+      "codestral:latest"
+      "deepseek-r1:latest"
+      "devstral:latest"
+      "gemma3:latest"
+      "gemma3n:latest"
+      "magistral:latest"
+      "mistral:latest"
+      "mistral-small:latest"
+      "qwen3:latest"
+      "qwen3-coder:latest"
     ];
   };
 }

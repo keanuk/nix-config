@@ -3,6 +3,8 @@
     enable = true;
     package = pkgs.unstable.immich;
     openFirewall = true;
+    host = "0.0.0.0";
+    port = 2283;
     mediaLocation = "/data/immich";
   };
 
