@@ -10,6 +10,7 @@
     fh
     fortune
     git-crypt
+    immich-cli
     just
     libnatpmp
     nix-index
