@@ -1,5 +1,6 @@
 {lib, ...}: {
   imports = [
+    ../services/cloudflared
     ../services/cockpit
     ../services/flaresolverr
     ../services/home-assistant

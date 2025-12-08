@@ -7,6 +7,7 @@
   imports = [
     ./packages.nix
     ./nix.nix
+    ./sops.nix
 
     ../programs/nh
 
