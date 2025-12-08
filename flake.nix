@@ -127,24 +127,6 @@
           config.allowUnfree = true;
         }
     );
-    # Load secrets if available (git-crypt decrypted), otherwise use empty defaults for CI
-    secretsPath = "${self}/secrets/git/secrets.json";
-    defaultSecrets = {
-      google_maps.token = "";
-      nextdns.id = "000000";
-      beehive_raid.password = "";
-    };
-    secrets =
-      if builtins.pathExists secretsPath
-      then let
-        content = builtins.readFile secretsPath;
-        # Check if content is valid JSON (not encrypted binary)
-        parsed = builtins.tryEval (builtins.fromJSON content);
-      in
-        if parsed.success
-        then parsed.value
-        else defaultSecrets
-      else defaultSecrets;
   in {
     inherit lib lib-stable;
     nixosModules = import ./modules/nixos;
@@ -160,115 +142,115 @@
     nixosConfigurations = {
       # Beelink SER9 Pro
       beehive = lib-stable.nixosSystem {
-        specialArgs = {inherit inputs outputs secrets;};
+        specialArgs = {inherit inputs outputs;};
         modules = [./nixos/beehive];
       };
       # Intel NUC 10 i7
       earth = lib.nixosSystem {
-        specialArgs = {inherit inputs outputs secrets;};
+        specialArgs = {inherit inputs outputs;};
         modules = [./nixos/earth];
       };
       # HP EliteBook 845 G8
       hyperion = lib.nixosSystem {
-        specialArgs = {inherit inputs outputs secrets;};
+        specialArgs = {inherit inputs outputs;};
         modules = [./nixos/hyperion];
       };
       # ThinkPad X13s Gen 1
       mars = lib.nixosSystem {
-        specialArgs = {inherit inputs outputs secrets;};
+        specialArgs = {inherit inputs outputs;};
         modules = [./nixos/mars];
       };
       # HP EliteBook 1030 G2
       miranda = lib.nixosSystem {
-        specialArgs = {inherit inputs outputs secrets;};
+        specialArgs = {inherit inputs outputs;};
         modules = [./nixos/miranda];
       };
       # ThinkPad P14s AMD Gen 5
       phoebe = lib.nixosSystem {
-        specialArgs = {inherit inputs outputs secrets;};
+        specialArgs = {inherit inputs outputs;};
         modules = [./nixos/phoebe];
       };
       # Zotac ZBox
       tethys = lib.nixosSystem {
-        specialArgs = {inherit inputs outputs secrets;};
+        specialArgs = {inherit inputs outputs;};
         modules = [./nixos/tethys];
       };
       # CyberPowerPC
       titan = lib.nixosSystem {
-        specialArgs = {inherit inputs outputs secrets;};
+        specialArgs = {inherit inputs outputs;};
         modules = [./nixos/titan];
       };
     };
     darwinConfigurations = {
       # Mac Mini 2024
       salacia = lib.darwinSystem {
-        specialArgs = {inherit inputs outputs secrets;};
+        specialArgs = {inherit inputs outputs;};
         modules = [./darwin/salacia];
       };
       # MacBook Pro 2020
       vesta = lib.darwinSystem {
-        specialArgs = {inherit inputs outputs secrets;};
+        specialArgs = {inherit inputs outputs;};
         modules = [./darwin/vesta];
       };
       # MacBook Air 2018
       charon = lib.darwinSystem {
-        specialArgs = {inherit inputs outputs secrets;};
+        specialArgs = {inherit inputs outputs;};
         modules = [./darwin/charon];
       };
     };
     homeConfigurations = {
       "keanu@beehive" = lib-stable.homeManagerConfiguration {
-        extraSpecialArgs = {inherit inputs outputs secrets;};
+        extraSpecialArgs = {inherit inputs outputs;};
         pkgs = pkgsFor.x86_64-linux;
         modules = [./home/beehive/keanu.nix];
       };
       "keanu@charon" = lib.homeManagerConfiguration {
-        extraSpecialArgs = {inherit inputs outputs secrets;};
+        extraSpecialArgs = {inherit inputs outputs;};
         pkgs = pkgsFor.x86_64-darwin;
         modules = [./home/charon/keanu.nix];
       };
       "keanu@earth" = lib.homeManagerConfiguration {
-        extraSpecialArgs = {inherit inputs outputs secrets;};
+        extraSpecialArgs = {inherit inputs outputs;};
         pkgs = pkgsFor-stable.x86_64-linux;
         modules = [./home/earth/keanu.nix];
       };
       "keanu@hyperion" = lib.homeManagerConfiguration {
-        extraSpecialArgs = {inherit inputs outputs secrets;};
+        extraSpecialArgs = {inherit inputs outputs;};
         pkgs = pkgsFor.x86_64-linux;
         modules = [./home/hyperion/keanu.nix];
       };
       "keanu@mars" = lib.homeManagerConfiguration {
-        extraSpecialArgs = {inherit inputs outputs secrets;};
+        extraSpecialArgs = {inherit inputs outputs;};
         pkgs = pkgsFor.aarch64-linux;
         modules = [./home/mars/keanu.nix];
       };
       "keanu@miranda" = lib.homeManagerConfiguration {
-        extraSpecialArgs = {inherit inputs outputs secrets;};
+        extraSpecialArgs = {inherit inputs outputs;};
         pkgs = pkgsFor.x86_64-linux;
         modules = [./home/miranda/keanu.nix];
       };
       "keanu@phoebe" = lib.homeManagerConfiguration {
-        extraSpecialArgs = {inherit inputs outputs secrets;};
+        extraSpecialArgs = {inherit inputs outputs;};
         pkgs = pkgsFor.x86_64-linux;
         modules = [./home/phoebe/keanu.nix];
       };
       "keanu@salacia" = lib.homeManagerConfiguration {
-        extraSpecialArgs = {inherit inputs outputs secrets;};
+        extraSpecialArgs = {inherit inputs outputs;};
         pkgs = pkgsFor.aarch64-darwin;
         modules = [./home/salacia/keanu.nix];
       };
       "keanu@tethys" = lib.homeManagerConfiguration {
-        extraSpecialArgs = {inherit inputs outputs secrets;};
+        extraSpecialArgs = {inherit inputs outputs;};
         pkgs = pkgsFor.x86_64-linux;
         modules = [./home/tethys/keanu.nix];
       };
       "keanu@titan" = lib.homeManagerConfiguration {
-        extraSpecialArgs = {inherit inputs outputs secrets;};
+        extraSpecialArgs = {inherit inputs outputs;};
         pkgs = pkgsFor.x86_64-linux;
         modules = [./home/titan/keanu.nix];
       };
       "keanu@vesta" = lib.homeManagerConfiguration {
-        extraSpecialArgs = {inherit inputs outputs secrets;};
+        extraSpecialArgs = {inherit inputs outputs;};
         pkgs = pkgsFor.x86_64-darwin;
         modules = [./home/vesta/keanu.nix];
       };

@@ -3,7 +3,16 @@
     enable = true;
     package = pkgs.unstable.home-assistant;
     configDir = "/data/.state/home-assistant";
-    config = null;
+    config = {
+      default_config = {};
+      http = {
+        use_x_forwarded_for = true;
+        trusted_proxies = [
+          "127.0.0.1"
+          "::1"
+        ];
+      };
+    };
     extraComponents = [
       # Core components (needed for basic functionality)
       "default_config"

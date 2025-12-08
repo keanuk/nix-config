@@ -9,7 +9,6 @@
     ffmpeg
     fh
     fortune
-    git-crypt
     immich-cli
     just
     libnatpmp

@@ -16,5 +16,9 @@
     secrets.google_maps_geolocation = {
       owner = config.users.users.keanu.name;
     };
+
+    secrets.nextdns_id = {
+      mode = "0444";
+    };
   };
 }

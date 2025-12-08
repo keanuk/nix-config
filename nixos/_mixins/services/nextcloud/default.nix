@@ -1,5 +1,14 @@
-{pkgs, ...}: {
-  environment.etc."nextcloud-admin-pass".text = "PWD";
+{
+  pkgs,
+  config,
+  ...
+}: {
+  # Configure sops secret with correct ownership for nextcloud
+  sops.secrets.nextcloud-admin-pass = {
+    owner = "nextcloud";
+    group = "nextcloud";
+    mode = "0400";
+  };
 
   services.nextcloud = {
     enable = true;
@@ -13,7 +22,7 @@
     database.createLocally = true;
     config = {
       dbtype = "pgsql";
-      adminpassFile = "/etc/nextcloud-admin-pass";
+      adminpassFile = config.sops.secrets.nextcloud-admin-pass.path;
     };
     settings = {
       trusted_domains = [
@@ -23,13 +32,13 @@
         "10.19.5.10" # Main network IP
         "100.91.10.104" # Tailscale IP
         "192.168.15.5" # WireGuard IP
-        "nextcloud.oranos.me" # Cloudflare Tunnel domain (update with your actual domain)
+        "cloud.oranos.me" # Cloudflare Tunnel domain (update with your actual domain)
       ];
       trusted_proxies = ["127.0.0.1" "::1"];
     };
   };
 
-  # Ensure Nextcloud services start after RAID is mounted
+  # Ensure Nextcloud services start after RAID is mounted and sops secrets are available
   # Using raid-online.target as a synchronization point with bindsTo for strong dependency
   systemd.services = {
     nextcloud-setup = {
