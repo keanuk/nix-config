@@ -3,6 +3,8 @@
     ../services/cloudflared
     ../services/cockpit
     ../services/flaresolverr
+    ../services/gitlab
+    ../services/homepage-dashboard
     ../services/home-assistant
     ../services/immich
     ../services/nextcloud

@@ -32,6 +32,8 @@ in {
         credentialsFile = config.sops.secrets.cloudflared-tunnel-credentials.path;
         default = "http_status:404";
         ingress = {
+          "oranos.me" = "http://localhost:8082";
+          "git.oranos.me" = "http://localhost:8929";
           "chat.oranos.me" = "http://localhost:11435";
           "cloud.oranos.me" = "http://localhost:80";
           # "cockpit.oranos.me" = "http://localhost:9090";
