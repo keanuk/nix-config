@@ -3,7 +3,7 @@
     enable = true;
     package = pkgs.unstable.homepage-dashboard;
     openFirewall = true;
-    # Default port for homepage-dashboard web interface
     listenPort = 8082;
+    allowedHosts = "oranos.me,localhost,127.0.0.1";
   };
 }

@@ -34,9 +34,27 @@
     mode = "0400";
   };
 
+  sops.secrets.gitlab-activerecord-primary = {
+    owner = "gitlab";
+    group = "gitlab";
+    mode = "0400";
+  };
+
+  sops.secrets.gitlab-activerecord-deterministic = {
+    owner = "gitlab";
+    group = "gitlab";
+    mode = "0400";
+  };
+
+  sops.secrets.gitlab-activerecord-salt = {
+    owner = "gitlab";
+    group = "gitlab";
+    mode = "0400";
+  };
+
   services.gitlab = {
     enable = true;
-    package = pkgs.unstable.gitlab;
+    packages.gitlab = pkgs.unstable.gitlab;
     databaseCreateLocally = true;
     statePath = "/data/.state/gitlab";
     host = "git.oranos.me";
@@ -48,6 +66,9 @@
       otpFile = config.sops.secrets.gitlab-otp.path;
       dbFile = config.sops.secrets.gitlab-db.path;
       jwsFile = config.sops.secrets.gitlab-jws.path;
+      activeRecordPrimaryKeyFile = config.sops.secrets.gitlab-activerecord-primary.path;
+      activeRecordDeterministicKeyFile = config.sops.secrets.gitlab-activerecord-deterministic.path;
+      activeRecordSaltFile = config.sops.secrets.gitlab-activerecord-salt.path;
     };
     extraConfig = {
       gitlab = {

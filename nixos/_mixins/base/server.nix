@@ -4,7 +4,7 @@
     ../services/cockpit
     ../services/flaresolverr
     ../services/gitlab
-    ../services/homepage-dashboard
+    ../services/dashy
     ../services/home-assistant
     ../services/immich
     ../services/nextcloud
