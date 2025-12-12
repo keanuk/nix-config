@@ -24,7 +24,7 @@
     ../_mixins/base/systemd-boot.nix
 
     ../_mixins/desktop
-    ../_mixins/desktop/gnome
+    ../_mixins/desktop/cosmic
 
     ../_mixins/services/btrfs
     ../_mixins/services/ollama
