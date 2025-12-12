@@ -32,17 +32,29 @@ in {
         credentialsFile = config.sops.secrets.cloudflared-tunnel-credentials.path;
         default = "http_status:404";
         ingress = {
-          "oranos.me" = "http://localhost:8082";
-          "git.oranos.me" = "http://localhost:8929";
-          "chat.oranos.me" = "http://localhost:11435";
-          "cloud.oranos.me" = "http://localhost:80";
-          # "cockpit.oranos.me" = "http://localhost:9090";
-          # "code.oranos.me" = "http://localhost:3000";
-          "photos.oranos.me" = "http://localhost:2283";
-          "home.oranos.me" = "http://localhost:8123";
-          "media.oranos.me" = "http://localhost:8096";
-          "audio.oranos.me" = "http://localhost:8000";
-          "plex.oranos.me" = "http://localhost:32400";
+          # Authelia authentication portal - direct access
+          "auth.oranos.me" = "http://localhost:9092";
+
+          # Services protected by Authelia (routed through nginx with auth_request)
+          "oranos.me" = "http://localhost:9094"; # Dashy via Authelia
+          "chat.oranos.me" = "http://localhost:9095"; # Open WebUI via Authelia
+          "photos.oranos.me" = "http://localhost:9096"; # Immich via Authelia
+          "media.oranos.me" = "http://localhost:9097"; # Jellyfin via Authelia
+          "audio.oranos.me" = "http://localhost:9098"; # Audiobookshelf via Authelia
+          "plex.oranos.me" = "http://localhost:9099"; # Plex via Authelia
+
+          # *arr services protected by Authelia
+          "sonarr.oranos.me" = "http://localhost:9100"; # Sonarr via Authelia
+          "radarr.oranos.me" = "http://localhost:9101"; # Radarr via Authelia
+          "lidarr.oranos.me" = "http://localhost:9102"; # Lidarr via Authelia
+          "prowlarr.oranos.me" = "http://localhost:9103"; # Prowlarr via Authelia
+          "bazarr.oranos.me" = "http://localhost:9104"; # Bazarr via Authelia
+
+          # Services with their own auth, now also protected by Authelia (2FA required)
+          "home.oranos.me" = "http://localhost:9105"; # Home Assistant via Authelia
+          "git.oranos.me" = "http://localhost:9106"; # GitLab via Authelia
+          "cloud.oranos.me" = "http://localhost:9107"; # Nextcloud via Authelia
+          "code.oranos.me" = "http://localhost:9108"; # OpenVSCode Server via Authelia
         };
       };
     };

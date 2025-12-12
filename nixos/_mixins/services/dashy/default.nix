@@ -18,34 +18,32 @@
         language = "en";
         statusCheck = true;
         statusCheckInterval = 300;
-        auth = {
-          enableGuestAccess = false;
-          users = [
-            {
-              user = "admin";
-              hash = "057ba03d6c44104863dc7361fe4578965d1887360f90a0895882e58a6248fc86";
-              type = "admin";
-            }
-          ];
-        };
+        # auth = {
+        #   enableGuestAccess = false;
+        #   users = [
+        #     {
+        #       user = "admin";
+        #       hash = "a0b2382c329ba78849a0f0cccbcb0d8779c51266aea0b423d3b9e00794ddfedf";
+        #       type = "admin";
+        #     }
+        #   ];
+        # };
       };
       sections = [];
     };
   };
 
-  # Configure nginx to listen on port 8082 for dashy
+  # Configure nginx to listen on port 8082 for dashy (localhost only)
+  # External access goes through Authelia proxy on port 9094
   services.nginx = {
     enable = true;
     virtualHosts."localhost" = {
       listen = [
         {
-          addr = "0.0.0.0";
+          addr = "127.0.0.1";
           port = 8082;
         }
       ];
     };
   };
-
-  # Open the firewall for dashy
-  networking.firewall.allowedTCPPorts = [8082];
 }

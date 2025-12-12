@@ -3,6 +3,7 @@
     ../_mixins/base
     ../_mixins/base/home-manager.nix
     ../_mixins/base/server.nix
+    ../_mixins/desktop/pass
   ];
 
   home = {

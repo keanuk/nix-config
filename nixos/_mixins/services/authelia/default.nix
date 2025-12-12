@@ -6,7 +6,7 @@
 }: let
   autheliaUser = "authelia";
   autheliaGroup = "authelia";
-  autheliaPort = 9091;
+  autheliaPort = 9191;
   authDomain = "auth.oranos.me";
   baseDomain = "oranos.me";
 in {
@@ -45,6 +45,13 @@ in {
     mode = "0400";
   };
 
+  # Protonmail Bridge password for SMTP authentication
+  sops.secrets.protonmail-bridge-password = {
+    owner = autheliaUser;
+    group = autheliaGroup;
+    mode = "0400";
+  };
+
   services.authelia.instances.main = {
     enable = true;
     package = pkgs.unstable.authelia;
@@ -55,6 +62,11 @@ in {
       jwtSecretFile = config.sops.secrets.authelia-jwt-secret.path;
       sessionSecretFile = config.sops.secrets.authelia-session-secret.path;
       storageEncryptionKeyFile = config.sops.secrets.authelia-storage-encryption-key.path;
+    };
+
+    # SMTP password from SOPS
+    environmentVariables = {
+      AUTHELIA_NOTIFIER_SMTP_PASSWORD_FILE = config.sops.secrets.protonmail-bridge-password.path;
     };
 
     settings = {
@@ -134,35 +146,37 @@ in {
             domain = "bazarr.${baseDomain}";
             policy = "two_factor";
           }
+          {
+            domain = "code.${baseDomain}";
+            policy = "two_factor";
+          }
 
-          # One-factor authentication for media consumption services
-          # These are lower risk - primarily for viewing content
+          # Two-factor authentication for all services
           {
             domain = baseDomain;
-            policy = "one_factor";
+            policy = "two_factor";
           }
           {
             domain = "chat.${baseDomain}";
-            policy = "one_factor";
+            policy = "two_factor";
           }
           {
             domain = "media.${baseDomain}";
-            policy = "one_factor";
+            policy = "two_factor";
           }
           {
             domain = "audio.${baseDomain}";
-            policy = "one_factor";
+            policy = "two_factor";
           }
           {
             domain = "plex.${baseDomain}";
-            policy = "one_factor";
+            policy = "two_factor";
           }
         ];
       };
 
       session = {
         name = "authelia_session";
-        domain = baseDomain;
         same_site = "lax";
         expiration = "1h";
         inactivity = "5m";
@@ -191,10 +205,16 @@ in {
 
       notifier = {
         disable_startup_check = false;
-        # Using filesystem notifier for simplicity
-        # Replace with SMTP for production email notifications
-        filesystem = {
-          filename = "/var/lib/authelia-main/notifications.txt";
+        smtp = {
+          address = "smtp://127.0.0.1:1025";
+          username = "keanu@kerr.us";
+          sender = "Authelia <keanu@kerr.us>";
+          subject = "[Authelia] {title}";
+          disable_require_tls = false;
+          disable_starttls = false;
+          tls = {
+            skip_verify = true;
+          };
         };
       };
     };
@@ -254,7 +274,7 @@ in {
         extraConfig = ''
           # Authelia auth_request configuration
           auth_request /authelia;
-          auth_request_set $target_url $scheme://$http_host$request_uri;
+          auth_request_set $target_url https://$http_host$request_uri;
           auth_request_set $user $upstream_http_remote_user;
           auth_request_set $groups $upstream_http_remote_groups;
           auth_request_set $name $upstream_http_remote_name;
@@ -267,12 +287,13 @@ in {
         '';
       };
       locations."/authelia" = {
-        proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/forward-auth";
+        proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
         extraConfig = ''
           internal;
-          proxy_set_header X-Original-URL $scheme://$http_host$request_uri;
+          proxy_set_header X-Original-URL https://$http_host$request_uri;
+          proxy_set_header X-Original-Method $request_method;
           proxy_set_header X-Forwarded-Method $request_method;
-          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header X-Forwarded-Proto https;
           proxy_set_header X-Forwarded-Host $http_host;
           proxy_set_header X-Forwarded-Uri $request_uri;
           proxy_set_header X-Forwarded-For $remote_addr;
@@ -302,12 +323,13 @@ in {
         '';
       };
       locations."/authelia" = {
-        proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/forward-auth";
+        proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
         extraConfig = ''
           internal;
-          proxy_set_header X-Original-URL $scheme://$http_host$request_uri;
+          proxy_set_header X-Original-URL https://$http_host$request_uri;
+          proxy_set_header X-Original-Method $request_method;
           proxy_set_header X-Forwarded-Method $request_method;
-          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header X-Forwarded-Proto https;
           proxy_set_header X-Forwarded-Host $http_host;
           proxy_set_header X-Forwarded-Uri $request_uri;
           proxy_set_header X-Forwarded-For $remote_addr;
@@ -339,12 +361,13 @@ in {
         '';
       };
       locations."/authelia" = {
-        proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/forward-auth";
+        proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
         extraConfig = ''
           internal;
-          proxy_set_header X-Original-URL $scheme://$http_host$request_uri;
+          proxy_set_header X-Original-URL https://$http_host$request_uri;
+          proxy_set_header X-Original-Method $request_method;
           proxy_set_header X-Forwarded-Method $request_method;
-          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header X-Forwarded-Proto https;
           proxy_set_header X-Forwarded-Host $http_host;
           proxy_set_header X-Forwarded-Uri $request_uri;
           proxy_set_header X-Forwarded-For $remote_addr;
@@ -374,12 +397,13 @@ in {
         '';
       };
       locations."/authelia" = {
-        proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/forward-auth";
+        proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
         extraConfig = ''
           internal;
-          proxy_set_header X-Original-URL $scheme://$http_host$request_uri;
+          proxy_set_header X-Original-URL https://$http_host$request_uri;
+          proxy_set_header X-Original-Method $request_method;
           proxy_set_header X-Forwarded-Method $request_method;
-          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header X-Forwarded-Proto https;
           proxy_set_header X-Forwarded-Host $http_host;
           proxy_set_header X-Forwarded-Uri $request_uri;
           proxy_set_header X-Forwarded-For $remote_addr;
@@ -409,12 +433,13 @@ in {
         '';
       };
       locations."/authelia" = {
-        proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/forward-auth";
+        proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
         extraConfig = ''
           internal;
-          proxy_set_header X-Original-URL $scheme://$http_host$request_uri;
+          proxy_set_header X-Original-URL https://$http_host$request_uri;
+          proxy_set_header X-Original-Method $request_method;
           proxy_set_header X-Forwarded-Method $request_method;
-          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header X-Forwarded-Proto https;
           proxy_set_header X-Forwarded-Host $http_host;
           proxy_set_header X-Forwarded-Uri $request_uri;
           proxy_set_header X-Forwarded-For $remote_addr;
@@ -444,12 +469,13 @@ in {
         '';
       };
       locations."/authelia" = {
-        proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/forward-auth";
+        proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
         extraConfig = ''
           internal;
-          proxy_set_header X-Original-URL $scheme://$http_host$request_uri;
+          proxy_set_header X-Original-URL https://$http_host$request_uri;
+          proxy_set_header X-Original-Method $request_method;
           proxy_set_header X-Forwarded-Method $request_method;
-          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header X-Forwarded-Proto https;
           proxy_set_header X-Forwarded-Host $http_host;
           proxy_set_header X-Forwarded-Uri $request_uri;
           proxy_set_header X-Forwarded-For $remote_addr;
@@ -479,12 +505,13 @@ in {
         '';
       };
       locations."/authelia" = {
-        proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/forward-auth";
+        proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
         extraConfig = ''
           internal;
-          proxy_set_header X-Original-URL $scheme://$http_host$request_uri;
+          proxy_set_header X-Original-URL https://$http_host$request_uri;
+          proxy_set_header X-Original-Method $request_method;
           proxy_set_header X-Forwarded-Method $request_method;
-          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header X-Forwarded-Proto https;
           proxy_set_header X-Forwarded-Host $http_host;
           proxy_set_header X-Forwarded-Uri $request_uri;
           proxy_set_header X-Forwarded-For $remote_addr;
@@ -514,12 +541,13 @@ in {
         '';
       };
       locations."/authelia" = {
-        proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/forward-auth";
+        proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
         extraConfig = ''
           internal;
-          proxy_set_header X-Original-URL $scheme://$http_host$request_uri;
+          proxy_set_header X-Original-URL https://$http_host$request_uri;
+          proxy_set_header X-Original-Method $request_method;
           proxy_set_header X-Forwarded-Method $request_method;
-          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header X-Forwarded-Proto https;
           proxy_set_header X-Forwarded-Host $http_host;
           proxy_set_header X-Forwarded-Uri $request_uri;
           proxy_set_header X-Forwarded-For $remote_addr;
@@ -549,12 +577,13 @@ in {
         '';
       };
       locations."/authelia" = {
-        proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/forward-auth";
+        proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
         extraConfig = ''
           internal;
-          proxy_set_header X-Original-URL $scheme://$http_host$request_uri;
+          proxy_set_header X-Original-URL https://$http_host$request_uri;
+          proxy_set_header X-Original-Method $request_method;
           proxy_set_header X-Forwarded-Method $request_method;
-          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header X-Forwarded-Proto https;
           proxy_set_header X-Forwarded-Host $http_host;
           proxy_set_header X-Forwarded-Uri $request_uri;
           proxy_set_header X-Forwarded-For $remote_addr;
@@ -584,12 +613,13 @@ in {
         '';
       };
       locations."/authelia" = {
-        proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/forward-auth";
+        proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
         extraConfig = ''
           internal;
-          proxy_set_header X-Original-URL $scheme://$http_host$request_uri;
+          proxy_set_header X-Original-URL https://$http_host$request_uri;
+          proxy_set_header X-Original-Method $request_method;
           proxy_set_header X-Forwarded-Method $request_method;
-          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header X-Forwarded-Proto https;
           proxy_set_header X-Forwarded-Host $http_host;
           proxy_set_header X-Forwarded-Uri $request_uri;
           proxy_set_header X-Forwarded-For $remote_addr;
@@ -619,12 +649,13 @@ in {
         '';
       };
       locations."/authelia" = {
-        proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/forward-auth";
+        proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
         extraConfig = ''
           internal;
-          proxy_set_header X-Original-URL $scheme://$http_host$request_uri;
+          proxy_set_header X-Original-URL https://$http_host$request_uri;
+          proxy_set_header X-Original-Method $request_method;
           proxy_set_header X-Forwarded-Method $request_method;
-          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header X-Forwarded-Proto https;
           proxy_set_header X-Forwarded-Host $http_host;
           proxy_set_header X-Forwarded-Uri $request_uri;
           proxy_set_header X-Forwarded-For $remote_addr;
@@ -654,12 +685,13 @@ in {
         '';
       };
       locations."/authelia" = {
-        proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/forward-auth";
+        proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
         extraConfig = ''
           internal;
-          proxy_set_header X-Original-URL $scheme://$http_host$request_uri;
+          proxy_set_header X-Original-URL https://$http_host$request_uri;
+          proxy_set_header X-Original-Method $request_method;
           proxy_set_header X-Forwarded-Method $request_method;
-          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header X-Forwarded-Proto https;
           proxy_set_header X-Forwarded-Host $http_host;
           proxy_set_header X-Forwarded-Uri $request_uri;
           proxy_set_header X-Forwarded-For $remote_addr;
@@ -691,12 +723,13 @@ in {
         '';
       };
       locations."/authelia" = {
-        proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/forward-auth";
+        proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
         extraConfig = ''
           internal;
-          proxy_set_header X-Original-URL $scheme://$http_host$request_uri;
+          proxy_set_header X-Original-URL https://$http_host$request_uri;
+          proxy_set_header X-Original-Method $request_method;
           proxy_set_header X-Forwarded-Method $request_method;
-          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header X-Forwarded-Proto https;
           proxy_set_header X-Forwarded-Host $http_host;
           proxy_set_header X-Forwarded-Uri $request_uri;
           proxy_set_header X-Forwarded-For $remote_addr;
@@ -728,12 +761,56 @@ in {
         '';
       };
       locations."/authelia" = {
-        proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/forward-auth";
+        proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
         extraConfig = ''
           internal;
-          proxy_set_header X-Original-URL $scheme://$http_host$request_uri;
+          proxy_set_header X-Original-URL https://$http_host$request_uri;
+          proxy_set_header X-Original-Method $request_method;
           proxy_set_header X-Forwarded-Method $request_method;
-          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header X-Forwarded-Proto https;
+          proxy_set_header X-Forwarded-Host $http_host;
+          proxy_set_header X-Forwarded-Uri $request_uri;
+          proxy_set_header X-Forwarded-For $remote_addr;
+          proxy_set_header Content-Length "";
+          proxy_pass_request_body off;
+        '';
+      };
+    };
+
+    # OpenVSCode Server - protected by Authelia
+    virtualHosts."code-auth" = {
+      listen = [
+        {
+          addr = "127.0.0.1";
+          port = 9108;
+        }
+      ];
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:3000";
+        proxyWebsockets = true;
+        extraConfig = ''
+          # Authelia auth_request configuration
+          auth_request /authelia;
+          auth_request_set $target_url https://$http_host$request_uri;
+          auth_request_set $user $upstream_http_remote_user;
+          auth_request_set $groups $upstream_http_remote_groups;
+          auth_request_set $name $upstream_http_remote_name;
+          auth_request_set $email $upstream_http_remote_email;
+          proxy_set_header Remote-User $user;
+          proxy_set_header Remote-Groups $groups;
+          proxy_set_header Remote-Name $name;
+          proxy_set_header Remote-Email $email;
+          error_page 401 =302 https://${authDomain}/?rd=$target_url;
+        '';
+      };
+      locations."/authelia" = {
+        proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
+        extraConfig = ''
+          internal;
+          proxy_set_header X-Original-URL https://$http_host$request_uri;
+          proxy_set_header X-Original-Method $request_method;
+          proxy_set_header X-Forwarded-Method $request_method;
+          proxy_set_header X-Forwarded-Proto https;
           proxy_set_header X-Forwarded-Host $http_host;
           proxy_set_header X-Forwarded-Uri $request_uri;
           proxy_set_header X-Forwarded-For $remote_addr;

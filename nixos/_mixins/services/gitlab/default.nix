@@ -107,5 +107,7 @@
   };
 
   # GitLab workhorse listens on port 8929 by default
-  networking.firewall.allowedTCPPorts = [8929];
+  # Firewall disabled - external access goes through cloudflared tunnel
+  # For local network access, use Tailscale or re-enable if needed
+  # networking.firewall.allowedTCPPorts = [8929];
 }

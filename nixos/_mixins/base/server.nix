@@ -1,6 +1,8 @@
 {lib, ...}: {
   imports = [
+    ../services/authelia
     ../services/cloudflared
+    ../services/protonmail
     ../services/cockpit
     ../services/flaresolverr
     ../services/gitlab
@@ -13,10 +15,4 @@
     ../services/openvscode-server
     ../services/open-webui
   ];
-
-  # TODO: Figure out why audit isn't working on NixOS 25.11
-  security = {
-    audit.enable = lib.mkForce false;
-    auditd.enable = lib.mkForce false;
-  };
 }

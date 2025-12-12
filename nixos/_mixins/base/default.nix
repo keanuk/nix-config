@@ -118,8 +118,9 @@
   };
 
   security = {
-    audit.enable = lib.mkDefault true;
-    auditd.enable = lib.mkDefault true;
+    # TODO: figure out why auditd is broken
+    audit.enable = lib.mkDefault false;
+    auditd.enable = lib.mkDefault false;
     polkit.enable = lib.mkDefault true;
     rtkit.enable = lib.mkDefault true;
     sudo-rs.enable = lib.mkDefault true;

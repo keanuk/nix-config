@@ -63,7 +63,4 @@
     bindsTo = ["raid-online.target"];
     unitConfig.AssertPathIsMountPoint = "/data";
   };
-
-  # Open firewall for Home Assistant web interface
-  networking.firewall.allowedTCPPorts = [8123];
 }

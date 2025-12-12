@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     age
+    authelia
     # TODO: re-enable when no longer marked as broken on Darwin
     # bitwarden-cli
     circumflex
@@ -16,6 +17,7 @@
     nix-tree
     nmap
     onefetch
+    openssl
     sops
     ssh-to-age
     statix

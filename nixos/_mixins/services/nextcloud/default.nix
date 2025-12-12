@@ -63,8 +63,10 @@
     };
   };
 
-  networking.firewall.allowedTCPPorts = [
-    80
-    443
-  ];
+  # Firewall disabled - external access goes through cloudflared tunnel via Authelia
+  # Nginx still serves on these ports locally for cloudflared to connect
+  # networking.firewall.allowedTCPPorts = [
+  #   80
+  #   443
+  # ];
 }

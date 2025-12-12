@@ -73,11 +73,35 @@ build-host hostname=current_hostname:
 # Switch OS configuration
 switch-host hostname=current_hostname:
     @if [ "$(uname)" = "Linux" ]; then \
-      echo "NixOS  Switching: {{ hostname }}"; \
+      echo "NixOS  Switching: {{ hostname }}"; \
       nh os switch . --hostname "{{ hostname }}"; \
     elif [ "$(uname)" = "Darwin" ]; then \
       echo "nix-darwin 󰀵 Switching: {{ hostname }}"; \
       nh darwin switch . --hostname "{{ hostname }}"; \
     else \
       echo "Unsupported OS: $(uname)"; \
+    fi
+
+# Generate Authelia secrets (prints to stdout for adding to SOPS)
+authelia-secrets:
+    @echo "🔐 Generating Authelia secrets..."
+    @echo ""
+    @echo "Add these to your secrets/sops/secrets.yaml:"
+    @echo ""
+    @echo "authelia-jwt-secret: $(openssl rand -hex 64)"
+    @echo "authelia-session-secret: $(openssl rand -hex 64)"
+    @echo "authelia-storage-encryption-key: $(openssl rand -hex 32)"
+    @echo ""
+    @echo "For the authelia-users secret, see: nixos/_mixins/services/authelia/README.md"
+
+# Generate Argon2id password hash for Authelia users
+authelia-hash password:
+    @echo "🔐 Generating Argon2id hash for password..."
+    @if command -v authelia >/dev/null 2>&1; then \
+      authelia crypto hash generate argon2 --password '{{ password }}'; \
+    elif command -v docker >/dev/null 2>&1; then \
+      docker run --rm authelia/authelia:latest authelia crypto hash generate argon2 --password '{{ password }}'; \
+    else \
+      echo "Error: Neither authelia nor docker found. Install one of them to generate hashes."; \
+      echo "Alternatively, use: nix-shell -p authelia --run \"authelia crypto hash generate argon2 --password '{{ password }}'\""; \
     fi

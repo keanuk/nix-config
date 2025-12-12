@@ -3,11 +3,7 @@
   lib,
   pkgs,
   ...
-}: let
-  domain = "oranos.me";
-in {
-  # OpenSMTPd - simple and secure mail transfer agent
-  # Configured as a minimal local relay for outbound mail only
+}: {
   services.opensmtpd = {
     enable = true;
     setSendmail = true;
@@ -20,22 +16,11 @@ in {
 
       # Actions
       action "local_mail" mbox alias <aliases>
-      action "outbound" relay helo ${domain}
+      action "outbound" relay helo oranos.me
 
       # Matching rules
       match for local action "local_mail"
       match from local for any action "outbound"
     '';
-  };
-
-  # Aliases file
-  environment.etc."mail/aliases" = {
-    text = ''
-      # Basic aliases
-      postmaster: root
-      abuse: root
-      root: keanu
-    '';
-    mode = "0644";
   };
 }
