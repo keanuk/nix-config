@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   pkgs,
   ...
 }: let
@@ -20,36 +19,34 @@ in {
   users.groups.${autheliaGroup} = {};
 
   # Configure sops secrets for Authelia
-  sops.secrets.authelia-jwt-secret = {
-    owner = autheliaUser;
-    group = autheliaGroup;
-    mode = "0400";
-  };
-
-  sops.secrets.authelia-session-secret = {
-    owner = autheliaUser;
-    group = autheliaGroup;
-    mode = "0400";
-  };
-
-  sops.secrets.authelia-storage-encryption-key = {
-    owner = autheliaUser;
-    group = autheliaGroup;
-    mode = "0400";
-  };
-
-  # User password hashes file - this contains the argon2id hashed passwords
-  sops.secrets.authelia-users = {
-    owner = autheliaUser;
-    group = autheliaGroup;
-    mode = "0400";
-  };
-
-  # Protonmail Bridge password for SMTP authentication
-  sops.secrets.protonmail-bridge-password = {
-    owner = autheliaUser;
-    group = autheliaGroup;
-    mode = "0400";
+  sops.secrets = {
+    authelia-jwt-secret = {
+      owner = autheliaUser;
+      group = autheliaGroup;
+      mode = "0400";
+    };
+    authelia-session-secret = {
+      owner = autheliaUser;
+      group = autheliaGroup;
+      mode = "0400";
+    };
+    authelia-storage-encryption-key = {
+      owner = autheliaUser;
+      group = autheliaGroup;
+      mode = "0400";
+    };
+    # User password hashes file - this contains the argon2id hashed passwords
+    authelia-users = {
+      owner = autheliaUser;
+      group = autheliaGroup;
+      mode = "0400";
+    };
+    # Protonmail Bridge password for SMTP authentication
+    protonmail-bridge-password = {
+      owner = autheliaUser;
+      group = autheliaGroup;
+      mode = "0400";
+    };
   };
 
   services.authelia.instances.main = {
@@ -85,7 +82,7 @@ in {
       authentication_backend = {
         password_reset.disable = false;
         file = {
-          path = config.sops.secrets.authelia-users.path;
+          inherit (config.sops.secrets.authelia-users) path;
           password = {
             algorithm = "argon2id";
             iterations = 3;
@@ -148,6 +145,10 @@ in {
           }
           {
             domain = "code.${baseDomain}";
+            policy = "two_factor";
+          }
+          {
+            domain = "cockpit.${baseDomain}";
             policy = "two_factor";
           }
 
@@ -801,6 +802,51 @@ in {
           proxy_set_header Remote-Name $name;
           proxy_set_header Remote-Email $email;
           error_page 401 =302 https://${authDomain}/?rd=$target_url;
+        '';
+      };
+      locations."/authelia" = {
+        proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
+        extraConfig = ''
+          internal;
+          proxy_set_header X-Original-URL https://$http_host$request_uri;
+          proxy_set_header X-Original-Method $request_method;
+          proxy_set_header X-Forwarded-Method $request_method;
+          proxy_set_header X-Forwarded-Proto https;
+          proxy_set_header X-Forwarded-Host $http_host;
+          proxy_set_header X-Forwarded-Uri $request_uri;
+          proxy_set_header X-Forwarded-For $remote_addr;
+          proxy_set_header Content-Length "";
+          proxy_pass_request_body off;
+        '';
+      };
+    };
+
+    # Cockpit - protected by Authelia
+    virtualHosts."cockpit-auth" = {
+      listen = [
+        {
+          addr = "127.0.0.1";
+          port = 9109;
+        }
+      ];
+      locations."/" = {
+        proxyPass = "https://127.0.0.1:9090";
+        proxyWebsockets = true;
+        extraConfig = ''
+          # Authelia auth_request configuration
+          auth_request /authelia;
+          auth_request_set $target_url https://$http_host$request_uri;
+          auth_request_set $user $upstream_http_remote_user;
+          auth_request_set $groups $upstream_http_remote_groups;
+          auth_request_set $name $upstream_http_remote_name;
+          auth_request_set $email $upstream_http_remote_email;
+          proxy_set_header Remote-User $user;
+          proxy_set_header Remote-Groups $groups;
+          proxy_set_header Remote-Name $name;
+          proxy_set_header Remote-Email $email;
+          error_page 401 =302 https://${authDomain}/?rd=$target_url;
+          # Cockpit uses self-signed certs
+          proxy_ssl_verify off;
         '';
       };
       locations."/authelia" = {

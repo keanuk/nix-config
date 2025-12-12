@@ -1,4 +1,4 @@
-{lib, ...}: {
+_: {
   imports = [
     ../services/authelia
     ../services/cloudflared

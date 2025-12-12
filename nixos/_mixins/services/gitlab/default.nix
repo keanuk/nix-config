@@ -4,52 +4,47 @@
   ...
 }: {
   # Configure sops secrets for GitLab
-  sops.secrets.gitlab-root-password = {
-    owner = "gitlab";
-    group = "gitlab";
-    mode = "0400";
-  };
-
-  sops.secrets.gitlab-secret = {
-    owner = "gitlab";
-    group = "gitlab";
-    mode = "0400";
-  };
-
-  sops.secrets.gitlab-otp = {
-    owner = "gitlab";
-    group = "gitlab";
-    mode = "0400";
-  };
-
-  sops.secrets.gitlab-db = {
-    owner = "gitlab";
-    group = "gitlab";
-    mode = "0400";
-  };
-
-  sops.secrets.gitlab-jws = {
-    owner = "gitlab";
-    group = "gitlab";
-    mode = "0400";
-  };
-
-  sops.secrets.gitlab-activerecord-primary = {
-    owner = "gitlab";
-    group = "gitlab";
-    mode = "0400";
-  };
-
-  sops.secrets.gitlab-activerecord-deterministic = {
-    owner = "gitlab";
-    group = "gitlab";
-    mode = "0400";
-  };
-
-  sops.secrets.gitlab-activerecord-salt = {
-    owner = "gitlab";
-    group = "gitlab";
-    mode = "0400";
+  sops.secrets = {
+    gitlab-root-password = {
+      owner = "gitlab";
+      group = "gitlab";
+      mode = "0400";
+    };
+    gitlab-secret = {
+      owner = "gitlab";
+      group = "gitlab";
+      mode = "0400";
+    };
+    gitlab-otp = {
+      owner = "gitlab";
+      group = "gitlab";
+      mode = "0400";
+    };
+    gitlab-db = {
+      owner = "gitlab";
+      group = "gitlab";
+      mode = "0400";
+    };
+    gitlab-jws = {
+      owner = "gitlab";
+      group = "gitlab";
+      mode = "0400";
+    };
+    gitlab-activerecord-primary = {
+      owner = "gitlab";
+      group = "gitlab";
+      mode = "0400";
+    };
+    gitlab-activerecord-deterministic = {
+      owner = "gitlab";
+      group = "gitlab";
+      mode = "0400";
+    };
+    gitlab-activerecord-salt = {
+      owner = "gitlab";
+      group = "gitlab";
+      mode = "0400";
+    };
   };
 
   services.gitlab = {

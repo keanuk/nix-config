@@ -55,6 +55,7 @@ in {
           "git.oranos.me" = "http://localhost:9106"; # GitLab via Authelia
           "cloud.oranos.me" = "http://localhost:9107"; # Nextcloud via Authelia
           "code.oranos.me" = "http://localhost:9108"; # OpenVSCode Server via Authelia
+          "cockpit.oranos.me" = "http://localhost:9109"; # Cockpit via Authelia
         };
       };
     };
