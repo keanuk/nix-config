@@ -10,6 +10,7 @@
     ./sops.nix
 
     ../programs/nh
+    ../programs/nix-ld
 
     ../services/apparmor
     ../services/comin

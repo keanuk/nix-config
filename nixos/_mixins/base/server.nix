@@ -1,5 +1,7 @@
-_: {
+{inputs, ...}: {
   imports = [
+    inputs.vscode-server.nixosModules.default
+
     ../services/authelia
     ../services/cloudflared
     ../services/protonmail
@@ -15,4 +17,6 @@ _: {
     ../services/openvscode-server
     ../services/open-webui
   ];
+
+  services.vscode-server.enable = true;
 }
