@@ -9,7 +9,6 @@
   authDomain = "auth.oranos.me";
   baseDomain = "oranos.me";
 in {
-  # Create authelia user and group for sops-nix compatibility
   users.users.${autheliaUser} = {
     isSystemUser = true;
     group = autheliaGroup;
@@ -18,7 +17,6 @@ in {
 
   users.groups.${autheliaGroup} = {};
 
-  # Configure sops secrets for Authelia
   sops.secrets = {
     authelia-jwt-secret = {
       owner = autheliaUser;
@@ -35,13 +33,11 @@ in {
       group = autheliaGroup;
       mode = "0400";
     };
-    # User password hashes file - this contains the argon2id hashed passwords
     authelia-users = {
       owner = autheliaUser;
       group = autheliaGroup;
       mode = "0400";
     };
-    # Protonmail Bridge password for SMTP authentication
     protonmail-bridge-password = {
       owner = autheliaUser;
       group = autheliaGroup;
@@ -61,7 +57,6 @@ in {
       storageEncryptionKeyFile = config.sops.secrets.authelia-storage-encryption-key.path;
     };
 
-    # SMTP password from SOPS
     environmentVariables = {
       AUTHELIA_NOTIFIER_SMTP_PASSWORD_FILE = config.sops.secrets.protonmail-bridge-password.path;
     };
@@ -98,14 +93,11 @@ in {
         default_policy = "deny";
 
         rules = [
-          # Public access to the auth portal itself
           {
             domain = authDomain;
             policy = "bypass";
           }
 
-          # Two-factor authentication required for sensitive services
-          # These services can modify server settings, download content, or access private data
           {
             domain = "git.${baseDomain}";
             policy = "two_factor";
@@ -122,7 +114,6 @@ in {
             domain = "photos.${baseDomain}";
             policy = "two_factor";
           }
-          # *arr services - can download content and modify media library
           {
             domain = "sonarr.${baseDomain}";
             policy = "two_factor";
@@ -152,7 +143,6 @@ in {
             policy = "two_factor";
           }
 
-          # Two-factor authentication for all services
           {
             domain = baseDomain;
             policy = "two_factor";
@@ -221,17 +211,14 @@ in {
     };
   };
 
-  # Nginx reverse proxy configuration for Authelia and protected services
   services.nginx = {
     enable = true;
 
-    # Recommended settings for Authelia
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
     recommendedOptimisation = true;
     recommendedGzipSettings = true;
 
-    # Authelia portal virtual host
     virtualHosts."${authDomain}" = {
       listen = [
         {
@@ -245,7 +232,6 @@ in {
       };
     };
 
-    # Internal authelia verification endpoint (used by auth_request)
     virtualHosts."authelia-internal" = {
       listen = [
         {
@@ -261,7 +247,6 @@ in {
       };
     };
 
-    # Dashy - protected by Authelia
     virtualHosts."dashy-auth" = {
       listen = [
         {
@@ -273,7 +258,6 @@ in {
         proxyPass = "http://127.0.0.1:8082";
         proxyWebsockets = true;
         extraConfig = ''
-          # Authelia auth_request configuration
           auth_request /authelia;
           auth_request_set $target_url https://$http_host$request_uri;
           auth_request_set $user $upstream_http_remote_user;
@@ -304,7 +288,6 @@ in {
       };
     };
 
-    # Chat (Open WebUI) - protected by Authelia
     virtualHosts."chat-auth" = {
       listen = [
         {
@@ -486,7 +469,6 @@ in {
       };
     };
 
-    # Sonarr - protected by Authelia
     virtualHosts."sonarr-auth" = {
       listen = [
         {
@@ -666,7 +648,6 @@ in {
       };
     };
 
-    # Home Assistant - protected by Authelia (2FA required)
     virtualHosts."home-auth" = {
       listen = [
         {
@@ -740,7 +721,6 @@ in {
       };
     };
 
-    # Nextcloud - protected by Authelia (2FA required)
     virtualHosts."cloud-auth" = {
       listen = [
         {
@@ -778,7 +758,6 @@ in {
       };
     };
 
-    # OpenVSCode Server - protected by Authelia
     virtualHosts."code-auth" = {
       listen = [
         {

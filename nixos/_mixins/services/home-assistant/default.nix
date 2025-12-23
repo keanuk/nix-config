@@ -57,7 +57,6 @@
     ];
   };
 
-  # Ensure Home Assistant starts after RAID is mounted
   systemd.services.home-assistant = {
     after = ["raid-online.target"];
     bindsTo = ["raid-online.target"];

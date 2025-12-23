@@ -3,7 +3,6 @@
   config,
   ...
 }: {
-  # Configure sops secrets for GitLab
   sops.secrets = {
     gitlab-root-password = {
       owner = "gitlab";
@@ -74,7 +73,6 @@
     };
   };
 
-  # Ensure GitLab services start after RAID is mounted
   systemd.services = {
     gitlab = {
       after = ["raid-online.target"];
@@ -101,8 +99,5 @@
     };
   };
 
-  # GitLab workhorse listens on port 8929 by default
-  # Firewall disabled - external access goes through cloudflared tunnel
-  # For local network access, use Tailscale or re-enable if needed
-  # networking.firewall.allowedTCPPorts = [8929];
+  networking.firewall.allowedTCPPorts = [8929];
 }

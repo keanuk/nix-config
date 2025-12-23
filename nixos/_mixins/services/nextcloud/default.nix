@@ -3,7 +3,6 @@
   config,
   ...
 }: {
-  # Configure sops secret with correct ownership for nextcloud
   sops.secrets.nextcloud-admin-pass = {
     owner = "nextcloud";
     group = "nextcloud";
@@ -38,8 +37,6 @@
     };
   };
 
-  # Ensure Nextcloud services start after RAID is mounted and sops secrets are available
-  # Using raid-online.target as a synchronization point with bindsTo for strong dependency
   systemd.services = {
     nextcloud-setup = {
       after = ["raid-online.target" "systemd-tmpfiles-setup.service" "postgresql.service"];
@@ -63,10 +60,8 @@
     };
   };
 
-  # Firewall disabled - external access goes through cloudflared tunnel via Authelia
-  # Nginx still serves on these ports locally for cloudflared to connect
-  # networking.firewall.allowedTCPPorts = [
-  #   80
-  #   443
-  # ];
+  networking.firewall.allowedTCPPorts = [
+    80
+    443
+  ];
 }
