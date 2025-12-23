@@ -9,6 +9,8 @@
 
   services.passSecretService.enable = true;
 
+  programs.gnupg.agent = {
+
     enable = true;
     enableSSHSupport = true;
     enableExtraSocket = true;
