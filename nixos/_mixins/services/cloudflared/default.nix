@@ -20,6 +20,12 @@ in {
     mode = "0400";
   };
 
+  sops.secrets.cloudflared-tunnel-id= {
+    owner = "cloudflared";
+    group = "cloudflared";
+    mode = "0400";
+  };
+
   services.cloudflared = {
     enable = true;
     package = pkgs.unstable.cloudflared;
