@@ -1,6 +1,7 @@
 keys:
   - &beehive age1qmxe7ka2wnyl23yedcccgs5pjnl00ndugptx4lun2hxnywn5r5hswusplc 
   - &enterprise age1prznrk5pmrza0vn2yc4z5d20500qttjvjrdlj6s9fjzd5j0x74hqrm0702
+  - &mars age1zp9xk8k5jhxrs7m4mgln835m7c7pnup4al9rzd6hdpxukepvud6q76jkcd
   - &phoebe age18lx82lrvujvlhn43hwkf8j0rpp4qr2f960zslw540t7er2kfqdxqfyjz3h
   - &salacia age13xkeqkwq4a97p06wvyvt354rzf897qatzf8vzr8zzn6hcujlucdqn7dsdm
   - &titan age17as93405vg0pteudgg3w0ek8p8n4kkqnzjx94nyc3tfzzz6mhads2j4q73
@@ -10,6 +11,7 @@ creation_rules:
     - age:
       - *beehive
       - *enterprise
+      - *mars
       - *phoebe
       - *salacia
       - *titan
