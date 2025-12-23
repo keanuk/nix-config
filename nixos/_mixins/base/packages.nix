@@ -19,6 +19,7 @@
     libsecret
     linux-wifi-hotspot
     lsof
+    nix-output-monitor
     pciutils
     polkit
     psmisc

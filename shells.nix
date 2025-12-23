@@ -5,6 +5,7 @@
       nix
       home-manager
       git
+      nix-output-monitor
 
       sops
       ssh-to-age

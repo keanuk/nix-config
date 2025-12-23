@@ -99,6 +99,11 @@
     vpn-confinement.url = "github:Maroka-chan/VPN-Confinement";
 
     nixarr.url = "github:rasmus-kirk/nixarr";
+
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -109,6 +114,7 @@
     darwin,
     home-manager,
     home-manager-stable,
+    nixos-generators,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -137,7 +143,18 @@
     overlays = import ./overlays {inherit inputs outputs;};
     hydraJobs = import ./hydra.nix {inherit inputs outputs;};
 
-    packages = forEachSystem (pkgs: import ./pkgs {inherit pkgs;});
+    packages = forEachSystem (pkgs:
+      (import ./pkgs {inherit pkgs;})
+      // {
+        iso = nixos-generators.nixosGenerate {
+          system = pkgs.system;
+          modules = [
+            ./nixos/iso
+          ];
+          format = "install-iso";
+          specialArgs = {inherit inputs outputs;};
+        };
+      });
     devShells = forEachSystem (pkgs: import ./shells.nix {inherit pkgs;});
     formatter = forEachSystem (pkgs: pkgs.alejandra);
 

@@ -1,6 +1,4 @@
 {pkgs, ...}: {
-
-
   environment.systemPackages = with pkgs; [
     protonmail-bridge
     pass
@@ -10,7 +8,6 @@
   services.passSecretService.enable = true;
 
   programs.gnupg.agent = {
-
     enable = true;
     enableSSHSupport = true;
     enableExtraSocket = true;
