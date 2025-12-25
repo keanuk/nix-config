@@ -203,7 +203,7 @@
         modules = [./nixos/tethys];
       };
       # Hetzner VPS
-      bucaccio = lib.nixosSystem {
+      bucaccio = lib-stable.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [./nixos/bucaccio];
       };
