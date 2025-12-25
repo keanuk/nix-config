@@ -104,6 +104,12 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-anywhere = {
+      url = "github:nix-community/nixos-anywhere";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.disko.follows = "disko";
+    };
   };
 
   outputs = {
@@ -115,6 +121,7 @@
     home-manager,
     home-manager-stable,
     nixos-generators,
+    nixos-anywhere,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -154,6 +161,7 @@
           format = "install-iso";
           specialArgs = {inherit inputs outputs;};
         };
+        nixos-anywhere = nixos-anywhere.packages.${pkgs.system}.default;
       });
     devShells = forEachSystem (pkgs: import ./shells.nix {inherit pkgs;});
     formatter = forEachSystem (pkgs: pkgs.alejandra);
@@ -194,6 +202,11 @@
         specialArgs = {inherit inputs outputs;};
         modules = [./nixos/tethys];
       };
+      # Hetzner VPS
+      bucaccio = lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [./nixos/bucaccio];
+      };
       # CyberPowerPC
       titan = lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
@@ -222,6 +235,11 @@
         extraSpecialArgs = {inherit inputs outputs;};
         pkgs = pkgsFor.x86_64-linux;
         modules = [./home/beehive/keanu.nix];
+      };
+      "keanu@bucaccio" = lib.homeManagerConfiguration {
+        extraSpecialArgs = {inherit inputs outputs;};
+        pkgs = pkgsFor.x86_64-linux;
+        modules = [./home/bucaccio/keanu.nix];
       };
       "keanu@charon" = lib.homeManagerConfiguration {
         extraSpecialArgs = {inherit inputs outputs;};

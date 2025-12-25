@@ -1,5 +1,6 @@
 keys:
   - &beehive age1qmxe7ka2wnyl23yedcccgs5pjnl00ndugptx4lun2hxnywn5r5hswusplc 
+  - &bucaccio age1XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
   - &enterprise age1prznrk5pmrza0vn2yc4z5d20500qttjvjrdlj6s9fjzd5j0x74hqrm0702
   - &mars age1zp9xk8k5jhxrs7m4mgln835m7c7pnup4al9rzd6hdpxukepvud6q76jkcd
   - &phoebe age18lx82lrvujvlhn43hwkf8j0rpp4qr2f960zslw540t7er2kfqdxqfyjz3h
@@ -10,6 +11,7 @@ creation_rules:
     key_groups:
     - age:
       - *beehive
+      - *bucaccio
       - *enterprise
       - *mars
       - *phoebe

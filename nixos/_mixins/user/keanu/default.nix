@@ -13,5 +13,8 @@
     ];
     shell = pkgs.fish;
     initialPassword = "keanu";
+    # openssh.authorizedKeys.keys = [
+    #   "ssh-rsa AAAAB3N..."
+    # ];
   };
 }
