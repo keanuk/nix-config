@@ -1,8 +1,8 @@
 {...}: {
   imports = [
-    ../_mixins/base
-    ../_mixins/base/home-manager.nix
-    ../_mixins/base/server.nix
+    ../../_mixins/base
+    ../../_mixins/base/home-manager.nix
+    ../../_mixins/base/server.nix
   ];
 
   home = {

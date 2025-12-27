@@ -202,15 +202,16 @@
         specialArgs = {inherit inputs outputs;};
         modules = [./nixos/tethys];
       };
-      # Hetzner VPS
-      bucaccio = lib-stable.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [./nixos/bucaccio];
-      };
       # CyberPowerPC
       titan = lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [./nixos/titan];
+      };
+      # ===== VPS =====
+      # Bucaccio Website Hetzner us-east-1
+      bucaccio = lib-stable.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [./nixos/vps/bucaccio];
       };
     };
     darwinConfigurations = {
@@ -233,13 +234,8 @@
     homeConfigurations = {
       "keanu@beehive" = lib-stable.homeManagerConfiguration {
         extraSpecialArgs = {inherit inputs outputs;};
-        pkgs = pkgsFor.x86_64-linux;
+        pkgs = pkgsFor-stable.x86_64-linux;
         modules = [./home/beehive/keanu.nix];
-      };
-      "keanu@bucaccio" = lib.homeManagerConfiguration {
-        extraSpecialArgs = {inherit inputs outputs;};
-        pkgs = pkgsFor.x86_64-linux;
-        modules = [./home/bucaccio/keanu.nix];
       };
       "keanu@charon" = lib.homeManagerConfiguration {
         extraSpecialArgs = {inherit inputs outputs;};
@@ -290,6 +286,12 @@
         extraSpecialArgs = {inherit inputs outputs;};
         pkgs = pkgsFor.x86_64-darwin;
         modules = [./home/vesta/keanu.nix];
+      };
+      # ===== VPS =====
+      "keanu@bucaccio" = lib-stable.homeManagerConfiguration {
+        extraSpecialArgs = {inherit inputs outputs;};
+        pkgs = pkgsFor-stable.x86_64-linux;
+        modules = [./home/vps/bucaccio/keanu.nix];
       };
     };
   };

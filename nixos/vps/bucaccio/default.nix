@@ -12,11 +12,11 @@
     ./disko-configuration.nix
     ./hardware-configuration.nix
 
-    ../_mixins/base
-    ../_mixins/base/vps.nix
-    ../_mixins/base/systemd-boot.nix
+    ../../_mixins/base
+    ../../_mixins/base/vps.nix
+    ../../_mixins/base/systemd-boot.nix
 
-    ../_mixins/user/keanu
+    ../../_mixins/user/keanu
   ];
 
   networking.hostName = "bucaccio";
@@ -26,7 +26,7 @@
     useUserPackages = true;
     useGlobalPkgs = false;
     backupFileExtension = "backup";
-    users.keanu.imports = [../../home/bucaccio/keanu.nix];
+    users.keanu.imports = [../../../home/vps/bucaccio/keanu.nix];
   };
 
   system.stateVersion = "25.05";
