@@ -88,7 +88,7 @@
     wireshark
     wl-clipboard
     xclip
-    youtube-music
+    pear-desktop
     zlib-ng
 
     androidStudioPackages.beta
