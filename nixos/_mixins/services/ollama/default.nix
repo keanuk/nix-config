@@ -15,7 +15,6 @@
       "codestral:latest"
       "deepseek-r1:latest"
       "devstral-small-2:latest"
-      "gemini-3-flash-preview:latest"
       "gemma3:latest"
       "gemma3n:latest"
       "gpt-oss:latest"
