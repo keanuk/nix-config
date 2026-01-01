@@ -154,7 +154,7 @@
       (import ./pkgs {inherit pkgs;})
       // {
         iso = nixos-generators.nixosGenerate {
-          system = pkgs.system;
+          inherit (pkgs) system;
           modules = [
             ./nixos/iso
           ];

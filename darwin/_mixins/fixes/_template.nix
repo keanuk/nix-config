@@ -5,12 +5,7 @@
 # Status: [temporary|permanent] - whether this is expected to be needed long-term
 # Last checked: YYYY-MM-DD - when you last verified this is still needed
 # Remove after: nixpkgs > XX.XX or YYYY-MM-DD (condition when safe to remove)
-{
-  _config,
-  _lib,
-  _pkgs,
-  ...
-}: {
+_: {
   # Optional: Add assertion to remind yourself to check if fix is still needed
   # assertions = [{
   #   assertion = true;  # Set to false to get a reminder on next build

@@ -1,9 +1,9 @@
 {lib, ...}: {
   imports = [
     ../dev
-    ../dev/nim.nix 
+    ../dev/nim.nix
   ];
-  
+
   programs.zellij = {
     enableBashIntegration = lib.mkForce false;
     enableFishIntegration = lib.mkForce false;

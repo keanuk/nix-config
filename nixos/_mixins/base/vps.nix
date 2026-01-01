@@ -5,12 +5,12 @@
     ../services/openssh
   ];
 
-  services.vscode-server.enable = true;
-
-  # Minimal VPS overrides
-  services.printing.enable = false;
-  services.avahi.enable = false;
-  services.power-profiles-daemon.enable = false;
+  services = {
+    vscode-server.enable = true;
+    printing.enable = false;
+    avahi.enable = false;
+    power-profiles-daemon.enable = false;
+  };
   hardware.bluetooth.enable = false;
   boot.plymouth.enable = false;
 }
