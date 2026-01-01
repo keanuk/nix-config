@@ -150,19 +150,23 @@
     overlays = import ./overlays {inherit inputs outputs;};
     hydraJobs = import ./hydra.nix {inherit inputs outputs;};
 
-    packages = forEachSystem (pkgs:
-      (import ./pkgs {inherit pkgs;})
-      // {
-        iso = nixos-generators.nixosGenerate {
-          inherit (pkgs) system;
-          modules = [
-            ./nixos/iso
-          ];
-          format = "install-iso";
-          specialArgs = {inherit inputs outputs;};
-        };
-        nixos-anywhere = nixos-anywhere.packages.${pkgs.system}.default;
-      });
+    packages = forEachSystem (
+      pkgs:
+        (import ./pkgs {inherit pkgs;})
+        // (lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
+          iso = nixos-generators.nixosGenerate {
+            inherit (pkgs) system;
+            modules = [
+              ./nixos/iso
+            ];
+            format = "install-iso";
+            specialArgs = {inherit inputs outputs;};
+          };
+        })
+        // {
+          nixos-anywhere = nixos-anywhere.packages.${pkgs.system}.default;
+        }
+    );
     devShells = forEachSystem (pkgs: import ./shells.nix {inherit pkgs;});
     formatter = forEachSystem (pkgs: pkgs.alejandra);
 
