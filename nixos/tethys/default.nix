@@ -17,7 +17,6 @@
 
     ../_mixins/base/fs.nix
     ../_mixins/base
-    ../_mixins/base/server.nix
     ../_mixins/base/systemd-boot.nix
 
     ../_mixins/services/btrfs

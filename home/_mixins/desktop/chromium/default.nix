@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   programs.chromium = {
     enable = true;
-    package = pkgs.chromium;
+    package = pkgs.google-chrome;
   };
 }

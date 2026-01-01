@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  lib,
+  ...
+}: {
   imports = [
     inputs.vscode-server.nixosModules.default
 
@@ -7,10 +11,10 @@
 
   services = {
     vscode-server.enable = true;
-    printing.enable = false;
-    avahi.enable = false;
-    power-profiles-daemon.enable = false;
+    printing.enable = lib.mkForce false;
+    avahi.enable = lib.mkForce false;
+    power-profiles-daemon.enable = lib.mkForce false;
   };
-  hardware.bluetooth.enable = false;
-  boot.plymouth.enable = false;
+  hardware.bluetooth.enable = lib.mkForce false;
+  boot.plymouth.enable = lib.mkForce false;
 }

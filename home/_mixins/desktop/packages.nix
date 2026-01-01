@@ -53,6 +53,7 @@
     lmstudio
     logseq
     lollypop
+    microsoft-edge
     netbird-ui
     nextcloud-client
     obs-studio

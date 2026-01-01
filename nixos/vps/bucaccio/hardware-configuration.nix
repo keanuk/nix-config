@@ -30,7 +30,7 @@
   };
 
   # Hetzner VPS network config
-  networking.useDHCP = true;
+  networking.useDHCP = lib.mkForce true;
 
   nixpkgs.hostPlatform = "x86_64-linux";
 }
