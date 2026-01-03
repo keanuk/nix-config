@@ -3,6 +3,7 @@
     distrobox
     gsmartcontrol
     snapper-gui
+    vulkan-tools
     wireplumber
 
     xorg.xkill

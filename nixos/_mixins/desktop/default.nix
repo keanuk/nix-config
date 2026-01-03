@@ -4,10 +4,15 @@
     ./fonts.nix
 
     ../programs/evolution
+    ../programs/gamescope
     ../programs/steam
 
     ../services/geoclue2
     ../services/udev
+  ];
+
+  boot.kernelParams = [
+    "amdgpu.exp_hw_support=1"
   ];
 
   services = {
@@ -47,10 +52,17 @@
 
   hardware = {
     sensor.iio.enable = true;
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
   };
 
   environment = {
-    sessionVariables.NIXOS_OZONE_WL = "1";
+    sessionVariables = {
+      ENABLE_HDR_WSI = "1";
+      NIXOS_OZONE_WL = "1";
+    };
     systemPackages = with pkgs; [
       xorg.xbacklight
     ];
