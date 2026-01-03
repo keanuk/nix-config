@@ -77,10 +77,29 @@
         dark = lib.mkForce "Catppuccin Mocha";
       };
       languages = {
+        Bash = {
+          language_servers = [
+            "bash-language-server"
+            "lsp-ai"
+          ];
+        };
+        Go = {
+          language_servers = [
+            "gopls"
+            "lsp-ai"
+          ];
+        };
+        Markdown = {
+          language_servers = [
+            "marksman"
+            "lsp-ai"
+          ];
+        };
         Nix = {
           language_servers = [
             "nil"
             "!nixd"
+            "lsp-ai"
           ];
           formatter = {
             external = {
@@ -88,9 +107,121 @@
             };
           };
         };
+        Python = {
+          language_servers = [
+            "pylsp"
+            "lsp-ai"
+          ];
+        };
+        Rust = {
+          language_servers = [
+            "rust-analyzer"
+            "lsp-ai"
+          ];
+        };
+        TOML = {
+          language_servers = [
+            "taplo"
+            "lsp-ai"
+          ];
+        };
+        TypeScript = {
+          language_servers = [
+            "typescript-language-server"
+            "lsp-ai"
+          ];
+        };
+        YAML = {
+          language_servers = [
+            "yaml-language-server"
+            "lsp-ai"
+          ];
+        };
       };
       lsp = {
-        nil.initialization_options.formatting.command = ["alejandra"];
+        bash-language-server = {
+          binary = {
+            path = "${pkgs.bash-language-server}/bin/bash-language-server";
+            arguments = ["start"];
+          };
+        };
+        gopls = {
+          binary = {
+            path = "${pkgs.gopls}/bin/gopls";
+          };
+        };
+        marksman = {
+          binary = {
+            path = "${pkgs.marksman}/bin/marksman";
+          };
+        };
+        nil = {
+          binary = {
+            path = "${pkgs.nil}/bin/nil";
+          };
+          initialization_options.formatting.command = ["alejandra"];
+        };
+        pylsp = {
+          binary = {
+            path = "${pkgs.python313Packages.python-lsp-server}/bin/pylsp";
+          };
+        };
+        rust-analyzer = {
+          binary = {
+            path = "${pkgs.rust-analyzer}/bin/rust-analyzer";
+          };
+        };
+        taplo = {
+          binary = {
+            path = "${pkgs.taplo}/bin/taplo";
+            arguments = [
+              "lsp"
+              "stdio"
+            ];
+          };
+        };
+        yaml-language-server = {
+          binary = {
+            path = "${pkgs.yaml-language-server}/bin/yaml-language-server";
+            arguments = ["--stdio"];
+          };
+        };
+        lsp-ai = {
+          binary = {
+            path = "${pkgs.lsp-ai}/bin/lsp-ai";
+            arguments = ["--use-separate-log-file"];
+          };
+          initialization_options = {
+            memory.file_store = {};
+            models = {
+              model1 = {
+                type = "ollama";
+                model = "codestral";
+              };
+              model2 = {
+                type = "ollama";
+                model = "qwen3-coder";
+              };
+            };
+            completion = {
+              model = "model1";
+              parameters = {
+                max-tokens = 64;
+                max-context = 1024;
+              };
+            };
+            chat = {
+              trigger = "!C";
+              action_display_name = "Chat";
+              model = "model2";
+              parameters = {
+                max-tokens = 1024;
+                max-context = 4096;
+                system = "You are a helpful coding assistant.";
+              };
+            };
+          };
+        };
       };
       features = {
         edit_prediction_provider = "copilot";

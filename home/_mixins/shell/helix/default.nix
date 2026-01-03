@@ -51,9 +51,43 @@
     };
     languages = {
       language-server = {
+        bash-language-server = {
+          command = "${pkgs.bash-language-server}/bin/bash-language-server";
+          args = ["start"];
+        };
+        gopls = {
+          command = "${pkgs.gopls}/bin/gopls";
+        };
+        marksman = {
+          command = "${pkgs.marksman}/bin/marksman";
+        };
+        nil = {
+          command = "${pkgs.nil}/bin/nil";
+        };
+        pylsp = {
+          command = "${pkgs.python313Packages.python-lsp-server}/bin/pylsp";
+        };
+        rust-analyzer = {
+          command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
+        };
+        taplo = {
+          command = "${pkgs.taplo}/bin/taplo";
+          args = [
+            "lsp"
+            "stdio"
+          ];
+        };
+        typescript-language-server = {
+          command = "${pkgs.typescript-language-server}/bin/typescript-language-server";
+          args = ["--stdio"];
+        };
+        yaml-language-server = {
+          command = "${pkgs.yaml-language-server}/bin/yaml-language-server";
+          args = ["--stdio"];
+        };
         lsp-ai = {
           command = "lsp-ai";
-          args = ["--use-seperate-log-file"];
+          args = ["--use-separate-log-file"];
           config = {
             memory.file_store = {};
             models = {
@@ -77,7 +111,7 @@
               trigger = "!C";
               action_display_name = "Chat";
               model = "model2";
-              paramters = {
+              parameters = {
                 max-tokens = 1024;
                 max-context = 4096;
                 system = "You are a helpful coding assistant.";
@@ -86,6 +120,71 @@
           };
         };
       };
+      language = [
+        {
+          name = "bash";
+          language-servers = [
+            "bash-language-server"
+            "lsp-ai"
+          ];
+        }
+        {
+          name = "go";
+          language-servers = [
+            "gopls"
+            "lsp-ai"
+          ];
+        }
+        {
+          name = "markdown";
+          language-servers = [
+            "marksman"
+            "lsp-ai"
+          ];
+        }
+        {
+          name = "nix";
+          language-servers = [
+            "nil"
+            "lsp-ai"
+          ];
+        }
+        {
+          name = "python";
+          language-servers = [
+            "pylsp"
+            "lsp-ai"
+          ];
+        }
+        {
+          name = "rust";
+          language-servers = [
+            "rust-analyzer"
+            "lsp-ai"
+          ];
+        }
+        {
+          name = "toml";
+          language-servers = [
+            "taplo"
+            "lsp-ai"
+          ];
+        }
+        {
+          name = "typescript";
+          language-servers = [
+            "typescript-language-server"
+            "lsp-ai"
+          ];
+        }
+        {
+          name = "yaml";
+          language-servers = [
+            "yaml-language-server"
+            "lsp-ai"
+          ];
+        }
+      ];
     };
   };
 }
