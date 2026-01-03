@@ -27,8 +27,6 @@
     ../_mixins/services/btrfs
     ../_mixins/services/ollama
 
-    # ../_mixins/fixes/ath11k-suspend-fix.nix
-
     ../_mixins/user/keanu
   ];
 
