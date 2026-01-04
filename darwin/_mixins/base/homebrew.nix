@@ -46,6 +46,12 @@ _: {
     ];
     casks = [
       {
+        name = "antigravity";
+        args = {
+          appdir = "/Applications";
+        };
+      }
+      {
         name = "discord";
         args = {
           appdir = "/Applications";
@@ -107,7 +113,6 @@ _: {
       }
 
       "alacritty"
-      "antigravity"
       "audacity"
       "balenaetcher"
       "battle-net"
