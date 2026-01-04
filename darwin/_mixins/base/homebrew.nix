@@ -41,8 +41,6 @@ _: {
       "th-ch/youtube-music"
     ];
     brews = [
-      "zig"
-      "zls"
     ];
     casks = [
       {

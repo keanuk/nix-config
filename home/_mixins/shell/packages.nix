@@ -2,8 +2,7 @@
   home.packages = with pkgs; [
     age
     authelia
-    # TODO: re-enable when no longer marked as broken on Darwin
-    # bitwarden-cli
+    bitwarden-cli
     circumflex
     copilot-language-server
     cpufetch
