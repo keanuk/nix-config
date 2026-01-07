@@ -1,6 +1,10 @@
-{outputs, ...}: {
+{
+  self,
+  outputs,
+  ...
+}: {
   nix = {
-    registry.my.flake = outputs.self;
+    registry.my.flake = self;
     settings = {
       auto-optimise-store = true;
       warn-dirty = false;

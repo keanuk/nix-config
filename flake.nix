@@ -176,65 +176,65 @@
     nixosConfigurations = {
       # Beelink SER9 Pro
       beehive = lib-stable.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit self inputs outputs;};
         modules = [./nixos/beehive];
       };
       # Intel NUC 10 i7
       earth = lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit self inputs outputs;};
         modules = [./nixos/earth];
       };
       # HP EliteBook 845 G8
       hyperion = lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit self inputs outputs;};
         modules = [./nixos/hyperion];
       };
       # ThinkPad X13s Gen 1
       mars = lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit self inputs outputs;};
         modules = [./nixos/mars];
       };
       # HP EliteBook 1030 G2
       miranda = lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit self inputs outputs;};
         modules = [./nixos/miranda];
       };
       # ThinkPad P14s AMD Gen 5
       phoebe = lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit self inputs outputs;};
         modules = [./nixos/phoebe];
       };
       # Zotac ZBox
       tethys = lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit self inputs outputs;};
         modules = [./nixos/tethys];
       };
       # CyberPowerPC
       titan = lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit self inputs outputs;};
         modules = [./nixos/titan];
       };
       # ===== VPS =====
       # Bucaccio Website Hetzner us-east-1
       bucaccio = lib-stable.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit self inputs outputs;};
         modules = [./nixos/vps/bucaccio];
       };
     };
     darwinConfigurations = {
       # Mac Mini 2024
       salacia = lib.darwinSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit self inputs outputs;};
         modules = [./darwin/salacia];
       };
       # MacBook Pro 2020
       vesta = lib.darwinSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit self inputs outputs;};
         modules = [./darwin/vesta];
       };
       # MacBook Air 2018
       charon = lib.darwinSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit self inputs outputs;};
         modules = [./darwin/charon];
       };
     };
