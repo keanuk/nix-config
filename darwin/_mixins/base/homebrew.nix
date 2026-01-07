@@ -41,10 +41,14 @@ _: {
       "th-ch/youtube-music"
     ];
     brews = [
-      "zig"
-      "zls"
     ];
     casks = [
+      {
+        name = "antigravity";
+        args = {
+          appdir = "/Applications";
+        };
+      }
       {
         name = "discord";
         args = {
@@ -107,7 +111,6 @@ _: {
       }
 
       "alacritty"
-      "antigravity"
       "audacity"
       "balenaetcher"
       "battle-net"

@@ -6,12 +6,12 @@
     ./java.nix
     ./lua.nix
     ./markup.nix
+    ./nim.nix
     ./nix.nix
     ./node.nix
     ./python.nix
     ./rust.nix
-    # TODO: re-enable when no longer marked as broken
-    # ./zig.nix
+    ./zig.nix
   ];
 
   home.packages = with pkgs; [

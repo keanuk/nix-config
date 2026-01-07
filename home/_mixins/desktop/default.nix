@@ -17,7 +17,6 @@
     ./zed
 
     ../dev
-    ../dev/nim.nix
   ];
 
   programs.zellij = {
