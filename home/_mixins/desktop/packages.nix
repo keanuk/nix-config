@@ -2,7 +2,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   nixpkgs.config = {
     permittedInsecurePackages = [
     ];
@@ -101,6 +102,7 @@
     airshipper
     bugdom
     cartridges
+    dwarf-fortress
     flightgear
     heroic
     nanosaur
