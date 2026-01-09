@@ -7,9 +7,6 @@
     enable = true;
     package = pkgs.helix;
     defaultEditor = true;
-    extraPackages = with pkgs; [
-      lsp-ai
-    ];
     settings = {
       theme = lib.mkDefault "catppuccin_mocha";
       editor = {
@@ -86,7 +83,7 @@
           args = ["--stdio"];
         };
         lsp-ai = {
-          command = "lsp-ai";
+          # command = "lsp-ai";
           args = ["--use-separate-log-file"];
           config = {
             memory.file_store = {};
@@ -125,63 +122,54 @@
           name = "bash";
           language-servers = [
             "bash-language-server"
-            "lsp-ai"
           ];
         }
         {
           name = "go";
           language-servers = [
             "gopls"
-            "lsp-ai"
           ];
         }
         {
           name = "markdown";
           language-servers = [
             "marksman"
-            "lsp-ai"
           ];
         }
         {
           name = "nix";
           language-servers = [
             "nil"
-            "lsp-ai"
           ];
         }
         {
           name = "python";
           language-servers = [
             "pylsp"
-            "lsp-ai"
           ];
         }
         {
           name = "rust";
           language-servers = [
             "rust-analyzer"
-            "lsp-ai"
           ];
         }
         {
           name = "toml";
           language-servers = [
             "taplo"
-            "lsp-ai"
           ];
         }
         {
           name = "typescript";
           language-servers = [
             "typescript-language-server"
-            "lsp-ai"
           ];
         }
         {
           name = "yaml";
           language-servers = [
             "yaml-language-server"
-            "lsp-ai"
           ];
         }
       ];

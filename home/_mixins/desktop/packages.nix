@@ -58,7 +58,8 @@
     pitivi
     plex-desktop
     plexamp
-    pocket-casts
+    # TODO: re-enable when build is fixed
+    # pocket-casts
     podman-desktop
     polari
     proton-pass

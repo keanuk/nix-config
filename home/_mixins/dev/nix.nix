@@ -4,7 +4,7 @@
     nil
     nixd
     nixdoc
-    nixfmt-rfc-style
+    nixfmt
     nix-diff
   ];
 }

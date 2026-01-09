@@ -80,26 +80,22 @@
         Bash = {
           language_servers = [
             "bash-language-server"
-            "lsp-ai"
           ];
         };
         Go = {
           language_servers = [
             "gopls"
-            "lsp-ai"
           ];
         };
         Markdown = {
           language_servers = [
             "marksman"
-            "lsp-ai"
           ];
         };
         Nix = {
           language_servers = [
             "nil"
             "!nixd"
-            "lsp-ai"
           ];
           formatter = {
             external = {
@@ -110,31 +106,26 @@
         Python = {
           language_servers = [
             "pylsp"
-            "lsp-ai"
           ];
         };
         Rust = {
           language_servers = [
             "rust-analyzer"
-            "lsp-ai"
           ];
         };
         TOML = {
           language_servers = [
             "taplo"
-            "lsp-ai"
           ];
         };
         TypeScript = {
           language_servers = [
             "typescript-language-server"
-            "lsp-ai"
           ];
         };
         YAML = {
           language_servers = [
             "yaml-language-server"
-            "lsp-ai"
           ];
         };
       };
@@ -187,10 +178,6 @@
           };
         };
         lsp-ai = {
-          binary = {
-            path = "${pkgs.lsp-ai}/bin/lsp-ai";
-            arguments = ["--use-separate-log-file"];
-          };
           initialization_options = {
             memory.file_store = {};
             models = {
