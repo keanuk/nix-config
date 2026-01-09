@@ -12,6 +12,7 @@
     fortune
     gemini-cli-bin
     github-copilot-cli
+    gping
     immich-cli
     just
     libnatpmp
