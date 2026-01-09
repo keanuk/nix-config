@@ -21,6 +21,7 @@
     ./ripgrep
     ./skim
     ./starship
+    ./trippy
     ./pay-respects
     ./yazi
     ./yt-dlp
