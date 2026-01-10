@@ -1,4 +1,5 @@
-{inputs, ...}: {
+{ inputs, ... }:
+{
   imports = [
     inputs.vscode-server.nixosModules.default
 
@@ -14,6 +15,7 @@
     ../services/nextcloud
     ../services/nixarr
     ../services/ollama
+    ../services/openssh
     ../services/openvscode-server
     ../services/open-webui
   ];
