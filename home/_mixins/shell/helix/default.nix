@@ -82,40 +82,6 @@
           command = "${pkgs.yaml-language-server}/bin/yaml-language-server";
           args = ["--stdio"];
         };
-        lsp-ai = {
-          # command = "lsp-ai";
-          args = ["--use-separate-log-file"];
-          config = {
-            memory.file_store = {};
-            models = {
-              model1 = {
-                type = "ollama";
-                model = "codestral";
-              };
-              model2 = {
-                type = "ollama";
-                model = "qwen3-coder";
-              };
-            };
-            completion = {
-              model = "model1";
-              parameters = {
-                max-tokens = 64;
-                max-context = 1024;
-              };
-            };
-            chat = {
-              trigger = "!C";
-              action_display_name = "Chat";
-              model = "model2";
-              parameters = {
-                max-tokens = 1024;
-                max-context = 4096;
-                system = "You are a helpful coding assistant.";
-              };
-            };
-          };
-        };
       };
       language = [
         {
