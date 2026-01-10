@@ -145,6 +145,7 @@ _: {
       "logseq"
       "nextcloud"
       "obs"
+      "onyx"
       "plex"
       "pocket-casts"
       "podman-desktop"

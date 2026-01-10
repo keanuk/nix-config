@@ -124,7 +124,6 @@
     home-manager-stable,
     nixos-generators,
     nixos-anywhere,
-    devenv,
     ...
   } @ inputs: let
     inherit (self) outputs;

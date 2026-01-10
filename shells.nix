@@ -103,10 +103,14 @@ in {
         typescript-language-server
         nodePackages_latest.svelte-check
       ];
-      languages.javascript.enable = true;
-      languages.javascript.npm.enable = true;
-      languages.typescript.enable = true;
-      languages.deno.enable = true;
+      languages = {
+        javascript = {
+          enable = true;
+          npm.enable = true;
+        };
+        typescript.enable = true;
+        deno.enable = true;
+      };
     }
   ];
   python = mkDevenv [
