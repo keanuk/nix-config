@@ -1,5 +1,6 @@
 {inputs, ...}: let
   fixes = [
+    ./fixes/zed-editor.nix
   ];
 
   # Combine all fix overlays into a single overlay
