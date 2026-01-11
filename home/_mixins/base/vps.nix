@@ -7,8 +7,10 @@
     ../shell/bottom
     ../shell/carapace
     ../shell/eza
+    ../shell/fastfetch
     ../shell/fd
     ../shell/fish
+    ../shell/gh
     ../shell/git
     ../shell/helix
     ../shell/micro

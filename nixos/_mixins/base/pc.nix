@@ -1,6 +1,6 @@
 _: {
   imports = [
-    ./services/smartd
+    ../services/smartd
   ];
 
   networking.networkmanager.wifi.powersave = false;
