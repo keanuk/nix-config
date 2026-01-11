@@ -23,7 +23,7 @@
 
   boot = {
     initrd.systemd.enable = true;
-    loader.efi.canTouchEfiVariables = true;
+    loader.efi.canTouchEfiVariables = lib.mkDefault true;
     plymouth.enable = true;
     kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = ["iptable_raw"];

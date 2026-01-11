@@ -1,6 +1,22 @@
 {outputs, ...}: {
   imports = [
     ../fixes
+
+    ../shell/bash
+    ../shell/bat
+    ../shell/bottom
+    ../shell/carapace
+    ../shell/eza
+    ../shell/fd
+    ../shell/fish
+    ../shell/git
+    ../shell/helix
+    ../shell/micro
+    ../shell/ripgrep
+    ../shell/skim
+    ../shell/starship
+    ../shell/yazi
+    ../shell/zoxide
   ];
 
   nixpkgs = {

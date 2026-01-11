@@ -1,6 +1,7 @@
 {
   inputs,
   outputs,
+  lib,
   ...
 }: {
   imports = [
@@ -18,11 +19,14 @@
     ../../_mixins/user/keanu
   ];
 
-  boot.loader.grub = {
-    enable = true;
-    devices = ["/dev/sda"];
-    efiSupport = true;
-    efiInstallAsRemovable = true;
+  boot.loader = {
+    grub = {
+      enable = true;
+      devices = ["/dev/sda"];
+      efiSupport = true;
+      efiInstallAsRemovable = true;
+    };
+    efi.canTouchEfiVariables = lib.mkForce false;
   };
 
   networking.hostName = "bucaccio";
