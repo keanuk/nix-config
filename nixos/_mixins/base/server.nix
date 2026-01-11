@@ -17,6 +17,7 @@
     ../services/openssh
     ../services/openvscode-server
     ../services/open-webui
+    ../services/smartd
   ];
 
   services.vscode-server.enable = true;

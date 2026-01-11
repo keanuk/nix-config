@@ -52,6 +52,10 @@
 
   hardware = {
     sensor.iio.enable = true;
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
     graphics = {
       enable = true;
       enable32Bit = true;
@@ -66,7 +70,12 @@
     systemPackages = with pkgs; [
       xorg.xbacklight
     ];
-    shells = with pkgs; [bashInteractive fish nushell zsh];
+    shells = with pkgs; [
+      bashInteractive
+      fish
+      nushell
+      zsh
+    ];
   };
 
   # Needed if not using GNOME

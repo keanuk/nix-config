@@ -46,7 +46,7 @@
     virtualHosts."bucaccio.com" = {
       forceSSL = true;
       enableACME = true;
-      root = "/var/www/bucaccio.com";
+      root = "/var/www/bucaccio";
     };
   };
 
@@ -56,7 +56,7 @@
   };
 
   systemd.tmpfiles.rules = [
-    "d /var/www/bucaccio.com 0755 keanu users -"
+    "d /var/www/bucaccio 0755 keanu users -"
   ];
 
   networking.firewall.allowedTCPPorts = [

@@ -53,10 +53,6 @@
   };
 
   hardware = {
-    bluetooth = {
-      enable = true;
-      powerOnBoot = true;
-    };
     enableAllFirmware = true;
     enableRedistributableFirmware = true;
     ksm.enable = true;
@@ -80,7 +76,6 @@
     power-profiles-daemon.enable = true;
     resolved.enable = lib.mkDefault true;
     resolved.dnssec = lib.mkDefault "allow-downgrade";
-    smartd.enable = lib.mkDefault true;
     sysstat.enable = true;
     udisks2.enable = true;
     upower.enable = true;
