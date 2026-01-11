@@ -14,10 +14,16 @@
 
     ../../_mixins/base
     ../../_mixins/base/vps.nix
-    ../../_mixins/base/systemd-boot.nix
 
     ../../_mixins/user/keanu
   ];
+
+  boot.loader.grub = {
+    enable = true;
+    devices = ["/dev/sda"];
+    efiSupport = true;
+    efiInstallAsRemovable = true;
+  };
 
   networking.hostName = "bucaccio";
 

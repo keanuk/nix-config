@@ -1,5 +1,10 @@
 _: let
-  defaultBtrfsOpts = ["defaults" "compress=zstd" "noatime" "nodiratime"];
+  defaultBtrfsOpts = [
+    "defaults"
+    "compress=zstd"
+    "noatime"
+    "nodiratime"
+  ];
 in {
   disko.devices = {
     disk = {
@@ -9,6 +14,10 @@ in {
         content = {
           type = "gpt";
           partitions = {
+            boot = {
+              size = "1M";
+              type = "EF02"; # for grub MBR
+            };
             ESP = {
               start = "0%";
               end = "512MiB";
