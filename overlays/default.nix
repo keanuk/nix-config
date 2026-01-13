@@ -1,5 +1,6 @@
 {inputs, ...}: let
   fixes = [
+    ./fixes/gnome-shell-libgvc.nix
   ];
 
   # Combine all fix overlays into a single overlay
