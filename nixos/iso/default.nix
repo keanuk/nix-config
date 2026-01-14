@@ -6,6 +6,8 @@
 
   networking.hostName = "iso-console";
 
+  programs.fish.enable = true;
+
   environment.systemPackages = with pkgs; [
     git
     neovim
