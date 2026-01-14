@@ -18,4 +18,4 @@ jobs:
 
       - name: Check formatting
         run: |
-          nix fmt -- --check .
+          nix fmt -- --ci .
