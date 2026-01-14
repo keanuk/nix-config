@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   services.dashy = {
     enable = true;
     package = pkgs.unstable.dashy-ui;

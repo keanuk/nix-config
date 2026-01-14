@@ -6,55 +6,65 @@
   lib,
   modulesPath,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
   boot = {
     initrd = {
-      availableKernelModules = ["xhci_pci" "ehci_pci" "ahci" "usbhid" "ums_realtek" "usb_storage" "sd_mod" "sdhci_pci"];
-      kernelModules = [];
+      availableKernelModules = [
+        "xhci_pci"
+        "ehci_pci"
+        "ahci"
+        "usbhid"
+        "ums_realtek"
+        "usb_storage"
+        "sd_mod"
+        "sdhci_pci"
+      ];
+      kernelModules = [ ];
     };
-    kernelModules = ["kvm-intel"];
-    extraModulePackages = [];
+    kernelModules = [ "kvm-intel" ];
+    extraModulePackages = [ ];
   };
 
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-uuid/8a943e1a-9063-4201-bbd5-14092bcabaff";
       fsType = "btrfs";
-      options = ["subvol=@"];
+      options = [ "subvol=@" ];
     };
 
     "/nix" = {
       device = "/dev/disk/by-uuid/8a943e1a-9063-4201-bbd5-14092bcabaff";
       fsType = "btrfs";
-      options = ["subvol=@nix"];
+      options = [ "subvol=@nix" ];
     };
 
     "/home" = {
       device = "/dev/disk/by-uuid/8a943e1a-9063-4201-bbd5-14092bcabaff";
       fsType = "btrfs";
-      options = ["subvol=@home"];
+      options = [ "subvol=@home" ];
     };
 
     "/.snapshots" = {
       device = "/dev/disk/by-uuid/8a943e1a-9063-4201-bbd5-14092bcabaff";
       fsType = "btrfs";
-      options = ["subvol=@snapshots"];
+      options = [ "subvol=@snapshots" ];
     };
 
     "/var/log" = {
       device = "/dev/disk/by-uuid/8a943e1a-9063-4201-bbd5-14092bcabaff";
       fsType = "btrfs";
-      options = ["subvol=@var_log"];
+      options = [ "subvol=@var_log" ];
     };
 
     "/swap" = {
       device = "/dev/disk/by-uuid/8a943e1a-9063-4201-bbd5-14092bcabaff";
       fsType = "btrfs";
-      options = ["subvol=@swap"];
+      options = [ "subvol=@swap" ];
     };
 
     "/boot" = {
@@ -63,7 +73,7 @@
     };
   };
 
-  swapDevices = [];
+  swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

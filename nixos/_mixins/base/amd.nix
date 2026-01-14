@@ -2,11 +2,12 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   # Enable AMD GPU drivers
   services = {
     ollama.package = lib.mkForce pkgs.ollama-rocm;
-    xserver.videoDrivers = ["amdgpu"];
+    xserver.videoDrivers = [ "amdgpu" ];
   };
 
   # OpenCL tools

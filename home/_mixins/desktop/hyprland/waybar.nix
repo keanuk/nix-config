@@ -2,7 +2,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   programs.waybar = {
     enable = true;
     package = pkgs.waybar;
@@ -58,7 +59,12 @@
           format-wifi = "{icon}";
           format-ethernet = "{ifname} ";
           format-disconnected = "";
-          format-icons = ["󰤟" "󰤢" "󰤥" "󰤨"];
+          format-icons = [
+            "󰤟"
+            "󰤢"
+            "󰤥"
+            "󰤨"
+          ];
           tooltip-format = "{ifname} / {essid} ({signalStrength}%) / {ipaddr}";
           max-length = 15;
           on-click = "${pkgs.alacritty}/bin/alacritty -e ${pkgs.networkmanager}/bin/nmtui";
@@ -94,7 +100,13 @@
           tooltip-format = "{time} ({capacity}%)";
           format-alt = "{time} {icon}";
           format-full = "";
-          format-icons = ["" "" "" "" ""];
+          format-icons = [
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
         };
 
         "group/group-power" = {
@@ -144,14 +156,28 @@
         "backlight" = {
           "device" = "intel_backlight";
           "format" = "{icon}";
-          "format-icons" = ["" "" "" "" "" "" "" "" ""];
+          "format-icons" = [
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
         };
 
         "wireplumber" = {
           format = "{icon}";
           format-muted = "";
           on-click = "${lib.getExe pkgs.pavucontrol}";
-          format-icons = ["" "" ""];
+          format-icons = [
+            ""
+            ""
+            ""
+          ];
           tooltip-format = "{volume}% / {node_name}";
         };
 
@@ -176,7 +202,17 @@
         "cpu" = {
           interval = 1;
           format = "{icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}{icon8}{icon9}{icon10}{icon11}{icon12}{icon13}{icon14}{icon15}{icon16}{icon17}{icon18}{icon19}{icon20}{icon21}{icon22}{icon23}";
-          format-icons = ["" "▁" "▂" "▃" "▄" "▅" "▆" "▇" "█"];
+          format-icons = [
+            ""
+            "▁"
+            "▂"
+            "▃"
+            "▄"
+            "▅"
+            "▆"
+            "▇"
+            "█"
+          ];
           states = {
             warning = 20;
             critical = 50;
@@ -188,7 +224,7 @@
           hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
           critical-threshold = 60;
           format = "{icon} {temperatureC}°";
-          format-icons = [""];
+          format-icons = [ "" ];
         };
       }
     ];

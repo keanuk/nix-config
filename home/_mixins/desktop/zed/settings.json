@@ -38,32 +38,32 @@
     "typst": true,
     "vue": true,
     "xml": true,
-    "zig": true
+    "zig": true,
   },
   "autosave": "on_focus_change",
   "buffer_font_size": 14,
   "features": {
-    "edit_prediction_provider": "copilot"
+    "edit_prediction_provider": "copilot",
   },
   "icon_theme": "Catppuccin Mocha",
   "languages": {
     "Nix": {
       "formatter": {
         "external": {
-          "command": "alejandra"
-        }
+          "command": "nixfmt",
+        },
       },
-      "language_servers": ["nil", "!nixd"]
-    }
+      "language_servers": ["nixd", "!nil"],
+    },
   },
   "lsp": {
-    "nil": {
+    "nixd": {
       "initialization_options": {
         "formatting": {
-          "command": ["alejandra"]
-        }
-      }
-    }
+          "command": ["nixfmt"],
+        },
+      },
+    },
   },
   "restore_on_startup": "last_session",
   "tab_size": 2,
@@ -75,30 +75,30 @@
     "font_size": null,
     "line_height": "standard",
     "shell": {
-      "program": "fish"
+      "program": "fish",
     },
     "toolbar": {
-      "breadcrumbs": true
+      "breadcrumbs": true,
     },
-    "working_directory": "current_project_directory"
+    "working_directory": "current_project_directory",
   },
   "theme": {
     "dark": "Catppuccin Mocha (Blur)",
     "light": "Catppuccin Latte (Blur)",
-    "mode": "system"
+    "mode": "system",
   },
   "ui_font_size": 14,
   "helix_mode": true,
   "vim": {
     "default_mode": "normal",
-    "toggle_relative_line_numbers": true
+    "toggle_relative_line_numbers": true,
   },
   "agent": {
     "default_model": {
       "model": "claude-opus-4.5",
-      "provider": "copilot_chat"
+      "provider": "copilot_chat",
     },
     "enabled": true,
-    "button": true
-  }
+    "button": true,
+  },
 }

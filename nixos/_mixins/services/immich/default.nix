@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   services.immich = {
     enable = true;
     package = pkgs.unstable.immich;
@@ -27,14 +28,14 @@
 
   systemd.services = {
     immich-server = {
-      after = ["raid-online.target"];
-      bindsTo = ["raid-online.target"];
+      after = [ "raid-online.target" ];
+      bindsTo = [ "raid-online.target" ];
       unitConfig.AssertPathIsMountPoint = "/data";
     };
 
     immich-machine-learning = {
-      after = ["raid-online.target"];
-      bindsTo = ["raid-online.target"];
+      after = [ "raid-online.target" ];
+      bindsTo = [ "raid-online.target" ];
       unitConfig.AssertPathIsMountPoint = "/data";
     };
   };

@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   programs.zed-editor = {
     enable = true;
     package = pkgs.zed-editor;
@@ -94,12 +95,12 @@
         };
         Nix = {
           language_servers = [
-            "nil"
-            "!nixd"
+            "nixd"
+            "!nil"
           ];
           formatter = {
             external = {
-              command = "alejandra";
+              command = "nixfmt";
             };
           };
         };
@@ -133,7 +134,7 @@
         bash-language-server = {
           binary = {
             path = "${pkgs.bash-language-server}/bin/bash-language-server";
-            arguments = ["start"];
+            arguments = [ "start" ];
           };
         };
         gopls = {
@@ -146,11 +147,11 @@
             path = "${pkgs.marksman}/bin/marksman";
           };
         };
-        nil = {
+        nixd = {
           binary = {
-            path = "${pkgs.nil}/bin/nil";
+            path = "${pkgs.nixd}/bin/nixd";
           };
-          initialization_options.formatting.command = ["alejandra"];
+          initialization_options.formatting.command = [ "nixfmt" ];
         };
         pylsp = {
           binary = {
@@ -174,12 +175,12 @@
         yaml-language-server = {
           binary = {
             path = "${pkgs.yaml-language-server}/bin/yaml-language-server";
-            arguments = ["--stdio"];
+            arguments = [ "--stdio" ];
           };
         };
         lsp-ai = {
           initialization_options = {
-            memory.file_store = {};
+            memory.file_store = { };
             models = {
               model1 = {
                 type = "ollama";

@@ -1,6 +1,14 @@
-_: let
-  defaultBtrfsOpts = ["defaults" "compress=zstd" "ssd" "noatime" "nodiratime"];
-in {
+_:
+let
+  defaultBtrfsOpts = [
+    "defaults"
+    "compress=zstd"
+    "ssd"
+    "noatime"
+    "nodiratime"
+  ];
+in
+{
   disko.devices = {
     disk = {
       main = {
@@ -16,7 +24,10 @@ in {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = ["defaults" "umask=0077"];
+                mountOptions = [
+                  "defaults"
+                  "umask=0077"
+                ];
               };
             };
             luks = {
@@ -30,7 +41,7 @@ in {
                 };
                 content = {
                   type = "btrfs";
-                  extraArgs = ["-f"];
+                  extraArgs = [ "-f" ];
                   subvolumes = {
                     "@" = {
                       mountpoint = "/";

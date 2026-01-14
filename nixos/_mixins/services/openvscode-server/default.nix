@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   services.openvscode-server = {
     enable = true;
     package = pkgs.unstable.openvscode-server;

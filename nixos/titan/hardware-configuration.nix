@@ -6,59 +6,67 @@
   lib,
   modulesPath,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
   boot = {
     initrd = {
-      availableKernelModules = ["nvme" "ahci" "xhci_pci" "usb_storage" "usbhid" "sd_mod"];
-      kernelModules = ["amdgpu"];
+      availableKernelModules = [
+        "nvme"
+        "ahci"
+        "xhci_pci"
+        "usb_storage"
+        "usbhid"
+        "sd_mod"
+      ];
+      kernelModules = [ "amdgpu" ];
       luks.devices = {
         "cryptroot".device = "/dev/disk/by-uuid/a7a50ee6-ebfa-4901-bdd7-f6d6d2e5bdc0";
         "cryptroot2".device = "/dev/disk/by-uuid/ea72ef0b-520a-436e-b9b4-0f7484325ad1";
       };
     };
-    kernelModules = ["kvm-amd"];
-    extraModulePackages = [];
+    kernelModules = [ "kvm-amd" ];
+    extraModulePackages = [ ];
   };
 
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
       fsType = "btrfs";
-      options = ["subvol=@"];
+      options = [ "subvol=@" ];
     };
 
     "/nix" = {
       device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
       fsType = "btrfs";
-      options = ["subvol=@nix"];
+      options = [ "subvol=@nix" ];
     };
 
     "/home" = {
       device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
       fsType = "btrfs";
-      options = ["subvol=@home"];
+      options = [ "subvol=@home" ];
     };
 
     "/.snapshots" = {
       device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
       fsType = "btrfs";
-      options = ["subvol=@snapshots"];
+      options = [ "subvol=@snapshots" ];
     };
 
     "/var/log" = {
       device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
       fsType = "btrfs";
-      options = ["subvol=@var_log"];
+      options = [ "subvol=@var_log" ];
     };
 
     "/swap" = {
       device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
       fsType = "btrfs";
-      options = ["subvol=@swap"];
+      options = [ "subvol=@swap" ];
     };
 
     "/boot" = {
@@ -67,7 +75,7 @@
     };
   };
 
-  swapDevices = [];
+  swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

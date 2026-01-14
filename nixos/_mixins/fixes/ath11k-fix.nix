@@ -20,7 +20,8 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   # Script to reload ath11k module and recover WiFi
   ath11kRecoveryScript = pkgs.writeShellScriptBin "ath11k-recover" ''
     set -e
@@ -78,52 +79,65 @@
       echo "ath11k-recover: Interface is up, waiting for NetworkManager to connect..."
     fi
   '';
-in {
+in
+{
   # Ensure ath11k module is available
-  boot.kernelModules = ["ath11k_pci"];
+  boot.kernelModules = [ "ath11k_pci" ];
 
   # Add recovery script to system packages
-  environment.systemPackages = [ath11kRecoveryScript];
+  environment.systemPackages = [ ath11kRecoveryScript ];
 
   # Create a systemd service to reload ath11k_pci after resume
   systemd.services.ath11k-resume-fix = {
     description = "Reload ath11k WiFi driver after suspend/resume";
-    after = ["suspend.target" "hibernate.target" "hybrid-sleep.target" "suspend-then-hibernate.target"];
-    wantedBy = ["suspend.target" "hibernate.target" "hybrid-sleep.target" "suspend-then-hibernate.target"];
+    after = [
+      "suspend.target"
+      "hibernate.target"
+      "hybrid-sleep.target"
+      "suspend-then-hibernate.target"
+    ];
+    wantedBy = [
+      "suspend.target"
+      "hibernate.target"
+      "hybrid-sleep.target"
+      "suspend-then-hibernate.target"
+    ];
 
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = let
-        script = pkgs.writeShellScript "ath11k-resume" ''
-          # Wait a moment for the system to stabilize after resume
-          sleep 2
-
-          # Check if ath11k_pci is loaded
-          if ${pkgs.kmod}/bin/lsmod | grep -q ath11k_pci; then
-            echo "ath11k-resume: Reloading ath11k_pci module to recover from suspend..."
-
-            # Bring down the interface first
-            ${pkgs.iproute2}/bin/ip link set wlp2s0 down 2>/dev/null || true
-
-            # Unload the module
-            ${pkgs.kmod}/bin/modprobe -r ath11k_pci 2>/dev/null || true
-
-            # Brief pause to ensure clean unload
-            sleep 1
-
-            # Reload the module
-            ${pkgs.kmod}/bin/modprobe ath11k_pci
-
-            # Wait for device to initialize
+      ExecStart =
+        let
+          script = pkgs.writeShellScript "ath11k-resume" ''
+            # Wait a moment for the system to stabilize after resume
             sleep 2
 
-            # Restart NetworkManager to reconnect
-            ${config.systemd.package}/bin/systemctl restart NetworkManager
+            # Check if ath11k_pci is loaded
+            if ${pkgs.kmod}/bin/lsmod | grep -q ath11k_pci; then
+              echo "ath11k-resume: Reloading ath11k_pci module to recover from suspend..."
 
-            echo "ath11k-resume: Module reloaded successfully"
-          fi
-        '';
-      in "${script}";
+              # Bring down the interface first
+              ${pkgs.iproute2}/bin/ip link set wlp2s0 down 2>/dev/null || true
+
+              # Unload the module
+              ${pkgs.kmod}/bin/modprobe -r ath11k_pci 2>/dev/null || true
+
+              # Brief pause to ensure clean unload
+              sleep 1
+
+              # Reload the module
+              ${pkgs.kmod}/bin/modprobe ath11k_pci
+
+              # Wait for device to initialize
+              sleep 2
+
+              # Restart NetworkManager to reconnect
+              ${config.systemd.package}/bin/systemctl restart NetworkManager
+
+              echo "ath11k-resume: Module reloaded successfully"
+            fi
+          '';
+        in
+        "${script}";
     };
   };
 

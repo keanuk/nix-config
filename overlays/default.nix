@@ -1,17 +1,15 @@
-{inputs, ...}: let
+{ inputs, ... }:
+let
   fixes = [
-    ./fixes/gnome-shell-libgvc.nix
   ];
 
   # Combine all fix overlays into a single overlay
-  combinedFixes = final: prev:
-    builtins.foldl'
-    (acc: overlay: acc // (overlay final prev))
-    {}
-    (map import fixes);
-in {
+  combinedFixes =
+    final: prev: builtins.foldl' (acc: overlay: acc // (overlay final prev)) { } (map import fixes);
+in
+{
   # Custom packages defined in ../pkgs
-  additions = final: _prev: import ../pkgs {pkgs = final;};
+  additions = final: _prev: import ../pkgs { pkgs = final; };
 
   # Package modifications and temporary fixes
   modifications = combinedFixes;

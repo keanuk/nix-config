@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs = {
     fish.enable = true;
     zsh.enable = true;
@@ -6,7 +7,7 @@
 
   services.atuin.enable = true;
 
-  environment.sessionVariables = {};
+  environment.sessionVariables = { };
 
   environment.systemPackages = with pkgs; [
     acpid

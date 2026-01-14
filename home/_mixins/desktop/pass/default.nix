@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   services.pass-secret-service = {
     enable = true;
     package = pkgs.pass-secret-service;

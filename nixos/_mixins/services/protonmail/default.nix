@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   environment.systemPackages = with pkgs; [
     protonmail-bridge
     pass
@@ -17,11 +18,18 @@
 
   systemd.user.services.protonmail-bridge = {
     description = "Protonmail Bridge SMTP/IMAP service";
-    wantedBy = ["default.target"];
-    after = ["network-online.target" "gpg-agent.service" "dbus.service"];
-    wants = ["network-online.target"];
+    wantedBy = [ "default.target" ];
+    after = [
+      "network-online.target"
+      "gpg-agent.service"
+      "dbus.service"
+    ];
+    wants = [ "network-online.target" ];
 
-    path = [pkgs.pass pkgs.gnupg];
+    path = [
+      pkgs.pass
+      pkgs.gnupg
+    ];
 
     serviceConfig = {
       Type = "simple";

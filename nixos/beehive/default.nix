@@ -2,7 +2,8 @@
   inputs,
   outputs,
   ...
-}: {
+}:
+{
   imports = [
     inputs.determinate.nixosModules.default
     inputs.disko.nixosModules.disko
@@ -30,11 +31,11 @@
   networking.hostName = "beehive";
 
   home-manager = {
-    extraSpecialArgs = {inherit inputs outputs;};
+    extraSpecialArgs = { inherit inputs outputs; };
     useUserPackages = true;
     useGlobalPkgs = false;
     backupFileExtension = "backup";
-    users.keanu.imports = [../../home/beehive/keanu.nix];
+    users.keanu.imports = [ ../../home/beehive/keanu.nix ];
   };
 
   system.stateVersion = "25.05";

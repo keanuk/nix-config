@@ -1,5 +1,6 @@
-{inputs, ...}: {
-  imports = [inputs.comin.darwinModules.comin];
+{ inputs, ... }:
+{
+  imports = [ inputs.comin.darwinModules.comin ];
 
   services.comin = {
     enable = true;

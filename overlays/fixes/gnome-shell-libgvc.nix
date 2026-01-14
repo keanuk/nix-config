@@ -9,25 +9,21 @@
 _final: prev: {
   gnome-shell = prev.gnome-shell.overrideAttrs (oldAttrs: {
     # Patch libgvc to handle missing ports gracefully instead of aborting
-    postPatch =
-      (oldAttrs.postPatch or "")
-      + ''
-        # Fix gvc_mixer_stream_get_port crash when port not found in list
-        # This happens when Bluetooth devices connect and ports are in transition
-        substituteInPlace subprojects/gvc/gvc-mixer-stream.c \
-          --replace-fail 'g_assert_not_reached ();' 'return NULL;'
-      '';
+    postPatch = (oldAttrs.postPatch or "") + ''
+      # Fix gvc_mixer_stream_get_port crash when port not found in list
+      # This happens when Bluetooth devices connect and ports are in transition
+      substituteInPlace subprojects/gvc/gvc-mixer-stream.c \
+        --replace-fail 'g_assert_not_reached ();' 'return NULL;'
+    '';
   });
 
   # gnome-settings-daemon also uses libgvc and crashes with the same bug
   gnome-settings-daemon = prev.gnome-settings-daemon.overrideAttrs (oldAttrs: {
-    postPatch =
-      (oldAttrs.postPatch or "")
-      + ''
-        # Fix gvc_mixer_stream_get_port crash when port not found in list
-        substituteInPlace subprojects/gvc/gvc-mixer-stream.c \
-          --replace-fail 'g_assert_not_reached ();' 'return NULL;'
-      '';
+    postPatch = (oldAttrs.postPatch or "") + ''
+      # Fix gvc_mixer_stream_get_port crash when port not found in list
+      substituteInPlace subprojects/gvc/gvc-mixer-stream.c \
+        --replace-fail 'g_assert_not_reached ();' 'return NULL;'
+    '';
   });
 
   # TODO: Remove this workaround after GNOME Shell > 49.2 or upstream fix lands

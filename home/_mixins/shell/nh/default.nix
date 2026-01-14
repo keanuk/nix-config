@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   programs.nh = {
     enable = true;
     package = pkgs.nh;

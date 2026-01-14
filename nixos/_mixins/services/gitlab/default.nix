@@ -2,7 +2,8 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   sops.secrets = {
     gitlab-root-password = {
       owner = "gitlab";
@@ -68,36 +69,39 @@
       gitlab = {
         email_from = "gitlab@oranos.me";
         email_reply_to = "noreply@oranos.me";
-        trusted_proxies = ["127.0.0.1" "::1"];
+        trusted_proxies = [
+          "127.0.0.1"
+          "::1"
+        ];
       };
     };
   };
 
   systemd.services = {
     gitlab = {
-      after = ["raid-online.target"];
-      bindsTo = ["raid-online.target"];
+      after = [ "raid-online.target" ];
+      bindsTo = [ "raid-online.target" ];
       unitConfig.AssertPathIsMountPoint = "/data";
     };
 
     gitlab-workhorse = {
-      after = ["raid-online.target"];
-      bindsTo = ["raid-online.target"];
+      after = [ "raid-online.target" ];
+      bindsTo = [ "raid-online.target" ];
       unitConfig.AssertPathIsMountPoint = "/data";
     };
 
     gitlab-sidekiq = {
-      after = ["raid-online.target"];
-      bindsTo = ["raid-online.target"];
+      after = [ "raid-online.target" ];
+      bindsTo = [ "raid-online.target" ];
       unitConfig.AssertPathIsMountPoint = "/data";
     };
 
     gitaly = {
-      after = ["raid-online.target"];
-      bindsTo = ["raid-online.target"];
+      after = [ "raid-online.target" ];
+      bindsTo = [ "raid-online.target" ];
       unitConfig.AssertPathIsMountPoint = "/data";
     };
   };
 
-  networking.firewall.allowedTCPPorts = [8929];
+  networking.firewall.allowedTCPPorts = [ 8929 ];
 }

@@ -2,14 +2,15 @@
   self,
   outputs,
   ...
-}: {
+}:
+{
   nix = {
     registry.my.flake = self;
     settings = {
       auto-optimise-store = true;
       warn-dirty = false;
       auto-allocate-uids = true;
-      allowed-users = ["@users"];
+      allowed-users = [ "@users" ];
       experimental-features = [
         "nix-command"
         "flakes"

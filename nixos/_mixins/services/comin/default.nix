@@ -1,5 +1,6 @@
-{inputs, ...}: {
-  imports = [inputs.comin.nixosModules.comin];
+{ inputs, ... }:
+{
+  imports = [ inputs.comin.nixosModules.comin ];
 
   services.comin = {
     enable = true;

@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   programs.halloy = {
     enable = true;
     package = pkgs.halloy;

@@ -5,6 +5,7 @@
 # Status: temporary - should be resolved in future nixpkgs versions
 # Last checked: 2024-01-01
 # Remove after: nixpkgs > 25.05 or when upstream issue is closed
-{lib, ...}: {
-  systemd.user.services.orca.wantedBy = lib.mkForce [];
+{ lib, ... }:
+{
+  systemd.user.services.orca.wantedBy = lib.mkForce [ ];
 }

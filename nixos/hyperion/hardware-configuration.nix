@@ -6,56 +6,62 @@
   lib,
   modulesPath,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
   boot = {
     initrd = {
-      availableKernelModules = ["xhci_pci" "nvme" "usb_storage" "sd_mod"];
-      kernelModules = [];
+      availableKernelModules = [
+        "xhci_pci"
+        "nvme"
+        "usb_storage"
+        "sd_mod"
+      ];
+      kernelModules = [ ];
       luks.devices."cryptroot".device = "/dev/disk/by-uuid/a0b9696f-8a05-4344-ae94-8758738b35a1";
     };
-    kernelModules = ["kvm-amd"];
-    extraModulePackages = [];
+    kernelModules = [ "kvm-amd" ];
+    extraModulePackages = [ ];
   };
 
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-uuid/c08a8a62-b449-424f-8c18-e749289120c3";
       fsType = "btrfs";
-      options = ["subvol=@"];
+      options = [ "subvol=@" ];
     };
 
     "/nix" = {
       device = "/dev/disk/by-uuid/c08a8a62-b449-424f-8c18-e749289120c3";
       fsType = "btrfs";
-      options = ["subvol=@nix"];
+      options = [ "subvol=@nix" ];
     };
 
     "/home" = {
       device = "/dev/disk/by-uuid/c08a8a62-b449-424f-8c18-e749289120c3";
       fsType = "btrfs";
-      options = ["subvol=@home"];
+      options = [ "subvol=@home" ];
     };
 
     "/.snapshots" = {
       device = "/dev/disk/by-uuid/c08a8a62-b449-424f-8c18-e749289120c3";
       fsType = "btrfs";
-      options = ["subvol=@snapshots"];
+      options = [ "subvol=@snapshots" ];
     };
 
     "/var/log" = {
       device = "/dev/disk/by-uuid/c08a8a62-b449-424f-8c18-e749289120c3";
       fsType = "btrfs";
-      options = ["subvol=@var_log"];
+      options = [ "subvol=@var_log" ];
     };
 
     "/swap" = {
       device = "/dev/disk/by-uuid/c08a8a62-b449-424f-8c18-e749289120c3";
       fsType = "btrfs";
-      options = ["subvol=@swap"];
+      options = [ "subvol=@swap" ];
     };
 
     "/boot" = {
@@ -64,7 +70,7 @@
     };
   };
 
-  swapDevices = [];
+  swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

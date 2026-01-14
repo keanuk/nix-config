@@ -3,16 +3,18 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   tunnelId = "586f6d2e-b360-4f89-a667-5068d2e70f9e";
-in {
+in
+{
   users.users.cloudflared = {
     isSystemUser = true;
     group = "cloudflared";
     description = "Cloudflare Tunnel daemon user";
   };
 
-  users.groups.cloudflared = {};
+  users.groups.cloudflared = { };
 
   sops.secrets.cloudflared-tunnel-credentials = {
     owner = "cloudflared";

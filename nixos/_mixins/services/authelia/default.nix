@@ -2,20 +2,22 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   autheliaUser = "authelia";
   autheliaGroup = "authelia";
   autheliaPort = 9191;
   authDomain = "auth.oranos.me";
   baseDomain = "oranos.me";
-in {
+in
+{
   users.users.${autheliaUser} = {
     isSystemUser = true;
     group = autheliaGroup;
     description = "Authelia authentication server";
   };
 
-  users.groups.${autheliaGroup} = {};
+  users.groups.${autheliaGroup} = { };
 
   sops.secrets = {
     authelia-jwt-secret = {

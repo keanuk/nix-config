@@ -3,7 +3,8 @@
   outputs,
   lib,
   ...
-}: {
+}:
+{
   imports = [
     inputs.determinate.nixosModules.default
     inputs.disko.nixosModules.disko
@@ -22,7 +23,7 @@
   boot.loader = {
     grub = {
       enable = true;
-      devices = ["/dev/sda"];
+      devices = [ "/dev/sda" ];
       efiSupport = true;
       efiInstallAsRemovable = true;
     };
@@ -32,11 +33,11 @@
   networking.hostName = "bucaccio";
 
   home-manager = {
-    extraSpecialArgs = {inherit inputs outputs;};
+    extraSpecialArgs = { inherit inputs outputs; };
     useUserPackages = true;
     useGlobalPkgs = false;
     backupFileExtension = "backup";
-    users.keanu.imports = [../../../home/vps/bucaccio/keanu.nix];
+    users.keanu.imports = [ ../../../home/vps/bucaccio/keanu.nix ];
   };
 
   system.stateVersion = "25.11";

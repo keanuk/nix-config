@@ -2,7 +2,8 @@
   modulesPath,
   lib,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
@@ -16,17 +17,17 @@
         "virtio_scsi"
         "sd_mod"
       ];
-      kernelModules = [];
+      kernelModules = [ ];
     };
-    kernelModules = [];
-    extraModulePackages = [];
+    kernelModules = [ ];
+    extraModulePackages = [ ];
   };
 
   # Placeholder - disko handles actual mounts
   fileSystems."/" = lib.mkDefault {
     device = "/dev/sda2";
     fsType = "btrfs";
-    options = ["subvol=@"];
+    options = [ "subvol=@" ];
   };
 
   # Hetzner VPS network config

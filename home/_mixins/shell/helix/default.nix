@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   programs.helix = {
     enable = true;
     package = pkgs.helix;
@@ -39,18 +40,18 @@
         true-color = true;
       };
       keys = {
-        insert = {};
+        insert = { };
         normal = {
           space.space = "file_picker";
         };
-        select = {};
+        select = { };
       };
     };
     languages = {
       language-server = {
         bash-language-server = {
           command = "${pkgs.bash-language-server}/bin/bash-language-server";
-          args = ["start"];
+          args = [ "start" ];
         };
         gopls = {
           command = "${pkgs.gopls}/bin/gopls";
@@ -58,8 +59,8 @@
         marksman = {
           command = "${pkgs.marksman}/bin/marksman";
         };
-        nil = {
-          command = "${pkgs.nil}/bin/nil";
+        nixd = {
+          command = "${pkgs.nixd}/bin/nixd";
         };
         pylsp = {
           command = "${pkgs.python313Packages.python-lsp-server}/bin/pylsp";
@@ -76,11 +77,11 @@
         };
         typescript-language-server = {
           command = "${pkgs.typescript-language-server}/bin/typescript-language-server";
-          args = ["--stdio"];
+          args = [ "--stdio" ];
         };
         yaml-language-server = {
           command = "${pkgs.yaml-language-server}/bin/yaml-language-server";
-          args = ["--stdio"];
+          args = [ "--stdio" ];
         };
       };
       language = [
@@ -105,7 +106,7 @@
         {
           name = "nix";
           language-servers = [
-            "nil"
+            "nixd"
           ];
         }
         {

@@ -1,10 +1,11 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   services.home-assistant = {
     enable = true;
     package = pkgs.unstable.home-assistant;
     configDir = "/data/.state/home-assistant";
     config = {
-      default_config = {};
+      default_config = { };
       http = {
         use_x_forwarded_for = true;
         trusted_proxies = [
@@ -58,8 +59,8 @@
   };
 
   systemd.services.home-assistant = {
-    after = ["raid-online.target"];
-    bindsTo = ["raid-online.target"];
+    after = [ "raid-online.target" ];
+    bindsTo = [ "raid-online.target" ];
     unitConfig.AssertPathIsMountPoint = "/data";
   };
 }

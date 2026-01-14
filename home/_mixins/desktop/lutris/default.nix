@@ -2,7 +2,8 @@
   pkgs,
   osConfig,
   ...
-}: {
+}:
+{
   programs.lutris = {
     enable = true;
     package = pkgs.lutris;

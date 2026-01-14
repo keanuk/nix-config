@@ -9,4 +9,4 @@
 # {
 #   my-custom-module = import ./my-custom-module.nix;
 # }
-{}
+{ }

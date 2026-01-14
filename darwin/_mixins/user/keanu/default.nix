@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   system.primaryUser = "keanu";
   users.users.keanu = {
     name = "keanu";

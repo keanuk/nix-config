@@ -1,11 +1,13 @@
-_: let
+_:
+let
   defaultBtrfsOpts = [
     "defaults"
     "compress=zstd"
     "noatime"
     "nodiratime"
   ];
-in {
+in
+{
   disko.devices = {
     disk = {
       main = {
@@ -26,7 +28,7 @@ in {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = ["defaults"];
+                mountOptions = [ "defaults" ];
               };
             };
             root = {

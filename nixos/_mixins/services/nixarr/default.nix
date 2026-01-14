@@ -3,7 +3,8 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   raidDependentServices = [
     "transmission"
     "plex"
@@ -24,11 +25,12 @@
   ];
 
   raidDependencyConfig = {
-    after = ["raid-online.target"];
-    bindsTo = ["raid-online.target"];
+    after = [ "raid-online.target" ];
+    bindsTo = [ "raid-online.target" ];
     unitConfig.AssertPathIsMountPoint = "/data";
   };
-in {
+in
+{
   imports = [
     inputs.nixarr.nixosModules.default
   ];

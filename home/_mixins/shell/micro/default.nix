@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   programs.micro = {
     enable = true;
     package = pkgs.micro;

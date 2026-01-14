@@ -4,11 +4,9 @@
 # Status: temporary - expected to be fixed upstream
 # Last checked: 2025-01-26
 _final: prev: {
-  bat-extras =
-    prev.bat-extras
-    // {
-      batgrep = prev.bat-extras.batgrep.overrideAttrs (_oldAttrs: {
-        doCheck = false;
-      });
-    };
+  bat-extras = prev.bat-extras // {
+    batgrep = prev.bat-extras.batgrep.overrideAttrs (_oldAttrs: {
+      doCheck = false;
+    });
+  };
 }

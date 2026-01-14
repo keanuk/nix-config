@@ -3,7 +3,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   imports = [
     ./packages.nix
     ./nix.nix
@@ -26,8 +27,8 @@
     loader.efi.canTouchEfiVariables = lib.mkDefault true;
     plymouth.enable = true;
     kernelPackages = pkgs.linuxPackages_latest;
-    kernelModules = ["iptable_raw"];
-    supportedFilesystems = ["bcachefs"];
+    kernelModules = [ "iptable_raw" ];
+    supportedFilesystems = [ "bcachefs" ];
   };
 
   system.autoUpgrade = {
@@ -91,8 +92,8 @@
           proxy_lib_name = "files";
           proxy_pam_target = "sssd-shadowutils";
         };
-        nss = {};
-        pam = {};
+        nss = { };
+        pam = { };
         sssd = {
           domains = "shadowutils";
           services = "nss, pam";
@@ -108,7 +109,7 @@
 
   networking = {
     firewall.enable = true;
-    firewall.trustedInterfaces = ["wt0"];
+    firewall.trustedInterfaces = [ "wt0" ];
     networkmanager.enable = true;
     nftables.enable = true;
   };

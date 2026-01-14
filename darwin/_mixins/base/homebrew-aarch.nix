@@ -3,11 +3,15 @@ _: {
     casks = [
       {
         name = "lm-studio";
-        args = {appdir = "/Applications";};
+        args = {
+          appdir = "/Applications";
+        };
       }
       {
         name = "ollama-app";
-        args = {appdir = "/Applications";};
+        args = {
+          appdir = "/Applications";
+        };
       }
     ];
   };

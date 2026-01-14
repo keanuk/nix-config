@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   services.amberol = {
     enable = true;
     enableRecoloring = true;

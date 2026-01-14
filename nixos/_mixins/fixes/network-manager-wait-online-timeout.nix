@@ -5,7 +5,8 @@
 # Status: temporary - should be resolved in future nixpkgs versions
 # Last checked: 2024-01-01
 # Remove after: nixpkgs > 24.11 or when upstream issue is closed
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   systemd.services.NetworkManager-wait-online = {
     serviceConfig = {
       ExecStart = [

@@ -1,10 +1,11 @@
-{config, ...}: {
+{ config, ... }:
+{
   # Create a systemd service that generates resolved.conf with NextDNS settings
   # by reading the profile ID from sops secret at runtime
   systemd.services.nextdns-resolved-config = {
     description = "Generate resolved.conf with NextDNS configuration";
-    before = ["systemd-resolved.service"];
-    wantedBy = ["multi-user.target"];
+    before = [ "systemd-resolved.service" ];
+    wantedBy = [ "multi-user.target" ];
 
     serviceConfig = {
       Type = "oneshot";
@@ -33,7 +34,7 @@
 
   # Ensure resolved restarts after config is generated
   systemd.services.systemd-resolved = {
-    after = ["nextdns-resolved-config.service"];
-    wants = ["nextdns-resolved-config.service"];
+    after = [ "nextdns-resolved-config.service" ];
+    wants = [ "nextdns-resolved-config.service" ];
   };
 }

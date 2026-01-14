@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   services.cockpit = {
     enable = true;
     package = pkgs.cockpit;

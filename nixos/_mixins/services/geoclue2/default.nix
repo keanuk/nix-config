@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   services.geoclue2 = {
     enable = true;
     package = pkgs.geoclue2;

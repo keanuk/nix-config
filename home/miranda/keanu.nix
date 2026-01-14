@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ../_mixins/base
     ../_mixins/base/home-manager.nix

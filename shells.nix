@@ -1,14 +1,17 @@
 {
-  pkgs ? import <nixpkgs> {},
+  pkgs ? import <nixpkgs> { },
   inputs,
   ...
-}: let
-  mkDevenv = modules:
+}:
+let
+  mkDevenv =
+    modules:
     inputs.devenv.lib.mkShell {
       inherit inputs pkgs;
-      modules = modules ++ [{devenv.root = toString ./.;}];
+      modules = modules ++ [ { devenv.root = toString ./.; } ];
     };
-in {
+in
+{
   default = mkDevenv [
     {
       packages = with pkgs; [

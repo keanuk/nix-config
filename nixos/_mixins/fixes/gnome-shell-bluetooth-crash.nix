@@ -9,11 +9,10 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   # Add assertion to remind to check if fix is still needed
-  warnings =
-    lib.optional (lib.versionAtLeast pkgs.gnome-shell.version "50")
-    "Check if GNOME Shell Bluetooth crash workaround in gnome-shell-bluetooth-crash.nix is still needed (issue #8961)";
+  warnings = lib.optional (lib.versionAtLeast pkgs.gnome-shell.version "50") "Check if GNOME Shell Bluetooth crash workaround in gnome-shell-bluetooth-crash.nix is still needed (issue #8961)";
 
   # Configure WirePlumber to reduce the likelihood of triggering the race condition
   # in GNOME Shell's volume control when Bluetooth devices with multiple audio ports connect.

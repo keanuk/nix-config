@@ -1,4 +1,5 @@
-{outputs, ...}: {
+{ outputs, ... }:
+{
   imports = [
     ./homebrew.nix
     ./packages.nix

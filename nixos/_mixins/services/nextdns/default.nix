@@ -3,7 +3,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   # Disable the built-in nextdns module as we're using a custom service
   # that reads the profile ID from sops at runtime
   nextdns.enable = lib.mkForce false;
@@ -15,8 +16,8 @@
   # Custom nextdns service that reads profile ID from sops secret
   systemd.services.nextdns = {
     description = "NextDNS DNS/DNS-over-HTTPS proxy";
-    after = ["network.target"];
-    wantedBy = ["multi-user.target"];
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
 
     serviceConfig = {
       Type = "simple";

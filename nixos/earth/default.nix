@@ -2,7 +2,8 @@
   inputs,
   outputs,
   ...
-}: {
+}:
+{
   imports = [
     inputs.determinate.nixosModules.default
     inputs.disko.nixosModules.disko
@@ -32,11 +33,11 @@
   networking.hostName = "earth";
 
   home-manager = {
-    extraSpecialArgs = {inherit inputs outputs;};
+    extraSpecialArgs = { inherit inputs outputs; };
     useUserPackages = true;
     useGlobalPkgs = false;
     backupFileExtension = "backup";
-    users.keanu.imports = [../../home/earth/keanu.nix];
+    users.keanu.imports = [ ../../home/earth/keanu.nix ];
   };
 
   system.stateVersion = "23.11";

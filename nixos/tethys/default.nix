@@ -2,7 +2,8 @@
   inputs,
   outputs,
   ...
-}: {
+}:
+{
   imports = [
     ./hardware-configuration.nix
 
@@ -34,11 +35,11 @@
   services.logrotate.checkConfig = false;
 
   home-manager = {
-    extraSpecialArgs = {inherit inputs outputs;};
+    extraSpecialArgs = { inherit inputs outputs; };
     useUserPackages = true;
     useGlobalPkgs = false;
     backupFileExtension = "backup";
-    users.keanu.imports = [../../home/tethys/keanu.nix];
+    users.keanu.imports = [ ../../home/tethys/keanu.nix ];
   };
 
   system.stateVersion = "23.05";

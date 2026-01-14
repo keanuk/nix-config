@@ -2,7 +2,8 @@
   inputs,
   outputs,
   ...
-}: {
+}:
+{
   imports = [
     ./hardware-configuration.nix
 
@@ -18,11 +19,11 @@
   networking.hostName = "mars";
 
   home-manager = {
-    extraSpecialArgs = {inherit inputs outputs;};
+    extraSpecialArgs = { inherit inputs outputs; };
     useUserPackages = true;
     useGlobalPkgs = false;
     backupFileExtension = "backup";
-    users.keanu.imports = [../../home/mars/keanu.nix];
+    users.keanu.imports = [ ../../home/mars/keanu.nix ];
   };
 
   system.stateVersion = "25.11";

@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.skim = {
     enable = true;
     package = pkgs.skim;
