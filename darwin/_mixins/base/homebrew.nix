@@ -1,4 +1,25 @@
-_: {
+_: let
+  mkCask = name: {
+    inherit name;
+    args = {
+      appdir = "/Applications";
+    };
+  };
+
+  casksWithAppdir = map mkCask [
+    "antigravity"
+    "discord"
+    "element"
+    "ente"
+    "ghostty"
+    "github@beta"
+    "nvidia-geforce-now"
+    "orion"
+    "proton-drive"
+    "zed"
+    "zen"
+  ];
+in {
   homebrew = {
     enable = true;
     global.autoUpdate = true;
@@ -42,144 +63,79 @@ _: {
     ];
     brews = [
     ];
-    casks = [
-      {
-        name = "antigravity";
-        args = {
-          appdir = "/Applications";
-        };
-      }
-      {
-        name = "discord";
-        args = {
-          appdir = "/Applications";
-        };
-      }
-      {
-        name = "element";
-        args = {
-          appdir = "/Applications";
-        };
-      }
-      {
-        name = "ente";
-        args = {
-          appdir = "/Applications";
-        };
-      }
-      {
-        name = "ghostty";
-        args = {
-          appdir = "/Applications";
-        };
-      }
-      {
-        name = "github@beta";
-        args = {
-          appdir = "/Applications";
-        };
-      }
-      {
-        name = "nvidia-geforce-now";
-        args = {
-          appdir = "/Applications";
-        };
-      }
-      {
-        name = "orion";
-        args = {
-          appdir = "/Applications";
-        };
-      }
-      {
-        name = "proton-drive";
-        args = {
-          appdir = "/Applications";
-        };
-      }
-      {
-        name = "zed";
-        args = {
-          appdir = "/Applications";
-        };
-      }
-      {
-        name = "zen";
-        args = {
-          appdir = "/Applications";
-        };
-      }
+    casks =
+      casksWithAppdir
+      ++ [
+        "alacritty"
+        "audacity"
+        "balenaetcher"
+        "battle-net"
+        "bruno"
+        "calibre"
+        "chromium"
+        "darktable"
+        "dbeaver-community"
+        "deepl"
+        "docker-desktop"
+        "ea"
+        "ente-auth"
+        "epic-games"
+        "firefox"
+        "firefox@developer-edition"
+        "gimp"
+        "gog-galaxy"
+        "google-chrome"
+        "google-chrome@beta"
+        "google-chrome@canary"
+        "google-chrome@dev"
+        "google-drive"
+        "halloy"
+        "handbrake-app"
+        "home-assistant"
+        "insomnia"
+        "kdenlive"
+        "kitty"
+        "kodi"
+        "libreoffice"
+        "logi-options+"
+        "logseq"
+        "nextcloud"
+        "obs"
+        "onyx"
+        "plex"
+        "pocket-casts"
+        "podman-desktop"
+        "proton-mail"
+        "proton-pass"
+        "proton-mail-bridge"
+        "protonvpn"
+        "reader"
+        "rustdesk"
+        "signal"
+        "standard-notes"
+        "stats"
+        "steam"
+        "thunderbird"
+        "thunderbird@beta"
+        "transmission"
+        "virtualbox"
+        "visual-studio-code"
+        "visual-studio-code@insiders"
+        "vlc"
+        "youtube-music"
 
-      "alacritty"
-      "audacity"
-      "balenaetcher"
-      "battle-net"
-      "bruno"
-      "calibre"
-      "chromium"
-      "darktable"
-      "dbeaver-community"
-      "deepl"
-      "docker-desktop"
-      "ea"
-      "ente-auth"
-      "epic-games"
-      "firefox"
-      "firefox@developer-edition"
-      "gimp"
-      "gog-galaxy"
-      "google-chrome"
-      "google-chrome@beta"
-      "google-chrome@canary"
-      "google-chrome@dev"
-      "google-drive"
-      "halloy"
-      "handbrake-app"
-      "home-assistant"
-      "insomnia"
-      "kdenlive"
-      "kitty"
-      "kodi"
-      "libreoffice"
-      "logi-options+"
-      "logseq"
-      "nextcloud"
-      "obs"
-      "onyx"
-      "plex"
-      "pocket-casts"
-      "podman-desktop"
-      "proton-mail"
-      "proton-pass"
-      "proton-mail-bridge"
-      "protonvpn"
-      "reader"
-      "rustdesk"
-      "signal"
-      "standard-notes"
-      "stats"
-      "steam"
-      "thunderbird"
-      "thunderbird@beta"
-      "transmission"
-      "virtualbox"
-      "visual-studio-code"
-      "visual-studio-code@insiders"
-      "vlc"
-      "youtube-music"
-
-      # Games
-      "0-ad"
-      "bugdom"
-      "bugdom2"
-      "cro-mag-rally"
-      "nanosaur"
-      "nanosaur2"
-      "otto-matic"
-      "shattered-pixel-dungeon"
-      "superTuxKart"
-      "the-battle-for-wesnoth"
-      "xonotic"
-    ];
+        # Games
+        "0-ad"
+        "bugdom"
+        "bugdom2"
+        "cro-mag-rally"
+        "nanosaur"
+        "nanosaur2"
+        "otto-matic"
+        "shattered-pixel-dungeon"
+        "superTuxKart"
+        "the-battle-for-wesnoth"
+        "xonotic"
+      ];
   };
 }
