@@ -1,18 +1,19 @@
-_: {
+_:
+let
+  mkCask = name: {
+    inherit name;
+    args = {
+      appdir = "/Applications";
+    };
+  };
+
+  casksWithAppdir = map mkCask [
+    "lm-studio"
+    "ollama-app"
+  ];
+in
+{
   homebrew = {
-    casks = [
-      {
-        name = "lm-studio";
-        args = {
-          appdir = "/Applications";
-        };
-      }
-      {
-        name = "ollama-app";
-        args = {
-          appdir = "/Applications";
-        };
-      }
-    ];
+    casks = casksWithAppdir;
   };
 }

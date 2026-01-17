@@ -61,7 +61,7 @@ in
       "Xcode" = 497799835;
     };
     taps = [
-      "th-ch/youtube-music"
+      "pear-devs/pear"
     ];
     brews = [
     ];
@@ -122,7 +122,7 @@ in
       "visual-studio-code"
       "visual-studio-code@insiders"
       "vlc"
-      "youtube-music"
+      "pear-devs/pear/pear-desktop"
 
       # Games
       "0-ad"
