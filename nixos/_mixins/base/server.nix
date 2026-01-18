@@ -8,7 +8,7 @@
     ../services/protonmail
     ../services/cockpit
     ../services/flaresolverr
-    ../services/gitlab
+    ../services/forgejo
     ../services/dashy
     ../services/home-assistant
     ../services/immich

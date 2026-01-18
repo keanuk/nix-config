@@ -80,9 +80,9 @@
               url = "https://cloud.oranos.me";
             }
             {
-              title = "GitLab";
+              title = "Forgejo";
               description = "Source Code";
-              icon = "hl-gitlab";
+              icon = "hl-gitea";
               url = "https://git.oranos.me";
             }
             {

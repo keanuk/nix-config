@@ -686,7 +686,7 @@ in
         };
       };
 
-      # GitLab - protected by Authelia (2FA required)
+      # Forgejo - protected by Authelia (2FA required)
       "git-auth" = {
         listen = [
           {
@@ -695,7 +695,7 @@ in
           }
         ];
         locations."/" = {
-          proxyPass = "http://127.0.0.1:8929";
+          proxyPass = "http://127.0.0.1:3001";
           proxyWebsockets = true;
           extraConfig = ''
             auth_request /authelia;
@@ -703,7 +703,7 @@ in
             auth_request_set $user $upstream_http_remote_user;
             proxy_set_header Remote-User $user;
             error_page 401 =302 https://${authDomain}/?rd=$target_url;
-            # GitLab needs larger body size for git pushes
+            # Forgejo needs larger body size for git pushes
             client_max_body_size 512M;
           '';
         };
