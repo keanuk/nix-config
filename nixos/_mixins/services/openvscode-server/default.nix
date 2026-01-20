@@ -2,7 +2,8 @@
 {
   services.openvscode-server = {
     enable = true;
-    package = pkgs.unstable.openvscode-server;
+    # TODO: switch back to unstable when build is resolved
+    package = pkgs.openvscode-server;
     user = "keanu";
     group = "users";
     serverDataDir = "/home/keanu/.openvscode-server";

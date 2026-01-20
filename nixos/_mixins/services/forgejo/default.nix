@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }:
 let
@@ -55,7 +56,7 @@ in
     };
 
     secrets = {
-      security.SECRET_KEY = config.sops.secrets.forgejo-secret.path;
+      security.SECRET_KEY = lib.mkDefault config.sops.secrets.forgejo-secret.path;
     };
   };
 
