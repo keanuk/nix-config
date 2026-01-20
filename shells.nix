@@ -11,8 +11,6 @@ let
       modules = modules ++ [
         {
           devenv.root = toString ./.;
-          # Disable secretspec to fix nix flake show evaluation
-          secretspec.enable = false;
         }
       ];
     };
