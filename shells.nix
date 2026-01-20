@@ -8,7 +8,13 @@ let
     modules:
     inputs.devenv.lib.mkShell {
       inherit inputs pkgs;
-      modules = modules ++ [ { devenv.root = toString ./.; } ];
+      modules = modules ++ [
+        {
+          devenv.root = toString ./.;
+          # Disable secretspec to fix nix flake show evaluation
+          secretspec.enable = false;
+        }
+      ];
     };
 in
 {
