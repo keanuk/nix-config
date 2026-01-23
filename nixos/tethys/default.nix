@@ -1,6 +1,7 @@
 {
   inputs,
   outputs,
+  mkHomeManagerHost,
   lib,
   ...
 }:
@@ -39,7 +40,7 @@
     ../_mixins/base/swapfile.nix
 
     # Home Manager
-    (lib.mkHomeManagerHost {
+    (mkHomeManagerHost {
       inherit inputs outputs;
       users.keanu = ../../home/tethys/keanu.nix;
     })
