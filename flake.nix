@@ -144,12 +144,19 @@
       domains = import ./lib/domains.nix;
       mkHomeManagerHost = import ./lib/mkHost.nix;
 
-      lib = nixpkgs.lib // home-manager.lib // darwin.lib // {
-        inherit domains mkHomeManagerHost;
-      };
-      lib-stable = nixpkgs-stable.lib // home-manager-stable.lib // {
-        inherit domains mkHomeManagerHost;
-      };
+      lib =
+        nixpkgs.lib
+        // home-manager.lib
+        // darwin.lib
+        // {
+          inherit domains mkHomeManagerHost;
+        };
+      lib-stable =
+        nixpkgs-stable.lib
+        // home-manager-stable.lib
+        // {
+          inherit domains mkHomeManagerHost;
+        };
       forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
       pkgsFor = lib.genAttrs (import systems) (
         system:
