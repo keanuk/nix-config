@@ -1,31 +1,34 @@
 {
   inputs,
   outputs,
+  lib,
   ...
 }:
 {
   imports = [
-    ./hardware-configuration.nix
-
+    # Flake inputs
     inputs.home-manager.darwinModules.home-manager
 
+    # Host-specific hardware
+    ./hardware-configuration.nix
+
+    # Base configuration
     ../_mixins/base
     ../_mixins/base/homebrew-aarch.nix
 
+    # User configuration
     ../_mixins/user/keanu
+
+    # Home Manager
+    (lib.mkHomeManagerHost {
+      inherit inputs outputs;
+      users.keanu = ../../home/salacia/keanu.nix;
+    })
   ];
 
   networking.hostName = "salacia";
 
   homebrew.caskArgs.appdir = "/Volumes/SALACIA-EXT/Applications";
-
-  home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
-    useUserPackages = true;
-    useGlobalPkgs = false;
-    backupFileExtension = "backup";
-    users.keanu.imports = [ ../../home/salacia/keanu.nix ];
-  };
 
   system.stateVersion = 6;
 }

@@ -111,6 +111,16 @@
       inputs.disko.follows = "disko";
     };
 
+    nixos-facter = {
+      url = "github:numtide/nixos-facter";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     devenv.url = "github:cachix/devenv";
   };
 
@@ -129,8 +139,17 @@
     }@inputs:
     let
       inherit (self) outputs;
-      lib = nixpkgs.lib // home-manager.lib // darwin.lib;
-      lib-stable = nixpkgs-stable.lib // home-manager-stable.lib;
+
+      # Custom library functions
+      domains = import ./lib/domains.nix;
+      mkHomeManagerHost = import ./lib/mkHost.nix;
+
+      lib = nixpkgs.lib // home-manager.lib // darwin.lib // {
+        inherit domains mkHomeManagerHost;
+      };
+      lib-stable = nixpkgs-stable.lib // home-manager-stable.lib // {
+        inherit domains mkHomeManagerHost;
+      };
       forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
       pkgsFor = lib.genAttrs (import systems) (
         system:
@@ -170,6 +189,7 @@
         })
         // {
           nixos-anywhere = nixos-anywhere.packages.${pkgs.system}.default;
+          deploy-rs = inputs.deploy-rs.packages.${pkgs.system}.default;
         }
       );
       devShells = forEachSystem (pkgs: import ./shells.nix { inherit pkgs inputs; });

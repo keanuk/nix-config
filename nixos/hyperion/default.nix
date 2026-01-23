@@ -6,31 +6,46 @@
 }:
 {
   imports = [
-    ./hardware-configuration.nix
-
+    # Flake inputs
     inputs.determinate.nixosModules.default
     inputs.disko.nixosModules.disko
     inputs.home-manager.nixosModules.home-manager
     inputs.nur.modules.nixos.default
 
+    # Hardware support
     inputs.nixos-hardware.nixosModules.hp-elitebook-845g8
 
+    # Host-specific hardware
+    ./hardware-configuration.nix
+
+    # Base configuration
     ../_mixins/base
     ../_mixins/base/lanzaboote.nix
     ../_mixins/base/laptop.nix
-    ../_mixins/base/systemd-boot.nix
 
-    ../_mixins/services/btrfs
-
+    # Desktop environment
     ../_mixins/desktop
     ../_mixins/desktop/pantheon
 
+    # Services
+    ../_mixins/services/btrfs
+
+    # User configuration
     ../_mixins/user/keanu
     ../_mixins/user/kimmy
 
     # TODO: change during next reinstall
     ../_mixins/base/swapfile.nix
     ../_mixins/base/fs.nix
+
+    # Home Manager
+    (lib.mkHomeManagerHost {
+      inherit inputs outputs;
+      users = {
+        keanu = ../../home/hyperion/keanu.nix;
+        kimmy = ../../home/hyperion/kimmy.nix;
+      };
+    })
   ];
 
   networking.hostName = "hyperion";
@@ -40,15 +55,6 @@
     extraLocaleSettings = lib.mkForce {
       LC_ALL = "en_US.UTF-8";
     };
-  };
-
-  home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
-    useUserPackages = true;
-    useGlobalPkgs = false;
-    backupFileExtension = "backup";
-    users.keanu.imports = [ ../../home/hyperion/keanu.nix ];
-    users.kimmy.imports = [ ../../home/hyperion/kimmy.nix ];
   };
 
   system.stateVersion = "23.05";

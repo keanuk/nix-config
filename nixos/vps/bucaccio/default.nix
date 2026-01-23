@@ -6,18 +6,28 @@
 }:
 {
   imports = [
+    # Flake inputs
     inputs.determinate.nixosModules.default
     inputs.disko.nixosModules.disko
     inputs.home-manager-stable.nixosModules.home-manager
     inputs.nur.modules.nixos.default
 
+    # Host-specific hardware
     ./disko-configuration.nix
     ./hardware-configuration.nix
 
+    # Base configuration
     ../../_mixins/base
     ../../_mixins/base/vps.nix
 
+    # User configuration
     ../../_mixins/user/keanu
+
+    # Home Manager
+    (lib.mkHomeManagerHost {
+      inherit inputs outputs;
+      users.keanu = ../../../home/vps/bucaccio/keanu.nix;
+    })
   ];
 
   boot.loader = {
@@ -31,16 +41,6 @@
   };
 
   networking.hostName = "bucaccio";
-
-  home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
-    useUserPackages = true;
-    useGlobalPkgs = false;
-    backupFileExtension = "backup";
-    users.keanu.imports = [ ../../../home/vps/bucaccio/keanu.nix ];
-  };
-
-  system.stateVersion = "25.11";
 
   services.nginx = {
     enable = true;
@@ -64,4 +64,6 @@
     80
     443
   ];
+
+  system.stateVersion = "25.11";
 }

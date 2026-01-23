@@ -1,11 +1,18 @@
 {
   self,
+  inputs,
   outputs,
   ...
 }:
 {
   nix = {
-    registry.my.flake = self;
+    # Common registries for faster ad-hoc commands like `nix shell nixpkgs#...`
+    registry = {
+      my.flake = self;
+      nixpkgs.flake = inputs.nixpkgs;
+      home-manager.flake = inputs.home-manager;
+      darwin.flake = inputs.darwin;
+    };
     settings = {
       auto-optimise-store = true;
       warn-dirty = false;

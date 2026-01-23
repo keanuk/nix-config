@@ -1,27 +1,31 @@
 {
   inputs,
   outputs,
+  lib,
   ...
 }:
 {
   imports = [
-    ./hardware-configuration.nix
-
+    # Flake inputs
     inputs.home-manager.darwinModules.home-manager
 
+    # Host-specific hardware
+    ./hardware-configuration.nix
+
+    # Base configuration
     ../_mixins/base
+
+    # User configuration
     ../_mixins/user/keanu
+
+    # Home Manager
+    (lib.mkHomeManagerHost {
+      inherit inputs outputs;
+      users.keanu = ../../home/vesta/keanu.nix;
+    })
   ];
 
   networking.hostName = "vesta";
-
-  home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
-    useUserPackages = true;
-    useGlobalPkgs = false;
-    backupFileExtension = "backup";
-    users.keanu.imports = [ ../../home/vesta/keanu.nix ];
-  };
 
   system.stateVersion = 4;
 }

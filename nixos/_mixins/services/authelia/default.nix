@@ -1,14 +1,93 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }:
 let
+  # Import centralized domain configuration
+  domains = import ../../../../lib/domains.nix;
+
   autheliaUser = "authelia";
   autheliaGroup = "authelia";
   autheliaPort = 9191;
-  authDomain = "auth.oranos.me";
-  baseDomain = "oranos.me";
+  authDomain = domains.auth;
+  baseDomain = domains.primary;
+
+  # Helper function to create Authelia-protected nginx virtual hosts
+  # This eliminates ~700 lines of repetitive configuration
+  mkAutheliaVhost = name: cfg: {
+    "${name}-auth" = {
+      listen = [
+        {
+          addr = "127.0.0.1";
+          port = cfg.proxyPort;
+        }
+      ];
+      locations."/" = {
+        proxyPass =
+          if cfg.useHttps or false
+          then "https://127.0.0.1:${toString cfg.backendPort}"
+          else "http://127.0.0.1:${toString cfg.backendPort}";
+        proxyWebsockets = true;
+        extraConfig = ''
+          auth_request /authelia;
+          auth_request_set $target_url https://$http_host$request_uri;
+          auth_request_set $user $upstream_http_remote_user;
+          ${lib.optionalString (cfg.passHeaders or false) ''
+            auth_request_set $groups $upstream_http_remote_groups;
+            auth_request_set $name $upstream_http_remote_name;
+            auth_request_set $email $upstream_http_remote_email;
+          ''}
+          proxy_set_header Remote-User $user;
+          ${lib.optionalString (cfg.passHeaders or false) ''
+            proxy_set_header Remote-Groups $groups;
+            proxy_set_header Remote-Name $name;
+            proxy_set_header Remote-Email $email;
+          ''}
+          error_page 401 =302 https://${authDomain}/?rd=$target_url;
+          ${cfg.extraConfig or ""}
+        '';
+      };
+      locations."/authelia" = {
+        proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
+        extraConfig = ''
+          internal;
+          proxy_set_header X-Original-URL https://$http_host$request_uri;
+          proxy_set_header X-Original-Method $request_method;
+          proxy_set_header X-Forwarded-Method $request_method;
+          proxy_set_header X-Forwarded-Proto https;
+          proxy_set_header X-Forwarded-Host $http_host;
+          proxy_set_header X-Forwarded-Uri $request_uri;
+          proxy_set_header X-Forwarded-For $remote_addr;
+          proxy_set_header Content-Length "";
+          proxy_pass_request_body off;
+        '';
+      };
+    };
+  };
+
+  # Generate access control rules from services
+  mkAccessRule = name: cfg:
+    let
+      domain =
+        if cfg.subdomain == null
+        then baseDomain
+        else "${cfg.subdomain}.${baseDomain}";
+    in
+    {
+      inherit domain;
+      policy = "two_factor";
+    };
+
+  # All protected services (excludes auth itself)
+  protectedServices = lib.filterAttrs (n: v: v.requiresAuth or true) domains.services;
+
+  # Generate all virtual hosts from service definitions
+  allVirtualHosts = lib.foldl' (acc: name:
+    acc // (mkAutheliaVhost name domains.services.${name})
+  ) {} (builtins.attrNames protectedServices);
+
 in
 {
   users.users.${autheliaUser} = {
@@ -93,79 +172,13 @@ in
 
       access_control = {
         default_policy = "deny";
-
         rules = [
+          # Auth domain bypasses authentication (it IS authentication)
           {
             domain = authDomain;
             policy = "bypass";
           }
-
-          {
-            domain = "git.${baseDomain}";
-            policy = "two_factor";
-          }
-          {
-            domain = "cloud.${baseDomain}";
-            policy = "two_factor";
-          }
-          {
-            domain = "home.${baseDomain}";
-            policy = "two_factor";
-          }
-          {
-            domain = "photos.${baseDomain}";
-            policy = "two_factor";
-          }
-          {
-            domain = "sonarr.${baseDomain}";
-            policy = "two_factor";
-          }
-          {
-            domain = "radarr.${baseDomain}";
-            policy = "two_factor";
-          }
-          {
-            domain = "lidarr.${baseDomain}";
-            policy = "two_factor";
-          }
-          {
-            domain = "prowlarr.${baseDomain}";
-            policy = "two_factor";
-          }
-          {
-            domain = "bazarr.${baseDomain}";
-            policy = "two_factor";
-          }
-          {
-            domain = "code.${baseDomain}";
-            policy = "two_factor";
-          }
-          {
-            domain = "cockpit.${baseDomain}";
-            policy = "two_factor";
-          }
-
-          {
-            domain = baseDomain;
-            policy = "two_factor";
-          }
-          {
-            domain = "chat.${baseDomain}";
-            policy = "two_factor";
-          }
-          {
-            domain = "media.${baseDomain}";
-            policy = "two_factor";
-          }
-          {
-            domain = "audio.${baseDomain}";
-            policy = "two_factor";
-          }
-          {
-            domain = "plex.${baseDomain}";
-            policy = "two_factor";
-          }
-        ];
+        ] ++ (lib.mapAttrsToList mkAccessRule protectedServices);
       };
 
       session = {
@@ -200,8 +213,8 @@ in
         disable_startup_check = false;
         smtp = {
           address = "smtp://127.0.0.1:1025";
-          username = "keanu@kerr.us";
-          sender = "Authelia <keanu@kerr.us>";
+          username = domains.email;
+          sender = "Authelia <${domains.email}>";
           subject = "[Authelia] {title}";
           disable_require_tls = false;
           disable_starttls = false;
@@ -222,11 +235,12 @@ in
     recommendedGzipSettings = true;
 
     virtualHosts = {
+      # Authelia portal - no auth required
       "${authDomain}" = {
         listen = [
           {
             addr = "127.0.0.1";
-            port = 9092;
+            port = domains.services.auth.proxyPort;
           }
         ];
         locations."/" = {
@@ -235,6 +249,7 @@ in
         };
       };
 
+      # Internal authelia verification endpoints
       "authelia-internal" = {
         listen = [
           {
@@ -249,604 +264,6 @@ in
           proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz";
         };
       };
-
-      "dashy-auth" = {
-        listen = [
-          {
-            addr = "127.0.0.1";
-            port = 9094;
-          }
-        ];
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:8082";
-          proxyWebsockets = true;
-          extraConfig = ''
-            auth_request /authelia;
-            auth_request_set $target_url https://$http_host$request_uri;
-            auth_request_set $user $upstream_http_remote_user;
-            auth_request_set $groups $upstream_http_remote_groups;
-            auth_request_set $name $upstream_http_remote_name;
-            auth_request_set $email $upstream_http_remote_email;
-            proxy_set_header Remote-User $user;
-            proxy_set_header Remote-Groups $groups;
-            proxy_set_header Remote-Name $name;
-            proxy_set_header Remote-Email $email;
-            error_page 401 =302 https://${authDomain}/?rd=$target_url;
-          '';
-        };
-        locations."/authelia" = {
-          proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
-          extraConfig = ''
-            internal;
-            proxy_set_header X-Original-URL https://$http_host$request_uri;
-            proxy_set_header X-Original-Method $request_method;
-            proxy_set_header X-Forwarded-Method $request_method;
-            proxy_set_header X-Forwarded-Proto https;
-            proxy_set_header X-Forwarded-Host $http_host;
-            proxy_set_header X-Forwarded-Uri $request_uri;
-            proxy_set_header X-Forwarded-For $remote_addr;
-            proxy_set_header Content-Length "";
-            proxy_pass_request_body off;
-          '';
-        };
-      };
-
-      "chat-auth" = {
-        listen = [
-          {
-            addr = "127.0.0.1";
-            port = 9095;
-          }
-        ];
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:11435";
-          proxyWebsockets = true;
-          extraConfig = ''
-            auth_request /authelia;
-            auth_request_set $target_url $scheme://$http_host$request_uri;
-            auth_request_set $user $upstream_http_remote_user;
-            proxy_set_header Remote-User $user;
-            error_page 401 =302 https://${authDomain}/?rd=$target_url;
-          '';
-        };
-        locations."/authelia" = {
-          proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
-          extraConfig = ''
-            internal;
-            proxy_set_header X-Original-URL https://$http_host$request_uri;
-            proxy_set_header X-Original-Method $request_method;
-            proxy_set_header X-Forwarded-Method $request_method;
-            proxy_set_header X-Forwarded-Proto https;
-            proxy_set_header X-Forwarded-Host $http_host;
-            proxy_set_header X-Forwarded-Uri $request_uri;
-            proxy_set_header X-Forwarded-For $remote_addr;
-            proxy_set_header Content-Length "";
-            proxy_pass_request_body off;
-          '';
-        };
-      };
-
-      # Photos (Immich) - protected by Authelia
-      "photos-auth" = {
-        listen = [
-          {
-            addr = "127.0.0.1";
-            port = 9096;
-          }
-        ];
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:2283";
-          proxyWebsockets = true;
-          extraConfig = ''
-            auth_request /authelia;
-            auth_request_set $target_url $scheme://$http_host$request_uri;
-            auth_request_set $user $upstream_http_remote_user;
-            proxy_set_header Remote-User $user;
-            error_page 401 =302 https://${authDomain}/?rd=$target_url;
-            # Immich needs larger body size for uploads
-            client_max_body_size 50G;
-          '';
-        };
-        locations."/authelia" = {
-          proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
-          extraConfig = ''
-            internal;
-            proxy_set_header X-Original-URL https://$http_host$request_uri;
-            proxy_set_header X-Original-Method $request_method;
-            proxy_set_header X-Forwarded-Method $request_method;
-            proxy_set_header X-Forwarded-Proto https;
-            proxy_set_header X-Forwarded-Host $http_host;
-            proxy_set_header X-Forwarded-Uri $request_uri;
-            proxy_set_header X-Forwarded-For $remote_addr;
-            proxy_set_header Content-Length "";
-            proxy_pass_request_body off;
-          '';
-        };
-      };
-
-      # Media (Jellyfin) - protected by Authelia
-      "media-auth" = {
-        listen = [
-          {
-            addr = "127.0.0.1";
-            port = 9097;
-          }
-        ];
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:8096";
-          proxyWebsockets = true;
-          extraConfig = ''
-            auth_request /authelia;
-            auth_request_set $target_url $scheme://$http_host$request_uri;
-            auth_request_set $user $upstream_http_remote_user;
-            proxy_set_header Remote-User $user;
-            error_page 401 =302 https://${authDomain}/?rd=$target_url;
-          '';
-        };
-        locations."/authelia" = {
-          proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
-          extraConfig = ''
-            internal;
-            proxy_set_header X-Original-URL https://$http_host$request_uri;
-            proxy_set_header X-Original-Method $request_method;
-            proxy_set_header X-Forwarded-Method $request_method;
-            proxy_set_header X-Forwarded-Proto https;
-            proxy_set_header X-Forwarded-Host $http_host;
-            proxy_set_header X-Forwarded-Uri $request_uri;
-            proxy_set_header X-Forwarded-For $remote_addr;
-            proxy_set_header Content-Length "";
-            proxy_pass_request_body off;
-          '';
-        };
-      };
-
-      # Audio (Audiobookshelf) - protected by Authelia
-      "audio-auth" = {
-        listen = [
-          {
-            addr = "127.0.0.1";
-            port = 9098;
-          }
-        ];
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:8000";
-          proxyWebsockets = true;
-          extraConfig = ''
-            auth_request /authelia;
-            auth_request_set $target_url $scheme://$http_host$request_uri;
-            auth_request_set $user $upstream_http_remote_user;
-            proxy_set_header Remote-User $user;
-            error_page 401 =302 https://${authDomain}/?rd=$target_url;
-          '';
-        };
-        locations."/authelia" = {
-          proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
-          extraConfig = ''
-            internal;
-            proxy_set_header X-Original-URL https://$http_host$request_uri;
-            proxy_set_header X-Original-Method $request_method;
-            proxy_set_header X-Forwarded-Method $request_method;
-            proxy_set_header X-Forwarded-Proto https;
-            proxy_set_header X-Forwarded-Host $http_host;
-            proxy_set_header X-Forwarded-Uri $request_uri;
-            proxy_set_header X-Forwarded-For $remote_addr;
-            proxy_set_header Content-Length "";
-            proxy_pass_request_body off;
-          '';
-        };
-      };
-
-      # Plex - protected by Authelia
-      "plex-auth" = {
-        listen = [
-          {
-            addr = "127.0.0.1";
-            port = 9099;
-          }
-        ];
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:32400";
-          proxyWebsockets = true;
-          extraConfig = ''
-            auth_request /authelia;
-            auth_request_set $target_url $scheme://$http_host$request_uri;
-            auth_request_set $user $upstream_http_remote_user;
-            proxy_set_header Remote-User $user;
-            error_page 401 =302 https://${authDomain}/?rd=$target_url;
-          '';
-        };
-        locations."/authelia" = {
-          proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
-          extraConfig = ''
-            internal;
-            proxy_set_header X-Original-URL https://$http_host$request_uri;
-            proxy_set_header X-Original-Method $request_method;
-            proxy_set_header X-Forwarded-Method $request_method;
-            proxy_set_header X-Forwarded-Proto https;
-            proxy_set_header X-Forwarded-Host $http_host;
-            proxy_set_header X-Forwarded-Uri $request_uri;
-            proxy_set_header X-Forwarded-For $remote_addr;
-            proxy_set_header Content-Length "";
-            proxy_pass_request_body off;
-          '';
-        };
-      };
-
-      "sonarr-auth" = {
-        listen = [
-          {
-            addr = "127.0.0.1";
-            port = 9100;
-          }
-        ];
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:8989";
-          proxyWebsockets = true;
-          extraConfig = ''
-            auth_request /authelia;
-            auth_request_set $target_url $scheme://$http_host$request_uri;
-            auth_request_set $user $upstream_http_remote_user;
-            proxy_set_header Remote-User $user;
-            error_page 401 =302 https://${authDomain}/?rd=$target_url;
-          '';
-        };
-        locations."/authelia" = {
-          proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
-          extraConfig = ''
-            internal;
-            proxy_set_header X-Original-URL https://$http_host$request_uri;
-            proxy_set_header X-Original-Method $request_method;
-            proxy_set_header X-Forwarded-Method $request_method;
-            proxy_set_header X-Forwarded-Proto https;
-            proxy_set_header X-Forwarded-Host $http_host;
-            proxy_set_header X-Forwarded-Uri $request_uri;
-            proxy_set_header X-Forwarded-For $remote_addr;
-            proxy_set_header Content-Length "";
-            proxy_pass_request_body off;
-          '';
-        };
-      };
-
-      # Radarr - protected by Authelia
-      "radarr-auth" = {
-        listen = [
-          {
-            addr = "127.0.0.1";
-            port = 9101;
-          }
-        ];
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:7878";
-          proxyWebsockets = true;
-          extraConfig = ''
-            auth_request /authelia;
-            auth_request_set $target_url $scheme://$http_host$request_uri;
-            auth_request_set $user $upstream_http_remote_user;
-            proxy_set_header Remote-User $user;
-            error_page 401 =302 https://${authDomain}/?rd=$target_url;
-          '';
-        };
-        locations."/authelia" = {
-          proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
-          extraConfig = ''
-            internal;
-            proxy_set_header X-Original-URL https://$http_host$request_uri;
-            proxy_set_header X-Original-Method $request_method;
-            proxy_set_header X-Forwarded-Method $request_method;
-            proxy_set_header X-Forwarded-Proto https;
-            proxy_set_header X-Forwarded-Host $http_host;
-            proxy_set_header X-Forwarded-Uri $request_uri;
-            proxy_set_header X-Forwarded-For $remote_addr;
-            proxy_set_header Content-Length "";
-            proxy_pass_request_body off;
-          '';
-        };
-      };
-
-      # Lidarr - protected by Authelia
-      "lidarr-auth" = {
-        listen = [
-          {
-            addr = "127.0.0.1";
-            port = 9102;
-          }
-        ];
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:8686";
-          proxyWebsockets = true;
-          extraConfig = ''
-            auth_request /authelia;
-            auth_request_set $target_url $scheme://$http_host$request_uri;
-            auth_request_set $user $upstream_http_remote_user;
-            proxy_set_header Remote-User $user;
-            error_page 401 =302 https://${authDomain}/?rd=$target_url;
-          '';
-        };
-        locations."/authelia" = {
-          proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
-          extraConfig = ''
-            internal;
-            proxy_set_header X-Original-URL https://$http_host$request_uri;
-            proxy_set_header X-Original-Method $request_method;
-            proxy_set_header X-Forwarded-Method $request_method;
-            proxy_set_header X-Forwarded-Proto https;
-            proxy_set_header X-Forwarded-Host $http_host;
-            proxy_set_header X-Forwarded-Uri $request_uri;
-            proxy_set_header X-Forwarded-For $remote_addr;
-            proxy_set_header Content-Length "";
-            proxy_pass_request_body off;
-          '';
-        };
-      };
-
-      # Prowlarr - protected by Authelia
-      "prowlarr-auth" = {
-        listen = [
-          {
-            addr = "127.0.0.1";
-            port = 9103;
-          }
-        ];
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:9696";
-          proxyWebsockets = true;
-          extraConfig = ''
-            auth_request /authelia;
-            auth_request_set $target_url $scheme://$http_host$request_uri;
-            auth_request_set $user $upstream_http_remote_user;
-            proxy_set_header Remote-User $user;
-            error_page 401 =302 https://${authDomain}/?rd=$target_url;
-          '';
-        };
-        locations."/authelia" = {
-          proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
-          extraConfig = ''
-            internal;
-            proxy_set_header X-Original-URL https://$http_host$request_uri;
-            proxy_set_header X-Original-Method $request_method;
-            proxy_set_header X-Forwarded-Method $request_method;
-            proxy_set_header X-Forwarded-Proto https;
-            proxy_set_header X-Forwarded-Host $http_host;
-            proxy_set_header X-Forwarded-Uri $request_uri;
-            proxy_set_header X-Forwarded-For $remote_addr;
-            proxy_set_header Content-Length "";
-            proxy_pass_request_body off;
-          '';
-        };
-      };
-
-      # Bazarr - protected by Authelia
-      "bazarr-auth" = {
-        listen = [
-          {
-            addr = "127.0.0.1";
-            port = 9104;
-          }
-        ];
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:6767";
-          proxyWebsockets = true;
-          extraConfig = ''
-            auth_request /authelia;
-            auth_request_set $target_url $scheme://$http_host$request_uri;
-            auth_request_set $user $upstream_http_remote_user;
-            proxy_set_header Remote-User $user;
-            error_page 401 =302 https://${authDomain}/?rd=$target_url;
-          '';
-        };
-        locations."/authelia" = {
-          proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
-          extraConfig = ''
-            internal;
-            proxy_set_header X-Original-URL https://$http_host$request_uri;
-            proxy_set_header X-Original-Method $request_method;
-            proxy_set_header X-Forwarded-Method $request_method;
-            proxy_set_header X-Forwarded-Proto https;
-            proxy_set_header X-Forwarded-Host $http_host;
-            proxy_set_header X-Forwarded-Uri $request_uri;
-            proxy_set_header X-Forwarded-For $remote_addr;
-            proxy_set_header Content-Length "";
-            proxy_pass_request_body off;
-          '';
-        };
-      };
-
-      "home-auth" = {
-        listen = [
-          {
-            addr = "127.0.0.1";
-            port = 9105;
-          }
-        ];
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:8123";
-          proxyWebsockets = true;
-          extraConfig = ''
-            auth_request /authelia;
-            auth_request_set $target_url $scheme://$http_host$request_uri;
-            auth_request_set $user $upstream_http_remote_user;
-            proxy_set_header Remote-User $user;
-            error_page 401 =302 https://${authDomain}/?rd=$target_url;
-          '';
-        };
-        locations."/authelia" = {
-          proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
-          extraConfig = ''
-            internal;
-            proxy_set_header X-Original-URL https://$http_host$request_uri;
-            proxy_set_header X-Original-Method $request_method;
-            proxy_set_header X-Forwarded-Method $request_method;
-            proxy_set_header X-Forwarded-Proto https;
-            proxy_set_header X-Forwarded-Host $http_host;
-            proxy_set_header X-Forwarded-Uri $request_uri;
-            proxy_set_header X-Forwarded-For $remote_addr;
-            proxy_set_header Content-Length "";
-            proxy_pass_request_body off;
-          '';
-        };
-      };
-
-      # Forgejo - protected by Authelia (2FA required)
-      "git-auth" = {
-        listen = [
-          {
-            addr = "127.0.0.1";
-            port = 9106;
-          }
-        ];
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:3001";
-          proxyWebsockets = true;
-          extraConfig = ''
-            auth_request /authelia;
-            auth_request_set $target_url $scheme://$http_host$request_uri;
-            auth_request_set $user $upstream_http_remote_user;
-            proxy_set_header Remote-User $user;
-            error_page 401 =302 https://${authDomain}/?rd=$target_url;
-            # Forgejo needs larger body size for git pushes
-            client_max_body_size 512M;
-          '';
-        };
-        locations."/authelia" = {
-          proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
-          extraConfig = ''
-            internal;
-            proxy_set_header X-Original-URL https://$http_host$request_uri;
-            proxy_set_header X-Original-Method $request_method;
-            proxy_set_header X-Forwarded-Method $request_method;
-            proxy_set_header X-Forwarded-Proto https;
-            proxy_set_header X-Forwarded-Host $http_host;
-            proxy_set_header X-Forwarded-Uri $request_uri;
-            proxy_set_header X-Forwarded-For $remote_addr;
-            proxy_set_header Content-Length "";
-            proxy_pass_request_body off;
-          '';
-        };
-      };
-
-      "cloud-auth" = {
-        listen = [
-          {
-            addr = "127.0.0.1";
-            port = 9107;
-          }
-        ];
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:80";
-          proxyWebsockets = true;
-          extraConfig = ''
-            auth_request /authelia;
-            auth_request_set $target_url $scheme://$http_host$request_uri;
-            auth_request_set $user $upstream_http_remote_user;
-            proxy_set_header Remote-User $user;
-            error_page 401 =302 https://${authDomain}/?rd=$target_url;
-            # Nextcloud needs larger body size for file uploads
-            client_max_body_size 16G;
-          '';
-        };
-        locations."/authelia" = {
-          proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
-          extraConfig = ''
-            internal;
-            proxy_set_header X-Original-URL https://$http_host$request_uri;
-            proxy_set_header X-Original-Method $request_method;
-            proxy_set_header X-Forwarded-Method $request_method;
-            proxy_set_header X-Forwarded-Proto https;
-            proxy_set_header X-Forwarded-Host $http_host;
-            proxy_set_header X-Forwarded-Uri $request_uri;
-            proxy_set_header X-Forwarded-For $remote_addr;
-            proxy_set_header Content-Length "";
-            proxy_pass_request_body off;
-          '';
-        };
-      };
-
-      "code-auth" = {
-        listen = [
-          {
-            addr = "127.0.0.1";
-            port = 9108;
-          }
-        ];
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:3000";
-          proxyWebsockets = true;
-          extraConfig = ''
-            # Authelia auth_request configuration
-            auth_request /authelia;
-            auth_request_set $target_url https://$http_host$request_uri;
-            auth_request_set $user $upstream_http_remote_user;
-            auth_request_set $groups $upstream_http_remote_groups;
-            auth_request_set $name $upstream_http_remote_name;
-            auth_request_set $email $upstream_http_remote_email;
-            proxy_set_header Remote-User $user;
-            proxy_set_header Remote-Groups $groups;
-            proxy_set_header Remote-Name $name;
-            proxy_set_header Remote-Email $email;
-            error_page 401 =302 https://${authDomain}/?rd=$target_url;
-          '';
-        };
-        locations."/authelia" = {
-          proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
-          extraConfig = ''
-            internal;
-            proxy_set_header X-Original-URL https://$http_host$request_uri;
-            proxy_set_header X-Original-Method $request_method;
-            proxy_set_header X-Forwarded-Method $request_method;
-            proxy_set_header X-Forwarded-Proto https;
-            proxy_set_header X-Forwarded-Host $http_host;
-            proxy_set_header X-Forwarded-Uri $request_uri;
-            proxy_set_header X-Forwarded-For $remote_addr;
-            proxy_set_header Content-Length "";
-            proxy_pass_request_body off;
-          '';
-        };
-      };
-
-      # Cockpit - protected by Authelia
-      "cockpit-auth" = {
-        listen = [
-          {
-            addr = "127.0.0.1";
-            port = 9109;
-          }
-        ];
-        locations."/" = {
-          proxyPass = "https://127.0.0.1:9090";
-          proxyWebsockets = true;
-          extraConfig = ''
-            # Authelia auth_request configuration
-            auth_request /authelia;
-            auth_request_set $target_url https://$http_host$request_uri;
-            auth_request_set $user $upstream_http_remote_user;
-            auth_request_set $groups $upstream_http_remote_groups;
-            auth_request_set $name $upstream_http_remote_name;
-            auth_request_set $email $upstream_http_remote_email;
-            proxy_set_header Remote-User $user;
-            proxy_set_header Remote-Groups $groups;
-            proxy_set_header Remote-Name $name;
-            proxy_set_header Remote-Email $email;
-            error_page 401 =302 https://${authDomain}/?rd=$target_url;
-            # Cockpit uses self-signed certs
-            proxy_ssl_verify off;
-          '';
-        };
-        locations."/authelia" = {
-          proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz/auth-request";
-          extraConfig = ''
-            internal;
-            proxy_set_header X-Original-URL https://$http_host$request_uri;
-            proxy_set_header X-Original-Method $request_method;
-            proxy_set_header X-Forwarded-Method $request_method;
-            proxy_set_header X-Forwarded-Proto https;
-            proxy_set_header X-Forwarded-Host $http_host;
-            proxy_set_header X-Forwarded-Uri $request_uri;
-            proxy_set_header X-Forwarded-For $remote_addr;
-            proxy_set_header Content-Length "";
-            proxy_pass_request_body off;
-          '';
-        };
-      };
-    };
+    } // allVirtualHosts;
   };
 }

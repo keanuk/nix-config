@@ -1,30 +1,33 @@
 {
   inputs,
   outputs,
+  lib,
   ...
 }:
 {
   imports = [
-    ./hardware-configuration.nix
-
+    # Flake inputs
     inputs.wsl.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
     inputs.nur.modules.nixos.default
 
+    # Host-specific hardware
+    ./hardware-configuration.nix
+
+    # Base configuration (WSL-specific)
     ../_mixins/base/wsl.nix
 
+    # User configuration
     ../_mixins/user/keanu
+
+    # Home Manager
+    (lib.mkHomeManagerHost {
+      inherit inputs outputs;
+      users.keanu = ../../home/mars/keanu.nix;
+    })
   ];
 
   networking.hostName = "mars";
-
-  home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
-    useUserPackages = true;
-    useGlobalPkgs = false;
-    backupFileExtension = "backup";
-    users.keanu.imports = [ ../../home/mars/keanu.nix ];
-  };
 
   system.stateVersion = "25.11";
 }
