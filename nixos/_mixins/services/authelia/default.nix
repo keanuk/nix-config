@@ -26,9 +26,10 @@ let
       ];
       locations."/" = {
         proxyPass =
-          if cfg.useHttps or false
-          then "https://127.0.0.1:${toString cfg.backendPort}"
-          else "http://127.0.0.1:${toString cfg.backendPort}";
+          if cfg.useHttps or false then
+            "https://127.0.0.1:${toString cfg.backendPort}"
+          else
+            "http://127.0.0.1:${toString cfg.backendPort}";
         proxyWebsockets = true;
         extraConfig = ''
           auth_request /authelia;
@@ -68,12 +69,10 @@ let
   };
 
   # Generate access control rules from services
-  mkAccessRule = name: cfg:
+  mkAccessRule =
+    name: cfg:
     let
-      domain =
-        if cfg.subdomain == null
-        then baseDomain
-        else "${cfg.subdomain}.${baseDomain}";
+      domain = if cfg.subdomain == null then baseDomain else "${cfg.subdomain}.${baseDomain}";
     in
     {
       inherit domain;
@@ -84,9 +83,9 @@ let
   protectedServices = lib.filterAttrs (n: v: v.requiresAuth or true) domains.services;
 
   # Generate all virtual hosts from service definitions
-  allVirtualHosts = lib.foldl' (acc: name:
-    acc // (mkAutheliaVhost name domains.services.${name})
-  ) {} (builtins.attrNames protectedServices);
+  allVirtualHosts = lib.foldl' (
+    acc: name: acc // (mkAutheliaVhost name domains.services.${name})
+  ) { } (builtins.attrNames protectedServices);
 
 in
 {
@@ -178,7 +177,8 @@ in
             domain = authDomain;
             policy = "bypass";
           }
-        ] ++ (lib.mapAttrsToList mkAccessRule protectedServices);
+        ]
+        ++ (lib.mapAttrsToList mkAccessRule protectedServices);
       };
 
       session = {
@@ -264,6 +264,7 @@ in
           proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz";
         };
       };
-    } // allVirtualHosts;
+    }
+    // allVirtualHosts;
   };
 }
