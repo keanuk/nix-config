@@ -1,6 +1,13 @@
 {
   description = "Keanu's Nix Configuration - Multi-platform NixOS and nix-darwin setup";
 
+  # Note: For VPS hosts (bucaccio, emilyvansant), use deploy-rs to build remotely
+  # and deploy pre-built closures. Do NOT run nixos-rebuild on the VPS itself
+  # as the limited resources will cause builds to hang.
+  #
+  # Usage: nix run .#deploy-rs -- .#bucaccio
+  #    or: nix run .#deploy-rs -- .#emilyvansant
+
   # Binary cache configuration for faster builds
   nixConfig = {
     extra-substituters = [
@@ -363,6 +370,30 @@
           modules = [ ./darwin/charon ];
         };
       };
+      # Deploy-rs configuration for remote deployments
+      # This allows building on a powerful machine and deploying to resource-constrained VPS
+      deploy.nodes = {
+        bucaccio = {
+          hostname = "vps.bucaccio.com";
+          profiles.system = {
+            user = "root";
+            sshUser = "keanu";
+            path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.bucaccio;
+          };
+        };
+        emilyvansant = {
+          hostname = "vps.emilyvansant.com";
+          profiles.system = {
+            user = "root";
+            sshUser = "keanu";
+            path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.emilyvansant;
+          };
+        };
+      };
+
+      # Checks for deploy-rs
+      checks = forEachSystem (pkgs: inputs.deploy-rs.lib.${pkgs.system}.deployChecks self.deploy);
+
       homeConfigurations = {
         "keanu@beehive" = lib-stable.homeManagerConfiguration {
           extraSpecialArgs = { inherit inputs outputs; };

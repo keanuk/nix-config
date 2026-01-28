@@ -24,6 +24,7 @@
     catppuccin
     darktable
     dbeaver-bin
+    dig
     discord
     element-desktop
     endeavour

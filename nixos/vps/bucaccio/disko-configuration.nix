@@ -18,23 +18,15 @@ in
           partitions = {
             boot = {
               size = "1M";
-              type = "EF02"; # for grub MBR
-            };
-            ESP = {
-              start = "0%";
-              end = "512MiB";
-              type = "EF00";
-              content = {
-                type = "filesystem";
-                format = "vfat";
-                mountpoint = "/boot";
-                mountOptions = [ "defaults" ];
-              };
+              type = "EF02"; # BIOS boot partition for GRUB
+              priority = 1;
             };
             root = {
               size = "100%";
+              priority = 2;
               content = {
                 type = "btrfs";
+                extraArgs = [ "-f" ];
                 subvolumes = {
                   "@" = {
                     mountpoint = "/";

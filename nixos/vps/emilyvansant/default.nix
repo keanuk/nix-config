@@ -2,7 +2,6 @@
   inputs,
   outputs,
   mkHomeManagerHost,
-  lib,
   ...
 }:
 {
@@ -31,24 +30,30 @@
     })
   ];
 
-  boot.loader = {
-    grub = {
-      enable = true;
-      devices = [ "/dev/sda" ];
-      efiSupport = true;
-      efiInstallAsRemovable = true;
-    };
-    efi.canTouchEfiVariables = lib.mkForce false;
+  boot.loader.grub = {
+    enable = true;
+    efiSupport = false;
+    # devices is set automatically by disko based on EF02 partition
   };
 
   networking.hostName = "emilyvansant";
 
   services.nginx = {
     enable = true;
+    recommendedGzipSettings = true;
+    recommendedOptimisation = true;
+    recommendedProxySettings = true;
+    recommendedTlsSettings = true;
+
     virtualHosts."emilyvansant.com" = {
       forceSSL = true;
       enableACME = true;
       root = "/var/www/emilyvansant";
+      # Handle both root domain and www
+      serverAliases = [ "www.emilyvansant.com" ];
+      locations."/" = {
+        tryFiles = "$uri $uri/ =404";
+      };
     };
   };
 
