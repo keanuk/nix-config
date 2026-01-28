@@ -24,6 +24,7 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIERTrzal23ssMxWgUfDJxeWYfwAbRcJ6zDeDNKsQu9Ag keanu@vesta"
 
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDS5rawgaqa78S0s07aGlWgvHrVzb3QzUocqq51u0od3 github-action-bucaccio"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF0XU5XdS3NQxo6m8CkJHWKLGE8Dc0WgBi1hmfy4hqnI github-action-emilyvansant"
     ];
   };
 }

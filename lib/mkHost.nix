@@ -24,7 +24,7 @@
   ...
 }:
 let
-  userConfigs = builtins.mapAttrs (username: homeModule: {
+  userConfigs = builtins.mapAttrs (_username: homeModule: {
     imports = [ homeModule ];
   }) users;
 in

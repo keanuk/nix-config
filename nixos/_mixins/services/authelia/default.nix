@@ -70,7 +70,7 @@ let
 
   # Generate access control rules from services
   mkAccessRule =
-    name: cfg:
+    _name: cfg:
     let
       domain = if cfg.subdomain == null then baseDomain else "${cfg.subdomain}.${baseDomain}";
     in
@@ -80,7 +80,7 @@ let
     };
 
   # All protected services (excludes auth itself)
-  protectedServices = lib.filterAttrs (n: v: v.requiresAuth or true) domains.services;
+  protectedServices = lib.filterAttrs (_n: v: v.requiresAuth or true) domains.services;
 
   # Generate all virtual hosts from service definitions
   allVirtualHosts = lib.foldl' (

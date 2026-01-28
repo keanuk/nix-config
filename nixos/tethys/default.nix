@@ -2,7 +2,6 @@
   inputs,
   outputs,
   mkHomeManagerHost,
-  lib,
   ...
 }:
 {
