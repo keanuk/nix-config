@@ -16,12 +16,21 @@
 
   services.dbus.enable = true;
 
-  systemd.user.services.protonmail-bridge = {
+  users.users.protonmail-bridge = {
+    isSystemUser = true;
+    group = "protonmail-bridge";
+    home = "/var/lib/protonmail-bridge";
+    createHome = true;
+    description = "Protonmail Bridge system user";
+  };
+
+  users.groups.protonmail-bridge = { };
+
+  systemd.services.protonmail-bridge = {
     description = "Protonmail Bridge SMTP/IMAP service";
-    wantedBy = [ "default.target" ];
+    wantedBy = [ "multi-user.target" ];
     after = [
       "network-online.target"
-      "gpg-agent.service"
       "dbus.service"
     ];
     wants = [ "network-online.target" ];
@@ -33,9 +42,12 @@
 
     serviceConfig = {
       Type = "simple";
+      User = "protonmail-bridge";
+      Group = "protonmail-bridge";
       ExecStart = "${pkgs.protonmail-bridge}/bin/protonmail-bridge --noninteractive --log-level info";
       Restart = "on-failure";
       RestartSec = "10s";
+      StateDirectory = "protonmail-bridge";
     };
   };
 }
