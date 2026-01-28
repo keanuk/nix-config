@@ -118,11 +118,6 @@ in
       group = autheliaGroup;
       mode = "0400";
     };
-    protonmail-bridge-password = {
-      owner = autheliaUser;
-      group = autheliaGroup;
-      mode = "0400";
-    };
   };
 
   services.authelia.instances.main = {
@@ -136,10 +131,7 @@ in
       sessionSecretFile = config.sops.secrets.authelia-session-secret.path;
       storageEncryptionKeyFile = config.sops.secrets.authelia-storage-encryption-key.path;
     };
-
-    environmentVariables = {
-      AUTHELIA_NOTIFIER_SMTP_PASSWORD_FILE = config.sops.secrets.protonmail-bridge-password.path;
-    };
+    environmentVariables = { };
 
     settings = {
       theme = "dark";
@@ -210,17 +202,9 @@ in
       };
 
       notifier = {
-        disable_startup_check = false;
-        smtp = {
-          address = "smtp://127.0.0.1:1025";
-          username = domains.email;
-          sender = "Authelia <${domains.email}>";
-          subject = "[Authelia] {title}";
-          disable_require_tls = false;
-          disable_starttls = false;
-          tls = {
-            skip_verify = true;
-          };
+        disable_startup_check = true;
+        filesystem = {
+          filename = "/var/lib/authelia-main/notifications.txt";
         };
       };
     };
