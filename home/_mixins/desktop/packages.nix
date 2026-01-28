@@ -38,7 +38,8 @@
     gnome-builder
     gnome-disk-utility
     gnome-maps
-    handbrake
+    # TODO: re-enable when handbrake builds
+    # handbrake
     inkscape
     jellyfin-media-player
     jitsi
@@ -94,7 +95,8 @@
     androidStudioPackages.beta
     androidStudioPackages.dev
 
-    kdePackages.kdenlive
+    # TODO: re-enable when kdenlive builds
+    # kdePackages.kdenlive
     kdePackages.kdevelop
 
     inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default

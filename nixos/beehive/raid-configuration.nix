@@ -21,7 +21,10 @@
     restartIfChanged = false;
 
     unitConfig = {
-      After = [ "local-fs-pre.target" "sops-install-secrets.service" ];
+      After = [
+        "local-fs-pre.target"
+        "sops-install-secrets.service"
+      ];
       Wants = [ "local-fs-pre.target" ];
       Requires = [ "sops-install-secrets.service" ];
     };

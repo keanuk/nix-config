@@ -205,65 +205,161 @@
       nixosConfigurations = {
         # Beelink SER9 Pro
         beehive = lib-stable.nixosSystem {
-          specialArgs = { inherit self inputs outputs mkHomeManagerHost; };
+          specialArgs = {
+            inherit
+              self
+              inputs
+              outputs
+              mkHomeManagerHost
+              ;
+          };
           modules = [ ./nixos/beehive ];
         };
         # Intel NUC 10 i7
         earth = lib.nixosSystem {
-          specialArgs = { inherit self inputs outputs mkHomeManagerHost; };
+          specialArgs = {
+            inherit
+              self
+              inputs
+              outputs
+              mkHomeManagerHost
+              ;
+          };
           modules = [ ./nixos/earth ];
         };
         # HP EliteBook 845 G8
         hyperion = lib.nixosSystem {
-          specialArgs = { inherit self inputs outputs mkHomeManagerHost; };
+          specialArgs = {
+            inherit
+              self
+              inputs
+              outputs
+              mkHomeManagerHost
+              ;
+          };
           modules = [ ./nixos/hyperion ];
         };
         # ThinkPad X13s Gen 1
         mars = lib.nixosSystem {
-          specialArgs = { inherit self inputs outputs mkHomeManagerHost; };
+          specialArgs = {
+            inherit
+              self
+              inputs
+              outputs
+              mkHomeManagerHost
+              ;
+          };
           modules = [ ./nixos/mars ];
         };
         # HP EliteBook 1030 G2
         miranda = lib.nixosSystem {
-          specialArgs = { inherit self inputs outputs mkHomeManagerHost; };
+          specialArgs = {
+            inherit
+              self
+              inputs
+              outputs
+              mkHomeManagerHost
+              ;
+          };
           modules = [ ./nixos/miranda ];
         };
         # ThinkPad P14s AMD Gen 5
         phoebe = lib.nixosSystem {
-          specialArgs = { inherit self inputs outputs mkHomeManagerHost; };
+          specialArgs = {
+            inherit
+              self
+              inputs
+              outputs
+              mkHomeManagerHost
+              ;
+          };
           modules = [ ./nixos/phoebe ];
         };
         # Zotac ZBox
         tethys = lib.nixosSystem {
-          specialArgs = { inherit self inputs outputs mkHomeManagerHost; };
+          specialArgs = {
+            inherit
+              self
+              inputs
+              outputs
+              mkHomeManagerHost
+              ;
+          };
           modules = [ ./nixos/tethys ];
         };
         # CyberPowerPC
         titan = lib.nixosSystem {
-          specialArgs = { inherit self inputs outputs mkHomeManagerHost; };
+          specialArgs = {
+            inherit
+              self
+              inputs
+              outputs
+              mkHomeManagerHost
+              ;
+          };
           modules = [ ./nixos/titan ];
         };
         # ===== VPS =====
         # Bucaccio Website Hetzner us-east-1
         bucaccio = lib-stable.nixosSystem {
-          specialArgs = { inherit self inputs outputs mkHomeManagerHost; };
+          specialArgs = {
+            inherit
+              self
+              inputs
+              outputs
+              mkHomeManagerHost
+              ;
+          };
           modules = [ ./nixos/vps/bucaccio ];
+        };
+        # Emily Van Sant Website Hetzner
+        emilyvansant = lib-stable.nixosSystem {
+          specialArgs = {
+            inherit
+              self
+              inputs
+              outputs
+              mkHomeManagerHost
+              ;
+          };
+          modules = [ ./nixos/vps/emilyvansant ];
         };
       };
       darwinConfigurations = {
         # Mac Mini 2024
         salacia = lib.darwinSystem {
-          specialArgs = { inherit self inputs outputs mkHomeManagerHost; };
+          specialArgs = {
+            inherit
+              self
+              inputs
+              outputs
+              mkHomeManagerHost
+              ;
+          };
           modules = [ ./darwin/salacia ];
         };
         # MacBook Pro 2020
         vesta = lib.darwinSystem {
-          specialArgs = { inherit self inputs outputs mkHomeManagerHost; };
+          specialArgs = {
+            inherit
+              self
+              inputs
+              outputs
+              mkHomeManagerHost
+              ;
+          };
           modules = [ ./darwin/vesta ];
         };
         # MacBook Air 2018
         charon = lib.darwinSystem {
-          specialArgs = { inherit self inputs outputs mkHomeManagerHost; };
+          specialArgs = {
+            inherit
+              self
+              inputs
+              outputs
+              mkHomeManagerHost
+              ;
+          };
           modules = [ ./darwin/charon ];
         };
       };
@@ -328,6 +424,11 @@
           extraSpecialArgs = { inherit inputs outputs; };
           pkgs = pkgsFor-stable.x86_64-linux;
           modules = [ ./home/vps/bucaccio/keanu.nix ];
+        };
+        "keanu@emilyvansant" = lib-stable.homeManagerConfiguration {
+          extraSpecialArgs = { inherit inputs outputs; };
+          pkgs = pkgsFor-stable.x86_64-linux;
+          modules = [ ./home/vps/emilyvansant/keanu.nix ];
         };
       };
     };

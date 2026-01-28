@@ -65,7 +65,7 @@
 
   environment = {
     sessionVariables = {
-      ENABLE_HDR_WSI = "1";
+      # ENABLE_HDR_WSI = "1";
       NIXOS_OZONE_WL = "1";
     };
     systemPackages = with pkgs; [
