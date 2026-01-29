@@ -48,8 +48,8 @@
         "systemd-tmpfiles-setup.service"
         "postgresql.service"
       ];
-      bindsTo = [ "raid-online.target" ];
       requires = [
+        "raid-online.target"
         "systemd-tmpfiles-setup.service"
         "postgresql.service"
       ];
@@ -62,8 +62,8 @@
         "systemd-tmpfiles-setup.service"
         "postgresql.service"
       ];
-      bindsTo = [ "raid-online.target" ];
       requires = [
+        "raid-online.target"
         "systemd-tmpfiles-setup.service"
         "postgresql.service"
       ];
@@ -76,8 +76,8 @@
         "systemd-tmpfiles-setup.service"
         "postgresql.service"
       ];
-      bindsTo = [ "raid-online.target" ];
       requires = [
+        "raid-online.target"
         "systemd-tmpfiles-setup.service"
         "postgresql.service"
       ];

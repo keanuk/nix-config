@@ -60,7 +60,7 @@
 
   systemd.services.home-assistant = {
     after = [ "raid-online.target" ];
-    bindsTo = [ "raid-online.target" ];
+    requires = [ "raid-online.target" ];
     unitConfig.AssertPathIsMountPoint = "/data";
   };
 }

@@ -22,10 +22,10 @@
 
     unitConfig = {
       After = [
-        "local-fs-pre.target"
+        "local-fs.target"
         "sops-install-secrets.service"
       ];
-      Wants = [ "local-fs-pre.target" ];
+      Wants = [ "local-fs.target" ];
       Requires = [ "sops-install-secrets.service" ];
     };
 
@@ -37,16 +37,6 @@
         set -euo pipefail
 
         /run/current-system/sw/bin/udevadm settle || true
-
-        # Wait for device nodes to appear
-        for dev in /dev/sda /dev/sdb /dev/sdc /dev/sdd /dev/sde /dev/sdf /dev/sdg /dev/sdh /dev/sdi /dev/sdj /dev/sdk /dev/sdl /dev/sdm /dev/sdn; do
-          for i in $(seq 1 30); do
-            if [ -b "$dev" ]; then
-              break
-            fi
-            sleep 1
-          done
-        done
 
         # Skip if already mounted
         if /run/current-system/sw/bin/mountpoint -q /data; then

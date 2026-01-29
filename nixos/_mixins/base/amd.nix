@@ -6,7 +6,7 @@
 {
   # Enable AMD GPU drivers
   services = {
-    ollama.package = lib.mkForce pkgs.ollama-rocm;
+    ollama.package = lib.mkForce pkgs.unstable.ollama-rocm;
     xserver.videoDrivers = [ "amdgpu" ];
   };
 

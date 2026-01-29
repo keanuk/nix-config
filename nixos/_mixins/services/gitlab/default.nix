@@ -80,25 +80,25 @@
   systemd.services = {
     gitlab = {
       after = [ "raid-online.target" ];
-      bindsTo = [ "raid-online.target" ];
+      requires = [ "raid-online.target" ];
       unitConfig.AssertPathIsMountPoint = "/data";
     };
 
     gitlab-workhorse = {
       after = [ "raid-online.target" ];
-      bindsTo = [ "raid-online.target" ];
+      requires = [ "raid-online.target" ];
       unitConfig.AssertPathIsMountPoint = "/data";
     };
 
     gitlab-sidekiq = {
       after = [ "raid-online.target" ];
-      bindsTo = [ "raid-online.target" ];
+      requires = [ "raid-online.target" ];
       unitConfig.AssertPathIsMountPoint = "/data";
     };
 
     gitaly = {
       after = [ "raid-online.target" ];
-      bindsTo = [ "raid-online.target" ];
+      requires = [ "raid-online.target" ];
       unitConfig.AssertPathIsMountPoint = "/data";
     };
   };
