@@ -22,16 +22,4 @@
       mode = "0444";
     };
   };
-
-  systemd.services.sops-install-secrets = {
-    description = "Install sops-nix secrets";
-    wantedBy = [ "multi-user.target" ];
-    before = [ "mount-raid.service" ];
-    after = [ "local-fs.target" ];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-    };
-    script = config.system.activationScripts.setupSecrets.text;
-  };
 }

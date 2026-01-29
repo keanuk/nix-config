@@ -14,6 +14,18 @@
     wantedBy = [ "multi-user.target" ];
   };
 
+  systemd.services.sops-install-secrets = {
+    description = "Install sops-nix secrets";
+    wantedBy = [ "multi-user.target" ];
+    before = [ "mount-raid.service" ];
+    after = [ "local-fs.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = config.system.activationScripts.setupSecrets.text;
+  };
+
   systemd.services.mount-raid = {
     enable = true;
     description = "Mount RAID configuration";

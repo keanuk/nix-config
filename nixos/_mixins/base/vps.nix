@@ -54,8 +54,6 @@
   # Disable for VPS to allow clean nixos-anywhere installation
   sops.defaultSopsFile = lib.mkForce null;
   sops.secrets = lib.mkForce { };
-  # Remove the custom sops-install-secrets service defined in sops.nix
-  systemd.services.sops-install-secrets = lib.mkForce { };
 
   # ===== Disable Local Auto-Builds =====
   # On resource-constrained VPS, builds should happen remotely and be deployed
