@@ -9,7 +9,7 @@
     ];
   };
 
-  home.packages = with pkgs; [
+  home.packages = with pkgs.unstable; [
     alpaca
     android-studio
     android-tools
