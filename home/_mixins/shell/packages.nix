@@ -5,6 +5,7 @@
     authelia
     bitwarden-cli
     circumflex
+    cloudflared
     copilot-language-server
     cpufetch
     deadnix
