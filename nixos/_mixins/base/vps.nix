@@ -21,12 +21,26 @@
     }
   ];
 
-  # Tune swap behavior for low-memory systems
-  boot.kernel.sysctl = {
-    "vm.swappiness" = 60; # More aggressive swap usage
-    "vm.vfs_cache_pressure" = 50;
-    "vm.dirty_ratio" = 10;
-    "vm.dirty_background_ratio" = 5;
+  boot = {
+    # Tune swap behavior for low-memory systems
+    kernel.sysctl = {
+      "vm.swappiness" = 60; # More aggressive swap usage
+      "vm.vfs_cache_pressure" = 50;
+      "vm.dirty_ratio" = 10;
+      "vm.dirty_background_ratio" = 5;
+    };
+
+    # ===== Disable bcachefs =====
+    # Not needed on VPS and currently marked as broken in stable
+    supportedFilesystems = lib.mkForce [
+      "btrfs"
+    ];
+
+    # Disable Plymouth (boot splash)
+    plymouth.enable = lib.mkForce false;
+
+    # Use a lighter kernel (not latest, to save on memory and build time)
+    kernelPackages = lib.mkForce pkgs.linuxPackages;
   };
 
   # ===== Nix Settings for Low-Resource Systems =====
@@ -42,36 +56,30 @@
     log-lines = 25;
   };
 
-  # ===== Disable bcachefs =====
-  # Not needed on VPS and currently marked as broken in stable
-  boot.supportedFilesystems = lib.mkForce [
-    "btrfs"
-  ];
-
   # ===== Disable sops-nix =====
   # sops requires either SSH host keys (not available during initial install)
   # or an age key file that doesn't exist on fresh systems
   # Disable for VPS to allow clean nixos-anywhere installation
-  sops.defaultSopsFile = lib.mkForce null;
-  sops.secrets = lib.mkForce { };
+  sops = {
+    defaultSopsFile = lib.mkForce null;
+    secrets = lib.mkForce { };
+  };
 
   # ===== Disable Local Auto-Builds =====
   # On resource-constrained VPS, builds should happen remotely and be deployed
   system.autoUpgrade.enable = lib.mkForce false;
 
-  # Disable comin (git-ops auto-rebuild) - use deploy-rs instead
-  services.comin.enable = lib.mkForce false;
-
   # ===== Enable Essential VPS Services =====
   services = {
+    # Disable comin (git-ops auto-rebuild) - use deploy-rs instead
+    comin.enable = lib.mkForce false;
+
     vscode-server.enable = true;
 
     # Keep systemd-oomd for memory pressure management
     # (inherited from base, but ensure it's on)
-  };
 
-  # ===== Disable Unnecessary Services for VPS =====
-  services = {
+    # ===== Disable Unnecessary Services for VPS =====
     # Desktop/hardware services not needed on VPS
     printing.enable = lib.mkForce false;
     avahi.enable = lib.mkForce false;
@@ -97,6 +105,12 @@
     # openssh - imported above
     # irqbalance - useful
     # sysstat - useful for monitoring
+
+    # ===== Timezone =====
+    # Set a fixed timezone for VPS (no need for automatic detection)
+    # mkOverride 49 has higher priority than mkForce (which is mkOverride 50)
+    automatic-timezoned.enable = lib.mkForce false;
+    localtimed.enable = lib.mkForce false;
   };
 
   # ===== Disable Hardware Features Not Applicable to VPS =====
@@ -105,12 +119,6 @@
     enableAllFirmware = lib.mkForce false;
     enableRedistributableFirmware = lib.mkForce false;
   };
-
-  # Disable Plymouth (boot splash)
-  boot.plymouth.enable = lib.mkForce false;
-
-  # Use a lighter kernel (not latest, to save on memory and build time)
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages;
 
   # ===== Disable Virtualization Stack =====
   # Don't need Docker/Podman on simple web server VPS
@@ -156,11 +164,6 @@
     networkmanager.enable = lib.mkForce false; # Use simple dhcpcd instead
   };
 
-  # ===== Timezone =====
-  # Set a fixed timezone for VPS (no need for automatic detection)
-  # mkOverride 49 has higher priority than mkForce (which is mkOverride 50)
-  services.automatic-timezoned.enable = lib.mkForce false;
-  services.localtimed.enable = lib.mkForce false;
   time.timeZone = lib.mkOverride 49 "UTC";
 
   # ===== Locale =====
