@@ -31,8 +31,8 @@ in
         APP_NAME = "Oranos Git";
       };
       server = {
-        DOMAIN = "git.oranos.me";
-        ROOT_URL = "https://git.oranos.me/";
+        DOMAIN = "git.oranos.org";
+        ROOT_URL = "https://git.oranos.org/";
         HTTP_PORT = 3001;
         HTTP_ADDR = "127.0.0.1";
       };
@@ -48,7 +48,7 @@ in
         PROTOCOL = "smtp";
         SMTP_ADDR = "127.0.0.1";
         SMTP_PORT = 1025;
-        FROM = "git@oranos.me";
+        FROM = "git@oranos.org";
       };
       log = {
         LEVEL = "Info";

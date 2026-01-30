@@ -5,6 +5,6 @@
     package = pkgs.unstable.homepage-dashboard;
     openFirewall = false;
     listenPort = 8082;
-    allowedHosts = "oranos.me,localhost,127.0.0.1";
+    allowedHosts = "oranos.org,localhost,127.0.0.1";
   };
 }

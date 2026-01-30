@@ -11,7 +11,7 @@
     port = 9090;
     settings = {
       WebService = {
-        Origins = lib.mkForce "https://localhost:9090 https://beehive:9090 wss://beehive:9090 https://cockpit.oranos.me wss://cockpit.oranos.me";
+        Origins = lib.mkForce "https://localhost:9090 https://beehive:9090 wss://beehive:9090 https://cockpit.oranos.org wss://cockpit.oranos.org";
       };
     };
   };

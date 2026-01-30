@@ -11,7 +11,7 @@ _: {
 
       # Actions
       action "local_mail" mbox alias <aliases>
-      action "outbound" relay helo oranos.me
+      action "outbound" relay helo oranos.org
 
       # Matching rules
       match for local action "local_mail"

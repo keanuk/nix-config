@@ -42,7 +42,7 @@ users:
   admin:
     displayname: "Admin User"
     password: "$argon2id$v=19$m=65536,t=3,p=4$YOUR_HASH_HERE"
-    email: admin@oranos.me
+    email: admin@oranos.org
     groups:
       - admins
       - users
@@ -67,7 +67,7 @@ authelia-users: |
     admin:
       displayname: "Admin User"
       password: "$argon2id$v=19$m=65536,t=3,p=4$YOUR_HASH_HERE"
-      email: admin@oranos.me
+      email: admin@oranos.org
       groups:
         - admins
         - users
@@ -75,17 +75,17 @@ authelia-users: |
 
 ## DNS Configuration
 
-Add a DNS record for `auth.oranos.me` pointing to your Cloudflare Tunnel.
+Add a DNS record for `auth.oranos.org` pointing to your Cloudflare Tunnel.
 
 In Cloudflare Dashboard:
 1. Go to your domain's DNS settings
 2. Add CNAME records for each service:
-   - Name: `auth` → Target: `586f6d2e-b360-4f89-a667-5068d2e70f9e.cfargotunnel.com`
-   - Name: `sonarr` → Target: `586f6d2e-b360-4f89-a667-5068d2e70f9e.cfargotunnel.com`
-   - Name: `radarr` → Target: `586f6d2e-b360-4f89-a667-5068d2e70f9e.cfargotunnel.com`
-   - Name: `lidarr` → Target: `586f6d2e-b360-4f89-a667-5068d2e70f9e.cfargotunnel.com`
-   - Name: `prowlarr` → Target: `586f6d2e-b360-4f89-a667-5068d2e70f9e.cfargotunnel.com`
-   - Name: `bazarr` → Target: `586f6d2e-b360-4f89-a667-5068d2e70f9e.cfargotunnel.com`
+   - Name: `auth` → Target: `c7967aa7-6b7a-4f93-bb49-7663fe2ab21b.cfargotunnel.com`
+   - Name: `sonarr` → Target: `c7967aa7-6b7a-4f93-bb49-7663fe2ab21b.cfargotunnel.com`
+   - Name: `radarr` → Target: `c7967aa7-6b7a-4f93-bb49-7663fe2ab21b.cfargotunnel.com`
+   - Name: `lidarr` → Target: `c7967aa7-6b7a-4f93-bb49-7663fe2ab21b.cfargotunnel.com`
+   - Name: `prowlarr` → Target: `c7967aa7-6b7a-4f93-bb49-7663fe2ab21b.cfargotunnel.com`
+   - Name: `bazarr` → Target: `c7967aa7-6b7a-4f93-bb49-7663fe2ab21b.cfargotunnel.com`
    - Proxy status: Proxied (orange cloud) for all
 
 ## Access Control
@@ -93,25 +93,25 @@ In Cloudflare Dashboard:
 The configuration enforces layered security:
 
 - **Bypass (no auth required):**
-  - `auth.oranos.me` - Authelia portal itself
+  - `auth.oranos.org` - Authelia portal itself
 
 - **Two-factor authentication required (sensitive services):**
-  - `git.oranos.me` - GitLab (source code, CI/CD)
-  - `cloud.oranos.me` - Nextcloud (files, documents)
-  - `home.oranos.me` - Home Assistant (smart home control)
-  - `photos.oranos.me` - Immich (private photos)
-  - `sonarr.oranos.me` - Sonarr (can download content)
-  - `radarr.oranos.me` - Radarr (can download content)
-  - `lidarr.oranos.me` - Lidarr (can download content)
-  - `prowlarr.oranos.me` - Prowlarr (indexer management)
-  - `bazarr.oranos.me` - Bazarr (subtitle downloads)
+  - `git.oranos.org` - GitLab (source code, CI/CD)
+  - `cloud.oranos.org` - Nextcloud (files, documents)
+  - `home.oranos.org` - Home Assistant (smart home control)
+  - `photos.oranos.org` - Immich (private photos)
+  - `sonarr.oranos.org` - Sonarr (can download content)
+  - `radarr.oranos.org` - Radarr (can download content)
+  - `lidarr.oranos.org` - Lidarr (can download content)
+  - `prowlarr.oranos.org` - Prowlarr (indexer management)
+  - `bazarr.oranos.org` - Bazarr (subtitle downloads)
 
 - **One-factor authentication required (media consumption):**
-  - `oranos.me` - Dashy dashboard
-  - `chat.oranos.me` - Open WebUI (AI chat)
-  - `media.oranos.me` - Jellyfin (media streaming)
-  - `audio.oranos.me` - Audiobookshelf (audiobooks)
-  - `plex.oranos.me` - Plex (media streaming)
+  - `oranos.org` - Dashy dashboard
+  - `chat.oranos.org` - Open WebUI (AI chat)
+  - `media.oranos.org` - Jellyfin (media streaming)
+  - `audio.oranos.org` - Audiobookshelf (audiobooks)
+  - `plex.oranos.org` - Plex (media streaming)
 
 ## Customization
 
@@ -169,7 +169,7 @@ authelia-users: |
     john:
       displayname: "John Doe"
       password: "$argon2id$v=19$m=65536,t=3,p=4$HASH2"
-      email: john@oranos.me
+      email: john@oranos.org
       groups:
         - users
 ```
@@ -204,27 +204,27 @@ sudo cat /run/secrets/authelia-jwt-secret
 
 | Service | Internal Port | Authelia Proxy Port | Domain | Auth Level |
 |---------|--------------|---------------------|--------|------------|
-| Authelia | 9091 | 9092 | auth.oranos.me | bypass |
-| Dashy | 8082 | 9094 | oranos.me | 1FA |
-| Open WebUI | 11435 | 9095 | chat.oranos.me | 1FA |
-| Immich | 2283 | 9096 | photos.oranos.me | 2FA |
-| Jellyfin | 8096 | 9097 | media.oranos.me | 1FA |
-| Audiobookshelf | 8000 | 9098 | audio.oranos.me | 1FA |
-| Plex | 32400 | 9099 | plex.oranos.me | 1FA |
-| Sonarr | 8989 | 9100 | sonarr.oranos.me | 2FA |
-| Radarr | 7878 | 9101 | radarr.oranos.me | 2FA |
-| Lidarr | 8686 | 9102 | lidarr.oranos.me | 2FA |
-| Prowlarr | 9696 | 9103 | prowlarr.oranos.me | 2FA |
-| Bazarr | 6767 | 9104 | bazarr.oranos.me | 2FA |
-| Home Assistant | 8123 | 9105 | home.oranos.me | 2FA |
-| GitLab | 8929 | 9106 | git.oranos.me | 2FA |
-| Nextcloud | 80 | 9107 | cloud.oranos.me | 2FA |
+| Authelia | 9091 | 9092 | auth.oranos.org | bypass |
+| Dashy | 8082 | 9094 | oranos.org | 1FA |
+| Open WebUI | 11435 | 9095 | chat.oranos.org | 1FA |
+| Immich | 2283 | 9096 | photos.oranos.org | 2FA |
+| Jellyfin | 8096 | 9097 | media.oranos.org | 1FA |
+| Audiobookshelf | 8000 | 9098 | audio.oranos.org | 1FA |
+| Plex | 32400 | 9099 | plex.oranos.org | 1FA |
+| Sonarr | 8989 | 9100 | sonarr.oranos.org | 2FA |
+| Radarr | 7878 | 9101 | radarr.oranos.org | 2FA |
+| Lidarr | 8686 | 9102 | lidarr.oranos.org | 2FA |
+| Prowlarr | 9696 | 9103 | prowlarr.oranos.org | 2FA |
+| Bazarr | 6767 | 9104 | bazarr.oranos.org | 2FA |
+| Home Assistant | 8123 | 9105 | home.oranos.org | 2FA |
+| GitLab | 8929 | 9106 | git.oranos.org | 2FA |
+| Nextcloud | 80 | 9107 | cloud.oranos.org | 2FA |
 
 ## Setting Up Two-Factor Authentication
 
 After first login, you'll need to set up TOTP for 2FA-protected services:
 
-1. Log in to `https://auth.oranos.me` with your username and password
+1. Log in to `https://auth.oranos.org` with your username and password
 2. You'll be prompted to set up TOTP
 3. Scan the QR code with an authenticator app (Google Authenticator, Authy, etc.)
 4. Enter the 6-digit code to verify

@@ -32,7 +32,7 @@
         "10.19.5.10" # Main network IP
         "100.91.10.104" # Tailscale IP
         "192.168.15.5" # WireGuard IP
-        "cloud.oranos.me" # Cloudflare Tunnel domain (update with your actual domain)
+        "cloud.oranos.org" # Cloudflare Tunnel domain (update with your actual domain)
       ];
       trusted_proxies = [
         "127.0.0.1"

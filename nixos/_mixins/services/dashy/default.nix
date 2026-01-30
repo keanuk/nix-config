@@ -29,7 +29,7 @@
               title = "Home Assistant";
               description = "Home Automation";
               icon = "hl-home-assistant";
-              url = "https://home.oranos.me";
+              url = "https://home.oranos.org";
             }
           ];
         }
@@ -41,31 +41,31 @@
               title = "Sonarr";
               description = "TV Shows";
               icon = "hl-sonarr";
-              url = "https://sonarr.oranos.me";
+              url = "https://sonarr.oranos.org";
             }
             {
               title = "Radarr";
               description = "Movies";
               icon = "hl-radarr";
-              url = "https://radarr.oranos.me";
+              url = "https://radarr.oranos.org";
             }
             {
               title = "Lidarr";
               description = "Music";
               icon = "hl-lidarr";
-              url = "https://lidarr.oranos.me";
+              url = "https://lidarr.oranos.org";
             }
             {
               title = "Prowlarr";
               description = "Indexers";
               icon = "hl-prowlarr";
-              url = "https://prowlarr.oranos.me";
+              url = "https://prowlarr.oranos.org";
             }
             {
               title = "Bazarr";
               description = "Subtitles";
               icon = "hl-bazarr";
-              url = "https://bazarr.oranos.me";
+              url = "https://bazarr.oranos.org";
             }
           ];
         }
@@ -77,25 +77,25 @@
               title = "Nextcloud";
               description = "Cloud Storage";
               icon = "hl-nextcloud";
-              url = "https://cloud.oranos.me";
+              url = "https://cloud.oranos.org";
             }
             {
               title = "Forgejo";
               description = "Source Code";
               icon = "hl-gitea";
-              url = "https://git.oranos.me";
+              url = "https://git.oranos.org";
             }
             {
               title = "VSCode";
               description = "Code Editor";
               icon = "hl-visual-studio-code";
-              url = "https://code.oranos.me";
+              url = "https://code.oranos.org";
             }
             {
               title = "Open WebUI";
               description = "AI Chat";
               icon = "fas fa-robot";
-              url = "https://chat.oranos.me";
+              url = "https://chat.oranos.org";
             }
           ];
         }
@@ -107,13 +107,13 @@
               title = "Cockpit";
               description = "Server Admin";
               icon = "hl-cockpit";
-              url = "https://cockpit.oranos.me";
+              url = "https://cockpit.oranos.org";
             }
             {
               title = "Authelia";
               description = "Authentication";
               icon = "hl-authelia";
-              url = "https://auth.oranos.me";
+              url = "https://auth.oranos.org";
             }
           ];
         }

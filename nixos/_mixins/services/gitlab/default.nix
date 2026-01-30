@@ -52,7 +52,7 @@
     packages.gitlab = pkgs.unstable.gitlab;
     databaseCreateLocally = true;
     statePath = "/data/.state/gitlab";
-    host = "git.oranos.me";
+    host = "git.oranos.org";
     port = 443;
     https = true;
     initialRootPasswordFile = config.sops.secrets.gitlab-root-password.path;
@@ -67,8 +67,8 @@
     };
     extraConfig = {
       gitlab = {
-        email_from = "gitlab@oranos.me";
-        email_reply_to = "noreply@oranos.me";
+        email_from = "gitlab@oranos.org";
+        email_reply_to = "noreply@oranos.org";
         trusted_proxies = [
           "127.0.0.1"
           "::1"

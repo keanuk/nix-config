@@ -4,10 +4,10 @@
 # the NixOS configuration. Import this in modules that need domain info.
 {
   # Primary domain
-  primary = "oranos.me";
+  primary = "oranos.org";
 
   # Authentication domain
-  auth = "auth.oranos.me";
+  auth = "auth.oranos.org";
 
   # Email configuration
   email = "keanu@kerr.us";
