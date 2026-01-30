@@ -96,7 +96,7 @@ The configuration enforces layered security:
   - `auth.oranos.org` - Authelia portal itself
 
 - **Two-factor authentication required (sensitive services):**
-  - `git.oranos.org` - GitLab (source code, CI/CD)
+  - `git.oranos.org` - Forgejo (source code, CI/CD)
   - `cloud.oranos.org` - Nextcloud (files, documents)
   - `home.oranos.org` - Home Assistant (smart home control)
   - `photos.oranos.org` - Immich (private photos)
