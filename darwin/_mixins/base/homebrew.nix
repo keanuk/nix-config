@@ -40,11 +40,11 @@ in
       "HacKit" = 1549557075;
       "iMovie" = 408981434;
       "Kagi for Safari" = 1622835804;
-      "Keynote" = 409183694;
+      "Keynote: Design Presentations" = 361285480;
       "Messenger" = 1480068668;
       "NextDNS" = 1464122853;
-      "Numbers" = 409203825;
-      "Pages" = 409201541;
+      "Numbers: Make Spreadsheets" = 361304891;
+      "Pages: Create Documents" = 361309726;
       "Pixelmator Pro" = 1289583905;
       "Save to Reader" = 1640236961;
       "Shazam: Identify Songs" = 897118787;
