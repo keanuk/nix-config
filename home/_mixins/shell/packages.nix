@@ -18,6 +18,7 @@
     immich-cli
     just
     libnatpmp
+    ncdu
     nix-index
     nix-tree
     nmap
