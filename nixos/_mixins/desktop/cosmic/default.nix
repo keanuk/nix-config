@@ -9,6 +9,8 @@
 
   environment.systemPackages = with pkgs; [
     cosmic-ext-applet-caffeine
+    cosmic-ext-applet-minimon
+    cosmic-ext-applet-privacy-indicator
     cosmic-ext-tweaks
   ];
 }
