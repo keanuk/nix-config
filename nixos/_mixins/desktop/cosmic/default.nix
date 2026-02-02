@@ -11,6 +11,8 @@
     cosmic-ext-applet-caffeine
     cosmic-ext-applet-minimon
     cosmic-ext-applet-privacy-indicator
+    cosmic-ext-applet-sysinfo
+    cosmic-ext-applet-weather
     cosmic-ext-tweaks
   ];
 }

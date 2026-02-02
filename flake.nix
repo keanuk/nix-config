@@ -331,6 +331,18 @@
           };
           modules = [ ./nixos/vps/emilyvansant ];
         };
+        # Love Alaya Website Hetzner
+        love-alaya = lib-stable.nixosSystem {
+          specialArgs = {
+            inherit
+              self
+              inputs
+              outputs
+              mkHomeManagerHost
+              ;
+          };
+          modules = [ ./nixos/vps/love-alaya ];
+        };
       };
       darwinConfigurations = {
         # Mac Mini 2024
@@ -387,6 +399,14 @@
             user = "root";
             sshUser = "keanu";
             path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.emilyvansant;
+          };
+        };
+        love-alaya = {
+          hostname = "love-alaya.com";
+          profiles.system = {
+            user = "root";
+            sshUser = "keanu";
+            path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.love-alaya;
           };
         };
       };
@@ -460,6 +480,11 @@
           extraSpecialArgs = { inherit inputs outputs; };
           pkgs = pkgsFor-stable.x86_64-linux;
           modules = [ ./home/vps/emilyvansant/keanu.nix ];
+        };
+        "keanu@love-alaya" = lib-stable.homeManagerConfiguration {
+          extraSpecialArgs = { inherit inputs outputs; };
+          pkgs = pkgsFor-stable.x86_64-linux;
+          modules = [ ./home/vps/love-alaya/keanu.nix ];
         };
       };
     };
