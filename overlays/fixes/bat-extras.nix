@@ -5,6 +5,9 @@
 # Last checked: 2026-02-02
 _final: prev: {
   bat-extras = prev.bat-extras // {
+    batdiff = prev.bat-extras.batdiff.overrideAttrs (_oldAttrs: {
+      doCheck = false;
+    });
     batgrep = prev.bat-extras.batgrep.overrideAttrs (_oldAttrs: {
       doCheck = false;
     });
