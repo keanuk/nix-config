@@ -2,6 +2,7 @@
 let
   fixes = [
     ./fixes/batgrep.nix
+    ./fixes/batman.nix
     ./fixes/batpipe.nix
   ];
 
