@@ -3,10 +3,10 @@
   programs.broot = {
     enable = true;
     package = pkgs.broot;
-    enableBashIntegration = true;
+    enableBashIntegration = false;
     enableFishIntegration = true;
-    enableNushellIntegration = true;
-    enableZshIntegration = true;
+    enableNushellIntegration = false;
+    enableZshIntegration = false;
     settings = {
       modal = true;
     };

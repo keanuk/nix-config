@@ -9,10 +9,10 @@
     package = pkgs.starship;
     enableTransience = true;
     enableInteractive = true;
-    enableBashIntegration = true;
+    enableBashIntegration = false;
     enableFishIntegration = true;
-    enableNushellIntegration = true;
-    enableZshIntegration = true;
+    enableNushellIntegration = false;
+    enableZshIntegration = false;
     settings = lib.importTOML ./starship.toml;
   };
 }

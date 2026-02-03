@@ -3,9 +3,9 @@
   programs.eza = {
     enable = true;
     package = pkgs.eza;
-    enableBashIntegration = true;
+    enableBashIntegration = false;
     enableFishIntegration = true;
-    enableNushellIntegration = true;
-    enableZshIntegration = true;
+    enableNushellIntegration = false;
+    enableZshIntegration = false;
   };
 }

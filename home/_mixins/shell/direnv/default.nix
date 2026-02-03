@@ -3,9 +3,9 @@
   programs.direnv = {
     enable = true;
     package = pkgs.direnv;
-    enableBashIntegration = true;
-    enableNushellIntegration = true;
-    enableZshIntegration = true;
+    enableBashIntegration = false;
+    enableNushellIntegration = false;
+    enableZshIntegration = false;
     nix-direnv = {
       enable = true;
       package = pkgs.nix-direnv;

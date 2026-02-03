@@ -20,7 +20,8 @@
     # Host-specific hardware
     ./disko-configuration.nix
     ./hardware-configuration.nix
-    ./raid-configuration.nix
+    # TODO: re-enable when RAID issues are resolved
+    # ./raid-configuration.nix
 
     # Base configuration
     ../_mixins/base/amd.nix

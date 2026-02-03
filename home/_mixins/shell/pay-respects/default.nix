@@ -3,9 +3,9 @@
   programs.pay-respects = {
     enable = true;
     package = pkgs.pay-respects;
-    enableBashIntegration = true;
+    enableBashIntegration = false;
     enableFishIntegration = true;
-    enableNushellIntegration = true;
-    enableZshIntegration = true;
+    enableNushellIntegration = false;
+    enableZshIntegration = false;
   };
 }

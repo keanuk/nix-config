@@ -7,10 +7,10 @@
   programs.atuin = {
     enable = true;
     package = pkgs.atuin;
-    enableBashIntegration = true;
+    enableBashIntegration = false;
     enableFishIntegration = true;
-    enableNushellIntegration = true;
-    enableZshIntegration = true;
+    enableNushellIntegration = false;
+    enableZshIntegration = false;
     daemon.enable = lib.mkDefault true;
     settings = {
       style = "auto";

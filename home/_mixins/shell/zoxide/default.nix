@@ -3,9 +3,9 @@
   programs.zoxide = {
     enable = true;
     package = pkgs.zoxide;
-    enableBashIntegration = true;
+    enableBashIntegration = false;
     enableFishIntegration = true;
-    enableNushellIntegration = true;
-    enableZshIntegration = true;
+    enableNushellIntegration = false;
+    enableZshIntegration = false;
   };
 }

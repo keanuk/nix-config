@@ -3,9 +3,9 @@
   programs.carapace = {
     enable = true;
     package = pkgs.carapace;
-    enableBashIntegration = true;
+    enableBashIntegration = false;
     enableFishIntegration = true;
-    enableNushellIntegration = true;
-    enableZshIntegration = true;
+    enableNushellIntegration = false;
+    enableZshIntegration = false;
   };
 }
