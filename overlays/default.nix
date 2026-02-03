@@ -1,9 +1,7 @@
 { inputs, ... }:
 let
   fixes = [
-    ./fixes/batgrep.nix
-    ./fixes/batman.nix
-    ./fixes/batpipe.nix
+    ./fixes/bat-extras.nix
   ];
 
   # Combine all fix overlays into a single overlay
