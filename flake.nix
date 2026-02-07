@@ -18,6 +18,7 @@
       "keanu.cachix.org-1:bnYEu6tJzXfwM5JkEhc90uEjR7cAHwaa4fwHRCYdFGg="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
+    allow-import-from-derivation = "true";
   };
 
   # Flake inputs - external dependencies
@@ -169,14 +170,20 @@
         system:
         import nixpkgs {
           inherit system;
-          config.allowUnfree = true;
+          config = {
+            allowUnfree = true;
+            allowImportFromDerivation = true;
+          };
         }
       );
       pkgsFor-stable = lib.genAttrs (import systems) (
         system:
         import nixpkgs-stable {
           inherit system;
-          config.allowUnfree = true;
+          config = {
+            allowUnfree = true;
+            allowImportFromDerivation = true;
+          };
         }
       );
     in

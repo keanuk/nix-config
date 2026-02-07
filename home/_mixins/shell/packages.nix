@@ -9,6 +9,7 @@
     copilot-language-server
     cpufetch
     deadnix
+    deploy-rs
     ffmpeg
     fh
     fortune

@@ -140,6 +140,9 @@
   security = {
     audit.enable = lib.mkForce false;
     auditd.enable = lib.mkForce false;
+    # Allow passwordless sudo for wheel users on VPS
+    # Required for automated deployments via deploy-rs
+    sudo.wheelNeedsPassword = false;
   };
 
   # ===== Systemd Hardening =====

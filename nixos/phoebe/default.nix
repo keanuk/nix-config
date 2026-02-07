@@ -28,7 +28,7 @@
 
     # Desktop environment
     ../_mixins/desktop
-    ../_mixins/desktop/gnome
+    ../_mixins/desktop/pantheon
 
     # Services
     ../_mixins/services/btrfs
