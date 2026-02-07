@@ -20,6 +20,7 @@
     just
     libnatpmp
     ncdu
+    nixos-anywhere
     nix-index
     nix-tree
     nmap
