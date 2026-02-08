@@ -5,7 +5,9 @@
     authelia
     bitwarden-cli
     circumflex
+    claude-code-bin
     cloudflared
+    codex
     copilot-language-server
     cpufetch
     deadnix
@@ -19,6 +21,7 @@
     immich-cli
     just
     libnatpmp
+    mistral-vibe
     ncdu
     nixos-anywhere
     nix-index
