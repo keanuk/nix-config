@@ -9,7 +9,8 @@
     # Flake inputs
     inputs.determinate.nixosModules.default
     inputs.disko.nixosModules.disko
-    inputs.home-manager-stable.nixosModules.home-manager
+    # TODO: Switch back to stable when 26.05 is released
+    inputs.home-manager.nixosModules.home-manager
     inputs.nur.modules.nixos.default
 
     # Hardware support

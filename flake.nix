@@ -218,7 +218,8 @@
 
       nixosConfigurations = {
         # Beelink SER9 Pro
-        beehive = lib-stable.nixosSystem {
+        # TODO: Switch back to stable when 26.05 is released
+        beehive = lib.nixosSystem {
           specialArgs = {
             inherit
               self
@@ -422,9 +423,10 @@
       checks = forEachSystem (pkgs: inputs.deploy-rs.lib.${pkgs.system}.deployChecks self.deploy);
 
       homeConfigurations = {
-        "keanu@beehive" = lib-stable.homeManagerConfiguration {
+        # TODO: Switch back to stable when 26.05 is released
+        "keanu@beehive" = lib.homeManagerConfiguration {
           extraSpecialArgs = { inherit inputs outputs; };
-          pkgs = pkgsFor-stable.x86_64-linux;
+          pkgs = pkgsFor.x86_64-linux;
           modules = [ ./home/beehive/keanu.nix ];
         };
         "keanu@charon" = lib.homeManagerConfiguration {
