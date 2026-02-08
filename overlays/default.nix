@@ -1,7 +1,6 @@
 { inputs, ... }:
 let
   fixes = [
-    # ./fixes/bat-extras.nix
   ];
 
   # Combine all fix overlays into a single overlay
