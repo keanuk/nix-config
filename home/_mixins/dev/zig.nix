@@ -2,6 +2,7 @@
 {
   home.packages = with pkgs; [
     zig
-    zls
+    # TODO: re-enable when build issues are resolved
+    # zls
   ];
 }

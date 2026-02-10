@@ -7,6 +7,6 @@
     vulkan-tools
     wireplumber
 
-    xorg.xkill
+    xkill
   ];
 }

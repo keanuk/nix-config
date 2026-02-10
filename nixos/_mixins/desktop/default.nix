@@ -69,7 +69,7 @@
       NIXOS_OZONE_WL = "1";
     };
     systemPackages = with pkgs; [
-      xorg.xbacklight
+      xbacklight
     ];
     shells = with pkgs; [
       bashInteractive
@@ -79,7 +79,7 @@
     ];
   };
 
-  # Needed if not using GNOME
+  # Needed if not using GNOeE
   xdg.portal = {
     enable = true;
     wlr.enable = true;

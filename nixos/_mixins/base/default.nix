@@ -76,7 +76,7 @@
     printing.enable = true;
     power-profiles-daemon.enable = true;
     resolved.enable = lib.mkDefault true;
-    resolved.dnssec = lib.mkDefault "allow-downgrade";
+    resolved.settings.Resolve.DNSSEC = lib.mkDefault "allow-downgrade";
     sysstat.enable = true;
     udisks2.enable = true;
     upower.enable = true;
