@@ -29,18 +29,6 @@
       "vm.dirty_ratio" = 10;
       "vm.dirty_background_ratio" = 5;
     };
-
-    # ===== Disable bcachefs =====
-    # Not needed on VPS and currently marked as broken in stable
-    supportedFilesystems = lib.mkForce [
-      "btrfs"
-    ];
-
-    # Disable Plymouth (boot splash)
-    plymouth.enable = lib.mkForce false;
-
-    # Use a lighter kernel (not latest, to save on memory and build time)
-    kernelPackages = lib.mkForce pkgs.linuxPackages;
   };
 
   # ===== Nix Settings for Low-Resource Systems =====
@@ -59,69 +47,20 @@
   # ===== Disable sops-nix =====
   # sops requires either SSH host keys (not available during initial install)
   # or an age key file that doesn't exist on fresh systems
-  # Disable for VPS to allow clean nixos-anywhere installation
   sops = {
     defaultSopsFile = lib.mkForce null;
     secrets = lib.mkForce { };
   };
 
-  # ===== Disable Local Auto-Builds =====
-  # On resource-constrained VPS, builds should happen remotely and be deployed
-  system.autoUpgrade.enable = lib.mkForce false;
-
-  # ===== Enable Essential VPS Services =====
+  # ===== Disable services not needed on VPS =====
   services = {
     # Disable comin (git-ops auto-rebuild) - use deploy-rs instead
     comin.enable = lib.mkForce false;
 
     vscode-server.enable = true;
-
-    # Keep systemd-oomd for memory pressure management
-    # (inherited from base, but ensure it's on)
-
-    # ===== Disable Unnecessary Services for VPS =====
-    # Desktop/hardware services not needed on VPS
-    printing.enable = lib.mkForce false;
-    avahi.enable = lib.mkForce false;
-    power-profiles-daemon.enable = lib.mkForce false;
-    fwupd.enable = lib.mkForce false;
-    devmon.enable = lib.mkForce false;
-    gvfs.enable = lib.mkForce false;
-    udisks2.enable = lib.mkForce false;
-    upower.enable = lib.mkForce false;
-    pcscd.enable = lib.mkForce false; # Smart card daemon
-    homed.enable = lib.mkForce false;
-    xinetd.enable = lib.mkForce false;
-    gpm.enable = lib.mkForce false;
-
-    # SSSD is overkill for simple VPS
-    sssd.enable = lib.mkForce false;
-
-    # Disable accounts-daemon (desktop user management)
-    accounts-daemon.enable = lib.mkForce false;
-
-    # Keep these useful for VPS
-    # fail2ban - enabled in base
-    # openssh - imported above
-    # irqbalance - useful
-    # sysstat - useful for monitoring
-
-    # ===== Timezone =====
-    # Set a fixed timezone for VPS (no need for automatic detection)
-    # mkOverride 49 has higher priority than mkForce (which is mkOverride 50)
-    automatic-timezoned.enable = lib.mkForce false;
-    localtimed.enable = lib.mkForce false;
-  };
-
-  # ===== Disable Hardware Features Not Applicable to VPS =====
-  hardware = {
-    bluetooth.enable = lib.mkForce false;
-    enableAllFirmware = lib.mkForce false;
-    enableRedistributableFirmware = lib.mkForce false;
   };
 
   # ===== Disable Virtualization Stack =====
-  # Don't need Docker/Podman on simple web server VPS
   virtualisation = {
     containerd.enable = lib.mkForce false;
     docker.enable = lib.mkForce false;
@@ -129,8 +68,6 @@
   };
 
   # ===== Additional VPS Packages =====
-  # Don't use mkForce - let base packages merge naturally
-  # Just add any VPS-specific tools here
   environment.systemPackages = with pkgs; [
     # Locale support (required for clean shell startup)
     glibcLocales
@@ -142,7 +79,7 @@
     auditd.enable = lib.mkForce false;
     # Allow passwordless sudo for wheel users on VPS
     # Required for automated deployments via deploy-rs
-    sudo.wheelNeedsPassword = false;
+    sudo-rs.wheelNeedsPassword = false;
   };
 
   # ===== Systemd Hardening =====
@@ -164,14 +101,12 @@
   # Simple network config for VPS
   networking = {
     useDHCP = lib.mkDefault true;
-    networkmanager.enable = lib.mkForce false; # Use simple dhcpcd instead
   };
 
   time.timeZone = lib.mkOverride 49 "UTC";
 
   # ===== Locale =====
   # Use simple English locale for VPS to avoid locale errors
-  # The base config uses de_DE which requires extra locale data
   i18n.defaultLocale = lib.mkForce "en_US.UTF-8";
   i18n.extraLocaleSettings = lib.mkForce {
     LC_ALL = "en_US.UTF-8";

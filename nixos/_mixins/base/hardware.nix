@@ -1,9 +1,6 @@
-# Hardware configuration for physical machines (servers + desktops)
-# Not needed on VPS or WSL hosts
 {
   inputs,
   pkgs,
-  lib,
   ...
 }:
 {

@@ -10,6 +10,11 @@
     ./nix.nix
     ./sops.nix
 
+    # Common flake module imports
+    inputs.determinate.nixosModules.default
+    inputs.disko.nixosModules.disko
+    inputs.nur.modules.nixos.default
+
     ../programs/nh
     ../programs/nix-ld
 
@@ -25,24 +30,7 @@
   boot = {
     initrd.systemd.enable = true;
     loader.efi.canTouchEfiVariables = lib.mkDefault true;
-    plymouth.enable = true;
-    kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = [ "iptable_raw" ];
-    supportedFilesystems = [ "bcachefs" ];
-  };
-
-  system.autoUpgrade = {
-    enable = true;
-    allowReboot = false;
-    flake = inputs.self.outPath;
-    flags = [
-      "--update-input"
-      "nixpkgs"
-      "--no-write-lock-file"
-      "-L" # print build logs
-    ];
-    dates = "02:00";
-    randomizedDelaySec = "45min";
   };
 
   users.defaultUserShell = pkgs.fish;
@@ -53,64 +41,23 @@
     memoryPercent = 25;
   };
 
-  hardware = {
-    enableAllFirmware = true;
-    enableRedistributableFirmware = true;
-    ksm.enable = true;
-  };
-
   time.timeZone = lib.mkForce null;
 
   services = {
-    accounts-daemon.enable = true;
-    automatic-timezoned.enable = true;
-    avahi.enable = true;
-    devmon.enable = true;
     fail2ban.enable = true;
-    fwupd.enable = true;
-    gvfs.enable = true;
-    homed.enable = true;
     irqbalance.enable = true;
-    localtimed.enable = true;
-    pcscd.enable = true;
-    printing.enable = true;
-    power-profiles-daemon.enable = true;
     resolved.enable = lib.mkDefault true;
-    resolved.settings.Resolve.DNSSEC = lib.mkDefault "allow-downgrade";
+    resolved.dnssec = lib.mkDefault "allow-downgrade";
     sysstat.enable = true;
-    udisks2.enable = true;
-    upower.enable = true;
-    xinetd.enable = true;
-
-    sssd = {
-      enable = true;
-      settings = {
-        "domain/shadowutils" = {
-          auth_provider = "proxy";
-          id_provider = "proxy";
-          proxy_fast_alias = true;
-          proxy_lib_name = "files";
-          proxy_pam_target = "sssd-shadowutils";
-        };
-        nss = { };
-        pam = { };
-        sssd = {
-          domains = "shadowutils";
-          services = "nss, pam";
-        };
-      };
-    };
   };
 
   systemd = {
-    # network.enable = true;
     oomd.enable = lib.mkDefault true;
   };
 
   networking = {
     firewall.enable = true;
     firewall.trustedInterfaces = [ "wt0" ];
-    networkmanager.enable = true;
     nftables.enable = true;
   };
 

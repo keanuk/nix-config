@@ -1,27 +1,13 @@
 { outputs, ... }:
 {
   imports = [
-    ../fixes
+    ../shell
 
-    ../shell/bash
-    ../shell/bat
-    ../shell/bottom
-    ../shell/carapace
-    ../shell/eza
-    ../shell/fastfetch
-    ../shell/fd
-    ../shell/fish
-    ../shell/gh
-    ../shell/git
-    ../shell/helix
-    ../shell/micro
-    ../shell/ripgrep
-    ../shell/skim
-    ../shell/starship
-    ../shell/yazi
-    ../shell/zoxide
+    ../fixes
   ];
 
+  # nixpkgs config for standalone home-manager usage (homeConfigurations in flake.nix).
+  # When used as a NixOS module with useGlobalPkgs = true, these are inherited from NixOS instead.
   nixpkgs = {
     overlays = [
       outputs.overlays.unstable-packages

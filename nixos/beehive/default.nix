@@ -7,11 +7,8 @@
 {
   imports = [
     # Flake inputs
-    inputs.determinate.nixosModules.default
-    inputs.disko.nixosModules.disko
     # TODO: Switch back to stable when 26.05 is released
     inputs.home-manager.nixosModules.home-manager
-    inputs.nur.modules.nixos.default
 
     # Hardware support
     inputs.nixos-hardware.nixosModules.common-cpu-amd
@@ -25,8 +22,9 @@
     # ./raid-configuration.nix
 
     # Base configuration
-    ../_mixins/base/amd.nix
     ../_mixins/base
+    ../_mixins/base/amd.nix
+    ../_mixins/base/hardware.nix
     ../_mixins/base/server.nix
     ../_mixins/base/systemd-boot.nix
 

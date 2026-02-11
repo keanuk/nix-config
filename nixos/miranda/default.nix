@@ -7,10 +7,7 @@
 {
   imports = [
     # Flake inputs
-    inputs.determinate.nixosModules.default
-    inputs.disko.nixosModules.disko
     inputs.home-manager.nixosModules.home-manager
-    inputs.nur.modules.nixos.default
 
     # Hardware support
     inputs.nixos-hardware.nixosModules.common-cpu-intel
@@ -23,6 +20,7 @@
 
     # Base configuration
     ../_mixins/base
+    ../_mixins/base/hardware.nix
     ../_mixins/base/lanzaboote.nix
     ../_mixins/base/laptop.nix
 
