@@ -6,6 +6,7 @@
   self,
   inputs,
   outputs,
+  domains,
   mkHomeManagerHost,
   lib,
 }:
@@ -16,6 +17,7 @@ lib.darwinSystem {
       self
       inputs
       outputs
+      domains
       mkHomeManagerHost
       ;
   };

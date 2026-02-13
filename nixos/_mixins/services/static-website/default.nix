@@ -12,7 +12,7 @@
   domain,
   webRoot,
 }:
-{ lib, ... }:
+{ domains, ... }:
 {
   services.nginx = {
     enable = true;
@@ -34,7 +34,7 @@
 
   security.acme = {
     acceptTerms = true;
-    defaults.email = lib.domains.email;
+    defaults.email = domains.email;
   };
 
   systemd.tmpfiles.rules = [

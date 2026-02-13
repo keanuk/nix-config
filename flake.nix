@@ -193,6 +193,7 @@
           self
           inputs
           outputs
+          domains
           mkHomeManagerHost
           ;
       };

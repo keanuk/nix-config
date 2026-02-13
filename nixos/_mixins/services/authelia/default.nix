@@ -2,11 +2,10 @@
   config,
   pkgs,
   lib,
+  domains,
   ...
 }:
 let
-  # Import centralized domain configuration
-  domains = import ../../../../lib/domains.nix;
 
   autheliaUser = "authelia";
   autheliaGroup = "authelia";
