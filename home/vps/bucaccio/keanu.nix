@@ -1,7 +1,7 @@
 { ... }:
 {
   imports = [
-    ../../_mixins/base/vps.nix
+    ../../_mixins/base
   ];
 
   home = {

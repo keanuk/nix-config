@@ -4,11 +4,6 @@
   ...
 }:
 {
-  nixpkgs.config = {
-    permittedInsecurePackages = [
-    ];
-  };
-
   home.packages = with pkgs.unstable; [
     alpaca
     android-studio
