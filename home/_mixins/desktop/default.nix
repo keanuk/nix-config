@@ -7,6 +7,9 @@
     ./amberol
     ./appearance
     ./chromium
+    ./discord
+    ./distrobox
+    ./element-desktop
     ./firefox
     ./ghostty
     ./halloy

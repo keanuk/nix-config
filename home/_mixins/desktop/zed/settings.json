@@ -42,8 +42,8 @@
   },
   "autosave": "on_focus_change",
   "buffer_font_size": 14,
-  "features": {
-    "edit_prediction_provider": "copilot",
+  "edit_predictions": {
+    "provider": "copilot",
   },
   "icon_theme": "Catppuccin Mocha",
   "languages": {

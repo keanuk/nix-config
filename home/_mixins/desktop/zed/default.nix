@@ -13,8 +13,8 @@
       "basher"
       "cargo-tom"
       "catppuccin"
-      "catpuccin-blur"
-      "catpuccin-icons"
+      "catppuccin-blur"
+      "catppuccin-icons"
       "csv"
       "dart"
       "dockerfile"
@@ -211,8 +211,8 @@
           };
         };
       };
-      features = {
-        edit_prediction_provider = "copilot";
+      edit_predictions = {
+        provider = "copilot";
       };
       agent = {
         enabled = true;

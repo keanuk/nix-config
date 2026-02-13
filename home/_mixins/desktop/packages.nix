@@ -25,8 +25,6 @@
     darktable
     dbeaver-bin
     dig
-    discord
-    element-desktop
     endeavour
     ente-auth
     ente-cli
