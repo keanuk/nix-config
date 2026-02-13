@@ -30,6 +30,7 @@
 
     # Services
     ../_mixins/services/btrfs
+    ../_mixins/services/ollama
 
     # User configuration
     ../_mixins/user/keanu
@@ -41,7 +42,20 @@
     })
   ];
 
+  nixpkgs.hostPlatform = "x86_64-linux";
   networking.hostName = "beehive";
+
+  services.ollama.loadModels = [
+    "codestral:latest"
+    "deepseek-r1:latest"
+    "gemma3:latest"
+    "gemma3n:latest"
+    "gpt-oss:latest"
+    "magistral:latest"
+    "mistral:latest"
+    "qwen3:latest"
+    "qwen3-coder:latest"
+  ];
 
   system.stateVersion = "25.05";
 }

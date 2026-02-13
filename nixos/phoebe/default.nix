@@ -42,9 +42,21 @@
     })
   ];
 
+  nixpkgs.hostPlatform = "x86_64-linux";
   networking.hostName = "phoebe";
 
   services.ollama.rocmOverrideGfx = lib.mkForce "11.0.2";
+  services.ollama.loadModels = [
+    "codestral:latest"
+    "deepseek-r1:latest"
+    "gemma3:latest"
+    "gemma3n:latest"
+    "gpt-oss:latest"
+    "magistral:latest"
+    "mistral:latest"
+    "qwen3:latest"
+    "qwen3-coder:latest"
+  ];
 
   system.stateVersion = "25.11";
 }

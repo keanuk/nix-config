@@ -8,7 +8,6 @@
   imports = [
     ./packages.nix
     ./nix.nix
-    ./sops.nix
 
     # Common flake module imports
     inputs.determinate.nixosModules.default

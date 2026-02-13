@@ -38,6 +38,7 @@
     efiSupport = false;
   };
 
+  nixpkgs.hostPlatform = "x86_64-linux";
   networking.hostName = "love-alaya";
 
   system.stateVersion = "25.11";

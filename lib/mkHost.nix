@@ -32,7 +32,7 @@ in
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
     useUserPackages = true;
-    useGlobalPkgs = false;
+    useGlobalPkgs = true;
     backupFileExtension = "backup";
     users = userConfigs;
   };

@@ -12,16 +12,8 @@
     user = "ollama";
     group = "ollama";
     home = lib.mkDefault "/var/lib/ollama";
-    loadModels = [
-      "codestral:latest"
-      "deepseek-r1:latest"
-      "gemma3:latest"
-      "gemma3n:latest"
-      "gpt-oss:latest"
-      "magistral:latest"
-      "mistral:latest"
-      "qwen3:latest"
-      "qwen3-coder:latest"
+    loadModels = lib.mkDefault [
+      "gemma3:1b"
     ];
   };
 }

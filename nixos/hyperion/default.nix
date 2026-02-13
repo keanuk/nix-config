@@ -47,6 +47,7 @@
     })
   ];
 
+  nixpkgs.hostPlatform = "x86_64-linux";
   networking.hostName = "hyperion";
 
   i18n = {

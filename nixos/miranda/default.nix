@@ -41,6 +41,7 @@
     })
   ];
 
+  nixpkgs.hostPlatform = "x86_64-linux";
   networking.hostName = "miranda";
 
   system.stateVersion = "25.05";

@@ -4,6 +4,10 @@
   ...
 }:
 {
+  imports = [
+    ./sops.nix
+  ];
+
   boot = {
     plymouth.enable = true;
     kernelPackages = pkgs.linuxPackages_latest;

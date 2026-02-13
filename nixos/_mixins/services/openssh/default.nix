@@ -6,6 +6,9 @@ _: {
     ];
     settings = {
       PasswordAuthentication = false;
+      PermitRootLogin = "no";
+      KbdInteractiveAuthentication = false;
+      X11Forwarding = false;
     };
   };
 }

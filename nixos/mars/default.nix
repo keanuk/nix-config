@@ -27,6 +27,7 @@
     })
   ];
 
+  nixpkgs.hostPlatform = "aarch64-linux";
   networking.hostName = "mars";
 
   system.stateVersion = "25.11";

@@ -12,10 +12,6 @@
     ../services/udev
   ];
 
-  boot.kernelParams = [
-    "amdgpu.exp_hw_support=1"
-  ];
-
   services = {
     # Desktop services
     accounts-daemon.enable = true;
@@ -54,7 +50,7 @@
     pulseaudio.enable = false;
     udisks2.enable = true;
     upower.enable = true;
-    xinetd.enable = true;
+
     xserver.enable = true;
 
     sssd = {

@@ -25,6 +25,7 @@
     ../_mixins/base/hardware.nix
     ../_mixins/base/lanzaboote.nix
     ../_mixins/base/pc.nix
+    ../_mixins/base/rtw88-fix.nix
 
     # Desktop environment
     ../_mixins/desktop
@@ -48,9 +49,21 @@
     })
   ];
 
+  nixpkgs.hostPlatform = "x86_64-linux";
   networking.hostName = "titan";
 
   services.ollama.rocmOverrideGfx = lib.mkForce "10.3.0";
+  services.ollama.loadModels = [
+    "codestral:latest"
+    "deepseek-r1:latest"
+    "gemma3:latest"
+    "gemma3n:latest"
+    "gpt-oss:latest"
+    "magistral:latest"
+    "mistral:latest"
+    "qwen3:latest"
+    "qwen3-coder:latest"
+  ];
 
   system.stateVersion = "23.05";
 }

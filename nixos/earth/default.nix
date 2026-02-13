@@ -22,6 +22,7 @@
     ../_mixins/base
     ../_mixins/base/hardware.nix
     ../_mixins/base/pc.nix
+    ../_mixins/base/rtw88-fix.nix
     ../_mixins/base/systemd-boot.nix
 
     # Desktop environment
@@ -42,6 +43,7 @@
     })
   ];
 
+  nixpkgs.hostPlatform = "x86_64-linux";
   networking.hostName = "earth";
 
   system.stateVersion = "23.11";

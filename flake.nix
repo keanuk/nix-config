@@ -186,6 +186,24 @@
           };
         }
       );
+
+      # Host configuration helpers — eliminate repetitive specialArgs/extraSpecialArgs
+      commonArgs = {
+        inherit
+          self
+          inputs
+          outputs
+          mkHomeManagerHost
+          ;
+      };
+      mkNixosHost = import ./lib/mkNixosHost.nix (commonArgs // { inherit lib; });
+      mkNixosHost-stable = import ./lib/mkNixosHost.nix (commonArgs // { lib = lib-stable; });
+      mkDarwinHost = import ./lib/mkDarwinHost.nix (commonArgs // { inherit lib; });
+      mkHomeConfig = import ./lib/mkHomeConfig.nix { inherit inputs outputs lib; };
+      mkHomeConfig-stable = import ./lib/mkHomeConfig.nix {
+        inherit inputs outputs;
+        lib = lib-stable;
+      };
     in
     {
       inherit lib lib-stable;
@@ -216,182 +234,47 @@
       devShells = forEachSystem (pkgs: import ./shells.nix { inherit pkgs inputs; });
       formatter = forEachSystem (pkgs: pkgs.nixfmt-tree);
 
+      # ===== NixOS Configurations =====
       nixosConfigurations = {
         # Beelink SER9 Pro
         # TODO: Switch back to stable when 26.05 is released
-        beehive = lib.nixosSystem {
-          specialArgs = {
-            inherit
-              self
-              inputs
-              outputs
-              mkHomeManagerHost
-              ;
-          };
-          modules = [ ./nixos/beehive ];
-        };
+        beehive = mkNixosHost { modules = [ ./nixos/beehive ]; };
         # Intel NUC 10 i7
-        earth = lib.nixosSystem {
-          specialArgs = {
-            inherit
-              self
-              inputs
-              outputs
-              mkHomeManagerHost
-              ;
-          };
-          modules = [ ./nixos/earth ];
-        };
+        earth = mkNixosHost { modules = [ ./nixos/earth ]; };
         # HP EliteBook 845 G8
-        hyperion = lib.nixosSystem {
-          specialArgs = {
-            inherit
-              self
-              inputs
-              outputs
-              mkHomeManagerHost
-              ;
-          };
-          modules = [ ./nixos/hyperion ];
-        };
+        hyperion = mkNixosHost { modules = [ ./nixos/hyperion ]; };
         # ThinkPad X13s Gen 1
-        mars = lib.nixosSystem {
-          specialArgs = {
-            inherit
-              self
-              inputs
-              outputs
-              mkHomeManagerHost
-              ;
-          };
-          modules = [ ./nixos/mars ];
-        };
+        mars = mkNixosHost { modules = [ ./nixos/mars ]; };
         # HP EliteBook 1030 G2
-        miranda = lib.nixosSystem {
-          specialArgs = {
-            inherit
-              self
-              inputs
-              outputs
-              mkHomeManagerHost
-              ;
-          };
-          modules = [ ./nixos/miranda ];
-        };
+        miranda = mkNixosHost { modules = [ ./nixos/miranda ]; };
         # ThinkPad P14s AMD Gen 5
-        phoebe = lib.nixosSystem {
-          specialArgs = {
-            inherit
-              self
-              inputs
-              outputs
-              mkHomeManagerHost
-              ;
-          };
-          modules = [ ./nixos/phoebe ];
-        };
+        phoebe = mkNixosHost { modules = [ ./nixos/phoebe ]; };
         # Zotac ZBox
-        tethys = lib.nixosSystem {
-          specialArgs = {
-            inherit
-              self
-              inputs
-              outputs
-              mkHomeManagerHost
-              ;
-          };
-          modules = [ ./nixos/tethys ];
-        };
+        tethys = mkNixosHost { modules = [ ./nixos/tethys ]; };
         # CyberPowerPC
-        titan = lib.nixosSystem {
-          specialArgs = {
-            inherit
-              self
-              inputs
-              outputs
-              mkHomeManagerHost
-              ;
-          };
-          modules = [ ./nixos/titan ];
-        };
+        titan = mkNixosHost { modules = [ ./nixos/titan ]; };
+
         # ===== VPS =====
         # Bucaccio Website Hetzner us-east-1
-        bucaccio = lib-stable.nixosSystem {
-          specialArgs = {
-            inherit
-              self
-              inputs
-              outputs
-              mkHomeManagerHost
-              ;
-          };
-          modules = [ ./nixos/vps/bucaccio ];
-        };
+        bucaccio = mkNixosHost-stable { modules = [ ./nixos/vps/bucaccio ]; };
         # Emily Van Sant Website Hetzner
-        emilyvansant = lib-stable.nixosSystem {
-          specialArgs = {
-            inherit
-              self
-              inputs
-              outputs
-              mkHomeManagerHost
-              ;
-          };
-          modules = [ ./nixos/vps/emilyvansant ];
-        };
+        emilyvansant = mkNixosHost-stable { modules = [ ./nixos/vps/emilyvansant ]; };
         # Love Alaya Website Hetzner
-        love-alaya = lib-stable.nixosSystem {
-          specialArgs = {
-            inherit
-              self
-              inputs
-              outputs
-              mkHomeManagerHost
-              ;
-          };
-          modules = [ ./nixos/vps/love-alaya ];
-        };
+        love-alaya = mkNixosHost-stable { modules = [ ./nixos/vps/love-alaya ]; };
       };
+
+      # ===== Darwin Configurations =====
       darwinConfigurations = {
         # Mac Mini 2024
-        salacia = lib.darwinSystem {
-          specialArgs = {
-            inherit
-              self
-              inputs
-              outputs
-              mkHomeManagerHost
-              ;
-          };
-          modules = [ ./darwin/salacia ];
-        };
+        salacia = mkDarwinHost { modules = [ ./darwin/salacia ]; };
         # MacBook Pro 2020
-        vesta = lib.darwinSystem {
-          specialArgs = {
-            inherit
-              self
-              inputs
-              outputs
-              mkHomeManagerHost
-              ;
-          };
-          modules = [ ./darwin/vesta ];
-        };
+        vesta = mkDarwinHost { modules = [ ./darwin/vesta ]; };
         # MacBook Air 2018
-        charon = lib.darwinSystem {
-          specialArgs = {
-            inherit
-              self
-              inputs
-              outputs
-              mkHomeManagerHost
-              ;
-          };
-          modules = [ ./darwin/charon ];
-        };
+        charon = mkDarwinHost { modules = [ ./darwin/charon ]; };
       };
-      # Deploy-rs configuration for remote deployments
-      # This allows building on a powerful machine and deploying to resource-constrained VPS
+
+      # ===== Deploy-rs =====
+      # Remote deployments for resource-constrained VPS hosts
       deploy.nodes = {
         bucaccio = {
           hostname = "vps.bucaccio.com";
@@ -422,76 +305,63 @@
       # Checks for deploy-rs
       checks = forEachSystem (pkgs: inputs.deploy-rs.lib.${pkgs.system}.deployChecks self.deploy);
 
+      # ===== Home Manager Configurations =====
       homeConfigurations = {
         # TODO: Switch back to stable when 26.05 is released
-        "keanu@beehive" = lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs; };
+        "keanu@beehive" = mkHomeConfig {
           pkgs = pkgsFor.x86_64-linux;
           modules = [ ./home/beehive/keanu.nix ];
         };
-        "keanu@charon" = lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs; };
+        "keanu@charon" = mkHomeConfig {
           pkgs = pkgsFor.x86_64-darwin;
           modules = [ ./home/charon/keanu.nix ];
         };
-        "keanu@earth" = lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs; };
+        "keanu@earth" = mkHomeConfig {
           pkgs = pkgsFor-stable.x86_64-linux;
           modules = [ ./home/earth/keanu.nix ];
         };
-        "keanu@hyperion" = lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs; };
+        "keanu@hyperion" = mkHomeConfig {
           pkgs = pkgsFor.x86_64-linux;
           modules = [ ./home/hyperion/keanu.nix ];
         };
-        "keanu@mars" = lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs; };
+        "keanu@mars" = mkHomeConfig {
           pkgs = pkgsFor.aarch64-linux;
           modules = [ ./home/mars/keanu.nix ];
         };
-        "keanu@miranda" = lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs; };
+        "keanu@miranda" = mkHomeConfig {
           pkgs = pkgsFor.x86_64-linux;
           modules = [ ./home/miranda/keanu.nix ];
         };
-        "keanu@phoebe" = lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs; };
+        "keanu@phoebe" = mkHomeConfig {
           pkgs = pkgsFor.x86_64-linux;
           modules = [ ./home/phoebe/keanu.nix ];
         };
-        "keanu@salacia" = lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs; };
+        "keanu@salacia" = mkHomeConfig {
           pkgs = pkgsFor.aarch64-darwin;
           modules = [ ./home/salacia/keanu.nix ];
         };
-        "keanu@tethys" = lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs; };
+        "keanu@tethys" = mkHomeConfig {
           pkgs = pkgsFor.x86_64-linux;
           modules = [ ./home/tethys/keanu.nix ];
         };
-        "keanu@titan" = lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs; };
+        "keanu@titan" = mkHomeConfig {
           pkgs = pkgsFor.x86_64-linux;
           modules = [ ./home/titan/keanu.nix ];
         };
-        "keanu@vesta" = lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs; };
+        "keanu@vesta" = mkHomeConfig {
           pkgs = pkgsFor.x86_64-darwin;
           modules = [ ./home/vesta/keanu.nix ];
         };
         # ===== VPS =====
-        "keanu@bucaccio" = lib-stable.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs; };
+        "keanu@bucaccio" = mkHomeConfig-stable {
           pkgs = pkgsFor-stable.x86_64-linux;
           modules = [ ./home/vps/bucaccio/keanu.nix ];
         };
-        "keanu@emilyvansant" = lib-stable.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs; };
+        "keanu@emilyvansant" = mkHomeConfig-stable {
           pkgs = pkgsFor-stable.x86_64-linux;
           modules = [ ./home/vps/emilyvansant/keanu.nix ];
         };
-        "keanu@love-alaya" = lib-stable.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs outputs; };
+        "keanu@love-alaya" = mkHomeConfig-stable {
           pkgs = pkgsFor-stable.x86_64-linux;
           modules = [ ./home/vps/love-alaya/keanu.nix ];
         };

@@ -9,7 +9,6 @@
       "wheel"
       "networkmanager"
       "podman"
-      "docker"
       "ollama"
     ];
     shell = pkgs.fish;

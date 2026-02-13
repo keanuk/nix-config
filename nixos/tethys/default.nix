@@ -43,6 +43,7 @@
     })
   ];
 
+  nixpkgs.hostPlatform = "x86_64-linux";
   networking.hostName = "tethys";
 
   services.logrotate.checkConfig = false;

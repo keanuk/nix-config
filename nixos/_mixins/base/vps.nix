@@ -44,14 +44,6 @@
     log-lines = 25;
   };
 
-  # ===== Disable sops-nix =====
-  # sops requires either SSH host keys (not available during initial install)
-  # or an age key file that doesn't exist on fresh systems
-  sops = {
-    defaultSopsFile = lib.mkForce null;
-    secrets = lib.mkForce { };
-  };
-
   # ===== Disable services not needed on VPS =====
   services = {
     # Disable comin (git-ops auto-rebuild) - use deploy-rs instead
@@ -62,8 +54,6 @@
 
   # ===== Disable Virtualization Stack =====
   virtualisation = {
-    containerd.enable = lib.mkForce false;
-    docker.enable = lib.mkForce false;
     podman.enable = lib.mkForce false;
   };
 
