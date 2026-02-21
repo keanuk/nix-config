@@ -7,5 +7,6 @@
     enableFishIntegration = true;
     enableNushellIntegration = false;
     enableZshIntegration = false;
+    shellWrapperName = "y";
   };
 }
