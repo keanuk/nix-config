@@ -14,13 +14,14 @@ in
   # Package modifications and temporary fixes
   modifications = combinedFixes;
 
-  # Access to nixpkgs unstable
+  # Access to nixpkgs unstable (with modifications overlay applied so fixes take effect)
   unstable-packages = final: _prev: {
     unstable = import inputs.nixpkgs {
       inherit (final.stdenv.hostPlatform) system;
       config = {
         allowUnfree = true;
       };
+      overlays = [ combinedFixes ];
     };
   };
 

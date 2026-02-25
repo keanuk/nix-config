@@ -104,8 +104,8 @@
     nanosaur2
     otto-matic
     shattered-pixel-dungeon
-    superTux
-    superTuxKart
+    supertux
+    supertuxkart
     wesnoth
     xonotic
     zeroad

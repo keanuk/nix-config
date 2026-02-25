@@ -6,6 +6,8 @@
 }:
 {
   nix = {
+    daemonCPUSchedPolicy = "idle";
+    daemonIOSchedClass = "idle";
     registry = {
       my.flake = self;
       home-manager.flake = inputs.home-manager;

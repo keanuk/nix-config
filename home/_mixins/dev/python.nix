@@ -1,8 +1,8 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    python3
+    python314
 
-    python313Packages.python-lsp-server
+    python314Packages.python-lsp-server
   ];
 }
