@@ -104,6 +104,11 @@
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
+    nix-openclaw = {
+      url = "github:openclaw/nix-openclaw";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     vpn-confinement.url = "github:Maroka-chan/VPN-Confinement";
 
     nixarr.url = "github:rasmus-kirk/nixarr";
@@ -170,6 +175,7 @@
         system:
         import nixpkgs {
           inherit system;
+          overlays = [ inputs.nix-openclaw.overlays.default ];
           config = {
             allowUnfree = true;
             allowImportFromDerivation = true;

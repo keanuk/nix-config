@@ -1,4 +1,4 @@
-{ outputs, ... }:
+{ inputs, outputs, ... }:
 {
   imports = [
     ./homebrew.nix
@@ -21,6 +21,7 @@
       outputs.overlays.stable-packages
       outputs.overlays.additions
       outputs.overlays.modifications
+      inputs.nix-openclaw.overlays.default
     ];
     config = {
       allowUnfree = true;

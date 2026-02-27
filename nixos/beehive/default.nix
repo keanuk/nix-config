@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   outputs,
   mkHomeManagerHost,
@@ -57,6 +58,17 @@
     "qwen3:latest"
     "qwen3-coder:latest"
   ];
+
+  # OpenClaw secrets (decrypted by sops-nix, readable by keanu's systemd user service)
+  sops.secrets.openclaw_telegram_bot_token_beehive = {
+    owner = config.users.users.keanu.name;
+  };
+  sops.secrets.openclaw_mistral_api_key = {
+    owner = config.users.users.keanu.name;
+  };
+  sops.secrets.openclaw_gateway_token = {
+    owner = config.users.users.keanu.name;
+  };
 
   system.stateVersion = "25.05";
 }
