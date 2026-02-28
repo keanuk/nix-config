@@ -5,6 +5,9 @@
 #
 # These packages are exposed through the overlays.additions overlay
 # and become available as pkgs.my-package in all configurations.
-{ pkgs }:
-{
-}
+#
+# Example:
+#   { pkgs }: {
+#     my-package = pkgs.callPackage ./my-package { };
+#   }
+_: { }

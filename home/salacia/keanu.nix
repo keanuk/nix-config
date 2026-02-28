@@ -13,10 +13,12 @@
     })
   ];
 
-  sops.secrets.openclaw_telegram_bot_token_salacia = { };
-  sops.secrets.openclaw_mistral_api_key = { };
-  sops.secrets.openclaw_gateway_token = { };
-  sops.secrets.openclaw_openai_api_key = { };
+  sops.secrets = {
+    openclaw_telegram_bot_token_salacia = { };
+    openclaw_mistral_api_key = { };
+    openclaw_gateway_token = { };
+    openclaw_openai_api_key = { };
+  };
 
   home.stateVersion = "25.11";
 }
