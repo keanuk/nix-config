@@ -69,6 +69,9 @@
   sops.secrets.openclaw_gateway_token = {
     owner = config.users.users.keanu.name;
   };
+  sops.secrets.openclaw_openai_api_key = {
+    owner = config.users.users.keanu.name;
+  };
 
   system.stateVersion = "25.05";
 }

@@ -10,6 +10,7 @@
     codex
     copilot-language-server
     cpufetch
+    ddgr
     deadnix
     deploy-rs
     ffmpeg
