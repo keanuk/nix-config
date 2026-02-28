@@ -6,13 +6,39 @@
 # Secret paths come from sops-nix on both platforms:
 #   - NixOS (beehive): NixOS sops module → /run/secrets/
 #   - macOS (salacia): Home Manager sops module → ~/.config/sops-nix/secrets/
+#
+# Usage in host config:
+#   (import ../_mixins/services/openclaw.nix {
+#     inherit inputs;
+#     openclawTelegramTokenFile = "/run/secrets/...";
+#     openclawMistralApiKeyFile = "/run/secrets/...";
+#     openclawGatewayTokenFile  = "/run/secrets/...";
+#   })
 {
   inputs,
   openclawTelegramTokenFile,
   openclawMistralApiKeyFile,
   openclawGatewayTokenFile,
+  pkgs,
   ...
 }:
+let
+  openclawDocuments = ./openclaw-documents;
+  openclawAuthProfiles = builtins.toJSON {
+    version = 1;
+    profiles = {
+      "mistral:default" = {
+        type = "api_key";
+        provider = "mistral";
+        keyRef = {
+          source = "file";
+          provider = "mistral";
+          id = "value";
+        };
+      };
+    };
+  };
+in
 {
   imports = [
     inputs.nix-openclaw.homeManagerModules.openclaw
@@ -20,6 +46,33 @@
 
   programs.openclaw = {
     enable = true;
+    documents = openclawDocuments;
+
+    bundledPlugins = {
+      summarize.enable = true;
+      peekaboo.enable = pkgs.stdenv.hostPlatform.isDarwin;
+      poltergeist.enable = pkgs.stdenv.hostPlatform.isDarwin;
+      goplaces.enable = false;
+      bird.enable = false;
+      imsg.enable = false;
+    };
+
+    # The steipete/bird GitHub repo and its releases have been deleted,
+    # so the bird package fails to fetch. Exclude it until upstream fixes this.
+    # Also exclude tools that conflict with individually installed packages
+    # (python3, idle, node, go, rg, ffmpeg, curl, jq, etc.) to avoid
+    # buildEnv collisions in home-manager-path.
+    excludeTools = [
+      "bird"
+      "curl"
+      "ffmpeg"
+      "go"
+      "jq"
+      "nodejs_22"
+      "pnpm_10"
+      "python3"
+      "ripgrep"
+    ];
 
     # Use an explicit instance to avoid nix-openclaw's defaultInstance bug
     # (missing appDefaults.nixMode when not going through module system).
@@ -34,6 +87,28 @@
           };
         };
 
+        agents = {
+          defaults = {
+            model = {
+              primary = "mistral/mistral-large-latest";
+              fallbacks = [
+                "mistral/mistral-medium-latest"
+                "mistral/mistral-small-latest"
+              ];
+            };
+          };
+        };
+
+        secrets = {
+          providers = {
+            mistral = {
+              source = "file";
+              path = openclawMistralApiKeyFile;
+              mode = "singleValue";
+            };
+          };
+        };
+
         channels.telegram = {
           tokenFile = openclawTelegramTokenFile;
           allowFrom = [ 15634717 ];
@@ -45,6 +120,10 @@
         };
       };
     };
+  };
+
+  home.file.".openclaw/agents/main/agent/auth-profiles.json" = {
+    text = openclawAuthProfiles;
   };
 
   # Write a secrets.env file that injects secrets into the gateway's
