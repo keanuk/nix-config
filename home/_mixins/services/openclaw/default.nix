@@ -14,13 +14,6 @@
 let
   documentSources = ./documents;
 
-  # Helper to read a secret file, stripping trailing newlines.
-  readSecret = path: ''
-    if [ -f "${path}" ]; then
-      cat "${path}" | tr -d "\n"
-    fi
-  '';
-
   imggen = pkgs.writeShellApplication {
     name = "imggen";
     runtimeInputs = with pkgs; [
@@ -76,8 +69,14 @@ in
         data = ''
           AUTH_DIR="$HOME/.openclaw/agents/main/agent"
           run mkdir -p "$AUTH_DIR"
-          MISTRAL_KEY="$(${readSecret openclawMistralApiKeyFile})"
-          OPENAI_KEY="$(${readSecret openclawOpenaiApiKeyFile})"
+          MISTRAL_KEY=""
+          OPENAI_KEY=""
+          if [ -f "${openclawMistralApiKeyFile}" ]; then
+            MISTRAL_KEY="$(cat "${openclawMistralApiKeyFile}" | tr -d "\n")"
+          fi
+          if [ -f "${openclawOpenaiApiKeyFile}" ]; then
+            OPENAI_KEY="$(cat "${openclawOpenaiApiKeyFile}" | tr -d "\n")"
+          fi
           printf '%s\n' \
             "{\"version\":1,\"profiles\":{\"mistral:default\":{\"type\":\"api_key\",\"provider\":\"mistral\",\"key\":\"$MISTRAL_KEY\"},\"openai:default\":{\"type\":\"api_key\",\"provider\":\"openai\",\"key\":\"$OPENAI_KEY\"}}}" \
             > "$AUTH_DIR/auth-profiles.json"
@@ -94,9 +93,18 @@ in
         data = ''
           OPENCLAW_ENV_DIR="$HOME/.config/openclaw"
           run mkdir -p "$OPENCLAW_ENV_DIR"
-          GW_TOKEN="$(${readSecret openclawGatewayTokenFile})"
-          MISTRAL_KEY="$(${readSecret openclawMistralApiKeyFile})"
-          OPENAI_KEY="$(${readSecret openclawOpenaiApiKeyFile})"
+          GW_TOKEN=""
+          MISTRAL_KEY=""
+          OPENAI_KEY=""
+          if [ -f "${openclawGatewayTokenFile}" ]; then
+            GW_TOKEN="$(cat "${openclawGatewayTokenFile}" | tr -d "\n")"
+          fi
+          if [ -f "${openclawMistralApiKeyFile}" ]; then
+            MISTRAL_KEY="$(cat "${openclawMistralApiKeyFile}" | tr -d "\n")"
+          fi
+          if [ -f "${openclawOpenaiApiKeyFile}" ]; then
+            OPENAI_KEY="$(cat "${openclawOpenaiApiKeyFile}" | tr -d "\n")"
+          fi
           printf 'OPENCLAW_GATEWAY_TOKEN=%s\nMISTRAL_API_KEY=%s\nOPENAI_API_KEY=%s\n' \
             "$GW_TOKEN" "$MISTRAL_KEY" "$OPENAI_KEY" \
             > "$OPENCLAW_ENV_DIR/secrets.env"

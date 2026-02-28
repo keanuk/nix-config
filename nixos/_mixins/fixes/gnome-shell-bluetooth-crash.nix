@@ -3,7 +3,7 @@
 # Primary fix: overlays/fixes/gnome-shell-libgvc.nix (patches libgvc to not abort on missing port)
 # This file: Supplementary WirePlumber config to reduce likelihood of triggering the race condition
 # Status: temporary - waiting for upstream fix in GNOME Shell's libgvc
-# Last checked: 2026-01-12
+# Last checked: 2025-01-12
 # Remove after: GNOME Shell > 49.2 or when upstream issue #8961 is resolved
 {
   lib,

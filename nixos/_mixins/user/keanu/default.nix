@@ -12,6 +12,11 @@
       "ollama"
     ];
     shell = pkgs.fish;
+    # TODO: Replace initialPassword with a sops-managed hashed password.
+    # This plaintext password is stored in the nix store and world-readable.
+    # Use instead:
+    #   hashedPasswordFile = config.sops.secrets.keanu-password-hash.path;
+    # where the secret contains the output of `mkpasswd -m sha-512`.
     initialPassword = "keanu";
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIICP+F1NN7ilYQdrDouylmVIJK3szsurUSl/ZtTWB2rE keanu@beehive"

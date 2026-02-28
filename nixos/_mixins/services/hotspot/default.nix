@@ -1,3 +1,7 @@
+# TODO: Move the hotspot password to sops-nix instead of hardcoding it here.
+# Example:
+#   sops.secrets.hotspot-password = { };
+#   authentication.saePasswordsFile = config.sops.secrets.hotspot-password.path;
 {
   config,
   lib,

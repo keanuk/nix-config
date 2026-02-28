@@ -294,32 +294,22 @@
 
       # ===== Deploy-rs =====
       # Remote deployments for resource-constrained VPS hosts
-      deploy.nodes = {
-        bucaccio = {
-          hostname = "vps.bucaccio.com";
-          profiles.system = {
-            user = "root";
-            sshUser = "keanu";
-            path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.bucaccio;
+      deploy.nodes =
+        let
+          mkNode = name: hostname: {
+            inherit hostname;
+            profiles.system = {
+              user = "root";
+              sshUser = "keanu";
+              path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.${name};
+            };
           };
+        in
+        {
+          bucaccio = mkNode "bucaccio" "vps.bucaccio.com";
+          emilyvansant = mkNode "emilyvansant" "vps.emilyvansant.com";
+          love-alaya = mkNode "love-alaya" "love-alaya.com";
         };
-        emilyvansant = {
-          hostname = "vps.emilyvansant.com";
-          profiles.system = {
-            user = "root";
-            sshUser = "keanu";
-            path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.emilyvansant;
-          };
-        };
-        love-alaya = {
-          hostname = "love-alaya.com";
-          profiles.system = {
-            user = "root";
-            sshUser = "keanu";
-            path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.love-alaya;
-          };
-        };
-      };
 
       # Checks for deploy-rs
       checks = forEachSystem (pkgs: inputs.deploy-rs.lib.${pkgs.system}.deployChecks self.deploy);

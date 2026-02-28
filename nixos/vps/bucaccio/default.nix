@@ -15,7 +15,7 @@
 
     # Base configuration
     ../../_mixins/base
-    ../../_mixins/base/vps.nix
+    ../../_mixins/base/vps-grub.nix
 
     # Static website
     (import ../../_mixins/services/static-website {
@@ -32,11 +32,6 @@
       users.keanu = ../../../home/vps/bucaccio/keanu.nix;
     })
   ];
-
-  boot.loader.grub = {
-    enable = true;
-    efiSupport = false;
-  };
 
   nixpkgs.hostPlatform = "x86_64-linux";
   networking.hostName = "bucaccio";

@@ -1,14 +1,8 @@
 { ... }:
 {
   imports = [
-    ../_mixins/base
-
-    ../_mixins/darwin
+    ../_mixins/profiles/darwin.nix
   ];
 
-  home = {
-    username = "keanu";
-    homeDirectory = "/Users/keanu";
-    stateVersion = "24.05";
-  };
+  home.stateVersion = "24.05";
 }

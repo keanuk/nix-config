@@ -5,7 +5,7 @@
     package = pkgs.zsh;
     autocd = true;
     enableCompletion = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     shellAliases = import ../aliases.nix;
     oh-my-zsh = {

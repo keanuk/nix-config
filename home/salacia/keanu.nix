@@ -1,10 +1,9 @@
 { inputs, config, ... }:
 {
   imports = [
-    ../_mixins/base
+    ../_mixins/profiles/darwin.nix
 
     ../_mixins/base/sops.nix
-    ../_mixins/darwin
     (import ../_mixins/services/openclaw {
       inherit inputs;
       openclawTelegramTokenFile = config.sops.secrets.openclaw_telegram_bot_token_salacia.path;
@@ -19,9 +18,5 @@
   sops.secrets.openclaw_gateway_token = { };
   sops.secrets.openclaw_openai_api_key = { };
 
-  home = {
-    username = "keanu";
-    homeDirectory = "/Users/keanu";
-    stateVersion = "25.11";
-  };
+  home.stateVersion = "25.11";
 }

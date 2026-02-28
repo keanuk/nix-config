@@ -7,6 +7,16 @@ backup_ext := `date +%Y%m%d-%H%M`
 default:
     @just --list --unsorted
 
+# Validate flake evaluation and run checks
+check:
+    @echo "Flake 󱄅 Checking"
+    nix flake check --no-build
+
+# Validate flake with full build check
+check-full:
+    @echo "Flake 󱄅 Checking (full build)"
+    nix flake check
+
 # Build OS and Home configurations
 build:
     @just build-host
@@ -25,7 +35,6 @@ host:
     @just build-host
     @just switch-host
 
-# Build ISO
 # Build ISO
 iso:
     @echo "ISO 󰗮 Building: console"
@@ -81,6 +90,18 @@ switch-host hostname=current_hostname:
     else \
       echo "Unsupported OS: $(uname)"; \
     fi
+
+# Deploy a VPS host via deploy-rs
+deploy host:
+    @echo "Deploy 󰒍 Deploying: {{ host }}"
+    nix run .#deploy-rs -- .#{{ host }}
+
+# Deploy all VPS hosts
+deploy-all:
+    @echo "Deploy 󰒍 Deploying all VPS hosts"
+    nix run .#deploy-rs -- .#bucaccio
+    nix run .#deploy-rs -- .#emilyvansant
+    nix run .#deploy-rs -- .#love-alaya
 
 # Generate Authelia secrets (prints to stdout for adding to SOPS)
 authelia-secrets:

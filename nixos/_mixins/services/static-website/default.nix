@@ -26,6 +26,13 @@
       enableACME = true;
       root = webRoot;
       serverAliases = [ "www.${domain}" ];
+      extraConfig = ''
+        # Security headers
+        add_header X-Content-Type-Options "nosniff" always;
+        add_header X-Frame-Options "DENY" always;
+        add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+        add_header Permissions-Policy "camera=(), microphone=(), geolocation=()" always;
+      '';
       locations."/" = {
         tryFiles = "$uri $uri/ =404";
       };

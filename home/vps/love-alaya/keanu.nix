@@ -1,12 +1,8 @@
 { ... }:
 {
   imports = [
-    ../../_mixins/base
+    ../../_mixins/profiles/vps.nix
   ];
 
-  home = {
-    username = "keanu";
-    homeDirectory = "/home/keanu";
-    stateVersion = "25.11";
-  };
+  home.stateVersion = "25.11";
 }

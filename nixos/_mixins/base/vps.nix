@@ -42,6 +42,23 @@
 
     # Keep build logs small
     log-lines = 25;
+
+    # Minimize disk usage
+    min-free = 512000000; # 512MB — trigger GC when free space drops below this
+    max-free = 1024000000; # 1GB — stop GC once this much is free
+  };
+
+  # More aggressive GC for resource-constrained VPS hosts
+  nix.gc = {
+    automatic = lib.mkForce true;
+    dates = lib.mkForce "daily";
+    options = lib.mkForce "--delete-older-than 3d";
+  };
+
+  # Deduplicate the nix store periodically
+  nix.optimise = {
+    automatic = true;
+    dates = [ "weekly" ];
   };
 
   # ===== Disable services not needed on VPS =====

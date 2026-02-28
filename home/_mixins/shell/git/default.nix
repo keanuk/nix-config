@@ -13,6 +13,13 @@
         github.user = "keanuk";
         init.defaultBranch = "main";
         pull.rebase = false;
+        push.autoSetupRemote = true;
+        merge.conflictStyle = "zdiff3";
+        rerere.enabled = true;
+        diff.algorithm = "histogram";
+        transfer.fsckobjects = true;
+        fetch.fsckobjects = true;
+        receive.fsckObjects = true;
       };
     };
 

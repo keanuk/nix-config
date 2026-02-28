@@ -31,6 +31,7 @@
     # Services
     ../_mixins/services/btrfs
     ../_mixins/services/ollama
+    ../_mixins/services/ollama/full-models.nix
 
     # User configuration
     ../_mixins/user/keanu
@@ -46,18 +47,6 @@
   networking.hostName = "phoebe";
 
   services.ollama.rocmOverrideGfx = lib.mkForce "11.0.2";
-  services.ollama.loadModels = [
-    "codestral:latest"
-    "deepseek-r1:latest"
-    "devstral-small-2:latest"
-    "gemma3:latest"
-    "gemma3n:latest"
-    "gpt-oss:latest"
-    "magistral:latest"
-    "mistral:latest"
-    "qwen3:latest"
-    "qwen3-coder:latest"
-  ];
 
   system.stateVersion = "25.11";
 }
