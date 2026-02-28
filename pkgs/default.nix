@@ -5,6 +5,6 @@
 #
 # These packages are exposed through the overlays.additions overlay
 # and become available as pkgs.my-package in all configurations.
-pkgs: {
-  openclaw-imggen = pkgs.callPackage ./openclaw-imggen { };
+{ }:
+{
 }
