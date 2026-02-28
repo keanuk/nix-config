@@ -175,7 +175,13 @@
         system:
         import nixpkgs {
           inherit system;
-          overlays = [ inputs.nix-openclaw.overlays.default ];
+          overlays = [
+            outputs.overlays.unstable-packages
+            outputs.overlays.stable-packages
+            outputs.overlays.additions
+            outputs.overlays.modifications
+            inputs.nix-openclaw.overlays.default
+          ];
           config = {
             allowUnfree = true;
             allowImportFromDerivation = true;
@@ -186,6 +192,12 @@
         system:
         import nixpkgs-stable {
           inherit system;
+          overlays = [
+            outputs.overlays.unstable-packages
+            outputs.overlays.stable-packages
+            outputs.overlays.additions
+            outputs.overlays.modifications
+          ];
           config = {
             allowUnfree = true;
             allowImportFromDerivation = true;
