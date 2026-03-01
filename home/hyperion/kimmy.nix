@@ -6,6 +6,7 @@
 
     ../_mixins/desktop
     ../_mixins/desktop/gnome
+    ../_mixins/desktop/gaming.nix
   ];
 
   home = {

@@ -5,8 +5,6 @@
 }:
 {
   home.packages = with pkgs.unstable; [
-    # TODO: re-enable when build is fixed
-    # alpaca
     android-studio
     android-tools
     antigravity-fhs
@@ -17,7 +15,6 @@
     bruno
     # TODO: switch back to unstable when build is fixed
     pkgs.stable.calibre
-    caprine
     catppuccin
     darktable
     dbeaver-bin
@@ -26,12 +23,8 @@
     ente-auth
     ente-cli
     ente-desktop
-    foliate
-    fractal
-    fragments
     gimp3-with-plugins
     github-desktop
-    gnome-builder
     gnome-disk-utility
     gnome-maps
     handbrake
@@ -45,22 +38,14 @@
     leetgo
     # TODO: switch back to unstable when build is fixed
     pkgs.stable.libreoffice
-    librewolf
-    lmstudio
-    logseq
-    lollypop
-    microsoft-edge
     netbird-ui
     nextcloud-client
     obs-studio
-    papers
-    pitivi
     plex-desktop
     plexamp
     # TODO: re-enable when build is fixed
     # pocket-casts
     podman-desktop
-    polari
     proton-pass
     protonmail-desktop
     protonmail-bridge-gui
@@ -80,7 +65,6 @@
     transmission_4-gtk
     trayscale
     tremotesf
-    tuba
     typst
     vlc
     wireshark
@@ -89,30 +73,8 @@
     pear-desktop
     zlib-ng
 
-    androidStudioPackages.beta
-    androidStudioPackages.dev
-
     kdePackages.kdenlive
-    kdePackages.kdevelop
 
     inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
-
-    # Gaming
-    airshipper
-    bugdom
-    cartridges
-    dwarf-fortress
-    # TODO: switch back to unstable when build is fixed
-    pkgs.stable.flightgear
-    heroic
-    nanosaur
-    nanosaur2
-    otto-matic
-    shattered-pixel-dungeon
-    supertux
-    supertuxkart
-    wesnoth
-    xonotic
-    zeroad
   ];
 }
