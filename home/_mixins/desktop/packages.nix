@@ -5,7 +5,8 @@
 }:
 {
   home.packages = with pkgs.unstable; [
-    alpaca
+    # TODO: re-enable when build is fixed
+    # alpaca
     android-studio
     android-tools
     antigravity-fhs
@@ -14,7 +15,8 @@
     bitwarden-desktop
     bottles
     bruno
-    calibre
+    # TODO: switch back to unstable when build is fixed
+    pkgs.stable.calibre
     caprine
     catppuccin
     darktable
@@ -35,12 +37,14 @@
     handbrake
     inkscape
     jellyfin-media-player
-    jitsi
+    # TODO: switch back to unstable when build is fixed
+    pkgs.stable.jitsi
     joplin-desktop
     krita
     kodi-wayland
     leetgo
-    libreoffice
+    # TODO: switch back to unstable when build is fixed
+    pkgs.stable.libreoffice
     librewolf
     lmstudio
     logseq
@@ -98,7 +102,8 @@
     bugdom
     cartridges
     dwarf-fortress
-    flightgear
+    # TODO: switch back to unstable when build is fixed
+    pkgs.stable.flightgear
     heroic
     nanosaur
     nanosaur2
