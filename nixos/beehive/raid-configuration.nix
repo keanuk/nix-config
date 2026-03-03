@@ -1,12 +1,10 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
   # Define the beehive-specific sops secret for RAID password
   sops.secrets.beehive_raid_password = {
     mode = "0400";
   };
 
-  # Define a target that other services can depend on
-  # This provides a clean synchronization point for services that need the RAID
   # Define a target that other services can depend on
   # This provides a clean synchronization point for services that need the RAID
   systemd = {
@@ -18,71 +16,101 @@
     };
 
     services = {
-      sops-install-secrets = {
-        description = "Install sops-nix secrets";
-        wantedBy = [ "multi-user.target" ];
-        before = [ "mount-raid.service" ];
-        after = [ "local-fs.target" ];
-        serviceConfig = {
-          Type = "oneshot";
-          RemainAfterExit = true;
-        };
-        script = config.system.activationScripts.setupSecrets.text;
-      };
-
       mount-raid = {
         enable = true;
         description = "Mount RAID configuration";
+        # Return to multi-user.target to avoid ordering cycles with local-fs.target
         wantedBy = [ "multi-user.target" ];
         restartIfChanged = false;
 
         unitConfig = {
+          # Ensure local-fs is up (for the mount point /data) and sops is ready
           After = [
             "local-fs.target"
-            "sops-install-secrets.service"
+            "network.target"
           ];
-          Wants = [ "local-fs.target" ];
-          Requires = [ "sops-install-secrets.service" ];
         };
+
+        path = [ pkgs.unstable.bcachefs-tools pkgs.util-linux pkgs.findutils pkgs.coreutils pkgs.gawk ];
 
         script =
           let
             passwordFile = config.sops.secrets.beehive_raid_password.path;
+            uuid = "d9b90082-f74f-45fb-9bc9-ce571f2b8630";
           in
           ''
             set -euo pipefail
 
-            /run/current-system/sw/bin/udevadm settle || true
+            echo "Starting RAID mount for UUID=${uuid}"
+
+            # Wait for udev to settle
+            udevadm settle || true
 
             # Skip if already mounted
-            if /run/current-system/sw/bin/mountpoint -q /data; then
+            if mountpoint -q /data; then
+              echo "/data already mounted, skipping."
               exit 0
             fi
 
-            # Read password from sops secret file
-            password=$(cat "${passwordFile}")
+            # Check if password file exists (Wait up to 30 seconds if it's missing)
+            found_secret=false
+            for i in {1..30}; do
+              if [ -f "${passwordFile}" ]; then
+                echo "Found password file ${passwordFile}."
+                found_secret=true
+                break
+              fi
+              echo "Waiting for password file ${passwordFile} (attempt $i/30)..."
+              sleep 1
+            done
 
-            printf '%s' "$password" | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sda
-            printf '%s' "$password" | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdb
-            printf '%s' "$password" | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdc
-            printf '%s' "$password" | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdd
-            printf '%s' "$password" | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sde
-            printf '%s' "$password" | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdf
-            printf '%s' "$password" | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdg
-            printf '%s' "$password" | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdh
-            printf '%s' "$password" | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdi
-            printf '%s' "$password" | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdj
-            printf '%s' "$password" | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdk
-            printf '%s' "$password" | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdl
-            printf '%s' "$password" | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdm
-            printf '%s' "$password" | /run/current-system/sw/bin/bcachefs unlock -k session /dev/sdn
+            if [ "$found_secret" = false ]; then
+              echo "Error: Password file ${passwordFile} not found after 30 seconds!"
+              exit 1
+            fi
 
-            printf '%s' "$password" | /run/current-system/sw/bin/bcachefs mount /dev/sda:/dev/sdb:/dev/sdc:/dev/sdd:/dev/sde:/dev/sdf:/dev/sdg:/dev/sdh:/dev/sdi:/dev/sdj:/dev/sdk:/dev/sdl:/dev/sdm:/dev/sdn /data
+            # Get the raw password (no newlines)
+            PASSWORD=$(tr -d '\n\r' < "${passwordFile}")
+
+            # Find all devices matching the UUID
+            DEVICES=$(lsblk -f -n -o NAME,UUID | grep "${uuid}" | awk '{print "/dev/"$1}')
+            echo "Found devices for RAID: $DEVICES"
+
+            # 1. Try to unlock each device into the session keyring
+            # This is more robust for some bcachefs versions
+            for dev in $DEVICES; do
+              echo "Attempting to unlock $dev..."
+              echo -n "$PASSWORD" | bcachefs unlock -k session "$dev" || echo "Note: Unlock failed for $dev (might be already unlocked or non-primary)"
+            done
+
+            # 2. Attempt the mount using the session keyring
+            echo "Attempting to mount UUID=${uuid} to /data..."
+            if bcachefs mount -k session "UUID=${uuid}" /data; then
+               echo "RAID mount successful via session keyring."
+            else
+               echo "Mount via session keyring failed. Attempting direct mount with password..."
+               if echo -n "$PASSWORD" | bcachefs mount -k stdin "UUID=${uuid}" /data; then
+                 echo "RAID mount successful via stdin."
+               else
+                 echo "Attempting mount with devices path directly..."
+                 DEV_LIST=$(echo "$DEVICES" | paste -sd ":" -)
+                 if echo -n "$PASSWORD" | bcachefs mount -k stdin "$DEV_LIST" /data; then
+                    echo "RAID mount successful via device list."
+                 else
+                    echo "Error: All mount attempts failed for bcachefs RAID with UUID=${uuid}"
+                    exit 1
+                 fi
+               fi
+            fi
+
+            echo "RAID mount successful."
           '';
         serviceConfig = {
           Type = "oneshot";
           RemainAfterExit = true;
           TimeoutStartSec = "10min";
+          Restart = "on-failure";
+          RestartSec = "15s";
         };
       };
     };

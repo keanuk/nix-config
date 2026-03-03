@@ -19,8 +19,9 @@
     # Host-specific hardware
     ./disko-configuration.nix
     ./hardware-configuration.nix
-    # TODO: re-enable when RAID issues are resolved
-    # ./raid-configuration.nix
+    ./raid-configuration.nix
+    ./raid-permissions.nix
+    ./shares.nix
 
     # Base configuration
     ../_mixins/base

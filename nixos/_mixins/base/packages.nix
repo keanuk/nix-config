@@ -12,9 +12,11 @@
   environment.systemPackages = with pkgs; [
     busybox
     cachix
+    cifs-utils
     iptables
     libsecret
     lsof
+    nfs-utils
     nix-output-monitor
     pciutils
     polkit
