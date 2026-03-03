@@ -15,6 +15,7 @@
     deploy-rs
     ffmpeg
     fh
+    file
     fortune
     gemini-cli-bin
     github-copilot-cli
@@ -22,6 +23,7 @@
     immich-cli
     just
     libnatpmp
+    mediainfo
     mistral-vibe
     ncdu
     nixos-anywhere
