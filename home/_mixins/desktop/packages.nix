@@ -13,8 +13,7 @@
     bitwarden-desktop
     bottles
     bruno
-    # TODO: switch back to unstable when build is fixed
-    pkgs.stable.calibre
+    calibre
     catppuccin
     darktable
     dbeaver-bin
@@ -36,15 +35,14 @@
     krita
     kodi-wayland
     leetgo
-    # TODO: switch back to unstable when build is fixed
-    pkgs.stable.libreoffice
+    libreoffice
     netbird-ui
     nextcloud-client
     obs-studio
     plex-desktop
     plexamp
-    # TODO: re-enable when build is fixed
-    # pocket-casts
+    # TODO: switch back to unstable when build is fixed
+    pkgs.stable.pocket-casts
     podman-desktop
     proton-pass
     protonmail-desktop
@@ -56,7 +54,7 @@
     session-desktop
     shortwave
     shotwell
-    signal-desktop-bin
+    signal-desktop
     slack
     standardnotes
     steam-run

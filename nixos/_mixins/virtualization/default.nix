@@ -17,8 +17,7 @@
 
   environment.systemPackages = with pkgs; [
     arion
-    # TODO: remove unstable when added to stable
-    unstable.dockerfile-language-server
+    dockerfile-language-server
     kind
     kubernetes
     podman-compose
