@@ -13,7 +13,7 @@
   services.nextcloud = {
     enable = true;
     configureRedis = true;
-    package = pkgs.unstable.nextcloud32;
+    package = pkgs.unstable.nextcloud33;
     hostName = "beehive";
     https = false;
     home = "/data/.state/nextcloud";
