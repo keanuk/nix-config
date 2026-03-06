@@ -15,7 +15,7 @@
   # Centralized permission management for the RAID
   systemd.tmpfiles.rules = [
     # RAID Root
-    "d /data 0775 keanu media -"
+    "d /data 0775 root media -"
 
     # Nixarr services
     "Z /data/.state/nixarr/plex 0750 plex media -"

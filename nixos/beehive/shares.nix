@@ -1,4 +1,4 @@
-_: {
+{ config, ... }: {
   services = {
     # NFS Server Configuration
     nfs.server = {
@@ -71,4 +71,21 @@ _: {
 
   # Open firewall for NFS (Samba is handled by openFirewall = true)
   networking.firewall.allowedTCPPorts = [ 2049 ];
+
+  # Declarative Samba password setup
+  sops.secrets.samba-password = { };
+
+  systemd.services.samba-user-setup = {
+    description = "Samba user setup";
+    after = [ "samba-smbd.service" ];
+    wants = [ "samba-smbd.service" "sops-nix.service" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      password=$(cat ${config.sops.secrets.samba-password.path})
+      (echo "$password"; echo "$password") | /run/current-system/sw/bin/smbpasswd -s -a keanu
+    '';
+  };
 }
