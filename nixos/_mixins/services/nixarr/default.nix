@@ -135,6 +135,11 @@ in
     };
   };
 
+  # Ensure all Nixarr services have access to the media group
+  users.users = lib.genAttrs raidDependentServices (name: {
+    extraGroups = [ "media" ];
+  });
+
   systemd.services = lib.mkMerge [
     (lib.genAttrs raidDependentServices (_: raidDependencyConfig))
     (lib.genAttrs vpnNamespaceServices (_: raidDependencyConfig))

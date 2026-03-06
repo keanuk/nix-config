@@ -18,6 +18,10 @@
     # RAID Root
     "d /data 0775 root media -"
 
+    # Nixarr media library
+    "d /data/nixarr 2775 root media -"
+    "Z /data/nixarr 2775 root media -"
+
     # Nixarr services
     "Z /data/.state/nixarr/plex 0750 plex media -"
     "Z /data/.state/nixarr/sonarr 0750 sonarr media -"
