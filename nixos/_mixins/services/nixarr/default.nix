@@ -136,7 +136,7 @@ in
   };
 
   # Ensure all Nixarr services have access to the media group
-  users.users = lib.genAttrs raidDependentServices (name: {
+  users.users = lib.genAttrs raidDependentServices (_: {
     extraGroups = [ "media" ];
   });
 

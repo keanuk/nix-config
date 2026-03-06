@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
   services = {
     # NFS Server Configuration
@@ -78,18 +78,28 @@
 
   systemd.services.samba-user-setup = {
     description = "Samba user setup";
-    after = [ "samba-smbd.service" ];
+    after = [
+      "samba-smbd.service"
+      "sops-nix.service"
+    ];
     wants = [
       "samba-smbd.service"
       "sops-nix.service"
     ];
+    requires = [ "sops-nix.service" ];
+    restartTriggers = [ config.sops.secrets.samba-password.path ];
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
     };
     script = ''
+      if [ ! -f ${config.sops.secrets.samba-password.path} ]; then
+        echo "Error: Samba password secret not found at ${config.sops.secrets.samba-password.path}"
+        exit 1
+      fi
       password=$(cat ${config.sops.secrets.samba-password.path})
-      (echo "$password"; echo "$password") | /run/current-system/sw/bin/smbpasswd -s -a keanu
+      # Use printf for safer password piping and -s for stdin input
+      printf "%s\n%s\n" "$password" "$password" | ${pkgs.samba}/bin/smbpasswd -s -a keanu
     '';
   };
 }
