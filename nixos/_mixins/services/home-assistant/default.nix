@@ -59,8 +59,14 @@
   };
 
   systemd.services.home-assistant = {
-    after = [ "raid-online.target" "raid-permissions.service" ];
-    requires = [ "raid-online.target" "raid-permissions.service" ];
+    after = [
+      "raid-online.target"
+      "raid-permissions.service"
+    ];
+    requires = [
+      "raid-online.target"
+      "raid-permissions.service"
+    ];
     unitConfig.AssertPathIsMountPoint = "/data";
   };
 }

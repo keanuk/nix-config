@@ -61,8 +61,14 @@ in
   };
 
   systemd.services.forgejo = {
-    after = [ "raid-online.target" "raid-permissions.service" ];
-    requires = [ "raid-online.target" "raid-permissions.service" ];
+    after = [
+      "raid-online.target"
+      "raid-permissions.service"
+    ];
+    requires = [
+      "raid-online.target"
+      "raid-permissions.service"
+    ];
     unitConfig.AssertPathIsMountPoint = "/data";
   };
 }

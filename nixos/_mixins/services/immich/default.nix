@@ -28,14 +28,26 @@
 
   systemd.services = {
     immich-server = {
-      after = [ "raid-online.target" "raid-permissions.service" ];
-      requires = [ "raid-online.target" "raid-permissions.service" ];
+      after = [
+        "raid-online.target"
+        "raid-permissions.service"
+      ];
+      requires = [
+        "raid-online.target"
+        "raid-permissions.service"
+      ];
       unitConfig.AssertPathIsMountPoint = "/data";
     };
 
     immich-machine-learning = {
-      after = [ "raid-online.target" "raid-permissions.service" ];
-      requires = [ "raid-online.target" "raid-permissions.service" ];
+      after = [
+        "raid-online.target"
+        "raid-permissions.service"
+      ];
+      requires = [
+        "raid-online.target"
+        "raid-permissions.service"
+      ];
       unitConfig.AssertPathIsMountPoint = "/data";
     };
   };

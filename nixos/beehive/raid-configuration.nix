@@ -31,7 +31,13 @@
           ];
         };
 
-        path = [ pkgs.unstable.bcachefs-tools pkgs.util-linux pkgs.findutils pkgs.coreutils pkgs.gawk ];
+        path = [
+          pkgs.unstable.bcachefs-tools
+          pkgs.util-linux
+          pkgs.findutils
+          pkgs.coreutils
+          pkgs.gawk
+        ];
 
         script =
           let
@@ -42,6 +48,9 @@
             set -euo pipefail
 
             echo "Starting RAID mount for UUID=${uuid}"
+
+            # Ensure mount point exists
+            mkdir -p /data
 
             # Wait for udev to settle
             udevadm settle || true
@@ -72,9 +81,15 @@
             # Get the raw password (no newlines)
             PASSWORD=$(tr -d '\n\r' < "${passwordFile}")
 
-            # Find all devices matching the UUID
-            DEVICES=$(lsblk -f -n -o NAME,UUID | grep "${uuid}" | awk '{print "/dev/"$1}')
-            echo "Found devices for RAID: $DEVICES"
+            # Find all devices matching the UUID (use -p for full paths and -l for a flat list)
+            DEVICES=$(lsblk -fnlo NAME,UUID -p | grep "${uuid}" | awk '{print $1}' || true)
+
+            if [ -z "$DEVICES" ]; then
+              echo "Error: No devices found for bcachefs RAID with UUID=${uuid}"
+              exit 1
+            fi
+
+            echo "Found devices for RAID: $(echo "$DEVICES" | xargs)"
 
             # 1. Try to unlock each device into the session keyring
             # This is more robust for some bcachefs versions
@@ -88,18 +103,14 @@
             if bcachefs mount -k session "UUID=${uuid}" /data; then
                echo "RAID mount successful via session keyring."
             else
-               echo "Mount via session keyring failed. Attempting direct mount with password..."
-               if echo -n "$PASSWORD" | bcachefs mount -k stdin "UUID=${uuid}" /data; then
-                 echo "RAID mount successful via stdin."
+               echo "Mount via session keyring failed. Attempting direct mount with password and device list..."
+               # Create a colon-separated list of devices
+               DEV_LIST=$(echo "$DEVICES" | paste -sd ":" -)
+               if echo -n "$PASSWORD" | bcachefs mount -k stdin "$DEV_LIST" /data; then
+                 echo "RAID mount successful via device list."
                else
-                 echo "Attempting mount with devices path directly..."
-                 DEV_LIST=$(echo "$DEVICES" | paste -sd ":" -)
-                 if echo -n "$PASSWORD" | bcachefs mount -k stdin "$DEV_LIST" /data; then
-                    echo "RAID mount successful via device list."
-                 else
-                    echo "Error: All mount attempts failed for bcachefs RAID with UUID=${uuid}"
-                    exit 1
-                 fi
+                 echo "Error: All mount attempts failed for bcachefs RAID with UUID=${uuid}"
+                 exit 1
                fi
             fi
 

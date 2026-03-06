@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, ... }:
+{
   services = {
     # NFS Server Configuration
     nfs.server = {
@@ -78,7 +79,10 @@
   systemd.services.samba-user-setup = {
     description = "Samba user setup";
     after = [ "samba-smbd.service" ];
-    wants = [ "samba-smbd.service" "sops-nix.service" ];
+    wants = [
+      "samba-smbd.service"
+      "sops-nix.service"
+    ];
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
