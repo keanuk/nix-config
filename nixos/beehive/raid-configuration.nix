@@ -10,24 +10,38 @@
   systemd = {
     targets.raid-online = {
       description = "RAID Array Mounted and Ready";
-      after = [ "mount-raid.service" ];
-      requires = [ "mount-raid.service" ];
+      after = [
+        "mount-raid.service"
+        "raid-permissions.service"
+      ];
+      requires = [
+        "mount-raid.service"
+        "raid-permissions.service"
+      ];
       wantedBy = [ "multi-user.target" ];
+      unitConfig = {
+        # Ensure that services waiting for this target don't timeout too early
+        # if the RAID mount takes a while (e.g. sops decryption or bcachefs fsck)
+        JobTimeoutSec = "30min";
+        JobTimeoutAction = "none";
+      };
     };
 
     services = {
       mount-raid = {
         enable = true;
         description = "Mount RAID configuration";
-        # Return to multi-user.target to avoid ordering cycles with local-fs.target
+        # Start early in the boot process
         wantedBy = [ "multi-user.target" ];
         restartIfChanged = false;
 
         unitConfig = {
-          # Ensure local-fs is up (for the mount point /data) and sops is ready
+          # Ensure sops is ready
           After = [
             "local-fs.target"
-            "network.target"
+          ];
+          Before = [
+            "raid-online.target"
           ];
         };
 

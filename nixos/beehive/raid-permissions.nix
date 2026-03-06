@@ -2,9 +2,10 @@
 {
   systemd.services.raid-permissions = {
     description = "Fix permissions for all RAID-hosted services";
-    after = [ "raid-online.target" ];
-    requires = [ "raid-online.target" ];
-    wantedBy = [ "multi-user.target" ];
+    after = [ "mount-raid.service" ];
+    before = [ "raid-online.target" ];
+    requires = [ "mount-raid.service" ];
+    wantedBy = [ "raid-online.target" ];
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
