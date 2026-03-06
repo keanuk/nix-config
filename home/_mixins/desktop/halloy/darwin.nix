@@ -1,3 +1,25 @@
-_: {
-  home.file."Library/Application Support/halloy/config.toml".source = ./config.toml;
+# Darwin-specific Halloy configuration
+#
+# On macOS, Halloy is installed via Homebrew (see darwin/_mixins/base/homebrew.nix),
+# so we set package = null to skip the Nix package installation.
+# We import the shared default.nix to get the base settings, then apply
+# Darwin-specific overrides (nickname, theme).
+{ ... }:
+{
+  imports = [ ./. ];
+
+  programs.halloy = {
+    package = null;
+    settings = {
+      theme = {
+        light = "ferra-light";
+        dark = "ferra";
+      };
+      servers = {
+        liberachat.nickname = "keanu2";
+        hackint.nickname = "keanu2";
+        oftc.nickname = "keanu2";
+      };
+    };
+  };
 }

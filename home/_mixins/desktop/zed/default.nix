@@ -6,8 +6,8 @@
 {
   programs.zed-editor = {
     enable = true;
-    package = pkgs.zed-editor;
-    installRemoteServer = true;
+    package = lib.mkDefault pkgs.zed-editor;
+    installRemoteServer = lib.mkDefault true;
     extensions = [
       "asciidoc"
       "basher"
@@ -74,8 +74,8 @@
       };
       theme = {
         mode = "system";
-        light = lib.mkForce "Catppuccin Latte";
-        dark = lib.mkForce "Catppuccin Mocha";
+        light = lib.mkDefault "Catppuccin Latte";
+        dark = lib.mkDefault "Catppuccin Mocha";
       };
       languages = {
         Bash = {

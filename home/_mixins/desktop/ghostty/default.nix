@@ -6,12 +6,12 @@
 {
   programs.ghostty = {
     enable = true;
-    package = pkgs.ghostty;
+    package = lib.mkDefault pkgs.ghostty;
     enableBashIntegration = true;
     enableFishIntegration = true;
     enableZshIntegration = true;
-    installBatSyntax = true;
-    installVimSyntax = true;
+    installBatSyntax = lib.mkDefault true;
+    installVimSyntax = lib.mkDefault true;
     settings = {
       theme = "dark:Catppuccin Mocha,light:Catppuccin Latte";
       font-size = lib.mkDefault 13;

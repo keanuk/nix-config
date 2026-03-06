@@ -6,7 +6,7 @@
 {
   programs.halloy = {
     enable = true;
-    package = pkgs.halloy;
+    package = lib.mkDefault pkgs.halloy;
     settings = {
       theme = lib.mkDefault {
         light = lib.mkDefault "catppuccin-latte";
@@ -23,7 +23,7 @@
         liberachat = {
           server = "irc.libera.chat";
           port = 6697;
-          nickname = "keanu";
+          nickname = lib.mkDefault "keanu";
           channels = [
             "#archlinux"
             "#gnome"
@@ -41,7 +41,7 @@
         hackint = {
           server = "irc.hackint.org";
           port = 6697;
-          nickname = "keanu";
+          nickname = lib.mkDefault "keanu";
           channels = [
             "#nixos"
           ];
@@ -49,7 +49,7 @@
         oftc = {
           server = "irc.oftc.net";
           port = 6697;
-          nickname = "keanu";
+          nickname = lib.mkDefault "keanu";
           channels = [
             "#bcache"
           ];
