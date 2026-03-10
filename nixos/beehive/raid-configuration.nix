@@ -1,12 +1,14 @@
 { config, pkgs, ... }:
+let
+  uuid = "d9b90082-f74f-45fb-9bc9-ce571f2b8630";
+  passwordFile = config.sops.secrets.beehive_raid_password.path;
+  bcachefs-tools = pkgs.unstable.bcachefs-tools;
+in
 {
-  # Define the beehive-specific sops secret for RAID password
   sops.secrets.beehive_raid_password = {
     mode = "0400";
   };
 
-  # Define a target that other services can depend on
-  # This provides a clean synchronization point for services that need the RAID
   systemd = {
     targets.raid-online = {
       description = "RAID Array Mounted and Ready";
@@ -20,123 +22,143 @@
       ];
       wantedBy = [ "multi-user.target" ];
       unitConfig = {
-        # Ensure that services waiting for this target don't timeout too early
-        # if the RAID mount takes a while (e.g. sops decryption or bcachefs fsck)
         JobTimeoutSec = "30min";
         JobTimeoutAction = "none";
       };
     };
 
-    services = {
-      mount-raid = {
-        enable = true;
-        description = "Mount RAID configuration";
-        # Start early in the boot process
-        wantedBy = [ "multi-user.target" ];
-        restartIfChanged = false;
+    services.mount-raid = {
+      description = "Unlock and mount bcachefs RAID array at /data";
+      wantedBy = [ "multi-user.target" ];
+      restartIfChanged = false;
 
-        unitConfig = {
-          # Ensure sops is ready
-          After = [
-            "local-fs.target"
-          ];
-          Before = [
-            "raid-online.target"
-          ];
-        };
-
-        path = [
-          pkgs.unstable.bcachefs-tools
-          pkgs.util-linux
-          pkgs.findutils
-          pkgs.coreutils
-          pkgs.gawk
+      unitConfig = {
+        After = [
+          "local-fs.target"
+          "sops-nix.service"
+          "systemd-udev-settle.service"
         ];
+        Wants = [
+          "sops-nix.service"
+          "systemd-udev-settle.service"
+        ];
+        Before = [ "raid-online.target" ];
+        StartLimitIntervalSec = "15min";
+        StartLimitBurst = 3;
+      };
 
-        script =
-          let
-            passwordFile = config.sops.secrets.beehive_raid_password.path;
-            uuid = "d9b90082-f74f-45fb-9bc9-ce571f2b8630";
-          in
-          ''
-            set -euo pipefail
+      path = [
+        bcachefs-tools
+        pkgs.util-linux
+        pkgs.coreutils
+        pkgs.gawk
+      ];
 
-            echo "Starting RAID mount for UUID=${uuid}"
+      script = ''
+        set -euo pipefail
 
-            # Ensure mount point exists
-            mkdir -p /data
+        # Skip if already mounted
+        if mountpoint -q /data; then
+          echo "/data is already mounted, nothing to do."
+          exit 0
+        fi
 
-            # Wait for udev to settle
-            udevadm settle || true
+        mkdir -p /data
 
-            # Skip if already mounted
-            if mountpoint -q /data; then
-              echo "/data already mounted, skipping."
-              exit 0
-            fi
+        # Wait for the sops password file
+        echo "Waiting for password file..."
+        for i in $(seq 1 60); do
+          [ -f "${passwordFile}" ] && break
+          sleep 1
+        done
+        if [ ! -f "${passwordFile}" ]; then
+          echo "Error: ${passwordFile} not found after 60s"
+          exit 1
+        fi
+        echo "Password file available."
 
-            # Check if password file exists (Wait up to 30 seconds if it's missing)
-            found_secret=false
-            for i in {1..30}; do
-              if [ -f "${passwordFile}" ]; then
-                echo "Found password file ${passwordFile}."
-                found_secret=true
-                break
-              fi
-              echo "Waiting for password file ${passwordFile} (attempt $i/30)..."
-              sleep 1
-            done
+        # Wait for RAID member devices to appear and stabilize.
+        # We require all devices to be present and unchanged for 15 consecutive
+        # seconds before proceeding — this avoids mounting while USB drives are
+        # still enumerating or re-enumerating after a reset.
+        echo "Waiting for RAID member devices (UUID=${uuid})..."
+        PREV_COUNT=0
+        PREV_DEVICES=""
+        STABLE_SECONDS=0
 
-            if [ "$found_secret" = false ]; then
-              echo "Error: Password file ${passwordFile} not found after 30 seconds!"
-              exit 1
-            fi
+        for i in $(seq 1 180); do
+          DEVICES=$(
+            lsblk -fnlo NAME,UUID -p \
+              | awk -v u="${uuid}" '$2 == u {print $1}' \
+              | sort
+          )
+          COUNT=0
+          if [ -n "$DEVICES" ]; then
+            COUNT=$(echo "$DEVICES" | wc -l | tr -d ' ')
+          fi
 
-            # Get the raw password (no newlines)
-            PASSWORD=$(tr -d '\n\r' < "${passwordFile}")
+          if [ "$DEVICES" = "$PREV_DEVICES" ] && [ "$COUNT" -gt 0 ]; then
+            STABLE_SECONDS=$((STABLE_SECONDS + 1))
+          else
+            STABLE_SECONDS=0
+            PREV_DEVICES="$DEVICES"
+          fi
 
-            # Find all devices matching the UUID (use -p for full paths and -l for a flat list)
-            DEVICES=$(lsblk -fnlo NAME,UUID -p | grep "${uuid}" | awk '{print $1}' || true)
+          if [ $((i % 10)) -eq 0 ]; then
+            echo "  wait ''${i}s: count=$COUNT, stable=''${STABLE_SECONDS}s"
+          fi
 
-            if [ -z "$DEVICES" ]; then
-              echo "Error: No devices found for bcachefs RAID with UUID=${uuid}"
-              exit 1
-            fi
+          if [ "$COUNT" -ge 14 ] && [ "$STABLE_SECONDS" -ge 15 ]; then
+            echo "All 14 devices present and stable for ''${STABLE_SECONDS}s."
+            break
+          fi
 
-            echo "Found devices for RAID: $(echo "$DEVICES" | xargs)"
+          sleep 1
+        done
 
-            # 1. Try to unlock each device into the session keyring
-            # This is more robust for some bcachefs versions
-            for dev in $DEVICES; do
-              echo "Attempting to unlock $dev..."
-              echo -n "$PASSWORD" | bcachefs unlock -k session "$dev" || echo "Note: Unlock failed for $dev (might be already unlocked or non-primary)"
-            done
+        if [ -z "''${DEVICES:-}" ]; then
+          echo "Error: no devices found for UUID=${uuid} after 180s"
+          exit 1
+        fi
 
-            # 2. Attempt the mount using the session keyring
-            echo "Attempting to mount UUID=${uuid} to /data..."
-            if bcachefs mount -k session "UUID=${uuid}" /data; then
-               echo "RAID mount successful via session keyring."
-            else
-               echo "Mount via session keyring failed. Attempting direct mount with password and device list..."
-               # Create a colon-separated list of devices
-               DEV_LIST=$(echo "$DEVICES" | paste -sd ":" -)
-               if echo -n "$PASSWORD" | bcachefs mount -k stdin "$DEV_LIST" /data; then
-                 echo "RAID mount successful via device list."
-               else
-                 echo "Error: All mount attempts failed for bcachefs RAID with UUID=${uuid}"
-                 exit 1
-               fi
-            fi
+        COUNT=$(echo "$DEVICES" | wc -l | tr -d ' ')
+        if [ "$COUNT" -lt 14 ]; then
+          echo "Error: only $COUNT of 14 devices found. Refusing to mount with incomplete set."
+          echo "Devices found: $(echo "$DEVICES" | xargs)"
+          exit 1
+        fi
 
-            echo "RAID mount successful."
-          '';
-        serviceConfig = {
-          Type = "oneshot";
-          RemainAfterExit = true;
-          TimeoutStartSec = "10min";
-          Restart = "on-failure";
-          RestartSec = "15s";
-        };
+        FIRST_DEV=$(echo "$DEVICES" | head -n1)
+        echo "Devices: $(echo "$DEVICES" | xargs)"
+
+        # Unlock the array. bcachefs unlock -f reads the passphrase from a file
+        # and adds the key to the current session keyring. KeyringMode=inherit on
+        # this unit shares PID 1's keyring so the kernel can find the key during
+        # the mount syscall.
+        echo "Unlocking via $FIRST_DEV..."
+        bcachefs unlock -f "${passwordFile}" "$FIRST_DEV" \
+          || echo "Already unlocked or key already present"
+
+        # Mount the array.
+        echo "Mounting UUID=${uuid} at /data..."
+        bcachefs mount -k fail "UUID=${uuid}" /data
+        echo "bcachefs RAID mounted at /data."
+      '';
+
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+        TimeoutStartSec = "30min";
+        TimeoutStopSec = "5min";
+        KillMode = "control-group";
+        Restart = "on-failure";
+        RestartSec = "30s";
+        # bcachefs unlock adds the encryption key to the process's session
+        # keyring. The default KeyringMode=private gives the service an
+        # isolated keyring that the kernel's mount(2) cannot see, causing
+        # ENOKEY. "inherit" shares PID 1's keyring so the key is visible
+        # to the kernel when it processes the mount syscall.
+        KeyringMode = "inherit";
       };
     };
   };
