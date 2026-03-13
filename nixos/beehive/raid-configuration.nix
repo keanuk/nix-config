@@ -2,7 +2,7 @@
 let
   uuid = "d9b90082-f74f-45fb-9bc9-ce571f2b8630";
   passwordFile = config.sops.secrets.beehive_raid_password.path;
-  bcachefs-tools = pkgs.unstable.bcachefs-tools;
+  inherit (pkgs.unstable) bcachefs-tools;
 in
 {
   sops.secrets.beehive_raid_password = {
