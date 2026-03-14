@@ -29,8 +29,7 @@
     handbrake
     inkscape
     jellyfin-media-player
-    # TODO: switch back to unstable when build is fixed
-    pkgs.stable.jitsi
+    jitsi
     joplin-desktop
     krita
     kodi-wayland

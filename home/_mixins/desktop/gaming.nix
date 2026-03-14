@@ -5,8 +5,7 @@
     bugdom
     cartridges
     dwarf-fortress
-    # TODO: switch back to unstable when build is fixed
-    pkgs.stable.flightgear
+    flightgear
     heroic
     nanosaur
     nanosaur2
