@@ -13,13 +13,11 @@
 }:
 let
   cfg = config.nixarr.autobrr;
-  nixarr = config.nixarr;
   configFormat = pkgs.formats.toml { };
   configTemplate = configFormat.generate "autobrr.toml" config.services.autobrr.settings;
 in
 {
-  warnings = lib.optional cfg.enable
-    "Workaround active: nixarr autobrr dasel v3 fix (nixos/_mixins/fixes/nixarr-autobrr-dasel-v3.nix). Check if nixarr upstream has fixed dasel v3 compatibility.";
+  warnings = lib.optional cfg.enable "Workaround active: nixarr autobrr dasel v3 fix (nixos/_mixins/fixes/nixarr-autobrr-dasel-v3.nix). Check if nixarr upstream has fixed dasel v3 compatibility.";
 
   systemd.services.autobrr = lib.mkIf cfg.enable {
     serviceConfig.ExecStartPre = lib.mkOverride 49 (

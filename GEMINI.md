@@ -143,6 +143,16 @@ windows/                     # Windows setup scripts (PowerShell, winget, nushel
 - `nix eval .#nixosConfigurations.<host>.config.<option>` — spot-check a specific option value
 - **New files must be `git add`ed before Nix can see them** (flakes only track files known to git)
 
+### Linting
+
+Before committing changes to any `.nix` file, always run these three checks and fix any issues they report:
+
+1. `nix fmt` — format with the project's treefmt/nixfmt-tree formatter
+2. `deadnix <file>` — detect unused variables, bindings, and `with` expressions
+3. `statix check <file>` — catch common Nix anti-patterns and style issues
+
+All three tools are available in the project's dev shell (`nix develop`). Run them on every `.nix` file you create or modify.
+
 ## Common Tasks
 
 ### Adding a new NixOS host

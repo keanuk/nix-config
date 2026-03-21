@@ -111,6 +111,16 @@ This is a multi-platform Nix configuration managing NixOS, nix-darwin, and home-
 - `nix eval .#nixosConfigurations.<host>.config.<option>` — spot-check option values
 - **New files must be `git add`ed before Nix can see them**
 
+### Linting
+
+Before committing changes to any `.nix` file, always run these three checks and fix any issues they report:
+
+1. `nix fmt` — format with the project's treefmt/nixfmt-tree formatter
+2. `deadnix <file>` — detect unused variables, bindings, and `with` expressions
+3. `statix check <file>` — catch common Nix anti-patterns and style issues
+
+All three tools are available in the project's dev shell (`nix develop`). Run them on every `.nix` file you create or modify.
+
 ## Common Tasks
 
 ### Adding a new NixOS host
