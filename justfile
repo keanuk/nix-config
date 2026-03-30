@@ -83,10 +83,14 @@ build-host hostname=current_hostname:
 switch-host hostname=current_hostname:
     @if [ "$(uname)" = "Linux" ]; then \
       echo "NixOS  Switching: {{ hostname }}"; \
-      nh os switch . --hostname "{{ hostname }}"; \
+      nh os switch . --hostname "{{ hostname }}" -- \
+        --option extra-substituters https://install.determinate.systems \
+        --option extra-trusted-public-keys cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM=; \
     elif [ "$(uname)" = "Darwin" ]; then \
       echo "nix-darwin 󰀵 Switching: {{ hostname }}"; \
-      nh darwin switch . --hostname "{{ hostname }}"; \
+      nh darwin switch . --hostname "{{ hostname }}" -- \
+        --option extra-substituters https://install.determinate.systems \
+        --option extra-trusted-public-keys cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM=; \
     else \
       echo "Unsupported OS: $(uname)"; \
     fi
