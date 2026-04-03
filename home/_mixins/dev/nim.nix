@@ -2,6 +2,7 @@
 {
   home.packages = with pkgs; [
     nim
-    nimlangserver
+    # TODO: re-enable when build is fixed
+    # nimlangserver
   ];
 }

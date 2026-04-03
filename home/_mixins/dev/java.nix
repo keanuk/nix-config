@@ -2,7 +2,8 @@
 {
   home.packages = with pkgs; [
     jdk
-    jdt-language-server
+    # TODO: re-enable when build is fixed
+    # jdt-language-server
     kotlin
     kotlin-language-server
   ];

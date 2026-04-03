@@ -5,7 +5,8 @@
     authelia
     bitwarden-cli
     circumflex
-    claude-code-bin
+    # TODO: re-enable when build is fixed
+    # claude-code
     cloudflared
     codex
     copilot-language-server
@@ -17,7 +18,7 @@
     fh
     file
     fortune
-    gemini-cli-bin
+    gemini-cli
     github-copilot-cli
     gping
     immich-cli
