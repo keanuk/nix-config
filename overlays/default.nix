@@ -1,8 +1,6 @@
 { inputs, ... }:
 let
   fixes = [
-    # ./fixes/jeepney-darwin.nix
-    # ./fixes/mistral-vibe.nix
   ];
 
   # Combine all fix overlays into a single overlay

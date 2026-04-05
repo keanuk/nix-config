@@ -22,6 +22,7 @@
     github-copilot-cli
     gping
     immich-cli
+    jq
     just
     libnatpmp
     mediainfo

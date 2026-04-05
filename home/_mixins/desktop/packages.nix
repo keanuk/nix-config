@@ -46,7 +46,7 @@
     proton-pass
     protonmail-desktop
     protonmail-bridge-gui
-    protonvpn-gui
+    proton-vpn
     rawtherapee
     rnote
     rustdesk-flutter

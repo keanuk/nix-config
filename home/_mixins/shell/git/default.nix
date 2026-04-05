@@ -5,6 +5,7 @@
       enable = true;
       package = pkgs.git;
       lfs.enable = true;
+      signing.format = "openpgp";
       settings = {
         user = {
           name = "Keanu Kerr";

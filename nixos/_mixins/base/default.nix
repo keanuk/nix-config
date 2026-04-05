@@ -46,7 +46,7 @@
     fail2ban.enable = true;
     irqbalance.enable = true;
     resolved.enable = lib.mkDefault true;
-    resolved.dnssec = lib.mkDefault "allow-downgrade";
+    resolved.settings.Resolve.DNSSEC = "allow-downgrade";
     sysstat.enable = true;
   };
 
