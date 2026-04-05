@@ -11,7 +11,7 @@ let
     # "jellyfin"
     # "jellyseerr"
     # "audiobookshelf"
-    "autobrr"
+    # "autobrr"
     "bazarr"
     "lidarr"
     "prowlarr"
@@ -93,7 +93,7 @@ in
     };
 
     autobrr = {
-      enable = true;
+      enable = false;
       package = pkgs.unstable.autobrr;
     };
 
