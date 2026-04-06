@@ -6,8 +6,8 @@
     deno
     eslint
     htmx-lsp2
-    nodejs
-    pnpm
+    (lib.hiPrio nodejs)
+    (lib.hiPrio pnpm)
     svelte-check
     svelte-language-server
     tailwindcss_4

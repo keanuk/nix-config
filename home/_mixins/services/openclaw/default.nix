@@ -132,8 +132,6 @@ in
       "ffmpeg"
       "go"
       "jq"
-      "nodejs_22"
-      "pnpm_10"
       "python3"
       "ripgrep"
     ];
@@ -180,5 +178,10 @@ in
   # Inject secrets.env on Linux via systemd EnvironmentFile.
   systemd.user.services.openclaw-gateway = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
     Service.EnvironmentFile = [ "%h/.config/openclaw/secrets.env" ];
+  };
+
+  # Provide npm and node to the macOS gateway launchd service without colliding in home.packages.
+  launchd.agents.openclaw-gateway = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
+    config.EnvironmentVariables.PATH = lib.mkDefault "${lib.makeBinPath [ pkgs.nodejs ]}:/run/current-system/sw/bin:/bin:/usr/bin:/sbin:/usr/sbin";
   };
 }
