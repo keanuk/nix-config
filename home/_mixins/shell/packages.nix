@@ -10,6 +10,7 @@
     cloudflared
     codex
     copilot-language-server
+    cosign
     cpufetch
     ddgr
     deadnix
