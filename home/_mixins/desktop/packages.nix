@@ -40,8 +40,7 @@
     obs-studio
     plex-desktop
     plexamp
-    # TODO: switch back to unstable when build is fixed
-    pkgs.stable.pocket-casts
+    pocket-casts
     podman-desktop
     proton-pass
     protonmail-desktop

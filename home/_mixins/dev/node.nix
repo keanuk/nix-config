@@ -13,6 +13,6 @@
     tailwindcss_4
     tailwindcss-language-server
     typescript
-    # typescript-language-server
+    typescript-language-server
   ];
 }

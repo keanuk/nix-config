@@ -5,8 +5,7 @@
     authelia
     bitwarden-cli
     circumflex
-    # TODO: re-enable when build is fixed
-    # claude-code
+    claude-code
     cloudflared
     codex
     copilot-language-server
