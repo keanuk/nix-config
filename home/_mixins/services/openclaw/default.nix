@@ -182,6 +182,8 @@ in
 
   # Provide npm and node to the macOS gateway launchd service without colliding in home.packages.
   launchd.agents.openclaw-gateway = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
-    config.EnvironmentVariables.PATH = lib.mkDefault "${lib.makeBinPath [ pkgs.nodejs ]}:/run/current-system/sw/bin:/bin:/usr/bin:/sbin:/usr/sbin";
+    config.EnvironmentVariables.PATH = lib.mkDefault "${
+      lib.makeBinPath [ pkgs.nodejs ]
+    }:/run/current-system/sw/bin:/bin:/usr/bin:/sbin:/usr/sbin";
   };
 }
