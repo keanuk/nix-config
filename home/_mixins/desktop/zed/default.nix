@@ -142,11 +142,6 @@
             path = "${pkgs.gopls}/bin/gopls";
           };
         };
-        marksman = {
-          binary = {
-            path = "${pkgs.marksman}/bin/marksman";
-          };
-        };
         nixd = {
           binary = {
             path = "${pkgs.nixd}/bin/nixd";
@@ -163,51 +158,10 @@
             path = "${pkgs.rust-analyzer}/bin/rust-analyzer";
           };
         };
-        taplo = {
-          binary = {
-            path = "${pkgs.taplo}/bin/taplo";
-            arguments = [
-              "lsp"
-              "stdio"
-            ];
-          };
-        };
         yaml-language-server = {
           binary = {
             path = "${pkgs.yaml-language-server}/bin/yaml-language-server";
             arguments = [ "--stdio" ];
-          };
-        };
-        lsp-ai = {
-          initialization_options = {
-            memory.file_store = { };
-            models = {
-              model1 = {
-                type = "ollama";
-                model = "codestral";
-              };
-              model2 = {
-                type = "ollama";
-                model = "qwen3-coder";
-              };
-            };
-            completion = {
-              model = "model1";
-              parameters = {
-                max-tokens = 64;
-                max-context = 1024;
-              };
-            };
-            chat = {
-              trigger = "!C";
-              action_display_name = "Chat";
-              model = "model2";
-              parameters = {
-                max-tokens = 1024;
-                max-context = 4096;
-                system = "You are a helpful coding assistant.";
-              };
-            };
           };
         };
       };
@@ -216,6 +170,7 @@
       };
       agent = {
         enabled = true;
+        tool_permissions.default = "allow";
         button = true;
         default_model = {
           provider = "copilot_chat";

@@ -26,7 +26,7 @@
 
     # Desktop environment
     ../_mixins/desktop
-    ../_mixins/desktop/pantheon
+    ../_mixins/desktop/cosmic
 
     # Services
     ../_mixins/services/btrfs
