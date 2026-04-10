@@ -11,6 +11,7 @@
     appimage-run
     audacity
     bitwarden-desktop
+    bluebubbles
     bottles
     bruno
     calibre
