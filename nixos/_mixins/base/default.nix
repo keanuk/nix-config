@@ -1,4 +1,5 @@
 {
+  options,
   inputs,
   pkgs,
   lib,
@@ -45,8 +46,15 @@
   services = {
     fail2ban.enable = true;
     irqbalance.enable = true;
-    resolved.enable = lib.mkDefault true;
-    resolved.settings.Resolve.DNSSEC = "allow-downgrade";
+    resolved = {
+      enable = lib.mkDefault true;
+    }
+    // lib.optionalAttrs (builtins.hasAttr "settings" options.services.resolved) {
+      settings.Resolve.DNSSEC = "allow-downgrade";
+    }
+    // lib.optionalAttrs (!builtins.hasAttr "settings" options.services.resolved) {
+      dnssec = "allow-downgrade";
+    };
     sysstat.enable = true;
   };
 

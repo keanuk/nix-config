@@ -7,7 +7,6 @@
   programs.zed-editor = {
     enable = true;
     package = lib.mkDefault pkgs.zed-editor;
-    installRemoteServer = lib.mkDefault true;
     extensions = [
       "asciidoc"
       "basher"
