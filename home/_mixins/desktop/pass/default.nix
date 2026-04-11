@@ -14,6 +14,8 @@
   programs.password-store = {
     enable = true;
     package = pkgs.pass;
-    settings = { PASSWORD_STORE_DIR = "${config.home.homeDirectory}/.password-store"; };
+    settings = {
+      PASSWORD_STORE_DIR = "${config.home.homeDirectory}/.password-store";
+    };
   };
 }
