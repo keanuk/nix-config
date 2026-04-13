@@ -45,13 +45,11 @@
     nextcloud-setup = {
       after = [
         "raid-online.target"
-        "raid-permissions.service"
         "systemd-tmpfiles-setup.service"
         "postgresql.service"
       ];
       requires = [
         "raid-online.target"
-        "raid-permissions.service"
         "systemd-tmpfiles-setup.service"
         "postgresql.service"
       ];
@@ -61,13 +59,11 @@
     nextcloud-cron = {
       after = [
         "raid-online.target"
-        "raid-permissions.service"
         "systemd-tmpfiles-setup.service"
         "postgresql.service"
       ];
       requires = [
         "raid-online.target"
-        "raid-permissions.service"
         "systemd-tmpfiles-setup.service"
         "postgresql.service"
       ];
@@ -77,13 +73,11 @@
     phpfpm-nextcloud = {
       after = [
         "raid-online.target"
-        "raid-permissions.service"
         "systemd-tmpfiles-setup.service"
         "postgresql.service"
       ];
       requires = [
         "raid-online.target"
-        "raid-permissions.service"
         "systemd-tmpfiles-setup.service"
         "postgresql.service"
       ];

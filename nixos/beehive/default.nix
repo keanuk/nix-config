@@ -20,7 +20,6 @@
     ./disko-configuration.nix
     ./hardware-configuration.nix
     ./raid-configuration.nix
-    ./raid-permissions.nix
     ./shares.nix
 
     # Base configuration

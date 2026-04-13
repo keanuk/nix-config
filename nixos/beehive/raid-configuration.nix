@@ -9,17 +9,17 @@ in
     mode = "0400";
   };
 
+  # Ensure essential top-level directories exist with correct ownership after mount
+  systemd.tmpfiles.rules = [
+    "d /data 0775 root media -"
+    "d /data/nixarr 2775 root media -"
+  ];
+
   systemd = {
     targets.raid-online = {
       description = "RAID Array Mounted and Ready";
-      after = [
-        "mount-raid.service"
-        "raid-permissions.service"
-      ];
-      requires = [
-        "mount-raid.service"
-        "raid-permissions.service"
-      ];
+      after = [ "mount-raid.service" ];
+      requires = [ "mount-raid.service" ];
       wantedBy = [ "multi-user.target" ];
       unitConfig = {
         JobTimeoutSec = "30min";
@@ -52,6 +52,7 @@ in
         pkgs.util-linux
         pkgs.coreutils
         pkgs.gawk
+        pkgs.systemd
       ];
 
       script = ''
@@ -143,6 +144,10 @@ in
         echo "Mounting UUID=${uuid} at /data..."
         bcachefs mount -k fail "UUID=${uuid}" /data
         echo "bcachefs RAID mounted at /data."
+
+        # Bootstrap essential directories with correct ownership
+        echo "Creating base directories..."
+        systemd-tmpfiles --create --prefix=/data
       '';
 
       serviceConfig = {

@@ -27,14 +27,8 @@ let
   # Use "requires" instead of "bindsTo" to avoid cascading stops during nixos-rebuild switch
   # bindsTo would cause all these services to stop if raid-online.target is touched
   raidDependencyConfig = {
-    after = [
-      "raid-online.target"
-      "raid-permissions.service"
-    ];
-    requires = [
-      "raid-online.target"
-      "raid-permissions.service"
-    ];
+    after = [ "raid-online.target" ];
+    requires = [ "raid-online.target" ];
     unitConfig.AssertPathIsMountPoint = "/data";
   };
 in
