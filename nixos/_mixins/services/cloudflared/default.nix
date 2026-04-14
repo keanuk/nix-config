@@ -31,6 +31,7 @@ in
     owner = "cloudflared";
     group = "cloudflared";
     mode = "0400";
+    restartUnits = [ "cloudflared-tunnel-${tunnelId}.service" ];
   };
 
   services.cloudflared = {
