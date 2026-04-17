@@ -11,6 +11,7 @@
 
   environment.systemPackages = with pkgs; [
     busybox
+    ghostty.terminfo
     cachix
     cifs-utils
     iptables
