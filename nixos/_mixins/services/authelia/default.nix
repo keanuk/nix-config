@@ -81,10 +81,39 @@ let
   # All protected services (excludes auth itself)
   protectedServices = lib.filterAttrs (_n: v: v.requiresAuth or true) domains.services;
 
+  # Services that bypass Authelia (have their own auth), excluding the auth service itself
+  directProxyServices = lib.filterAttrs (n: v: !(v.requiresAuth or true) && n != "auth") domains.services;
+
+  # Helper to create a direct (non-Authelia) proxy vhost
+  mkDirectVhost = name: cfg: {
+    "${name}-direct" = {
+      listen = [
+        {
+          addr = "127.0.0.1";
+          port = cfg.proxyPort;
+        }
+      ];
+      locations."/" = {
+        proxyPass =
+          if cfg.useHttps or false then
+            "https://127.0.0.1:${toString cfg.backendPort}"
+          else
+            "http://127.0.0.1:${toString cfg.backendPort}";
+        proxyWebsockets = true;
+        extraConfig = cfg.extraConfig or "";
+      };
+    };
+  };
+
   # Generate all virtual hosts from service definitions
   allVirtualHosts = lib.foldl' (
     acc: name: acc // (mkAutheliaVhost name domains.services.${name})
   ) { } (builtins.attrNames protectedServices);
+
+  # Generate direct proxy vhosts for unprotected services
+  directVirtualHosts = lib.foldl' (
+    acc: name: acc // (mkDirectVhost name domains.services.${name})
+  ) { } (builtins.attrNames directProxyServices);
 
 in
 {
@@ -248,6 +277,7 @@ in
         };
       };
     }
-    // allVirtualHosts;
+    // allVirtualHosts
+    // directVirtualHosts;
   };
 }

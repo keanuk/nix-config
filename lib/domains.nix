@@ -59,11 +59,15 @@
       proxyPort = 9098;
     };
 
-    # Plex
+    # Plex (has its own auth — Authelia breaks Plex app connectivity)
+    # WARNING: requiresAuth = false exposes this service to the internet
+    # without Authelia protection. Only use for services with robust
+    # built-in authentication (e.g. Plex account login).
     plex = {
       subdomain = "plex";
       backendPort = 32400;
       proxyPort = 9099;
+      requiresAuth = false;
     };
 
     # Sonarr
