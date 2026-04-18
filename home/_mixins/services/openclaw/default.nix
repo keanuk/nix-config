@@ -177,6 +177,7 @@ in
 
   # Inject secrets.env on Linux via systemd EnvironmentFile.
   systemd.user.services.openclaw-gateway = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
+    Install.WantedBy = [ "default.target" ];
     Service.EnvironmentFile = [ "%h/.config/openclaw/secrets.env" ];
   };
 
