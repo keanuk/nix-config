@@ -82,7 +82,9 @@ let
   protectedServices = lib.filterAttrs (_n: v: v.requiresAuth or true) domains.services;
 
   # Services that bypass Authelia (have their own auth), excluding the auth service itself
-  directProxyServices = lib.filterAttrs (n: v: !(v.requiresAuth or true) && n != "auth") domains.services;
+  directProxyServices = lib.filterAttrs (
+    n: v: !(v.requiresAuth or true) && n != "auth"
+  ) domains.services;
 
   # Helper to create a direct (non-Authelia) proxy vhost
   mkDirectVhost = name: cfg: {
