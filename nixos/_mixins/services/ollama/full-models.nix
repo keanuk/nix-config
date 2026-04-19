@@ -12,12 +12,12 @@ _: {
     "codestral:latest"
     "deepseek-r1:latest"
     "devstral-small-2:latest"
-    "gemma3:latest"
+    "gemma4:latest"
     "gemma3n:latest"
     "gpt-oss:latest"
     "magistral:latest"
     "mistral:latest"
-    "qwen3:latest"
-    "qwen3-coder:latest"
+    "qwen3.6:latest"
+    "qwen3-coder-next:latest"
   ];
 }

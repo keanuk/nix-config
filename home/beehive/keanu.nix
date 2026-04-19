@@ -11,6 +11,11 @@
       openclawMistralApiKeyFile = "/run/secrets/openclaw_mistral_api_key";
       openclawGatewayTokenFile = "/run/secrets/openclaw_gateway_token";
       openclawOpenaiApiKeyFile = "/run/secrets/openclaw_openai_api_key";
+      primaryModel = "ollama/gemma4:latest";
+      fallbackModels = [
+        "ollama/magistral:latest"
+        "ollama/qwen3:latest"
+      ];
     })
   ];
 

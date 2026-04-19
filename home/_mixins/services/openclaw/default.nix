@@ -4,6 +4,11 @@
   openclawMistralApiKeyFile,
   openclawGatewayTokenFile,
   openclawOpenaiApiKeyFile,
+  primaryModel ? "mistral/mistral-large-latest",
+  fallbackModels ? [
+    "mistral/mistral-medium-latest"
+    "mistral/mistral-small-latest"
+  ],
   ...
 }:
 {
@@ -78,7 +83,7 @@ in
             OPENAI_KEY="$(cat "${openclawOpenaiApiKeyFile}" | tr -d "\n")"
           fi
           printf '%s\n' \
-            "{\"version\":1,\"profiles\":{\"mistral:default\":{\"type\":\"api_key\",\"provider\":\"mistral\",\"key\":\"$MISTRAL_KEY\"},\"openai:default\":{\"type\":\"api_key\",\"provider\":\"openai\",\"key\":\"$OPENAI_KEY\"}}}" \
+            "{\"version\":1,\"profiles\":{\"mistral:default\":{\"type\":\"api_key\",\"provider\":\"mistral\",\"key\":\"$MISTRAL_KEY\"},\"openai:default\":{\"type\":\"api_key\",\"provider\":\"openai\",\"key\":\"$OPENAI_KEY\"},\"ollama:default\":{\"type\":\"api_key\",\"provider\":\"ollama\",\"key\":\"ollama-local\"}}}" \
             > "$AUTH_DIR/auth-profiles.json"
           chmod 600 "$AUTH_DIR/auth-profiles.json"
         '';
@@ -159,11 +164,8 @@ in
         };
 
         agents.defaults.model = {
-          primary = "mistral/mistral-large-latest";
-          fallbacks = [
-            "mistral/mistral-medium-latest"
-            "mistral/mistral-small-latest"
-          ];
+          primary = primaryModel;
+          fallbacks = fallbackModels;
         };
 
         channels.telegram = {
