@@ -6,7 +6,7 @@
     ../services/authelia
     ../services/cloudflared
     ../services/cockpit
-    ../services/flaresolverr
+    # ../services/flaresolverr
     ../services/forgejo
     ../services/dashy
     ../services/home-assistant
