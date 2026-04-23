@@ -2,6 +2,7 @@
 {
   programs.chromium = {
     enable = true;
-    package = pkgs.google-chrome;
+    # TODO: switch back to google-chrome when issues are resolved
+    package = pkgs.chromium;
   };
 }
