@@ -78,6 +78,10 @@
   fonts.fontDir.enable = true;
 
   programs = {
+    appimage = {
+      enable = true;
+      binfmt = true;
+    };
     gnupg.agent.enable = true;
     seahorse.enable = true;
   };

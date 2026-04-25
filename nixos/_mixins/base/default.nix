@@ -15,6 +15,7 @@
     inputs.disko.nixosModules.disko
     inputs.nur.modules.nixos.default
 
+    ../programs/fuse
     ../programs/nh
     ../programs/nix-ld
 

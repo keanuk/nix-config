@@ -12,7 +12,8 @@
     audacity
     bitwarden-desktop
     bluebubbles
-    bottles
+    # TODO: Re-enable when build is fixed
+    # bottles
     bruno
     calibre
     catppuccin

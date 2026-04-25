@@ -1,6 +1,7 @@
 { inputs, ... }:
 let
   fixes = [
+    ./fixes/openldap.nix
   ];
 
   # Combine all fix overlays into a single overlay

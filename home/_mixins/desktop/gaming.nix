@@ -5,7 +5,6 @@
     bugdom
     cartridges
     dwarf-fortress
-    flightgear
     heroic
     nanosaur
     nanosaur2
