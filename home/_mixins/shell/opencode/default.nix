@@ -5,61 +5,48 @@
     package = pkgs.opencode;
 
     settings = {
-      model = "gpt-4o";
-      temperature = 0.7;
-      max_tokens = 4096;
+      model = "glm-5.1";
+      autoshare = false;
+      autoupdate = true;
       theme = "catppuccin-mocha";
     };
 
-    rules = [
-      # Nix Configuration Standards
-      "You are an expert NixOS and nix-darwin developer."
-      "Strictly adhere to the 'mixin pattern' for all configurations."
-      "Never hardcode secrets; always use sops-nix (config.sops.secrets.<name>.path)."
-      "Follow the repository formatting standards (nixfmt-tree, deadnix, statix)."
-      "When adding hosts, ensure they are registered in flake.nix and have a corresponding home-manager config."
+    rules = ''
+      # Code Quality
+      Prefer the simplest solution that works (KISS). Don't design for hypothetical future requirements (YAGNI).
+      Don't add error handling, fallbacks, or abstractions for scenarios that cannot happen.
+      Three similar lines is better than a premature abstraction.
+      Write no comments by default; only add one when the WHY is non-obvious (a hidden constraint, a subtle invariant, a workaround for a specific bug).
+      Use descriptive names -- well-named identifiers document themselves.
+      Prefer editing existing files over creating new ones. Make the minimal change that achieves the goal.
+      Apply security best practices: validate inputs at system boundaries, use secure defaults, minimize attack surface.
 
-      # General Development Standards
-      "Prioritize clean, idiomatic, and maintainable code (KISS, DRY, YAGNI)."
-      "Always include unit tests or verification steps for new features and bug fixes."
-      "Write comprehensive documentation, including docstrings and README updates where appropriate."
-      "Apply security best practices: validate inputs, use secure defaults, and minimize the attack surface."
-      "Prefer explicit composition over complex inheritance or deep nesting."
-      "Use descriptive naming for variables, functions, and modules to ensure the code is self-documenting."
-    ];
+      # Nix Projects
+      Format all .nix files with `nix fmt` before finalizing changes.
+      Run `deadnix <file>` to detect unused variables and bindings.
+      Run `statix check <file>` to catch common anti-patterns.
+      Use `lib.mkDefault` for values hosts should be able to override; use `lib.mkForce` sparingly and only when justified.
+      New files must be `git add`ed before the Nix flake can see them (flakes only track git-indexed files).
+      Workaround/fix files must include: issue link, description, status, last-checked date, and removal condition.
+      Follow the mixin pattern: small, focused modules under `_mixins/` directories.
+      One module per directory with a `default.nix` entry point; use `packages.nix` when the package list is large.
+      Host-specific overrides belong in the host's `default.nix`, not in shared mixins.
+      Never hardcode secrets -- use sops-nix with `config.sops.secrets.<name>.path`.
+      VPS hosts must be deployed with deploy-rs (`just deploy <hostname>`), never direct `nixos-rebuild`.
+    '';
 
     agents = {
-      # Project Specific
-      nix-helper = {
-        description = "Specialized in Nix and NixOS system configuration.";
-        systemPrompt = "You are a senior Nix consultant. Help me optimize my flake, manage my 14+ devices, and ensure all mixins are composable and efficient.";
-      };
-      deploy-master = {
-        description = "Expert in VPS deployment and remote management.";
-        systemPrompt = "You are an expert in deploy-rs and nixos-anywhere. Help me manage the bucaccio, emilyvansant, and love-alaya VPS nodes safely.";
-      };
-      darwin-specialist = {
-        description = "Expert in nix-darwin and macOS configuration.";
-        systemPrompt = "You are an expert in nix-darwin. Help me manage the salacia, vesta, and charon Apple Silicon and Intel Macs.";
-      };
+      architect = ./agents/architect.md;
+      coder = ./agents/coder.md;
+      debugger = ./agents/debugger.md;
+      documentation = ./agents/documentation.md;
+      reviewer = ./agents/reviewer.md;
+    };
 
-      # General Coding
-      coder = {
-        description = "General purpose full-stack developer.";
-        systemPrompt = "You are a world-class full-stack software engineer. You write clean, idiomatic, and well-documented code across multiple languages (Rust, Go, Python, TypeScript, etc.). You prioritize simplicity and maintainability.";
-      };
-      architect = {
-        description = "System design and software architecture expert.";
-        systemPrompt = "You are a software architect. You help design scalable, resilient systems. You think about data flow, service boundaries, and long-term technical debt. Provide high-level guidance and design patterns.";
-      };
-      debugger = {
-        description = "Expert at finding and fixing complex bugs.";
-        systemPrompt = "You are a master debugger. You excel at root-cause analysis, interpreting stack traces, and finding edge cases. You use a scientific approach to isolate and fix issues without introducing regressions.";
-      };
-      reviewer = {
-        description = "Strict code reviewer focused on quality and security.";
-        systemPrompt = "You are a meticulous code reviewer. You look for security vulnerabilities, performance bottlenecks, and violations of best practices. You provide constructive feedback to help developers improve their craft.";
-      };
+    commands = {
+      changelog = ./commands/changelog.md;
+      commit = ./commands/commit.md;
+      fix-issue = ./commands/fix-issue.md;
     };
   };
 }
