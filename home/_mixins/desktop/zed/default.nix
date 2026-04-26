@@ -164,16 +164,54 @@
           };
         };
       };
+      language_models = {
+        opencode = {
+          subscription = "go";
+        };
+      };
       edit_predictions = {
         provider = "copilot";
       };
+      agent_servers = {
+        opencode = {
+          type = "registry";
+        };
+        mistral-vibe = {
+          type = "registry";
+        };
+        github-copilot-cli = {
+          type = "registry";
+        };
+        gemini = {
+          type = "registry";
+        };
+        codex-acp = {
+          type = "registry";
+        };
+        claude-acp = {
+          type = "registry";
+        };
+      };
+      ssh_connections = [
+        {
+          host = "beehive";
+          args = [ ];
+          projects = [
+            {
+              paths = [
+                "/home/keanu/.config/nix-config"
+              ];
+            }
+          ];
+        }
+      ];
       agent = {
         enabled = true;
         tool_permissions.default = "allow";
         button = true;
         default_model = {
-          provider = "copilot_chat";
-          model = "claude-opus-4.6";
+          provider = "opencode";
+          model = "glm-5.1";
         };
       };
     };

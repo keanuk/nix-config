@@ -19,6 +19,7 @@
     ./helix
     ./lazygit
     ./micro
+    ./opencode
     ./ripgrep
     ./skim
     ./starship
