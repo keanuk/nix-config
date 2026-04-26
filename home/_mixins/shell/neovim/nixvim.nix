@@ -62,4 +62,5 @@
       enable = true;
       settings.flavour = "mocha";
     };
+  };
 }
