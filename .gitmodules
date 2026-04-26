@@ -1,0 +1,3 @@
+[submodule "nixos/_mixins/desktop/cosmic/catppuccin"]
+	path = nixos/_mixins/desktop/cosmic/catppuccin
+	url = https://github.com/catppuccin/cosmic-desktop
