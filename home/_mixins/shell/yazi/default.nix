@@ -8,5 +8,10 @@
     enableNushellIntegration = false;
     enableZshIntegration = false;
     shellWrapperName = "y";
+    theme = {
+      flavor = {
+        use = "catppuccin-mocha";
+      };
+    };
   };
 }

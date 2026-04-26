@@ -12,8 +12,8 @@
     package = null;
     settings = {
       theme = {
-        light = "ferra-light";
-        dark = "ferra";
+        light = "catppuccin-latte";
+        dark = "catppuccin-mocha";
       };
       servers = {
         liberachat.nickname = "keanu2";

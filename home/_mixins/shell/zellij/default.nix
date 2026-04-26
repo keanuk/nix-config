@@ -21,7 +21,7 @@
       default_mode = "normal";
       default_layout = "default";
       auto_layout = true;
-      theme = lib.mkDefault "catppuccin-macchiato";
+      theme = lib.mkDefault "catppuccin-mocha";
       simplified_ui = false;
       ui = {
         pane_frames = {
