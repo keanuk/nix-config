@@ -10,11 +10,10 @@
       model = "opencode-go/glm-5.1";
       autoshare = false;
       autoupdate = true;
-      theme = "catppuccin";
     };
 
     tui = {
-      theme = "system";
+      theme = "catppuccin";
     };
 
     context = ./context/default.md;
