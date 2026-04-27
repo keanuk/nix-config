@@ -3,6 +3,8 @@
   programs.opencode = {
     enable = true;
     package = pkgs.opencode;
+    enableMcpIntegration = true;
+    web.enable = true;
 
     settings = {
       model = "glm-5.1";
@@ -11,7 +13,11 @@
       theme = "catppuccin";
     };
 
-    rules = ''
+    tui = {
+      theme = "system";
+    };
+
+    context = ''
       # Code Quality
       Prefer the simplest solution that works (KISS). Don't design for hypothetical future requirements (YAGNI).
       Don't add error handling, fallbacks, or abstractions for scenarios that cannot happen.
@@ -47,6 +53,14 @@
       changelog = ./commands/changelog.md;
       commit = ./commands/commit.md;
       fix-issue = ./commands/fix-issue.md;
+    };
+
+    tools = {
+      git-blame = ./tools/git-blame.ts;
+      git-log = ./tools/git-log.ts;
+      nix-eval = ./tools/nix-eval.ts;
+      nix-check = ./tools/nix-check.ts;
+      just-run = ./tools/just-run.ts;
     };
   };
 }
