@@ -16,6 +16,7 @@ let
     "ghostty"
     "github@beta"
     "nvidia-geforce-now"
+    "opencode-desktop"
     "orion"
     "pocket-casts"
     "proton-drive"
