@@ -40,6 +40,8 @@
     netbird-ui
     nextcloud-client
     obs-studio
+    opencode-claude-auth
+    opencode-desktop
     plex-desktop
     plexamp
     pocket-casts

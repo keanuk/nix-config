@@ -10,7 +10,7 @@
     extensions = [
       "asciidoc"
       "basher"
-      "cargo-tom"
+      "cargo-toml"
       "catppuccin"
       "catppuccin-blur"
       "catppuccin-icons"
@@ -166,11 +166,23 @@
       };
       language_models = {
         opencode = {
-          subscription = "go";
+          show_free_models = true;
+          show_zen_models = true;
+          show_go_models = true;
+        };
+        ollama = {
+          api_url = "http://localhost:11434";
+          available_models = [
+            {
+              name = "gemma4";
+              display_name = "Gemma 4";
+              max_tokens = 8192;
+            }
+          ];
         };
       };
       edit_predictions = {
-        provider = "copilot";
+        provider = "ollama";
       };
       agent_servers = {
         opencode = {
@@ -215,57 +227,6 @@
         };
       };
     };
-    userKeymaps = [
-      {
-        context = "vim_mode == insert";
-        bindings = {
-          escape = "vim::SwitchToHelixNormalMode";
-          "ctrl-[" = "vim::SwitchToHelixNormalMode";
-          ctrl-c = "vim::SwitchToHelixNormalMode";
-          ctrl-o = "vim::SwitchToHelixNormalMode";
-        };
-      }
-      {
-        context = "vim_mode == replace";
-        bindings = {
-          escape = "vim::SwitchToHelixNormalMode";
-          "ctrl-[" = "vim::SwitchToHelixNormalMode";
-          ctrl-c = "vim::SwitchToHelixNormalMode";
-        };
-      }
-      {
-        context = "vim_mode == visual";
-        bindings = {
-          escape = "vim::SwitchToHelixNormalMode";
-          "ctrl-[" = "vim::SwitchToHelixNormalMode";
-          ctrl-c = "vim::SwitchToHelixNormalMode";
-        };
-      }
-      {
-        context = "vim_mode == normal";
-        bindings = {
-          escape = "vim::SwitchToHelixNormalMode";
-        };
-      }
-      {
-        context = "vim_mode == helix_normal";
-        bindings = {
-          escape = "vim::SwitchToHelixNormalMode";
-        };
-      }
-      {
-        context = "(VimControl && !menu)";
-        bindings = {
-          escape = "vim::SwitchToHelixNormalMode";
-          "ctrl-[" = "vim::SwitchToHelixNormalMode";
-        };
-      }
-      {
-        context = "((Editor && vim_mode == waiting) && (vim_operator == ys || vim_operator == cs))";
-        bindings = {
-          escape = "vim::SwitchToHelixNormalMode";
-        };
-      }
-    ];
+    userKeymaps = [ ];
   };
 }

@@ -8,7 +8,7 @@
       model = "glm-5.1";
       autoshare = false;
       autoupdate = true;
-      theme = "catppuccin-mocha";
+      theme = "catppuccin";
     };
 
     rules = ''
