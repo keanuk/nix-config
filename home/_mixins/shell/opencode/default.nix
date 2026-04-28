@@ -13,7 +13,7 @@
     };
 
     tui = {
-      theme = "catppuccin";
+      theme = "system";
     };
 
     context = ./context/default.md;

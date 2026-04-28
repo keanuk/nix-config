@@ -223,7 +223,7 @@
         button = true;
         default_model = {
           provider = "opencode";
-          model = "glm-5.1";
+          model = "opencode-go/glm-5.1";
         };
       };
     };
