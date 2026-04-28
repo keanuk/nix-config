@@ -1,0 +1,129 @@
+@import "cattpuccin/mocha.css";
+
+* {
+  font-family: FantasqueSansMono Nerd Font;
+  font-size: 17px;
+  min-height: 0;
+  border: 0px;
+  border-radius: 0px;
+  padding: 0px;
+  margin: 0px;
+}
+
+#waybar {
+  background: transparent;
+  color: @text;
+  margin: 5px 5px;
+  border-radius: 1rem;
+}
+
+#workspaces {
+  border-radius: 1rem;
+  background-color: @surface0;
+  margin-left: 1rem;
+  margin: 5px;
+}
+
+#workspaces button {
+  color: @lavender;
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+
+#workspaces button.active {
+  color: @sky;
+  border-radius: 1rem;
+}
+
+#workspaces button:hover {
+  color: @sapphire;
+  border-radius: 1rem;
+}
+
+#tray,
+#backlight,
+#battery,
+#clock,
+#custom-music,
+#pulseaudio,
+#wireplumber,
+#custom-lock,
+#custom-power,
+#custom-reboot,
+#custom-quit,
+#network,
+#idle_inhibitor,
+#bluetooth {
+  background-color: @surface0;
+  padding: 1rem 1rem;
+  margin: 5px 0px;
+}
+
+#clock {
+  color: @blue;
+  border-radius: 1rem;
+  margin: 5px;
+  background-color: @surface0;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+#battery {
+  color: @green;
+}
+
+#battery.charging {
+  color: @green;
+}
+
+#battery.warning:not(.charging) {
+  color: @red;
+}
+
+#backlight {
+  color: @yellow;
+}
+
+#backlight,
+#battery {
+  border-radius: 0;
+}
+
+#pulseaudio {
+  color: @maroon;
+}
+
+#idle_inhibitor {
+  color: @maroon;
+  border-radius: 1rem 0px 0px 1rem;
+  margin-left: 1rem;
+}
+
+#custom-music {
+  color: @mauve;
+  border-radius: 1rem;
+}
+
+#custom-lock {
+  border-radius: 1rem 0px 0px 1rem;
+  color: @lavender;
+}
+
+#custom-reboot {
+  color: @lavender;
+}
+
+#custom-quit {
+  color: @lavender;
+}
+
+#custom-power {
+  margin-right: 1rem;
+  border-radius: 0px 1rem 1rem 0px;
+  color: @red;
+}
+
+#tray {
+  margin-right: 1rem;
+  border-radius: 1rem;
+}
