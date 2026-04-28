@@ -1,0 +1,22 @@
+{
+  flake.modules.homeManager.gaming =
+    { pkgs, ... }:
+    {
+      home.packages = with pkgs.unstable; [
+        airshipper
+        bugdom
+        cartridges
+        dwarf-fortress
+        heroic
+        nanosaur
+        nanosaur2
+        otto-matic
+        shattered-pixel-dungeon
+        supertux
+        supertuxkart
+        wesnoth
+        xonotic
+        zeroad
+      ];
+    };
+}

@@ -144,88 +144,79 @@ home-manager switch --flake .#username@hostname
 
 ```
 .
-├── flake.nix                 # Main flake configuration
-├── flake.lock               # Locked dependency versions
-├── justfile                 # Task runner commands
-│
-├── nixos/                   # NixOS configurations
-│   ├── _mixins/            # Reusable NixOS configuration modules
-│   │   ├── base/           # Base system configs (boot, impermanence, laptop, server, etc.)
-│   │   ├── desktop/        # Desktop environments (COSMIC, GNOME, Hyprland, Pantheon, Plasma)
-│   │   ├── programs/       # System programs (nh, Steam, Evolution)
-│   │   ├── services/       # System services (Jellyfin, Plex, *arr, Tailscale, etc.)
-│   │   ├── user/           # User account configurations
-│   │   └── virtualization/ # Virtualization configs
-│   ├── beehive/            # Beelink SER9 Pro
-│   ├── earth/              # Intel NUC server
-│   ├── hyperion/           # HP EliteBook 845 G8
-│   ├── miranda/            # HP EliteBook 1030 G2
-│   ├── phoebe/             # ThinkPad P14s AMD Gen 5
-│   ├── tethys/             # Zotac ZBox
-│   ├── titan/              # CyberPowerPC desktop
-│   └── mars/               # ThinkPad X13s Gen 1 (WSL)
-│
-├── darwin/                  # macOS (nix-darwin) configurations
-│   ├── _mixins/            # Reusable Darwin configuration modules
-│   │   ├── base/           # Base macOS configs
-│   │   ├── desktop/        # Desktop-related macOS configs
-│   │   ├── services/       # macOS services
-│   │   └── user/           # User account configurations
-│   ├── salacia/            # Mac Mini 2024
-│   ├── vesta/              # MacBook Pro 2020
-│   └── charon/             # MacBook Air 2018
-│
-├── home/                    # Home Manager configurations
-│   ├── _mixins/            # Reusable Home Manager modules
-│   │   ├── base/           # Base home configs (default, impermanence, server, wsl)
-│   │   ├── darwin/         # Darwin-specific home configs
-│   │   ├── desktop/        # Desktop apps (Firefox, VSCode, GNOME, Kitty, Thunderbird, Zed, etc.)
-│   │   ├── dev/            # Language toolchains (C, Rust, Python, Go, Nix, Java, etc.)
-│   │   └── shell/          # Shell tools (Fish, Starship, Atuin, Git, Neovim, Helix, etc.)
-│   └── [hostname]/         # Per-host user configurations (e.g., hyperion/keanu.nix)
-│
-├── modules/                 # Custom NixOS and Home Manager modules
-│   ├── nixos/              # NixOS modules
-│   └── home-manager/       # Home Manager modules
-├── overlays/               # Package overlays
-├── pkgs/                   # Custom packages
-└── secrets/                # Encrypted secrets (SOPS)
+├── flake.nix                       # Entry point: inputs + flake-parts.lib.mkFlake + import-tree ./modules
+├── flake.lock                      # Locked dependency versions
+├── justfile                        # Task runner commands
+├── lib/{cosmic,wallpapers}/        # Static assets (catppuccin theme submodule + wallpaper images)
+├── secrets/                        # Encrypted secrets (SOPS)
+└── modules/
+    ├── flake/                      # flake-parts wiring (systems, formatter, devshells, packages, hydra, nixConfig)
+    ├── meta/domains.nix            # options.domains — primary domain, services, ports
+    ├── configurations/             # option trees → flake.{nixos,darwin,home}Configurations + deploy.nodes
+    │   ├── nixos.nix               # configurations.nixos.<host>           (unstable)
+    │   ├── nixos-stable.nix        # configurations.nixos-stable.<host>    (VPS, stable 25.11)
+    │   ├── darwin.nix
+    │   ├── home-manager.nix        # both unstable + stable
+    │   └── deploy-rs.nix
+    ├── nixpkgs/                    # overlays, custom packages, fix overlays
+    ├── secrets/                    # sops-nix wiring (NixOS + home-manager)
+    ├── nixos/                      # flake.modules.nixos.<role> — base, pc, laptop, server, vps, wsl, amd, …
+    │   ├── desktop/<de>/           # cosmic, gnome, pantheon, plasma, hyprland (one DE per directory)
+    │   ├── programs/<name>/        # fuse, nh, nix-ld, evolution, gamescope, steam
+    │   ├── services/<name>/        # the 43 services (cloudflared, jellyfin, ollama, …)
+    │   ├── users/                  # user-keanu, user-kimmy
+    │   └── fixes/                  # opt-in fix-* roles
+    ├── darwin/                     # flake.modules.darwin.<role>
+    │   ├── services/<svc>/
+    │   └── users/
+    ├── home/                       # flake.modules.homeManager.<role>
+    │   ├── shell/<tool>/           # fish, starship, atuin, git, neovim, …
+    │   ├── desktop/<app>/          # firefox, vscode, kitty, …
+    │   ├── dev/<lang>/             # rust, python, go, nix, …
+    │   └── services/openclaw/
+    └── hosts/<host>/               # per-host composition
+        ├── imports.nix             # composes roles via with config.flake.modules.nixos / darwin
+        ├── home.nix                # writes home-manager.users.<u> + standalone homeConfigurations
+        ├── _hardware-configuration.nix
+        └── _disko-configuration.nix
 ```
 
-### The _mixins Pattern
+### The Dendritic Pattern
 
-This configuration uses a **_mixins pattern** for modular, composable system configuration. Instead of a monolithic `common/` directory, configurations are organized into small, focused modules that can be mixed and matched per host.
+This configuration uses the **dendritic pattern** with [flake-parts](https://flake.parts) and [`import-tree`](https://github.com/vic/import-tree). Every `.nix` file under `modules/` (except those starting with `_`) is a top-level flake-parts module, auto-imported into a single configuration tree. Files compose by writing to `flake.modules.<class>.<role>` deferredModules, which merge automatically.
 
 **How it works:**
 
-1. **Mixins are organized by category** - Each `_mixins/` directory contains subdirectories grouping related functionality (e.g., `base/`, `desktop/`, `services/`)
+1. **Each feature is a module that contributes to a role.** A service file under `modules/nixos/services/<svc>/default.nix` writes:
+   ```nix
+   { flake.modules.nixos.svc-<svc> = { ... NixOS config ... }; }
+   ```
+   Multiple files writing to the same role merge into one deferredModule.
 
-2. **Host configurations import only what they need** - Each host's `default.nix` imports specific mixins:
-   ```nix-config/example-host.nix#L1-10
-   # Example: nixos/hyperion/default.nix
-   imports = [
-     ../_mixins/base/default.nix
-     ../_mixins/base/laptop.nix
-     ../_mixins/desktop/pantheon/default.nix
-     ../_mixins/services/tailscale/default.nix
-   ];
+2. **Hosts compose roles by reference, not by path.** A host's `modules/hosts/<host>/imports.nix` does:
+   ```nix
+   { config, ... }: {
+     configurations.nixos.<host>.module = {
+       imports = with config.flake.modules.nixos; [
+         base laptop desktop cosmic svc-btrfs user-keanu home-manager
+       ];
+       networking.hostName = "<host>";
+       system.stateVersion = "...";
+     };
+   }
    ```
 
-3. **Fine-grained composition** - Mix and match exactly the features needed:
-   - A laptop gets `base/laptop.nix`, a server gets `base/server.nix`
-   - Desktop systems import specific DE mixins (GNOME, Pantheon, Hyprland, etc.)
-   - Media servers import only the services they need (Jellyfin, Plex, Sonarr, etc.)
+3. **No more `specialArgs` plumbing.** Cross-cutting values like `domains` live as top-level options (`options.domains`) and are read at flake-parts scope, then captured into deferredModules via closure.
 
-4. **Consistent across platforms** - The same pattern is used for:
-   - **NixOS** (`nixos/_mixins/`) - System-level configuration
-   - **Darwin** (`darwin/_mixins/`) - macOS system configuration
-   - **Home Manager** (`home/_mixins/`) - User-level configuration
+4. **Consistent across platforms.** `flake.modules.nixos.<role>`, `flake.modules.darwin.<role>`, and `flake.modules.homeManager.<role>` use the same pattern.
+
+5. **Underscore-prefixed files (`_hardware-configuration.nix`, `_aliases.nix`, `_fixes/`, `_pkgs.nix`) are skipped by `import-tree`** and imported by path where needed — used for raw NixOS / home-manager modules and data files that aren't flake-parts modules themselves.
 
 **Benefits:**
-- **Clarity** - Easy to see exactly what features a host uses
-- **Reusability** - Mixins are shared across hosts without duplication
-- **Flexibility** - Add or remove features by changing imports
-- **Discoverability** - Browse `_mixins/` to see available options
+- **Discoverability** — browse `modules/` to see every available feature
+- **Composition by name** — hosts list role names, not paths
+- **Free file motion** — paths represent features, so files can be moved or split without breaking imports
+- **Cross-platform sharing** — modules that span NixOS / Darwin / home-manager can be a single file
 
 ## 🔧 Configuration Details
 
@@ -270,8 +261,12 @@ sudo nix-collect-garbage -d  # On NixOS
 
 ### Debugging
 ```bash
-# Check configuration syntax
-nix flake check
+# Check configuration syntax (skip building closures)
+nix flake check --no-build
+
+# Spot-check one host evaluates
+nix eval --raw .#nixosConfigurations.<host>.config.system.build.toplevel.drvPath
+nix eval --raw .#homeConfigurations.\"<user>@<host>\".activationPackage.drvPath
 
 # Build without switching
 just build-host  # or just build-home

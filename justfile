@@ -117,7 +117,7 @@ authelia-secrets:
     @echo "authelia-session-secret: $(openssl rand -hex 64)"
     @echo "authelia-storage-encryption-key: $(openssl rand -hex 32)"
     @echo ""
-    @echo "For the authelia-users secret, see: nixos/_mixins/services/authelia/README.md"
+    @echo "For the authelia-users secret, see: modules/nixos/services/authelia/default.nix"
 
 # Generate Argon2id password hash for Authelia users
 authelia-hash password:

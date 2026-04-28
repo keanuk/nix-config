@@ -1,0 +1,83 @@
+{
+  flake.modules.homeManager.desktop =
+    {
+      pkgs,
+      inputs,
+      ...
+    }:
+    {
+      home.packages = with pkgs.unstable; [
+        android-studio
+        android-tools
+        antigravity-fhs
+        appimage-run
+        audacity
+        bitwarden-desktop
+        bluebubbles
+        # TODO: Re-enable when build is fixed
+        # bottles
+        bruno
+        calibre
+        catppuccin
+        darktable
+        dbeaver-bin
+        dig
+        endeavour
+        ente-auth
+        ente-cli
+        ente-desktop
+        gimp3-with-plugins
+        github-desktop
+        gnome-disk-utility
+        gnome-maps
+        handbrake
+        inkscape
+        jellyfin-media-player
+        jitsi
+        joplin-desktop
+        krita
+        kodi-wayland
+        leetgo
+        libreoffice
+        netbird-ui
+        nextcloud-client
+        obs-studio
+        opencode-claude-auth
+        opencode-desktop
+        plex-desktop
+        plexamp
+        pocket-casts
+        podman-desktop
+        proton-pass
+        protonmail-desktop
+        protonmail-bridge-gui
+        proton-vpn
+        rawtherapee
+        rnote
+        rustdesk-flutter
+        session-desktop
+        shortwave
+        shotwell
+        signal-desktop
+        slack
+        standardnotes
+        steam-run
+        stellarium
+        telegram-desktop
+        transmission_4-gtk
+        trayscale
+        tremotesf
+        typst
+        vlc
+        wireshark
+        wl-clipboard
+        xclip
+        pear-desktop
+        zlib-ng
+
+        kdePackages.kdenlive
+
+        inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
+      ];
+    };
+}
