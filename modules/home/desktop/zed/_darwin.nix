@@ -7,7 +7,6 @@
 # launched from /Applications can't find LSPs on the Nix-managed $PATH.
 { ... }:
 {
-  imports = [ ./. ];
 
   programs.zed-editor = {
     package = null;

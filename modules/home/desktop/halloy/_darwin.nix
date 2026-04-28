@@ -6,7 +6,6 @@
 # Darwin-specific overrides (nickname, theme).
 { ... }:
 {
-  imports = [ ./. ];
 
   programs.halloy = {
     package = null;

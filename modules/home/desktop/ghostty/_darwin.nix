@@ -6,7 +6,6 @@
 # Darwin-specific overrides (shell command, background opacity).
 { lib, ... }:
 {
-  imports = [ ./. ];
 
   programs.ghostty = {
     package = null;
