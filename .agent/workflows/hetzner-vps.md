@@ -30,7 +30,7 @@ SSH into the server and identify the disk device:
 ssh root@<HETZNER_IP> lsblk
 ```
 
-Update `nixos/bucaccio/disko-configuration.nix` if the device differs from `/dev/sda`.
+Update `modules/hosts/bucaccio/_disko-configuration.nix` if the device differs from `/dev/sda`.
 
 ### 3. Generate age key on server (for sops)
 
@@ -90,24 +90,24 @@ ssh keanu@bucaccio
 ```
 
 > [!TIP]
-> **SSH Keys**: It is highly recommended to add your public SSH key to `nixos/_mixins/user/keanu/default.nix` before deployment to ensure you can log in without a password.
+> **SSH Keys**: It is highly recommended to add your public SSH key to `modules/nixos/users/keanu.nix` before deployment to ensure you can log in without a password.
 
 ## Troubleshooting
 
 - **Disk not found**: Check `lsblk` output and update disko config device path (default is `/dev/sda`)
 - **SSH timeout**: Verify firewall allows port 22, check Hetzner console
-- **Build fails**: Run `nix flake check` locally first to catch issues. If hardware specific errors occur, check `nixos/bucaccio/hardware-configuration.nix`.
+- **Build fails**: Run `nix flake check --no-build` locally first to catch issues. If hardware specific errors occur, check `modules/hosts/bucaccio/_hardware-configuration.nix`.
 
 ## Adding More Hetzner VPS Hosts
 
-1. Create new directory: `nixos/<hostname>/`
+1. Create new host directory: `modules/hosts/<hostname>/`
 2. Copy and modify files from `bucaccio/`:
-   - `default.nix` - update hostname
-   - `disko-configuration.nix` - update device path
-   - `hardware-configuration.nix` - keep as-is for similar VPS
-3. Create home config: `home/<hostname>/keanu.nix`
-4. Add to `flake.nix`:
-   - `nixosConfigurations.<hostname>`
-   - `homeConfigurations."keanu@<hostname>"`
-5. Add age key to `.sops.yaml`
-6. Deploy with nixos-anywhere
+   - `imports.nix` — update hostname; set `isVps = true`, `deploy.{hostname,sshUser}`, and `staticWebsite.{domain,webRoot}`
+   - `_disko-configuration.nix` — update device path
+   - `_hardware-configuration.nix` — keep as-is for similar VPS
+   - `home.nix` — copy and update `"keanu@<hostname>"` key
+3. Add age key to `.sops.yaml` and re-encrypt with `sops updatekeys secrets/sops/secrets.yaml`
+4. Deploy with `nix run .#nixos-anywhere -- --flake .#<hostname> root@<IP>`
+5. Once deployed, subsequent updates use `just deploy <hostname>` (deploy-rs)
+
+The new host is auto-wired into `flake.nixosConfigurations`, `flake.homeConfigurations`, and `flake.deploy.nodes` via the `configurations.nixos-stable` option tree — no manual edits to `flake.nix` are needed.

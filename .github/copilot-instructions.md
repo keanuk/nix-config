@@ -2,62 +2,85 @@
 
 ## Project Overview
 
-This is a multi-platform Nix configuration managing NixOS, nix-darwin, and home-manager across ~14 devices (desktops, laptops, servers, VPS instances, and WSL). It uses the **mixin pattern** for composable, per-host configuration.
+This is a multi-platform Nix configuration managing NixOS, nix-darwin, and home-manager across ~14 devices (desktops, laptops, servers, VPS instances, and WSL). It uses the **dendritic pattern** with [flake-parts](https://flake.parts) and [`import-tree`](https://github.com/vic/import-tree).
 
 ## Repository Layout
 
-- `flake.nix` — Entry point: all hosts, inputs, overlays, dev shells
-- `lib/` — Helper functions: `mkNixosHost`, `mkDarwinHost`, `mkHomeConfig`, `mkHost` (home-manager integration), `domains.nix` (centralized service/domain config)
-- `nixos/` — NixOS system configurations
-  - `_mixins/` — Reusable NixOS modules: `base/`, `desktop/`, `fixes/`, `programs/`, `services/`, `user/`, `virtualization/`
-  - `<hostname>/` — Per-host configs: beehive, earth, hyperion, mars, miranda, phoebe, tethys, titan
-  - `vps/` — VPS hosts: bucaccio, emilyvansant, love-alaya
-- `darwin/` — nix-darwin (macOS) configurations
-  - `_mixins/` — Reusable Darwin modules: `base/`, `desktop/`, `fixes/`, `services/`, `user/`
-  - `<hostname>/` — Per-host configs: salacia, charon, vesta
-- `home/` — Home Manager configurations
-  - `_mixins/` — Reusable modules: `base/`, `profiles/`, `darwin/`, `desktop/`, `dev/`, `fixes/`, `services/`, `shell/`
-  - `<hostname>/` — Per-host home configs
-  - `vps/` — VPS home configs
-- `modules/` — Custom NixOS and home-manager modules
-- `overlays/` — Package overlays: `unstable-packages`, `stable-packages`, `additions`, `modifications`, `fixes/`
-- `pkgs/` — Custom packages (exposed via `overlays.additions`)
-- `secrets/` — SOPS-encrypted secrets (age encryption)
+- `flake.nix` — Entry point: inputs + `flake-parts.lib.mkFlake` + `import-tree ./modules`
+- `modules/`
+  - `flake/` — flake-parts wiring (systems, formatter, devshells, packages, hydra, nixConfig)
+  - `meta/domains.nix` — `options.domains` (primary domain, services, ports)
+  - `configurations/` — option trees that emit `flake.{nixos,darwin,home}Configurations` and `deploy.nodes`
+  - `nixpkgs/` — overlays, custom packages (`_pkgs.nix`), fix overlays (`_fixes/`)
+  - `secrets/` — sops-nix wiring (NixOS + home-manager)
+  - `nixos/` — `flake.modules.nixos.<role>` — base/pc/laptop/server/vps/wsl/amd, desktop/<de>/, programs/<name>/, services/<name>/, users/, fixes/
+  - `darwin/` — `flake.modules.darwin.<role>` — base, packages, homebrew{,-aarch}, services/<svc>/, users/, fixes
+  - `home/` — `flake.modules.homeManager.<role>` — base, profiles (desktop-linux, darwin-profile, vps-profile, wsl, server), shell/<tool>/, desktop/<app>/, dev/<lang>/, services/openclaw/
+  - `hosts/<host>/` — per-host composition (`imports.nix`, `home.nix`, `_hardware-configuration.nix`, etc.)
+- `lib/` — static assets only: `wallpapers/` (used by stylix/hyprpaper) and `cosmic/catppuccin` (submodule)
+- `secrets/` — SOPS-encrypted secrets (age encryption); `secrets/sops/secrets.yaml`
 - `windows/` — Windows setup scripts
+- Files starting with `_` are skipped by `import-tree` and imported by path where needed (e.g. `_hardware-configuration.nix`, `_aliases.nix`, `_fixes/`).
 
 ## Architecture
 
-### The Mixin Pattern
+### The Dendritic Pattern
 
-`_mixins/` directories contain small, focused modules grouped by category. Each host's `default.nix` imports only the mixins it needs. This pattern is used consistently across `nixos/_mixins/`, `darwin/_mixins/`, and `home/_mixins/`.
+Every `.nix` file under `modules/` (except `_*` files) is a top-level flake-parts module, auto-imported via `import-tree`. Files compose by writing to `flake.modules.<class>.<role>` deferredModules, which merge automatically when multiple files target the same role.
 
-### Host Configuration Flow
+A leaf module looks like:
 
-- **NixOS**: `flake.nix` → `lib/mkNixosHost.nix` → `nixos/<host>/default.nix` → mixins + `lib/mkHost.nix` for home-manager
-- **Darwin**: `flake.nix` → `lib/mkDarwinHost.nix` → `darwin/<host>/default.nix` → mixins + `lib/mkHost.nix`
-- **Home configs**: Inline (via `mkHomeManagerHost`) and standalone (via `mkHomeConfig`)
+```nix
+# modules/nixos/services/cloudflared/default.nix
+{ config, ... }:
+let d = config.domains; in
+{
+  flake.modules.nixos.svc-cloudflared = { ... NixOS module body ... };
+}
+```
+
+A host composes roles by name:
+
+```nix
+# modules/hosts/earth/imports.nix
+{ config, ... }: {
+  configurations.nixos.earth.module = {
+    imports = with config.flake.modules.nixos; [ base pc desktop cosmic svc-btrfs user-keanu home-manager ];
+    nixpkgs.hostPlatform = "x86_64-linux";
+    networking.hostName = "earth";
+    system.stateVersion = "23.11";
+  };
+}
+```
+
+### Configuration Output
+
+- `flake.nixosConfigurations` is built from `configurations.nixos.<host>.module` (unstable) and `configurations.nixos-stable.<host>.module` (VPS, stable 25.11).
+- `flake.darwinConfigurations` is built from `configurations.darwin.<host>.module`.
+- `flake.homeConfigurations."<user>@<host>"` from `configurations.homeManager.<key>` (unstable) and `configurations.homeManager-stable.<key>` (VPS).
+- `flake.deploy.nodes.<host>` is auto-derived from `configurations.nixos-stable.<host>` entries with `isVps = true`.
 
 ### Stable vs Unstable
 
-- Most hosts use `nixpkgs` (unstable) and `home-manager`
-- VPS hosts use `nixpkgs-stable` (25.11) and `home-manager-stable`
-- `pkgs.unstable.*` is available on stable hosts via overlays
+- Most hosts use `nixpkgs` (unstable) and `home-manager`.
+- VPS hosts use `nixpkgs-stable` (25.11) and `home-manager-stable`.
+- `pkgs.unstable.*` and `pkgs.stable.*` are exposed via overlays for cross-channel access.
 
 ### Centralized Domain Config
 
-`lib/domains.nix` defines the primary domain, email, and all service definitions (subdomains, ports). Adding a service there auto-propagates to cloudflared tunnel routes and authelia reverse proxy configs.
+`modules/meta/domains.nix` defines `options.domains` (primary domain, auth domain, email, 27 service entries with subdomain/ports/auth flags). Service modules read `config.domains` at flake-parts scope and capture values via closure. No more `specialArgs` plumbing.
 
 ### Ollama Model Tiers
 
-- Base mixin (`services/ollama/default.nix`): defaults to small `gemma3:1b` for weak devices
-- Full list (`services/ollama/full-models.nix`): opt-in for powerful hosts (beehive, titan, phoebe)
-- Do NOT change the default — weaker devices intentionally only load the small model
+- Base: `flake.modules.nixos.svc-ollama` — small `gemma3:1b` for weak devices.
+- Full list: `flake.modules.nixos.svc-ollama-full` — opt-in for beehive, titan, phoebe.
+- Do NOT change the default — weaker devices intentionally only load the small model.
 
 ### VPS Deployment
 
-- VPS hosts are resource-constrained — never `nixos-rebuild` on them
-- Use `deploy-rs`: `just deploy <hostname>` or `nix run .#deploy-rs -- .#<hostname>`
-- Initial provisioning via `nixos-anywhere`
+- VPS hosts are resource-constrained — never `nixos-rebuild` on them.
+- Use `deploy-rs`: `just deploy <hostname>` or `nix run .#deploy-rs -- .#<hostname>`.
+- Initial provisioning via `nixos-anywhere`.
 
 ## Hosts
 
@@ -82,72 +105,69 @@ This is a multi-platform Nix configuration managing NixOS, nix-darwin, and home-
 
 ### Nix Style
 
-- Format with `nixfmt-tree` (the flake's formatter)
-- Use `lib.mkDefault` for values that hosts should be able to override easily
-- Use `lib.mkForce` sparingly, only when a mixin must override a base setting
-- Prefer `{ ... }:` or named args over `_:` unless the module genuinely uses no arguments
-- Fix/workaround files must include: issue link, description, status, last-checked date, removal condition
-- Add `warnings` entries to fix files so builds surface reminders
+- Format with `nixfmt-tree` (the flake's formatter, run `nix fmt`).
+- Use `lib.mkDefault` for values that hosts should be able to override easily.
+- Use `lib.mkForce` sparingly, only when a role must override a base setting.
+- Prefer `{ ... }:` or named args over `_:` unless the module genuinely uses no arguments.
+- Fix/workaround files must include: issue link, status, last-checked date, removal condition. Add a `warnings` list entry so builds surface a reminder.
 
 ### File Organization
 
-- One module per directory with a `default.nix` entry point
-- Use `packages.nix` alongside `default.nix` when the package list is large
-- Host-specific overrides go in the host's `default.nix`, not in shared mixins
-- Profiles (`home/_mixins/profiles/`) aggregate common import sets per host category
+- One feature per directory with a `default.nix` entry point. Auxiliary files in the same directory either contribute to the same role (multiple `flake.modules.<class>.<role>` writes merge) or are underscore-prefixed for path-imports.
+- Outer wrapper takes the flake-parts arguments it needs (`{ config, inputs, lib, ... }`).
+- Body assigns `flake.modules.<class>.<role> = { ... };`.
+- Inner module body is a regular NixOS / nix-darwin / home-manager module taking its own `{ pkgs, lib, config, ... }`.
 
 ### Secrets
 
-- Never hardcode secrets, passwords, or API keys in Nix files
-- Use `sops-nix` with `config.sops.secrets.<name>.path`
-- NixOS secrets: `/run/secrets/<name>` — Home-manager secrets: `~/.config/sops-nix/secrets/<name>`
-- All secrets in `secrets/sops/secrets.yaml`, encrypted with age keys from `.sops.yaml`
+- Never hardcode secrets, passwords, or API keys in Nix files.
+- Use `sops-nix`: `config.sops.secrets.<name>.path`.
+- NixOS: `/run/secrets/<name>`. Home-manager: `~/.config/sops-nix/secrets/<name>`.
+- All secrets in `secrets/sops/secrets.yaml`, encrypted with age keys from `.sops.yaml`.
+- Per-host secret declarations live in `modules/hosts/<host>/sops.nix`.
 
 ### Testing
 
-- `just check` — validate flake evaluation without building
-- `just build` — build current host's OS config
-- `just home` — build and switch home-manager config
-- `nix eval .#nixosConfigurations.<host>.config.<option>` — spot-check option values
-- **New files must be `git add`ed before Nix can see them**
+- `just check` — validate flake evaluation without building.
+- `just build` — build current host's config.
+- `just home` — build and switch home-manager config.
+- `nix eval --raw .#nixosConfigurations.<host>.config.system.build.toplevel.drvPath` — spot-check evaluation.
+- `nix eval --raw .#homeConfigurations.\"<user>@<host>\".activationPackage.drvPath` — spot-check HM config.
+- **New files must be `git add`ed before Nix can see them.**
 
 ### Linting
 
-Before committing changes to any `.nix` file, always run these three checks and fix any issues they report:
+Before committing changes to any `.nix` file, run these three checks and fix any issues:
 
-1. `nix fmt` — format with the project's treefmt/nixfmt-tree formatter
-2. `deadnix <file>` — detect unused variables, bindings, and `with` expressions
-3. `statix check <file>` — catch common Nix anti-patterns and style issues
+1. `nix fmt` — format with `nixfmt-tree`.
+2. `deadnix <file>` — detect unused variables.
+3. `statix check <file>` — catch common Nix anti-patterns.
 
-All three tools are available in the project's dev shell (`nix develop`). Run them on every `.nix` file you create or modify.
+All three are available via `nix develop`.
 
 ## Common Tasks
 
 ### Adding a new NixOS host
 
-1. Create `nixos/<hostname>/default.nix` and `hardware-configuration.nix`
-2. Import appropriate mixins (base, desktop, services, user)
-3. Add `mkHomeManagerHost` call pointing to home config
-4. Create `home/<hostname>/keanu.nix` importing a profile
-5. Add to `flake.nix`: `nixosConfigurations` and `homeConfigurations`
+1. Create `modules/hosts/<hostname>/imports.nix` writing to `configurations.nixos.<hostname>.module`. Compose roles via `imports = with config.flake.modules.nixos; [ ... ];`.
+2. Copy `hardware-configuration.nix` (and any disko config) into the host folder with an `_` prefix.
+3. Create `modules/hosts/<hostname>/home.nix` writing both `configurations.nixos.<host>.module.home-manager.users.<user>` and the standalone `configurations.homeManager."<user>@<host>"`.
 
 ### Adding a new VPS host
 
-1. Create `nixos/vps/<hostname>/` with `default.nix`, `disko-configuration.nix`, `hardware-configuration.nix`
-2. Import `../../_mixins/base`, `../../_mixins/base/vps-grub.nix`, and `static-website` mixin
-3. Create `home/vps/<hostname>/keanu.nix` importing `profiles/vps.nix`
-4. Add to `flake.nix`: nixosConfigurations (`mkNixosHost-stable`), homeConfigurations (`mkHomeConfig-stable`), `deploy.nodes`
-5. Add age key to `.sops.yaml`
+1. Create `modules/hosts/<hostname>/imports.nix` writing to `configurations.nixos-stable.<hostname>` with `isVps = true; deploy = { hostname = "..."; sshUser = "..."; };` and `staticWebsite = { domain = "..."; webRoot = "..."; };`.
+2. Compose roles `[ base vps-grub vps-website user-keanu home-manager-stable ]` plus the host's hardware/disko files.
+3. Create `home.nix` writing both the integrated and standalone home-manager configs (using `homeManager-stable`).
+4. Add the deploy target's age key to `.sops.yaml`.
 
 ### Adding a new service
 
-1. Create `nixos/_mixins/services/<name>/default.nix`
-2. If it needs a subdomain, add to `lib/domains.nix` (auto-propagates to cloudflared/authelia)
-3. Import in the host's `default.nix`
+1. Create `modules/nixos/services/<name>/default.nix` writing `flake.modules.nixos.svc-<name> = { ... };`.
+2. If the service needs a subdomain, add it to `modules/meta/domains.nix` (auto-propagates to cloudflared/authelia which read `config.domains`).
+3. Reference the service from a role aggregator (e.g. `flake.modules.nixos.server`) or directly from a host's imports.
 
 ### Adding a workaround/fix
 
-1. Copy template from `nixos/_mixins/fixes/_template.nix` or `home/_mixins/fixes/_template.nix`
-2. Fill in: issue link, description, status, last-checked date, removal condition
-3. Add `warnings` entry for build-time reminders
-4. Import in `fixes/default.nix`
+1. Create `modules/nixos/fixes/<name>/default.nix` writing `flake.modules.nixos.fix-<name> = { ... };`.
+2. Add `warnings = [ "..." ];` so builds surface a reminder.
+3. Hosts opt in by adding the role to their imports list.
