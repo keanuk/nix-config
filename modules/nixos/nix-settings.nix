@@ -1,12 +1,14 @@
 { config, inputs, ... }:
 let
-  baseOverlays = with config.flake.overlays; [
-    unstable-packages
-    stable-packages
-    additions
-    modifications
-  ]
-  ++ [ inputs.nix-openclaw.overlays.default ];
+  baseOverlays =
+    with config.flake.overlays;
+    [
+      unstable-packages
+      stable-packages
+      additions
+      modifications
+    ]
+    ++ [ inputs.nix-openclaw.overlays.default ];
 in
 {
   flake.modules.nixos.nix-settings = {

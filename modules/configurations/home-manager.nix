@@ -17,13 +17,15 @@ let
     };
   };
 
-  baseOverlays = with config.flake.overlays; [
-    unstable-packages
-    stable-packages
-    additions
-    modifications
-  ]
-  ++ [ inputs.nix-openclaw.overlays.default ];
+  baseOverlays =
+    with config.flake.overlays;
+    [
+      unstable-packages
+      stable-packages
+      additions
+      modifications
+    ]
+    ++ [ inputs.nix-openclaw.overlays.default ];
 
   mkUnstable =
     _name: cfg:

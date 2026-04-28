@@ -1,5 +1,6 @@
 {
-  flake.modules.darwin.homebrew-aarch = _:
+  flake.modules.darwin.homebrew-aarch =
+    _:
     let
       mkCask = name: {
         inherit name;

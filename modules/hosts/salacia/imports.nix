@@ -1,16 +1,14 @@
 { config, ... }:
 {
   configurations.darwin.salacia.module = {
-    imports = (
-      with config.flake.modules.darwin;
-      [
+    imports =
+      (with config.flake.modules.darwin; [
         base
         homebrew-aarch
         keanu
         home-manager
-      ]
-    )
-    ++ [ ./_hardware-configuration.nix ];
+      ])
+      ++ [ ./_hardware-configuration.nix ];
 
     networking.hostName = "salacia";
     nixpkgs.hostPlatform = "aarch64-darwin";

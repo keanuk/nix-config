@@ -3,9 +3,8 @@
   configurations.nixos.hyperion.module =
     { lib, ... }:
     {
-      imports = (
-        with config.flake.modules.nixos;
-        [
+      imports =
+        (with config.flake.modules.nixos; [
           base
           hardware
           lanzaboote
@@ -18,12 +17,11 @@
           swapfile
           fs
           home-manager
-        ]
-      )
-      ++ [
-        inputs.nixos-hardware.nixosModules.hp-elitebook-845g8
-        ./_hardware-configuration.nix
-      ];
+        ])
+        ++ [
+          inputs.nixos-hardware.nixosModules.hp-elitebook-845g8
+          ./_hardware-configuration.nix
+        ];
 
       nixpkgs.hostPlatform = "x86_64-linux";
       networking.hostName = "hyperion";
