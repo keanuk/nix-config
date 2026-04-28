@@ -10,7 +10,7 @@
           	fastfetch
           end
         '';
-        shellAliases = import ./_aliases.nix;
+        shellAliases = import ../_aliases.nix;
       };
     };
 }

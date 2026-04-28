@@ -5,7 +5,7 @@
       programs.nushell = {
         enable = true;
         package = pkgs.nushell;
-        shellAliases = import ./_aliases.nix;
+        shellAliases = import ../_aliases.nix;
         configFile = {
           text = ''
             let $config = {
