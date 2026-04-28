@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.homeManager.dev =
+  flake.modules.homeManager.java =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [
@@ -9,4 +10,6 @@
         kotlin-language-server
       ];
     };
+
+  flake.modules.homeManager.dev = config.flake.modules.homeManager.java;
 }

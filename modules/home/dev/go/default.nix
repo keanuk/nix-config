@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.homeManager.dev =
+  flake.modules.homeManager.go =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [
@@ -8,4 +9,6 @@
         gopls
       ];
     };
+
+  flake.modules.homeManager.dev = config.flake.modules.homeManager.go;
 }

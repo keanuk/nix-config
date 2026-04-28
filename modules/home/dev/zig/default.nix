@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.homeManager.dev =
+  flake.modules.homeManager.zig =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [
@@ -7,4 +8,6 @@
         zls
       ];
     };
+
+  flake.modules.homeManager.dev = config.flake.modules.homeManager.zig;
 }

@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.homeManager.dev =
+  flake.modules.homeManager.python =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [
@@ -8,4 +9,6 @@
         python314Packages.python-lsp-server
       ];
     };
+
+  flake.modules.homeManager.dev = config.flake.modules.homeManager.python;
 }

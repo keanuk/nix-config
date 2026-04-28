@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.homeManager.dev =
+  flake.modules.homeManager.rust =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [
@@ -12,4 +13,6 @@
         rust-analyzer
       ];
     };
+
+  flake.modules.homeManager.dev = config.flake.modules.homeManager.rust;
 }

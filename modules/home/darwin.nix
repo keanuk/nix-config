@@ -4,7 +4,20 @@
     imports =
       (with config.flake.modules.homeManager; [
         nh
-        dev
+        # Same dev languages as the original darwin mixin — excludes csharp
+        # and flutter, which weren't wanted on macOS.
+        c
+        go
+        haskell
+        java
+        lua
+        markup
+        nim
+        nix
+        node
+        python
+        rust
+        zig
       ])
       ++ [
         ./desktop/ghostty/_darwin.nix

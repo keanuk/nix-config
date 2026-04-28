@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.homeManager.dev =
+  flake.modules.homeManager.node =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [
@@ -18,4 +19,6 @@
         typescript-language-server
       ];
     };
+
+  flake.modules.homeManager.dev = config.flake.modules.homeManager.node;
 }

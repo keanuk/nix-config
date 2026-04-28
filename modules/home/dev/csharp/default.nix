@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.homeManager.dev =
+  flake.modules.homeManager.csharp =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [
@@ -7,4 +8,6 @@
         mono
       ];
     };
+
+  flake.modules.homeManager.dev = config.flake.modules.homeManager.csharp;
 }
