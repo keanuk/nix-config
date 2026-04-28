@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.gnome-tray = _: {
+  flake.modules.homeManager.gnome = _: {
     imports = [
       ./_keyring.nix
     ];

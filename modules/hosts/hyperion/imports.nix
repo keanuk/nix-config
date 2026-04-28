@@ -12,9 +12,9 @@
           laptop
           desktop
           pantheon
-          svc-btrfs
-          user-keanu
-          user-kimmy
+          btrfs
+          keanu
+          kimmy
           swapfile
           fs
           home-manager

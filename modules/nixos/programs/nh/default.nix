@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.nixos.prog-nh =
+  flake.modules.nixos.nh =
     {
       pkgs,
       config,
@@ -15,4 +16,6 @@
 
       environment.variables.NH_NO_CHECKS = 1;
     };
+
+  flake.modules.nixos.base = config.flake.modules.nixos.nh;
 }

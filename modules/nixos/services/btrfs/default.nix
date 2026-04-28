@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.svc-btrfs = _: {
+  flake.modules.nixos.btrfs = _: {
     services.btrfs = {
       autoScrub.enable = true;
     };

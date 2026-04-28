@@ -14,7 +14,7 @@ in
       packages
 
       # TODO: Figure out how to make it work with determinate nix
-      # svc-comin
+      # comin
 
       desktop-fonts
 

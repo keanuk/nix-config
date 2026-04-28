@@ -4,12 +4,12 @@
     { pkgs, ... }:
     {
       imports = with config.flake.modules.nixos; [
-        prog-evolution
-        prog-gamescope
-        prog-steam
+        evolution
+        gamescope
+        steam
 
-        svc-geoclue2
-        svc-udev
+        geoclue2
+        udev
       ];
 
       services = {

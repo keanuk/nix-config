@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.svc-netbird =
+  flake.modules.nixos.netbird =
     { pkgs, ... }:
     {
       services.netbird = {

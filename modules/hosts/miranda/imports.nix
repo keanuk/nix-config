@@ -10,8 +10,8 @@
         laptop
         desktop
         cosmic
-        svc-btrfs
-        user-keanu
+        btrfs
+        keanu
         home-manager
       ]
     )

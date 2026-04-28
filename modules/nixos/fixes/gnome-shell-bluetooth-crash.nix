@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.fix-gnome-shell-bluetooth-crash =
+  flake.modules.nixos.gnome-shell-bluetooth-crash =
     {
       lib,
       pkgs,

@@ -1,9 +1,9 @@
 {
   # Full Ollama model list for powerful hosts (beehive, titan, phoebe)
   #
-  # Use this role alongside svc-ollama on hosts with enough resources to run
+  # Use this role alongside ollama on hosts with enough resources to run
   # larger models.
-  flake.modules.nixos.svc-ollama-full = _: {
+  flake.modules.nixos.ollama-full = _: {
     services.ollama.loadModels = [
       "codestral:latest"
       "deepseek-r1:latest"

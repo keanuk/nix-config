@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.cosmic-tray =
+  flake.modules.homeManager.cosmic =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [

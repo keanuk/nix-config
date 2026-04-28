@@ -8,7 +8,7 @@
         [
           nix-settings
           system-packages
-          svc-openssh
+          openssh
         ]
       )
       ++ [ inputs.vscode-server.nixosModules.default ];

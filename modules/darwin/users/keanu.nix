@@ -1,5 +1,5 @@
 {
-  flake.modules.darwin.user-keanu =
+  flake.modules.darwin.keanu =
     { pkgs, ... }:
     {
       system.primaryUser = "keanu";

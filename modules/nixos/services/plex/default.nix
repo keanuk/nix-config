@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.svc-plex =
+  flake.modules.nixos.plex =
     { pkgs, ... }:
     {
       services.plex = {

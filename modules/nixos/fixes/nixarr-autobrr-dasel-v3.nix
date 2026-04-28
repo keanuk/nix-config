@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.fix-nixarr-autobrr-dasel-v3 =
+  flake.modules.nixos.nixarr-autobrr-dasel-v3 =
     {
       config,
       lib,

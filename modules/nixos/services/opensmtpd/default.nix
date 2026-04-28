@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.svc-opensmtpd = _: {
+  flake.modules.nixos.opensmtpd = _: {
     services.opensmtpd = {
       enable = true;
       setSendmail = true;

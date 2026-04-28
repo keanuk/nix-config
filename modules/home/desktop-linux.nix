@@ -5,8 +5,8 @@
       base
       home-manager-self
       desktop
-      cosmic-tray
-      gnome-tray
+      cosmic
+      gnome
     ];
 
     home = {

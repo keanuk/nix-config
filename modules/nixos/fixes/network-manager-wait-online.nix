@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.fix-network-manager-wait-online =
+  flake.modules.nixos.network-manager-wait-online =
     {
       pkgs,
       lib,

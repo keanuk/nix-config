@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.svc-jackett = _: {
+  flake.modules.nixos.jackett = _: {
     services.jackett = {
       enable = true;
       openFirewall = true;

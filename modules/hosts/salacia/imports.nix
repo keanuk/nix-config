@@ -6,7 +6,7 @@
       [
         base
         homebrew-aarch
-        user-keanu
+        keanu
         home-manager
       ]
     )

@@ -3,7 +3,7 @@
   configurations.nixos.mars.module = {
     imports = with config.flake.modules.nixos; [
       wsl
-      user-keanu
+      keanu
       home-manager
     ]
     ++ [ ./_hardware-configuration.nix ];

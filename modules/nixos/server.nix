@@ -1,26 +1,12 @@
-{ config, inputs, ... }:
+{ inputs, ... }:
 {
+  # The full server stack (authelia, cloudflared, cockpit, forgejo, dashy,
+  # home-assistant, immich, nextcloud, nixarr, ollama, openssh,
+  # openvscode-server, open-webui, smartd) opts itself into the `server`
+  # role from each service's own file. Only inline config that doesn't
+  # belong to a single service lives here.
   flake.modules.nixos.server = {
-    imports = (
-      with config.flake.modules.nixos;
-      [
-        svc-authelia
-        svc-cloudflared
-        svc-cockpit
-        svc-forgejo
-        svc-dashy
-        svc-home-assistant
-        svc-immich
-        svc-nextcloud
-        svc-nixarr
-        svc-ollama
-        svc-openssh
-        svc-openvscode-server
-        svc-open-webui
-        svc-smartd
-      ]
-    )
-    ++ [ inputs.vscode-server.nixosModules.default ];
+    imports = [ inputs.vscode-server.nixosModules.default ];
 
     services.vscode-server.enable = true;
   };

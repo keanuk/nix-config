@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.user-keanu =
+  flake.modules.nixos.keanu =
     { pkgs, ... }:
     {
       users.users.keanu = {

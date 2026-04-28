@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.prog-gamescope =
+  flake.modules.nixos.gamescope =
     { pkgs, ... }:
     {
       programs.gamescope = {

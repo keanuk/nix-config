@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.svc-prowlarr =
+  flake.modules.nixos.prowlarr =
     { pkgs, ... }:
     {
       services.prowlarr = {

@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.shell-nh =
+  flake.modules.homeManager.nh =
     {
       pkgs,
       lib,

@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.nixos.svc-forgejo =
+  flake.modules.nixos.forgejo =
     {
       config,
       pkgs,
@@ -68,4 +69,6 @@
         unitConfig.AssertPathIsMountPoint = "/data";
       };
     };
+
+  flake.modules.nixos.server = config.flake.modules.nixos.forgejo;
 }

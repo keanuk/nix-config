@@ -89,6 +89,33 @@ modules/
 - Files contribute features by writing to `flake.modules.<class>.<role>` where `<class>` is `nixos`, `darwin`, or `homeManager`. Multiple files writing to the same role merge automatically (deferredModule semantics).
 - Hosts compose by `imports = with config.flake.modules.<class>; [ <role1> <role2> ];`.
 - Files starting with `_` are skipped by `import-tree`, used for raw sub-modules referenced by path (hardware-configuration.nix, disko configs, raw HM modules pulled in by sibling default.nix files).
+- **Role names are unprefixed.** A service at `modules/nixos/services/comin/default.nix` registers `flake.modules.nixos.comin`. Same for programs, fixes, users, desktop apps, etc. — the directory path conveys the category.
+
+### Opt-in instead of central aggregation
+Each feature decides which composite role(s) it belongs to from its own file. The composite roles (`base`, `server`, `pc`, `laptop`) contain only the inline configuration they own; they never list other features. Pattern:
+
+```nix
+# modules/nixos/services/comin/default.nix
+{ config, inputs, ... }:
+{
+  flake.modules.nixos.comin = _: {
+    imports = [ inputs.comin.nixosModules.comin ];
+    services.comin = { ... };
+  };
+
+  # comin opts itself into the base role
+  flake.modules.nixos.base = config.flake.modules.nixos.comin;
+}
+```
+
+Multiple files writing `flake.modules.nixos.base = X` are merged via deferredModule semantics — each definition becomes one entry in `base.imports`. A feature can opt into multiple parents (e.g. `smartd` opts into `pc`, `laptop`, *and* `server`). Hosts that want a feature stand-alone import it directly by its plain role name.
+
+Currently:
+- `base` auto-includes: `nix-settings`, `system-packages`, `sops`, `apparmor`, `comin`, `tailscale`, `fuse`, `nh`, `nix-ld`, `virtualization`.
+- `server` auto-includes: `authelia`, `cloudflared`, `cockpit`, `forgejo`, `dashy`, `home-assistant`, `immich`, `nextcloud`, `nixarr`, `ollama`, `openssh`, `openvscode-server`, `open-webui`, `smartd`.
+- `pc` and `laptop` auto-include: `smartd`.
+
+Roles that *don't* auto-opt-in (host imports them explicitly): the desktop environment roles (`cosmic`, `gnome`, `pantheon`, `plasma`, `hyprland`), `desktop`, `gaming`, `lanzaboote`, `systemd-boot`, `vps-grub`, `hardware`, `amd`, `wsl`, `vps`, `vps-website`, `fs`, `swapfile`, `preservation`, `ephemeral-bcachefs`, `ephemeral-luks-btrfs`, `rtw88-fix`, `home-manager`, `home-manager-stable`, `keanu`, `kimmy`, `btrfs`, `ollama-full`.
 
 ### Configuration Output
 - `flake.nixosConfigurations` is built from `configurations.nixos.<host>.module` (unstable) and `configurations.nixos-stable.<host>.module` (stable channel — VPS hosts).
@@ -156,11 +183,16 @@ modules/
 - Workaround/fix files include: issue link, status, last-checked date, removal condition.
 
 ### Adding a Feature
-- One feature per file under the appropriate `modules/<class>/...` subtree.
+- One feature per directory under the appropriate `modules/<class>/...` subtree, with `default.nix` as the entry point. Auxiliary files in the same directory either contribute to the same role (multiple writes merge) or are underscore-prefixed for path-imports.
 - Outer wrapper takes the flake-parts arguments (`{ config, inputs, lib, ... }`) it needs.
-- Body assigns `flake.modules.<class>.<role> = { ... };`.
+- Body assigns `flake.modules.<class>.<role> = { ... };` using the same plain name as the directory.
 - Inner module body is a regular NixOS / nix-darwin / home-manager module taking its own `{ pkgs, lib, config, ... }` args.
 - For closure-capture of flake-parts values into the inner module (e.g. `config.domains` from outer scope), pre-compute in a `let` block.
+- If the feature should be part of `base`, `server`, `pc`, etc., add a single line:
+  ```nix
+  flake.modules.nixos.base = config.flake.modules.nixos.<myrole>;
+  ```
+  Don't edit the parent role's file — the opt-in lives with the feature.
 
 ### Adding a New Host
 1. Create `modules/hosts/<hostname>/imports.nix` writing to `configurations.nixos.<hostname>.module` (or `nixos-stable` for VPS, `darwin` for macOS).

@@ -13,7 +13,7 @@
           base
           vps-grub
           vps-website
-          user-keanu
+          keanu
           home-manager-stable
         ]
       )

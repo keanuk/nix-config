@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.svc-udev = _: {
+  flake.modules.nixos.udev = _: {
     # Stadia conroller fixes
     services.udev.extraRules = ''
       # SDP protocol

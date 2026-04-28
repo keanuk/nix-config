@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.shell-nushell =
+  flake.modules.homeManager.nushell =
     { pkgs, ... }:
     {
       programs.nushell = {

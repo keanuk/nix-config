@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.svc-nfs = _: {
+  flake.modules.nixos.nfs = _: {
     services.nfs.server = {
       enable = true;
     };

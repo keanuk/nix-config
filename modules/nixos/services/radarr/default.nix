@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.svc-radarr =
+  flake.modules.nixos.radarr =
     { pkgs, ... }:
     {
       services.radarr = {

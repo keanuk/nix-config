@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.svc-geoclue2 =
+  flake.modules.nixos.geoclue2 =
     { pkgs, ... }:
     {
       services.geoclue2 = {

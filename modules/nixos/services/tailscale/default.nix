@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.nixos.svc-tailscale =
+  flake.modules.nixos.tailscale =
     { pkgs, ... }:
     {
       services.tailscale = {
@@ -7,4 +8,7 @@
         package = pkgs.unstable.tailscale;
       };
     };
+
+  # tailscale opts itself into the base role.
+  flake.modules.nixos.base = config.flake.modules.nixos.tailscale;
 }

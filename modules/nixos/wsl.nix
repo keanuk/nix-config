@@ -6,9 +6,9 @@
       [
         nix-settings
         system-packages
-        svc-comin
-        svc-tailscale
-        prog-nh
+        comin
+        tailscale
+        nh
       ]
     )
     ++ [

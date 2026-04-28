@@ -10,8 +10,8 @@
         systemd-boot
         desktop
         cosmic
-        svc-btrfs
-        user-keanu
+        btrfs
+        keanu
         swapfile
         home-manager
       ]

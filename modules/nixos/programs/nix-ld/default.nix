@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.nixos.prog-nix-ld =
+  flake.modules.nixos.nix-ld =
     { pkgs, ... }:
     {
       programs.nix-ld = {
@@ -7,4 +8,6 @@
         package = pkgs.nix-ld;
       };
     };
+
+  flake.modules.nixos.base = config.flake.modules.nixos.nix-ld;
 }

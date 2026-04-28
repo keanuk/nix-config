@@ -4,7 +4,7 @@ let
   baseDomain = d.primary;
 in
 {
-  flake.modules.nixos.svc-cloudflared =
+  flake.modules.nixos.cloudflared =
     {
       config,
       lib,
@@ -60,4 +60,6 @@ in
         };
       };
     };
+
+  flake.modules.nixos.server = config.flake.modules.nixos.cloudflared;
 }

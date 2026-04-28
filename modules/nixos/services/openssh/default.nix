@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.nixos.svc-openssh =
+  flake.modules.nixos.openssh =
     { lib, ... }:
     {
       services.openssh = {
@@ -19,4 +20,6 @@
         openFirewall = lib.mkDefault true;
       };
     };
+
+  flake.modules.nixos.server = config.flake.modules.nixos.openssh;
 }

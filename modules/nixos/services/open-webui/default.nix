@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.nixos.svc-open-webui =
+  flake.modules.nixos.open-webui =
     { pkgs, ... }:
     {
       services.open-webui = {
@@ -10,4 +11,6 @@
         port = 11435;
       };
     };
+
+  flake.modules.nixos.server = config.flake.modules.nixos.open-webui;
 }

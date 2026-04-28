@@ -31,4 +31,6 @@ in
         };
       };
     };
+
+  flake.modules.nixos.base = config.flake.modules.nixos.sops;
 }

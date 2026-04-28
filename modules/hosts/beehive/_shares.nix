@@ -76,7 +76,7 @@
   # Declarative Samba password setup
   sops.secrets.samba-password = { };
 
-  systemd.services.samba-user-setup = {
+  systemd.services.samba-setup = {
     description = "Samba user setup";
     after = [
       "samba-smbd.service"

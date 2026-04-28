@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  flake.modules.darwin.svc-comin = _: {
+  flake.modules.darwin.comin = _: {
     imports = [ inputs.comin.darwinModules.comin ];
 
     services.comin = {

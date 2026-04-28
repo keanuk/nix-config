@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.nixos.svc-dashy =
+  flake.modules.nixos.dashy =
     { pkgs, ... }:
     {
       services.dashy = {
@@ -135,4 +136,6 @@
         };
       };
     };
+
+  flake.modules.nixos.server = config.flake.modules.nixos.dashy;
 }

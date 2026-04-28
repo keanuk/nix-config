@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.nixos.svc-openvscode-server =
+  flake.modules.nixos.openvscode-server =
     { pkgs, ... }:
     {
       services.openvscode-server = {
@@ -13,4 +14,6 @@
         withoutConnectionToken = true;
       };
     };
+
+  flake.modules.nixos.server = config.flake.modules.nixos.openvscode-server;
 }

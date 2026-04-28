@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.svc-llama =
+  flake.modules.nixos.llama =
     { pkgs, ... }:
     {
       services.llama-cpp = {

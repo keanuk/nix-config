@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.svc-nextdns =
+  flake.modules.nixos.nextdns =
     {
       config,
       pkgs,

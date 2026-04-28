@@ -1,5 +1,10 @@
-{ config, inputs, ... }:
+{ inputs, ... }:
 {
+  # Inline configuration that lives at the heart of the `base` role.
+  # Everything else (sops, nix-settings, system-packages, comin, tailscale,
+  # apparmor, fuse, nh, nix-ld, virtualization) opts itself in from its own
+  # file, so this module only contains the bits that don't have a natural
+  # home of their own.
   flake.modules.nixos.base =
     {
       options,
@@ -8,19 +13,7 @@
       ...
     }:
     {
-      imports = with config.flake.modules.nixos; [
-        nix-settings
-        system-packages
-        sops
-        prog-fuse
-        prog-nh
-        prog-nix-ld
-        svc-apparmor
-        svc-comin
-        svc-tailscale
-        virtualization
-      ]
-      ++ [
+      imports = [
         inputs.determinate.nixosModules.default
         inputs.disko.nixosModules.disko
         inputs.nur.modules.nixos.default

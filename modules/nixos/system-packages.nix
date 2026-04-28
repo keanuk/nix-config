@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   flake.modules.nixos.system-packages =
     { pkgs, ... }:
@@ -28,4 +29,6 @@
         wireguard-tools
       ];
     };
+
+  flake.modules.nixos.base = config.flake.modules.nixos.system-packages;
 }

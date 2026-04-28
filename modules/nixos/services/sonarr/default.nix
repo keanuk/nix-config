@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.svc-sonarr =
+  flake.modules.nixos.sonarr =
     { pkgs, ... }:
     {
       services.sonarr = {

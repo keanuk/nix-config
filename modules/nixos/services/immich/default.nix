@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.nixos.svc-immich =
+  flake.modules.nixos.immich =
     { pkgs, ... }:
     {
       services.immich = {
@@ -42,4 +43,6 @@
         };
       };
     };
+
+  flake.modules.nixos.server = config.flake.modules.nixos.immich;
 }

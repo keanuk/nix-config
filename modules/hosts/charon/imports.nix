@@ -6,7 +6,7 @@
       [
         base
         homebrew
-        user-keanu
+        keanu
         home-manager
       ]
     )

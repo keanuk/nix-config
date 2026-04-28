@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.nixos.svc-nextcloud =
+  flake.modules.nixos.nextcloud =
     {
       pkgs,
       config,
@@ -92,4 +93,6 @@
         443
       ];
     };
+
+  flake.modules.nixos.server = config.flake.modules.nixos.nextcloud;
 }

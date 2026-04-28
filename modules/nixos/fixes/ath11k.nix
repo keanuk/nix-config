@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.fix-ath11k =
+  flake.modules.nixos.ath11k =
     {
       config,
       pkgs,

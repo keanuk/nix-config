@@ -3,7 +3,7 @@
   # Example:
   #   sops.secrets.hotspot-password = { };
   #   authentication.saePasswordsFile = config.sops.secrets.hotspot-password.path;
-  flake.modules.nixos.svc-hotspot =
+  flake.modules.nixos.hotspot =
     {
       config,
       lib,

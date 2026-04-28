@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.nixos.svc-home-assistant =
+  flake.modules.nixos.home-assistant =
     { pkgs, ... }:
     {
       services.home-assistant = {
@@ -66,4 +67,6 @@
         unitConfig.AssertPathIsMountPoint = "/data";
       };
     };
+
+  flake.modules.nixos.server = config.flake.modules.nixos.home-assistant;
 }

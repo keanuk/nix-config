@@ -12,7 +12,7 @@ let
       base
       home-manager-self
       desktop
-      gnome-tray
+      gnome
       gaming
     ];
     home = {

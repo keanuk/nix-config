@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.svc-nextdns-resolved =
+  flake.modules.nixos.nextdns-resolved =
     { config, ... }:
     {
       # Create a systemd service that generates resolved.conf with NextDNS settings

@@ -3,7 +3,7 @@
   flake.modules.homeManager.darwin = {
     imports =
       (with config.flake.modules.homeManager; [
-        shell-nh
+        nh
         dev
       ])
       ++ [

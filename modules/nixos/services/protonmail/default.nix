@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.svc-protonmail =
+  flake.modules.nixos.protonmail =
     { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [

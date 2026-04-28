@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.svc-audiobookshelf =
+  flake.modules.nixos.audiobookshelf =
     { pkgs, ... }:
     {
       services.audiobookshelf = {

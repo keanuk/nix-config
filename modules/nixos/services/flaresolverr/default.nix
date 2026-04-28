@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.svc-flaresolverr =
+  flake.modules.nixos.flaresolverr =
     { pkgs, ... }:
     {
       services.flaresolverr = {

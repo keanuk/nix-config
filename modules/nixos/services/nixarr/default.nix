@@ -1,6 +1,6 @@
-{ inputs, ... }:
+{ config, inputs, ... }:
 {
-  flake.modules.nixos.svc-nixarr =
+  flake.modules.nixos.nixarr =
     {
       pkgs,
       lib,
@@ -141,4 +141,6 @@
         (lib.genAttrs vpnNamespaceServices (_: raidDependencyConfig))
       ];
     };
+
+  flake.modules.nixos.server = config.flake.modules.nixos.nixarr;
 }

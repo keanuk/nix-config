@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.user-kimmy =
+  flake.modules.nixos.kimmy =
     { pkgs, ... }:
     {
       users.users.kimmy = {

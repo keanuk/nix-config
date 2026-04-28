@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.hyprland-tray =
+  flake.modules.homeManager.hyprland =
     { pkgs, ... }:
     {
       imports = [

@@ -11,9 +11,9 @@
         systemd-boot
         desktop
         cosmic
-        svc-btrfs
-        svc-ollama
-        user-keanu
+        btrfs
+        ollama
+        keanu
         home-manager
       ]
     )

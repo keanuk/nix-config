@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.svc-lidarr =
+  flake.modules.nixos.lidarr =
     { pkgs, ... }:
     {
       services.lidarr = {

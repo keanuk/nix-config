@@ -14,10 +14,10 @@
           rtw88-fix
           desktop
           cosmic
-          svc-btrfs
-          svc-ollama
-          svc-ollama-full
-          user-keanu
+          btrfs
+          ollama
+          ollama-full
+          keanu
           swapfile
           fs
           home-manager

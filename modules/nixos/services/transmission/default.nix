@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  flake.modules.nixos.svc-transmission =
+  flake.modules.nixos.transmission =
     { pkgs, ... }:
     {
       imports = [

@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.prog-evolution = {
+  flake.modules.nixos.evolution = {
     programs.evolution = {
       enable = true;
     };

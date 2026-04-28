@@ -1,6 +1,6 @@
-{ inputs, ... }:
+{ config, inputs, ... }:
 {
-  flake.modules.nixos.svc-comin = _: {
+  flake.modules.nixos.comin = _: {
     imports = [ inputs.comin.nixosModules.comin ];
 
     services.comin = {
@@ -14,4 +14,6 @@
       ];
     };
   };
+
+  flake.modules.nixos.base = config.flake.modules.nixos.comin;
 }

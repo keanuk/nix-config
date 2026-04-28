@@ -13,10 +13,10 @@
           laptop
           desktop
           cosmic
-          svc-btrfs
-          svc-ollama
-          svc-ollama-full
-          user-keanu
+          btrfs
+          ollama
+          ollama-full
+          keanu
           home-manager
         ]
       )

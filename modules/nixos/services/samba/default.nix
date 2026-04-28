@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.svc-samba = _: {
+  flake.modules.nixos.samba = _: {
     services.samba = {
       enable = true;
     };

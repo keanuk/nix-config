@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   flake.modules.nixos.virtualization =
     { pkgs, ... }:
@@ -26,4 +27,6 @@
         podman-tui
       ];
     };
+
+  flake.modules.nixos.base = config.flake.modules.nixos.virtualization;
 }

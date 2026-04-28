@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.svc-homepage-dashboard =
+  flake.modules.nixos.homepage-dashboard =
     { pkgs, ... }:
     {
       services.homepage-dashboard = {

@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.user-keanu-data-groups = {
+  flake.modules.nixos.keanu-data-groups = {
     users = {
       groups.data = {
         gid = 554;

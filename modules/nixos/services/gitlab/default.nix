@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.svc-gitlab =
+  flake.modules.nixos.gitlab =
     {
       pkgs,
       config,

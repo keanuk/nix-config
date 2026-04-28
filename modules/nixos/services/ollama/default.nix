@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.nixos.svc-ollama =
+  flake.modules.nixos.ollama =
     {
       pkgs,
       lib,
@@ -19,4 +20,6 @@
         ];
       };
     };
+
+  flake.modules.nixos.server = config.flake.modules.nixos.ollama;
 }

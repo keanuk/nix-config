@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.svc-jellyfin =
+  flake.modules.nixos.jellyfin =
     { pkgs, ... }:
     {
       services.jellyfin = {

@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.svc-bazarr = _: {
+  flake.modules.nixos.bazarr = _: {
     services.bazarr = {
       enable = true;
       openFirewall = true;

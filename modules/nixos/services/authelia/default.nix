@@ -5,7 +5,7 @@ let
   baseDomain = d.primary;
 in
 {
-  flake.modules.nixos.svc-authelia =
+  flake.modules.nixos.authelia =
     {
       config,
       pkgs,
@@ -287,4 +287,6 @@ in
         // directVirtualHosts;
       };
     };
+
+  flake.modules.nixos.server = config.flake.modules.nixos.authelia;
 }

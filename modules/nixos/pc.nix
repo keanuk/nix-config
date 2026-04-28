@@ -1,6 +1,4 @@
-{ config, ... }:
 {
-  flake.modules.nixos.pc = {
-    imports = with config.flake.modules.nixos; [ svc-smartd ];
-  };
+  # smartd opts itself into pc from its own file.
+  flake.modules.nixos.pc = { };
 }
