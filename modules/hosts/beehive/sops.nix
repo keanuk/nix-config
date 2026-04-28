@@ -1,4 +1,3 @@
-{ config, ... }:
 {
   configurations.nixos.beehive.module =
     { config, ... }:

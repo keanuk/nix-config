@@ -6,7 +6,7 @@
 }:
 {
   config.flake.deploy.nodes = lib.mapAttrs (name: cfg: {
-    hostname = cfg.deploy.hostname;
+    inherit (cfg.deploy) hostname;
     profiles.system = {
       user = "root";
       sshUser = cfg.deploy.sshUser or "keanu";
@@ -15,7 +15,7 @@
   }) (lib.filterAttrs (_: cfg: cfg.isVps) config.configurations.nixos-stable);
 
   config.perSystem =
-    { pkgs, system, ... }:
+    { system, ... }:
     {
       checks = inputs.deploy-rs.lib.${system}.deployChecks config.flake.deploy;
     };

@@ -23,17 +23,19 @@ let
   };
 in
 {
-  configurations.nixos.hyperion.module.home-manager.users = {
-    keanu = keanuHome;
-    kimmy = kimmyHome;
-  };
+  configurations = {
+    nixos.hyperion.module.home-manager.users = {
+      keanu = keanuHome;
+      kimmy = kimmyHome;
+    };
 
-  configurations.homeManager."keanu@hyperion" = {
-    system = "x86_64-linux";
-    module = keanuHome;
-  };
-  configurations.homeManager."kimmy@hyperion" = {
-    system = "x86_64-linux";
-    module = kimmyHome;
+    homeManager."keanu@hyperion" = {
+      system = "x86_64-linux";
+      module = keanuHome;
+    };
+    homeManager."kimmy@hyperion" = {
+      system = "x86_64-linux";
+      module = kimmyHome;
+    };
   };
 }

@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   perSystem =
-    { pkgs, system, ... }:
+    { system, ... }:
     {
       packages = {
         nixos-anywhere = inputs.nixos-anywhere.packages.${system}.default;

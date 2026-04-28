@@ -5,9 +5,7 @@
 # We import the shared default.nix to get all LSP binary paths (nixd, etc.)
 # properly resolved to Nix store paths, avoiding the issue where Zed.app
 # launched from /Applications can't find LSPs on the Nix-managed $PATH.
-{ ... }:
-{
-
+_: {
   programs.zed-editor = {
     package = null;
     installRemoteServer = false;

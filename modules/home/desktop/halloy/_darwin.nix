@@ -4,9 +4,7 @@
 # so we set package = null to skip the Nix package installation.
 # We import the shared default.nix to get the base settings, then apply
 # Darwin-specific overrides (nickname, theme).
-{ ... }:
-{
-
+_: {
   programs.halloy = {
     package = null;
     settings = {

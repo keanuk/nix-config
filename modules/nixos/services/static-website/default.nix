@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  email = config.domains.email;
+  inherit (config.domains) email;
 in
 {
   flake.modules.nixos.vps-website =
