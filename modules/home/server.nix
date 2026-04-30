@@ -1,9 +1,12 @@
+{ config, pkgs, ... }:
 {
-  flake.modules.homeManager.server =
-    { pkgs, ... }:
-    {
-      home.packages = with pkgs; [
-        transmission_4
-      ];
-    };
+  flake.modules.homeManager.server = {
+    imports = with config.flake.modules.homeManager; [
+      zellij
+    ];
+
+    home.packages = with pkgs; [
+      transmission_4
+    ];
+  };
 }
