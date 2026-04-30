@@ -1,6 +1,6 @@
 { config, ... }:
 {
-  flake.modules.homeManager.server = 
+  flake.modules.homeManager.server =
     { pkgs, ... }:
     {
       imports = with config.flake.modules.homeManager; [
