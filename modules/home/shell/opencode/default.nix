@@ -11,7 +11,7 @@
         settings = {
           model = "opencode-go/glm-5.1";
           autoshare = false;
-          autoupdate = true;
+          autoupdate = false;
         };
 
         tui = {
@@ -34,13 +34,14 @@
           fix-issue = ./commands/fix-issue.md;
         };
 
-        tools = {
-          git-blame = ./tools/git-blame.ts;
-          git-log = ./tools/git-log.ts;
-          nix-eval = ./tools/nix-eval.ts;
-          nix-check = ./tools/nix-check.ts;
-          just-run = ./tools/just-run.ts;
-        };
+        # TODO: re-enable when symlinking issues are resolved
+        # tools = {
+        #   git-blame = ./tools/git-blame.ts;
+        #   git-log = ./tools/git-log.ts;
+        #   nix-eval = ./tools/nix-eval.ts;
+        #   nix-check = ./tools/nix-check.ts;
+        #   just-run = ./tools/just-run.ts;
+        # };
       };
     };
 }
