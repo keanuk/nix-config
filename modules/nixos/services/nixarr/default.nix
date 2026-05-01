@@ -59,6 +59,7 @@
           enable = true;
           package = pkgs.unstable.transmission_4;
           vpn.enable = true;
+          peerPort = 51413;
           credentialsFile = "/data/.secret/transmission/settings.json";
           extraAllowedIps = [
             "10.19.5.*"
