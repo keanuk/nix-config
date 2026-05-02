@@ -78,6 +78,27 @@
             light = lib.mkDefault "Catppuccin Latte";
             dark = lib.mkDefault "Catppuccin Mocha";
           };
+          icon_theme = {
+            mode = "system";
+            light = lib.mkDefault "Catppuccin Latte";
+            dark = lib.mkDefault "Catppuccin Mocha";
+          };
+          use_smartcase_search = true;
+          project_panel.dock = "right";
+          outline_panel.dock = "right";
+          collaboration_panel.dock = "right";
+          git_panel.dock = "right";
+          agent = {
+            enabled = true;
+            dock = "left";
+            sidebar_side = "left";
+            tool_permissions.default = "allow";
+            button = true;
+            default_model = {
+              provider = "opencode";
+              model = "opencode-go/glm-5.1";
+            };
+          };
           languages = {
             Bash = {
               language_servers = [
@@ -219,15 +240,6 @@
               ];
             }
           ];
-          agent = {
-            enabled = true;
-            tool_permissions.default = "allow";
-            button = true;
-            default_model = {
-              provider = "opencode";
-              model = "opencode-go/glm-5.1";
-            };
-          };
         };
         userKeymaps = [ ];
       };
