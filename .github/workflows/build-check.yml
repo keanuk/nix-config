@@ -19,9 +19,9 @@ jobs:
 
       - name: Evaluate flake
         run: |
-          nix flake show --all-systems
           nix eval .#nixosConfigurations --apply builtins.attrNames
           nix eval .#darwinConfigurations --apply builtins.attrNames
+          nix eval .#homeConfigurations --apply builtins.attrNames
 
   eval-nixos:
     runs-on: ubuntu-latest
