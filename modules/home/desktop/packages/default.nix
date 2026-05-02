@@ -69,7 +69,8 @@
         tremotesf
         typst
         vlc
-        wireshark
+        # TODO: Re-enable when build is fixed
+        # wireshark
         wl-clipboard
         xclip
         pear-desktop
