@@ -4,6 +4,9 @@
     # NFS Server Configuration
     nfs.server = {
       enable = true;
+      lockdPort = 4001;
+      mountdPort = 4002;
+      statdPort = 4003;
       # Share /data with the local network
       # (rw) - Read/write
       # (nohide) - Keep submounts visible
@@ -71,7 +74,20 @@
   };
 
   # Open firewall for NFS (Samba is handled by openFirewall = true)
-  networking.firewall.allowedTCPPorts = [ 2049 ];
+  networking.firewall.allowedTCPPorts = [
+    111
+    2049
+    4001
+    4002
+    4003
+  ];
+  networking.firewall.allowedUDPPorts = [
+    111
+    2049
+    4001
+    4002
+    4003
+  ];
 
   # Declarative Samba password setup
   sops.secrets.samba-password = { };
