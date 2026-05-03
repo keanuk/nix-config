@@ -80,13 +80,12 @@
     description = "Samba user setup";
     after = [
       "samba-smbd.service"
-      "sops-nix.service"
+      "local-fs.target"
     ];
     wants = [
       "samba-smbd.service"
-      "sops-nix.service"
+      "local-fs.target"
     ];
-    requires = [ "sops-nix.service" ];
     wantedBy = [ "multi-user.target" ];
     restartTriggers = [ config.sops.secrets.samba-password.path ];
     serviceConfig = {

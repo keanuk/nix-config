@@ -35,11 +35,9 @@ in
       unitConfig = {
         After = [
           "local-fs.target"
-          "sops-nix.service"
           "systemd-udev-settle.service"
         ];
         Wants = [
-          "sops-nix.service"
           "systemd-udev-settle.service"
         ];
         Before = [ "raid-online.target" ];
