@@ -9,14 +9,19 @@
           "rw"
           "noatime"
           "_netdev"
+          "noauto"
           "x-systemd.automount"
           "x-systemd.idle-timeout=600"
           "x-systemd.mount-timeout=10"
+          "x-systemd.requires=tailscaled.service"
+          "nfsvers=4"
         ];
       };
     };
 
-    modules.nixos.pc = config.flake.modules.nixos.nfs-client;
-    modules.nixos.laptop = config.flake.modules.nixos.nfs-client;
+    modules.nixos = {
+      pc = config.flake.modules.nixos.nfs-client;
+      laptop = config.flake.modules.nixos.nfs-client;
+    };
   };
 }

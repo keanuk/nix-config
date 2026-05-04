@@ -7,6 +7,7 @@
         base
         home-manager-self
         dev
+        opencode
       ];
 
       programs.zellij = {
