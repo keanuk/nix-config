@@ -1408,11 +1408,11 @@
         "treefmt-nix": "treefmt-nix_3"
       },
       "locked": {
-        "lastModified": 1777758572,
-        "narHash": "sha256-+KSuRyR7f1tmoUuWeJnEDz1ItMm1kQT+5O7aUqOuPgU=",
+        "lastModified": 1777853250,
+        "narHash": "sha256-eGz7OhYNtOJYKi3J61PNo3i5HfKZrGU622YxN/XF2AE=",
         "owner": "nixos",
         "repo": "hydra",
-        "rev": "ff912830168334c99925772d6e1fea4599b3f0e5",
+        "rev": "b10684f550340ccd10b309f31a798e5dbccbf8a7",
         "type": "github"
       },
       "original": {
