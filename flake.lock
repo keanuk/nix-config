@@ -1407,11 +1407,11 @@
         "treefmt-nix": "treefmt-nix_3"
       },
       "locked": {
-        "lastModified": 1777932901,
-        "narHash": "sha256-LABF5c3AACDPy2UFkvGTCCSN1j6ZGc5trjqh89yJEsM=",
+        "lastModified": 1778003822,
+        "narHash": "sha256-H41fhdikkDV9uJkdhDlglZ16qTfqc10CarWbPr5Pad4=",
         "owner": "nixos",
         "repo": "hydra",
-        "rev": "f453ef0fa71f1b3c42134c297d6ff2d77fd4033b",
+        "rev": "074fdbdcaefb39e53c1f222c3baa1808f58312ce",
         "type": "github"
       },
       "original": {
@@ -1674,11 +1674,11 @@
     "nix_3": {
       "flake": false,
       "locked": {
-        "lastModified": 1777325645,
-        "narHash": "sha256-+fPubqkJvJxvynNIkz8NyaAY0DKxgGpxo6idri0ZeoA=",
+        "lastModified": 1777921551,
+        "narHash": "sha256-uioYvCRbqKsAC+wKbNoNe27TyXUUeFgevv4FJ+ITzWY=",
         "owner": "NixOS",
         "repo": "nix",
-        "rev": "ee1ce8842a745530036bce2aee52b405c03a00cd",
+        "rev": "24a072442bee6ad4c3a2da92abafff987881da26",
         "type": "github"
       },
       "original": {
