@@ -153,7 +153,6 @@
             peekaboo.enable = pkgs.stdenv.hostPlatform.isDarwin;
             poltergeist.enable = pkgs.stdenv.hostPlatform.isDarwin;
             goplaces.enable = false;
-            bird.enable = false;
             imsg.enable = false;
           };
 
