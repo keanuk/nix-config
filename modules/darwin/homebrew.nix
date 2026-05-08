@@ -1,6 +1,6 @@
 {
   flake.modules.darwin.homebrew =
-    _:
+    { pkgs, lib, ... }:
     let
       mkCask = name: {
         inherit name;
@@ -24,6 +24,10 @@
         "proton-drive"
         "zed"
         "zen"
+      ];
+
+      aarch64CasksWithAppdir = map mkCask [
+        "ollama-app"
       ];
     in
     {
@@ -70,74 +74,77 @@
         ];
         brews = [
         ];
-        casks = casksWithAppdir ++ [
-          "alacritty"
-          "audacity"
-          "balenaetcher"
-          "battle-net"
-          "calibre"
-          "chromium"
-          "darktable"
-          "dbeaver-community"
-          "deepl"
-          "docker-desktop"
-          "ea"
-          "ente-auth"
-          "epic-games"
-          "firefox"
-          "firefox@developer-edition"
-          "gimp"
-          "gog-galaxy"
-          "google-chrome"
-          "google-chrome@beta"
-          "google-chrome@canary"
-          "google-chrome@dev"
-          "google-drive"
-          "halloy"
-          "handbrake-app"
-          "home-assistant"
-          "kdenlive"
-          "kitty"
-          "kodi"
-          "libreoffice"
-          "logi-options+"
-          "nextcloud"
-          "obs"
-          "onyx"
-          "plex"
-          "podman-desktop"
-          "proton-mail"
-          "proton-pass"
-          "proton-mail-bridge"
-          "protonvpn"
-          "reader"
-          "rustdesk"
-          "signal"
-          "standard-notes"
-          "stats"
-          "steam"
-          "thunderbird"
-          "thunderbird@beta"
-          "transmission"
-          "virtualbox"
-          "visual-studio-code"
-          "visual-studio-code@insiders"
-          "vlc"
-          "pear-devs/pear/pear-desktop"
+        casks =
+          casksWithAppdir
+          ++ lib.optionals pkgs.stdenv.hostPlatform.isAarch64 aarch64CasksWithAppdir
+          ++ [
+            "alacritty"
+            "audacity"
+            "balenaetcher"
+            "battle-net"
+            "calibre"
+            "chromium"
+            "darktable"
+            "dbeaver-community"
+            "deepl"
+            "docker-desktop"
+            "ea"
+            "ente-auth"
+            "epic-games"
+            "firefox"
+            "firefox@developer-edition"
+            "gimp"
+            "gog-galaxy"
+            "google-chrome"
+            "google-chrome@beta"
+            "google-chrome@canary"
+            "google-chrome@dev"
+            "google-drive"
+            "halloy"
+            "handbrake-app"
+            "home-assistant"
+            "kdenlive"
+            "kitty"
+            "kodi"
+            "libreoffice"
+            "logi-options+"
+            "nextcloud"
+            "obs"
+            "onyx"
+            "plex"
+            "podman-desktop"
+            "proton-mail"
+            "proton-pass"
+            "proton-mail-bridge"
+            "protonvpn"
+            "reader"
+            "rustdesk"
+            "signal"
+            "standard-notes"
+            "stats"
+            "steam"
+            "thunderbird"
+            "thunderbird@beta"
+            "transmission"
+            "virtualbox"
+            "visual-studio-code"
+            "visual-studio-code@insiders"
+            "vlc"
+            "pear-devs/pear/pear-desktop"
 
-          # Games
-          "0-ad"
-          "bugdom"
-          "bugdom2"
-          "cro-mag-rally"
-          "nanosaur"
-          "nanosaur2"
-          "otto-matic"
-          "shattered-pixel-dungeon"
-          "superTuxKart"
-          "the-battle-for-wesnoth"
-          "xonotic"
-        ];
+            # Games
+            "0-ad"
+            "bugdom"
+            "bugdom2"
+            "cro-mag-rally"
+            "nanosaur"
+            "nanosaur2"
+            "otto-matic"
+            "shattered-pixel-dungeon"
+            "superTuxKart"
+            "the-battle-for-wesnoth"
+            "xonotic"
+          ];
       };
     };
 }

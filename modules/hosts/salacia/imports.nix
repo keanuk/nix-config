@@ -5,7 +5,6 @@
       (with config.flake.modules.darwin; [
         base
         homebrew
-        homebrew-aarch
         keanu
         home-manager
       ])
