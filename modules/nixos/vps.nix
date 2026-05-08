@@ -3,13 +3,9 @@
   flake.modules.nixos.vps =
     { lib, pkgs, ... }:
     {
-      imports =
-        (with config.flake.modules.nixos; [
-          nix-settings
-          system-packages
-          openssh
-        ])
-        ++ [ inputs.vscode-server.nixosModules.default ];
+      imports = (with config.flake.modules.nixos; [ openssh ]) ++ [
+        inputs.vscode-server.nixosModules.default
+      ];
 
       swapDevices = [
         {

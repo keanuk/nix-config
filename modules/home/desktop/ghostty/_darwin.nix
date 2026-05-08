@@ -1,6 +1,6 @@
 # Darwin-specific Ghostty configuration
 #
-# On macOS, Ghostty is installed via Homebrew (see darwin/_mixins/base/homebrew.nix),
+# On macOS, Ghostty is installed via Homebrew (see darwin/homebrew.nix),
 # so we set package = null to skip the Nix package installation.
 # We import the shared default.nix to get the base settings, then apply
 # Darwin-specific overrides (shell command, background opacity).

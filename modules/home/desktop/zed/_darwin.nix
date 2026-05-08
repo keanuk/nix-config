@@ -1,6 +1,6 @@
 # Darwin-specific Zed configuration
 #
-# On macOS, Zed is installed via Homebrew (see darwin/_mixins/base/homebrew.nix),
+# On macOS, Zed is installed via Homebrew (see darwin/homebrew.nix),
 # so we set package = null to skip the Nix package installation.
 # We import the shared default.nix to get all LSP binary paths (nixd, etc.)
 # properly resolved to Nix store paths, avoiding the issue where Zed.app

@@ -51,6 +51,5 @@
   flake.modules.homeManager = {
     desktop = config.flake.modules.homeManager.opencode;
     darwin-profile = config.flake.modules.homeManager.opencode;
-    homeManager.wsl = config.flake.modules.homeManager.opencode;
   };
 }

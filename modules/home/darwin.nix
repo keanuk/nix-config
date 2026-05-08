@@ -4,7 +4,7 @@
     imports =
       (with config.flake.modules.homeManager; [
         nh
-        # Same dev languages as the original darwin mixin — excludes csharp
+        # Same dev languages as the darwin role — excludes csharp
         # and flutter, which weren't wanted on macOS.
         c
         go
