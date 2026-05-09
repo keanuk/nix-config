@@ -62,7 +62,10 @@
 
       config = {
         home = {
-          file.".openclaw/openclaw.json".force = true;
+          # Prevent HM from overwriting openclaw.json on every activation.
+          # OpenClaw enriches this file at runtime with meta, plugins, channels.enabled, etc.
+          # seeding it only when absent preserves that state across rebuilds.
+          file.".openclaw/openclaw.json".enable = false;
 
           packages = [
             pkgs.unstable.ddgr
@@ -70,6 +73,20 @@
           ];
 
           activation = {
+            # Seed openclaw.json only when it doesn't already exist,
+            # so OpenClaw's runtime state (meta, plugins, etc.) is preserved across rebuilds.
+            openclawSeedConfig = {
+              after = [ "writeBoundary" ];
+              before = [ "openclawSeedDocuments" ];
+              data = ''
+                if [ ! -f "$HOME/.openclaw/openclaw.json" ]; then
+                  run mkdir -p "$HOME/.openclaw"
+                  run cp "${config.home.file.".openclaw/openclaw.json".source}" "$HOME/.openclaw/openclaw.json"
+                  chmod 600 "$HOME/.openclaw/openclaw.json"
+                fi
+              '';
+            };
+
             # Seed workspace documents only when they don't already exist,
             # so openclaw can freely update them at runtime.
             openclawSeedDocuments = {
