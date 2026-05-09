@@ -4,6 +4,7 @@
     imports = with config.flake.modules.homeManager; [
       base
       darwin
+      zellij
     ];
 
     home = {
