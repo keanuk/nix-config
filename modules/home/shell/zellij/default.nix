@@ -10,10 +10,10 @@
         enable = true;
         package = pkgs.zellij;
         enableBashIntegration = lib.mkDefault false;
-        enableZshIntegration = lib.mkDefault true;
-        enableFishIntegration = lib.mkDefault true;
+        enableZshIntegration = lib.mkDefault false;
+        enableFishIntegration = lib.mkDefault false;
         attachExistingSession = false;
-        exitShellOnExit = true;
+        exitShellOnExit = lib.mkDefault false;
         settings = {
           default_shell = "fish";
           mouse_mode = true;

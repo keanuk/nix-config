@@ -7,6 +7,7 @@
       desktop
       cosmic
       gnome
+      zellij
     ];
 
     home = {

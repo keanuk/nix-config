@@ -28,7 +28,7 @@
         just
         libnatpmp
         mediainfo
-        mistral-vibe
+        # mistral-vibe
         ncdu
         nixos-anywhere
         nix-index
