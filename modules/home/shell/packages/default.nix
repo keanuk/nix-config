@@ -15,7 +15,8 @@
         cpufetch
         ddgr
         deadnix
-        delta
+        # TODO: re-enable when build succeeds
+        # delta
         deploy-rs
         ffmpeg
         fh
@@ -29,6 +30,7 @@
         just
         libnatpmp
         mediainfo
+        # TODO: re-enable when build succeeds
         # mistral-vibe
         ncdu
         nixos-anywhere
