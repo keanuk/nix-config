@@ -73,15 +73,20 @@
           ];
 
           activation = {
-            # Seed openclaw.json only when it doesn't already exist,
-            # so OpenClaw's runtime state (meta, plugins, etc.) is preserved across rebuilds.
+            # The nix-openclaw module symlinks openclaw.json into the Nix store,
+            # making it read-only. Run after its openclawConfigFiles activation
+            # to convert the symlink back to a writable file so OpenClaw can
+            # update runtime state (meta, plugins, channels.enabled, etc.).
             openclawSeedConfig = {
-              after = [ "writeBoundary" ];
-              before = [ "openclawSeedDocuments" ];
+              after = [ "openclawConfigFiles" ];
+              before = [ ];
               data = ''
-                if [ ! -f "$HOME/.openclaw/openclaw.json" ]; then
+                if [ -L "$HOME/.openclaw/openclaw.json" ] || [ ! -e "$HOME/.openclaw/openclaw.json" ]; then
                   run mkdir -p "$HOME/.openclaw"
-                  run cp "${config.home.file.".openclaw/openclaw.json".source}" "$HOME/.openclaw/openclaw.json"
+                  # Remove any existing symlink first — shell redirects follow
+                  # symlinks, which would try to overwrite the read-only store path.
+                  rm -f "$HOME/.openclaw/openclaw.json"
+                  cat "${config.home.file.".openclaw/openclaw.json".source}" > "$HOME/.openclaw/openclaw.json"
                   chmod 600 "$HOME/.openclaw/openclaw.json"
                 fi
               '';
