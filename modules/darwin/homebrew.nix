@@ -33,6 +33,9 @@
     {
       homebrew = {
         enable = true;
+        enableBashIntegration = true;
+        enableFishIntegration = true;
+        enableZshIntegration = true;
         global.autoUpdate = true;
         onActivation = {
           autoUpdate = true;
@@ -72,8 +75,7 @@
         taps = [
           "pear-devs/pear"
         ];
-        brews = [
-        ];
+        brews = [ ];
         casks =
           casksWithAppdir
           ++ lib.optionals pkgs.stdenv.hostPlatform.isAarch64 aarch64CasksWithAppdir

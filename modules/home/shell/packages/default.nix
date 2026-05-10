@@ -9,7 +9,7 @@
         circumflex
         claude-code
         cloudflared
-        codex
+        # codex
         copilot-language-server
         cosign
         cpufetch
