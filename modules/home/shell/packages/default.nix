@@ -15,6 +15,7 @@
         cpufetch
         ddgr
         deadnix
+        delta
         deploy-rs
         ffmpeg
         fh
