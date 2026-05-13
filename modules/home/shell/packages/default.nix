@@ -4,7 +4,6 @@
     {
       home.packages = with pkgs.unstable; [
         age
-        authelia
         bitwarden-cli
         circumflex
         claude-code
@@ -30,8 +29,7 @@
         just
         libnatpmp
         mediainfo
-        # TODO: re-enable when build succeeds
-        # mistral-vibe
+        mistral-vibe
         ncdu
         nixos-anywhere
         nix-index
