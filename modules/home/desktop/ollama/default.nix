@@ -3,7 +3,7 @@
     { pkgs, ... }:
     {
       services.ollama = {
-        enable = true;
+        enable = false;
         package = pkgs.unstable.ollama;
         port = 11434;
         acceleration = null;
