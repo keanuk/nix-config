@@ -120,6 +120,7 @@
           };
 
           path = [
+            "/bin"
             pkgs.nix
             pkgs.cachix
             pkgs.git

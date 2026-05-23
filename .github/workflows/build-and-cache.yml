@@ -9,6 +9,10 @@ concurrency:
   group: build-and-cache
   cancel-in-progress: true
 
+defaults:
+  run:
+    shell: /bin/sh -euxo pipefail {0}
+
 jobs:
   build-and-cache:
     runs-on: [self-hosted, nixos, x86_64-linux]
@@ -22,8 +26,9 @@ jobs:
         run: |
           # Self-hosted runners may not have cachix in PATH yet (host rebuild pending).
           # We set PATH for system packages and fall back to 'nix run' if needed.
-          echo "PATH=/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:$PATH" >> "$GITHUB_ENV"
-          export PATH="/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:$PATH"
+          # /bin is included because NixOS /bin/sh is required for shell steps.
+          echo "PATH=/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/bin:$PATH" >> "$GITHUB_ENV"
+          export PATH="/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/bin:$PATH"
 
           # Determine how to invoke cachix for this workflow
           if command -v cachix >/dev/null 2>&1; then
@@ -34,10 +39,21 @@ jobs:
             echo "cachix not found in PATH, will use 'nix run nixpkgs#cachix'"
           fi
 
+      - name: Diagnostics
+        run: |
+          echo "=== PATH ==="
+          echo "$PATH"
+          echo "=== which sh ==="
+          which sh || echo "sh not found"
+          echo "=== which cachix ==="
+          which cachix || echo "cachix not found"
+          echo "=== env ==="
+          env
+
       - name: Build and push x86_64-linux NixOS configurations
         run: |
           set -euo pipefail
-          export PATH="/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:$PATH"
+          export PATH="/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/bin:$PATH"
           for host in beehive earth hyperion miranda phoebe tethys titan; do
             echo "========================================"
             echo "Building and pushing NixOS config: $host"
@@ -48,7 +64,7 @@ jobs:
       - name: Build and push x86_64-linux Home configurations
         run: |
           set -euo pipefail
-          export PATH="/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:$PATH"
+          export PATH="/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/bin:$PATH"
           for cfg in \
             "keanu@beehive" \
             "keanu@earth" \
@@ -70,7 +86,7 @@ jobs:
       - name: Build and push packages
         run: |
           set -euo pipefail
-          export PATH="/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:$PATH"
+          export PATH="/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/bin:$PATH"
           echo "Building and pushing packages..."
           nix build --no-link --print-out-paths ".#packages.x86_64-linux" | $CACHIX_CMD push keanu
 
