@@ -70,9 +70,10 @@
             Group = "github-runner";
             WorkingDirectory = runnerDir;
             ExecStartPre = pkgs.writeShellScript "github-runner-config" ''
-              set -euo pipefail
+              set -uo pipefail
               export HOME=${runnerDir}
 
+              # If already configured, nothing to do.
               if [ -f ${runnerDir}/.runner ]; then
                 echo "Runner already configured, skipping registration."
                 exit 0
@@ -95,18 +96,22 @@
               if [ "$HTTP_CODE" != "201" ]; then
                 echo "Failed to fetch registration token (HTTP $HTTP_CODE):"
                 echo "$BODY"
-                exit 1
+                echo "Warning: runner registration skipped."
+                exit 0
               fi
 
               REG_TOKEN=$(${pkgs.coreutils}/bin/echo "$BODY" | ${pkgs.jq}/bin/jq -r '.token')
               if [ "$REG_TOKEN" = "null" ] || [ -z "$REG_TOKEN" ]; then
                 echo "Failed to extract registration token from API response:"
                 echo "$BODY"
-                exit 1
+                echo "Warning: runner registration skipped."
+                exit 0
               fi
 
               echo "Registering GitHub Actions runner..."
 
+              # Registration may fail if the runner is already configured.
+              # We ignore the exit code and verify afterward.
               ${pkgs.github-runner}/bin/config.sh \
                 --unattended \
                 --url "${cfg.url}" \
@@ -114,9 +119,16 @@
                 --name "beehive" \
                 --labels "${lib.concatStringsSep "," cfg.labels}" \
                 --replace \
-                --work "${runnerDir}/_work"
+                --work "${runnerDir}/_work" || true
 
-              echo "Runner registered successfully."
+              if [ -f ${runnerDir}/.runner ]; then
+                echo "Runner registered and ready."
+              else
+                echo "Warning: .runner file not found after registration attempt."
+              fi
+
+              # Never fail PreStart — let run.sh handle any real connection issues.
+              exit 0
             '';
             ExecStart = "${pkgs.github-runner}/bin/run.sh";
             Restart = "always";
