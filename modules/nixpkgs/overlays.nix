@@ -1,6 +1,7 @@
 { inputs, ... }:
 let
   fixes = [
+    ./_fixes/nodejs-20.nix
     ./_fixes/open-webui.nix
     ./_fixes/openldap.nix
     ./_fixes/python-lsp-server.nix
