@@ -14,15 +14,12 @@
         cpufetch
         ddgr
         deadnix
-        # TODO: re-enable when build succeeds
-        delta
         deploy-rs
         ffmpeg
         fh
         file
         fortune
         gemini-cli
-        github-copilot-cli
         gping
         immich-cli
         jq

@@ -13,7 +13,6 @@
         appimage-run
         audacity
         bluebubbles
-        # TODO: Re-enable when build is fixed
         bottles
         bruno
         calibre
@@ -68,7 +67,6 @@
         tremotesf
         typst
         vlc
-        # TODO: Re-enable when build is fixed
         wireshark
         wl-clipboard
         xclip
