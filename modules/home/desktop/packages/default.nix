@@ -12,10 +12,9 @@
         antigravity-fhs
         appimage-run
         audacity
-        bitwarden-desktop
         bluebubbles
         # TODO: Re-enable when build is fixed
-        # bottles
+        bottles
         bruno
         calibre
         catppuccin
@@ -70,7 +69,7 @@
         typst
         vlc
         # TODO: Re-enable when build is fixed
-        # wireshark
+        wireshark
         wl-clipboard
         xclip
         pear-desktop

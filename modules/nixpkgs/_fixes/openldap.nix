@@ -1,4 +1,8 @@
 _final: prev: {
+  openldap = prev.openldap.overrideAttrs (_oldAttrs: {
+    doCheck = false;
+  });
+
   lutris = prev.lutris.override {
     buildFHSEnv =
       args:

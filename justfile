@@ -107,6 +107,28 @@ deploy-all:
     nix run .#deploy-rs -- .#emilyvansant
     nix run .#deploy-rs -- .#love-alaya
 
+# Push current host's system closure to Cachix
+cachix-push-host hostname=current_hostname:
+    @if [ "$(uname)" = "Linux" ]; then \
+      echo "Cachix 󰅡 Pushing NixOS closure: {{ hostname }}"; \
+      nix build --no-link --print-out-paths ".#nixosConfigurations.{{ hostname }}.config.system.build.toplevel" | cachix push keanu; \
+    elif [ "$(uname)" = "Darwin" ]; then \
+      echo "Cachix 󰅡 Pushing nix-darwin closure: {{ hostname }}"; \
+      nix build --no-link --print-out-paths ".#darwinConfigurations.{{ hostname }}.system" | cachix push keanu; \
+    else \
+      echo "Unsupported OS: $(uname)"; \
+    fi
+
+# Push current home configuration closure to Cachix
+cachix-push-home username=current_username hostname=current_hostname:
+    @echo "Cachix 󰅡 Pushing Home closure: {{ username }}@{{ hostname }}"
+    nix build --no-link --print-out-paths '.#homeConfigurations."{{ username }}@{{ hostname }}".activationPackage' | cachix push keanu
+
+# Push both host and home closures to Cachix
+cachix-push username=current_username hostname=current_hostname:
+    @just cachix-push-host {{ hostname }}
+    @just cachix-push-home {{ username }} {{ hostname }}
+
 # Generate Authelia secrets (prints to stdout for adding to SOPS)
 authelia-secrets:
     @echo "🔐 Generating Authelia secrets..."

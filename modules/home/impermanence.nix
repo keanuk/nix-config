@@ -31,7 +31,6 @@
         ".local/state/cosmic-comp"
         ".local/state/pop-launcher"
 
-        ".config/Bitwarden"
         ".config/cosmic"
         ".config/gh"
         ".config/gtk-3.0"

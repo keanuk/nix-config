@@ -46,7 +46,6 @@
           "Amphetamine" = 937984704;
           "Apple Configurator" = 1037126344;
           "Apple Developer" = 640199958;
-          "Bitwarden" = 1352778147;
           "Dark Reader for Safari" = 1438243180;
           "GarageBand" = 682658836;
           "HacKit" = 1549557075;

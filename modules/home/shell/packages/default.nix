@@ -4,7 +4,7 @@
     {
       home.packages = with pkgs.unstable; [
         age
-        bitwarden-cli
+        authelia
         circumflex
         claude-code
         cloudflared
@@ -15,7 +15,7 @@
         ddgr
         deadnix
         # TODO: re-enable when build succeeds
-        # delta
+        delta
         deploy-rs
         ffmpeg
         fh

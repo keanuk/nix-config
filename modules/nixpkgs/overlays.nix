@@ -2,6 +2,7 @@
 let
   fixes = [
     ./_fixes/openldap.nix
+    ./_fixes/python-lsp-server.nix
   ];
 
   combinedFixes =
