@@ -19,6 +19,12 @@ jobs:
     env:
       CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
     steps:
+      - name: Configure git authentication
+        run: |
+          # Self-hosted runners need explicit git credentials for HTTPS clones.
+          # Rewrite github.com URLs to include the job token automatically.
+          git config --global url."https://x-access-token:${{ github.token }}@github.com/".insteadOf "https://github.com/"
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
