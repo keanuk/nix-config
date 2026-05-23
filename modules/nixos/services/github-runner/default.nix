@@ -41,6 +41,8 @@
       };
 
       config = lib.mkIf cfg.enable {
+        environment.systemPackages = [ pkgs.cachix ];
+
         nixpkgs.config.permittedInsecurePackages = [
           "nodejs-20.20.2"
           "nodejs-slim-20.20.2"

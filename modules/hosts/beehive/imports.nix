@@ -14,6 +14,7 @@
         keanu
         home-manager
         github-runner
+        system-packages
       ])
       ++ [
         inputs.nixos-hardware.nixosModules.common-cpu-amd

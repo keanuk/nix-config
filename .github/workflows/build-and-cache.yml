@@ -20,12 +20,19 @@ jobs:
 
       - name: Setup cachix for NixOS self-hosted runner
         run: |
-          # GitHub Actions self-hosted runners don't reliably inherit the systemd
-          # service PATH, so we set it explicitly for all subsequent steps.
-          # Cachix is installed system-wide on NixOS via environment.systemPackages.
+          # Self-hosted runners may not have cachix in PATH yet (host rebuild pending).
+          # We set PATH for system packages and fall back to 'nix run' if needed.
           echo "PATH=/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:$PATH" >> "$GITHUB_ENV"
           export PATH="/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:$PATH"
-          cachix --version
+
+          # Determine how to invoke cachix for this workflow
+          if command -v cachix >/dev/null 2>&1; then
+            echo "CACHIX_CMD=cachix" >> "$GITHUB_ENV"
+            cachix --version
+          else
+            echo "CACHIX_CMD=nix run nixpkgs#cachix --" >> "$GITHUB_ENV"
+            echo "cachix not found in PATH, will use 'nix run nixpkgs#cachix'"
+          fi
 
       - name: Build and push x86_64-linux NixOS configurations
         run: |
@@ -35,7 +42,7 @@ jobs:
             echo "========================================"
             echo "Building and pushing NixOS config: $host"
             echo "========================================"
-            nix build --no-link --print-out-paths ".#nixosConfigurations.$host.config.system.build.toplevel" | cachix push keanu
+            nix build --no-link --print-out-paths ".#nixosConfigurations.$host.config.system.build.toplevel" | $CACHIX_CMD push keanu
           done
 
       - name: Build and push x86_64-linux Home configurations
@@ -57,7 +64,7 @@ jobs:
             echo "========================================"
             echo "Building and pushing home config: $cfg"
             echo "========================================"
-            nix build --no-link --print-out-paths ".#homeConfigurations.\"$cfg\".activationPackage" | cachix push keanu
+            nix build --no-link --print-out-paths ".#homeConfigurations.\"$cfg\".activationPackage" | $CACHIX_CMD push keanu
           done
 
       - name: Build and push packages
@@ -65,7 +72,7 @@ jobs:
           set -euo pipefail
           export PATH="/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:$PATH"
           echo "Building and pushing packages..."
-          nix build --no-link --print-out-paths ".#packages.x86_64-linux" | cachix push keanu
+          nix build --no-link --print-out-paths ".#packages.x86_64-linux" | $CACHIX_CMD push keanu
 
       - name: Garbage collect
         run: |
