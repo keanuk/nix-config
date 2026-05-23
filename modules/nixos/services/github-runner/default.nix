@@ -73,6 +73,11 @@
               set -euo pipefail
               export HOME=${runnerDir}
 
+              if [ -f ${runnerDir}/.runner ]; then
+                echo "Runner already configured, skipping registration."
+                exit 0
+              fi
+
               echo "Fetching runner registration token from GitHub API..."
 
               PAT=$(${pkgs.coreutils}/bin/cat "${cfg.tokenFile}")
@@ -120,7 +125,6 @@
           };
 
           path = [
-            "/bin"
             pkgs.nix
             pkgs.cachix
             pkgs.git
