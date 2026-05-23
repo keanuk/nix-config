@@ -60,7 +60,7 @@ A self-hosted GitHub Actions runner is configured on `beehive` (the Beelink SER9
 
 ### NixOS-managed runner
 
-The runner is managed declaratively via `modules/nixos/services/github-runner/` and enabled on beehive in `modules/hosts/beehive/github-runner.nix`.
+The runner is managed declaratively via `modules/nixos/services/github-runner/` and enabled on beehive in `modules/hosts/beehive/_github-runner.nix`.
 
 **Token setup:**
 1. Generate a GitHub Personal Access Token (classic) with `repo` scope at https://github.com/settings/tokens

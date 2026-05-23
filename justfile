@@ -129,6 +129,11 @@ cachix-push username=current_username hostname=current_hostname:
     @just cachix-push-host {{ hostname }}
     @just cachix-push-home {{ username }} {{ hostname }}
 
+# Trigger the Build and Cache workflow on the self-hosted runner
+ci-trigger:
+    @echo "Triggering Build and Cache workflow on self-hosted runner..."
+    gh workflow run build-and-cache.yml
+
 # Generate Authelia secrets (prints to stdout for adding to SOPS)
 authelia-secrets:
     @echo "🔐 Generating Authelia secrets..."

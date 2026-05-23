@@ -8,9 +8,9 @@
 # Removal condition: Remove when nixpkgs ships python-lsp-server with a jedi>=0.17.2
 #   (or equivalent) bound, or when jedi is downgraded below 0.20.0 in nixpkgs.
 
-final: prev: {
-  python313 = prev.python313.override {
-    packageOverrides = _self: super: {
+_final: prev: {
+  python313Packages = prev.python313Packages.overrideScope (
+    _self: super: {
       python-lsp-server = super.python-lsp-server.overridePythonAttrs (oldAttrs: {
         postPatch = (oldAttrs.postPatch or "") + ''
           substituteInPlace pyproject.toml \
@@ -20,13 +20,11 @@ final: prev: {
 
         doCheck = false;
       });
-    };
-  };
+    }
+  );
 
-  python313Packages = final.python313.pkgs;
-
-  python314 = prev.python314.override {
-    packageOverrides = _self: super: {
+  python314Packages = prev.python314Packages.overrideScope (
+    _self: super: {
       python-lsp-server = super.python-lsp-server.overridePythonAttrs (oldAttrs: {
         postPatch = (oldAttrs.postPatch or "") + ''
           substituteInPlace pyproject.toml \
@@ -36,8 +34,6 @@ final: prev: {
 
         doCheck = false;
       });
-    };
-  };
-
-  python314Packages = final.python314.pkgs;
+    }
+  );
 }
