@@ -1,0 +1,108 @@
+name: Build and Cache (Self-Hosted)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: build-and-cache
+  cancel-in-progress: true
+
+jobs:
+  build-and-cache:
+    runs-on: [self-hosted, nixos, x86_64-linux]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Cachix
+        uses: cachix/cachix-action@v14
+        with:
+          name: keanu
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+
+      - name: Build all x86_64-linux NixOS configurations
+        run: |
+          set -euo pipefail
+          declare -a nixos_paths
+
+          for host in beehive earth hyperion miranda phoebe tethys titan; do
+            echo "========================================"
+            echo "Building NixOS config: $host"
+            echo "========================================"
+            path=$(nix build --no-link --print-out-paths ".#nixosConfigurations.$host.config.system.build.toplevel")
+            nixos_paths+=("$path")
+          done
+
+          echo "NixOS store paths:"
+          printf '%s\n' "${nixos_paths[@]}"
+
+      - name: Build all x86_64-linux Home configurations
+        run: |
+          set -euo pipefail
+          declare -a home_paths
+
+          for cfg in \
+            "keanu@beehive" \
+            "keanu@earth" \
+            "keanu@hyperion" \
+            "keanu@miranda" \
+            "keanu@phoebe" \
+            "keanu@tethys" \
+            "keanu@titan" \
+            "kimmy@hyperion" \
+            "keanu@bucaccio" \
+            "keanu@emilyvansant" \
+            "keanu@love-alaya"; do
+            echo "========================================"
+            echo "Building home config: $cfg"
+            echo "========================================"
+            path=$(nix build --no-link --print-out-paths ".#homeConfigurations.\"$cfg\".activationPackage")
+            home_paths+=("$path")
+          done
+
+          echo "Home store paths:"
+          printf '%s\n' "${home_paths[@]}"
+
+      - name: Build packages
+        run: |
+          set -euo pipefail
+          echo "Building packages..."
+          nix build --no-link --print-out-paths ".#packages.x86_64-linux"
+
+      - name: Push all closures to Cachix
+        run: |
+          set -euo pipefail
+          echo "Pushing all closures to Cachix..."
+
+          {
+            # NixOS configs
+            for host in beehive earth hyperion miranda phoebe tethys titan; do
+              nix build --no-link --print-out-paths ".#nixosConfigurations.$host.config.system.build.toplevel"
+            done
+
+            # Home configs
+            for cfg in \
+              "keanu@beehive" \
+              "keanu@earth" \
+              "keanu@hyperion" \
+              "keanu@miranda" \
+              "keanu@phoebe" \
+              "keanu@tethys" \
+              "keanu@titan" \
+              "kimmy@hyperion" \
+              "keanu@bucaccio" \
+              "keanu@emilyvansant" \
+              "keanu@love-alaya"; do
+              nix build --no-link --print-out-paths ".#homeConfigurations.\"$cfg\".activationPackage"
+            done
+
+            # Packages
+            nix build --no-link --print-out-paths ".#packages.x86_64-linux"
+          } | cachix push keanu
+
+      - name: Garbage collect
+        run: |
+          echo "Running garbage collection..."
+          nix-collect-garbage --delete-older-than 7d || true

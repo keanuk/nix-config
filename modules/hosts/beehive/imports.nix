@@ -13,6 +13,7 @@
         ollama-full
         keanu
         home-manager
+        github-runner
       ])
       ++ [
         inputs.nixos-hardware.nixosModules.common-cpu-amd
@@ -22,6 +23,7 @@
         ./_disko-configuration.nix
         ./_raid-configuration.nix
         ./_shares.nix
+        ./_github-runner.nix
       ];
 
     nixpkgs.hostPlatform = "x86_64-linux";

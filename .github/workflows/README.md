@@ -15,6 +15,7 @@ This directory contains the CI/CD workflows for this NixOS configuration reposit
 - **`build-check.yml`** - Evaluates all NixOS and Darwin configurations to ensure they are valid
   - **Note:** Only evaluates configurations, does not build them (see limitations below)
 - **`cachix.yml`** - Builds and caches packages to Cachix for faster local builds
+- **`build-and-cache.yml`** - Builds all x86_64-linux NixOS and Home configurations on the self-hosted beehive runner and pushes closures to Cachix
 
 ### Maintenance
 
@@ -46,41 +47,43 @@ This exceeds GitHub Actions' available disk space, causing builds to fail with "
 
 3. **Local Builds** - Full system builds happen on your local machines where disk space is not constrained.
 
-## Alternative: Self-Hosted Runners
+## Self-Hosted Runner (beehive)
 
-If you need to build full system configurations in CI, you can set up a self-hosted GitHub Actions runner:
+A self-hosted GitHub Actions runner is configured on `beehive` (the Beelink SER9 Pro home server). It automatically builds all x86_64-linux configurations on every push to `main` and pushes closures to Cachix.
 
-1. **Requirements:**
-   - Machine with 100GB+ free disk space
-   - Nix installed
-   - Network access to GitHub
+- **Workflow:** `build-and-cache.yml`
+- **Labels:** `self-hosted`, `nixos`, `x86_64-linux`
+- **What it builds:**
+  - All x86_64-linux NixOS configs (beehive, earth, hyperion, miranda, phoebe, tethys, titan)
+  - All x86_64-linux Home configs (including VPS stable configs)
+  - All flake packages
 
-2. **Setup:**
-   ```bash
-   # On your build machine
-   cd /opt
-   sudo mkdir actions-runner && cd actions-runner
-   sudo chown $USER:$USER .
-   
-   # Download the latest runner (check GitHub for current version)
-   curl -o actions-runner-linux-x64-2.311.0.tar.gz -L \
-     https://github.com/actions/runner/releases/download/v2.311.0/actions-runner-linux-x64-2.311.0.tar.gz
-   tar xzf ./actions-runner-linux-x64-2.311.0.tar.gz
-   
-   # Configure (you'll need a token from GitHub repo settings)
-   ./config.sh --url https://github.com/YOUR_USERNAME/nix-config --token YOUR_TOKEN
-   
-   # Install as a service
-   sudo ./svc.sh install
-   sudo ./svc.sh start
-   ```
+### NixOS-managed runner
 
-3. **Update workflows to use self-hosted runners:**
-   ```yaml
-   jobs:
-     build:
-       runs-on: self-hosted  # Instead of ubuntu-latest
-   ```
+The runner is managed declaratively via `modules/nixos/services/github-runner/` and enabled on beehive in `modules/hosts/beehive/github-runner.nix`.
+
+**Token setup:**
+1. Generate a GitHub Personal Access Token (classic) with `repo` scope at https://github.com/settings/tokens
+2. Add it to `secrets/sops/secrets.yaml` as `github-runner-token: <token>`
+3. Run `just switch-host beehive` to activate
+4. The runner auto-registers with GitHub on first start
+
+### Manual runner setup (fallback)
+
+If you need a runner on a different machine:
+```bash
+cd /opt
+sudo mkdir actions-runner && cd actions-runner
+sudo chown $USER:$USER .
+
+curl -o actions-runner-linux-x64-2.311.0.tar.gz -L \
+  https://github.com/actions/runner/releases/download/v2.311.0/actions-runner-linux-x64-2.311.0.tar.gz
+tar xzf ./actions-runner-linux-x64-2.311.0.tar.gz
+
+./config.sh --url https://github.com/keanuk/nix-config --token YOUR_TOKEN
+sudo ./svc.sh install
+sudo ./svc.sh start
+```
 
 ## Cache Strategy
 
