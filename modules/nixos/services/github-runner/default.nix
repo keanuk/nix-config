@@ -41,6 +41,8 @@
       };
 
       config = lib.mkIf cfg.enable {
+        nix.settings.trusted-users = [ "github-runner" ];
+
         environment.systemPackages = [ pkgs.cachix ];
 
         nixpkgs.config.permittedInsecurePackages = [
