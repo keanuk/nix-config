@@ -22,7 +22,11 @@
 
         tokenFile = lib.mkOption {
           type = lib.types.path;
-          description = "Path to a file containing the GitHub personal access token with 'repo' scope.";
+          description = ''
+            Path to a file containing a GitHub personal access token (classic)
+            with 'repo' scope. The module uses this PAT to fetch a short-lived
+            runner registration token from the GitHub API on every service start.
+          '';
         };
 
         labels = lib.mkOption {
@@ -67,17 +71,45 @@
               set -euo pipefail
               export HOME=${runnerDir}
 
-              if [ ! -f ${runnerDir}/.runner ]; then
-                echo "Registering GitHub Actions runner..."
-                ${pkgs.github-runner}/bin/config.sh \
-                  --unattended \
-                  --url "${cfg.url}" \
-                  --token "$(cat "${cfg.tokenFile}")" \
-                  --name "beehive" \
-                  --labels "${lib.concatStringsSep "," cfg.labels}" \
-                  --replace \
-                  --work "${runnerDir}/_work"
+              echo "Fetching runner registration token from GitHub API..."
+
+              PAT=$(${pkgs.coreutils}/bin/cat "${cfg.tokenFile}")
+              API_URL="https://api.github.com/repos/keanuk/nix-config/actions/runners/registration-token"
+
+              # Fetch a fresh registration token (expires in 1 hour)
+              RESPONSE=$(${pkgs.curl}/bin/curl -sS -w "\n%{http_code}" -X POST \
+                -H "Authorization: token $PAT" \
+                -H "Accept: application/vnd.github.v3+json" \
+                "$API_URL")
+
+              HTTP_CODE=$(${pkgs.coreutils}/bin/echo "$RESPONSE" | ${pkgs.coreutils}/bin/tail -n 1)
+              BODY=$(${pkgs.coreutils}/bin/echo "$RESPONSE" | ${pkgs.coreutils}/bin/head -n -1)
+
+              if [ "$HTTP_CODE" != "201" ]; then
+                echo "Failed to fetch registration token (HTTP $HTTP_CODE):"
+                echo "$BODY"
+                exit 1
               fi
+
+              REG_TOKEN=$(${pkgs.coreutils}/bin/echo "$BODY" | ${pkgs.jq}/bin/jq -r '.token')
+              if [ "$REG_TOKEN" = "null" ] || [ -z "$REG_TOKEN" ]; then
+                echo "Failed to extract registration token from API response:"
+                echo "$BODY"
+                exit 1
+              fi
+
+              echo "Registering GitHub Actions runner..."
+
+              ${pkgs.github-runner}/bin/config.sh \
+                --unattended \
+                --url "${cfg.url}" \
+                --token "$REG_TOKEN" \
+                --name "beehive" \
+                --labels "${lib.concatStringsSep "," cfg.labels}" \
+                --replace \
+                --work "${runnerDir}/_work"
+
+              echo "Runner registered successfully."
             '';
             ExecStart = "${pkgs.github-runner}/bin/run.sh";
             Restart = "always";
@@ -93,6 +125,7 @@
             pkgs.gzip
             pkgs.curl
             pkgs.jq
+            pkgs.coreutils
           ];
         };
       };
