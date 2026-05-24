@@ -5,6 +5,7 @@ let
     ./_fixes/open-webui.nix
     ./_fixes/openldap.nix
     ./_fixes/python-lsp-server.nix
+    ./_fixes/matio.nix
   ];
 
   combinedFixes =
