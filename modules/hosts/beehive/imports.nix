@@ -14,6 +14,7 @@
         keanu
         home-manager
         github-runner
+        harmonia
         system-packages
       ])
       ++ [

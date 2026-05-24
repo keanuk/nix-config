@@ -41,11 +41,13 @@ in
           "https://install.determinate.systems"
           "https://keanu.cachix.org"
           "https://nix-community.cachix.org"
+          "https://cache.oranos.org"
         ];
         trusted-public-keys = [
           "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM="
           "keanu.cachix.org-1:bnYEu6tJzXfwM5JkEhc90uEjR7cAHwaa4fwHRCYdFGg="
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+          "cache.oranos.org-1:3Mq4GQlwD5RtY+bGKdhmFX0HvooDo3i4ZmGV2oHq74M="
         ];
         trusted-users = [
           "root"

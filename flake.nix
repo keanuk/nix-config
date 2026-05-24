@@ -133,6 +133,11 @@
     };
 
     devenv.url = "github:cachix/devenv";
+
+    harmonia = {
+      url = "github:nix-community/harmonia";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

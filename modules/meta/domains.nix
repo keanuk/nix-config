@@ -154,6 +154,12 @@
         extraConfig = "proxy_ssl_verify off;";
         passHeaders = true;
       };
+      cache = {
+        subdomain = "cache";
+        backendPort = 5000;
+        proxyPort = 9110;
+        requiresAuth = false;
+      };
     };
   };
 }

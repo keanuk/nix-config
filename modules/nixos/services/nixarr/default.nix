@@ -78,9 +78,9 @@
           openFirewall = true;
         };
 
-        jellyseerr = {
+        seerr = {
           enable = false;
-          package = pkgs.unstable.jellyseerr;
+          package = pkgs.unstable.seerr;
         };
 
         audiobookshelf = {
