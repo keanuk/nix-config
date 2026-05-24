@@ -11,10 +11,13 @@
 
       casksWithAppdir = map mkCask [
         "antigravity"
+        "antigravity-cli"
+        "antigravity-ide"
         "bruno"
         "discord"
         "element"
         "ente"
+        "google-gemini"
         "ghostty"
         "github@beta"
         "nvidia-geforce-now"
