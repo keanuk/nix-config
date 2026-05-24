@@ -10,7 +10,6 @@
           claude-code
           cloudflared
           codex
-          copilot-language-server
           cosign
           cpufetch
           ddgr
@@ -35,6 +34,8 @@
           nmap
           onefetch
           openssl
+          proton-pass-cli
+          proton-vpn-cli
           sops
           ssh-to-age
           statix

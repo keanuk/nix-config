@@ -46,6 +46,7 @@
         plexamp
         pocket-casts
         podman-desktop
+        proton-authenticator
         proton-pass
         protonmail-desktop
         protonmail-bridge-gui
