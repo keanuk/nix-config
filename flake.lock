@@ -1800,11 +1800,11 @@
         "nixpkgs": "nixpkgs_10"
       },
       "locked": {
-        "lastModified": 1779586422,
-        "narHash": "sha256-gQkg/IFgLNmcfm8/IzlkxzRQche90YB+6ziTTuXcjSM=",
+        "lastModified": 1779672292,
+        "narHash": "sha256-3FONJAiyZucQwb4pOj7t+yVHgwxf11t8Bgeq3pqGkxs=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "72d24686031cfcc123c1511836df64e6fde27453",
+        "rev": "f35c72f8879532242840219f4a21463250dcc3be",
         "type": "github"
       },
       "original": {
