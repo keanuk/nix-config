@@ -6,20 +6,8 @@ let
       home-manager-self
       server
       pass
-      openclaw
+      # openclaw
     ];
-
-    programs.openclawSecrets = {
-      telegramTokenFile = "/run/secrets/openclaw_telegram_bot_token_beehive";
-      mistralApiKeyFile = "/run/secrets/openclaw_mistral_api_key";
-      gatewayTokenFile = "/run/secrets/openclaw_gateway_token";
-      openaiApiKeyFile = "/run/secrets/openclaw_openai_api_key";
-      primaryModel = "ollama/gemma4:latest";
-      fallbackModels = [
-        "ollama/magistral:latest"
-        "ollama/qwen3:latest"
-      ];
-    };
 
     home = {
       username = "keanu";
