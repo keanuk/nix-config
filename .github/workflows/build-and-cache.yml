@@ -14,80 +14,120 @@ defaults:
     shell: /bin/sh -euxo pipefail {0}
 
 jobs:
-  build-and-cache:
+  build-nixos:
+    name: NixOS ${{ matrix.host }}
     runs-on: [self-hosted, nixos, x86_64-linux]
+    timeout-minutes: 330
     env:
       CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
+    strategy:
+      fail-fast: false
+      matrix:
+        host:
+          - beehive
+          - earth
+          - hyperion
+          - miranda
+          - phoebe
+          - tethys
+          - titan
     steps:
       - name: Configure git authentication
         run: |
-          # Self-hosted runners need explicit git credentials for HTTPS clones.
-          # Rewrite github.com URLs to include the job token automatically.
           git config --global url."https://x-access-token:${{ github.token }}@github.com/".insteadOf "https://github.com/"
 
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup cachix for NixOS self-hosted runner
+      - name: Setup cachix
         run: |
-          # Self-hosted runners may not have cachix in PATH yet (host rebuild pending).
-          # We set PATH for system packages and fall back to 'nix run' if needed.
-          # /bin is included because NixOS /bin/sh is required for shell steps.
           echo "PATH=/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/bin:$PATH" >> "$GITHUB_ENV"
           export PATH="/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/bin:$PATH"
-
-          # Determine how to invoke cachix for this workflow
           if command -v cachix >/dev/null 2>&1; then
             echo "CACHIX_CMD=cachix" >> "$GITHUB_ENV"
             cachix --version
           else
             echo "CACHIX_CMD=nix run nixpkgs#cachix --" >> "$GITHUB_ENV"
-            echo "cachix not found in PATH, will use 'nix run nixpkgs#cachix'"
           fi
 
-      - name: Diagnostics
-        run: |
-          echo "=== PATH ==="
-          echo "$PATH"
-          echo "=== which sh ==="
-          which sh || echo "sh not found"
-          echo "=== which cachix ==="
-          which cachix || echo "cachix not found"
-          echo "=== env ==="
-          env
-
-      - name: Build and push x86_64-linux NixOS configurations
+      - name: Build and push NixOS configuration
         run: |
           set -euo pipefail
           export PATH="/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/bin:$PATH"
-          for host in beehive earth hyperion miranda phoebe tethys titan; do
-            echo "========================================"
-            echo "Building and pushing NixOS config: $host"
-            echo "========================================"
-            nix build --no-link --print-out-paths ".#nixosConfigurations.$host.config.system.build.toplevel" | $CACHIX_CMD push keanu
-          done
+          echo "Building and pushing NixOS config: ${{ matrix.host }}"
+          nix build --no-link --print-out-paths ".#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel" | $CACHIX_CMD push keanu
 
-      - name: Build and push x86_64-linux Home configurations
+  build-home:
+    name: Home ${{ matrix.cfg }}
+    runs-on: [self-hosted, nixos, x86_64-linux]
+    timeout-minutes: 330
+    env:
+      CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
+    strategy:
+      fail-fast: false
+      matrix:
+        cfg:
+          - keanu@beehive
+          - keanu@earth
+          - keanu@hyperion
+          - keanu@miranda
+          - keanu@phoebe
+          - keanu@tethys
+          - keanu@titan
+          - kimmy@hyperion
+          - keanu@bucaccio
+          - keanu@emilyvansant
+          - keanu@love-alaya
+    steps:
+      - name: Configure git authentication
+        run: |
+          git config --global url."https://x-access-token:${{ github.token }}@github.com/".insteadOf "https://github.com/"
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup cachix
+        run: |
+          echo "PATH=/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/bin:$PATH" >> "$GITHUB_ENV"
+          export PATH="/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/bin:$PATH"
+          if command -v cachix >/dev/null 2>&1; then
+            echo "CACHIX_CMD=cachix" >> "$GITHUB_ENV"
+            cachix --version
+          else
+            echo "CACHIX_CMD=nix run nixpkgs#cachix --" >> "$GITHUB_ENV"
+          fi
+
+      - name: Build and push Home configuration
         run: |
           set -euo pipefail
           export PATH="/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/bin:$PATH"
-          for cfg in \
-            "keanu@beehive" \
-            "keanu@earth" \
-            "keanu@hyperion" \
-            "keanu@miranda" \
-            "keanu@phoebe" \
-            "keanu@tethys" \
-            "keanu@titan" \
-            "kimmy@hyperion" \
-            "keanu@bucaccio" \
-            "keanu@emilyvansant" \
-            "keanu@love-alaya"; do
-            echo "========================================"
-            echo "Building and pushing home config: $cfg"
-            echo "========================================"
-            nix build --no-link --print-out-paths ".#homeConfigurations.\"$cfg\".activationPackage" | $CACHIX_CMD push keanu
-          done
+          echo "Building and pushing home config: ${{ matrix.cfg }}"
+          nix build --no-link --print-out-paths '.#homeConfigurations."${{ matrix.cfg }}".activationPackage' | $CACHIX_CMD push keanu
+
+  build-packages:
+    name: Packages
+    runs-on: [self-hosted, nixos, x86_64-linux]
+    timeout-minutes: 330
+    env:
+      CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
+    steps:
+      - name: Configure git authentication
+        run: |
+          git config --global url."https://x-access-token:${{ github.token }}@github.com/".insteadOf "https://github.com/"
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup cachix
+        run: |
+          echo "PATH=/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/bin:$PATH" >> "$GITHUB_ENV"
+          export PATH="/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/bin:$PATH"
+          if command -v cachix >/dev/null 2>&1; then
+            echo "CACHIX_CMD=cachix" >> "$GITHUB_ENV"
+            cachix --version
+          else
+            echo "CACHIX_CMD=nix run nixpkgs#cachix --" >> "$GITHUB_ENV"
+          fi
 
       - name: Build and push packages
         run: |
@@ -96,6 +136,12 @@ jobs:
           echo "Building and pushing packages..."
           nix build --no-link --print-out-paths ".#packages.x86_64-linux" | $CACHIX_CMD push keanu
 
+  gc:
+    name: Garbage Collect
+    runs-on: [self-hosted, nixos, x86_64-linux]
+    needs: [build-nixos, build-home, build-packages]
+    if: always()
+    steps:
       - name: Garbage collect
         run: |
           echo "Running garbage collection..."
