@@ -15,6 +15,18 @@
               model = "opencode-go/kimi-k2.6";
               autoshare = false;
               autoupdate = false;
+
+              mcp = {
+                git = {
+                  type = "local";
+                  command = [
+                    "npx"
+                    "-y"
+                    "@modelcontextprotocol/server-git"
+                  ];
+                  enabled = true;
+                };
+              };
             };
 
             tui = {
@@ -35,6 +47,8 @@
               changelog = ./commands/changelog.md;
               commit = ./commands/commit.md;
               fix-issue = ./commands/fix-issue.md;
+              implement = ./commands/implement.md;
+              refactor = ./commands/refactor.md;
             };
 
             # TODO: re-enable when symlinking issues are resolved
