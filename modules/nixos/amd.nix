@@ -17,6 +17,10 @@
         radeontop
       ];
 
-      nixpkgs.config.rocmSupport = true;
+      # TODO: Look into if this is still required;
+      # it currently forces several large packages
+      # to be fully rebuilt, causing build times
+      # that are many hours long
+      # nixpkgs.config.rocmSupport = true;
     };
 }

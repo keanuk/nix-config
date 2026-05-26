@@ -26,7 +26,8 @@
           just
           libnatpmp
           mediainfo
-          mistral-vibe
+          # TODO: Re-enable when build doesn't take forever
+          # mistral-vibe
           ncdu
           nixos-anywhere
           nix-index
