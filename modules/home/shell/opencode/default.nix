@@ -12,7 +12,7 @@
             web.enable = true;
 
             settings = {
-              model = "opencode-go/glm-5.1";
+              model = "opencode-go/kimi-k2.6";
               autoshare = false;
               autoupdate = false;
             };

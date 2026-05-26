@@ -139,7 +139,7 @@ jobs:
           set -euo pipefail
           export PATH="/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/bin:$PATH"
           echo "Building and pushing packages..."
-          nix build --no-link --print-out-paths --max-jobs 1 ".#packages.x86_64-linux" | $CACHIX_CMD push keanu
+          nix build --no-link --print-out-paths --max-jobs 1 ".#packages.x86_64-linux.deploy-rs" ".#packages.x86_64-linux.nixos-anywhere" | $CACHIX_CMD push keanu
 
   gc:
     name: Garbage Collect

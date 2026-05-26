@@ -96,7 +96,7 @@
             button = true;
             default_model = {
               provider = "opencode";
-              model = "opencode-go/glm-5.1";
+              model = "opencode-go/kimi-k2.6";
             };
           };
           languages = {

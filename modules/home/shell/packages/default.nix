@@ -36,7 +36,6 @@
           onefetch
           openssl
           proton-pass-cli
-          proton-vpn-cli
           sops
           ssh-to-age
           statix
@@ -46,6 +45,7 @@
         ]
         ++ pkgs.lib.optionals (!pkgs.stdenv.isDarwin) [
           pkgs.unstable.authelia
+          pkgs.unstable.proton-vpn-cli
         ];
     };
 }

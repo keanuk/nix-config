@@ -36,7 +36,7 @@ jobs:
       - name: Build and push packages
         run: |
           echo "Building and caching packages..."
-          nix build .#packages.x86_64-linux --json \
+          nix build .#packages.x86_64-linux.deploy-rs .#packages.x86_64-linux.nixos-anywhere --json \
             | jq -r '.[].outputs | to_entries[].value' \
             | cachix push keanu
 
