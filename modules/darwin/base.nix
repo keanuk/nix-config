@@ -11,17 +11,15 @@ let
     ++ [ inputs.nix-openclaw.overlays.default ];
 in
 {
-  flake.modules.darwin.base =
-    { ... }:
-    {
-      # Disabled for Determinate Nix
-      nix.enable = false;
+  flake.modules.darwin.base = _: {
+    # Disabled for Determinate Nix
+    nix.enable = false;
 
-      nixpkgs = {
-        overlays = baseOverlays;
-        config = {
-          allowUnfree = true;
-        };
+    nixpkgs = {
+      overlays = baseOverlays;
+      config = {
+        allowUnfree = true;
       };
     };
+  };
 }

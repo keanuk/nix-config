@@ -22,17 +22,17 @@ in
           generateKey = true;
         };
 
-        secrets.google_maps_geolocation = {
-          owner = config.users.users.keanu.name;
+        secrets = {
+          google_maps_geolocation = {
+            owner = config.users.users.keanu.name;
+          };
+          nextdns_id = {
+            mode = "0444";
+          };
+          user-keanu-password = { };
+          user-kimmy-password = { };
+          hotspot-password = { };
         };
-
-        secrets.nextdns_id = {
-          mode = "0444";
-        };
-
-        secrets.user-keanu-password = { };
-        secrets.user-kimmy-password = { };
-        secrets.hotspot-password = { };
       };
     };
 

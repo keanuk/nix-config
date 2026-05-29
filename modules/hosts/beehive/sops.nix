@@ -1,5 +1,5 @@
 {
-  configurations.nixos.beehive.module =
+  configurations.nixos-stable.beehive.module =
     { config, ... }:
     {
       sops.secrets = {

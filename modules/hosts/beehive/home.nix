@@ -17,9 +17,9 @@ let
   };
 in
 {
-  configurations.nixos.beehive.module.home-manager.users.keanu = beehiveKeanuHome;
+  configurations.nixos-stable.beehive.module.home-manager.users.keanu = beehiveKeanuHome;
 
-  configurations.homeManager."keanu@beehive" = {
+  configurations.homeManager-stable."keanu@beehive" = {
     system = "x86_64-linux";
     module = beehiveKeanuHome;
   };

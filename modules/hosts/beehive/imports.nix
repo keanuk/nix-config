@@ -10,14 +10,14 @@ let
     ollama
     ollama-full
     keanu
-    home-manager
+    home-manager-stable
     github-runner
     harmonia
     system-packages
     ;
 in
 {
-  configurations.nixos.beehive.module =
+  configurations.nixos-stable.beehive.module =
     { lib, ... }:
     {
       imports = [
@@ -30,7 +30,7 @@ in
         ollama
         ollama-full
         keanu
-        home-manager
+        home-manager-stable
         github-runner
         harmonia
         system-packages
