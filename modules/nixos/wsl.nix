@@ -3,6 +3,7 @@ let
   inherit (config.flake.modules.nixos)
     nix-settings
     system-packages
+    sops
     comin
     tailscale
     nh
@@ -13,6 +14,7 @@ in
     imports = [
       nix-settings
       system-packages
+      sops
       comin
       tailscale
       nh
