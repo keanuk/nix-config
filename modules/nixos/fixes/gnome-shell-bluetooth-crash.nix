@@ -1,3 +1,8 @@
+# Issue: GNOME Shell crashes when Bluetooth headset connects (GNOME issue #8961)
+# Description: Disables Bluetooth SCO/MSBC and auto-switch in WirePlumber to avoid crash
+# Status: active
+# Last-checked: 2025-05-25
+# Removal condition: Remove when GNOME Shell >= 50 no longer crashes on Bluetooth headset connect
 {
   flake.modules.nixos.gnome-shell-bluetooth-crash =
     {

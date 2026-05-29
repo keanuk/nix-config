@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   flake.modules.darwin.desktop-fonts =
     { pkgs, ... }:
@@ -29,4 +30,6 @@
         nerd-fonts.roboto-mono
       ];
     };
+
+  flake.modules.darwin.base = config.flake.modules.darwin.desktop-fonts;
 }

@@ -1,3 +1,8 @@
+# Issue: nixarr autobrr module incompatible with dasel v3
+# Description: Overrides autobrr ExecStartPre to generate config without the broken dasel v3 invocation
+# Status: active
+# Last-checked: 2025-05-25
+# Removal condition: Remove when nixarr upstream fixes autobrr dasel v3 compatibility
 {
   flake.modules.nixos.nixarr-autobrr-dasel-v3 =
     {

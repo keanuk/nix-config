@@ -1,6 +1,10 @@
 {
   flake.modules.nixos.keanu =
-    { pkgs, ... }:
+    {
+      pkgs,
+      config,
+      ...
+    }:
     {
       users.users.keanu = {
         isNormalUser = true;
@@ -14,7 +18,7 @@
           "ollama"
         ];
         shell = pkgs.fish;
-        initialPassword = "keanu";
+        hashedPasswordFile = config.sops.secrets.user-keanu-password.path;
         openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIICP+F1NN7ilYQdrDouylmVIJK3szsurUSl/ZtTWB2rE keanu@beehive"
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILLEUWoP0i8HXYazjxNslNw0LBHemER7XTZOEhZIoVuC keanu@mars"

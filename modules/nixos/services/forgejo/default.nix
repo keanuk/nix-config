@@ -21,7 +21,7 @@
       services.forgejo = {
         enable = true;
         package = pkgs.unstable.forgejo;
-        stateDir = "/data/.state/forgejo";
+        stateDir = lib.mkDefault "/data/.state/forgejo";
         user = forgejoUser;
         group = forgejoGroup;
 
@@ -63,11 +63,6 @@
         };
       };
 
-      systemd.services.forgejo = {
-        after = [ "raid-online.target" ];
-        requires = [ "raid-online.target" ];
-        unitConfig.AssertPathIsMountPoint = "/data";
-      };
     };
 
   flake.modules.nixos.server = config.flake.modules.nixos.forgejo;

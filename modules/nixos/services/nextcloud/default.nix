@@ -3,6 +3,7 @@
   flake.modules.nixos.nextcloud =
     {
       pkgs,
+      lib,
       config,
       ...
     }:
@@ -17,10 +18,10 @@
         enable = true;
         configureRedis = true;
         package = pkgs.unstable.nextcloud33;
-        hostName = "beehive";
+        hostName = lib.mkDefault "beehive";
         https = false;
-        home = "/data/.state/nextcloud";
-        datadir = "/data/nextcloud";
+        home = lib.mkDefault "/data/.state/nextcloud";
+        datadir = lib.mkDefault "/data/nextcloud";
         autoUpdateApps.enable = true;
         database.createLocally = true;
         config = {
@@ -28,63 +29,19 @@
           adminpassFile = config.sops.secrets.nextcloud-admin-pass.path;
         };
         settings = {
-          trusted_domains = [
+          trusted_domains = lib.mkDefault [
             "beehive"
             "localhost"
             "beehive.local"
-            "10.19.5.10" # Main network IP
-            "100.91.10.104" # Tailscale IP
-            "192.168.15.5" # WireGuard IP
-            "cloud.oranos.org" # Cloudflare Tunnel domain (update with your actual domain)
+            "10.19.5.10"
+            "100.91.10.104"
+            "192.168.15.5"
+            "cloud.oranos.org"
           ];
           trusted_proxies = [
             "127.0.0.1"
             "::1"
           ];
-        };
-      };
-
-      systemd.services = {
-        nextcloud-setup = {
-          after = [
-            "raid-online.target"
-            "systemd-tmpfiles-setup.service"
-            "postgresql.service"
-          ];
-          requires = [
-            "raid-online.target"
-            "systemd-tmpfiles-setup.service"
-            "postgresql.service"
-          ];
-          unitConfig.AssertPathIsMountPoint = "/data";
-        };
-
-        nextcloud-cron = {
-          after = [
-            "raid-online.target"
-            "systemd-tmpfiles-setup.service"
-            "postgresql.service"
-          ];
-          requires = [
-            "raid-online.target"
-            "systemd-tmpfiles-setup.service"
-            "postgresql.service"
-          ];
-          unitConfig.AssertPathIsMountPoint = "/data";
-        };
-
-        phpfpm-nextcloud = {
-          after = [
-            "raid-online.target"
-            "systemd-tmpfiles-setup.service"
-            "postgresql.service"
-          ];
-          requires = [
-            "raid-online.target"
-            "systemd-tmpfiles-setup.service"
-            "postgresql.service"
-          ];
-          unitConfig.AssertPathIsMountPoint = "/data";
         };
       };
 

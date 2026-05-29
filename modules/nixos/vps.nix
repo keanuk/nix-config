@@ -1,9 +1,13 @@
 { config, inputs, ... }:
+let
+  opensshModule = config.flake.modules.nixos.openssh;
+in
 {
   flake.modules.nixos.vps =
     { lib, pkgs, ... }:
     {
-      imports = (with config.flake.modules.nixos; [ openssh ]) ++ [
+      imports = [
+        opensshModule
         inputs.vscode-server.nixosModules.default
       ];
 

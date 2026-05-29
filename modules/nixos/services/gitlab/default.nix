@@ -2,6 +2,7 @@
   flake.modules.nixos.gitlab =
     {
       pkgs,
+      lib,
       config,
       ...
     }:
@@ -53,7 +54,7 @@
         enable = true;
         packages.gitlab = pkgs.unstable.gitlab;
         databaseCreateLocally = true;
-        statePath = "/data/.state/gitlab";
+        statePath = lib.mkDefault "/data/.state/gitlab";
         host = "git.oranos.org";
         port = 443;
         https = true;
@@ -76,32 +77,6 @@
               "::1"
             ];
           };
-        };
-      };
-
-      systemd.services = {
-        gitlab = {
-          after = [ "raid-online.target" ];
-          requires = [ "raid-online.target" ];
-          unitConfig.AssertPathIsMountPoint = "/data";
-        };
-
-        gitlab-workhorse = {
-          after = [ "raid-online.target" ];
-          requires = [ "raid-online.target" ];
-          unitConfig.AssertPathIsMountPoint = "/data";
-        };
-
-        gitlab-sidekiq = {
-          after = [ "raid-online.target" ];
-          requires = [ "raid-online.target" ];
-          unitConfig.AssertPathIsMountPoint = "/data";
-        };
-
-        gitaly = {
-          after = [ "raid-online.target" ];
-          requires = [ "raid-online.target" ];
-          unitConfig.AssertPathIsMountPoint = "/data";
         };
       };
 

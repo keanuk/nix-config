@@ -29,6 +29,10 @@ in
         secrets.nextdns_id = {
           mode = "0444";
         };
+
+        secrets.user-keanu-password = { };
+        secrets.user-kimmy-password = { };
+        secrets.hotspot-password = { };
       };
     };
 

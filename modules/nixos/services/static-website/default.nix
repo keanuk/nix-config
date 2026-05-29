@@ -3,7 +3,7 @@ let
   inherit (config.domains) email;
 in
 {
-  flake.modules.nixos.vps-website =
+  flake.modules.nixos.static-website =
     {
       config,
       lib,
@@ -18,6 +18,16 @@ in
         webRoot = lib.mkOption {
           type = lib.types.str;
           description = "Filesystem path that nginx serves as the document root.";
+        };
+        owner = lib.mkOption {
+          type = lib.types.str;
+          default = "keanu";
+          description = "Owner of the web root directory.";
+        };
+        group = lib.mkOption {
+          type = lib.types.str;
+          default = "users";
+          description = "Group of the web root directory.";
         };
       };
 
@@ -53,7 +63,7 @@ in
         };
 
         systemd.tmpfiles.rules = [
-          "d ${config.staticWebsite.webRoot} 0755 keanu users -"
+          "d ${config.staticWebsite.webRoot} 0755 ${config.staticWebsite.owner} ${config.staticWebsite.group} -"
         ];
 
         networking.firewall.allowedTCPPorts = [

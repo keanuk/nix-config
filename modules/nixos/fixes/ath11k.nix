@@ -1,3 +1,8 @@
+# Issue: Qualcomm ath11k WiFi firmware hangs after suspend/resume
+# Description: Reloads ath11k_pci module on resume to recover from firmware state loss
+# Status: active
+# Last-checked: 2025-05-25
+# Removal condition: Remove when ath11k firmware no longer hangs on resume on affected hardware
 {
   flake.modules.nixos.ath11k =
     {

@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   flake.modules.homeManager.shell =
     { pkgs, ... }:
@@ -48,4 +49,6 @@
           pkgs.unstable.proton-vpn-cli
         ];
     };
+
+  flake.modules.homeManager.base = config.flake.modules.homeManager.shell;
 }

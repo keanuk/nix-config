@@ -1,3 +1,8 @@
+# Issue: rtw88 Realtek WiFi driver disconnects under power save
+# Description: Disables power saving and MSI/ASPM for rtw88 to prevent random disconnects
+# Status: active
+# Last-checked: 2025-05-25
+# Removal condition: Remove when rtw88 driver upstream handles power save reliably on affected hardware
 {
   flake.modules.nixos.rtw88-fix = {
     networking.networkmanager.wifi.powersave = false;

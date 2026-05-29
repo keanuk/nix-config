@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   flake.modules.darwin.packages =
     { pkgs, ... }:
@@ -20,4 +21,6 @@
         pciutils
       ];
     };
+
+  flake.modules.darwin.base = config.flake.modules.darwin.packages;
 }

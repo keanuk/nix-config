@@ -1,9 +1,12 @@
 { config, inputs, ... }:
+let
+  sopsModule = config.flake.modules.nixos.sops;
+in
 {
   flake.modules.nixos.hardware =
     { pkgs, ... }:
     {
-      imports = with config.flake.modules.nixos; [ sops ];
+      imports = [ sopsModule ];
 
       boot = {
         plymouth.enable = true;

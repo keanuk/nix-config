@@ -1,12 +1,12 @@
 { config, ... }:
 {
   flake.modules.nixos.home-assistant =
-    { pkgs, ... }:
+    { pkgs, lib, ... }:
     {
       services.home-assistant = {
         enable = true;
         package = pkgs.unstable.home-assistant;
-        configDir = "/data/.state/home-assistant";
+        configDir = lib.mkDefault "/data/.state/home-assistant";
         config = {
           default_config = { };
           http = {
@@ -61,11 +61,6 @@
         ];
       };
 
-      systemd.services.home-assistant = {
-        after = [ "raid-online.target" ];
-        requires = [ "raid-online.target" ];
-        unitConfig.AssertPathIsMountPoint = "/data";
-      };
     };
 
   flake.modules.nixos.server = config.flake.modules.nixos.home-assistant;

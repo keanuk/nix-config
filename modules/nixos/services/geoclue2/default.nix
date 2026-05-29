@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   flake.modules.nixos.geoclue2 =
     { pkgs, ... }:
@@ -9,4 +10,6 @@
 
       location.provider = "geoclue2";
     };
+
+  flake.modules.nixos.desktop = config.flake.modules.nixos.geoclue2;
 }

@@ -1,8 +1,26 @@
 { config, inputs, ... }:
+let
+  inherit (config.flake.modules.nixos)
+    base
+    amd
+    hardware
+    server
+    systemd-boot
+    btrfs
+    ollama
+    ollama-full
+    keanu
+    home-manager
+    github-runner
+    harmonia
+    system-packages
+    ;
+in
 {
-  configurations.nixos.beehive.module = {
-    imports =
-      (with config.flake.modules.nixos; [
+  configurations.nixos.beehive.module =
+    { lib, ... }:
+    {
+      imports = [
         base
         amd
         hardware
@@ -16,8 +34,6 @@
         github-runner
         harmonia
         system-packages
-      ])
-      ++ [
         inputs.nixos-hardware.nixosModules.common-cpu-amd
         inputs.nixos-hardware.nixosModules.common-pc
         inputs.nixos-hardware.nixosModules.common-pc-ssd
@@ -28,9 +44,54 @@
         ./_github-runner.nix
       ];
 
-    nixpkgs.hostPlatform = "x86_64-linux";
-    networking.hostName = "beehive";
+      systemd.services =
+        lib.genAttrs
+          [
+            "immich-server"
+            "immich-machine-learning"
+            "nextcloud-setup"
+            "nextcloud-cron"
+            "phpfpm-nextcloud"
+            "forgejo"
+            "home-assistant"
+            "gitlab"
+            "gitlab-workhorse"
+            "gitlab-sidekiq"
+            "gitaly"
+            "transmission"
+            "plex"
+            "bazarr"
+            "lidarr"
+            "prowlarr"
+            "radarr"
+            "recyclarr"
+            "sonarr"
+            "wg"
+          ]
+          (_: {
+            after = [ "raid-online.target" ];
+            requires = [ "raid-online.target" ];
+            unitConfig.AssertPathIsMountPoint = "/data";
+          });
 
-    system.stateVersion = "25.05";
-  };
+      services.nextcloud = {
+        hostName = "beehive";
+        home = "/data/.state/nextcloud";
+        datadir = "/data/nextcloud";
+        settings.trusted_domains = [
+          "beehive"
+          "localhost"
+          "beehive.local"
+          "10.19.5.10"
+          "100.91.10.104"
+          "192.168.15.5"
+          "cloud.oranos.org"
+        ];
+      };
+
+      nixpkgs.hostPlatform = "x86_64-linux";
+      networking.hostName = "beehive";
+
+      system.stateVersion = "25.05";
+    };
 }

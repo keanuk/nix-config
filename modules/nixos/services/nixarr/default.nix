@@ -6,34 +6,6 @@
       lib,
       ...
     }:
-    let
-      raidDependentServices = [
-        "transmission"
-        "plex"
-        # "jellyfin"
-        # "jellyseerr"
-        # "audiobookshelf"
-        # "autobrr"
-        "bazarr"
-        "lidarr"
-        "prowlarr"
-        "radarr"
-        "recyclarr"
-        "sonarr"
-      ];
-
-      vpnNamespaceServices = [
-        "wg"
-      ];
-
-      # Use "requires" instead of "bindsTo" to avoid cascading stops during nixos-rebuild switch
-      # bindsTo would cause all these services to stop if raid-online.target is touched
-      raidDependencyConfig = {
-        after = [ "raid-online.target" ];
-        requires = [ "raid-online.target" ];
-        unitConfig.AssertPathIsMountPoint = "/data";
-      };
-    in
     {
       imports = [
         inputs.nixarr.nixosModules.default
@@ -41,15 +13,15 @@
 
       nixarr = {
         enable = true;
-        stateDir = "/data/.state/nixarr";
-        mediaDir = "/data/nixarr";
+        stateDir = lib.mkDefault "/data/.state/nixarr";
+        mediaDir = lib.mkDefault "/data/nixarr";
         mediaUsers = [
           "keanu"
         ];
 
         vpn = {
           enable = true;
-          wgConf = "/data/.secret/wg.conf";
+          wgConf = lib.mkDefault "/data/.secret/wg.conf";
           accessibleFrom = [
             "10.19.5.0/24"
           ];
@@ -60,7 +32,7 @@
           package = pkgs.unstable.transmission_4;
           vpn.enable = true;
           peerPort = 51413;
-          credentialsFile = "/data/.secret/transmission/settings.json";
+          credentialsFile = lib.mkDefault "/data/.secret/transmission/settings.json";
           extraAllowedIps = [
             "10.19.5.*"
           ];
@@ -133,14 +105,21 @@
       };
 
       # Ensure all Nixarr services have access to the media group
-      users.users = lib.genAttrs raidDependentServices (_: {
-        extraGroups = [ "media" ];
-      });
-
-      systemd.services = lib.mkMerge [
-        (lib.genAttrs raidDependentServices (_: raidDependencyConfig))
-        (lib.genAttrs vpnNamespaceServices (_: raidDependencyConfig))
-      ];
+      users.users =
+        lib.genAttrs
+          [
+            "transmission"
+            "plex"
+            "bazarr"
+            "lidarr"
+            "prowlarr"
+            "radarr"
+            "recyclarr"
+            "sonarr"
+          ]
+          (_: {
+            extraGroups = [ "media" ];
+          });
     };
 
   flake.modules.nixos.server = config.flake.modules.nixos.nixarr;

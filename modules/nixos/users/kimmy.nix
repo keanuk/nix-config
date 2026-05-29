@@ -1,6 +1,10 @@
 {
   flake.modules.nixos.kimmy =
-    { pkgs, ... }:
+    {
+      pkgs,
+      config,
+      ...
+    }:
     {
       users.users.kimmy = {
         isNormalUser = true;
@@ -11,7 +15,7 @@
           "networkmanager"
         ];
         shell = pkgs.fish;
-        initialPassword = "kimmy";
+        hashedPasswordFile = config.sops.secrets.user-kimmy-password.path;
       };
     };
 }

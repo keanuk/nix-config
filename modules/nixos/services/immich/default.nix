@@ -1,7 +1,15 @@
 { config, ... }:
 {
   flake.modules.nixos.immich =
-    { pkgs, ... }:
+    {
+      pkgs,
+      lib,
+      config,
+      ...
+    }:
+    let
+      mediaLoc = config.services.immich.mediaLocation;
+    in
     {
       services.immich = {
         enable = true;
@@ -9,39 +17,24 @@
         openFirewall = true;
         host = "0.0.0.0";
         port = 2283;
-        mediaLocation = "/data/immich";
+        mediaLocation = lib.mkDefault "/data/immich";
       };
 
       systemd.tmpfiles.rules = [
-        "d /data/immich 0750 immich immich -"
-        "d /data/immich/encoded-video 0750 immich immich -"
-        "d /data/immich/library 0750 immich immich -"
-        "d /data/immich/profile 0750 immich immich -"
-        "d /data/immich/thumbs 0750 immich immich -"
-        "d /data/immich/upload 0750 immich immich -"
-        "d /data/immich/backups 0750 immich immich -"
-        # Create .immich mount check files (Immich expects these to exist)
-        "f /data/immich/encoded-video/.immich 0640 immich immich -"
-        "f /data/immich/library/.immich 0640 immich immich -"
-        "f /data/immich/profile/.immich 0640 immich immich -"
-        "f /data/immich/thumbs/.immich 0640 immich immich -"
-        "f /data/immich/upload/.immich 0640 immich immich -"
-        "f /data/immich/backups/.immich 0640 immich immich -"
+        "d ${mediaLoc} 0750 immich immich -"
+        "d ${mediaLoc}/encoded-video 0750 immich immich -"
+        "d ${mediaLoc}/library 0750 immich immich -"
+        "d ${mediaLoc}/profile 0750 immich immich -"
+        "d ${mediaLoc}/thumbs 0750 immich immich -"
+        "d ${mediaLoc}/upload 0750 immich immich -"
+        "d ${mediaLoc}/backups 0750 immich immich -"
+        "f ${mediaLoc}/encoded-video/.immich 0640 immich immich -"
+        "f ${mediaLoc}/library/.immich 0640 immich immich -"
+        "f ${mediaLoc}/profile/.immich 0640 immich immich -"
+        "f ${mediaLoc}/thumbs/.immich 0640 immich immich -"
+        "f ${mediaLoc}/upload/.immich 0640 immich immich -"
+        "f ${mediaLoc}/backups/.immich 0640 immich immich -"
       ];
-
-      systemd.services = {
-        immich-server = {
-          after = [ "raid-online.target" ];
-          requires = [ "raid-online.target" ];
-          unitConfig.AssertPathIsMountPoint = "/data";
-        };
-
-        immich-machine-learning = {
-          after = [ "raid-online.target" ];
-          requires = [ "raid-online.target" ];
-          unitConfig.AssertPathIsMountPoint = "/data";
-        };
-      };
     };
 
   flake.modules.nixos.server = config.flake.modules.nixos.immich;

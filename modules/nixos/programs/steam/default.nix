@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   flake.modules.nixos.steam =
     { pkgs, ... }:
@@ -16,4 +17,6 @@
         ];
       };
     };
+
+  flake.modules.nixos.desktop = config.flake.modules.nixos.steam;
 }

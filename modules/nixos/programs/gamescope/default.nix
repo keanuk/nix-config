@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   flake.modules.nixos.gamescope =
     { pkgs, ... }:
@@ -11,4 +12,6 @@
         gamescope-wsi
       ];
     };
+
+  flake.modules.nixos.desktop = config.flake.modules.nixos.gamescope;
 }

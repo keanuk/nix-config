@@ -1,14 +1,11 @@
-{ config, ... }:
 {
-  flake.modules.homeManager.base = {
-    imports = with config.flake.modules.homeManager; [
-      shell
-    ];
+  flake.modules.homeManager.base =
+    { ... }:
+    {
+      programs.home-manager = {
+        enable = true;
+      };
 
-    programs.home-manager = {
-      enable = true;
+      news.display = "notify";
     };
-
-    news.display = "notify";
-  };
 }

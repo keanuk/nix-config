@@ -1,17 +1,8 @@
-{ config, ... }:
+{ ... }:
 {
   flake.modules.nixos.desktop =
     { pkgs, ... }:
     {
-      imports = with config.flake.modules.nixos; [
-        evolution
-        gamescope
-        steam
-
-        geoclue2
-        udev
-      ];
-
       services = {
         # Desktop services
         accounts-daemon.enable = true;

@@ -3,6 +3,7 @@
   flake.modules.nixos.nh =
     {
       pkgs,
+      lib,
       config,
       ...
     }:
@@ -10,7 +11,7 @@
       programs.nh = {
         enable = true;
         package = pkgs.nh;
-        flake = "${config.users.users.keanu.home}/.config/nix-config";
+        flake = lib.mkDefault "${config.users.users.keanu.home}/.config/nix-config";
         clean.enable = false;
       };
 

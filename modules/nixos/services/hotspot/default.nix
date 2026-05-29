@@ -1,8 +1,6 @@
 {
-  # TODO: Move the hotspot password to sops-nix instead of hardcoding it here.
-  # Example:
-  #   sops.secrets.hotspot-password = { };
-  #   authentication.saePasswordsFile = config.sops.secrets.hotspot-password.path;
+  # Required sops secret: hotspot-password
+  # This secret should contain a single line with the WPA3 SAE password.
   flake.modules.nixos.hotspot =
     {
       config,
@@ -17,7 +15,7 @@
             wlp1s0 = {
               networks.wlp1s0 = {
                 ssid = "electronic-thumb";
-                authentication.saePasswords = [ { password = "keanukerr"; } ];
+                authentication.saePasswordsFile = config.sops.secrets.hotspot-password.path;
               };
             };
           };

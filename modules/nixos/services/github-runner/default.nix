@@ -118,7 +118,7 @@
                 --unattended \
                 --url "${cfg.url}" \
                 --token "$REG_TOKEN" \
-                --name "beehive" \
+                --name "${config.networking.hostName}" \
                 --labels "${lib.concatStringsSep "," cfg.labels}" \
                 --replace \
                 --work "${runnerDir}/_work" || true

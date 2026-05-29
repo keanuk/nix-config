@@ -11,26 +11,17 @@ let
     ++ [ inputs.nix-openclaw.overlays.default ];
 in
 {
-  flake.modules.darwin.base = _: {
-    imports = with config.flake.modules.darwin; [
-      packages
+  flake.modules.darwin.base =
+    { ... }:
+    {
+      # Disabled for Determinate Nix
+      nix.enable = false;
 
-      # TODO: Figure out how to make it work with determinate nix
-      # comin
-
-      desktop-fonts
-
-      fixes
-    ];
-
-    # Disabled for Determinate Nix
-    nix.enable = false;
-
-    nixpkgs = {
-      overlays = baseOverlays;
-      config = {
-        allowUnfree = true;
+      nixpkgs = {
+        overlays = baseOverlays;
+        config = {
+          allowUnfree = true;
+        };
       };
     };
-  };
 }

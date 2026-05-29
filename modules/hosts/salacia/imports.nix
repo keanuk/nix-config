@@ -1,14 +1,21 @@
 { config, ... }:
+let
+  inherit (config.flake.modules.darwin)
+    base
+    homebrew
+    keanu
+    home-manager
+    ;
+in
 {
   configurations.darwin.salacia.module = {
-    imports =
-      (with config.flake.modules.darwin; [
-        base
-        homebrew
-        keanu
-        home-manager
-      ])
-      ++ [ ./_hardware-configuration.nix ];
+    imports = [
+      base
+      homebrew
+      keanu
+      home-manager
+      ./_hardware-configuration.nix
+    ];
 
     networking.hostName = "salacia";
     nixpkgs.hostPlatform = "aarch64-darwin";

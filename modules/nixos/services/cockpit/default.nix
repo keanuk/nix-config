@@ -2,6 +2,7 @@
 {
   flake.modules.nixos.cockpit =
     {
+      config,
       pkgs,
       lib,
       ...
@@ -14,7 +15,7 @@
         port = 9090;
         settings = {
           WebService = {
-            Origins = lib.mkForce "https://localhost:9090 https://beehive:9090 wss://beehive:9090 https://cockpit.oranos.org wss://cockpit.oranos.org";
+            Origins = lib.mkForce "https://localhost:9090 https://${config.networking.hostName}:9090 wss://${config.networking.hostName}:9090 https://cockpit.oranos.org wss://cockpit.oranos.org";
           };
         };
       };

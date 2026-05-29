@@ -21,12 +21,6 @@
           "/etc/secureboot"
           "/etc/NetworkManager/system-connections"
           "/etc/nixos"
-          {
-            directory = "/var/lib/keanu";
-            user = "keanu";
-            group = "keanu";
-            mode = "u=rwx,g=rx,o=";
-          }
         ];
         files = [
           {
