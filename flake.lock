@@ -1021,11 +1021,11 @@
         "treefmt-nix": "treefmt-nix_4"
       },
       "locked": {
-        "lastModified": 1779992777,
-        "narHash": "sha256-kcE1RB3k82X/FNm0DNw79NHnYxG8sA28qwY8ZWb5V8s=",
+        "lastModified": 1780082346,
+        "narHash": "sha256-AILdZzkywYwTJrQZdrIQclRqmVSEOnA88tMkxs1IWRI=",
         "owner": "nixos",
         "repo": "hydra",
-        "rev": "158cb37a8ea2bba49000f6b743f26724b4ec8c33",
+        "rev": "3ccd938cd7d0085a2915132369eb09e35991550b",
         "type": "github"
       },
       "original": {
