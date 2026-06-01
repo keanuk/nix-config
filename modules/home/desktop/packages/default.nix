@@ -9,7 +9,6 @@
       home.packages = with pkgs.unstable; [
         android-studio
         android-tools
-        antigravity-fhs
         appimage-run
         audacity
         bluebubbles
@@ -19,7 +18,6 @@
         catppuccin
         darktable
         dbeaver-bin
-        dig
         endeavour
         ente-auth
         ente-cli

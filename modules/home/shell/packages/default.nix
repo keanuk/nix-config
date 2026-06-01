@@ -7,15 +7,15 @@
         with pkgs.unstable;
         [
           age
+          antigravity-cli
           circumflex
-          claude-code
           cloudflared
-          codex
           cosign
           cpufetch
           ddgr
           deadnix
           deploy-rs
+          dig
           ffmpeg
           fh
           file
@@ -27,8 +27,6 @@
           just
           libnatpmp
           mediainfo
-          # TODO: Re-enable when build doesn't take forever
-          # mistral-vibe
           ncdu
           nixos-anywhere
           nix-index

@@ -2,9 +2,9 @@
   flake.modules.homeManager.desktop =
     { pkgs, ... }:
     {
-      programs.vscode = {
-        enable = false;
-        package = pkgs.vscode-fhs;
+      programs.antigravity = {
+        enable = true;
+        package = pkgs.antigravity-fhs;
         profiles.default = {
           extensions = with pkgs.vscode-extensions; [
             catppuccin.catppuccin-vsc
