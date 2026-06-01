@@ -55,7 +55,6 @@
           "iMovie" = 408981434;
           "Kagi for Safari" = 1622835804;
           "Keynote: Design Presentations" = 361285480;
-          "Messenger" = 1480068668;
           "NextDNS" = 1464122853;
           "Numbers: Make Spreadsheets" = 361304891;
           "Pages: Create Documents" = 361309726;

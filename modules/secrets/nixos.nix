@@ -23,6 +23,7 @@ in
         };
 
         secrets = {
+          github-token = { };
           google_maps_geolocation = {
             owner = config.users.users.keanu.name;
           };
