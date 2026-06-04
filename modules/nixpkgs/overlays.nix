@@ -1,6 +1,7 @@
 { inputs, ... }:
 let
   fixes = [
+    ./_fixes/github-runner.nix
     ./_fixes/nodejs-20.nix
     ./_fixes/open-webui.nix
     ./_fixes/openldap.nix
