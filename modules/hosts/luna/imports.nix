@@ -3,8 +3,7 @@ let
   inherit (config.flake.modules.nixos)
     base
     hardware
-    # lanzaboote
-    systemd-boot
+    lanzaboote
     laptop
     desktop
     gnome
@@ -14,7 +13,6 @@ let
     fs
     home-manager
     cellular
-    # oled
     ;
 in
 {
@@ -24,8 +22,7 @@ in
       imports = [
         base
         hardware
-        # lanzaboote
-        systemd-boot
+        lanzaboote
         laptop
         desktop
         gnome
@@ -35,7 +32,6 @@ in
         fs
         home-manager
         cellular
-        # oled
         inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-13th-gen
         ./_disko-btrfs.nix
         ./_hardware-configuration.nix
