@@ -40,20 +40,9 @@ in
         ./_disko-btrfs.nix
       ];
 
-      # Quectel RM520N-GL FCC unlock: download Quectel_FCC_Unlock.json
-      # from Quectel's Windows USB driver package and drop it at
-      # /var/lib/cellular/fcc-unlock/2c7c:0800.json so ModemManager can
-      # apply it on first boot.
-      environment.etc."cellular/fcc-unlock-readme.md".text = ''
-        Place the Quectel RM520N-GL FCC unlock JSON at:
-          /var/lib/cellular/fcc-unlock/2c7c:0800.json
-        Obtain it from Quectel's Windows driver bundle (Quectel_FCC_Unlock.json)
-        or contact Quectel support for the matching certificate.
-      '';
-
       # Mount ursa's NFS share the same way the other laptops do.
       fileSystems."/mnt/data" = {
-        device = "ursa.local:/data";
+        device = "beehive.local:/data";
         fsType = "nfs";
         options = [
           "rw"
@@ -71,6 +60,6 @@ in
       nixpkgs.hostPlatform = "x86_64-linux";
       networking.hostName = "luna";
 
-      system.stateVersion = "26.05";
+      system.stateVersion = "26.11";
     };
 }
