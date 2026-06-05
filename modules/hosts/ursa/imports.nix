@@ -39,6 +39,7 @@ in
         inputs.nixos-hardware.nixosModules.common-pc
         inputs.nixos-hardware.nixosModules.common-pc-ssd
         ./_disko-btrfs.nix
+        ./_hardware-configuration.nix
         ./_raid-configuration.nix
         ./_shares.nix
         ./_github-runner.nix

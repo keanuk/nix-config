@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This is a multi-platform Nix configuration managing NixOS, nix-darwin, and home-manager across ~14 devices (desktops, laptops, servers, VPS instances, and WSL). It uses the **dendritic pattern** with [flake-parts](https://flake.parts): every `.nix` file under `modules/` is a top-level flake-parts module, auto-imported via [`import-tree`](https://github.com/vic/import-tree). Files starting with `_` are skipped by `import-tree` and are imported by path where needed.
+This is a multi-platform Nix configuration managing NixOS, nix-darwin, and home-manager across ~16 devices (desktops, laptops, servers, VPS instances, and WSL). It uses the **dendritic pattern** with [flake-parts](https://flake.parts): every `.nix` file under `modules/` is a top-level flake-parts module, auto-imported via [`import-tree`](https://github.com/vic/import-tree). Files starting with `_` are skipped by `import-tree` and are imported by path where needed.
 
 ## Repository Structure
 
@@ -76,10 +76,10 @@ modules/
     ├── home.nix                     # writes home-manager.users.<name> + standalone homeConfigurations
     ├── _hardware-configuration.nix  # auto-generated; underscore-prefix to skip import-tree
     ├── _disko-configuration.nix     # disko config; underscore-prefix
-    ├── sops.nix                     # (beehive only) per-host sops secrets
-    ├── _raid-configuration.nix      # (beehive only)
-    ├── _shares.nix                  # (beehive only)
-    └── _disko-btrfs.nix             # (phoebe only)
+    ├── sops.nix                     # per-host sops secrets
+    ├── _raid-configuration.nix      # RAID config
+    ├── _shares.nix                  # NFS/Samba shares
+    └── _disko-btrfs.nix             # Btrfs disko config
 ```
 
 ## Key Architecture Decisions
@@ -161,11 +161,13 @@ Roles that *don't* auto-opt-in (host imports them explicitly): the desktop envir
 | beehive | NixOS | x86_64 | Home server (Beelink SER9 Pro) | unstable |
 | earth | NixOS | x86_64 | Mini PC (Intel NUC 10) | unstable |
 | hyperion | NixOS | x86_64 | Laptop (HP EliteBook 845 G8) | unstable |
+| luna | NixOS | x86_64 | Laptop (Lenovo ThinkPad X1 13th Gen) | unstable |
 | mars | NixOS/WSL | aarch64 | WSL (ThinkPad X13s) | unstable |
 | miranda | NixOS | x86_64 | Laptop (HP EliteBook 1030 G2) | unstable |
 | phoebe | NixOS | x86_64 | Laptop (ThinkPad P14s AMD Gen 5) | unstable |
 | tethys | NixOS | x86_64 | Mini PC (Zotac ZBox) | unstable |
 | titan | NixOS | x86_64 | Desktop (CyberPowerPC, AMD GPU) | unstable |
+| ursa | NixOS | x86_64 | Home server (AMD, RX 9070 XT) | stable |
 | salacia | Darwin | aarch64 | Desktop (Mac Mini 2024) | unstable |
 | vesta | Darwin | x86_64 | Laptop (MacBook Pro 2020) | unstable |
 | charon | Darwin | x86_64 | Laptop (MacBook Air 2018) | unstable |

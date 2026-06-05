@@ -38,6 +38,7 @@ in
         oled
         inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-13th-gen
         ./_disko-btrfs.nix
+        ./_hardware-configuration.nix
       ];
 
       # Mount ursa's NFS share the same way the other laptops do.

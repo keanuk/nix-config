@@ -11,10 +11,12 @@ Personal NixOS and nix-darwin configuration files using Nix flakes. This reposit
 | **beehive** | Beelink SER9 Pro | x86_64 | Home Server | Media server with Jellyfin, Plex, *arr stack |
 | **earth** | Intel NUC 10 i7 | x86_64 | Mini PC | Compact desktop |
 | **hyperion** | HP EliteBook 845 G8 | x86_64 | Laptop | Desktop with Pantheon DE |
+| **luna** | Lenovo ThinkPad X1 (13th Gen) | x86_64 | Laptop | GNOME desktop, cellular (Quectel RM520N-GL), OLED display |
 | **miranda** | HP EliteBook 1030 G2 | x86_64 | Laptop | Portable workstation |
 | **phoebe** | ThinkPad P14s AMD Gen 5 | x86_64 | Laptop | Development machine |
 | **tethys** | Zotac ZBox | x86_64 | Mini PC | Compact desktop |
 | **titan** | CyberPowerPC | x86_64 | Desktop | High-performance workstation |
+| **ursa** | Custom AMD build | x86_64 | Home Server | RX 9070 XT, RAID array, stable channel |
 
 ### macOS Systems (Darwin)
 
