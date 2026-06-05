@@ -6,7 +6,7 @@ let
     lanzaboote
     laptop
     desktop
-    cosmic
+    gnome
     btrfs
     ollama
     keanu
@@ -27,7 +27,7 @@ in
         lanzaboote
         laptop
         desktop
-        cosmic
+        gnome
         btrfs
         ollama
         keanu
@@ -51,10 +51,9 @@ in
         or contact Quectel support for the matching certificate.
       '';
 
-      # Mount beehive's NFS share the same way the other laptops do.
-      # Swap to ursa.local once the migration is complete.
+      # Mount ursa's NFS share the same way the other laptops do.
       fileSystems."/mnt/data" = {
-        device = "beehive.local:/data";
+        device = "ursa.local:/data";
         fsType = "nfs";
         options = [
           "rw"
@@ -72,6 +71,6 @@ in
       nixpkgs.hostPlatform = "x86_64-linux";
       networking.hostName = "luna";
 
-      system.stateVersion = "25.11";
+      system.stateVersion = "26.05";
     };
 }

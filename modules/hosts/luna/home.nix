@@ -5,7 +5,7 @@
       desktop-linux
       gaming
     ];
-    home.stateVersion = "25.11";
+    home.stateVersion = "26.05";
   };
 
   configurations.homeManager."keanu@luna" = {
@@ -15,7 +15,7 @@
         desktop-linux
         gaming
       ];
-      home.stateVersion = "25.11";
+      home.stateVersion = "26.05";
     };
   };
 }
