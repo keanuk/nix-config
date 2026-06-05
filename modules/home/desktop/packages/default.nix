@@ -15,6 +15,7 @@
         bottles
         bruno
         calibre
+        caligula
         catppuccin
         darktable
         dbeaver-bin
