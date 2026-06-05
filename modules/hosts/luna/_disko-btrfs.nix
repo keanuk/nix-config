@@ -13,8 +13,7 @@ in
     disk = {
       main = {
         type = "disk";
-        # Replace with the actual /dev/disk/by-id/ of luna's NVMe once known.
-        device = "/dev/disk/by-id/nvme-LENOVO_SSD_M.2_1TB_REPLACE_ME";
+        device = "/dev/disk/by-id/nvme-eui.8ce38e0405a5c723";
         content = {
           type = "gpt";
           partitions = {
