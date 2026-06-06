@@ -8,7 +8,7 @@ let
     pc
     rtw88-fix
     desktop
-    cosmic
+    pantheon
     btrfs
     ollama
     ollama-full
@@ -30,7 +30,7 @@ in
         pc
         rtw88-fix
         desktop
-        cosmic
+        pantheon
         btrfs
         ollama
         ollama-full
