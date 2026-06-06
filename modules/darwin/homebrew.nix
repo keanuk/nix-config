@@ -44,6 +44,7 @@
           autoUpdate = true;
           cleanup = "uninstall";
           upgrade = true;
+          extraFlags = [ "--force" ];
         };
         masApps = {
           "Amphetamine" = 937984704;
