@@ -6,7 +6,7 @@ let
       home-manager-self
       server
       pass
-      # openclaw
+      openclaw
     ];
 
     home = {

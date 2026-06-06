@@ -3,7 +3,7 @@ let
   hmRoles = with config.flake.modules.homeManager; [
     darwin-profile
     sops
-    # openclaw
+    openclaw
   ];
 
   salaciaKeanuHome =
