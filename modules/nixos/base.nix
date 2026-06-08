@@ -1,8 +1,11 @@
-{ inputs, ... }:
+{ config, inputs, ... }:
+let
+  inherit (config.flake.modules.nixos) fixes;
+in
 {
   # Inline configuration that lives at the heart of the `base` role.
   # Everything else (sops, nix-settings, system-packages, comin, tailscale,
-  # apparmor, fuse, nh, nix-ld, virtualization) opts itself in from its own
+  # apparmor, fuse, nh, nix-ld, virtualization, fixes) opts itself in from its own
   # file, so this module only contains the bits that don't have a natural
   # home of their own.
   flake.modules.nixos.base =
@@ -14,6 +17,7 @@
     }:
     {
       imports = [
+        fixes
         inputs.determinate.nixosModules.default
         inputs.disko.nixosModules.disko
         inputs.nur.modules.nixos.default
