@@ -7,7 +7,7 @@ let
     lanzaboote
     laptop
     desktop
-    pantheon
+    gnome
     btrfs
     ollama
     ollama-full
@@ -26,7 +26,7 @@ in
         lanzaboote
         laptop
         desktop
-        pantheon
+        gnome
         btrfs
         ollama
         ollama-full
