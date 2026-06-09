@@ -1,4 +1,8 @@
 { pkgs, ... }:
+let
+  wallpaperDark = ../../../../lib/wallpapers/blue-clouds.jpg;
+  wallpaperLight = ../../../../lib/wallpapers/pink-clouds.jpg;
+in
 {
   services.hyprpaper = {
     enable = true;
@@ -6,15 +10,12 @@
     settings = {
       ipc = "on";
       splash = false;
-      splash_offset = 2.0;
-
       preload = [
-        "../../../lib/wallpapers/blue-clouds.jpg"
-        "../../../lib/wallpapers/pink-clouds.jpg"
+        "${wallpaperDark}"
+        "${wallpaperLight}"
       ];
-
       wallpaper = [
-        ", ../../../lib/wallpapers/blue-clouds.jpg"
+        ", ${wallpaperDark}"
       ];
     };
   };

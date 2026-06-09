@@ -1,19 +1,40 @@
 {
   flake.modules.homeManager.hyprland =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
+    let
+      catppuccin-gtk-mocha = pkgs.catppuccin-gtk.override {
+        variant = "mocha";
+        accents = [ "blue" ];
+      };
+      catppuccin-gtk-latte = pkgs.catppuccin-gtk.override {
+        variant = "latte";
+        accents = [ "blue" ];
+      };
+    in
     {
       imports = [
-        ./_binds.nix
-        ./_hypridle.nix
-        ./_hyprpaper.nix
-        ./_settings.nix
-
-        ./_rofi.nix
-        ./_waybar.nix
+        ./binds.nix
+        ./hypridle.nix
+        ./hyprlock.nix
+        ./hyprpaper.nix
+        ./settings.nix
+        ./rules.nix
+        ./waybar.nix
+        ./dock.nix
+        ./theme.nix
+        ./rofi.nix
+        ./notifications.nix
       ];
 
       home.packages = with pkgs; [
+        blueman
         brightnessctl
+        catppuccin-gtk-mocha
+        catppuccin-gtk-latte
+        darkman
         grim
         grimblast
         hyprcursor
@@ -21,17 +42,25 @@
         hyprpicker
         hyprlock
         hypridle
+        hyprpolkitagent
+        libnotify
+        nwg-dock-hyprland
         pamixer
         playerctl
         rofi-wayland
         swaynotificationcenter
-        swww
-        tailscale-systray
-        wayvnc
         wev
         wf-recorder
-        kdePackages.polkit-kde-agent-1
+        xdg-desktop-portal-hyprland
       ];
+
+      home.pointerCursor = {
+        package = pkgs.catppuccin-cursors.mochaBlue;
+        name = "catppuccin-mocha-blue-cursors";
+        size = 24;
+        x11.enable = true;
+        gtk.enable = true;
+      };
 
       wayland.windowManager.hyprland = {
         enable = true;

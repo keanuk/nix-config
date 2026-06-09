@@ -40,25 +40,32 @@
               coder = ./agents/coder.md;
               debugger = ./agents/debugger.md;
               documentation = ./agents/documentation.md;
+              explainer = ./agents/explainer.md;
               reviewer = ./agents/reviewer.md;
+              tester = ./agents/tester.md;
             };
 
             commands = {
               changelog = ./commands/changelog.md;
               commit = ./commands/commit.md;
+              explain = ./commands/explain.md;
               fix-issue = ./commands/fix-issue.md;
               implement = ./commands/implement.md;
+              pr = ./commands/pr.md;
               refactor = ./commands/refactor.md;
+              test = ./commands/test.md;
             };
 
-            # TODO: re-enable when symlinking issues are resolved
-            # tools = {
-            #   git-blame = ./tools/git-blame.ts;
-            #   git-log = ./tools/git-log.ts;
-            #   nix-eval = ./tools/nix-eval.ts;
-            #   nix-check = ./tools/nix-check.ts;
-            #   just-run = ./tools/just-run.ts;
-            # };
+            tools = {
+              git-blame = ./tools/git-blame.ts;
+              git-diff = ./tools/git-diff.ts;
+              git-log = ./tools/git-log.ts;
+              grep-search = ./tools/grep-search.ts;
+              just-run = ./tools/just-run.ts;
+              nix-check = ./tools/nix-check.ts;
+              nix-eval = ./tools/nix-eval.ts;
+              nix-lint = ./tools/nix-lint.ts;
+            };
           };
     };
 
