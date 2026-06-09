@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   lib,
   ...
@@ -16,7 +15,7 @@ in
   '';
 
   home.file = {
-    "${config.xdg.configHome}/swaync/themes/dark.css".text = ''
+    ".config/swaync/themes/dark.css".text = ''
       @define-color base   #1e1e2e;
       @define-color mantle #181825;
       @define-color crust  #11111b;
@@ -101,7 +100,7 @@ in
       }
     '';
 
-    "${config.xdg.configHome}/swaync/themes/light.css".text = ''
+    ".config/swaync/themes/light.css".text = ''
       @define-color base   #eff1f5;
       @define-color mantle #e6e9ef;
       @define-color crust  #dce0e8;
@@ -194,9 +193,9 @@ in
 
         MODE="$1"
 
-        WAYBAR_THEMES="${config.xdg.configHome}/waybar/themes"
-        DOCK_THEMES="${config.xdg.configHome}/nwg-dock-hyprland/themes"
-        SWAYNC_THEMES="${config.xdg.configHome}/swaync/themes"
+        WAYBAR_THEMES="$HOME/.config/waybar/themes"
+        DOCK_THEMES="$HOME/.config/nwg-dock-hyprland/themes"
+        SWAYNC_THEMES="$HOME/.config/swaync/themes"
 
         case "$MODE" in
           dark)
@@ -223,19 +222,19 @@ in
 
         # Update Waybar style
         if [ -f "$WAYBAR_THEMES/$WAYBAR_CSS" ]; then
-          ln -sf "$WAYBAR_THEMES/$WAYBAR_CSS" "${config.xdg.configHome}/waybar/style.css"
+          ln -sf "$WAYBAR_THEMES/$WAYBAR_CSS" "$HOME/.config/waybar/style.css"
           ${pkgs.procps}/bin/pkill -SIGUSR2 waybar || true
         fi
 
         # Update Swaync style
         if [ -f "$SWAYNC_THEMES/$MODE.css" ]; then
-          ln -sf "$SWAYNC_THEMES/$MODE.css" "${config.xdg.configHome}/swaync/style.css"
+          ln -sf "$SWAYNC_THEMES/$MODE.css" "$HOME/.config/swaync/style.css"
           ${pkgs.swaynotificationcenter}/bin/swaync-client -rs || true
         fi
 
         # Update Dock style
         if [ -f "$DOCK_THEMES/$MODE.css" ]; then
-          ln -sf "$DOCK_THEMES/$MODE.css" "${config.xdg.configHome}/nwg-dock-hyprland/style.css"
+          ln -sf "$DOCK_THEMES/$MODE.css" "$HOME/.config/nwg-dock-hyprland/style.css"
           if ${pkgs.procps}/bin/pgrep nwg-dock-hyprland > /dev/null; then
             ${pkgs.procps}/bin/pkill nwg-dock-hyprland || true
             ${pkgs.nwg-dock-hyprland}/bin/nwg-dock-hyprland -p bottom -d -a center -i 40 &
@@ -282,7 +281,7 @@ in
   '';
 
   home.activation.applyTheme = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    $DRY_RUN_CMD mkdir -p ${config.xdg.configHome}/waybar ${config.xdg.configHome}/nwg-dock-hyprland ${config.xdg.configHome}/swaync
+    $DRY_RUN_CMD mkdir -p $HOME/.config/waybar $HOME/.config/nwg-dock-hyprland $HOME/.config/swaync
     $DRY_RUN_CMD ${pkgs.darkman}/bin/darkman set $(${pkgs.darkman}/bin/darkman get 2>/dev/null || echo "dark") 2>/dev/null || true
   '';
 }

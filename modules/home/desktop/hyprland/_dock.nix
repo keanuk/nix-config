@@ -1,6 +1,5 @@
-{ config, ... }:
-{
-  home.file."${config.xdg.configHome}/nwg-dock-hyprland/themes/dark.css".text = ''
+_: {
+  home.file.".config/nwg-dock-hyprland/themes/dark.css".text = ''
     window {
       background: rgba(30, 30, 46, 0.85);
       border-radius: 16px;
@@ -22,7 +21,7 @@
     }
   '';
 
-  home.file."${config.xdg.configHome}/nwg-dock-hyprland/themes/light.css".text = ''
+  home.file.".config/nwg-dock-hyprland/themes/light.css".text = ''
     window {
       background: rgba(239, 241, 245, 0.9);
       border-radius: 16px;

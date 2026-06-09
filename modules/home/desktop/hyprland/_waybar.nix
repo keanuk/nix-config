@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  config,
   ...
 }:
 {
@@ -176,6 +175,6 @@
   };
 
   # Theme CSS files
-  home.file."${config.xdg.configHome}/waybar/themes/waybar-mocha.css".source = ./waybar-mocha.css;
-  home.file."${config.xdg.configHome}/waybar/themes/waybar-latte.css".source = ./waybar-latte.css;
+  home.file.".config/waybar/themes/waybar-mocha.css".source = ./waybar-mocha.css;
+  home.file.".config/waybar/themes/waybar-latte.css".source = ./waybar-latte.css;
 }

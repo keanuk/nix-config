@@ -16,17 +16,17 @@
     in
     {
       imports = [
-        ./binds.nix
-        ./hypridle.nix
-        ./hyprlock.nix
-        ./hyprpaper.nix
-        ./settings.nix
-        ./rules.nix
-        ./waybar.nix
-        ./dock.nix
-        ./theme.nix
-        ./rofi.nix
-        ./notifications.nix
+        ./_binds.nix
+        ./_hypridle.nix
+        ./_hyprlock.nix
+        ./_hyprpaper.nix
+        ./_settings.nix
+        ./_rules.nix
+        ./_waybar.nix
+        ./_dock.nix
+        ./_theme.nix
+        ./_rofi.nix
+        ./_notifications.nix
       ];
 
       home.packages = with pkgs; [
