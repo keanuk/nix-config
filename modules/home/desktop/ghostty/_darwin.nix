@@ -2,19 +2,25 @@
 #
 # On macOS, Ghostty is installed via Homebrew (see darwin/homebrew.nix),
 # so we set package = null to skip the Nix package installation.
-# We import the shared default.nix to get the base settings, then apply
-# Darwin-specific overrides (shell command, background opacity).
 { lib, ... }:
 {
 
   programs.ghostty = {
+    enable = true;
     package = null;
+    enableBashIntegration = true;
+    enableFishIntegration = true;
+    enableZshIntegration = true;
     installBatSyntax = false;
     installVimSyntax = false;
     settings = {
+      theme = "dark:Catppuccin Mocha,light:Catppuccin Latte";
+      font-size = lib.mkDefault 13;
+      font-family = "RobotoMono Nerd Font";
+      background-blur = lib.mkDefault true;
       command = "/etc/profiles/per-user/keanu/bin/fish --login --interactive";
       shell-integration = "fish";
-      background-opacity = 0.9;
+      background-opacity = 0.7;
     };
   };
 
