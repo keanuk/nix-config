@@ -104,11 +104,6 @@ _: {
         ];
       };
 
-      # Needed if not using GNOME
-      xdg.portal = {
-        enable = true;
-        wlr.enable = true;
-        extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-      };
+      xdg.portal.enable = true;
     };
 }
