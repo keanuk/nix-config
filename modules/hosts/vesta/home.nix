@@ -5,7 +5,7 @@
     home.stateVersion = "24.05";
   };
 
-  configurations.homeManager."keanu@vesta" = {
+  configurations.homeManager-darwin-x86."keanu@vesta" = {
     system = "x86_64-darwin";
     module = {
       imports = [ config.flake.modules.homeManager.darwin-profile ];

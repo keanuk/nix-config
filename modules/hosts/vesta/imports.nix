@@ -4,16 +4,18 @@ let
     base
     homebrew
     keanu
-    home-manager
+    home-manager-26-05
     ;
 in
 {
+  configurations.darwin.vesta.darwinInput = "darwin-26-05";
+
   configurations.darwin.vesta.module = {
     imports = [
       base
       homebrew
       keanu
-      home-manager
+      home-manager-26-05
       ./_hardware-configuration.nix
     ];
 

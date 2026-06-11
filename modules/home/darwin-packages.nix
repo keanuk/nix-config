@@ -2,7 +2,7 @@
   flake.modules.homeManager.darwin =
     { pkgs, ... }:
     {
-      home.packages = with pkgs.unstable; [
+      home.packages = with pkgs; [
         android-tools
         cmake
         docker
@@ -16,7 +16,6 @@
         podman-compose
         podman-tui
         typst
-        yt-dlp
         zlib-ng
       ];
     };

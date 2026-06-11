@@ -4,14 +4,11 @@
     { pkgs, ... }:
     {
       home.packages =
-        with pkgs.unstable;
-        [
+        (with pkgs; [
           age
-          antigravity-cli
           circumflex
           cloudflared
           cosign
-          cpufetch
           ddgr
           deadnix
           deploy-rs
@@ -41,10 +38,12 @@
           tlrc
           tree
           wget
-        ]
+        ])
+        ++ (pkgs.lib.optional (pkgs ? antigravity-cli) pkgs.antigravity-cli)
         ++ pkgs.lib.optionals (!pkgs.stdenv.isDarwin) [
-          pkgs.unstable.authelia
-          pkgs.unstable.proton-vpn-cli
+          pkgs.authelia
+          pkgs.cpufetch
+          pkgs.proton-vpn-cli
         ];
     };
 
