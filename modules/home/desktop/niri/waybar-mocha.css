@@ -1,0 +1,108 @@
+/* Top bar */
+#top {
+  background: rgba(30, 30, 46, 0.85);
+  border-radius: 12px;
+  border: 2px solid #89b4fa;
+  padding: 4px 8px;
+  margin: 0 6px;
+  color: #cdd6f4;
+  font-family: "Roboto", "Noto Color Emoji";
+  font-size: 14px;
+}
+
+#top .modules-left {
+  padding-left: 4px;
+}
+
+#top .modules-right {
+  padding-right: 4px;
+}
+
+#top #workspaces button {
+  background: transparent;
+  color: #cdd6f4;
+  border-radius: 8px;
+  padding: 0 8px;
+  margin: 0 2px;
+}
+
+#top #workspaces button.active {
+  background: #89b4fa;
+  color: #1e1e2e;
+}
+
+#top #workspaces button:hover {
+  background: #45475a;
+}
+
+#top #clock {
+  color: #cdd6f4;
+  font-weight: bold;
+}
+
+#top #tray {
+  padding: 0 4px;
+}
+
+#top #pulseaudio,
+#top #network,
+#top #bluetooth,
+#top #battery,
+#top #idle_inhibitor,
+#top #custom-notification,
+#top #custom-power {
+  padding: 0 8px;
+  color: #cdd6f4;
+}
+
+#top #battery.critical {
+  color: #f38ba8;
+}
+
+#top #battery.warning {
+  color: #f9e2af;
+}
+
+/* Bottom bar (dock) */
+#bottom {
+  background: rgba(30, 30, 46, 0.85);
+  border-radius: 16px;
+  border: 2px solid #89b4fa;
+  padding: 6px;
+  margin: 0 6px;
+  color: #cdd6f4;
+  font-family: "Roboto", "Noto Color Emoji";
+  font-size: 14px;
+}
+
+#bottom #taskbar button {
+  background: transparent;
+  border-radius: 10px;
+  padding: 4px;
+  margin: 0 2px;
+}
+
+#bottom #taskbar button:hover {
+  background: rgba(137, 180, 250, 0.25);
+}
+
+#bottom #taskbar button.active {
+  background: rgba(137, 180, 250, 0.25);
+  border-bottom: 2px solid #89b4fa;
+}
+
+#bottom #custom-firefox,
+#bottom #custom-terminal,
+#bottom #custom-files,
+#bottom #custom-launcher {
+  padding: 4px 8px;
+  font-size: 20px;
+}
+
+#bottom #custom-firefox:hover,
+#bottom #custom-terminal:hover,
+#bottom #custom-files:hover,
+#bottom #custom-launcher:hover {
+  background: rgba(137, 180, 250, 0.25);
+  border-radius: 10px;
+}
