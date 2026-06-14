@@ -32,7 +32,6 @@
       }
 
       spawn-at-startup "systemctl" "--user" "start" "graphical-session.target"
-      spawn-at-startup "noctalia-shell"
 
       environment {
           QT_QPA_PLATFORM "wayland"

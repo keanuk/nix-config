@@ -1,7 +1,6 @@
 _: {
   wayland.windowManager.hyprland.settings = {
     exec-once = [
-      "noctalia-shell"
       "dbus-update-activation-environment --all"
     ];
 

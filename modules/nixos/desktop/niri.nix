@@ -1,26 +1,21 @@
 {
   flake.modules.nixos.niri =
-    { pkgs, ... }:
+    { pkgs, lib, ... }:
     {
-      services.displayManager.gdm.enable = true;
-
       programs.niri = {
         enable = true;
         useNautilus = true;
       };
 
+      services.displayManager.gdm.enable = true;
+
       xdg.portal = {
         enable = true;
         extraPortals = with pkgs; [
-          xdg-desktop-portal-gnome
           xdg-desktop-portal-gtk
         ];
         config.niri = {
-          default = [
-            "gnome"
-            "gtk"
-          ];
-          "org.freedesktop.impl.portal.Settings" = "darkman";
+          default = lib.mkForce [ "gtk" ];
         };
       };
     };
