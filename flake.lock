@@ -1842,17 +1842,37 @@
         "type": "github"
       }
     },
+    "noctalia": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1781403670,
+        "narHash": "sha256-TLwc7WOIbyJ0fEA7HAdu+4ZOtORSbcc3/lwarjxHV0c=",
+        "owner": "noctalia-dev",
+        "repo": "noctalia",
+        "rev": "4d1a0812a4082946344b3f4b6828a19efff54e0d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "noctalia",
+        "type": "github"
+      }
+    },
     "nur": {
       "inputs": {
         "flake-parts": "flake-parts_5",
         "nixpkgs": "nixpkgs_11"
       },
       "locked": {
-        "lastModified": 1781398788,
-        "narHash": "sha256-27PdDkx4s5YYbRywqdbbVQTbUqJgXhbXWzcY57XHqt8=",
+        "lastModified": 1781403308,
+        "narHash": "sha256-HEJXmo1SNyu0cu4ii/Mq1koM26OuB6R0RpwSOX+IDA0=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "a618ca3210963b8f146c3183b1ea71c54fa17e2f",
+        "rev": "1f2818ee53fa2bf38ad3e9529618ca9110fb4d54",
         "type": "github"
       },
       "original": {
@@ -1980,6 +2000,7 @@
         "nixpkgs-darwin-x86": "nixpkgs-darwin-x86",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixvim": "nixvim",
+        "noctalia": "noctalia",
         "nur": "nur",
         "preservation": "preservation",
         "sops-nix": "sops-nix",
