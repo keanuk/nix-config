@@ -6,7 +6,8 @@ let
     lanzaboote
     laptop
     desktop
-    pantheon
+    niri
+    noctalia
     btrfs
     keanu
     kimmy
@@ -25,7 +26,8 @@ in
         lanzaboote
         laptop
         desktop
-        pantheon
+        niri
+        noctalia
         btrfs
         keanu
         kimmy
