@@ -32,6 +32,7 @@
       }
 
       spawn-at-startup "systemctl" "--user" "start" "graphical-session.target"
+      spawn-at-startup "noctalia"
 
       environment {
           QT_QPA_PLATFORM "wayland"
@@ -41,9 +42,9 @@
       }
 
       binds {
-          Mod { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+          Mod { spawn "noctalia" "ipc" "call" "launcher" "toggle"; }
           Mod+Return { spawn "alacritty"; }
-          Mod+Space { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+          Mod+Space { spawn "noctalia" "ipc" "call" "launcher" "toggle"; }
           Mod+Q repeat=false { close-window; }
           Mod+Shift+Q repeat=false { quit; }
           Mod+L { spawn "hyprlock"; }

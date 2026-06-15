@@ -6,6 +6,8 @@
         ./_niri.nix
       ];
 
+      programs.noctalia.systemd.enable = false;
+
       home.packages = with pkgs; [
         blueman
         brightnessctl

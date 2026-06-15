@@ -3,13 +3,14 @@
     {
       pkgs,
       inputs,
+      lib,
       ...
     }:
     {
       programs.noctalia = {
         enable = true;
         package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
-        systemd.enable = true;
+        systemd.enable = lib.mkDefault true;
         settings = {
           theme = {
             mode = "auto";

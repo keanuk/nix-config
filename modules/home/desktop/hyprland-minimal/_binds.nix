@@ -8,8 +8,8 @@ _: {
       "$mod, RETURN, exec, alacritty"
 
       # Launcher
-      "$mod, SPACE, exec, noctalia-shell ipc call launcher toggle"
-      "$altMod, SPACE, exec, noctalia-shell ipc call launcher toggle"
+      "$mod, SPACE, exec, noctalia ipc call launcher toggle"
+      "$altMod, SPACE, exec, noctalia ipc call launcher toggle"
 
       # Window management
       "$mod, Q, killactive,"
