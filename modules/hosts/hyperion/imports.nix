@@ -6,6 +6,7 @@ let
     lanzaboote
     laptop
     desktop
+    gnome
     niri
     noctalia
     btrfs
@@ -26,6 +27,7 @@ in
         lanzaboote
         laptop
         desktop
+        gnome
         niri
         noctalia
         btrfs

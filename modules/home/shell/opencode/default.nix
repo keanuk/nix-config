@@ -12,21 +12,9 @@
             web.enable = true;
 
             settings = {
-              model = "opencode-go/kimi-k2.6";
+              model = "opencode-go/kimi-k2.7-code";
               autoshare = false;
               autoupdate = false;
-
-              mcp = {
-                git = {
-                  type = "local";
-                  command = [
-                    "npx"
-                    "-y"
-                    "@modelcontextprotocol/server-git"
-                  ];
-                  enabled = true;
-                };
-              };
             };
 
             tui = {
@@ -56,16 +44,18 @@
               test = ./commands/test.md;
             };
 
-            tools = {
-              git-blame = ./tools/git-blame.ts;
-              git-diff = ./tools/git-diff.ts;
-              git-log = ./tools/git-log.ts;
-              grep-search = ./tools/grep-search.ts;
-              just-run = ./tools/just-run.ts;
-              nix-check = ./tools/nix-check.ts;
-              nix-eval = ./tools/nix-eval.ts;
-              nix-lint = ./tools/nix-lint.ts;
-            };
+            # TODO: enable when tools work again
+            # currently causes issue that prevents opencode from working
+            # tools = {
+            #   git-blame = ./tools/git-blame.ts;
+            #   git-diff = ./tools/git-diff.ts;
+            #   git-log = ./tools/git-log.ts;
+            #   grep-search = ./tools/grep-search.ts;
+            #   just-run = ./tools/just-run.ts;
+            #   nix-check = ./tools/nix-check.ts;
+            #   nix-eval = ./tools/nix-eval.ts;
+            #   nix-lint = ./tools/nix-lint.ts;
+            # };
           };
     };
 

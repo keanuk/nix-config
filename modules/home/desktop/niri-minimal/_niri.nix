@@ -17,17 +17,36 @@
       // Minimal Niri configuration for Noctalia
 
       input {
-          keyboard { xkb { layout "us" } }
-          touchpad { tap; natural-scroll; }
+          keyboard {
+              xkb {
+                  layout "us"
+              }
+          }
+          touchpad {
+              tap
+              natural-scroll
+          }
       }
 
-      output "*" { scale 1.0 }
+      output "*" {
+          scale 1.0
+      }
 
       layout {
           gaps 8
-          border { width 2; active "#89b4fa"; inactive "#45475a" }
-          focus-ring { width 4; active "#89b4fa"; inactive "#45475a" }
-          default-column-width { proportion 0.5 }
+          border {
+              width 2
+              active-color "#89b4fa"
+              inactive-color "#45475a"
+          }
+          focus-ring {
+              width 4
+              active-color "#89b4fa"
+              inactive-color "#45475a"
+          }
+          default-column-width {
+              proportion 0.5
+          }
           center-focused-column "on-overflow"
       }
 
@@ -42,7 +61,7 @@
       }
 
       binds {
-          Mod { spawn "noctalia" "ipc" "call" "launcher" "toggle"; }
+          Mod+grave { spawn "noctalia" "ipc" "call" "launcher" "toggle"; }
           Mod+Return { spawn "alacritty"; }
           Mod+Space { spawn "noctalia" "ipc" "call" "launcher" "toggle"; }
           Mod+Q repeat=false { close-window; }
