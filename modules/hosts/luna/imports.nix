@@ -7,6 +7,8 @@ let
     laptop
     desktop
     gnome
+    niri
+    noctalia
     btrfs
     ollama
     keanu
@@ -26,6 +28,8 @@ in
         laptop
         desktop
         gnome
+        niri
+        noctalia
         btrfs
         ollama
         keanu

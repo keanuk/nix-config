@@ -6,7 +6,6 @@
       imports = [ inputs.lanzaboote.nixosModules.lanzaboote ];
 
       boot = {
-        bootspec.enable = true;
         lanzaboote = {
           enable = true;
           pkiBundle = "/var/lib/sbctl";

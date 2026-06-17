@@ -1,10 +1,15 @@
-{ config, ... }:
+{ config, inputs, ... }:
 {
   configurations.nixos.phoebe.module.home-manager.users.keanu = {
-    imports = with config.flake.modules.homeManager; [
-      desktop-linux
-      gaming
-    ];
+    imports =
+      with config.flake.modules.homeManager;
+      [
+        desktop-linux
+        gaming
+        noctalia
+        niri-minimal
+      ]
+      ++ [ inputs.noctalia.homeModules.default ];
     home.stateVersion = "25.11";
   };
 

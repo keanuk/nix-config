@@ -4,7 +4,7 @@
     {
       programs.element-desktop = {
         enable = true;
-        package = pkgs.element-desktop;
+        package = pkgs.stable.element-desktop;
       };
     };
 }

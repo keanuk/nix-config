@@ -25,7 +25,11 @@ let
       additions
       modifications
     ]
-    ++ [ inputs.nix-openclaw.overlays.default ];
+    ++ [
+      inputs.nix-openclaw.overlays.default
+      inputs.hyprland.overlays.hyprland-packages
+      inputs.hyprland.overlays.hyprland-extras
+    ];
 
   mkUnstable =
     _name: cfg:

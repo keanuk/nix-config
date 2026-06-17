@@ -41,8 +41,6 @@
         ])
         ++ (pkgs.lib.optional (pkgs ? antigravity-cli) pkgs.antigravity-cli)
         ++ pkgs.lib.optionals (!pkgs.stdenv.isDarwin) [
-          # pkgs.authelia
-          pkgs.cpufetch
           pkgs.proton-vpn-cli
         ];
     };
