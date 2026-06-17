@@ -17,6 +17,9 @@ jobs:
       - name: Install Nix
         uses: DeterminateSystems/determinate-nix-action@v3
 
+      - name: Enable Magic Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@v14
+
       - name: Evaluate flake
         run: |
           nix eval .#nixosConfigurations --apply builtins.attrNames
@@ -37,6 +40,9 @@ jobs:
       - name: Install Nix
         uses: DeterminateSystems/determinate-nix-action@v3
 
+      - name: Enable Magic Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@v14
+
       - name: Evaluate NixOS configuration for ${{ matrix.host }}
         run: |
           echo "Evaluating ${{ matrix.host }}..."
@@ -55,6 +61,9 @@ jobs:
 
       - name: Install Nix
         uses: DeterminateSystems/determinate-nix-action@v3
+
+      - name: Enable Magic Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@v14
 
       - name: Evaluate Darwin configuration for ${{ matrix.host }}
         run: |

@@ -21,6 +21,7 @@ jobs:
           persist-credentials: false
           ref: "${{ (inputs.tag != null) && format('refs/tags/{0}', inputs.tag) || '' }}"
       - uses: "DeterminateSystems/determinate-nix-action@v3"
+      - uses: "DeterminateSystems/magic-nix-cache-action@v14"
       - uses: "DeterminateSystems/flakehub-push@main"
         with:
           visibility: "public"

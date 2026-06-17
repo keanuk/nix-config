@@ -14,7 +14,6 @@ This directory contains the CI/CD workflows for this NixOS configuration reposit
 
 - **`build-check.yml`** - Evaluates all NixOS and Darwin configurations to ensure they are valid
   - **Note:** Only evaluates configurations, does not build them (see limitations below)
-- **`cachix.yml`** - Builds and caches packages to Cachix for faster local builds
 - **`build-and-cache.yml`** - Builds all x86_64-linux NixOS and Home configurations on the self-hosted beehive runner and pushes closures to Cachix
 
 ### Maintenance
@@ -43,7 +42,7 @@ This exceeds GitHub Actions' available disk space, causing builds to fail with "
 
 1. **Evaluation Only** - The `build-check.yml` workflow evaluates configurations to ensure they are syntactically correct and all references resolve properly, without actually building anything.
 
-2. **Package Caching Only** - The `cachix.yml` workflow only builds and caches individual packages from `packages.x86_64-linux`, not full system configurations.
+2. **Package Caching Only** - Packages from `packages.x86_64-linux` are built and pushed to Cachix by the self-hosted `build-and-cache.yml` workflow's `build-packages` job, not full system configurations.
 
 3. **Local Builds** - Full system builds happen on your local machines where disk space is not constrained.
 
@@ -87,7 +86,7 @@ sudo ./svc.sh start
 
 ## Cache Strategy
 
-- **magic-nix-cache** is intentionally removed from lightweight workflows (linting, formatting) as it can be unreliable and these workflows don't benefit much from caching
+- **magic-nix-cache** is enabled on every workflow that runs Nix via `DeterminateSystems/magic-nix-cache-action@v14`. It uses the GitHub Actions built-in cache to share builds between workflow runs, costs nothing, and falls back to `https://cache.nixos.org` on rate-limit errors (`HTTP error 418`).
 - The official NixOS cache at `https://cache.nixos.org` is always available as a fallback
 - Cachix is used for custom packages to speed up local development
 
@@ -100,7 +99,7 @@ This means a build exceeded available disk space. Options:
 3. Use evaluation-only checks instead of full builds
 
 ### "HTTP error 418" from magic-nix-cache
-This is a transient GitHub API issue. The workflow will fall back to the official NixOS cache automatically.
+This is a transient GitHub API rate-limit issue. The caching daemon and Nix both handle this gracefully and won't cause your CI to fail. The workflow will fall back to the official NixOS cache automatically.
 
 ### Build times out
 GitHub Actions has a 6-hour limit per job and 72 hours per workflow. Large builds may need to be split into smaller jobs or moved to self-hosted runners.
