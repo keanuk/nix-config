@@ -1,15 +1,12 @@
-{ config, inputs, ... }:
+{ config, ... }:
 let
   keanuHome = {
-    imports =
-      with config.flake.modules.homeManager;
-      [
-        desktop-linux
-        gaming
-        noctalia
-        niri-minimal
-      ]
-      ++ [ inputs.noctalia.homeModules.default ];
+    imports = with config.flake.modules.homeManager; [
+      desktop-linux
+      gaming
+      noctalia
+      niri-minimal
+    ];
     home.stateVersion = "23.11";
   };
   kimmyHome = {

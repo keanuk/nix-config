@@ -8,6 +8,7 @@
     {
       imports = [
         ./_niri.nix
+        inputs.noctalia.homeModules.default
       ];
 
       programs.noctalia.systemd.enable = false;

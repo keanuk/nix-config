@@ -1,7 +1,12 @@
 { config, ... }:
 {
   flake.modules.homeManager.opencode =
-    { pkgs, lib, ... }:
+    {
+      pkgs,
+      lib,
+      config,
+      ...
+    }:
     {
       programs.opencode =
         lib.mkIf (!(pkgs.stdenv.hostPlatform.isx86_64 && pkgs.stdenv.hostPlatform.isDarwin))
@@ -15,7 +20,40 @@
               model = "opencode-go/kimi-k2.7-code";
               autoshare = false;
               autoupdate = false;
+
+              mcp = {
+                nixos = {
+                  command = "uvx";
+                  args = [ "mcp-nixos" ];
+                };
+                context7 = {
+                  url = "https://mcp.context7.com/mcp";
+                };
+                github = lib.mkIf (lib.hasAttrByPath [ "sops" "secrets" "github-token" ] config) {
+                  command = pkgs.writeShellScript "opencode-mcp-github" ''
+                    export GITHUB_PERSONAL_ACCESS_TOKEN="$(cat ${config.sops.secrets.github-token.path})"
+                    exec ${pkgs.uv}/bin/uvx mcp-server-github
+                  '';
+                  args = [ ];
+                };
+                fetch = {
+                  command = "uvx";
+                  args = [ "mcp-server-fetch" ];
+                };
+                playwright = {
+                  command = pkgs.writeShellScript "opencode-mcp-playwright" ''
+                    export PLAYWRIGHT_BROWSERS_PATH=${pkgs.playwright-driver}
+                    exec ${pkgs.uv}/bin/uvx mcp-playwright
+                  '';
+                  args = [ ];
+                };
+              };
             };
+
+            extraPackages = [
+              pkgs.uv
+              pkgs.playwright
+            ];
 
             tui = {
               theme = "system";
