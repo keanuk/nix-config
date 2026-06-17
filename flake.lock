@@ -2295,11 +2295,11 @@
         "nixpkgs": "nixpkgs_12"
       },
       "locked": {
-        "lastModified": 1781701357,
-        "narHash": "sha256-NL+YOMHgkNWdAT2nmMlUWan4DACr3gp8g+8aYjQp1Pw=",
+        "lastModified": 1781703744,
+        "narHash": "sha256-90VwTPgNjl0CW0/IiCcsxtq2pfUJa2Duxe44DOzWeEY=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "316eba6a2a4e19c877e93d69a5b5a3f4c9f12d7e",
+        "rev": "2f31e8e10a199363f7b455fa62729eecf81fd112",
         "type": "github"
       },
       "original": {
