@@ -65,13 +65,13 @@
       }
 
       binds {
-          Mod { spawn "rofi" "-show" "drun"; }
+          Mod { spawn-sh "noctalia msg panel-toggle launcher"; }
           Mod+Return { spawn "alacritty"; }
-          Mod+Space { spawn "rofi" "-show" "drun"; }
-          Mod+Tab { spawn "rofi" "-show" "window"; }
+          Mod+Space { spawn-sh "noctalia msg panel-toggle launcher"; }
+          Mod+Tab { spawn-sh "noctalia msg window-switcher"; }
           Mod+Q repeat=false { close-window; }
           Mod+Shift+Q repeat=false { quit; }
-          Mod+L { spawn "hyprlock"; }
+          Mod+L { spawn-sh "noctalia msg session lock"; }
           Mod+S { spawn "${screenshotScript}"; }
           Mod+Shift+S { spawn "${screenshotFullScript}"; }
           Mod+F { fullscreen-window; }

@@ -68,16 +68,16 @@
             show_instance_count = true;
             # Desktop entry IDs, StartupWMClass, or human-readable names
             pinned = [
-              "firefox"
+              "firefox-dev"
               "thunderbird"
-              "element"
+              "element-web"
               "halloy"
               "org.gnome.Maps"
               "ente"
               "org.gnome.Nautilus"
               "proton-pass"
-              "standardnotes"
-              "zed"
+              "standard-notes"
+              "zededitor"
               "ghostty"
             ];
           };
@@ -89,7 +89,7 @@
             position = "top";
             enabled = true;
             # slide out after pointer leaves; reveal from edge trigger strip
-            auto_hide = false;
+            auto_hide = true;
             # reserve compositor exclusive zone / push windows away
             reserve_space = true;
             # top | overlay; overlay appears above fullscreen apps
@@ -141,7 +141,10 @@
             # color role for the capsule border; omit this key for no border by default
             # capsule_border = "outline";
             start = [ "workspaces" ];
-            center = [ "clock" ];
+            center = [
+              "clock"
+              "weather"
+            ];
             end = [
               "volume"
               "battery"
@@ -217,7 +220,7 @@
 
             panel = {
               # solid | soft | glass; controls floating/centered opacity and card translucency
-              transparency_mode = "soft";
+              transparency_mode = "glass";
               # outline on floating/centered panel shells and section cards inside panels
               borders = true;
               # cast the global [shell.shadow] from panel surfaces
@@ -311,6 +314,32 @@
               lock_keys = true;
               # input keyboard layout changes
               keyboard_layout = true;
+            };
+          };
+
+          # https://docs.noctalia.dev/v5/services/idle/
+          # built-in `lock` and `screen-off` behaviors ship disabled in v5;
+          # `pre_action_fade_seconds` is the dim-fade overlay before the command runs.
+          idle = {
+            pre_action_fade_seconds = 2.0;
+
+            behavior = {
+              screen-off = {
+                timeout = 300;
+                command = "noctalia:dpms-off";
+                resume_command = "noctalia:dpms-on";
+                enabled = true;
+              };
+              lock = {
+                timeout = 600;
+                command = "noctalia:session lock";
+                enabled = true;
+              };
+              suspend = {
+                timeout = 1800;
+                command = "noctalia:session lock-and-suspend";
+                enabled = true;
+              };
             };
           };
 
