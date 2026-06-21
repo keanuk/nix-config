@@ -9,8 +9,6 @@ let
     rtw88-fix
     desktop
     gnome
-    niri
-    noctalia
     btrfs
     ollama
     ollama-full
@@ -33,8 +31,6 @@ in
         rtw88-fix
         desktop
         gnome
-        niri
-        noctalia
         btrfs
         ollama
         ollama-full

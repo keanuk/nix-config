@@ -4,8 +4,6 @@
     imports = with config.flake.modules.homeManager; [
       desktop-linux
       gaming
-      noctalia
-      niri-minimal
     ];
     home.stateVersion = "26.11";
   };

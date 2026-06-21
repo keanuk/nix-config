@@ -8,8 +8,6 @@ let
     laptop
     desktop
     gnome
-    niri
-    noctalia
     btrfs
     ollama
     ollama-full
@@ -29,8 +27,6 @@ in
         laptop
         desktop
         gnome
-        niri
-        noctalia
         btrfs
         ollama
         ollama-full

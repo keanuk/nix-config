@@ -21,70 +21,47 @@
               autoshare = false;
               autoupdate = false;
 
-              mcp =
-                if pkgs.stdenv.hostPlatform.isLinux then
-                  {
-                    nixos = {
-                      command = "uvx";
-                      args = [ "mcp-nixos" ];
-                    };
-                    context7 = {
-                      url = "https://mcp.context7.com/mcp";
-                    };
-                    github = lib.mkIf (lib.hasAttrByPath [ "sops" "secrets" "github-token" ] config) {
-                      command = pkgs.writeShellScript "opencode-mcp-github" ''
-                        export GITHUB_PERSONAL_ACCESS_TOKEN="$(cat ${config.sops.secrets.github-token.path})"
-                        exec ${pkgs.uv}/bin/uvx mcp-server-github
-                      '';
-                      args = [ ];
-                    };
-                    fetch = {
-                      command = "uvx";
-                      args = [ "mcp-server-fetch" ];
-                    };
-                    playwright = {
-                      command = pkgs.writeShellScript "opencode-mcp-playwright" ''
+              mcp = {
+                nixos = {
+                  type = "local";
+                  enabled = true;
+                  command = if pkgs.stdenv.hostPlatform.isLinux then "uvx" else "${pkgs.uv}/bin/uvx";
+                  args = [ "mcp-nixos" ];
+                };
+                context7 = {
+                  type = "remote";
+                  enabled = true;
+                  url = "https://mcp.context7.com/mcp";
+                };
+                github = lib.mkIf (lib.hasAttrByPath [ "sops" "secrets" "github-token" ] config) {
+                  type = "local";
+                  enabled = true;
+                  command = pkgs.writeShellScript "opencode-mcp-github" ''
+                    export GITHUB_PERSONAL_ACCESS_TOKEN="$(cat ${config.sops.secrets.github-token.path})"
+                    exec ${pkgs.uv}/bin/uvx mcp-server-github
+                  '';
+                  args = [ ];
+                };
+                fetch = {
+                  type = "local";
+                  enabled = true;
+                  command = if pkgs.stdenv.hostPlatform.isLinux then "uvx" else "${pkgs.uv}/bin/uvx";
+                  args = [ "mcp-server-fetch" ];
+                };
+                playwright = {
+                  type = "local";
+                  enabled = true;
+                  command =
+                    if pkgs.stdenv.hostPlatform.isLinux then
+                      pkgs.writeShellScript "opencode-mcp-playwright" ''
                         export PLAYWRIGHT_BROWSERS_PATH=${pkgs.playwright-driver}
                         exec ${pkgs.uv}/bin/uvx mcp-playwright
-                      '';
-                      args = [ ];
-                    };
-                  }
-                else
-                  {
-                    nixos = {
-                      type = "local";
-                      enabled = true;
-                      command = "${pkgs.uv}/bin/uvx";
-                      args = [ "mcp-nixos" ];
-                    };
-                    context7 = {
-                      type = "remote";
-                      enabled = true;
-                      url = "https://mcp.context7.com/mcp";
-                    };
-                    github = lib.mkIf (lib.hasAttrByPath [ "sops" "secrets" "github-token" ] config) {
-                      type = "local";
-                      enabled = true;
-                      command = pkgs.writeShellScript "opencode-mcp-github" ''
-                        export GITHUB_PERSONAL_ACCESS_TOKEN="$(cat ${config.sops.secrets.github-token.path})"
-                        exec ${pkgs.uv}/bin/uvx mcp-server-github
-                      '';
-                      args = [ ];
-                    };
-                    fetch = {
-                      type = "local";
-                      enabled = true;
-                      command = "${pkgs.uv}/bin/uvx";
-                      args = [ "mcp-server-fetch" ];
-                    };
-                    playwright = {
-                      type = "local";
-                      enabled = true;
-                      command = "${pkgs.uv}/bin/uvx";
-                      args = [ "mcp-playwright" ];
-                    };
-                  };
+                      ''
+                    else
+                      "${pkgs.uv}/bin/uvx";
+                  args = if pkgs.stdenv.hostPlatform.isLinux then [ ] else [ "mcp-playwright" ];
+                };
+              };
             };
 
             extraPackages = [
