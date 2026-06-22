@@ -2,6 +2,10 @@
   flake.modules.nixos.plasma =
     { pkgs, ... }:
     {
+      nixpkgs.config.permittedInsecurePackages = [
+        "olm-3.2.16"
+      ];
+
       services.displayManager = {
         sddm.enable = true;
         defaultSession = "plasma";

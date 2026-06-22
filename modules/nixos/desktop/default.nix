@@ -73,7 +73,6 @@ _: {
           binfmt = true;
         };
         gnupg.agent.enable = true;
-        seahorse.enable = true;
       };
 
       hardware = {

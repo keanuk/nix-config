@@ -2,6 +2,8 @@
   flake.modules.nixos.gnome =
     { pkgs, ... }:
     {
+      programs.seahorse.enable = true;
+
       services = {
         udev.packages = with pkgs; [ gnome-settings-daemon ];
         displayManager.gdm.enable = true;

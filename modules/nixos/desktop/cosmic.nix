@@ -2,6 +2,8 @@
   flake.modules.nixos.cosmic =
     { pkgs, ... }:
     {
+      programs.seahorse.enable = true;
+
       services.desktopManager.cosmic = {
         enable = true;
         xwayland.enable = true;
