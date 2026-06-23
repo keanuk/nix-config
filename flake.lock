@@ -2255,11 +2255,11 @@
         "systems": "systems_6"
       },
       "locked": {
-        "lastModified": 1782145918,
-        "narHash": "sha256-xYx+9aM7JzFSy7F5xCnbMgDlzjRFxoXbRl+eL4rcfMQ=",
+        "lastModified": 1782176672,
+        "narHash": "sha256-8gNmp6mdko4/ALHsiewq4t/I3OvX4nbjAIoz5uyn1p4=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "7f813fc7a6a2f92103208a69a98d6afa24f5bb23",
+        "rev": "91df3d9f91c2b6e4c07541903b9d7f80a5b857e1",
         "type": "github"
       },
       "original": {
