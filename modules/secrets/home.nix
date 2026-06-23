@@ -23,18 +23,21 @@ in
         fish.interactiveShellInit = lib.mkIf (config.sops.secrets ? github-token) (
           lib.mkBefore ''
             set -gx NIX_GITHUB_TOKEN (cat ${config.sops.secrets.github-token.path})
+            set -gx NIX_CONFIG "extra-access-tokens = github.com=$NIX_GITHUB_TOKEN"
           ''
         );
 
         zsh.initExtra = lib.mkIf (config.sops.secrets ? github-token) (
           lib.mkBefore ''
             export NIX_GITHUB_TOKEN=$(cat ${config.sops.secrets.github-token.path})
+            export NIX_CONFIG="extra-access-tokens = github.com=$NIX_GITHUB_TOKEN"
           ''
         );
 
         bash.initExtra = lib.mkIf (config.sops.secrets ? github-token) (
           lib.mkBefore ''
             export NIX_GITHUB_TOKEN=$(cat ${config.sops.secrets.github-token.path})
+            export NIX_CONFIG="extra-access-tokens = github.com=$NIX_GITHUB_TOKEN"
           ''
         );
       };

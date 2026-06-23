@@ -9,7 +9,6 @@
           circumflex
           cloudflared
           cosign
-          ddgr
           deadnix
           deploy-rs
           dig
