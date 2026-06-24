@@ -45,19 +45,25 @@
         };
 
         jellyfin = {
-          enable = false;
+          enable = true;
           package = pkgs.unstable.jellyfin;
           openFirewall = true;
         };
 
         seerr = {
-          enable = false;
+          enable = true;
           package = pkgs.unstable.seerr;
         };
 
         audiobookshelf = {
-          enable = false;
+          enable = true;
           package = pkgs.unstable.audiobookshelf;
+          openFirewall = true;
+        };
+
+        shelfmark = {
+          enable = true;
+          package = pkgs.unstable.shelfmark;
           openFirewall = true;
         };
 
@@ -101,6 +107,12 @@
           package = pkgs.unstable.recyclarr;
           schedule = "daily";
           configFile = ./recyclarr.yaml;
+        };
+
+        anchorr = {
+          enable = false;
+          package = pkgs.unstable.anchorr;
+          openFirewall = true;
         };
       };
 

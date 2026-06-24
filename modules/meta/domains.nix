@@ -89,8 +89,18 @@
       };
       audio = {
         subdomain = "audio";
-        backendPort = 8000;
+        backendPort = 9292;
         proxyPort = 9098;
+      };
+      seerr = {
+        subdomain = "seerr";
+        backendPort = 5055;
+        proxyPort = 9111;
+      };
+      books = {
+        subdomain = "books";
+        backendPort = 8084;
+        proxyPort = 9112;
       };
       plex = {
         subdomain = "plex";
