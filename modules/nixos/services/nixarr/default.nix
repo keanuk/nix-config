@@ -68,7 +68,7 @@
         };
 
         autobrr = {
-          enable = false;
+          enable = true;
           package = pkgs.unstable.autobrr;
         };
 

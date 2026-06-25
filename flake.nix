@@ -126,7 +126,7 @@
 
     vpn-confinement.url = "github:Maroka-chan/VPN-Confinement";
 
-    nixarr.url = "github:rasmus-kirk/nixarr";
+    nixarr.url = "github:nix-media-server/nixarr";
 
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
