@@ -33,6 +33,7 @@ in
           user-keanu-password = { };
           user-kimmy-password = { };
           hotspot-password = { };
+          ollama_api_key = { };
         };
       };
 
@@ -70,6 +71,43 @@ in
             chown "$uid:$gid" "$tmp"
             mv "$tmp" "$confFile"
             chmod 600 "$confFile"
+          done <<USERS
+          ${lib.concatStringsSep "\n" userEntries}
+          USERS
+        '';
+
+      # Surface OLLAMA_API_KEY into each user's systemd-user environment.d so
+      # GUI-launched apps (Zed's ollama integration is the consumer here; it
+      # reads OLLAMA_API_KEY from env per the Zed docs) inherit it without
+      # needing an interactive shell.
+      system.activationScripts.ollama-api-key-env =
+        let
+          humanUsers = lib.filterAttrs (_: u: u.isNormalUser && u.home != null) config.users.users;
+          userEntries = lib.mapAttrsToList (n: u: "${n}\t${u.home}") humanUsers;
+        in
+        lib.stringAfter [ "setupSecrets" ] ''
+          secretPath=${config.sops.secrets.ollama_api_key.path}
+          if [ ! -f "$secretPath" ]; then
+            echo "warning: ollama_api_key secret not available; skipping environment.d injection" >&2
+            exit 0
+          fi
+          key=$(cat "$secretPath" | tr -d '\n\r')
+          while IFS=$'\t' read -r user home; do
+            [ -d "$home" ] || continue
+            envDir="$home/.config/environment.d"
+            mkdir -p "$envDir"
+            tmp=$(mktemp)
+            {
+              if [ -f "$envDir/ollama-api-key.conf" ]; then
+                grep -v '^OLLAMA_API_KEY *=' "$envDir/ollama-api-key.conf" 2>/dev/null || true
+              fi
+              printf 'OLLAMA_API_KEY=%s\n' "$key"
+            } > "$tmp"
+            uid=$(id -u "$user" 2>/dev/null || echo 0)
+            gid=$(id -g "$user" 2>/dev/null || echo 0)
+            chown "$uid:$gid" "$tmp"
+            mv "$tmp" "$envDir/ollama-api-key.conf"
+            chmod 600 "$envDir/ollama-api-key.conf"
           done <<USERS
           ${lib.concatStringsSep "\n" userEntries}
           USERS

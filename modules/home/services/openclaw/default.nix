@@ -45,6 +45,16 @@
           type = lib.types.path;
           description = "Path to the OpenAI API key file for openclaw.";
         };
+        ollamaApiKeyFile = lib.mkOption {
+          type = lib.types.nullOr lib.types.path;
+          default = null;
+          description = ''
+            Path to the Ollama API key file for openclaw. Set when openclaw
+            should reach a remote/keyed Ollama server. Leave null (the default)
+            for hosts using a local unkeyed Ollama, in which case the auth
+            profile uses the placeholder key "ollama-local".
+          '';
+        };
         primaryModel = lib.mkOption {
           type = lib.types.str;
           default = "mistral/mistral-large-latest";
@@ -124,14 +134,20 @@
                 run mkdir -p "$AUTH_DIR"
                 MISTRAL_KEY=""
                 OPENAI_KEY=""
+                OLLAMA_KEY="ollama-local"
                 if [ -f "${cfg.mistralApiKeyFile}" ]; then
                   MISTRAL_KEY="$(cat "${cfg.mistralApiKeyFile}" | tr -d "\n")"
                 fi
                 if [ -f "${cfg.openaiApiKeyFile}" ]; then
                   OPENAI_KEY="$(cat "${cfg.openaiApiKeyFile}" | tr -d "\n")"
                 fi
+                ${lib.optionalString (cfg.ollamaApiKeyFile != null) ''
+                  if [ -f "${cfg.ollamaApiKeyFile}" ]; then
+                    OLLAMA_KEY="$(cat "${cfg.ollamaApiKeyFile}" | tr -d "\n")"
+                  fi
+                ''}
                 printf '%s\n' \
-                  "{\"version\":1,\"profiles\":{\"mistral:default\":{\"type\":\"api_key\",\"provider\":\"mistral\",\"key\":\"$MISTRAL_KEY\"},\"openai:default\":{\"type\":\"api_key\",\"provider\":\"openai\",\"key\":\"$OPENAI_KEY\"},\"ollama:default\":{\"type\":\"api_key\",\"provider\":\"ollama\",\"key\":\"ollama-local\"}}}" \
+                  "{\"version\":1,\"profiles\":{\"mistral:default\":{\"type\":\"api_key\",\"provider\":\"mistral\",\"key\":\"$MISTRAL_KEY\"},\"openai:default\":{\"type\":\"api_key\",\"provider\":\"openai\",\"key\":\"$OPENAI_KEY\"},\"ollama:default\":{\"type\":\"api_key\",\"provider\":\"ollama\",\"key\":\"$OLLAMA_KEY\"}}}" \
                   > "$AUTH_DIR/auth-profiles.json"
                 chmod 600 "$AUTH_DIR/auth-profiles.json"
               '';
@@ -172,7 +188,7 @@
           mistralApiKeyFile = "/run/secrets/openclaw_mistral_api_key";
           gatewayTokenFile = "/run/secrets/openclaw_gateway_token";
           openaiApiKeyFile = "/run/secrets/openclaw_openai_api_key";
-          primaryModel = "ollama/gemma4:latest";
+          primaryModel = if cfg.ollamaApiKeyFile != null then "ollama/glm-5.2" else "ollama/gemma4:latest";
           fallbackModels = [
             "ollama/magistral:latest"
             "ollama/qwen3:latest"

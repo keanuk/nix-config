@@ -114,7 +114,6 @@
             "logi-options+"
             "nextcloud"
             "obs"
-            "onyx"
             "plex"
             "podman-desktop"
             "proton-mail"
