@@ -16,14 +16,12 @@ in
         defaultSopsFile = sopsFile;
         defaultSopsFormat = "yaml";
 
-        age = {
-          sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-          keyFile = lib.mkDefault "${config.users.users.keanu.home}/.config/sops/age/keys.txt";
-          generateKey = true;
-        };
+        age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 
         secrets = {
-          github-token = { };
+          github-token = {
+            owner = config.users.users.keanu.name;
+          };
           google_maps_geolocation = {
             owner = config.users.users.keanu.name;
           };
@@ -33,7 +31,9 @@ in
           user-keanu-password = { };
           user-kimmy-password = { };
           hotspot-password = { };
-          ollama_api_key = { };
+          ollama_api_key = {
+            owner = config.users.users.keanu.name;
+          };
         };
       };
 

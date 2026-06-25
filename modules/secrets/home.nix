@@ -16,63 +16,16 @@ in
       sops = {
         defaultSopsFile = sopsFile;
         defaultSopsFormat = "yaml";
-
         age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
-
         secrets = {
           github-token = { };
           ollama_api_key = { };
         };
       };
 
-      programs = lib.mkMerge [
-        {
-          fish.interactiveShellInit = lib.mkIf (config.sops.secrets ? github-token) (
-            lib.mkBefore ''
-              set -gx NIX_GITHUB_TOKEN (cat ${config.sops.secrets.github-token.path})
-              set -gx NIX_CONFIG "extra-access-tokens = github.com=$NIX_GITHUB_TOKEN"
-            ''
-          );
-
-          zsh.initExtra = lib.mkIf (config.sops.secrets ? github-token) (
-            lib.mkBefore ''
-              export NIX_GITHUB_TOKEN=$(cat ${config.sops.secrets.github-token.path})
-              export NIX_CONFIG="extra-access-tokens = github.com=$NIX_GITHUB_TOKEN"
-            ''
-          );
-
-          bash.initExtra = lib.mkIf (config.sops.secrets ? github-token) (
-            lib.mkBefore ''
-              export NIX_GITHUB_TOKEN=$(cat ${config.sops.secrets.github-token.path})
-              export NIX_CONFIG="extra-access-tokens = github.com=$NIX_GITHUB_TOKEN"
-            ''
-          );
-        }
-        {
-          fish.interactiveShellInit = lib.mkIf (config.sops.secrets ? ollama_api_key) (
-            lib.mkBefore ''
-              set -gx OLLAMA_API_KEY (cat ${config.sops.secrets.ollama_api_key.path})
-            ''
-          );
-
-          zsh.initExtra = lib.mkIf (config.sops.secrets ? ollama_api_key) (
-            lib.mkBefore ''
-              export OLLAMA_API_KEY=$(cat ${config.sops.secrets.ollama_api_key.path})
-            ''
-          );
-
-          bash.initExtra = lib.mkIf (config.sops.secrets ? ollama_api_key) (
-            lib.mkBefore ''
-              export OLLAMA_API_KEY=$(cat ${config.sops.secrets.ollama_api_key.path})
-            ''
-          );
-        }
-      ];
-
       # Persist the GitHub token into nix.conf so `nix flake update` (and any
       # non-interactive caller: just, nh, scripts) authenticates the github:
       # fetcher via access-tokens instead of hitting the 60 req/hr anon limit.
-      # The shell init above only fires in interactive sessions.
       home.activation.nix-github-access-token = lib.mkIf (config.sops.secrets ? github-token) (
         lib.hm.dag.entryAfter [ "sops-nix" ] ''
           tokenPath=${config.sops.secrets.github-token.path}
@@ -102,9 +55,8 @@ in
 
       # Export OLLAMA_API_KEY into the user session so GUI-launched apps
       # (Zed's ollama integration reads it from env per its docs) inherit it
-      # without relying on an interactive shell. Linux: write the systemd-user
-      # environment.d snippet and import it into the running user manager.
-      # Darwin: GUI apps inherit env from launchd, so populate it via launchctl.
+      # without relying on an interactive shell. Darwin: GUI apps inherit env
+      # from launchd, so populate it via launchctl.
       home.activation.ollama-api-key-env = lib.mkIf (config.sops.secrets ? ollama_api_key) (
         lib.hm.dag.entryAfter [ "sops-nix" ] ''
           secretPath=${config.sops.secrets.ollama_api_key.path}

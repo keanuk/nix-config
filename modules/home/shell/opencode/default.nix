@@ -33,15 +33,23 @@
                   enabled = true;
                   url = "https://mcp.context7.com/mcp";
                 };
-                github = lib.mkIf (lib.hasAttrByPath [ "sops" "secrets" "github-token" ] config) {
-                  type = "local";
-                  enabled = true;
-                  command = pkgs.writeShellScript "opencode-mcp-github" ''
-                    export GITHUB_PERSONAL_ACCESS_TOKEN="$(cat ${config.sops.secrets.github-token.path})"
-                    exec ${pkgs.uv}/bin/uvx mcp-server-github
-                  '';
-                  args = [ ];
-                };
+                github =
+                  lib.mkIf
+                    (pkgs.stdenv.hostPlatform.isLinux || lib.hasAttrByPath [ "sops" "secrets" "github-token" ] config)
+                    {
+                      type = "local";
+                      enabled = true;
+                      command = pkgs.writeShellScript "opencode-mcp-github" ''
+                        export GITHUB_PERSONAL_ACCESS_TOKEN="$(cat ${
+                          if pkgs.stdenv.hostPlatform.isLinux then
+                            "/run/secrets/github-token"
+                          else
+                            config.sops.secrets.github-token.path
+                        })"
+                        exec ${pkgs.uv}/bin/uvx mcp-server-github
+                      '';
+                      args = [ ];
+                    };
                 fetch = {
                   type = "local";
                   enabled = true;
