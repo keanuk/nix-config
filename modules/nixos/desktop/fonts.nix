@@ -3,7 +3,8 @@
     { pkgs, ... }:
     {
       fonts.packages = with pkgs; [
-        cantarell-fonts
+        # TODO: re-enable when build succeeds
+        # cantarell-fonts
         fira-code
         fira-mono
         font-awesome
