@@ -1224,11 +1224,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1782640197,
-        "narHash": "sha256-/KPaAKGDmVWCw8rr4ZZILg6wXxb9vl8sjkQ7FwWyuEI=",
+        "lastModified": 1782658834,
+        "narHash": "sha256-OYjcMSNogYWLbeP4nxpUVJaO72o6yIK00bDYaAuQI2Y=",
         "owner": "hyprwm",
         "repo": "hyprland",
-        "rev": "28bbe66da7f2fc1f1613677f37511c67731fafd5",
+        "rev": "75f558a536f8003bf80af5cb1a3e91529e78cb6b",
         "type": "github"
       },
       "original": {
