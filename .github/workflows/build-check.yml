@@ -54,7 +54,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        host: [salacia, vesta, charon]
+        host: [salacia]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

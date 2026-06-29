@@ -66,24 +66,6 @@ let
       modules = [ cfg.module ];
       extraSpecialArgs = { inherit inputs; };
     };
-
-  mkDarwinX86 =
-    _name: cfg:
-    let
-      pkgs = import inputs.nixpkgs-darwin-x86 {
-        inherit (cfg) system;
-        overlays = baseOverlays;
-        config = {
-          allowUnfree = true;
-          allowImportFromDerivation = true;
-        };
-      };
-    in
-    inputs.home-manager-darwin-x86.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = [ cfg.module ];
-      extraSpecialArgs = { inherit inputs; };
-    };
 in
 {
   options.configurations = {
@@ -97,15 +79,9 @@ in
       default = { };
       description = "Standalone home-manager configurations using the stable (25.11) channel.";
     };
-    homeManager-darwin-x86 = lib.mkOption {
-      type = lib.types.lazyAttrsOf homeConfigSubmodule;
-      default = { };
-      description = "Standalone home-manager configurations using the pinned 26.05 darwin x86 channel.";
-    };
   };
 
   config.flake.homeConfigurations =
     (lib.mapAttrs mkUnstable config.configurations.homeManager)
-    // (lib.mapAttrs mkStable config.configurations.homeManager-stable)
-    // (lib.mapAttrs mkDarwinX86 config.configurations.homeManager-darwin-x86);
+    // (lib.mapAttrs mkStable config.configurations.homeManager-stable);
 }

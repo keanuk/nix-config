@@ -50,7 +50,7 @@ modules/
 │   └── fixes/                       # opt-in fix-{ath11k,gnome-shell-bluetooth-crash,...} roles
 ├── darwin/                          # flake.modules.darwin.<role>
 │   ├── base.nix, packages.nix
-│   ├── homebrew.nix, homebrew-aarch.nix
+│   ├── homebrew.nix
 │   ├── desktop-fonts.nix
 │   ├── home-manager.nix             # HM-as-darwin-module
 │   ├── services/                    # svc-comin
@@ -169,8 +169,6 @@ Roles that *don't* auto-opt-in (host imports them explicitly): the desktop envir
 | titan | NixOS | x86_64 | Desktop (CyberPowerPC, AMD GPU) | unstable |
 | ursa | NixOS | x86_64 | Home server (AMD, RX 9070 XT) | stable |
 | salacia | Darwin | aarch64 | Desktop (Mac Mini 2024) | unstable |
-| vesta | Darwin | x86_64 | Laptop (MacBook Pro 2020) | unstable |
-| charon | Darwin | x86_64 | Laptop (MacBook Air 2018) | unstable |
 | bucaccio | NixOS VPS | x86_64 | Static website (Hetzner) | stable |
 | emilyvansant | NixOS VPS | x86_64 | Static website (Hetzner) | stable |
 | love-alaya | NixOS VPS | x86_64 | Static website (Hetzner) | stable |

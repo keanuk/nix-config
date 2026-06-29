@@ -23,8 +23,6 @@ Personal NixOS and nix-darwin configuration files using Nix flakes. This reposit
 | Device | Description | Architecture | Role | Notes |
 |--------|-------------|--------------|------|-------|
 | **salacia** | Mac Mini 2024 | aarch64 | Desktop | Apple Silicon workstation |
-| **vesta** | MacBook Pro 2020 | x86_64 | Laptop | Intel-based portable |
-| **charon** | MacBook Air 2018 | x86_64 | Laptop | Lightweight portable |
 
 ### Windows Systems (WSL)
 

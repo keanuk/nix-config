@@ -14,7 +14,7 @@ This is a multi-platform Nix configuration managing NixOS, nix-darwin, and home-
   - `nixpkgs/` — overlays, custom packages (`_pkgs.nix`), fix overlays (`_fixes/`)
   - `secrets/` — sops-nix wiring (NixOS + home-manager)
   - `nixos/` — `flake.modules.nixos.<role>` — base/pc/laptop/server/vps/wsl/amd, desktop/<de>/, programs/<name>/, services/<name>/, users/, fixes/
-  - `darwin/` — `flake.modules.darwin.<role>` — base, packages, homebrew{,-aarch}, services/<svc>/, users/, fixes
+  - `darwin/` — `flake.modules.darwin.<role>` — base, packages, homebrew, services/<svc>/, users/, fixes
   - `home/` — `flake.modules.homeManager.<role>` — base, profiles (desktop-linux, darwin-profile, vps-profile, wsl, server), shell/<tool>/, desktop/<app>/, dev/<lang>/, services/openclaw/
   - `hosts/<host>/` — per-host composition (`imports.nix`, `home.nix`, `_hardware-configuration.nix`, etc.)
 - `lib/` — static assets only: `wallpapers/` (used by stylix/hyprpaper) and `cosmic/catppuccin` (submodule)
@@ -95,8 +95,6 @@ A host composes roles by name:
 | tethys | NixOS | x86_64 | Mini PC (Zotac ZBox) | unstable |
 | titan | NixOS | x86_64 | Desktop (CyberPowerPC, AMD GPU) | unstable |
 | salacia | Darwin | aarch64 | Desktop (Mac Mini 2024) | — |
-| vesta | Darwin | x86_64 | Laptop (MacBook Pro 2020) | — |
-| charon | Darwin | x86_64 | Laptop (MacBook Air 2018) | — |
 | bucaccio | NixOS VPS | x86_64 | Static website (Hetzner) | stable |
 | emilyvansant | NixOS VPS | x86_64 | Static website (Hetzner) | stable |
 | love-alaya | NixOS VPS | x86_64 | Static website (Hetzner) | stable |

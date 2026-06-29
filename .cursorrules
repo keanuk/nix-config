@@ -14,7 +14,7 @@ This is a multi-platform Nix configuration managing NixOS, nix-darwin, and home-
   - `vps/` — VPS hosts: bucaccio, emilyvansant, love-alaya
 - `darwin/` — nix-darwin (macOS) configurations
   - `_mixins/` — Reusable Darwin modules: `base/`, `desktop/`, `fixes/`, `services/`, `user/`
-  - `<hostname>/` — Per-host configs: salacia, charon, vesta
+  - `<hostname>/` — Per-host configs: salacia
 - `home/` — Home Manager configurations
   - `_mixins/` — Reusable modules: `base/`, `profiles/`, `darwin/`, `desktop/`, `dev/`, `fixes/`, `services/`, `shell/`
   - `<hostname>/` — Per-host home configs
@@ -72,8 +72,6 @@ This is a multi-platform Nix configuration managing NixOS, nix-darwin, and home-
 | tethys | NixOS | x86_64 | Mini PC (Zotac ZBox) | unstable |
 | titan | NixOS | x86_64 | Desktop (CyberPowerPC, AMD GPU) | unstable |
 | salacia | Darwin | aarch64 | Desktop (Mac Mini 2024) | — |
-| vesta | Darwin | x86_64 | Laptop (MacBook Pro 2020) | — |
-| charon | Darwin | x86_64 | Laptop (MacBook Air 2018) | — |
 | bucaccio | NixOS VPS | x86_64 | Static website (Hetzner) | stable |
 | emilyvansant | NixOS VPS | x86_64 | Static website (Hetzner) | stable |
 | love-alaya | NixOS VPS | x86_64 | Static website (Hetzner) | stable |
