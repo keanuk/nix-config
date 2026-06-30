@@ -1,5 +1,6 @@
 { config, pkgs, ... }:
 let
+  expectedDevices = 12;
   uuid = "d9b90082-f74f-45fb-9bc9-ce571f2b8630";
   passwordFile = config.sops.secrets.ursa_raid_password.path;
   inherit (pkgs.unstable) bcachefs-tools;
@@ -101,8 +102,8 @@ in
             echo "  wait ''${i}s: count=$COUNT, stable=''${STABLE_SECONDS}s"
           fi
 
-          if [ "$COUNT" -ge 14 ] && [ "$STABLE_SECONDS" -ge 15 ]; then
-            echo "All 14 devices present and stable for ''${STABLE_SECONDS}s."
+          if [ "$COUNT" -ge ${toString expectedDevices} ] && [ "$STABLE_SECONDS" -ge 15 ]; then
+            echo "All ${toString expectedDevices} devices present and stable for ''${STABLE_SECONDS}s."
             break
           fi
 
@@ -115,8 +116,8 @@ in
         fi
 
         COUNT=$(echo "$DEVICES" | wc -l | tr -d ' ')
-        if [ "$COUNT" -lt 14 ]; then
-          echo "Error: only $COUNT of 14 devices found. Refusing to mount with incomplete set."
+        if [ "$COUNT" -lt ${toString expectedDevices} ]; then
+          echo "Error: only $COUNT of ${toString expectedDevices} devices found. Refusing to mount with incomplete set."
           echo "Devices found: $(echo "$DEVICES" | xargs)"
           exit 1
         fi
