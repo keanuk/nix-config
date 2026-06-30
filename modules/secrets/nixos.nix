@@ -47,7 +47,7 @@ in
           humanUsers = lib.filterAttrs (_: u: u.isNormalUser && u.home != null) config.users.users;
           userEntries = lib.mapAttrsToList (n: u: "${n}\t${u.home}") humanUsers;
         in
-        lib.stringAfter [ "setupSecrets" ] ''
+        lib.stringAfter (lib.optional (!config.sops.useSystemdActivation) "setupSecrets") ''
           tokenPath=${config.sops.secrets.github-token.path}
           if [ ! -f "$tokenPath" ]; then
             echo "warning: github-token secret not available; skipping nix.conf access-tokens" >&2
@@ -85,7 +85,7 @@ in
           humanUsers = lib.filterAttrs (_: u: u.isNormalUser && u.home != null) config.users.users;
           userEntries = lib.mapAttrsToList (n: u: "${n}\t${u.home}") humanUsers;
         in
-        lib.stringAfter [ "setupSecrets" ] ''
+        lib.stringAfter (lib.optional (!config.sops.useSystemdActivation) "setupSecrets") ''
           secretPath=${config.sops.secrets.ollama_api_key.path}
           if [ ! -f "$secretPath" ]; then
             echo "warning: ollama_api_key secret not available; skipping environment.d injection" >&2
