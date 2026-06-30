@@ -1,4 +1,31 @@
-_:
+# Disko layout for ursa: multi-device btrfs spanning two NVMe drives, dual LUKS.
+#
+# Capacity: 2 TB NVMe (primary, holds ESP + passphrase-unlocked LUKS root pool)
+#         + 1 TB NVMe (secondary, keyfile-unlocked LUKS) joined into the pool.
+# Profile: data=single (~3 TB usable, NO data redundancy), metadata=raid1
+#          (mkfs.btrfs default for multi-device — cheap metadata mirror).
+# Boot:    one passphrase prompt (crypted0); crypted1 unlocks via /crypto-keyfile
+#          baked into the initrd (see boot.initrd.secrets below).
+#
+# BEFORE FIRST INSTALL you MUST:
+#   1. Fill in the two placeholder device by-id strings below.
+#   2. Generate the real LUKS keyfile (random bytes):
+#        dd if=/dev/urandom bs=512 count=4 of=modules/hosts/ursa/crypto-keyfile
+#   3. Force-add it so the flake can see it (flakes only track git-indexed files):
+#        git add -f modules/hosts/ursa/crypto-keyfile
+#   4. Copy the SAME bytes to the install host before running disko:
+#        sudo cp modules/hosts/ursa/crypto-keyfile /crypto-keyfile
+#      disko formats crypted1 from install-host /crypto-keyfile; boot reads
+#      the keyfile baked into the initrd from the repo copy. Bytes must match.
+#
+# Security: the keyfile only gates the SECONDARY NVMe. The pool is unmountable
+# without the primary passphrase, so leaking the keyfile alone exposes nothing.
+#
+# Ordering note: disko serializes per-disk creates in attrset-key sort order, so
+# `nvme1tb` (secondary) is formatted+opened BEFORE `nvme2tb` runs mkfs.btrfs,
+# which absorbs /dev/mapper/crypted1 via extraArgs. If a future disko reorders,
+# fallback: format primary only, then `btrfs device add /dev/mapper/crypted1 /`
+# and `btrfs balance start -dconvert=single -mconvert=raid1` post-install.
 let
   defaultBtrfsOpts = [
     "defaults"
@@ -11,15 +38,43 @@ in
 {
   disko.devices = {
     disk = {
-      main = {
+      nvme1tb = {
         type = "disk";
-        # Replace with the actual /dev/disk/by-id/ of ursa's 1 TB NVMe once known.
-        device = "/dev/disk/by-id/nvme-URSA_OS_SSD_1TB_REPLACE_ME";
+        # 1 TB NVMe — secondary pool member. REPLACE with real by-id.
+        device = "/dev/disk/by-id/nvme-URSA_OS_NVME1_1TB_PLACEHOLDER";
+        content = {
+          type = "gpt";
+          partitions = {
+            luks1 = {
+              size = "100%";
+              content = {
+                type = "luks";
+                name = "crypted1";
+                settings = {
+                  allowDiscards = true;
+                  # Unlocked at boot by this keyfile (baked into initrd below).
+                  # No passphrase prompt for this device.
+                  keyFile = "/crypto-keyfile";
+                };
+                initrdUnlock = true;
+                # No inner content: the primary's mkfs.btrfs absorbs this mapper
+                # (/dev/mapper/crypted1) into the multi-device pool via extraArgs.
+              };
+            };
+          };
+        };
+      };
+
+      nvme2tb = {
+        type = "disk";
+        # 2 TB NVMe — primary pool member (ESP + passphrase-unlocked LUKS root).
+        # REPLACE with real by-id.
+        device = "/dev/disk/by-id/nvme-URSA_OS_NVME0_2TB_PLACEHOLDER";
         content = {
           type = "gpt";
           partitions = {
             ESP = {
-              size = "1024M";
+              size = "4G";
               type = "EF00";
               content = {
                 type = "filesystem";
@@ -31,17 +86,29 @@ in
                 ];
               };
             };
-            luks = {
+            luks0 = {
               size = "100%";
               content = {
                 type = "luks";
-                name = "crypted";
+                name = "crypted0";
                 settings = {
                   allowDiscards = true;
                 };
+                # No settings.keyFile -> disko defaults askPassword=true:
+                # the only passphrase prompt at boot.
+                initrdUnlock = true;
                 content = {
                   type = "btrfs";
-                  extraArgs = [ "-f" ];
+                  # -d single            : concatenate capacity (~3 TB usable)
+                  # -m raid1             : mirrored metadata (cheap insurance)
+                  # /dev/mapper/crypted1 : absorb the secondary NVMe into the pool
+                  extraArgs = [
+                    "-d"
+                    "single"
+                    "-m"
+                    "raid1"
+                    "/dev/mapper/crypted1"
+                  ];
                   subvolumes = {
                     "@" = {
                       mountpoint = "/";
@@ -80,4 +147,10 @@ in
       };
     };
   };
+
+  # Bake the LUKS keyfile into the initrd so crypted1 unlocks headless after the
+  # primary passphrase is entered. The file must be git-tracked (flakes only see
+  # tracked files) — generate the real key with `dd` and `git add -f` it before
+  # building/installing ursa. See the header comment for the exact bootstrap.
+  boot.initrd.secrets."/crypto-keyfile" = ./crypto-keyfile;
 }
