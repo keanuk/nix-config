@@ -93,9 +93,18 @@ in
                 name = "crypted0";
                 settings = {
                   allowDiscards = true;
+                  keyFile = "/crypto-keyfile";
                 };
-                # No settings.keyFile -> disko defaults askPassword=true:
-                # the only passphrase prompt at boot.
+                # Phase 1 (bootstrap): both LUKS devices unlock from /crypto-keyfile
+                # baked into the initrd, so boot is fully headless. After the user
+                # manually enrolls TPM2 via `systemd-cryptenroll --tpm2-device=auto
+                # --tpm2-pcrs=7` on both LUKS headers at runtime, Phase 2 will DROP
+                # this keyFile and the boot.initrd.secrets line and switch to
+                # `crypttabExtraOpts = ["tpm2-device=auto" "tpm2-pcrs=7"]`. Do not
+                # enable TPM2 options in disko before runtime enrollment is done —
+                # disko cannot enroll TPM2 at format time (no native support), and
+                # shipping tpm2-device=auto before the header has a tpm2 slot would
+                # make boot fail.
                 initrdUnlock = true;
                 content = {
                   type = "btrfs";
