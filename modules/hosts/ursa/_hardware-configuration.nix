@@ -29,15 +29,17 @@
     extraModulePackages = [ ];
   };
 
-  networking.useDHCP = lib.mkForce false;
-  networking.interfaces.enp13s0.ipv4.addresses = [
-    {
-      address = "10.19.5.10";
-      prefixLength = 24;
-    }
-  ];
-  networking.defaultGateway = "10.19.5.1";
-  networking.nameservers = [ "10.19.5.1" ];
+  networking = {
+    useDHCP = lib.mkForce false;
+    interfaces.enp13s0.ipv4.addresses = [
+      {
+        address = "10.19.5.10";
+        prefixLength = 24;
+      }
+    ];
+    defaultGateway = "10.19.5.1";
+    nameservers = [ "10.19.5.1" ];
+  };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
