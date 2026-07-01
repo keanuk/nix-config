@@ -5,6 +5,17 @@ let
   inherit (pkgs.unstable) bcachefs-tools;
 in
 {
+  # bcachefs encrypted array, 2 data replicas, mounted at /data.
+  #   - 12 HDDs in group `hdd` (hdd.{8tb,16tb,20tb,22tb}N) — durable storage
+  #   - 2 NVMe SSDs in group `nvme` (nvme.1tb{1,2}) — write cache + read cache
+  # Tier targets (persisted in the bcachefs superblock via `set-fs-option`):
+  #   foreground_target=nvme  promote_target=nvme  background_target=hdd
+  # New writes land on the NVMes; the rebalance thread mirrors them to the
+  # HDDs in the background; hot HDD reads promote a cached copy to NVMe.
+  # Device membership and targets are stored on disk by bcachefs itself, so
+  # no Nix-side device list is needed here — `mount-raid` just unlocks and
+  # mounts the whole filesystem by UUID and all members come online.
+
   # Ensure essential top-level directories exist with correct ownership after mount
   systemd.tmpfiles.rules = [
     "d /data 0775 root media -"
@@ -46,7 +57,6 @@ in
         pkgs.util-linux
         pkgs.coreutils
         pkgs.gawk
-        pkgs.systemd
       ];
 
       script = ''
@@ -108,8 +118,18 @@ in
         bcachefs mount -k fail "UUID=${uuid}" /data
         echo "bcachefs RAID mounted at /data."
 
-        echo "Creating base directories..."
-        systemd-tmpfiles --create --prefix=/data
+        # Materialize only the dirs we own. Do NOT run `systemd-tmpfiles
+        # --create --prefix=/data` here — that scans every downstream rule
+        # under /data (nextcloud, forgejo, jellyfin dirs...) and trips
+        # "unsafe path transition" on pre-existing dirs whose parent+child
+        # have different owners (left over from beehive's migration). The
+        # tmpfiles binary returns CANTCREAT (73); under `set -e` that kills
+        # mount-raid even though the mount itself succeeded, which cascades
+        # into every requires=raid-online.target service at boot. Other
+        # services manage their own state dirs via their modules.
+        mkdir -p /data/nixarr
+        chown root:media /data/nixarr 2>/dev/null || true
+        chmod 2775 /data/nixarr 2>/dev/null || true
       '';
 
       serviceConfig = {
