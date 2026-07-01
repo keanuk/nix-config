@@ -53,7 +53,8 @@
         rawtherapee
         rnote
         rustdesk-flutter
-        session-desktop
+        # TODO: re-enable when build succeeds
+        # session-desktop
         shortwave
         shotwell
         signal-desktop
