@@ -1,6 +1,0 @@
-PLACEHOLDER — NOT A REAL KEY.
-Regenerate before building/installing ursa:
-  dd if=/dev/urandom bs=512 count=4 of=modules/hosts/ursa/crypto-keyfile
-  git add -f modules/hosts/ursa/crypto-keyfile
-  sudo cp modules/hosts/ursa/crypto-keyfile /crypto-keyfile   # on the install host
-See modules/hosts/ursa/_disko-btrfs.nix header for full bootstrap.

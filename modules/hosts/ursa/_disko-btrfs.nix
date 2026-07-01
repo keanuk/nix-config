@@ -1,25 +1,23 @@
 # Disko layout for ursa: multi-device btrfs spanning two NVMe drives, dual LUKS.
 #
-# Capacity: 2 TB NVMe (primary, holds ESP + passphrase-unlocked LUKS root pool)
-#         + 1 TB NVMe (secondary, keyfile-unlocked LUKS) joined into the pool.
+# Capacity: 2 TB NVMe (primary, holds ESP + LUKS root pool)
+#         + 1 TB NVMe (secondary, LUKS) joined into the pool.
 # Profile: data=single (~3 TB usable, NO data redundancy), metadata=raid1
 #          (mkfs.btrfs default for multi-device — cheap metadata mirror).
-# Boot:    one passphrase prompt (crypted0); crypted1 unlocks via /crypto-keyfile
-#          baked into the initrd (see boot.initrd.secrets below).
+# Unlock:  TPM2 on both devices, bound to PCR7 (Secure Boot state).
+#          Enrolled at runtime via `systemd-cryptenroll --tpm2-device=auto
+#          --tpm2-pcrs=7` on both LUKS headers. No keyfile, no passphrase
+#          prompt — fully headless and hardware-bound.
 #
-# BEFORE FIRST INSTALL you MUST:
-#   1. Fill in the two placeholder device by-id strings below.
-#   2. Generate the real LUKS keyfile (random bytes):
-#        dd if=/dev/urandom bs=512 count=4 of=modules/hosts/ursa/crypto-keyfile
-#   3. Force-add it so the flake can see it (flakes only track git-indexed files):
-#        git add -f modules/hosts/ursa/crypto-keyfile
-#   4. Copy the SAME bytes to the install host before running disko:
-#        sudo cp modules/hosts/ursa/crypto-keyfile /crypto-keyfile
-#      disko formats crypted1 from install-host /crypto-keyfile; boot reads
-#      the keyfile baked into the initrd from the repo copy. Bytes must match.
+# Recovery: if Secure Boot state changes (keys cleared, SB disabled), PCR7
+# shifts and TPM2 won't release the key. Boot a previous generation (which
+# still has the keyfile-based initrd from before Phase 2) or boot a live USB
+# and re-enroll: `systemd-cryptenroll --wipe-slot=tpm2 --tpm2-device=auto
+# --tpm2-pcrs=7 /dev/<partition>` (requires a remaining unlock slot — keep
+# a passphrase slot as fallback if you want to be safe).
 #
-# Security: the keyfile only gates the SECONDARY NVMe. The pool is unmountable
-# without the primary passphrase, so leaking the keyfile alone exposes nothing.
+# WARNING: if you reformat with disko (destroy,format), the TPM2 enrollment
+# is lost and must be re-done. The LUKS headers are recreated from scratch.
 #
 # Ordering note: disko serializes per-disk creates in attrset-key sort order, so
 # `nvme1tb` (secondary) is formatted+opened BEFORE `nvme2tb` runs mkfs.btrfs,
@@ -52,9 +50,10 @@ in
                 name = "crypted1";
                 settings = {
                   allowDiscards = true;
-                  # Unlocked at boot by this keyfile (baked into initrd below).
-                  # No passphrase prompt for this device.
-                  keyFile = "/crypto-keyfile";
+                  crypttabExtraOpts = [
+                    "tpm2-device=auto"
+                    "tpm2-pcrs=7"
+                  ];
                 };
                 initrdUnlock = true;
                 # No inner content: the primary's mkfs.btrfs absorbs this mapper
@@ -67,7 +66,7 @@ in
 
       nvme2tb = {
         type = "disk";
-        # 2 TB NVMe — primary pool member (ESP + passphrase-unlocked LUKS root).
+        # 2 TB NVMe — primary pool member (ESP + TPM2-unlocked LUKS root).
         # REPLACE with real by-id.
         device = "/dev/disk/by-id/nvme-KLEVV_CRAS_C910G_M.2_NVMe_SSD_2TB_2025100302007085";
         content = {
@@ -93,18 +92,19 @@ in
                 name = "crypted0";
                 settings = {
                   allowDiscards = true;
-                  keyFile = "/crypto-keyfile";
+                  crypttabExtraOpts = [
+                    "tpm2-device=auto"
+                    "tpm2-pcrs=7"
+                  ];
                 };
-                # Phase 1 (bootstrap): both LUKS devices unlock from /crypto-keyfile
-                # baked into the initrd, so boot is fully headless. After the user
-                # manually enrolls TPM2 via `systemd-cryptenroll --tpm2-device=auto
-                # --tpm2-pcrs=7` on both LUKS headers at runtime, Phase 2 will DROP
-                # this keyFile and the boot.initrd.secrets line and switch to
-                # `crypttabExtraOpts = ["tpm2-device=auto" "tpm2-pcrs=7"]`. Do not
-                # enable TPM2 options in disko before runtime enrollment is done —
-                # disko cannot enroll TPM2 at format time (no native support), and
-                # shipping tpm2-device=auto before the header has a tpm2 slot would
-                # make boot fail.
+                # TPM2 unlock: both LUKS devices unlock via the system TPM2
+                # module, bound to PCR7 (Secure Boot state). Enrollment was
+                # done at runtime via `systemd-cryptenroll --tpm2-device=auto
+                # --tpm2-pcrs=7`. The keyfile has been removed from the LUKS
+                # headers and from the initrd — no plaintext key material in
+                # the boot path. Clearing Secure Boot keys will invalidate
+                # the TPM2 unlock; re-enroll with `systemd-cryptenroll
+                # --wipe-slot=tpm2 --tpm2-device=auto --tpm2-pcrs=7`.
                 initrdUnlock = true;
                 content = {
                   type = "btrfs";
@@ -157,9 +157,7 @@ in
     };
   };
 
-  # Bake the LUKS keyfile into the initrd so crypted1 unlocks headless after the
-  # primary passphrase is entered. The file must be git-tracked (flakes only see
-  # tracked files) — generate the real key with `dd` and `git add -f` it before
-  # building/installing ursa. See the header comment for the exact bootstrap.
-  boot.initrd.secrets."/crypto-keyfile" = ./crypto-keyfile;
+  # Enable TPM2 support in the initrd so the libcryptsetup-token-systemd-tpm2
+  # plugin is available for systemd-cryptsetup to read the TPM2 slot.
+  boot.initrd.systemd.tpm2.enable = true;
 }
