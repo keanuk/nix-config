@@ -5,7 +5,8 @@ let
     amd
     hardware
     server
-    lanzaboote
+    # lanzaboote
+    systemd-boot
     btrfs
     ollama
     ollama-full
@@ -25,7 +26,8 @@ in
         amd
         hardware
         server
-        lanzaboote
+        # lanzaboote
+        systemd-boot
         btrfs
         ollama
         ollama-full
@@ -100,16 +102,6 @@ in
       # RX 9070 XT is RDNA 4 (Navi 48, gfx1201). Update if upstream ollama-rocm
       # ships a different override for this part.
       services.ollama.rocmOverrideGfx = lib.mkForce "12.0.1";
-
-      # TEMPORARY: sops can't decrypt during initial install (ursa's age key
-      # isn't in the sops keygroup yet). useSystemdActivation moves sops from
-      # an activation script to a systemd service so it doesn't block
-      # nixos-install. hashedPasswordFile=null prevents user creation from
-      # referencing the nonexistent /run/secrets/user-keanu-password.
-      # Remove BOTH after wiring ursa into sops (add ursa's age key to
-      # .sops.yaml, re-encrypt secrets/sops/secrets.yaml, rebuild).
-      sops.useSystemdActivation = true;
-      users.users.keanu.hashedPasswordFile = lib.mkForce null;
 
       nixpkgs.hostPlatform = "x86_64-linux";
       networking.hostName = "ursa";

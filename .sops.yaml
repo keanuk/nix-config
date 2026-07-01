@@ -8,6 +8,7 @@ keys:
   - &phoebe age18lx82lrvujvlhn43hwkf8j0rpp4qr2f960zslw540t7er2kfqdxqfyjz3h
   - &salacia age13xkeqkwq4a97p06wvyvt354rzf897qatzf8vzr8zzn6hcujlucdqn7dsdm
   - &titan age17as93405vg0pteudgg3w0ek8p8n4kkqnzjx94nyc3tfzzz6mhads2j4q73
+  - &ursa age1e4d8esn4e3ud8xskufs6ttmj6mv7mdg6kdmcm9mmfz6esq55nq5qdp6pz5
 creation_rules:
   - path_regex: secrets/sops/secrets.yaml$
     key_groups:
@@ -21,3 +22,4 @@ creation_rules:
           - *phoebe
           - *salacia
           - *titan
+          - *ursa
