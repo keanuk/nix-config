@@ -1,15 +1,10 @@
 { config, pkgs, ... }:
 let
-  expectedDevices = 12;
   uuid = "d9b90082-f74f-45fb-9bc9-ce571f2b8630";
   passwordFile = config.sops.secrets.ursa_raid_password.path;
   inherit (pkgs.unstable) bcachefs-tools;
 in
 {
-  sops.secrets.ursa_raid_password = {
-    mode = "0400";
-  };
-
   # Ensure essential top-level directories exist with correct ownership after mount
   systemd.tmpfiles.rules = [
     "d /data 0775 root media -"
@@ -70,65 +65,45 @@ in
           sleep 1
         done
         if [ ! -f "${passwordFile}" ]; then
-          echo "Error: ${passwordFile} not found after 60s"
+          echo "Error: ${passwordFile} not found after 60s" >&2
           exit 1
         fi
         echo "Password file available."
 
-        # Wait for RAID member devices to appear and stabilize.
-        echo "Waiting for RAID member devices (UUID=${uuid})..."
-        PREV_DEVICES=""
-        STABLE_SECONDS=0
-
-        for i in $(seq 1 180); do
+        # Wait for at least one bcachefs member device to surface.
+        # Direct SATA/PCIe does not re-enumerate like USB, so no stability
+        # tracking is needed — presence after udev settle is authoritative.
+        echo "Waiting for bcachefs member device (UUID=${uuid})..."
+        DEVICES=""
+        for i in $(seq 1 60); do
           DEVICES=$(
             lsblk -fnlo NAME,UUID -p \
               | awk -v u="${uuid}" '$2 == u {print $1}' \
               | sort
           )
-          COUNT=0
           if [ -n "$DEVICES" ]; then
             COUNT=$(echo "$DEVICES" | wc -l | tr -d ' ')
-          fi
-
-          if [ "$DEVICES" = "$PREV_DEVICES" ] && [ "$COUNT" -gt 0 ]; then
-            STABLE_SECONDS=$((STABLE_SECONDS + 1))
-          else
-            STABLE_SECONDS=0
-            PREV_DEVICES="$DEVICES"
-          fi
-
-          if [ $((i % 10)) -eq 0 ]; then
-            echo "  wait ''${i}s: count=$COUNT, stable=''${STABLE_SECONDS}s"
-          fi
-
-          if [ "$COUNT" -ge ${toString expectedDevices} ] && [ "$STABLE_SECONDS" -ge 15 ]; then
-            echo "All ${toString expectedDevices} devices present and stable for ''${STABLE_SECONDS}s."
+            echo "Found $COUNT member device(s): $(echo "$DEVICES" | xargs)"
             break
           fi
-
           sleep 1
         done
 
-        if [ -z "''${DEVICES:-}" ]; then
-          echo "Error: no devices found for UUID=${uuid} after 180s"
-          exit 1
-        fi
-
-        COUNT=$(echo "$DEVICES" | wc -l | tr -d ' ')
-        if [ "$COUNT" -lt ${toString expectedDevices} ]; then
-          echo "Error: only $COUNT of ${toString expectedDevices} devices found. Refusing to mount with incomplete set."
-          echo "Devices found: $(echo "$DEVICES" | xargs)"
+        if [ -z "$DEVICES" ]; then
+          echo "Error: no bcachefs member devices found for UUID=${uuid} after 60s" >&2
           exit 1
         fi
 
         FIRST_DEV=$(echo "$DEVICES" | head -n1)
-        echo "Devices: $(echo "$DEVICES" | xargs)"
 
+        # bcachefs unlock adds the key to the session keyring; KeyringMode=inherit
+        # on this unit shares PID 1's keyring so mount(2) can find it.
         echo "Unlocking via $FIRST_DEV..."
         bcachefs unlock -f "${passwordFile}" "$FIRST_DEV" \
           || echo "Already unlocked or key already present"
 
+        # Mount the array; bcachefs will assemble a degraded set when needed
+        # since the filesystem has 2 replicas of everything.
         echo "Mounting UUID=${uuid} at /data..."
         bcachefs mount -k fail "UUID=${uuid}" /data
         echo "bcachefs RAID mounted at /data."

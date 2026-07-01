@@ -15,7 +15,9 @@
         openclaw_openai_api_key = {
           owner = config.users.users.keanu.name;
         };
-        ursa_raid_password = { };
+        ursa_raid_password = {
+          mode = "0400";
+        };
         github-runner-token = { };
       };
     };

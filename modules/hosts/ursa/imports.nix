@@ -5,8 +5,7 @@ let
     amd
     hardware
     server
-    # lanzaboote
-    systemd-boot
+    lanzaboote
     btrfs
     ollama
     ollama-full
@@ -26,8 +25,7 @@ in
         amd
         hardware
         server
-        # lanzaboote
-        systemd-boot
+        lanzaboote
         btrfs
         ollama
         ollama-full
