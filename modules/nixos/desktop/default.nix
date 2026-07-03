@@ -72,7 +72,6 @@ _: {
           enable = true;
           binfmt = true;
         };
-        gnupg.agent.enable = true;
       };
 
       hardware = {

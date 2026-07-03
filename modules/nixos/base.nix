@@ -54,6 +54,11 @@ in
         sysstat.enable = true;
       };
 
+      programs.gnupg = {
+        package = pkgs.gnupg;
+        agent.enable = true;
+      };
+
       systemd = {
         oomd.enable = lib.mkDefault true;
       };

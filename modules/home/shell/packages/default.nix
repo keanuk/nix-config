@@ -16,7 +16,6 @@
           fh
           file
           fortune
-          gemini-cli
           gping
           immich-cli
           jq
@@ -37,8 +36,9 @@
           tlrc
           tree
           wget
+
+          unstable.antigravity-cli
         ])
-        ++ (pkgs.lib.optional (pkgs ? antigravity-cli) pkgs.antigravity-cli)
         ++ pkgs.lib.optionals (!pkgs.stdenv.isDarwin) [
           pkgs.proton-vpn-cli
         ];
