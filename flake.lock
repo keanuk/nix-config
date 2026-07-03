@@ -1775,11 +1775,11 @@
         "treefmt-nix": "treefmt-nix_7"
       },
       "locked": {
-        "lastModified": 1782887221,
-        "narHash": "sha256-mxpAkoNHWKR4dejVzf+Qa4JvLw+eczSBkxf4jUDa0UM=",
+        "lastModified": 1782971978,
+        "narHash": "sha256-DfVm9R2CLRipB7pxSWC4w+wfn8T2vxPqrLz270dZTw8=",
         "owner": "numtide",
         "repo": "nixos-facter",
-        "rev": "7a8668cb8ccb1bb4b75675d8a564bd7671cdbfa5",
+        "rev": "40c147b545dae7fa130610b83fed7d05f88a1f6a",
         "type": "github"
       },
       "original": {
