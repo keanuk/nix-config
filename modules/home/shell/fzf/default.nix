@@ -8,7 +8,7 @@
         enableBashIntegration = true;
         enableFishIntegration = true;
         enableZshIntegration = true;
-        programs.fzf.historyWidget.command = "";
+        historyWidget.command = "";
       };
     };
 }

@@ -36,37 +36,61 @@
     "/" = {
       device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
       fsType = "btrfs";
-      options = [ "subvol=@" ];
+      options = [
+        "subvol=@"
+        "x-systemd.requires=dev-mapper-cryptroot.device"
+        "x-systemd.requires=dev-mapper-cryptroot2.device"
+      ];
     };
 
     "/nix" = {
       device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
       fsType = "btrfs";
-      options = [ "subvol=@nix" ];
+      options = [
+        "subvol=@nix"
+        "x-systemd.requires=dev-mapper-cryptroot.device"
+        "x-systemd.requires=dev-mapper-cryptroot2.device"
+      ];
     };
 
     "/home" = {
       device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
       fsType = "btrfs";
-      options = [ "subvol=@home" ];
+      options = [
+        "subvol=@home"
+        "x-systemd.requires=dev-mapper-cryptroot.device"
+        "x-systemd.requires=dev-mapper-cryptroot2.device"
+      ];
     };
 
     "/.snapshots" = {
       device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
       fsType = "btrfs";
-      options = [ "subvol=@snapshots" ];
+      options = [
+        "subvol=@snapshots"
+        "x-systemd.requires=dev-mapper-cryptroot.device"
+        "x-systemd.requires=dev-mapper-cryptroot2.device"
+      ];
     };
 
     "/var/log" = {
       device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
       fsType = "btrfs";
-      options = [ "subvol=@var_log" ];
+      options = [
+        "subvol=@var_log"
+        "x-systemd.requires=dev-mapper-cryptroot.device"
+        "x-systemd.requires=dev-mapper-cryptroot2.device"
+      ];
     };
 
     "/swap" = {
       device = "/dev/disk/by-uuid/ced57910-ad37-40b5-9617-fd912fcbc390";
       fsType = "btrfs";
-      options = [ "subvol=@swap" ];
+      options = [
+        "subvol=@swap"
+        "x-systemd.requires=dev-mapper-cryptroot.device"
+        "x-systemd.requires=dev-mapper-cryptroot2.device"
+      ];
     };
 
     "/boot" = {

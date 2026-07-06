@@ -1,4 +1,8 @@
-{ config, inputs, ... }:
+{
+  config,
+  inputs,
+  ...
+}:
 let
   inherit (config.flake.modules.nixos)
     base
@@ -46,7 +50,7 @@ in
       ];
 
       fileSystems."/mnt/data" = {
-        device = "beehive.local:/data";
+        device = "ursa.local:/data";
         fsType = "nfs";
         options = [
           "rw"

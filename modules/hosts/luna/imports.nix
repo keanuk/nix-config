@@ -39,7 +39,7 @@ in
 
       # Mount ursa's NFS share the same way the other laptops do.
       fileSystems."/mnt/data" = {
-        device = "beehive.local:/data";
+        device = "ursa.local:/data";
         fsType = "nfs";
         options = [
           "rw"
