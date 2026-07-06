@@ -262,6 +262,9 @@ in
             locations."/" = {
               proxyPass = "http://127.0.0.1:${toString autheliaPort}";
               proxyWebsockets = true;
+              extraConfig = ''
+                proxy_set_header X-Forwarded-Proto https;
+              '';
             };
           };
 
