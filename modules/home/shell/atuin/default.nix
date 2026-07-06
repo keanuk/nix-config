@@ -14,6 +14,7 @@
         enableNushellIntegration = false;
         enableZshIntegration = false;
         daemon.enable = lib.mkDefault true;
+        flags = [ "--disable-up-arrow" ];
         settings = {
           style = "auto";
         };
