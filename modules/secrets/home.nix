@@ -33,23 +33,26 @@ in
             [ -f "$tokenPath" ] && break
             sleep 1
           done
+          # Bail to warn-only: an exit here aborts the entire home-manager
+          # activation script, skipping every subsequent DAG entry (do NOT
+          # restore exit 0).
           if [ ! -f "$tokenPath" ]; then
             echo "warning: github-token secret not available; skipping nix.conf access-tokens" >&2
-            exit 0
+          else
+            token=$(cat "$tokenPath")
+            confDir=${config.xdg.configHome}/nix
+            confFile=$confDir/nix.conf
+            mkdir -p "$confDir"
+            tmp=$(mktemp)
+            {
+              if [ -f "$confFile" ]; then
+                grep -v '^access-tokens *=' "$confFile" 2>/dev/null || true
+              fi
+              printf 'access-tokens = github.com=%s\n' "$token"
+            } > "$tmp"
+            mv "$tmp" "$confFile"
+            chmod 600 "$confFile"
           fi
-          token=$(cat "$tokenPath")
-          confDir=${config.xdg.configHome}/nix
-          confFile=$confDir/nix.conf
-          mkdir -p "$confDir"
-          tmp=$(mktemp)
-          {
-            if [ -f "$confFile" ]; then
-              grep -v '^access-tokens *=' "$confFile" 2>/dev/null || true
-            fi
-            printf 'access-tokens = github.com=%s\n' "$token"
-          } > "$tmp"
-          mv "$tmp" "$confFile"
-          chmod 600 "$confFile"
         ''
       );
 
@@ -64,32 +67,35 @@ in
             [ -f "$secretPath" ] && break
             sleep 1
           done
+          # Bail to warn-only: an exit here aborts the entire home-manager
+          # activation script, skipping every subsequent DAG entry (do NOT
+          # restore exit 0).
           if [ ! -f "$secretPath" ]; then
             echo "warning: ollama_api_key secret not available; skipping OLLAMA_API_KEY export" >&2
-            exit 0
+          else
+            key=$(cat "$secretPath" | tr -d '\n\r')
+            ${
+              if pkgs.stdenv.hostPlatform.isDarwin then
+                ''
+                  launchctl setenv OLLAMA_API_KEY "$key" 2>/dev/null || true
+                ''
+              else
+                ''
+                  envDir="${config.xdg.configHome}/environment.d"
+                  mkdir -p "$envDir"
+                  tmp=$(mktemp)
+                  {
+                    if [ -f "$envDir/ollama-api-key.conf" ]; then
+                      grep -v '^OLLAMA_API_KEY *=' "$envDir/ollama-api-key.conf" 2>/dev/null || true
+                    fi
+                    printf 'OLLAMA_API_KEY=%s\n' "$key"
+                  } > "$tmp"
+                  mv "$tmp" "$envDir/ollama-api-key.conf"
+                  chmod 600 "$envDir/ollama-api-key.conf"
+                  systemctl --user import-environment OLLAMA_API_KEY 2>/dev/null || true
+                ''
+            }
           fi
-          key=$(cat "$secretPath" | tr -d '\n\r')
-          ${
-            if pkgs.stdenv.hostPlatform.isDarwin then
-              ''
-                launchctl setenv OLLAMA_API_KEY "$key" 2>/dev/null || true
-              ''
-            else
-              ''
-                envDir="${config.xdg.configHome}/environment.d"
-                mkdir -p "$envDir"
-                tmp=$(mktemp)
-                {
-                  if [ -f "$envDir/ollama-api-key.conf" ]; then
-                    grep -v '^OLLAMA_API_KEY *=' "$envDir/ollama-api-key.conf" 2>/dev/null || true
-                  fi
-                  printf 'OLLAMA_API_KEY=%s\n' "$key"
-                } > "$tmp"
-                mv "$tmp" "$envDir/ollama-api-key.conf"
-                chmod 600 "$envDir/ollama-api-key.conf"
-                systemctl --user import-environment OLLAMA_API_KEY 2>/dev/null || true
-              ''
-          }
         ''
       );
     };

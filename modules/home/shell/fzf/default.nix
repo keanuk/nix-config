@@ -1,6 +1,11 @@
 {
   flake.modules.homeManager.shell =
-    { pkgs, lib, options ? { }, ... }:
+    {
+      pkgs,
+      lib,
+      options ? { },
+      ...
+    }:
     {
       programs.fzf = {
         enable = true;
@@ -8,7 +13,8 @@
         enableBashIntegration = true;
         enableFishIntegration = true;
         enableZshIntegration = true;
-      } // lib.optionalAttrs (lib.hasAttrByPath [ "programs" "fzf" "historyWidget" ] options) {
+      }
+      // lib.optionalAttrs (lib.hasAttrByPath [ "programs" "fzf" "historyWidget" ] options) {
         historyWidget.command = "";
       };
     };

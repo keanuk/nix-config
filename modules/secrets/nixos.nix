@@ -49,31 +49,32 @@ in
         in
         lib.stringAfter (lib.optional (!config.sops.useSystemdActivation) "setupSecrets") ''
           tokenPath=${config.sops.secrets.github-token.path}
+          # Bail to warn-only: an exit here aborts the whole activate script in the initrd chroot before /run/current-system is symlinked, breaking systemd switch_root (do NOT restore exit 0).
           if [ ! -f "$tokenPath" ]; then
             echo "warning: github-token secret not available; skipping nix.conf access-tokens" >&2
-            exit 0
-          fi
-          token=$(cat "$tokenPath")
-          while IFS=$'\t' read -r user home; do
-            [ -d "$home" ] || continue
-            confDir="$home/.config/nix"
-            confFile="$confDir/nix.conf"
-            mkdir -p "$confDir"
-            tmp=$(mktemp)
-            {
-              if [ -f "$confFile" ]; then
-                grep -v '^access-tokens *=' "$confFile" 2>/dev/null || true
-              fi
-              printf 'access-tokens = github.com=%s\n' "$token"
-            } > "$tmp"
-            uid=$(id -u "$user" 2>/dev/null || echo 0)
-            gid=$(id -g "$user" 2>/dev/null || echo 0)
-            chown "$uid:$gid" "$tmp"
-            mv "$tmp" "$confFile"
-            chmod 600 "$confFile"
-          done <<USERS
+          else
+            token=$(cat "$tokenPath")
+            while IFS=$'\t' read -r user home; do
+              [ -d "$home" ] || continue
+              confDir="$home/.config/nix"
+              confFile="$confDir/nix.conf"
+              mkdir -p "$confDir"
+              tmp=$(mktemp)
+              {
+                if [ -f "$confFile" ]; then
+                  grep -v '^access-tokens *=' "$confFile" 2>/dev/null || true
+                fi
+                printf 'access-tokens = github.com=%s\n' "$token"
+              } > "$tmp"
+              uid=$(id -u "$user" 2>/dev/null || echo 0)
+              gid=$(id -g "$user" 2>/dev/null || echo 0)
+              chown "$uid:$gid" "$tmp"
+              mv "$tmp" "$confFile"
+              chmod 600 "$confFile"
+            done <<USERS
           ${lib.concatStringsSep "\n" userEntries}
           USERS
+          fi
         '';
 
       # Surface OLLAMA_API_KEY into each user's systemd-user environment.d so
@@ -87,30 +88,31 @@ in
         in
         lib.stringAfter (lib.optional (!config.sops.useSystemdActivation) "setupSecrets") ''
           secretPath=${config.sops.secrets.ollama_api_key.path}
+          # Bail to warn-only: an exit here aborts the whole activate script in the initrd chroot before /run/current-system is symlinked, breaking systemd switch_root (do NOT restore exit 0).
           if [ ! -f "$secretPath" ]; then
             echo "warning: ollama_api_key secret not available; skipping environment.d injection" >&2
-            exit 0
-          fi
-          key=$(cat "$secretPath" | tr -d '\n\r')
-          while IFS=$'\t' read -r user home; do
-            [ -d "$home" ] || continue
-            envDir="$home/.config/environment.d"
-            mkdir -p "$envDir"
-            tmp=$(mktemp)
-            {
-              if [ -f "$envDir/ollama-api-key.conf" ]; then
-                grep -v '^OLLAMA_API_KEY *=' "$envDir/ollama-api-key.conf" 2>/dev/null || true
-              fi
-              printf 'OLLAMA_API_KEY=%s\n' "$key"
-            } > "$tmp"
-            uid=$(id -u "$user" 2>/dev/null || echo 0)
-            gid=$(id -g "$user" 2>/dev/null || echo 0)
-            chown "$uid:$gid" "$tmp"
-            mv "$tmp" "$envDir/ollama-api-key.conf"
-            chmod 600 "$envDir/ollama-api-key.conf"
-          done <<USERS
+          else
+            key=$(cat "$secretPath" | tr -d '\n\r')
+            while IFS=$'\t' read -r user home; do
+              [ -d "$home" ] || continue
+              envDir="$home/.config/environment.d"
+              mkdir -p "$envDir"
+              tmp=$(mktemp)
+              {
+                if [ -f "$envDir/ollama-api-key.conf" ]; then
+                  grep -v '^OLLAMA_API_KEY *=' "$envDir/ollama-api-key.conf" 2>/dev/null || true
+                fi
+                printf 'OLLAMA_API_KEY=%s\n' "$key"
+              } > "$tmp"
+              uid=$(id -u "$user" 2>/dev/null || echo 0)
+              gid=$(id -g "$user" 2>/dev/null || echo 0)
+              chown "$uid:$gid" "$tmp"
+              mv "$tmp" "$envDir/ollama-api-key.conf"
+              chmod 600 "$envDir/ollama-api-key.conf"
+            done <<USERS
           ${lib.concatStringsSep "\n" userEntries}
           USERS
+          fi
         '';
     };
 
