@@ -70,6 +70,20 @@ in
 
       services.ollama.rocmOverrideGfx = lib.mkForce "10.3.0";
 
+      boot.initrd = {
+        systemd.tpm2.enable = true;
+        luks.devices = {
+          "cryptroot".crypttabExtraOpts = [
+            "tpm2-device=auto"
+            "tpm2-pcrs=7"
+          ];
+          "cryptroot2".crypttabExtraOpts = [
+            "tpm2-device=auto"
+            "tpm2-pcrs=7"
+          ];
+        };
+      };
+
       system.stateVersion = "23.05";
     };
 }
