@@ -4,16 +4,14 @@ let
     base
     amd
     hardware
-    server
+    pc
     systemd-boot
+    desktop
+    cosmic
     btrfs
     ollama
-    ollama-full
     keanu
     home-manager-stable
-    github-runner
-    harmonia
-    system-packages
     ;
 in
 {
@@ -24,73 +22,36 @@ in
         base
         amd
         hardware
-        server
+        pc
         systemd-boot
+        desktop
+        cosmic
         btrfs
         ollama
-        ollama-full
         keanu
         home-manager-stable
-        github-runner
-        harmonia
-        system-packages
         inputs.nixos-hardware.nixosModules.common-cpu-amd
+        inputs.nixos-hardware.nixosModules.common-gpu-amd
         inputs.nixos-hardware.nixosModules.common-pc
         inputs.nixos-hardware.nixosModules.common-pc-ssd
         ./_hardware-configuration.nix
         ./_disko-configuration.nix
-        ./_raid-configuration.nix
-        ./_shares.nix
-        ./_github-runner.nix
       ];
 
-      systemd.services =
-        lib.genAttrs
-          [
-            "immich-server"
-            "immich-machine-learning"
-            "nextcloud-setup"
-            "nextcloud-cron"
-            "phpfpm-nextcloud"
-            "forgejo"
-            "home-assistant"
-            "gitlab"
-            "gitlab-workhorse"
-            "gitlab-sidekiq"
-            "gitaly"
-            "autobrr"
-            "transmission"
-            "plex"
-            "jellyfin"
-            "seerr"
-            "audiobookshelf"
-            "shelfmark"
-            "bazarr"
-            "lidarr"
-            "prowlarr"
-            "radarr"
-            "recyclarr"
-            "sonarr"
-            "wg"
-          ]
-          (_: {
-            after = [ "raid-online.target" ];
-            requires = [ "raid-online.target" ];
-            unitConfig.AssertPathIsMountPoint = "/data";
-          });
-
-      services.nextcloud = {
-        hostName = "beehive";
-        home = "/data/.state/nextcloud";
-        datadir = "/data/nextcloud";
-        settings.trusted_domains = [
-          "beehive"
-          "localhost"
-          "beehive.local"
-          "10.19.5.10"
-          "100.91.10.104"
-          "192.168.15.5"
-          "cloud.oranos.org"
+      # Mount ursa's NFS share since RAID is now hosted on ursa
+      fileSystems."/mnt/data" = {
+        device = "ursa.local:/data";
+        fsType = "nfs";
+        options = [
+          "rw"
+          "noatime"
+          "_netdev"
+          "noauto"
+          "x-systemd.automount"
+          "x-systemd.idle-timeout=600"
+          "x-systemd.mount-timeout=10"
+          "x-systemd.requires=tailscaled.service"
+          "nfsvers=4"
         ];
       };
 
