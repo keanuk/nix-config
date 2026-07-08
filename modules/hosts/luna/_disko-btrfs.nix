@@ -37,6 +37,10 @@ in
                 name = "crypted";
                 settings = {
                   allowDiscards = true;
+                  crypttabExtraOpts = [
+                    "tpm2-device=auto"
+                    "tpm2-pcrs=7"
+                  ];
                 };
                 content = {
                   type = "btrfs";
@@ -79,4 +83,6 @@ in
       };
     };
   };
+
+  boot.initrd.systemd.tpm2.enable = true;
 }

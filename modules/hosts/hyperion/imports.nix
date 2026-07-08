@@ -66,6 +66,14 @@ in
         };
       };
 
+      boot.initrd = {
+        systemd.tpm2.enable = true;
+        luks.devices."cryptroot".crypttabExtraOpts = [
+          "tpm2-device=auto"
+          "tpm2-pcrs=7"
+        ];
+      };
+
       system.stateVersion = "23.05";
     };
 }
