@@ -29,7 +29,8 @@ let
       inputs.nix-openclaw.overlays.default
       inputs.hyprland.overlays.hyprland-packages
       inputs.hyprland.overlays.hyprland-extras
-    ];
+    ]
+    ++ [ config.flake.overlays.pnpm-slim-fix ];
 
   mkUnstable =
     _name: cfg:

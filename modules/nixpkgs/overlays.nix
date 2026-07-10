@@ -12,6 +12,23 @@ in
 
     modifications = combinedFixes;
 
+    pnpm-slim-fix =
+      final: prev:
+      (prev.lib.optionalAttrs (prev ? pnpm_11) {
+        pnpm_11 = prev.pnpm_11.overrideAttrs (old: {
+          passthru = (old.passthru or { }) // {
+            nodejs-slim = final.nodejs-slim;
+          };
+        });
+      })
+      // (prev.lib.optionalAttrs (prev ? pnpm) {
+        pnpm = prev.pnpm.overrideAttrs (old: {
+          passthru = (old.passthru or { }) // {
+            nodejs-slim = final.nodejs-slim;
+          };
+        });
+      });
+
     unstable-packages = final: _prev: {
       unstable = import inputs.nixpkgs {
         inherit (final.stdenv.hostPlatform) system;

@@ -8,7 +8,8 @@ let
       additions
       modifications
     ]
-    ++ [ inputs.nix-openclaw.overlays.default ];
+    ++ [ inputs.nix-openclaw.overlays.default ]
+    ++ [ config.flake.overlays.pnpm-slim-fix ];
 in
 {
   flake.modules.darwin.base = _: {

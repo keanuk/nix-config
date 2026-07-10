@@ -194,7 +194,7 @@
               show_go_models = true;
             };
             ollama = {
-              api_url = "http://localhost:11434";
+              api_url = "http://ursa:11434";
               available_models = [
                 {
                   name = "gemma4";

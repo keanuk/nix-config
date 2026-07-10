@@ -10,6 +10,7 @@
       services.ollama = {
         enable = true;
         package = lib.mkDefault pkgs.unstable.ollama-cpu;
+        host = lib.mkDefault "0.0.0.0";
         port = lib.mkDefault 11434;
         openFirewall = lib.mkDefault true;
         user = "ollama";
