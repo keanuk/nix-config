@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 let
   ursaKeanuHome = {
     imports = with config.flake.modules.homeManager; [
@@ -6,7 +6,16 @@ let
       home-manager-self
       server
       pass
+      openclaw
     ];
+
+    programs.openclawSecrets = {
+      telegramTokenFile = lib.mkForce "/run/secrets/openclaw_telegram_bot_token_ursa";
+      fallbackModels = lib.mkForce [
+        "ollama/magistral:latest"
+        "ollama/qwen3.6:latest"
+      ];
+    };
 
     home = {
       username = "keanu";
