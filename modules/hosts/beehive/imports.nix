@@ -10,7 +10,7 @@ let
     cosmic
     btrfs
     ollama
-    ollama-full
+    ollama-medium
     keanu
     home-manager
     ;
@@ -27,7 +27,7 @@ in
       cosmic
       btrfs
       ollama
-      ollama-full
+      ollama-medium
       keanu
       home-manager
       inputs.nixos-hardware.nixosModules.common-cpu-amd

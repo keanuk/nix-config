@@ -9,6 +9,7 @@ let
     gnome
     btrfs
     ollama
+    ollama-medium
     keanu
     fs
     home-manager
@@ -28,6 +29,7 @@ in
         gnome
         btrfs
         ollama
+        ollama-medium
         keanu
         fs
         home-manager

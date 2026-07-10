@@ -15,7 +15,8 @@ let
     plasma
     btrfs
     ollama
-    ollama-full
+    ollama-medium
+    ollama-high
     keanu
     swapfile
     fs
@@ -37,7 +38,8 @@ in
         plasma
         btrfs
         ollama
-        ollama-full
+        ollama-medium
+        ollama-high
         keanu
         swapfile
         fs

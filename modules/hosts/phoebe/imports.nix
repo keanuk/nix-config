@@ -10,7 +10,7 @@ let
     gnome
     btrfs
     ollama
-    ollama-full
+    ollama-medium
     keanu
     home-manager
     ;
@@ -29,7 +29,7 @@ in
         gnome
         btrfs
         ollama
-        ollama-full
+        ollama-medium
         keanu
         home-manager
         inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p14s-amd-gen5

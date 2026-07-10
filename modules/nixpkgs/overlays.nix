@@ -1,6 +1,7 @@
 { inputs, ... }:
 let
   fixes = [
+    ./_fixes/frictionless.nix
   ];
 
   combinedFixes =

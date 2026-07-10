@@ -8,7 +8,8 @@ let
     lanzaboote
     btrfs
     ollama
-    ollama-full
+    ollama-medium
+    ollama-high
     keanu
     home-manager-stable
     github-runner
@@ -28,7 +29,8 @@ in
         lanzaboote
         btrfs
         ollama
-        ollama-full
+        ollama-medium
+        ollama-high
         keanu
         home-manager-stable
         github-runner
