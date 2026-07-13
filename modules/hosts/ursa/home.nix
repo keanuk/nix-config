@@ -11,6 +11,7 @@ let
 
     programs.openclawSecrets = {
       telegramTokenFile = lib.mkForce "/run/secrets/openclaw_telegram_bot_token_ursa";
+      primaryModel = lib.mkForce "ollama/qwen3.6:latest";
       fallbackModels = lib.mkForce [
         "ollama/magistral:latest"
         "ollama/qwen3.6:latest"
