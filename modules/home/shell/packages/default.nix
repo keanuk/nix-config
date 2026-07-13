@@ -17,7 +17,7 @@
           file
           fortune
           gping
-          immich-cli
+          stable.immich-cli
           jq
           just
           libnatpmp

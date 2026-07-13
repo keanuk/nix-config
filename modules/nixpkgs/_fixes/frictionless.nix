@@ -9,7 +9,7 @@
 _final: prev: {
   python313Packages = prev.python313Packages.overrideScope (
     _self: super: {
-      frictionless = super.frictionless.overridePythonAttrs (oldAttrs: {
+      frictionless = super.frictionless.overridePythonAttrs (_: {
         doCheck = false;
       });
     }
@@ -17,7 +17,7 @@ _final: prev: {
 
   python314Packages = prev.python314Packages.overrideScope (
     _self: super: {
-      frictionless = super.frictionless.overridePythonAttrs (oldAttrs: {
+      frictionless = super.frictionless.overridePythonAttrs (_: {
         doCheck = false;
       });
     }
