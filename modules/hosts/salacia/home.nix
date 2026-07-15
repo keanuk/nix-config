@@ -32,10 +32,10 @@ let
         # ollama_api_key for openclaw's ollama auth profile (hosts without this
         # override keep the local "ollama-local" placeholder, e.g. beehive).
         ollamaApiKeyFile = lib.mkForce config.sops.secrets.ollama_api_key.path;
-        primaryModel = lib.mkForce "ollama/qwen3.6:latest";
+        primaryModel = lib.mkForce "ollama/gpt-oss:latest";
         fallbackModels = lib.mkForce [
-          "ollama/magistral:latest"
-          "ollama/qwen3.6:latest"
+          "ollama/mistral:latest"
+          "ollama/gemma4:latest"
         ];
       };
 

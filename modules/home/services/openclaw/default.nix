@@ -256,6 +256,7 @@
         systemd.user.services.openclaw-gateway = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
           Install.WantedBy = [ "default.target" ];
           Service.EnvironmentFile = [ "%h/.config/openclaw/secrets.env" ];
+          Service.Environment = [ "OLLAMA_API_KEY=ollama-local" ];
         };
 
         # Provide npm and node to the macOS gateway launchd service without colliding in home.packages.
