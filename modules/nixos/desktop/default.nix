@@ -14,7 +14,6 @@ _: {
         gnome.gnome-keyring.enable = true;
         gnome.at-spi2-core.enable = true;
         gvfs.enable = true;
-        homed.enable = true;
         libinput = {
           enable = true;
           mouse = {
@@ -26,7 +25,6 @@ _: {
           };
         };
         localtimed.enable = true;
-        passSecretService.enable = true;
         pcscd.enable = true;
         pipewire = {
           enable = true;
@@ -42,25 +40,6 @@ _: {
         upower.enable = true;
 
         xserver.enable = true;
-
-        sssd = {
-          enable = true;
-          settings = {
-            "domain/shadowutils" = {
-              auth_provider = "proxy";
-              id_provider = "proxy";
-              proxy_fast_alias = true;
-              proxy_lib_name = "files";
-              proxy_pam_target = "sssd-shadowutils";
-            };
-            nss = { };
-            pam = { };
-            sssd = {
-              domains = "shadowutils";
-              services = "nss, pam";
-            };
-          };
-        };
       };
 
       networking.networkmanager.enable = true;

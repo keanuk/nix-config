@@ -28,8 +28,12 @@ in
           nextdns_id = {
             mode = "0444";
           };
-          user-keanu-password = { };
-          user-kimmy-password = { };
+          user-keanu-password = {
+            neededForUsers = true;
+          };
+          user-kimmy-password = {
+            neededForUsers = true;
+          };
           hotspot-password = { };
           ollama_api_key = {
             owner = config.users.users.keanu.name;

@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   flake.modules.homeManager.pass =
     {
@@ -21,4 +22,6 @@
         };
       };
     };
+
+  flake.modules.homeManager.server = config.flake.modules.homeManager.pass;
 }

@@ -5,7 +5,6 @@ let
       base
       home-manager-self
       server
-      pass
       openclaw
     ];
 
