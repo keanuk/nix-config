@@ -202,19 +202,9 @@
             summarize.enable = true;
             peekaboo.enable = pkgs.stdenv.hostPlatform.isDarwin;
             poltergeist.enable = pkgs.stdenv.hostPlatform.isDarwin;
-            goplaces.enable = false;
+            goplaces.enable = true;
             imsg.enable = false;
           };
-
-          excludeTools = [
-            "bird"
-            "curl"
-            "ffmpeg"
-            "go"
-            "jq"
-            "python3"
-            "ripgrep"
-          ];
 
           skills = [
             {

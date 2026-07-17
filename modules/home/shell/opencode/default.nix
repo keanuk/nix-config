@@ -12,12 +12,12 @@
         lib.mkIf (!(pkgs.stdenv.hostPlatform.isx86_64 && pkgs.stdenv.hostPlatform.isDarwin))
           {
             enable = true;
-            package = pkgs.opencode;
+            package = pkgs.unstable.opencode;
             enableMcpIntegration = true;
             web.enable = true;
 
             settings = {
-              model = "opencode-go/glm-5.2";
+              model = "opencode-go/kimi-k3";
               autoshare = false;
               autoupdate = false;
 

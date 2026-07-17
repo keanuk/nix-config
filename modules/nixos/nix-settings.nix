@@ -17,7 +17,10 @@ let
       inputs.hyprland.overlays.hyprland-packages
       inputs.hyprland.overlays.hyprland-extras
     ]
-    ++ [ config.flake.overlays.pnpm-slim-fix ];
+    ++ [
+      config.flake.overlays.pnpm-slim-fix
+      config.flake.overlays.openclaw-node24-fix
+    ];
 in
 {
   flake.modules.nixos.nix-settings = {

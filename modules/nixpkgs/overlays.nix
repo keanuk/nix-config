@@ -31,6 +31,9 @@ in
         });
       });
 
+    # Must be applied after inputs.nix-openclaw.overlays.default.
+    openclaw-node24-fix = import ./_fixes/openclaw-nodejs.nix;
+
     unstable-packages = final: _prev: {
       unstable = import inputs.nixpkgs {
         inherit (final.stdenv.hostPlatform) system;
