@@ -43,6 +43,7 @@
         "deepseek-r1:32b" # 32B distilled reasoning model
         "devstral-small-2:latest" # 24B software engineering model
         "gemma4:31b" # 31B dense reasoning model
+        "mistral-small3.2:latest" # 24B reasoning model
         "qwen3.6:latest" # 27B/35B dense/MoE general model
         "qwen3-coder-next:latest" # 30B code model
       ];

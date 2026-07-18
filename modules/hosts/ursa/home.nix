@@ -10,10 +10,26 @@ let
 
     programs.openclawSecrets = {
       telegramTokenFile = lib.mkForce "/run/secrets/openclaw_telegram_bot_token_ursa";
-      primaryModel = lib.mkForce "ollama/gpt-oss:latest";
+      primaryModel = lib.mkForce "ollama/mistral-small3.2";
       fallbackModels = lib.mkForce [
         "ollama/mistral:latest"
         "ollama/gemma4:latest"
+      ];
+    };
+
+    programs.openclaw = {
+      instances.default.config.agents.list = [
+        {
+          id = "main";
+          default = true;
+          model = "ollama/mistral-small3.2";
+          subagents.allowAgents = [ "coder" ];
+        }
+        {
+          id = "coder";
+          model = "ollama/devstral-small-2:latest";
+          tools.profile = "coding";
+        }
       ];
     };
 
