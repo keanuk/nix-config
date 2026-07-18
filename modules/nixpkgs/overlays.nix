@@ -1,7 +1,6 @@
 { inputs, ... }:
 let
   fixes = [
-    ./_fixes/handbrake.nix
     ./_fixes/patool.nix
   ];
 
