@@ -11,14 +11,13 @@
         inputs.noctalia.homeModules.default
       ];
 
-      programs.noctalia.systemd.enable = false;
+      programs.noctalia.systemd.enable = true;
 
       home = {
         packages = with pkgs; [
           blueman
           brightnessctl
           grim
-          hyprlock
           libnotify
           nautilus
           pamixer
