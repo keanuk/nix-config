@@ -59,7 +59,7 @@
             # icon scale for non-focused apps (clamped 0.1–1.0)
             inactive_scale = 0.85;
             # magnify icons near the pointer (macOS-style)
-            magnification = false;
+            magnification = true;
             # max scale multiplier at the pointer center (1.0–2.0; 1.0 = off)
             magnification_scale = 1.35;
             active_opacity = 1.0;
@@ -89,7 +89,7 @@
             position = "top";
             enabled = true;
             # slide out after pointer leaves; reveal from edge trigger strip
-            auto_hide = true;
+            auto_hide = false;
             # reserve compositor exclusive zone / push windows away
             reserve_space = true;
             # top | overlay; overlay appears above fullscreen apps
