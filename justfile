@@ -148,7 +148,6 @@ authelia-secrets:
 
 # Generate Argon2id password hash for Authelia users
 authelia-hash password:
-    @echo "🔐 Generating Argon2id hash for password..."
     @if command -v authelia >/dev/null 2>&1; then \
       authelia crypto hash generate argon2 --password '{{ password }}'; \
     elif command -v docker >/dev/null 2>&1; then \
@@ -156,4 +155,15 @@ authelia-hash password:
     else \
       echo "Error: Neither authelia nor docker found. Install one of them to generate hashes."; \
       echo "Alternatively, use: nix-shell -p authelia --run \"authelia crypto hash generate argon2 --password '{{ password }}'\""; \
+    fi
+
+# Export and update noctalia.json from active Noctalia instance
+noctalia-update:
+    @echo "Noctalia 🎨 Updating noctalia.json from active Noctalia state"
+    @if command -v noctalia >/dev/null 2>&1; then \
+      noctalia msg status > modules/home/desktop/noctalia/noctalia.json; \
+      echo "Successfully updated modules/home/desktop/noctalia/noctalia.json"; \
+    else \
+      echo "Error: noctalia binary not found in PATH."; \
+      exit 1; \
     fi
