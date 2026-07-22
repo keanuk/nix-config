@@ -1,19 +1,25 @@
 {
   flake.modules.nixos.noctalia =
     {
-      pkgs,
       inputs,
       lib,
       ...
     }:
     {
-      environment.systemPackages = [
-        inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+      imports = [
+        inputs.noctalia.nixosModules.default
+        inputs.noctalia-greeter.nixosModules.default
       ];
 
-      networking.networkmanager.enable = lib.mkDefault true;
-      hardware.bluetooth.enable = lib.mkDefault true;
-      services.power-profiles-daemon.enable = lib.mkDefault true;
-      services.upower.enable = lib.mkDefault true;
+      programs.noctalia = {
+        enable = lib.mkDefault true;
+        recommendedServices.enable = lib.mkDefault true;
+      };
+
+      programs.noctalia-greeter = {
+        enable = lib.mkDefault true;
+      };
+
+      services.displayManager.gdm.enable = lib.mkForce false;
     };
 }

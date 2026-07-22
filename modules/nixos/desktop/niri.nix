@@ -1,13 +1,13 @@
 {
   flake.modules.nixos.niri =
-    { pkgs, ... }:
+    { pkgs, lib, ... }:
     {
       programs.niri = {
         enable = true;
         useNautilus = true;
       };
 
-      services.displayManager.gdm.enable = true;
+      services.displayManager.gdm.enable = lib.mkDefault true;
 
       xdg.portal = {
         enable = true;
