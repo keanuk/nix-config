@@ -6,7 +6,7 @@
     home-manager = {
       useUserPackages = true;
       useGlobalPkgs = true;
-      backupFileExtension = "backup";
+      backupCommand = "rm -rf \"$1.backup\" && mv \"$1\" \"$1.backup\"";
       extraSpecialArgs = { inherit inputs; };
     };
   };

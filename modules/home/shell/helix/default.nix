@@ -11,7 +11,7 @@
         package = pkgs.helix;
         defaultEditor = true;
         settings = {
-          theme = lib.mkDefault "catppuccin_mocha";
+          # theme = lib.mkDefault "catppuccin_mocha";
           editor = {
             auto-save = true;
             bufferline = "multiple";

@@ -1,6 +1,6 @@
 { config, inputs, ... }:
 let
-  noctaliaSettings = builtins.fromTOML (builtins.readFile ./noctalia.toml);
+  noctaliaSettings = fromTOML (builtins.readFile ./noctalia.toml);
 in
 {
   perSystem =
