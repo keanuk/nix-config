@@ -35,6 +35,16 @@ in
         settings = noctaliaSettings;
       };
 
+      home.packages = [ pkgs.papirus-icon-theme ];
+
+      gtk = {
+        enable = true;
+        iconTheme = {
+          package = pkgs.papirus-icon-theme;
+          name = lib.mkDefault "Papirus-Dark";
+        };
+      };
+
       services.hypridle = {
         enable = lib.mkDefault true;
         settings = {

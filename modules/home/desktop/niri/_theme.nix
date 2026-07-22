@@ -199,7 +199,7 @@
           dark)
             WAYBAR_CSS="waybar-mocha.css"
             GTK_THEME="catppuccin-mocha-blue-standard+default"
-            ICON_THEME="Qogir-Dark"
+            ICON_THEME="Papirus-Dark"
             CURSOR_THEME="catppuccin-mocha-blue-cursors"
             COLOR_SCHEME="prefer-dark"
             ROFI_THEME="rofi-mocha"
@@ -207,7 +207,7 @@
           light)
             WAYBAR_CSS="waybar-latte.css"
             GTK_THEME="catppuccin-latte-blue-standard+default"
-            ICON_THEME="Qogir-Light"
+            ICON_THEME="Papirus-Light"
             CURSOR_THEME="catppuccin-latte-blue-cursors"
             COLOR_SCHEME="prefer-light"
             ROFI_THEME="rofi-latte"

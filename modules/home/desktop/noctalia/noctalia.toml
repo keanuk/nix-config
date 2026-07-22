@@ -16,10 +16,10 @@ order = [ "default" ]
     capsule_opacity = 1.0
     capsule_radius = 8.0
     capsule_thickness = 0.76000000000000001
-    center = [ "clock", "weather" ]
+    center = [ "clock", "spacer_2", "weather" ]
     contact_shadow = false
     enabled = true
-    end = [ "volume", "battery", "bluetooth", "network", "notifications", "control-center", "session" ]
+    end = [ "clipboard", "bluetooth", "network", "battery", "notifications", "session" ]
     font_family = ""
     font_weight = "regular"
     layer = "top"
@@ -36,8 +36,8 @@ order = [ "default" ]
     reserve_space = true
     scale = 1.0
     shadow = true
-    smart_auto_hide = true
-    start = [ "workspaces" ]
+    smart_auto_hide = false
+    start = [ "control-center", "workspaces" ]
     thickness = 34
     widget_spacing = 6
 
@@ -294,6 +294,7 @@ wallpaper_scheme = "vibrant"
         "obs",
         "opencode",
         "papirus-icons",
+        "pi-agent",
         "prismlauncher",
         "steam",
         "telegram",
@@ -309,10 +310,13 @@ transition_on_startup = true
     enabled = true
 
     [wallpaper.default]
-    path = "/home/keanu/.config/nix-config/lib/wallpapers/pink-mountains.jpg"
+    path = "/home/keanu/.config/nix-config/lib/wallpapers/purple-petals.jpg"
 
     [wallpaper.last]
-    path = "/home/keanu/.config/nix-config/lib/wallpapers/pink-mountains.jpg"
+    path = "/home/keanu/.config/nix-config/lib/wallpapers/purple-petals.jpg"
 
     [wallpaper.monitors.eDP-1]
-    path = "/home/keanu/.config/nix-config/lib/wallpapers/pink-mountains.jpg"
+    path = "/home/keanu/.config/nix-config/lib/wallpapers/purple-petals.jpg"
+
+[widget.spacer_2]
+type = "spacer"
