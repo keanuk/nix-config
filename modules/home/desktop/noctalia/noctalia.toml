@@ -96,7 +96,7 @@ pre_action_fade_seconds = 2.0
     [idle.behavior.lock]
     command = "noctalia:session lock"
     enabled = true
-    timeout = 600
+    timeout = 300
 
     [idle.behavior.screen-off]
     command = "noctalia:dpms-off"

@@ -34,5 +34,22 @@ in
         systemd.enable = lib.mkDefault true;
         settings = noctaliaSettings;
       };
+
+      services.hypridle = {
+        enable = lib.mkDefault true;
+        settings = {
+          general = {
+            lock_cmd = "${lib.getExe self'.packages.myNoctalia} msg session lock";
+            before_sleep_cmd = "loginctl lock-session";
+            after_sleep_cmd = "${lib.getExe self'.packages.myNoctalia} msg session dpms-on";
+          };
+          listener = [
+            {
+              timeout = 300;
+              on-timeout = "loginctl lock-session";
+            }
+          ];
+        };
+      };
     };
 }

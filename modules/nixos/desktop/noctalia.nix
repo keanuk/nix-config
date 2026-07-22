@@ -20,6 +20,8 @@
         enable = lib.mkDefault true;
       };
 
+      security.pam.services.noctalia = { };
+
       services.displayManager.gdm.enable = lib.mkForce false;
     };
 }
