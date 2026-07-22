@@ -1,13 +1,13 @@
 { config, inputs, ... }:
 let
-  rawJson = builtins.fromJSON (builtins.readFile ./noctalia.json);
-  noctaliaSettings = rawJson.settings or rawJson;
+  noctaliaSettings = builtins.fromTOML (builtins.readFile ./noctalia.toml);
 in
 {
   perSystem =
     { pkgs, ... }:
     let
-      noctaliaPkg = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default or pkgs.hello;
+      noctaliaPkg =
+        inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default or pkgs.hello;
     in
     {
       packages.myNoctalia = inputs.wrapper-modules.wrappers.noctalia-shell.wrap {

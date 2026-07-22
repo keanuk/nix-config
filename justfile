@@ -157,12 +157,12 @@ authelia-hash password:
       echo "Alternatively, use: nix-shell -p authelia --run \"authelia crypto hash generate argon2 --password '{{ password }}'\""; \
     fi
 
-# Export and update noctalia.json from active Noctalia instance
+# Export and update noctalia.toml from active Noctalia configuration
 noctalia-update:
-    @echo "Noctalia 🎨 Updating noctalia.json from active Noctalia state"
+    @echo "Noctalia 🎨 Exporting noctalia.toml from active Noctalia configuration"
     @if command -v noctalia >/dev/null 2>&1; then \
-      noctalia msg status > modules/home/desktop/noctalia/noctalia.json; \
-      echo "Successfully updated modules/home/desktop/noctalia/noctalia.json"; \
+      noctalia config export > modules/home/desktop/noctalia/noctalia.toml; \
+      echo "Successfully updated modules/home/desktop/noctalia/noctalia.toml"; \
     else \
       echo "Error: noctalia binary not found in PATH."; \
       exit 1; \
