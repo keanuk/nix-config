@@ -79,13 +79,13 @@
           };
           theme = {
             mode = "system";
-            light = lib.mkDefault (if noctaliaEnabled then "Noctalia" else "Catppuccin Latte");
-            dark = lib.mkDefault (if noctaliaEnabled then "Noctalia" else "Catppuccin Mocha");
+            light = lib.mkDefault (if noctaliaEnabled then "Noctalia Light" else "Catppuccin Latte");
+            dark = lib.mkDefault (if noctaliaEnabled then "Noctalia Dark" else "Catppuccin Mocha");
           };
           icon_theme = {
             mode = "system";
-            light = lib.mkDefault (if noctaliaEnabled then "Noctalia" else "Catppuccin Latte");
-            dark = lib.mkDefault (if noctaliaEnabled then "Noctalia" else "Catppuccin Mocha");
+            light = lib.mkDefault "Catppuccin Latte";
+            dark = lib.mkDefault "Catppuccin Mocha";
           };
           use_smartcase_search = true;
           project_panel.dock = "right";
