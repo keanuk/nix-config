@@ -104,5 +104,10 @@
         x11.enable = true;
         gtk.enable = true;
       };
+
+      xdg.configFile."niri/config.kdl".text = ''
+        include "${self'.packages.myNiri}/niri-config.kdl"
+        include "noctalia.kdl"
+      '';
     };
 }

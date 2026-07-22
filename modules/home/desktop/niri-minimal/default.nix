@@ -123,5 +123,10 @@
           gtk.enable = true;
         };
       };
+
+      xdg.configFile."niri/config.kdl".text = ''
+        include "${self'.packages.myNiriMinimal}/niri-config.kdl"
+        include "noctalia.kdl"
+      '';
     };
 }
