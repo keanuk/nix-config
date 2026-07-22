@@ -3,8 +3,13 @@
     {
       pkgs,
       lib,
+      config,
       ...
     }:
+    let
+      noctaliaEnabled = config.programs.noctalia.enable or false;
+      starshipToml = lib.importTOML ./starship.toml;
+    in
     {
       programs.starship = {
         enable = true;
@@ -15,7 +20,9 @@
         enableFishIntegration = true;
         enableNushellIntegration = false;
         enableZshIntegration = false;
-        settings = lib.importTOML ./starship.toml;
+        settings = starshipToml // {
+          palette = if noctaliaEnabled then "noctalia" else "catppuccin_mocha";
+        };
       };
     };
 }

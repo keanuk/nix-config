@@ -3,8 +3,12 @@
     {
       pkgs,
       lib,
+      config,
       ...
     }:
+    let
+      noctaliaEnabled = config.programs.noctalia.enable or false;
+    in
     {
       programs.ghostty = {
         enable = true;
@@ -15,7 +19,9 @@
         installBatSyntax = lib.mkDefault true;
         installVimSyntax = lib.mkDefault true;
         settings = {
-          theme = "dark:Catppuccin Mocha,light:Catppuccin Latte";
+          theme = lib.mkDefault (
+            if noctaliaEnabled then "noctalia" else "dark:Catppuccin Mocha,light:Catppuccin Latte"
+          );
           font-size = lib.mkDefault 13;
           font-family = "RobotoMono Nerd Font";
           background-blur = lib.mkDefault true;

@@ -3,8 +3,12 @@
     {
       pkgs,
       lib,
+      config,
       ...
     }:
+    let
+      noctaliaEnabled = config.programs.noctalia.enable or false;
+    in
     {
       programs.zed-editor = {
         enable = true;
@@ -75,13 +79,13 @@
           };
           theme = {
             mode = "system";
-            light = lib.mkDefault "Catppuccin Latte";
-            dark = lib.mkDefault "Catppuccin Mocha";
+            light = lib.mkDefault (if noctaliaEnabled then "Noctalia" else "Catppuccin Latte");
+            dark = lib.mkDefault (if noctaliaEnabled then "Noctalia" else "Catppuccin Mocha");
           };
           icon_theme = {
             mode = "system";
-            light = lib.mkDefault "Catppuccin Latte";
-            dark = lib.mkDefault "Catppuccin Mocha";
+            light = lib.mkDefault (if noctaliaEnabled then "Noctalia" else "Catppuccin Latte");
+            dark = lib.mkDefault (if noctaliaEnabled then "Noctalia" else "Catppuccin Mocha");
           };
           use_smartcase_search = true;
           project_panel.dock = "right";

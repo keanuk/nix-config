@@ -3,15 +3,19 @@
     {
       pkgs,
       lib,
+      config,
       ...
     }:
+    let
+      noctaliaEnabled = config.programs.noctalia.enable or false;
+    in
     {
       programs.helix = {
         enable = true;
         package = pkgs.helix;
         defaultEditor = true;
         settings = {
-          # theme = lib.mkDefault "catppuccin_mocha";
+          theme = lib.mkDefault (if noctaliaEnabled then "noctalia" else "catppuccin_mocha");
           editor = {
             auto-save = true;
             bufferline = "multiple";

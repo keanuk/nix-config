@@ -1,6 +1,9 @@
 {
   flake.modules.homeManager.desktop =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
+    let
+      noctaliaEnabled = config.programs.noctalia.enable or false;
+    in
     {
       programs.vscode = {
         enable = false;
@@ -12,8 +15,10 @@
           ];
           userSettings = {
             "window.autoDetectColorScheme" = true;
-            "workbench.preferredDarkColorTheme" = "Catppuccin Mocha";
-            "workbench.preferredLightColorTheme" = "Catppuccin Latte";
+            "workbench.preferredDarkColorTheme" =
+              if noctaliaEnabled then "Noctalia Theme" else "Catppuccin Mocha";
+            "workbench.preferredLightColorTheme" =
+              if noctaliaEnabled then "Noctalia Theme" else "Catppuccin Latte";
             "workbench.iconTheme" = "catppuccin-mocha";
           };
         };
