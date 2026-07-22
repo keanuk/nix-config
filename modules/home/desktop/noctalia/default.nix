@@ -6,8 +6,7 @@ in
   perSystem =
     { pkgs, ... }:
     let
-      noctaliaPkg =
-        inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default or pkgs.hello;
+      noctaliaPkg = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default or pkgs.hello;
     in
     {
       packages.myNoctalia = inputs.wrapper-modules.wrappers.noctalia-shell.wrap {
