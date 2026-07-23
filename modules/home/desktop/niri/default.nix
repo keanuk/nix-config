@@ -8,6 +8,11 @@
         inherit pkgs;
         package = inputs.niri-wm.packages.${pkgs.stdenv.hostPlatform.system}.niri;
         settings = lib.recursiveUpdate (import ./_base-settings.nix) {
+          # niri >= 25.08 spawns xwayland-satellite on demand when an X11 client
+          # connects, and exports DISPLAY to the session. Absolute store path so
+          # niri.service finds it regardless of its PATH.
+          xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
+
           # Window rules and blur follow the upstream recommendations:
           # https://docs.noctalia.dev/v5/compositor-settings/niri/
           window-rules = [
