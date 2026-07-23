@@ -7,6 +7,9 @@
       config,
       ...
     }:
+    let
+      noctaliaEnabled = config.programs.noctalia.enable or false;
+    in
     {
       programs.opencode =
         lib.mkIf (!(pkgs.stdenv.hostPlatform.isx86_64 && pkgs.stdenv.hostPlatform.isDarwin))
@@ -78,7 +81,8 @@
             ];
 
             tui = {
-              theme = "system";
+              # Noctalia renders ~/.config/opencode/themes/matugen.json from the wallpaper.
+              theme = if noctaliaEnabled then "matugen" else "system";
             };
 
             context = ./context/default.md;

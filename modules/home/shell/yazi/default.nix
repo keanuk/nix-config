@@ -1,6 +1,14 @@
 {
   flake.modules.homeManager.shell =
-    { pkgs, ... }:
+    {
+      pkgs,
+      lib,
+      config,
+      ...
+    }:
+    let
+      noctaliaEnabled = config.programs.noctalia.enable or false;
+    in
     {
       programs.yazi = {
         enable = true;
@@ -12,7 +20,8 @@
         shellWrapperName = "y";
         theme = {
           flavor = {
-            use = "catppuccin-mocha";
+            # Noctalia renders ~/.config/yazi/flavors/noctalia.yazi from the wallpaper.
+            use = lib.mkDefault (if noctaliaEnabled then "noctalia" else "catppuccin-mocha");
           };
         };
       };

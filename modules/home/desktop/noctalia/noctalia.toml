@@ -268,7 +268,6 @@ wallpaper_scheme = "vibrant"
         "niri",
         "qt",
         "scroll",
-        "starship",
         "sway"
     ]
     community_ids = [
