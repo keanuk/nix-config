@@ -72,7 +72,7 @@ modules/
 │   ├── services/openclaw/           # option-driven openclaw role (programs.openclawSecrets.*)
 │   └── fixes/                       # registry placeholder
 └── hosts/<hostname>/                # per-host composition
-    ├── imports.nix                  # composes roles via with config.flake.modules.nixos / darwin
+    ├── default.nix                  # composes roles via with config.flake.modules.nixos / darwin
     ├── home.nix                     # writes home-manager.users.<name> + standalone homeConfigurations
     ├── _hardware-configuration.nix  # auto-generated; underscore-prefix to skip import-tree
     ├── _disko-configuration.nix     # disko config; underscore-prefix
@@ -195,7 +195,7 @@ Roles that *don't* auto-opt-in (host imports them explicitly): the desktop envir
   Don't edit the parent role's file — the opt-in lives with the feature.
 
 ### Adding a New Host
-1. Create `modules/hosts/<hostname>/imports.nix` writing to `configurations.nixos.<hostname>.module` (or `nixos-stable` for VPS, `darwin` for macOS).
+1. Create `modules/hosts/<hostname>/default.nix` writing to `configurations.nixos.<hostname>.module` (or `nixos-stable` for VPS, `darwin` for macOS).
 2. Compose roles via `imports = with config.flake.modules.nixos; [ ... ];`.
 3. Copy `hardware-configuration.nix` (and any disko config) to the host folder with an `_` prefix.
 4. Create `modules/hosts/<hostname>/home.nix` writing both `configurations.<class>.<host>.module.home-manager.users.<user>` and `configurations.homeManager."<user>@<host>"`.

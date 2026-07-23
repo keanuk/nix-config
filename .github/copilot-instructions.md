@@ -16,7 +16,7 @@ This is a multi-platform Nix configuration managing NixOS, nix-darwin, and home-
   - `nixos/` — `flake.modules.nixos.<role>` — base/pc/laptop/server/vps/wsl/amd, desktop/<de>/, programs/<name>/, services/<name>/, users/, fixes/
   - `darwin/` — `flake.modules.darwin.<role>` — base, packages, homebrew, services/<svc>/, users/, fixes
   - `home/` — `flake.modules.homeManager.<role>` — base, profiles (desktop-linux, darwin-profile, vps-profile, wsl, server), shell/<tool>/, desktop/<app>/, dev/<lang>/, services/openclaw/
-  - `hosts/<host>/` — per-host composition (`imports.nix`, `home.nix`, `_hardware-configuration.nix`, etc.)
+  - `hosts/<host>/` — per-host composition (`default.nix`, `home.nix`, `_hardware-configuration.nix`, etc.)
 - `lib/` — static assets only: `wallpapers/` (used by stylix/hyprpaper) and `cosmic/catppuccin` (submodule)
 - `secrets/` — SOPS-encrypted secrets (age encryption); `secrets/sops/secrets.yaml`
 - `windows/` — Windows setup scripts
@@ -42,7 +42,7 @@ let d = config.domains; in
 A host composes roles by name:
 
 ```nix
-# modules/hosts/earth/imports.nix
+# modules/hosts/earth/default.nix
 { config, ... }: {
   configurations.nixos.earth.module = {
     imports = with config.flake.modules.nixos; [ base pc desktop cosmic svc-btrfs user-keanu home-manager ];
@@ -147,13 +147,13 @@ All three are available via `nix develop`.
 
 ### Adding a new NixOS host
 
-1. Create `modules/hosts/<hostname>/imports.nix` writing to `configurations.nixos.<hostname>.module`. Compose roles via `imports = with config.flake.modules.nixos; [ ... ];`.
+1. Create `modules/hosts/<hostname>/default.nix` writing to `configurations.nixos.<hostname>.module`. Compose roles via `imports = with config.flake.modules.nixos; [ ... ];`.
 2. Copy `hardware-configuration.nix` (and any disko config) into the host folder with an `_` prefix.
 3. Create `modules/hosts/<hostname>/home.nix` writing both `configurations.nixos.<host>.module.home-manager.users.<user>` and the standalone `configurations.homeManager."<user>@<host>"`.
 
 ### Adding a new VPS host
 
-1. Create `modules/hosts/<hostname>/imports.nix` writing to `configurations.nixos-stable.<hostname>` with `isVps = true; deploy = { hostname = "..."; sshUser = "..."; };` and `staticWebsite = { domain = "..."; webRoot = "..."; };`.
+1. Create `modules/hosts/<hostname>/default.nix` writing to `configurations.nixos-stable.<hostname>` with `isVps = true; deploy = { hostname = "..."; sshUser = "..."; };` and `staticWebsite = { domain = "..."; webRoot = "..."; };`.
 2. Compose roles `[ base vps-grub vps-website user-keanu home-manager-stable ]` plus the host's hardware/disko files.
 3. Create `home.nix` writing both the integrated and standalone home-manager configs (using `homeManager-stable`).
 4. Add the deploy target's age key to `.sops.yaml`.

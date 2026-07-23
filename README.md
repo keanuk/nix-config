@@ -175,7 +175,7 @@ home-manager switch --flake .#username@hostname
     │   ├── dev/<lang>/             # rust, python, go, nix, …
     │   └── services/openclaw/
     └── hosts/<host>/               # per-host composition
-        ├── imports.nix             # composes roles via with config.flake.modules.nixos / darwin
+        ├── default.nix             # composes roles via with config.flake.modules.nixos / darwin
         ├── home.nix                # writes home-manager.users.<u> + standalone homeConfigurations
         ├── _hardware-configuration.nix
         └── _disko-configuration.nix
@@ -193,7 +193,7 @@ This configuration uses the **dendritic pattern** with [flake-parts](https://fla
    ```
    Multiple files writing to the same role merge into one deferredModule.
 
-2. **Hosts compose roles by reference, not by path.** A host's `modules/hosts/<host>/imports.nix` does:
+2. **Hosts compose roles by reference, not by path.** A host's `modules/hosts/<host>/default.nix` does:
    ```nix
    { config, ... }: {
      configurations.nixos.<host>.module = {

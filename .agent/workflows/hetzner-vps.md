@@ -102,7 +102,7 @@ ssh keanu@bucaccio
 
 1. Create new host directory: `modules/hosts/<hostname>/`
 2. Copy and modify files from `bucaccio/`:
-   - `imports.nix` — update hostname; set `isVps = true`, `deploy.{hostname,sshUser}`, and `staticWebsite.{domain,webRoot}`
+   - `default.nix` — update hostname; set `isVps = true`, `deploy.{hostname,sshUser}`, and `staticWebsite.{domain,webRoot}`
    - `_disko-configuration.nix` — update device path
    - `_hardware-configuration.nix` — keep as-is for similar VPS
    - `home.nix` — copy and update `"keanu@<hostname>"` key
