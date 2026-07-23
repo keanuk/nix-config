@@ -4,6 +4,8 @@
     imports = with config.flake.modules.homeManager; [
       desktop-linux
       gaming
+      noctalia
+      niri
     ];
     home.stateVersion = "25.05";
   };
@@ -14,6 +16,8 @@
       imports = with config.flake.modules.homeManager; [
         desktop-linux
         gaming
+        noctalia
+        niri
       ];
       home.stateVersion = "25.05";
     };

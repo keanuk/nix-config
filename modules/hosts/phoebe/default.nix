@@ -7,7 +7,8 @@ let
     lanzaboote
     laptop
     desktop
-    gnome
+    niri
+    noctalia
     btrfs
     ollama
     ollama-medium
@@ -26,7 +27,8 @@ in
         lanzaboote
         laptop
         desktop
-        gnome
+        niri
+        noctalia
         btrfs
         ollama
         ollama-medium

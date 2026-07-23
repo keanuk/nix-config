@@ -6,7 +6,8 @@ let
     hardware
     systemd-boot
     desktop
-    cosmic
+    niri
+    noctalia
     btrfs
     keanu
     swapfile
@@ -21,7 +22,8 @@ in
       hardware
       systemd-boot
       desktop
-      cosmic
+      niri
+      noctalia
       btrfs
       keanu
       swapfile

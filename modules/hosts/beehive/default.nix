@@ -7,7 +7,8 @@ let
     pc
     systemd-boot
     desktop
-    cosmic
+    niri
+    noctalia
     btrfs
     ollama
     ollama-medium
@@ -24,7 +25,8 @@ in
       pc
       systemd-boot
       desktop
-      cosmic
+      niri
+      noctalia
       btrfs
       ollama
       ollama-medium

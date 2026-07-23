@@ -12,7 +12,8 @@ let
     pc
     rtw88-fix
     desktop
-    plasma
+    niri
+    noctalia
     btrfs
     ollama
     ollama-medium
@@ -35,7 +36,8 @@ in
         pc
         rtw88-fix
         desktop
-        plasma
+        niri
+        noctalia
         btrfs
         ollama
         ollama-medium

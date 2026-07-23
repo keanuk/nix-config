@@ -7,7 +7,8 @@ let
     rtw88-fix
     systemd-boot
     desktop
-    cosmic
+    niri
+    noctalia
     btrfs
     ollama
     keanu
@@ -23,7 +24,8 @@ in
       rtw88-fix
       systemd-boot
       desktop
-      cosmic
+      niri
+      noctalia
       btrfs
       ollama
       keanu

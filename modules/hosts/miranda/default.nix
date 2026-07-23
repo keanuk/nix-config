@@ -6,7 +6,8 @@ let
     lanzaboote
     laptop
     desktop
-    cosmic
+    niri
+    noctalia
     btrfs
     keanu
     home-manager
@@ -20,7 +21,8 @@ in
       lanzaboote
       laptop
       desktop
-      cosmic
+      niri
+      noctalia
       btrfs
       keanu
       home-manager
