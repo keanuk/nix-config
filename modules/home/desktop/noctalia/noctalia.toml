@@ -16,7 +16,7 @@ order = [ "default" ]
     capsule_opacity = 1.0
     capsule_radius = 8.0
     capsule_thickness = 0.76000000000000001
-    center = [ "clock", "spacer_2", "weather" ]
+    center = [ "workspaces" ]
     contact_shadow = false
     enabled = true
     end = [ "clipboard", "bluetooth", "network", "battery", "notifications", "session" ]
@@ -24,10 +24,10 @@ order = [ "default" ]
     font_weight = "regular"
     layer = "top"
     margin_edge = 10
-    margin_ends = 180
+    margin_ends = 20
     padding = 14
     panel_overlap = 1
-    position = "top"
+    position = "left"
     radius = 12
     radius_bottom_left = 12
     radius_bottom_right = 12
@@ -37,8 +37,8 @@ order = [ "default" ]
     scale = 1.0
     shadow = true
     smart_auto_hide = false
-    start = [ "control-center", "workspaces" ]
-    thickness = 34
+    start = [ "control-center", "spacer_3", "clock", "spacer_2", "weather" ]
+    thickness = 32
     widget_spacing = 6
 
 [calendar]
@@ -55,7 +55,7 @@ auto_hide = false
 background_opacity = 0.80000000000000004
 cross_axis_padding = 8
 enabled = true
-icon_size = 48
+icon_size = 32
 inactive_opacity = 0.84999999999999998
 inactive_scale = 0.84999999999999998
 item_spacing = 6
@@ -78,7 +78,7 @@ pinned = [
     "dev.zed.Zed",
     "com.mitchellh.ghostty"
 ]
-position = "bottom"
+position = "right"
 radius = 16
 radius_bottom_left = 16
 radius_bottom_right = 16
@@ -216,6 +216,7 @@ time_format = "{:%H:%M}"
 
     [shell.panel]
     borders = true
+    clipboard_placement = "attached"
     control_center_placement = "attached"
     open_near_click_clipboard = false
     open_near_click_control_center = false
@@ -301,13 +302,22 @@ transition_on_startup = true
     enabled = true
 
     [wallpaper.default]
-    path = "/home/keanu/.config/nix-config/lib/wallpapers/purple-petals.jpg"
+    path = "/home/keanu/.config/nix-config/lib/wallpapers/dark-ocean-waves.jpg"
 
     [wallpaper.last]
-    path = "/home/keanu/.config/nix-config/lib/wallpapers/purple-petals.jpg"
+    path = "/home/keanu/.config/nix-config/lib/wallpapers/dark-ocean-waves.jpg"
 
     [wallpaper.monitors.eDP-1]
-    path = "/home/keanu/.config/nix-config/lib/wallpapers/purple-petals.jpg"
+    path = "/home/keanu/.config/nix-config/lib/wallpapers/dark-ocean-waves.jpg"
+
+[widget.network]
+show_label = false
 
 [widget.spacer_2]
 type = "spacer"
+
+[widget.spacer_3]
+type = "spacer"
+
+[widget.weather]
+show_condition = false
