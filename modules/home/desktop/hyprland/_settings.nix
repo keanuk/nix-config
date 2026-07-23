@@ -1,18 +1,7 @@
 _: {
   wayland.windowManager.hyprland.settings = {
-    exec-once = [
-      "waybar"
-      "nwg-dock-hyprland -p bottom -d -a center -i 40"
-      "hyprpaper"
-      "hypridle"
-      "swaync"
-      "systemctl --user start darkman"
-      "hyprpolkitagent"
-      "dbus-update-activation-environment --all"
-    ];
-
     monitor = [
-      "eDP-1, 1920x1080, 0x0, 1"
+      ",preferred,auto,1"
     ];
 
     general = {

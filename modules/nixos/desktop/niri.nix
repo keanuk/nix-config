@@ -1,20 +1,15 @@
+{ inputs, ... }:
 {
+  # The nixpkgs module already covers portals (gtk + gnome), polkit, gnome-keyring,
+  # nautilus for the FileChooser portal, and the niri systemd session integration.
+  # The package comes from the upstream flake so the session binary and the
+  # home-manager config validation use the same niri build.
   flake.modules.nixos.niri =
-    { pkgs, lib, ... }:
+    { pkgs, ... }:
     {
       programs.niri = {
         enable = true;
-        useNautilus = true;
-      };
-
-      services.displayManager.gdm.enable = lib.mkDefault true;
-
-      xdg.portal = {
-        enable = true;
-        extraPortals = with pkgs; [
-          xdg-desktop-portal-gtk
-          xdg-desktop-portal-gnome
-        ];
+        package = inputs.niri-wm.packages.${pkgs.stdenv.hostPlatform.system}.niri;
       };
     };
 }

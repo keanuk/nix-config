@@ -94,18 +94,17 @@ smart_auto_hide = true
 pre_action_fade_seconds = 2.0
 
     [idle.behavior.lock]
-    command = "noctalia:session lock"
+    action = "lock"
     enabled = true
     timeout = 300
 
     [idle.behavior.screen-off]
-    command = "noctalia:dpms-off"
+    action = "screen_off"
     enabled = true
-    resume_command = "noctalia:dpms-on"
     timeout = 300
 
     [idle.behavior.suspend]
-    command = "noctalia:session lock-and-suspend"
+    action = "lock_and_suspend"
     enabled = true
     timeout = 1800
 
@@ -204,7 +203,6 @@ shared_gl_context = true
 show_location = true
 telemetry_enabled = true
 time_format = "{:%H:%M}"
-ui_scale = 1.0
 
     [shell.animation]
     enabled = true
@@ -218,14 +216,7 @@ ui_scale = 1.0
 
     [shell.panel]
     borders = true
-    clipboard_placement = "centered"
     control_center_placement = "attached"
-    launcher_categories = true
-    launcher_compact = false
-    launcher_placement = "centered"
-    launcher_session_search = false
-    launcher_show_icons = true
-    launcher_sort_by_usage = true
     open_near_click_clipboard = false
     open_near_click_control_center = false
     open_near_click_launcher = false

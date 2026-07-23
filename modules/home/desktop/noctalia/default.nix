@@ -1,38 +1,14 @@
-{ config, inputs, ... }:
-let
-  noctaliaSettings = fromTOML (builtins.readFile ./noctalia.toml);
-in
+{ inputs, ... }:
 {
-  perSystem =
-    { pkgs, ... }:
-    let
-      noctaliaPkg = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default or pkgs.hello;
-    in
-    {
-      packages.myNoctalia = inputs.wrapper-modules.wrappers.noctalia-shell.wrap {
-        inherit pkgs;
-        package = noctaliaPkg;
-        settings = noctaliaSettings;
-      };
-    };
-
   flake.modules.homeManager.noctalia =
-    {
-      pkgs,
-      lib,
-      ...
-    }:
-    let
-      self' = config.perSystem pkgs.stdenv.hostPlatform.system;
-    in
+    { pkgs, lib, ... }:
     {
       imports = [ inputs.noctalia.homeModules.default ];
 
       programs.noctalia = {
         enable = true;
-        package = self'.packages.myNoctalia;
-        systemd.enable = lib.mkDefault true;
-        settings = noctaliaSettings;
+        systemd.enable = true;
+        settings = ./noctalia.toml;
       };
 
       home.packages = [ pkgs.papirus-icon-theme ];
@@ -45,21 +21,18 @@ in
         };
       };
 
-      services.hypridle = {
-        enable = lib.mkDefault true;
-        settings = {
-          general = {
-            lock_cmd = "${lib.getExe self'.packages.myNoctalia} msg session lock";
-            before_sleep_cmd = "loginctl lock-session";
-            after_sleep_cmd = "${lib.getExe self'.packages.myNoctalia} msg session dpms-on";
-          };
-          listener = [
-            {
-              timeout = 300;
-              on-timeout = "loginctl lock-session";
-            }
-          ];
+      # Noctalia's idle behaviors only fire on idle timeouts; also lock when
+      # suspend is triggered directly (lid close, systemctl suspend).
+      systemd.user.services.lock-before-sleep = {
+        Unit = {
+          Description = "Lock session before sleep";
+          Before = [ "sleep.target" ];
         };
+        Service = {
+          Type = "oneshot";
+          ExecStart = "${lib.getExe' pkgs.systemd "loginctl"} lock-session";
+        };
+        Install.WantedBy = [ "sleep.target" ];
       };
     };
 }

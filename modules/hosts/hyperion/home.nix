@@ -5,7 +5,7 @@ let
       desktop-linux
       gaming
       noctalia
-      niri-minimal
+      niri
     ];
     home.stateVersion = "23.11";
   };

@@ -7,9 +7,12 @@ _: {
       # Terminal
       "$mod, RETURN, exec, alacritty"
 
-      # Launcher
-      "$mod, SPACE, exec, rofi -show drun"
-      "$altMod, SPACE, exec, rofi -show window"
+      # Noctalia
+      "$mod, SPACE, exec, noctalia msg panel-toggle launcher"
+      "$altMod, SPACE, exec, noctalia msg panel-toggle launcher"
+      "$mod, L, exec, noctalia msg session lock"
+      ", Print, exec, noctalia msg screenshot-region"
+      "SHIFT, Print, exec, noctalia msg screenshot-fullscreen"
 
       # Window management
       "$mod, Q, killactive,"
@@ -39,20 +42,6 @@ _: {
       "$mod CTRL, up, resizeactive, 0 -20"
       "$mod CTRL, down, resizeactive, 0 20"
 
-      # Lock
-      "$mod, L, exec, hyprlock"
-
-      # Screenshot
-      ", Print, exec, grimblast copy area"
-      "SHIFT, Print, exec, grimblast copy screen"
-      "CTRL, Print, exec, grimblast copy active"
-
-      # Color picker
-      "$mod, C, exec, hyprpicker -a"
-
-      # Notification center
-      "$mod, N, exec, swaync-client -t -sw"
-
       # Workspaces
       "$mod, mouse_down, workspace, e+1"
       "$mod, mouse_up, workspace, e-1"
@@ -80,18 +69,18 @@ _: {
     ];
 
     bindl = [
-      ", XF86AudioPlay, exec, playerctl play-pause"
-      ", XF86AudioPrev, exec, playerctl previous"
-      ", XF86AudioNext, exec, playerctl next"
-      ", XF86AudioMute, exec, pamixer -t"
-      ", XF86AudioMicMute, exec, pamixer --default-source -t"
+      ", XF86AudioPlay, exec, noctalia msg media toggle"
+      ", XF86AudioPrev, exec, noctalia msg media previous"
+      ", XF86AudioNext, exec, noctalia msg media next"
+      ", XF86AudioMute, exec, noctalia msg volume-mute"
+      ", XF86AudioMicMute, exec, noctalia msg mic-mute"
     ];
 
     bindel = [
-      ", XF86AudioRaiseVolume, exec, pamixer -i 5"
-      ", XF86AudioLowerVolume, exec, pamixer -d 5"
-      ", XF86MonBrightnessUp, exec, brightnessctl set +5%"
-      ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
+      ", XF86AudioRaiseVolume, exec, noctalia msg volume-up"
+      ", XF86AudioLowerVolume, exec, noctalia msg volume-down"
+      ", XF86MonBrightnessUp, exec, noctalia msg brightness-up"
+      ", XF86MonBrightnessDown, exec, noctalia msg brightness-down"
     ];
   };
 }

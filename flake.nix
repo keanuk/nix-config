@@ -160,7 +160,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    niri-wm.url = "github:YaLTeR/niri";
+    # Deliberately not following nixpkgs: builds cached on niri.cachix.org are
+    # produced against upstream's own nixpkgs pin.
+    niri-wm.url = "github:niri-wm/niri";
 
     hyprland = {
       url = "github:hyprwm/hyprland";

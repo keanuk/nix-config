@@ -1,16 +1,8 @@
-{
-  flake.modules.nixos.hyprland =
-    { pkgs, ... }:
-    {
-      programs.hyprland = {
-        enable = true;
-        xwayland.enable = true;
-        package = pkgs.hyprland;
-        portalPackage = pkgs.xdg-desktop-portal-hyprland;
-      };
-
-      environment.systemPackages = with pkgs; [
-        hyprland-protocols
-      ];
-    };
+_: {
+  # pkgs.hyprland is the upstream flake build via the hyprland overlays applied in
+  # nix-settings.nix. The nixpkgs module covers the portal, xwayland, and session
+  # registration with their defaults.
+  flake.modules.nixos.hyprland = {
+    programs.hyprland.enable = true;
+  };
 }
