@@ -4,7 +4,7 @@
     {
       programs.antigravity = {
         enable = true;
-        package = pkgs.antigravity-fhs;
+        package = pkgs.antigravity-ide-fhs;
         profiles.default = {
           extensions = with pkgs.vscode-extensions; [
             catppuccin.catppuccin-vsc
