@@ -3,15 +3,11 @@
     { pkgs, ... }:
     {
       services.audiobookshelf = {
-        enable = true;
+        enable = false;
         openFirewall = true;
         user = "audiobookshelf";
         group = "media";
         package = pkgs.unstable.audiobookshelf;
       };
-
-      users.users.sonarr.extraGroups = [
-        "data"
-      ];
     };
 }

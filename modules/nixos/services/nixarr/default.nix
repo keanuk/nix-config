@@ -57,12 +57,14 @@
 
         audiobookshelf = {
           enable = true;
+          host = "0.0.0.0";
           package = pkgs.unstable.audiobookshelf;
           openFirewall = true;
         };
 
         shelfmark = {
           enable = true;
+          host = "0.0.0.0";
           package = pkgs.unstable.shelfmark;
           openFirewall = true;
         };
@@ -128,6 +130,7 @@
             "radarr"
             "recyclarr"
             "sonarr"
+            "audiobookshelf"
           ]
           (_: {
             extraGroups = [ "media" ];

@@ -87,8 +87,8 @@
         backendPort = 8096;
         proxyPort = 9097;
       };
-      audio = {
-        subdomain = "audio";
+      books = {
+        subdomain = "books";
         backendPort = 9292;
         proxyPort = 9098;
       };
@@ -97,8 +97,8 @@
         backendPort = 5055;
         proxyPort = 9111;
       };
-      books = {
-        subdomain = "books";
+      shelfmark = {
+        subdomain = "shelfmark";
         backendPort = 8084;
         proxyPort = 9112;
       };
