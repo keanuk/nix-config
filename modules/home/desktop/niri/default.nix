@@ -114,6 +114,7 @@
       # noctalia.kdl is written by noctalia's theme templates when present.
       xdg.configFile."niri/config.kdl".text = ''
         include "${self'.packages.myNiri}/niri-config.kdl"
+        include optional=true "outputs.kdl"
         include optional=true "noctalia.kdl"
       '';
     };

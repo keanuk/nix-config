@@ -27,7 +27,7 @@ order = [ "default" ]
     margin_ends = 20
     padding = 14
     panel_overlap = 1
-    position = "left"
+    position = "top"
     radius = 12
     radius_bottom_left = 12
     radius_bottom_right = 12
@@ -36,7 +36,7 @@ order = [ "default" ]
     reserve_space = false
     scale = 1.0
     shadow = true
-    smart_auto_hide = true
+    smart_auto_hide = false
     start = [ "control-center", "spacer_3", "clock", "spacer_2", "weather" ]
     thickness = 32
     widget_spacing = 6
@@ -78,7 +78,7 @@ pinned = [
     "dev.zed.Zed",
     "com.mitchellh.ghostty"
 ]
-position = "right"
+position = "bottom"
 radius = 16
 radius_bottom_left = 16
 radius_bottom_right = 16
@@ -130,16 +130,58 @@ wallpaper = ""
 [lockscreen_widgets]
 enabled = false
 schema_version = 2
-widget_order = [ "lockscreen-login-box@eDP-1" ]
+widget_order = [ "lockscreen-login-box@DP-1", "lockscreen-login-box@DP-2", "lockscreen-login-box@eDP-1" ]
 
     [lockscreen_widgets.grid]
     cell_size = 16
     major_interval = 4
     visible = true
 
+    [lockscreen_widgets.widget."lockscreen-login-box@DP-1"]
+    box_height = 70.0
+    box_width = 400.0
+    cx = 1536.0
+    cy = 1609.0
+    output = "DP-1"
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@DP-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_password_hint = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@DP-2"]
+    box_height = 70.0
+    box_width = 400.0
+    cx = 960.0
+    cy = 961.0
+    output = "DP-2"
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@DP-2".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_password_hint = true
+
     [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
-    box_height = 0.0
-    box_width = 0.0
+    box_height = 70.0
+    box_width = 400.0
     cx = 768.0
     cy = 837.0
     output = "eDP-1"
@@ -150,9 +192,13 @@ widget_order = [ "lockscreen-login-box@eDP-1" ]
         background_color = "surface_variant"
         background_opacity = 0.88
         background_radius = 12.0
+        center_password_text = false
         input_opacity = 1.0
         input_radius = 6.0
+        show_caps_lock = true
+        show_keyboard_layout = true
         show_login_button = true
+        show_password_hint = true
 
 [nightlight]
 enabled = true
@@ -176,7 +222,7 @@ scale = 1.0
     wifi = true
 
 [plugins]
-enabled = []
+enabled = [ "lucasoe/proton-pass", "avivbintangaringga/nix-monitor", "cleboost/zed-provider", "noctalia/wallhaven" ]
 
 [shell]
 app_icon_color = "on_surface"
@@ -218,11 +264,12 @@ time_format = "{:%H:%M}"
     borders = true
     clipboard_placement = "attached"
     control_center_placement = "attached"
-    open_near_click_clipboard = false
-    open_near_click_control_center = false
+    open_near_click_clipboard = true
+    open_near_click_control_center = true
     open_near_click_launcher = false
     open_near_click_session = false
-    open_near_click_wallpaper = false
+    open_near_click_wallpaper = true
+    polkit_position = "auto"
     session_placement = "attached"
     shadow = true
     transparency_mode = "glass"
@@ -301,10 +348,16 @@ transition_on_startup = true
     enabled = true
 
     [wallpaper.default]
-    path = "/home/keanu/.config/nix-config/lib/wallpapers/pink-mountains.jpg"
+    path = "/home/keanu/.config/nix-config/lib/wallpapers/cherry-blossoms-pink.jpg"
 
     [wallpaper.last]
-    path = "/home/keanu/.config/nix-config/lib/wallpapers/pink-mountains.jpg"
+    path = "/home/keanu/.config/nix-config/lib/wallpapers/cherry-blossoms-pink.jpg"
+
+    [wallpaper.monitors.DP-1]
+    path = "/home/keanu/.config/nix-config/lib/wallpapers/cherry-blossoms-pink.jpg"
+
+    [wallpaper.monitors.DP-2]
+    path = "/home/keanu/.config/nix-config/lib/wallpapers/cherry-blossoms-pink.jpg"
 
     [wallpaper.monitors.eDP-1]
     path = "/home/keanu/.config/nix-config/lib/wallpapers/pink-mountains.jpg"
