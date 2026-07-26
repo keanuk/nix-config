@@ -42,7 +42,7 @@ in
 
     # Mount ursa's NFS share since RAID is now hosted on ursa
     fileSystems."/mnt/data" = {
-      device = "ursa.local:/data";
+      device = "ursa:/data";
       fsType = "nfs";
       options = [
         "rw"

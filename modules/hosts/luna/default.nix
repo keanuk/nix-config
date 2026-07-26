@@ -41,7 +41,7 @@ in
 
       # Mount ursa's NFS share the same way the other laptops do.
       fileSystems."/mnt/data" = {
-        device = "ursa.local:/data";
+        device = "ursa:/data";
         fsType = "nfs";
         options = [
           "rw"

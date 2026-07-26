@@ -19,12 +19,23 @@ order = [ "default" ]
     center = [ "workspaces" ]
     contact_shadow = false
     enabled = true
-    end = [ "clipboard", "bluetooth", "network", "battery", "notifications", "session" ]
+    end = [
+        "audio_visualizer",
+        "media",
+        "clipboard",
+        "input_volume",
+        "output_volume",
+        "bluetooth",
+        "network",
+        "battery",
+        "notifications",
+        "session"
+    ]
     font_family = ""
     font_weight = "regular"
     layer = "top"
     margin_edge = 8
-    margin_ends = 64
+    margin_ends = 16
     padding = 16
     panel_overlap = 1
     position = "top"
@@ -347,21 +358,33 @@ transition_on_startup = true
     enabled = true
 
     [wallpaper.default]
-    path = "/home/keanu/.config/nix-config/lib/wallpapers/purple-petals.jpg"
+    path = "/home/keanu/.config/nix-config/lib/wallpapers/starry-mountains.jpg"
 
     [wallpaper.last]
-    path = "/home/keanu/.config/nix-config/lib/wallpapers/purple-petals.jpg"
+    path = "/home/keanu/.config/nix-config/lib/wallpapers/starry-mountains.jpg"
 
     [wallpaper.monitors.DP-1]
-    path = "/home/keanu/.config/nix-config/lib/wallpapers/purple-petals.jpg"
+    path = "/home/keanu/.config/nix-config/lib/wallpapers/starry-mountains.jpg"
 
     [wallpaper.monitors.DP-2]
-    path = "/home/keanu/.config/nix-config/lib/wallpapers/purple-petals.jpg"
+    path = "/home/keanu/.config/nix-config/lib/wallpapers/starry-mountains.jpg"
 
     [wallpaper.monitors.eDP-1]
     path = "/home/keanu/.config/nix-config/lib/wallpapers/pink-mountains.jpg"
 
+[widget.clock]
+format = "{:%d %b %Y %H:%M}"
+
+[widget.input_volume]
+show_label = false
+
+[widget.media]
+hide_when_no_media = true
+
 [widget.network]
+show_label = false
+
+[widget.output_volume]
 show_label = false
 
 [widget.spacer_2]

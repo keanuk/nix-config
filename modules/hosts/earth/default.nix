@@ -38,7 +38,7 @@ in
     ];
 
     fileSystems."/mnt/data" = {
-      device = "ursa.local:/data";
+      device = "ursa:/data";
       fsType = "nfs";
       options = [
         "rw"
