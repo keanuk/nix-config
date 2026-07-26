@@ -23,9 +23,9 @@ order = [ "default" ]
     font_family = ""
     font_weight = "regular"
     layer = "top"
-    margin_edge = 10
-    margin_ends = 20
-    padding = 14
+    margin_edge = 8
+    margin_ends = 64
+    padding = 16
     panel_overlap = 1
     position = "top"
     radius = 12
@@ -33,7 +33,7 @@ order = [ "default" ]
     radius_bottom_right = 12
     radius_top_left = 12
     radius_top_right = 12
-    reserve_space = false
+    reserve_space = true
     scale = 1.0
     shadow = true
     smart_auto_hide = false
@@ -237,7 +237,6 @@ date_format = "%A, %x"
 font_family = "sans-serif"
 lang = "de"
 launch_apps_as_systemd_services = true
-middle_click_opens_widget_settings = true
 niri_overview_type_to_launch_enabled = true
 offline_mode = false
 password_style = "default"
@@ -348,16 +347,16 @@ transition_on_startup = true
     enabled = true
 
     [wallpaper.default]
-    path = "/home/keanu/.config/nix-config/lib/wallpapers/cherry-blossoms-pink.jpg"
+    path = "/home/keanu/.config/nix-config/lib/wallpapers/purple-petals.jpg"
 
     [wallpaper.last]
-    path = "/home/keanu/.config/nix-config/lib/wallpapers/cherry-blossoms-pink.jpg"
+    path = "/home/keanu/.config/nix-config/lib/wallpapers/purple-petals.jpg"
 
     [wallpaper.monitors.DP-1]
-    path = "/home/keanu/.config/nix-config/lib/wallpapers/cherry-blossoms-pink.jpg"
+    path = "/home/keanu/.config/nix-config/lib/wallpapers/purple-petals.jpg"
 
     [wallpaper.monitors.DP-2]
-    path = "/home/keanu/.config/nix-config/lib/wallpapers/cherry-blossoms-pink.jpg"
+    path = "/home/keanu/.config/nix-config/lib/wallpapers/purple-petals.jpg"
 
     [wallpaper.monitors.eDP-1]
     path = "/home/keanu/.config/nix-config/lib/wallpapers/pink-mountains.jpg"
@@ -373,3 +372,7 @@ type = "spacer"
 
 [widget.weather]
 show_condition = false
+
+[widget.workspaces]
+display = "none"
+empty_color = "tertiary"
