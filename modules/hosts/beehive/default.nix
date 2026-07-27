@@ -5,7 +5,7 @@ let
     amd
     hardware
     pc
-    systemd-boot
+    lanzaboote
     desktop
     niri
     noctalia
@@ -23,7 +23,7 @@ in
       amd
       hardware
       pc
-      systemd-boot
+      lanzaboote
       desktop
       niri
       noctalia
