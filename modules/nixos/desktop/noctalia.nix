@@ -29,14 +29,18 @@
         # rules are skipped. Move the password prompt (unix-early, which sets
         # PAM_AUTHTOK) and the keyring capture before it, otherwise a
         # fingerprint login leaves the keyring locked.
-        rules.auth =
+        # Only applies when greetd uses nixpkgs' default PAM rules: current
+        # nixpkgs sets useDefaultRules = false and substacks the `login`
+        # service instead, which has no fprintd rule in greetd's own stack.
+        rules.auth = lib.mkIf config.security.pam.services.greetd.useDefaultRules (
           let
             fprintdOrder = config.security.pam.services.greetd.rules.auth.fprintd.order;
           in
           {
             unix-early.order = fprintdOrder - 20;
             gnome_keyring.order = fprintdOrder - 10;
-          };
+          }
+        );
       };
 
       # Noctalia's idle behaviors only fire on idle timeouts; also lock when sleep
