@@ -30,7 +30,6 @@
         handbrake
         inkscape
         jellyfin-media-player
-        jitsi
         joplin-desktop
         krita
         kodi-wayland
