@@ -51,6 +51,14 @@
       # or ships a built-in to disable fprintd only for the greeter.
       security.pam.services.greetd = {
         useDefaultRules = lib.mkForce true;
+        # nixpkgs' greetd module sets useDefaultRules=false and substacks
+        # `login` for account/password/session instead of running the default
+        # stack. Under useDefaultRules=true the default session stack only
+        # includes pam_systemd.so when startSession=true; without it logind
+        # never opens a user session for the greeter, the greeter can't reach
+        # its user systemdbus / Wayland seat, and silently exits ~10s later
+        # (the "black VT on boot" symptom). Pull it back on explicitly.
+        startSession = true;
         enableGnomeKeyring = true;
         rules = {
           auth.fprintd.enable = lib.mkForce false;
