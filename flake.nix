@@ -146,7 +146,7 @@
     };
 
     noctalia = {
-      url = "github:noctalia-dev/noctalia";
+      url = "github:keanuk/noctalia/issue-3087-add-cellular-support";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

@@ -3,6 +3,7 @@
     keyboard.xkb.layout = "us";
     touchpad = {
       tap = _: { };
+      click-method = "clickfinger";
       natural-scroll = _: { };
     };
     mouse = {
