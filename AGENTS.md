@@ -114,6 +114,7 @@ Currently:
 - `base` auto-includes: `nix-settings`, `system-packages`, `sops`, `apparmor`, `comin`, `tailscale`, `fuse`, `nh`, `nix-ld`, `virtualization`.
 - `server` auto-includes: `authelia`, `cloudflared`, `cockpit`, `forgejo`, `dashy`, `home-assistant`, `immich`, `nextcloud`, `nixarr`, `ollama`, `openssh`, `openvscode-server`, `open-webui`, `smartd`.
 - `pc` and `laptop` auto-include: `smartd`.
+- `lanzaboote` auto-includes: `fwupd-signed-efi` (fix; makes capsule updates work under Secure Boot).
 
 Roles that *don't* auto-opt-in (host imports them explicitly): the desktop environment roles (`cosmic`, `gnome`, `pantheon`, `plasma`, `hyprland`), `desktop`, `gaming`, `lanzaboote`, `systemd-boot`, `vps-grub`, `hardware`, `amd`, `wsl`, `vps`, `vps-website`, `fs`, `swapfile`, `preservation`, `ephemeral-bcachefs`, `ephemeral-luks-btrfs`, `rtw88-fix`, `home-manager`, `home-manager-stable`, `keanu`, `kimmy`, `btrfs`, `ollama-full`.
 
