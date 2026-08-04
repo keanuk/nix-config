@@ -8,6 +8,10 @@
         HandleLidSwitch = "suspend";
         HandleLidSwitchExternalPower = "suspend";
         HandleLidSwitchDocked = "ignore";
+        # logind ignores the lid switch for 30s (default) after boot/resume to
+        # let USB docks enumerate; cut it down so a lid close right after a
+        # quick wake still suspends.
+        HoldoffTimeoutSec = 5;
       };
     };
   };
