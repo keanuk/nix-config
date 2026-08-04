@@ -25,6 +25,11 @@
               default-column-width.fixed = 1080;
               default-window-height.fixed = 920;
               open-floating = true;
+              # Noctalia renders the settings window fully opaque and has no
+              # transparency setting; opacity must come from the compositor.
+              # Together with the global blur rule below this gives the
+              # frosted-glass look.
+              opacity = 0.9;
             }
             {
               background-effect = {
@@ -46,6 +51,13 @@
                 }
               ];
               background-effect.xray = false;
+            }
+            {
+              matches = [ { namespace = "noctalia-window-switcher"; } ];
+              background-effect = {
+                blur = true;
+                xray = false;
+              };
             }
           ];
 

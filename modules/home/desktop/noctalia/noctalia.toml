@@ -1,3 +1,6 @@
+[audio]
+enable_sounds = true
+
 [backdrop]
 blur_intensity = 0.5
 enabled = true
@@ -22,6 +25,7 @@ order = [ "default" ]
     end = [
         "audio_visualizer",
         "media",
+        "tray",
         "clipboard",
         "input_volume",
         "output_volume",
@@ -48,7 +52,7 @@ order = [ "default" ]
     scale = 1.0
     shadow = true
     smart_auto_hide = false
-    start = [ "control-center", "spacer_3", "clock", "spacer_2", "weather" ]
+    start = [ "control-center", "spacer_1", "clock", "spacer_2", "weather" ]
     thickness = 32
     widget_spacing = 6
 
@@ -247,6 +251,7 @@ lang = "de"
 launch_apps_as_systemd_services = true
 niri_overview_type_to_launch_enabled = true
 offline_mode = false
+panel_anchor_bar = "default"
 password_style = "default"
 polkit_agent = true
 screen_time_enabled = true
@@ -262,7 +267,19 @@ time_format = "{:%H:%M}"
     speed = 1.0
 
     [shell.launcher]
-    app_grid = true
+    app_grid = false
+
+        [shell.launcher.providers.emoji]
+        global = false
+
+        [shell.launcher.providers.session]
+        global = true
+
+        [shell.launcher.providers.wallpaper]
+        global = true
+
+        [shell.launcher.providers.windows]
+        global = true
 
     [shell.mpris]
     blacklist = []
@@ -356,10 +373,10 @@ transition_on_startup = true
     enabled = true
 
     [wallpaper.default]
-    path = "/home/keanu/.config/nix-config/lib/wallpapers/beach-rock-sunset.jpg"
+    path = "/home/keanu/.config/nix-config/lib/wallpapers/space-nebula.jpg"
 
     [wallpaper.last]
-    path = "/home/keanu/.config/nix-config/lib/wallpapers/beach-rock-sunset.jpg"
+    path = "/home/keanu/.config/nix-config/lib/wallpapers/space-nebula.jpg"
 
     [wallpaper.monitors.DP-1]
     path = "/home/keanu/.config/nix-config/lib/wallpapers/starry-mountains.jpg"
@@ -368,7 +385,7 @@ transition_on_startup = true
     path = "/home/keanu/.config/nix-config/lib/wallpapers/starry-mountains.jpg"
 
     [wallpaper.monitors.eDP-1]
-    path = "/home/keanu/.config/nix-config/lib/wallpapers/beach-rock-sunset.jpg"
+    path = "/home/keanu/.config/nix-config/lib/wallpapers/space-nebula.jpg"
 
 [widget.clock]
 format = "{:%d %b %Y %H:%M}"
@@ -385,6 +402,9 @@ show_label = false
 [widget.output_volume]
 show_label = false
 
+[widget.spacer_1]
+type = "spacer"
+
 [widget.spacer_2]
 type = "spacer"
 
@@ -395,5 +415,5 @@ type = "spacer"
 show_condition = false
 
 [widget.workspaces]
-display = "none"
 empty_color = "tertiary"
+show_labels = false
