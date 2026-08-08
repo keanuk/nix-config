@@ -21,7 +21,7 @@
       };
 
       # TODO: Remove when issue is resolved: https://github.com/trifectatechfoundation/sudo-rs/issues/1249
-      security.sudo-rs.enable = lib.mkForce false;
+      # security.sudo-rs.enable = lib.mkForce false;
     };
 
   flake.modules.nixos.server = config.flake.modules.nixos.cockpit;

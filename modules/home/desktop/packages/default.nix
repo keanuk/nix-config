@@ -53,8 +53,6 @@
         rnote
         rustdesk-flutter
         seahorse
-        # TODO: re-enable when build succeeds
-        # session-desktop
         shortwave
         shotwell
         signal-desktop

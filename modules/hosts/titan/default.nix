@@ -69,6 +69,12 @@ in
         ];
       };
 
+      # The MSI Optix monitor exposes a broken 22 KiB "Optix Driver" USB storage
+      # device (1462:3fa4). Every I/O to it fails with DID_ERROR, and SCSI error
+      # handling on it stalls the final kernel shutdown by 1-2 minutes.
+      # `i` (IGNORE_DEVICE) makes usb-storage never bind to it.
+      boot.kernelParams = [ "usb-storage.quirks=1462:3fa4:i" ];
+
       nixpkgs.hostPlatform = "x86_64-linux";
       networking.hostName = "titan";
 
