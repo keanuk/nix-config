@@ -11,7 +11,10 @@
         settings = ./noctalia.toml;
       };
 
-      home.packages = [ pkgs.papirus-icon-theme ];
+      home.packages = with pkgs; [
+        adw-gtk3
+        papirus-icon-theme
+      ];
 
       gtk = {
         enable = true;

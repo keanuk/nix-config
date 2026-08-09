@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 {
   # The nixpkgs module already covers portals (gtk + gnome), polkit, gnome-keyring,
   # nautilus for the FileChooser portal, and the niri systemd session integration.
@@ -11,5 +11,9 @@
         enable = true;
         package = inputs.niri-wm.packages.${pkgs.stdenv.hostPlatform.system}.niri;
       };
+      environment.systemPackages = with pkgs; [
+        easyeffects
+        nwg-displays
+      ];
     };
 }
