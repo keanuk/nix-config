@@ -41,20 +41,45 @@ in
     ];
 
     # Mount ursa's NFS share since RAID is now hosted on ursa
-    fileSystems."/mnt/data" = {
-      device = "ursa:/data";
-      fsType = "nfs";
-      options = [
-        "rw"
-        "noatime"
-        "_netdev"
-        "noauto"
-        "x-systemd.automount"
-        "x-systemd.idle-timeout=600"
-        "x-systemd.mount-timeout=10"
-        "x-systemd.requires=tailscaled.service"
-        "nfsvers=4"
-      ];
+    fileSystems = {
+      "/mnt/data" = {
+        device = "ursa:/data";
+        fsType = "nfs";
+        options = [
+          "rw"
+          "noatime"
+          "_netdev"
+          "noauto"
+          "x-systemd.automount"
+          "x-systemd.idle-timeout=600"
+          "x-systemd.mount-timeout=10"
+          "x-systemd.requires=tailscaled.service"
+          "nfsvers=4"
+        ];
+      };
+
+      # USB SSD mounts (non-blocking if disconnected)
+      "/mnt/ssd-1t-1" = {
+        device = "/dev/disk/by-label/ssd-1t-1";
+        fsType = "btrfs";
+        options = [
+          "rw"
+          "noatime"
+          "nofail"
+          "x-systemd.automount"
+        ];
+      };
+
+      "/mnt/ssd-1t-2" = {
+        device = "/dev/disk/by-label/ssd-1t-2";
+        fsType = "btrfs";
+        options = [
+          "rw"
+          "noatime"
+          "nofail"
+          "x-systemd.automount"
+        ];
+      };
     };
 
     nixpkgs.hostPlatform = "x86_64-linux";
