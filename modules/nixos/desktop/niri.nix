@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, ... }:
 {
   # The nixpkgs module already covers portals (gtk + gnome), polkit, gnome-keyring,
   # nautilus for the FileChooser portal, and the niri systemd session integration.
