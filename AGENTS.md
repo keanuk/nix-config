@@ -103,16 +103,16 @@ Each feature decides which composite role(s) it belongs to from its own file. Th
     services.comin = { ... };
   };
 
-  # comin opts itself into the base role
-  flake.modules.nixos.base = config.flake.modules.nixos.comin;
+  # comin opts itself into the server role
+  flake.modules.nixos.server = config.flake.modules.nixos.comin;
 }
 ```
 
 Multiple files writing `flake.modules.nixos.base = X` are merged via deferredModule semantics — each definition becomes one entry in `base.imports`. A feature can opt into multiple parents (e.g. `smartd` opts into `pc`, `laptop`, *and* `server`). Hosts that want a feature stand-alone import it directly by its plain role name.
 
 Currently:
-- `base` auto-includes: `nix-settings`, `system-packages`, `sops`, `apparmor`, `comin`, `tailscale`, `fuse`, `nh`, `nix-ld`, `virtualization`.
-- `server` auto-includes: `authelia`, `cloudflared`, `cockpit`, `forgejo`, `dashy`, `home-assistant`, `immich`, `nextcloud`, `nixarr`, `ollama`, `openssh`, `openvscode-server`, `open-webui`, `smartd`.
+- `base` auto-includes: `nix-settings`, `system-packages`, `sops`, `apparmor`, `tailscale`, `fuse`, `nh`, `nix-ld`, `virtualization`.
+- `server` auto-includes: `authelia`, `cloudflared`, `cockpit`, `comin`, `forgejo`, `dashy`, `home-assistant`, `immich`, `nextcloud`, `nixarr`, `ollama`, `openssh`, `openvscode-server`, `open-webui`, `smartd`.
 - `pc` and `laptop` auto-include: `smartd`.
 - `lanzaboote` auto-includes: `fwupd-signed-efi` (fix; makes capsule updates work under Secure Boot).
 

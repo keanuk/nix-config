@@ -15,5 +15,6 @@
     };
   };
 
-  flake.modules.nixos.base = config.flake.modules.nixos.comin;
+  # comin opts itself into the server role
+  flake.modules.nixos.server = config.flake.modules.nixos.comin;
 }

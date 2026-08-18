@@ -4,7 +4,7 @@ let
 in
 {
   # Inline configuration that lives at the heart of the `base` role.
-  # Everything else (sops, nix-settings, system-packages, comin, tailscale,
+  # Everything else (sops, nix-settings, system-packages, tailscale,
   # apparmor, fuse, nh, nix-ld, virtualization, fixes) opts itself in from its own
   # file, so this module only contains the bits that don't have a natural
   # home of their own.

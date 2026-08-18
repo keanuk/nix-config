@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  # The full server stack (authelia, cloudflared, cockpit, forgejo, dashy,
+  # The full server stack (authelia, cloudflared, comin, cockpit, forgejo, dashy,
   # home-assistant, immich, nextcloud, nixarr, ollama, openssh,
   # openvscode-server, open-webui, smartd) opts itself into the `server`
   # role from each service's own file. Only inline config that doesn't

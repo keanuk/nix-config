@@ -4,7 +4,6 @@ let
     nix-settings
     system-packages
     sops
-    comin
     tailscale
     nh
     ;
@@ -17,7 +16,6 @@ in
         nix-settings
         system-packages
         sops
-        comin
         tailscale
         nh
         inputs.wsl.nixosModules.default

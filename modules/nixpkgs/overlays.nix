@@ -1,10 +1,6 @@
 { inputs, ... }:
 let
   fixes = [
-    ./_fixes/calibre.nix
-    ./_fixes/nanoemoji.nix
-    ./_fixes/patool.nix
-    ./_fixes/wf-recorder.nix
   ];
 
   combinedFixes =
