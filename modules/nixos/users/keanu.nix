@@ -16,6 +16,7 @@
           "networkmanager"
           "podman"
           "ollama"
+          "dialout"
         ];
         shell = pkgs.fish;
         hashedPasswordFile = config.sops.secrets.user-keanu-password.path;
