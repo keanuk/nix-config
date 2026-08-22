@@ -7,6 +7,7 @@
         frequency = "weekly";
         useFlake = true;
         flakeDir = "${config.home.homeDirectory}/.config/nix-config";
+        preSwitchCommands = [ ];
       };
     };
 }
