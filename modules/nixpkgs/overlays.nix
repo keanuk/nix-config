@@ -1,6 +1,9 @@
 { inputs, ... }:
 let
   fixes = [
+    # github-runner: restore node20 runtime (ursa's CI runner still needs it).
+    # Only evaluated when something accesses pkgs.github-runner (stable hosts).
+    ./_fixes/github-runner.nix
   ];
 
   combinedFixes =

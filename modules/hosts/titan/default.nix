@@ -10,7 +10,7 @@ let
     hardware
     lanzaboote
     pc
-    rtw88-fix
+    rtw88
     desktop
     niri
     noctalia
@@ -22,6 +22,7 @@ let
     swapfile
     fs
     home-manager
+    nfs-data
     ;
 in
 {
@@ -34,7 +35,7 @@ in
         hardware
         lanzaboote
         pc
-        rtw88-fix
+        rtw88
         desktop
         niri
         noctalia
@@ -46,28 +47,13 @@ in
         swapfile
         fs
         home-manager
+        nfs-data
         inputs.nixos-hardware.nixosModules.common-cpu-amd
         inputs.nixos-hardware.nixosModules.common-gpu-amd
         inputs.nixos-hardware.nixosModules.common-pc
         inputs.nixos-hardware.nixosModules.common-pc-ssd
         ./_hardware-configuration.nix
       ];
-
-      fileSystems."/mnt/data" = {
-        device = "ursa:/data";
-        fsType = "nfs";
-        options = [
-          "rw"
-          "noatime"
-          "_netdev"
-          "noauto"
-          "x-systemd.automount"
-          "x-systemd.idle-timeout=600"
-          "x-systemd.mount-timeout=10"
-          "x-systemd.requires=tailscaled.service"
-          "nfsvers=4"
-        ];
-      };
 
       # The MSI Optix monitor exposes a broken 22 KiB "Optix Driver" USB storage
       # device (1462:3fa4). Every I/O to it fails with DID_ERROR, and SCSI error

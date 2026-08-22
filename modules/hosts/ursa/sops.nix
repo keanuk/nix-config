@@ -18,7 +18,6 @@
         ursa_raid_password = {
           mode = "0400";
         };
-        github-runner-token = { };
       };
     };
 }

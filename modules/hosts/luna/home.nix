@@ -1,25 +1,20 @@
 { config, ... }:
-{
-  configurations.nixos.luna.module.home-manager.users.keanu = {
+let
+  keanuHome = {
     imports = with config.flake.modules.homeManager; [
       desktop-linux
       gaming
-      niri
       noctalia
+      niri
     ];
     home.stateVersion = "26.11";
   };
+in
+{
+  configurations.nixos.luna.module.home-manager.users.keanu = keanuHome;
 
   configurations.homeManager."keanu@luna" = {
     system = "x86_64-linux";
-    module = {
-      imports = with config.flake.modules.homeManager; [
-        desktop-linux
-        gaming
-        niri
-        noctalia
-      ];
-      home.stateVersion = "26.11";
-    };
+    module = keanuHome;
   };
 }

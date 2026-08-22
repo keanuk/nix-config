@@ -9,7 +9,14 @@
           inherit inputs pkgs;
           modules = modules ++ [
             {
-              devenv.root = toString ./.;
+              # Resolve to the real working directory when entered via
+              # `nix develop --impure`; the store-path fallback only exists so
+              # pure evaluation (nix flake check) can build the shell.
+              devenv.root =
+                let
+                  pwd = builtins.getEnv "PWD";
+                in
+                if pwd != "" then pwd else toString ./.;
             }
           ];
         };

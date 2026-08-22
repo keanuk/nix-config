@@ -126,5 +126,6 @@
   flake.modules.homeManager = {
     desktop = config.flake.modules.homeManager.opencode;
     darwin-profile = config.flake.modules.homeManager.opencode;
+    server = config.flake.modules.homeManager.opencode;
   };
 }

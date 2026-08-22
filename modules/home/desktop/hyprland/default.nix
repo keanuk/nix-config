@@ -1,3 +1,4 @@
+# NOTE: Not imported by any host; kept intentionally for future use.
 _: {
   flake.modules.homeManager.hyprland =
     { pkgs, ... }:

@@ -1,3 +1,4 @@
+# NOTE: Not imported by any host; kept intentionally for future use.
 {
   pkgs,
   inputs,
@@ -43,7 +44,6 @@
     plugins = {
       cmp.enable = true;
       bufferline.enable = true;
-      lightline.enable = true;
       lualine.enable = true;
       nix.enable = true;
       nix-develop.enable = true;

@@ -30,6 +30,11 @@ in
       networking.hostName = "emilyvansant";
       system.stateVersion = "25.11";
 
+      # CI deploy key for this site's GitHub Actions workflow, scoped to this host only.
+      users.users.keanu.openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF0XU5XdS3NQxo6m8CkJHWKLGE8Dc0WgBi1hmfy4hqnI github-action-emilyvansant"
+      ];
+
       staticWebsite = {
         domain = "emilyvansant.com";
         webRoot = "/var/www/emilyvansant";

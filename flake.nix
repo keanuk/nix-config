@@ -38,12 +38,14 @@
     import-tree.url = "github:vic/import-tree";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    systems.url = "github:nix-systems/default";
 
     preservation.url = "github:nix-community/preservation";
     impermanence.url = "github:nix-community/impermanence";
 
-    wsl.url = "github:nix-community/NixOS-WSL/main";
+    wsl = {
+      url = "github:nix-community/NixOS-WSL/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     darwin = {
       url = "github:LnL7/nix-darwin";
@@ -67,18 +69,8 @@
 
     nur.url = "github:nix-community/NUR";
 
-    hydra = {
-      url = "github:nixos/hydra";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     comin = {
       url = "github:nlewo/comin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-gl = {
-      url = "github:nix-community/nixgl";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -106,7 +98,10 @@
 
     vscode-server.url = "github:nix-community/nixos-vscode-server";
 
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nix-openclaw = {
       url = "github:openclaw/nix-openclaw";
@@ -115,10 +110,8 @@
 
     vpn-confinement.url = "github:Maroka-chan/VPN-Confinement";
 
-    nixarr.url = "github:nix-media-server/nixarr";
-
-    nixos-generators = {
-      url = "github:nix-community/nixos-generators";
+    nixarr = {
+      url = "github:nix-media-server/nixarr";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -126,11 +119,6 @@
       url = "github:nix-community/nixos-anywhere";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.disko.follows = "disko";
-    };
-
-    nixos-facter = {
-      url = "github:numtide/nixos-facter";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     deploy-rs = {

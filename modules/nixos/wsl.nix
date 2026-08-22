@@ -9,6 +9,9 @@ let
     ;
 in
 {
+  # Deliberate standalone profile (like the homeManager profiles): WSL hosts
+  # cannot take all of `base` (boot/initrd, disko, determinate), so this role
+  # composes the base-adjacent features mars needs directly.
   flake.modules.nixos.wsl =
     { lib, ... }:
     {

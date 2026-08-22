@@ -1,3 +1,4 @@
+# NOTE: Not imported by any host; kept intentionally for future use.
 {
   # Required sops secret: hotspot-password
   # This secret should contain a single line with the WPA3 SAE password.

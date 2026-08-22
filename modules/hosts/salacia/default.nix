@@ -17,8 +17,8 @@ in
       ./_hardware-configuration.nix
     ];
 
-    networking.hostName = "salacia";
     nixpkgs.hostPlatform = "aarch64-darwin";
+    networking.hostName = "salacia";
 
     homebrew.caskArgs.appdir = "/Volumes/SALACIA-EXT/Applications";
 

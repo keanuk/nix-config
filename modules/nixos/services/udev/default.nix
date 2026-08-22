@@ -12,19 +12,17 @@
       # Controller
       KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="18d1", MODE="0666"
       SUBSYSTEMS=="usb", ATTRS{idVendor}=="18d1", ATTRS{idProduct}=="9400", MODE="0660", TAG+="uaccess"
-      SUBSYSTEM=="tty", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7523", TAG+="uaccess"
-
       # USB Serial / ESP32 / Arduino / Microcontroller flashing rules
-      SUBSYSTEM=="tty", KERNEL=="ttyACM[0-9]*", GROUP="dialout", MODE="0666", TAG+="uaccess"
-      SUBSYSTEM=="tty", KERNEL=="ttyUSB[0-9]*", GROUP="dialout", MODE="0666", TAG+="uaccess"
+      SUBSYSTEM=="tty", KERNEL=="ttyACM[0-9]*", GROUP="dialout", MODE="0660", TAG+="uaccess"
+      SUBSYSTEM=="tty", KERNEL=="ttyUSB[0-9]*", GROUP="dialout", MODE="0660", TAG+="uaccess"
       # ESP32 / Espressif native USB CDC
-      SUBSYSTEM=="tty", ATTRS{idVendor}=="303a", GROUP="dialout", MODE="0666", TAG+="uaccess"
+      SUBSYSTEM=="tty", ATTRS{idVendor}=="303a", GROUP="dialout", MODE="0660", TAG+="uaccess"
       # WCH CH340/CH341
-      SUBSYSTEM=="tty", ATTRS{idVendor}=="1a86", GROUP="dialout", MODE="0666", TAG+="uaccess"
+      SUBSYSTEM=="tty", ATTRS{idVendor}=="1a86", GROUP="dialout", MODE="0660", TAG+="uaccess"
       # Silicon Labs CP210x
-      SUBSYSTEM=="tty", ATTRS{idVendor}=="10c4", GROUP="dialout", MODE="0666", TAG+="uaccess"
+      SUBSYSTEM=="tty", ATTRS{idVendor}=="10c4", GROUP="dialout", MODE="0660", TAG+="uaccess"
       # FTDI
-      SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", GROUP="dialout", MODE="0666", TAG+="uaccess"
+      SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", GROUP="dialout", MODE="0660", TAG+="uaccess"
     '';
   };
 

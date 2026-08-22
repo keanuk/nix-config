@@ -14,6 +14,7 @@ let
     ollama-medium
     keanu
     home-manager
+    nfs-data
     ;
 in
 {
@@ -32,6 +33,7 @@ in
       ollama-medium
       keanu
       home-manager
+      nfs-data
       inputs.nixos-hardware.nixosModules.common-cpu-amd
       inputs.nixos-hardware.nixosModules.common-gpu-amd
       inputs.nixos-hardware.nixosModules.common-pc
@@ -40,24 +42,7 @@ in
       ./_disko-configuration.nix
     ];
 
-    # Mount ursa's NFS share since RAID is now hosted on ursa
     fileSystems = {
-      "/mnt/data" = {
-        device = "ursa:/data";
-        fsType = "nfs";
-        options = [
-          "rw"
-          "noatime"
-          "_netdev"
-          "noauto"
-          "x-systemd.automount"
-          "x-systemd.idle-timeout=600"
-          "x-systemd.mount-timeout=10"
-          "x-systemd.requires=tailscaled.service"
-          "nfsvers=4"
-        ];
-      };
-
       # USB SSD mounts (non-blocking if disconnected)
       "/mnt/ssd-1t-1" = {
         device = "/dev/disk/by-label/ssd-1t-1";

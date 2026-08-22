@@ -4,7 +4,7 @@ let
     base
     hardware
     pc
-    rtw88-fix
+    rtw88
     systemd-boot
     desktop
     niri
@@ -13,6 +13,7 @@ let
     ollama
     keanu
     home-manager
+    nfs-data
     ;
 in
 {
@@ -21,7 +22,7 @@ in
       base
       hardware
       pc
-      rtw88-fix
+      rtw88
       systemd-boot
       desktop
       niri
@@ -30,28 +31,13 @@ in
       ollama
       keanu
       home-manager
+      nfs-data
       inputs.nixos-hardware.nixosModules.common-cpu-intel
       inputs.nixos-hardware.nixosModules.common-pc
       inputs.nixos-hardware.nixosModules.common-pc-ssd
       ./_disko-configuration.nix
       ./_hardware-configuration.nix
     ];
-
-    fileSystems."/mnt/data" = {
-      device = "ursa:/data";
-      fsType = "nfs";
-      options = [
-        "rw"
-        "noatime"
-        "_netdev"
-        "noauto"
-        "x-systemd.automount"
-        "x-systemd.idle-timeout=600"
-        "x-systemd.mount-timeout=10"
-        "x-systemd.requires=tailscaled.service"
-        "nfsvers=4"
-      ];
-    };
 
     nixpkgs.hostPlatform = "x86_64-linux";
     networking.hostName = "earth";

@@ -14,6 +14,7 @@ let
     swapfile
     fs
     home-manager
+    nfs-data
     ;
 in
 {
@@ -34,25 +35,10 @@ in
         swapfile
         fs
         home-manager
+        nfs-data
         inputs.nixos-hardware.nixosModules.hp-elitebook-845g8
         ./_hardware-configuration.nix
       ];
-
-      fileSystems."/mnt/data" = {
-        device = "ursa:/data";
-        fsType = "nfs";
-        options = [
-          "rw"
-          "noatime"
-          "_netdev"
-          "noauto"
-          "x-systemd.automount"
-          "x-systemd.idle-timeout=600"
-          "x-systemd.mount-timeout=10"
-          "x-systemd.requires=tailscaled.service"
-          "nfsvers=4"
-        ];
-      };
 
       nixpkgs.hostPlatform = "x86_64-linux";
       networking.hostName = "hyperion";

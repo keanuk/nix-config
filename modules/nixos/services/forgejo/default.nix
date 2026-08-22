@@ -46,13 +46,9 @@
           session = {
             COOKIE_SECURE = true;
           };
-          mailer = {
-            ENABLED = true;
-            PROTOCOL = "smtp";
-            SMTP_ADDR = "127.0.0.1";
-            SMTP_PORT = 1025;
-            FROM = "git@oranos.org";
-          };
+          # No mailer: pointed at 127.0.0.1:1025 with nothing listening. If
+          # notifications are ever wanted, wire the (kept) opensmtpd role into
+          # `server` and re-add the mailer block.
           log = {
             LEVEL = "Info";
           };

@@ -1,16 +1,7 @@
-{ config, inputs, ... }:
-let
-  opensshModule = config.flake.modules.nixos.openssh;
-in
-{
+_: {
   flake.modules.nixos.vps =
     { lib, pkgs, ... }:
     {
-      imports = [
-        opensshModule
-        inputs.vscode-server.nixosModules.default
-      ];
-
       swapDevices = [
         {
           device = "/var/swapfile";
@@ -46,11 +37,6 @@ in
           automatic = true;
           dates = [ "weekly" ];
         };
-      };
-
-      services = {
-        comin.enable = lib.mkForce false;
-        vscode-server.enable = true;
       };
 
       virtualisation = {

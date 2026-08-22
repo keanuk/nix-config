@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  ursaKeanuHome = {
+  keanuHome = {
     imports = with config.flake.modules.homeManager; [
       base
       home-manager-self
@@ -41,10 +41,10 @@ let
   };
 in
 {
-  configurations.nixos-stable.ursa.module.home-manager.users.keanu = ursaKeanuHome;
+  configurations.nixos-stable.ursa.module.home-manager.users.keanu = keanuHome;
 
   configurations.homeManager-stable."keanu@ursa" = {
     system = "x86_64-linux";
-    module = ursaKeanuHome;
+    module = keanuHome;
   };
 }

@@ -7,11 +7,14 @@
 # (libfwupdplugin/fu-path-store.c) and still reads the build-time EFI_APP_LOCATION,
 # i.e. the read-only store dir. Overlay the signed runtime dir onto that store dir
 # in fwupd.service's mount namespace.
-# Status: active
-# Last-checked: 2026-08-01
-# Removal condition: Remove when fwupd honors FWUPD_EFIAPPDIR again (making
-# lanzaboote's existing /run/fwupd-efi redirect work) or when lanzaboote's module
-# places the signed helper where fwupd actually looks.
+# Status: obsolete on nixos-unstable (fwupd is now built with
+#   efi_app_location=/run/fwupd-efi, nixpkgs PR #539855 merged 2026-07-12, so it
+#   reads lanzaboote's dir directly and this BindPaths is a no-op). Still required
+#   on the stable channel used by ursa.
+# Last-checked: 2026-08-22
+# Removal condition: Remove once no lanzaboote host tracks a stable channel whose
+#   fwupd lacks the efi_app_location build option (i.e. when ursa moves to a
+#   release that includes PR #539855).
 { config, ... }:
 {
   flake.modules.nixos.fwupd-signed-efi =

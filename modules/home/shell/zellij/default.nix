@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   flake.modules.homeManager.zellij =
     {
@@ -34,4 +35,6 @@
         };
       };
     };
+
+  flake.modules.homeManager.server = config.flake.modules.homeManager.zellij;
 }

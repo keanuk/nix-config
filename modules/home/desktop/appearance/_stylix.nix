@@ -1,3 +1,4 @@
+# NOTE: Not imported by any host; kept intentionally for future use.
 {
   inputs,
   pkgs,
@@ -5,12 +6,12 @@
 }:
 {
   imports = [
-    inputs.stylix.nixosModules.stylix
+    inputs.stylix.homeModules.stylix
   ];
 
   stylix = {
     enable = true;
-    image = "../../../../lib/wallpapers/pink-clouds.jpg";
+    image = ../../../../lib/wallpapers/pink-clouds.jpg;
     polarity = "either";
     base16Scheme = "catppuccin-mocha";
     icons = {

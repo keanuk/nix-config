@@ -10,7 +10,8 @@
         group = lib.mkDefault "users";
         serverDataDir = lib.mkDefault "/home/keanu/.openvscode-server";
         port = 3000;
-        host = "0.0.0.0";
+        # No connection token, so only the local Authelia proxy may reach it.
+        host = "127.0.0.1";
         withoutConnectionToken = true;
       };
     };

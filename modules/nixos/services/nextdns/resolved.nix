@@ -1,3 +1,4 @@
+# NOTE: Not imported by any host; kept intentionally for future use.
 {
   flake.modules.nixos.nextdns-resolved =
     { config, ... }:
@@ -19,14 +20,14 @@
 
           mkdir -p /etc/systemd/resolved.conf.d
 
-          cat > /etc/systemd/resolved.conf.d/nextdns.conf << EOF
-          [Resolve]
-          DNS=45.90.28.0#''${NEXTDNS_ID}.dns.nextdns.io
-          DNS=2a07:a8c0::#''${NEXTDNS_ID}.dns.nextdns.io
-          DNS=45.90.30.0#''${NEXTDNS_ID}.dns.nextdns.io
-          DNS=2a07:a8c1::#''${NEXTDNS_ID}.dns.nextdns.io
-          DNSOverTLS=yes
-          EOF
+          {
+            echo "[Resolve]"
+            echo "DNS=45.90.28.0#''${NEXTDNS_ID}.dns.nextdns.io"
+            echo "DNS=2a07:a8c0::#''${NEXTDNS_ID}.dns.nextdns.io"
+            echo "DNS=45.90.30.0#''${NEXTDNS_ID}.dns.nextdns.io"
+            echo "DNS=2a07:a8c1::#''${NEXTDNS_ID}.dns.nextdns.io"
+            echo "DNSOverTLS=yes"
+          } > /etc/systemd/resolved.conf.d/nextdns.conf
         '';
       };
 

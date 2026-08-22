@@ -18,11 +18,10 @@
         enableNushellIntegration = false;
         enableZshIntegration = false;
         shellWrapperName = "y";
-        theme = {
-          flavor = {
-            # Noctalia renders ~/.config/yazi/flavors/noctalia.yazi from the wallpaper.
-            use = lib.mkDefault (if noctaliaEnabled then "noctalia" else "catppuccin-mocha");
-          };
+        # Noctalia renders ~/.config/yazi/flavors/noctalia.yazi from the wallpaper.
+        # No other flavor is installed, so leave yazi on its built-in theme elsewhere.
+        theme = lib.mkIf noctaliaEnabled {
+          flavor.use = lib.mkDefault "noctalia";
         };
       };
     };

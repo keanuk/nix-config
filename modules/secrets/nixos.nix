@@ -22,9 +22,6 @@ in
           github-token = {
             owner = config.users.users.keanu.name;
           };
-          google_maps_geolocation = {
-            owner = config.users.users.keanu.name;
-          };
           nextdns_id = {
             mode = "0444";
           };

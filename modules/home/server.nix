@@ -1,13 +1,9 @@
-{ config, ... }:
-{
+_: {
+  # Only inline server-specific config lives here; zellij, opencode, and pass
+  # opt themselves into this role from their own files.
   flake.modules.homeManager.server =
     { pkgs, ... }:
     {
-      imports = with config.flake.modules.homeManager; [
-        zellij
-        opencode
-      ];
-
       programs.zellij = {
         enableZshIntegration = true;
         enableFishIntegration = true;

@@ -8,8 +8,6 @@
         zsh.enable = true;
       };
 
-      services.atuin.enable = true;
-
       environment.sessionVariables = { };
 
       environment.systemPackages = with pkgs; [

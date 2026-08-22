@@ -89,7 +89,8 @@
       };
       books = {
         subdomain = "books";
-        backendPort = 9292;
+        # Must match services.audiobookshelf.port (nixpkgs default: 8000).
+        backendPort = 8000;
         proxyPort = 9098;
       };
       seerr = {

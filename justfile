@@ -35,14 +35,6 @@ host:
     @just build-host
     @just switch-host
 
-# Build ISO
-iso:
-    @echo "ISO 󰗮 Building: console"
-    nom build .#packages.x86_64-linux.iso
-    mkdir -p "${HOME}/Quickemu/nixos-iso" 2>/dev/null
-    cp result/iso/*.iso "${HOME}/Quickemu/nixos-iso/nixos.iso"
-    @echo "ISO copied to ${HOME}/Quickemu/nixos-iso/nixos.iso"
-
 # Nix Garbage Collection
 gc:
     @echo "Garbage 󰩹 Collection"

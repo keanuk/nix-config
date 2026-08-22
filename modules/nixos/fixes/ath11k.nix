@@ -1,3 +1,4 @@
+# NOTE: Not imported by any host; kept intentionally for future use.
 # Issue: Qualcomm ath11k WiFi firmware hangs after suspend/resume
 # Description: Reloads ath11k_pci module on resume to recover from firmware state loss
 # Status: active

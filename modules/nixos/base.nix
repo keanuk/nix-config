@@ -1,23 +1,18 @@
-{ config, inputs, ... }:
-let
-  inherit (config.flake.modules.nixos) fixes;
-in
+{ inputs, ... }:
 {
   # Inline configuration that lives at the heart of the `base` role.
   # Everything else (sops, nix-settings, system-packages, tailscale,
-  # apparmor, fuse, nh, nix-ld, virtualization, fixes) opts itself in from its own
+  # apparmor, fuse, nh, nix-ld, virtualization) opts itself in from its own
   # file, so this module only contains the bits that don't have a natural
   # home of their own.
   flake.modules.nixos.base =
     {
-      options,
       pkgs,
       lib,
       ...
     }:
     {
       imports = [
-        fixes
         inputs.determinate.nixosModules.default
         inputs.disko.nixosModules.disko
         inputs.nur.modules.nixos.default
@@ -44,12 +39,7 @@ in
         irqbalance.enable = true;
         resolved = {
           enable = lib.mkDefault true;
-        }
-        // lib.optionalAttrs (builtins.hasAttr "settings" options.services.resolved) {
           settings.Resolve.DNSSEC = "allow-downgrade";
-        }
-        // lib.optionalAttrs (!builtins.hasAttr "settings" options.services.resolved) {
-          dnssec = "allow-downgrade";
         };
         sysstat.enable = true;
       };
@@ -65,7 +55,6 @@ in
 
       networking = {
         firewall.enable = true;
-        firewall.trustedInterfaces = [ "wt0" ];
         nftables.enable = true;
       };
 

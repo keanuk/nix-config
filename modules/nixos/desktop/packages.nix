@@ -7,8 +7,6 @@
         snapper-gui
         vulkan-tools
         wireplumber
-
-        xkill
       ];
     };
 }

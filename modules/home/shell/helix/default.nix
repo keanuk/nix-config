@@ -69,7 +69,7 @@
               command = "${pkgs.nixd}/bin/nixd";
             };
             pylsp = {
-              command = "${pkgs.python313Packages.python-lsp-server}/bin/pylsp";
+              command = "${pkgs.python314Packages.python-lsp-server}/bin/pylsp";
             };
             rust-analyzer = {
               command = "${pkgs.rust-analyzer}/bin/rust-analyzer";

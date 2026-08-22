@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  beehiveHome = {
+  keanuHome = {
     imports = with config.flake.modules.homeManager; [
       desktop-linux
       noctalia
@@ -11,17 +11,14 @@ let
           scale 2.0
       }
     '';
+    home.stateVersion = "26.11";
   };
 in
 {
-  configurations.nixos.beehive.module.home-manager.users.keanu = beehiveHome // {
-    home.stateVersion = "25.05";
-  };
+  configurations.nixos.beehive.module.home-manager.users.keanu = keanuHome;
 
   configurations.homeManager."keanu@beehive" = {
     system = "x86_64-linux";
-    module = beehiveHome // {
-      home.stateVersion = "26.11";
-    };
+    module = keanuHome;
   };
 }

@@ -21,5 +21,6 @@
     server = config.flake.modules.nixos.openssh;
     pc = config.flake.modules.nixos.openssh;
     laptop = config.flake.modules.nixos.openssh;
+    vps = config.flake.modules.nixos.openssh;
   };
 }

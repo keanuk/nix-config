@@ -1,3 +1,4 @@
+# NOTE: Not imported by any host; kept intentionally for future use.
 {
   flake.modules.homeManager.nushell =
     { pkgs, ... }:
@@ -6,21 +7,15 @@
         enable = true;
         package = pkgs.nushell;
         shellAliases = import ../_aliases.nix;
-        configFile = {
-          text = ''
-            let $config = {
-              filesize_metric: true
-              table_mode: rounded
-              use_ls_colors: true
-            }
-          '';
-        };
         extraConfig = ''
           let carapace_completer = {|spans|
             carapace $spans.0 nushell $spans | from json
           }
           $env.config = {
             show_banner: false,
+            filesize: { metric: true },
+            table: { mode: "rounded" },
+            ls: { use_ls_colors: true },
             completions: {
               case_sensitive: false
               quick: true

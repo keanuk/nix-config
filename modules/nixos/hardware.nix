@@ -1,13 +1,8 @@
-{ config, inputs, ... }:
-let
-  sopsModule = config.flake.modules.nixos.sops;
-in
+{ inputs, ... }:
 {
   flake.modules.nixos.hardware =
     { pkgs, ... }:
     {
-      imports = [ sopsModule ];
-
       boot = {
         plymouth.enable = true;
         kernelPackages = pkgs.linuxPackages_latest;

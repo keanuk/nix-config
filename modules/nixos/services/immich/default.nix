@@ -14,6 +14,8 @@
       services.immich = {
         enable = true;
         package = pkgs.unstable.immich;
+        # Exposed on the tailnet for the mobile app (immich has its own login);
+        # web access goes through the Authelia proxy.
         openFirewall = true;
         host = "0.0.0.0";
         port = 2283;

@@ -38,8 +38,6 @@ _: {
         pulseaudio.enable = false;
         udisks2.enable = true;
         upower.enable = true;
-
-        xserver.enable = true;
       };
 
       networking.networkmanager.enable = true;
@@ -67,12 +65,8 @@ _: {
 
       environment = {
         sessionVariables = {
-          # ENABLE_HDR_WSI = "1";
           NIXOS_OZONE_WL = "1";
         };
-        systemPackages = with pkgs; [
-          xbacklight
-        ];
         shells = with pkgs; [
           bashInteractive
           fish

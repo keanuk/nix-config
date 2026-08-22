@@ -176,7 +176,7 @@
             };
             pylsp = {
               binary = {
-                path = "${pkgs.python313Packages.python-lsp-server}/bin/pylsp";
+                path = "${pkgs.python314Packages.python-lsp-server}/bin/pylsp";
               };
             };
             rust-analyzer = {
