@@ -3,11 +3,10 @@
   flake.modules.homeManager.noctalia =
     { pkgs, lib, ... }:
     {
-      imports = [ inputs.noctalia.homeModules.default ];
-
       programs.noctalia = {
         enable = true;
         systemd.enable = true;
+        package = lib.mkDefault inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
         settings = ./noctalia.toml;
       };
 
