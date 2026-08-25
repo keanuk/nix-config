@@ -74,6 +74,7 @@
           binds = {
             "Mod+grave".spawn-sh = "noctalia msg panel-toggle launcher";
             "Mod+Space".spawn-sh = "noctalia msg panel-toggle launcher";
+            "Alt+Space".spawn-sh = "noctalia msg panel-toggle launcher";
             "Mod+E".spawn = "nautilus";
             "Mod+I".spawn-sh = "noctalia msg settings-toggle";
             "Mod+S".spawn-sh = "noctalia msg panel-toggle control-center";

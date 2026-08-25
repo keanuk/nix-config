@@ -23,8 +23,7 @@ order = [ "default" ]
     contact_shadow = false
     enabled = true
     end = [
-        "audio_visualizer",
-        "media",
+        "privacy",
         "tray",
         "wallhaven",
         "clipboard",
@@ -53,7 +52,7 @@ order = [ "default" ]
     scale = 1.0
     shadow = true
     smart_auto_hide = false
-    start = [ "control-center", "spacer_1", "clock", "spacer_2", "weather", "spacer_4", "privacy" ]
+    start = [ "control-center", "spacer_1", "clock", "spacer_2", "weather", "spacer_4", "media", "audio_visualizer" ]
     thickness = 32
     widget_spacing = 6
 
@@ -107,7 +106,7 @@ show_running = true
 smart_auto_hide = true
 
 [idle]
-pre_action_fade_seconds = 20
+pre_action_fade_seconds = 15
 
     [idle.behavior.lock]
     action = "lock"
@@ -209,9 +208,14 @@ widget_order = [ "lockscreen-login-box@eDP-1" ]
         center_password_text = false
         input_opacity = 1.0
         input_radius = 6.0
+        layout = "regular"
         show_caps_lock = true
         show_keyboard_layout = true
         show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
 
 [nightlight]
 enabled = true
@@ -371,16 +375,17 @@ wallpaper_scheme = "vibrant"
 
 [wallpaper]
 directory = "/home/keanu/.config/nix-config/lib/wallpapers"
+fill_mode = "center"
 transition_on_startup = true
 
     [wallpaper.automation]
     enabled = true
 
     [wallpaper.default]
-    path = "/home/keanu/.config/nix-config/lib/wallpapers/pink-sunset-mountains.jpg"
+    path = "/home/keanu/.config/nix-config/lib/wallpapers/wallhaven-d8o9zm.jpg"
 
     [wallpaper.last]
-    path = "/home/keanu/.config/nix-config/lib/wallpapers/pink-sunset-mountains.jpg"
+    path = "/home/keanu/.config/nix-config/lib/wallpapers/wallhaven-d8o9zm.jpg"
 
     [wallpaper.monitors.DP-1]
     path = "/home/keanu/.config/nix-config/lib/wallpapers/starry-mountains.jpg"
@@ -389,7 +394,7 @@ transition_on_startup = true
     path = "/home/keanu/.config/nix-config/lib/wallpapers/starry-mountains.jpg"
 
     [wallpaper.monitors.eDP-1]
-    path = "/home/keanu/.config/nix-config/lib/wallpapers/pink-sunset-mountains.jpg"
+    path = "/home/keanu/.config/nix-config/lib/wallpapers/wallhaven-d8o9zm.jpg"
 
 [widget.clock]
 format = "{:%d %b %Y %H:%M}"
