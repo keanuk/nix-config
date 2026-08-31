@@ -158,7 +158,7 @@ Roles that *don't* auto-opt-in (host imports them explicitly): the desktop envir
 
 | Host | Platform | Arch | Role | Channel |
 |------|----------|------|------|---------|
-| beehive | NixOS | x86_64 | Home server (Beelink SER9 Pro) | unstable |
+| beehive | NixOS | x86_64 | Desktop (Beelink SER9 Pro) | unstable |
 | earth | NixOS | x86_64 | Mini PC (Intel NUC 10) | unstable |
 | hyperion | NixOS | x86_64 | Laptop (HP EliteBook 845 G8) | unstable |
 | luna | NixOS | x86_64 | Laptop (Lenovo ThinkPad X1 13th Gen) | unstable |

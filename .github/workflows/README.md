@@ -18,7 +18,7 @@ This directory contains the CI/CD workflows for this NixOS configuration reposit
 
 ### Maintenance
 
-- **`update-flake.yml`** - Automatically updates `flake.lock` daily
+- **`update-flake.yml`** - Automatically updates `flake.lock` every 2 days via `DeterminateSystems/update-flake-lock` and auto-merges when evaluation checks pass
 - **`link-check.yml`** - Checks for broken links in Markdown and Nix files (weekly)
 - **`release.yml`** - Creates GitHub releases when tags are pushed
 
@@ -28,7 +28,7 @@ GitHub Actions runners have limited disk space:
 - **ubuntu-latest**: ~14GB free by default, ~25-30GB after aggressive cleanup
 - **macos-latest**: Similar constraints
 
-### Why We Don't Build Full System Configurations
+### Why We Don't Build Full System Configurations on GitHub Hosted Runners
 
 Full NixOS system builds can easily exceed **50-75GB** including:
 - Base system packages
@@ -46,25 +46,25 @@ This exceeds GitHub Actions' available disk space, causing builds to fail with "
 
 3. **Local Builds** - Full system builds happen on your local machines where disk space is not constrained.
 
-## Self-Hosted Runner (beehive)
+## Self-Hosted Runner (ursa)
 
-A self-hosted GitHub Actions runner is configured on `beehive` (the Beelink SER9 Pro home server). It automatically builds all x86_64-linux configurations on every push to `main` and pushes closures to Cachix.
+A self-hosted GitHub Actions runner is configured on `ursa` (the AMD home server). It automatically builds all x86_64-linux configurations on every push to `main` and pushes closures to Cachix.
 
 - **Workflow:** `build-and-cache.yml`
 - **Labels:** `self-hosted`, `nixos`, `x86_64-linux`
 - **What it builds:**
-  - All x86_64-linux NixOS configs (beehive, earth, hyperion, miranda, phoebe, tethys, titan)
-  - All x86_64-linux Home configs (including VPS stable configs)
+  - All x86_64-linux NixOS configs (beehive, earth, hyperion, luna, miranda, phoebe, tethys, titan, ursa, bucaccio, emilyvansant, love-alaya)
+  - All x86_64-linux Home configs
   - All flake packages
 
 ### NixOS-managed runner
 
-The runner is managed declaratively via `modules/nixos/services/github-runner/` and enabled on beehive in `modules/hosts/beehive/_github-runner.nix`.
+The runner is managed declaratively via `modules/nixos/services/github-runner/` and enabled on ursa in `modules/hosts/ursa/_github-runner.nix`.
 
 **Token setup:**
 1. Generate a GitHub Personal Access Token (classic) with `repo` scope at https://github.com/settings/tokens
 2. Add it to `secrets/sops/secrets.yaml` as `github-runner-token: <token>`
-3. Run `just switch-host beehive` to activate
+3. Run `just switch-host ursa` to activate
 4. The runner auto-registers with GitHub on first start
 
 ### Manual runner setup (fallback)

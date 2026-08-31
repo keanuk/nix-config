@@ -8,7 +8,7 @@ Personal NixOS and nix-darwin configuration files using Nix flakes. This reposit
 
 | Device | Description | Architecture | Role | Notes |
 |--------|-------------|--------------|------|-------|
-| **beehive** | Beelink SER9 Pro | x86_64 | Home Server | Media server with Jellyfin, Plex, *arr stack |
+| **beehive** | Beelink SER9 Pro | x86_64 | Desktop | Niri / Noctalia desktop |
 | **earth** | Intel NUC 10 i7 | x86_64 | Mini PC | Compact desktop |
 | **hyperion** | HP EliteBook 845 G8 | x86_64 | Laptop | Desktop with Pantheon DE |
 | **luna** | Lenovo ThinkPad X1 (13th Gen) | x86_64 | Laptop | GNOME desktop, cellular (Quectel RM520N-GL), OLED display |

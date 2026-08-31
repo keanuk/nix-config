@@ -31,8 +31,20 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # Note: beehive excluded because it requires git-crypt decrypted secrets
-        host: [earth, hyperion, mars, miranda, phoebe, tethys, titan]
+        host:
+          - beehive
+          - bucaccio
+          - earth
+          - emilyvansant
+          - hyperion
+          - love-alaya
+          - luna
+          - mars
+          - miranda
+          - phoebe
+          - tethys
+          - titan
+          - ursa
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

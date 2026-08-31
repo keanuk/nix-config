@@ -28,12 +28,17 @@ jobs:
       matrix:
         host:
           - beehive
+          - bucaccio
           - earth
+          - emilyvansant
           - hyperion
+          - love-alaya
+          - luna
           - miranda
           - phoebe
           - tethys
           - titan
+          - ursa
     steps:
       - name: Configure git authentication
         run: |
@@ -74,10 +79,13 @@ jobs:
           - keanu@beehive
           - keanu@earth
           - keanu@hyperion
+          - keanu@luna
+          - keanu@mars
           - keanu@miranda
           - keanu@phoebe
           - keanu@tethys
           - keanu@titan
+          - keanu@ursa
           - kimmy@hyperion
           - keanu@bucaccio
           - keanu@emilyvansant

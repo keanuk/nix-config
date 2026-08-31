@@ -1,4 +1,4 @@
-{ inputs, ... }:
+_:
 {
   flake.modules.nixos.hardware =
     { pkgs, ... }:
@@ -30,13 +30,5 @@
         tpm2-tss
         usbutils
       ];
-
-      system.autoUpgrade = {
-        enable = true;
-        allowReboot = false;
-        flake = inputs.self.outPath;
-        dates = "02:00";
-        randomizedDelaySec = "45min";
-      };
     };
 }

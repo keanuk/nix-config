@@ -86,7 +86,7 @@ A host composes roles by name:
 
 | Host | Platform | Arch | Role | Channel |
 |------|----------|------|------|---------|
-| beehive | NixOS | x86_64 | Home server (Beelink SER9 Pro) | unstable |
+| beehive | NixOS | x86_64 | Desktop (Beelink SER9 Pro) | unstable |
 | earth | NixOS | x86_64 | Mini PC (Intel NUC 10) | unstable |
 | hyperion | NixOS | x86_64 | Laptop (HP EliteBook 845 G8) | unstable |
 | mars | NixOS/WSL | aarch64 | WSL (ThinkPad X13s) | unstable |
