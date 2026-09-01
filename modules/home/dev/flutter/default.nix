@@ -1,10 +1,10 @@
-{ config, ... }:
+{ config, lib, ... }:
 {
   flake.modules.homeManager.flutter =
     { pkgs, ... }:
     {
-      home.packages = with pkgs; [
-        flutter
+      home.packages = lib.optionals (pkgs.stdenv.hostPlatform.system != "aarch64-linux") [
+        pkgs.flutter
       ];
     };
 
