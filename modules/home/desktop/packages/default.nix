@@ -11,7 +11,6 @@
         android-tools
         appimage-run
         audacity
-        bluebubbles
         bottles
         bruno
         calibre
@@ -74,7 +73,8 @@
 
         kdePackages.kdenlive
 
-        inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
+        # re-enable when build succeeds
+        # inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
       ];
     };
 }
