@@ -2,6 +2,11 @@ _: {
   flake.modules.nixos.desktop =
     { pkgs, ... }:
     {
+      # TODO: remove when ente-desktop updates electron version
+      nixpkgs.config.permittedInsecurePackages = [
+        "electron-41.10.6"
+      ];
+
       services = {
         # Desktop services
         accounts-daemon.enable = true;

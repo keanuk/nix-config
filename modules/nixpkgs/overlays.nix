@@ -8,6 +8,7 @@
         inherit (final.stdenv.hostPlatform) system;
         config = {
           allowUnfree = true;
+          inherit (final.config) permittedInsecurePackages;
         };
       };
     };
