@@ -63,8 +63,20 @@ in
 
       nixpkgs.hostPlatform = "x86_64-linux";
       networking.hostName = "titan";
-
       services.ollama.rocmOverrideGfx = lib.mkForce "10.3.0";
+
+      programs.noctalia-greeter = {
+        passwordless-sync-users = [ "keanu" ];
+        settings = {
+          session.default = "niri";
+          user.default = "keanu";
+          output = {
+            layout = "DP-2:0,0; DP-1:1080,0";
+            transforms = "DP-2:270; DP-1:normal";
+            scales = "DP-2:1; DP-1:1.5";
+          };
+        };
+      };
 
       boot.initrd = {
         systemd.tpm2.enable = true;

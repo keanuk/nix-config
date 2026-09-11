@@ -39,6 +39,10 @@ let
         config = {
           allowUnfree = true;
           allowImportFromDerivation = true;
+          # TODO: remove when ente-photos updates to newer electron
+          permittedInsecurePackages = [
+            "electron-41.10.6"
+          ];
         };
       };
     in
