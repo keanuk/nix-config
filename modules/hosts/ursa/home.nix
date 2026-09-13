@@ -18,19 +18,17 @@ let
     };
 
     programs.openclaw = {
-      instances.default.config.agents.list = [
-        {
-          id = "main";
+      instances.default.config.agents.entries = {
+        main = {
           default = true;
           model = "ollama/mistral-small3.2";
           subagents.allowAgents = [ "coder" ];
-        }
-        {
-          id = "coder";
+        };
+        coder = {
           model = "ollama/devstral-small-2:latest";
           tools.profile = "coding";
-        }
-      ];
+        };
+      };
     };
 
     home = {
