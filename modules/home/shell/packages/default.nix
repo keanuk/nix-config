@@ -15,9 +15,10 @@
           ffmpeg
           fh
           file
+          flow-control
           fortune
           gping
-          stable.immich-cli
+          immich-cli
           jq
           just
           libnatpmp
