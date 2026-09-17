@@ -1,34 +1,17 @@
-{ config, lib, ... }:
+{ config, ... }:
 let
   keanuHome = {
     imports = with config.flake.modules.homeManager; [
       base
       home-manager-self
       server
-      openclaw
+      hermes
     ];
 
-    programs.openclawSecrets = {
-      telegramTokenFile = lib.mkForce "/run/secrets/openclaw_telegram_bot_token_ursa";
-      primaryModel = lib.mkForce "ollama/mistral-small3.2";
-      fallbackModels = lib.mkForce [
-        "ollama/mistral:latest"
-        "ollama/gemma4:latest"
-      ];
-    };
-
-    programs.openclaw = {
-      instances.default.config.agents.entries = {
-        main = {
-          default = true;
-          model = "ollama/mistral-small3.2";
-          subagents.allowAgents = [ "coder" ];
-        };
-        coder = {
-          model = "ollama/devstral-small-2:latest";
-          tools.profile = "coding";
-        };
-      };
+    programs.hermesSecrets = {
+      telegramTokenFile = "/run/secrets/hermes_telegram_bot_token_ursa";
+      openaiApiKeyFile = "/run/secrets/hermes_openai_api_key";
+      primaryModel = "ollama/mistral-small3.2";
     };
 
     home = {

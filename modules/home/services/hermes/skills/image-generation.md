@@ -41,7 +41,7 @@ imggen --size 1536x1024 --quality high "a cozy cabin in a snowy forest, digital 
 | `--quality` | `low`, `medium`, `high`, `auto` | `auto` | Generation quality |
 | `--model` | `gpt-image-1`, `gpt-image-1.5`, `gpt-image-1-mini` | `gpt-image-1` | Model to use |
 | `--output` | file path | auto-generated | Where to save the image |
-| `--output-dir` | directory path | `/tmp/openclaw/imggen` | Directory for auto-named images |
+| `--output-dir` | directory path | `/tmp/hermes/imggen` | Directory for auto-named images |
 
 ## Output
 
@@ -65,8 +65,8 @@ user in the chat. The file path is printed by imggen — use it directly.
 ## Environment
 
 The `OPENAI_API_KEY` is loaded automatically from
-`~/.config/openclaw/secrets.env` if not already in the environment.
-Images are saved to `/tmp/openclaw/imggen/` by default.
+`~/.config/hermes/secrets.env` if not already in the environment.
+Images are saved to `/tmp/hermes/imggen/` by default.
 
 ## Error handling
 

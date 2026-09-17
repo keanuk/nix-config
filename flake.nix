@@ -101,10 +101,9 @@
     # are produced against upstream's own nixpkgs pin.
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
-    nix-openclaw = {
-      url = "github:openclaw/nix-openclaw";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # Deliberately not following nixpkgs: the hermes-agent package is pinned
+    # against its own uv2nix/dependency set.
+    hermes-agent.url = "github:NousResearch/hermes-agent";
 
     vpn-confinement.url = "github:Maroka-chan/VPN-Confinement";
 

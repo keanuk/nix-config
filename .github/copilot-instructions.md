@@ -15,7 +15,7 @@ This is a multi-platform Nix configuration managing NixOS, nix-darwin, and home-
   - `secrets/` — sops-nix wiring (NixOS + home-manager)
   - `nixos/` — `flake.modules.nixos.<role>` — base/pc/laptop/server/vps/wsl/amd, desktop/<de>/, programs/<name>/, services/<name>/, users/, fixes/
   - `darwin/` — `flake.modules.darwin.<role>` — base, packages, homebrew, services/<svc>/, users/, fixes
-  - `home/` — `flake.modules.homeManager.<role>` — base, profiles (desktop-linux, darwin-profile, vps-profile, wsl, server), shell/<tool>/, desktop/<app>/, dev/<lang>/, services/openclaw/
+  - `home/` — `flake.modules.homeManager.<role>` — base, profiles (desktop-linux, darwin-profile, vps-profile, wsl, server), shell/<tool>/, desktop/<app>/, dev/<lang>/, services/hermes/
   - `hosts/<host>/` — per-host composition (`default.nix`, `home.nix`, `_hardware-configuration.nix`, etc.)
 - `lib/` — static assets only: `wallpapers/` (used by stylix/hyprpaper) and `cosmic/catppuccin` (submodule)
 - `secrets/` — SOPS-encrypted secrets (age encryption); `secrets/sops/secrets.yaml`

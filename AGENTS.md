@@ -69,7 +69,7 @@ modules/
 │   ├── shell/                       # shell role (and neovim, nh, nushell, zsh opt-in roles)
 │   ├── desktop/                     # desktop role with 22 apps (and pass, cosmic, gnome, hyprland, gaming, appearance roles)
 │   ├── dev/                         # dev role with language toolchains
-│   ├── services/openclaw/           # option-driven openclaw role (programs.openclawSecrets.*)
+│   ├── services/hermes/             # option-driven hermes role (programs.hermesSecrets.*)
 │   └── fixes/                       # registry placeholder
 └── hosts/<hostname>/                # per-host composition
     ├── default.nix                  # composes roles via with config.flake.modules.nixos / darwin

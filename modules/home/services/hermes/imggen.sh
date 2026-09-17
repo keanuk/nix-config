@@ -2,7 +2,7 @@
 MODEL="${IMGGEN_MODEL:-gpt-image-1}"
 SIZE="${IMGGEN_SIZE:-1024x1024}"
 QUALITY="${IMGGEN_QUALITY:-auto}"
-OUTPUT_DIR="${IMGGEN_OUTPUT_DIR:-/tmp/openclaw/imggen}"
+OUTPUT_DIR="${IMGGEN_OUTPUT_DIR:-/tmp/hermes/imggen}"
 OUTPUT=""
 PROMPT=""
 
@@ -17,7 +17,7 @@ Options:
   --size SIZE       Image size: 1024x1024, 1536x1024, 1024x1536, auto (default: 1024x1024)
   --quality QUAL    Quality: low, medium, high, auto (default: auto)
   --output PATH     Output file path (default: auto-generated in \$OUTPUT_DIR)
-  --output-dir DIR  Output directory (default: /tmp/openclaw/imggen)
+  --output-dir DIR  Output directory (default: /tmp/hermes/imggen)
   -h, --help        Show this help message
 
 Environment:
@@ -63,7 +63,7 @@ fi
 
 # Source secrets.env as fallback (e.g. macOS launchd doesn't inherit env).
 if [[ -z "${OPENAI_API_KEY:-}" ]]; then
-  SECRETS_ENV="${HOME}/.config/openclaw/secrets.env"
+  SECRETS_ENV="${HOME}/.config/hermes/secrets.env"
   if [[ -f "$SECRETS_ENV" ]]; then
     set -a
     # shellcheck disable=SC1090
@@ -74,7 +74,7 @@ fi
 
 if [[ -z "${OPENAI_API_KEY:-}" ]]; then
   echo "Error: OPENAI_API_KEY is not set." >&2
-  echo "Set it, or ensure ~/.config/openclaw/secrets.env contains it." >&2
+  echo "Set it, or ensure ~/.config/hermes/secrets.env contains it." >&2
   exit 1
 fi
 

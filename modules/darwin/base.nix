@@ -7,7 +7,7 @@ let
       stable-packages
       additions
     ]
-    ++ [ inputs.nix-openclaw.overlays.default ];
+    ++ [ inputs.hermes-agent.overlays.default ];
 in
 {
   flake.modules.darwin.base = _: {

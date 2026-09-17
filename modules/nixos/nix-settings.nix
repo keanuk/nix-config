@@ -12,7 +12,7 @@ let
       additions
     ]
     ++ [
-      inputs.nix-openclaw.overlays.default
+      inputs.hermes-agent.overlays.default
       inputs.hyprland.overlays.hyprland-packages
       inputs.hyprland.overlays.hyprland-extras
     ];
