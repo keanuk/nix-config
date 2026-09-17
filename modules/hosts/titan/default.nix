@@ -65,7 +65,7 @@ in
       networking.hostName = "titan";
       services.ollama.rocmOverrideGfx = lib.mkForce "10.3.0";
 
-      programs.noctalia-greeter = {
+      services.displayManager.noctalia-greeter = {
         passwordless-sync-users = [ "keanu" ];
         settings = {
           session.default = "niri";

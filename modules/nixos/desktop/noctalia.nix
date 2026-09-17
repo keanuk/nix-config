@@ -18,7 +18,7 @@
       };
 
       # greetd-based greeter; no display manager needed alongside it.
-      programs.noctalia-greeter.enable = true;
+      services.displayManager.noctalia-greeter.enable = true;
 
       # Require a password at the greeter and unlock the GNOME keyring with
       # it (set up by nixpkgs' greetd module via enableGnomeKeyring). nixpkgs'
