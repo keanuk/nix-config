@@ -81,10 +81,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    lanzaboote = {
-      url = "github:nix-community/lanzaboote";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # Deliberately not following nixpkgs: builds cached on lanzaboote.cachix.org
+    # are produced against upstream's own nixpkgs pin.
+    lanzaboote.url = "github:nix-community/lanzaboote";
 
     disko = {
       url = "github:nix-community/disko";
@@ -98,10 +97,9 @@
 
     vscode-server.url = "github:nix-community/nixos-vscode-server";
 
-    zen-browser = {
-      url = "github:0xc000022070/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # Deliberately not following nixpkgs: builds cached on zen-browser.cachix.org
+    # are produced against upstream's own nixpkgs pin.
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
     nix-openclaw = {
       url = "github:openclaw/nix-openclaw";
@@ -133,15 +131,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    noctalia = {
-      url = "github:noctalia-dev/noctalia";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # Deliberately not following nixpkgs: builds cached on noctalia.cachix.org
+    # are produced against upstream's own nixpkgs pin.
+    noctalia.url = "github:noctalia-dev/noctalia";
 
-    noctalia-greeter = {
-      url = "github:noctalia-dev/noctalia-greeter";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    noctalia-greeter.url = "github:noctalia-dev/noctalia-greeter";
 
     wrapper-modules = {
       url = "github:BirdeeHub/nix-wrapper-modules";
@@ -152,10 +146,9 @@
     # produced against upstream's own nixpkgs pin.
     niri-wm.url = "github:niri-wm/niri";
 
-    hyprland = {
-      url = "github:hyprwm/hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # Deliberately not following nixpkgs: builds cached on hyprland.cachix.org
+    # are produced against upstream's own nixpkgs pin.
+    hyprland.url = "github:hyprwm/hyprland";
   };
 
   outputs =

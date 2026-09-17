@@ -33,7 +33,7 @@
         krita
         kodi-wayland
         leetgo
-        libreoffice-fresh
+        libreoffice
         netbird-ui
         nextcloud-client
         obs-studio
