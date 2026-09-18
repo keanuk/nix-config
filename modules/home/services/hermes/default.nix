@@ -78,10 +78,13 @@
                 OPENAI_KEY="$(cat "${toString cfg.openaiApiKeyFile}" | tr -d "\n")"
               fi
             ''}
-            printf 'TELEGRAM_BOT_TOKEN=%s\nOPENAI_API_KEY=%s\n' \
-              "$TELEGRAM_TOKEN" "$OPENAI_KEY" \
-              > "${secretsEnv}"
-            chmod 600 "${secretsEnv}"
+            run mkdir -p "$(dirname "${secretsEnv}")"
+            if [[ ! -v DRY_RUN ]]; then
+              printf 'TELEGRAM_BOT_TOKEN=%s\nOPENAI_API_KEY=%s\n' \
+                "$TELEGRAM_TOKEN" "$OPENAI_KEY" \
+                > "${secretsEnv}"
+              run chmod 600 "${secretsEnv}"
+            fi
           '';
         };
 
