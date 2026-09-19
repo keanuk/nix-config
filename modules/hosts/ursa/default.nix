@@ -48,7 +48,8 @@ in
       ];
 
       # Mirror beehive's per-service ordering: every service that needs
-      # /data waits for the RAID array to come online first.
+      # /data waits for the RAID array to come online first and cleanly stops
+      # before /data unmounts on shutdown.
       systemd.services =
         lib.genAttrs
           [
@@ -77,7 +78,10 @@ in
           (_: {
             after = [ "raid-online.target" ];
             requires = [ "raid-online.target" ];
-            unitConfig.AssertPathIsMountPoint = "/data";
+            unitConfig = {
+              AssertPathIsMountPoint = "/data";
+              RequiresMountsFor = "/data";
+            };
           });
 
       services.nextcloud = {

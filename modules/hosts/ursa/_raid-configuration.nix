@@ -132,6 +132,15 @@ in
         chmod 2775 /data/nixarr 2>/dev/null || true
       '';
 
+      preStop = ''
+        if mountpoint -q /data; then
+          echo "Syncing /data..."
+          sync /data || sync
+          echo "Unmounting /data..."
+          umount /data || true
+        fi
+      '';
+
       serviceConfig = {
         Type = "oneshot";
         RemainAfterExit = true;

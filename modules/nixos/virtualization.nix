@@ -14,10 +14,6 @@
         };
       };
 
-      services = {
-        gpm.enable = true;
-      };
-
       environment.systemPackages = with pkgs; [
         arion
         dockerfile-language-server

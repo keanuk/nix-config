@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   services = {
     nfs.server = {
@@ -53,10 +58,12 @@
     nfs-server = {
       after = [ "raid-online.target" ];
       requires = [ "raid-online.target" ];
+      unitConfig.RequiresMountsFor = "/data";
     };
     samba-smbd = {
       after = [ "raid-online.target" ];
       requires = [ "raid-online.target" ];
+      unitConfig.RequiresMountsFor = lib.mkForce "/var/lib/samba /data";
     };
   };
 
