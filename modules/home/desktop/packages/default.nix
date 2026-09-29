@@ -11,6 +11,7 @@
         android-tools
         appimage-run
         audacity
+        bazaar
         bottles
         bruno
         calibre
@@ -22,10 +23,19 @@
         ente-auth
         ente-cli
         ente-desktop
-        gimp3-with-plugins
+        fragments
+        gimp-with-plugins
         github-desktop
+        gnome-boxes
+        gnome-calendar
+        gnome-clocks
+        gnome-console
+        gnome-contacts
         gnome-disk-utility
+        gnome-keyring
         gnome-maps
+        gnome-music
+        gnome-weather
         handbrake
         inkscape
         jellyfin-media-player
@@ -39,6 +49,7 @@
         obs-studio
         opencode-claude-auth
         opencode-desktop
+        papers
         plex-desktop
         plexamp
         pocket-casts

@@ -26,6 +26,7 @@ order = [ "default" ]
         "privacy",
         "tray",
         "wallhaven",
+        "current",
         "clipboard",
         "input_volume",
         "output_volume",
@@ -231,7 +232,13 @@ scale = 1.0
 browser_open_near_click = true
 
 [plugins]
-enabled = [ "lucasoe/proton-pass", "avivbintangaringga/nix-monitor", "cleboost/zed-provider", "noctalia/wallhaven" ]
+enabled = [
+    "lucasoe/proton-pass",
+    "avivbintangaringga/nix-monitor",
+    "cleboost/zed-provider",
+    "noctalia/wallhaven",
+    "thaer99ob/default-apps"
+]
 
 [shell]
 app_icon_color = "on_surface"
@@ -355,6 +362,7 @@ wallpaper_scheme = "vibrant"
         "telegram",
         "blender",
         "darktable",
+        "gimp",
         "inkscape",
         "libreoffice",
         "micro",
@@ -366,7 +374,9 @@ wallpaper_scheme = "vibrant"
         "prismlauncher",
         "steam",
         "rofi",
+        "fastfetch",
         "obs",
+        "thunderbird",
         "zellij",
         "hyprtoolkit",
         "papirus-icons",
@@ -403,6 +413,9 @@ transition_on_startup = true
 
 [widget.clock]
 format = "{:%d %b %Y %H:%M}"
+
+[widget.current]
+type = "thaer99ob/default-apps:current"
 
 [widget.input_volume]
 show_label = false
