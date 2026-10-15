@@ -6,7 +6,7 @@
     lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
       packages.myNiri = inputs.wrapper-modules.wrappers.niri.wrap {
         inherit pkgs;
-        package = inputs.niri-wm.packages.${pkgs.stdenv.hostPlatform.system}.niri;
+        package = pkgs.niri;
         settings = lib.recursiveUpdate (import ./_base-settings.nix) {
           # niri >= 25.08 spawns xwayland-satellite on demand when an X11 client
           # connects, and exports DISPLAY to the session. Absolute store path so
