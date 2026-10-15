@@ -78,6 +78,12 @@
             "Mod+E".spawn = "nautilus";
             "Mod+I".spawn-sh = "noctalia msg settings-toggle";
             "Mod+S".spawn-sh = "noctalia msg panel-toggle control-center";
+            # Ploopy A+ Trackball buttons: the macOS Mission Control/Launchpad
+            # usages are remapped to KEY_PROG1/KEY_PROG2 (keysyms
+            # XF86Launch1/XF86Launch2) by the hwdb rule in
+            # modules/nixos/services/udev.
+            "XF86Launch1".toggle-overview = _: { };
+            "XF86Launch2".spawn-sh = "noctalia msg panel-toggle launcher";
             "Mod+Shift+S".spawn-sh = "noctalia msg panel-toggle wallpaper";
             "Mod+L".spawn-sh = "noctalia msg session lock";
             "Alt+Tab".spawn-sh = "noctalia msg window-switcher";
