@@ -25,8 +25,7 @@ order = [ "default" ]
     end = [
         "privacy",
         "tray",
-        "wallhaven",
-        "current",
+        "wallhaven_2",
         "clipboard",
         "input_volume",
         "output_volume",
@@ -146,7 +145,7 @@ wallpaper = ""
 [lockscreen_widgets]
 enabled = false
 schema_version = 2
-widget_order = [ "lockscreen-login-box@DP-1", "lockscreen-login-box@DP-2" ]
+widget_order = [ "lockscreen-login-box@eDP-1" ]
 
     [lockscreen_widgets.grid]
     cell_size = 16
@@ -395,6 +394,7 @@ transition_on_startup = true
 
     [wallpaper.automation]
     enabled = true
+    interval_seconds = 43200
 
     [wallpaper.default]
     path = "/home/keanu/.config/nix-config/lib/wallpapers/mossy-tree.jpg"

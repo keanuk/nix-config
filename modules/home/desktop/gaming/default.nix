@@ -13,8 +13,6 @@
         nanosaur2
         openra
         otto-matic
-        redeclipse
-        sauerbraten
         shattered-pixel-dungeon
         supertux
         supertuxkart
