@@ -29,7 +29,7 @@
       active-color = "#89b4fa";
       inactive-color = "#45475a";
     };
-    default-column-width.proportion = 0.5;
+    default-column-width.proportion = 0.9;
     center-focused-column = "on-overflow";
   };
 
