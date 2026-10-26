@@ -19,7 +19,6 @@
       ];
 
       boot = {
-        initrd.systemd.enable = true;
         loader.efi.canTouchEfiVariables = lib.mkDefault true;
         kernelModules = [ "iptable_raw" ];
       };
