@@ -7,7 +7,7 @@
       ...
     }:
     let
-      noctaliaEnabled = config.programs.noctalia.enable or false;
+      noctaliaEnabled = config.theme.noctaliaManaged;
       starshipToml = lib.importTOML ./starship.toml;
     in
     {

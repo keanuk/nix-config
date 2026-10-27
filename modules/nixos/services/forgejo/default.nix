@@ -1,4 +1,8 @@
 { config, ... }:
+let
+  d = config.domains;
+  gitDomain = "${d.services.git.subdomain}.${d.primary}";
+in
 {
   flake.modules.nixos.forgejo =
     {
@@ -34,9 +38,9 @@
             APP_NAME = "Oranos Git";
           };
           server = {
-            DOMAIN = "git.oranos.org";
-            ROOT_URL = "https://git.oranos.org/";
-            HTTP_PORT = 3001;
+            DOMAIN = gitDomain;
+            ROOT_URL = "https://${gitDomain}/";
+            HTTP_PORT = d.services.git.backendPort;
             HTTP_ADDR = "127.0.0.1";
           };
           service = {

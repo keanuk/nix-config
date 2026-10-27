@@ -15,7 +15,7 @@ in
     let
       autheliaUser = "authelia";
       autheliaGroup = "authelia";
-      autheliaPort = 9191;
+      autheliaPort = d.services.auth.backendPort;
 
       # Helper function to create Authelia-protected nginx virtual hosts
       # This eliminates ~700 lines of repetitive configuration
@@ -163,8 +163,6 @@ in
           sessionSecretFile = config.sops.secrets.authelia-session-secret.path;
           storageEncryptionKeyFile = config.sops.secrets.authelia-storage-encryption-key.path;
         };
-        environmentVariables = { };
-
         settings = {
           theme = "dark";
           default_2fa_method = "totp";

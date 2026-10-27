@@ -7,7 +7,7 @@
       ...
     }:
     let
-      noctaliaEnabled = config.programs.noctalia.enable or false;
+      noctaliaEnabled = config.theme.noctaliaManaged;
     in
     {
       programs.zed-editor = {

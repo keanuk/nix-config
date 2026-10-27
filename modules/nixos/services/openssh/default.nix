@@ -1,7 +1,7 @@
-{ config, lib, ... }:
+{ config, ... }:
 {
   flake.modules.nixos = {
-    openssh = _: {
+    openssh = { lib, ... }: {
       services.openssh = {
         enable = true;
         ports = [ 22 ];

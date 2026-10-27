@@ -10,7 +10,7 @@
     {
       # Disable the built-in nextdns module as we're using a custom service
       # that reads the profile ID from sops at runtime
-      nextdns.enable = lib.mkForce false;
+      services.nextdns.enable = lib.mkForce false;
 
       environment.systemPackages = with pkgs; [
         nextdns

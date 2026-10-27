@@ -1,8 +1,9 @@
-{ config, inputs, ... }:
+{ config, ... }:
 let
   inherit (config.flake.modules.nixos)
     base
     hardware
+    intel
     systemd-boot
     desktop
     niri
@@ -19,6 +20,7 @@ in
     imports = [
       base
       hardware
+      intel
       systemd-boot
       desktop
       niri
@@ -28,9 +30,6 @@ in
       swapfile
       fs
       home-manager
-      inputs.nixos-hardware.nixosModules.common-cpu-intel
-      inputs.nixos-hardware.nixosModules.common-pc
-      inputs.nixos-hardware.nixosModules.common-pc-ssd
       ./_hardware-configuration.nix
     ];
 

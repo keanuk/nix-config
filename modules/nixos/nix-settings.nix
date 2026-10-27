@@ -1,22 +1,4 @@
-{
-  config,
-  inputs,
-  ...
-}:
-let
-  baseOverlays =
-    with config.flake.overlays;
-    [
-      unstable-packages
-      stable-packages
-      additions
-    ]
-    ++ [
-      inputs.hermes-agent.overlays.default
-      inputs.hyprland.overlays.hyprland-packages
-      inputs.hyprland.overlays.hyprland-extras
-    ];
-in
+{ config, inputs, ... }:
 {
   flake.modules.nixos.nix-settings = {
     nix = {
@@ -48,7 +30,7 @@ in
           "https://install.determinate.systems"
           "https://keanu.cachix.org"
           "https://nix-community.cachix.org"
-          "https://cache.oranos.org"
+          "https://${config.domains.services.cache.subdomain}.${config.domains.primary}"
         ];
         trusted-public-keys = [
           "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM="
@@ -69,7 +51,7 @@ in
     };
 
     nixpkgs = {
-      overlays = baseOverlays;
+      overlays = config.flake.baseOverlays;
       config = {
         allowUnfree = true;
         allowImportFromDerivation = true;

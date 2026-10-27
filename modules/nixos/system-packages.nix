@@ -8,8 +8,6 @@
         zsh.enable = true;
       };
 
-      environment.sessionVariables = { };
-
       environment.systemPackages = with pkgs; [
         busybox
         ghostty.terminfo

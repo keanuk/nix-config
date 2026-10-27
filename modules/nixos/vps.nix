@@ -59,12 +59,16 @@ _: {
           enableRootSlice = true;
           enableUserSlices = true;
         };
-
-        services.systemd-journald.serviceConfig = {
-          SystemMaxUse = "100M";
-          RuntimeMaxUse = "50M";
-        };
       };
+
+      # NOTE: journald limits live in journald.conf, not the unit's
+      # serviceConfig (keys there are silently ignored). The VPS role is only
+      # imported by stable hosts; on nixos-unstable `services.journald.extraConfig`
+      # was removed in favor of `services.journald.settings.Journal`.
+      services.journald.extraConfig = ''
+        SystemMaxUse=100M
+        RuntimeMaxUse=50M
+      '';
 
       networking = {
         useDHCP = lib.mkDefault true;

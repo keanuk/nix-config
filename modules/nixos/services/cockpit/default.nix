@@ -1,4 +1,8 @@
 { config, ... }:
+let
+  d = config.domains;
+  cockpitDomain = "${d.services.cockpit.subdomain}.${d.primary}";
+in
 {
   flake.modules.nixos.cockpit =
     {
@@ -12,10 +16,10 @@
         enable = true;
         package = pkgs.cockpit;
         openFirewall = true;
-        port = 9090;
+        port = d.services.cockpit.backendPort;
         settings = {
           WebService = {
-            Origins = lib.mkForce "https://localhost:9090 https://${config.networking.hostName}:9090 wss://${config.networking.hostName}:9090 https://cockpit.oranos.org wss://cockpit.oranos.org";
+            Origins = lib.mkForce "https://localhost:9090 https://${config.networking.hostName}:9090 wss://${config.networking.hostName}:9090 https://${cockpitDomain} wss://${cockpitDomain}";
           };
         };
       };

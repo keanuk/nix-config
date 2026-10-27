@@ -1,12 +1,12 @@
 # Darwin-specific Zed configuration
 #
-# On macOS, Zed is installed via Homebrew (see darwin/homebrew.nix),
-# so we set package = null to skip the Nix package installation.
-# We import the shared default.nix to get all LSP binary paths (nixd, etc.)
-# properly resolved to Nix store paths, avoiding the issue where Zed.app
-# launched from /Applications can't find LSPs on the Nix-managed $PATH.
+# On macOS, Zed is installed via Homebrew (see darwin/homebrew.nix), so we
+# enable the HM module with package = null to manage only the configuration.
+# The shared default.nix is NOT imported here (it belongs to the Linux-only
+# desktop role), so LSPs are expected on the PATH rather than as store paths.
 _: {
   programs.zed-editor = {
+    enable = true;
     package = null;
     installRemoteServer = false;
     # Darwin-specific overrides

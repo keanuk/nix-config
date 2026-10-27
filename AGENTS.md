@@ -24,9 +24,8 @@ modules/
 │   ├── home-manager.nix             # configurations.homeManager + homeManager-stable
 │   └── deploy-rs.nix                # derives flake.deploy.nodes from isVps=true entries
 ├── nixpkgs/
-│   ├── overlays.nix                 # flake.overlays = { additions, modifications, unstable-packages, stable-packages }
-│   ├── _pkgs.nix                    # custom package definitions (referenced by additions overlay)
-│   └── _fixes/                      # temporary package-level patches (referenced by modifications)
+│   ├── overlays.nix                 # flake.overlays = { additions, unstable-packages, stable-packages } + flake.baseOverlays
+│   └── _pkgs.nix                    # custom package definitions (referenced by additions overlay)
 ├── secrets/
 │   ├── nixos.nix                    # flake.modules.nixos.sops
 │   └── home.nix                     # flake.modules.homeManager.sops
@@ -34,7 +33,7 @@ modules/
 │   ├── nix-settings.nix             # nix daemon + nixpkgs config + overlays (everyone needs this)
 │   ├── system-packages.nix          # base packages (everyone needs this)
 │   ├── base.nix                     # main NixOS base role (features opt into it from their own files)
-│   ├── pc.nix, laptop.nix, vps.nix, vps-grub.nix, wsl.nix, amd.nix
+│   ├── pc.nix, laptop.nix, vps.nix, vps-grub.nix, wsl.nix, amd.nix, intel.nix
 │   ├── hardware.nix                 # hardware-firmware, autoUpgrade
 │   ├── lanzaboote.nix, systemd-boot.nix
 │   ├── fs.nix, swapfile.nix, preservation.nix
@@ -116,7 +115,7 @@ Currently:
 - `pc` and `laptop` auto-include: `smartd`, `openssh`.
 - `lanzaboote` auto-includes: `fwupd-signed-efi` (fix; makes capsule updates work under Secure Boot).
 
-Roles that *don't* auto-opt-in (host imports them explicitly): the desktop environment roles (`cosmic`, `gnome`, `pantheon`, `plasma`, `hyprland`), `desktop`, `gaming`, `lanzaboote`, `systemd-boot`, `vps-grub`, `hardware`, `amd`, `wsl`, `vps`, `static-website`, `fs`, `swapfile`, `preservation`, `ephemeral-bcachefs`, `ephemeral-luks-btrfs`, `rtw88`, `nfs-data`, `home-manager`, `home-manager-stable`, `keanu`, `kimmy`, `btrfs`, `ollama-medium`, `ollama-high`.
+Roles that *don't* auto-opt-in (host imports them explicitly): the desktop environment roles (`cosmic`, `gnome`, `pantheon`, `plasma`, `hyprland`), `desktop`, `gaming`, `lanzaboote`, `systemd-boot`, `vps-grub`, `hardware`, `amd`, `intel`, `wsl`, `vps`, `static-website`, `fs`, `swapfile`, `preservation`, `ephemeral-bcachefs`, `ephemeral-luks-btrfs`, `rtw88`, `nfs-data`, `home-manager`, `home-manager-stable`, `keanu`, `kimmy`, `btrfs`, `ollama-medium`, `ollama-high`.
 
 ### Configuration Output
 - `flake.nixosConfigurations` is built from `configurations.nixos.<host>.module` (unstable) and `configurations.nixos-stable.<host>.module` (stable channel — VPS hosts).
@@ -141,10 +140,8 @@ Roles that *don't* auto-opt-in (host imports them explicitly): the desktop envir
 - Service modules read `config.domains` at flake-parts scope and capture values via closure into the inner deferredModule (avoids specialArgs threading).
 
 ### Overlays
-- `modules/nixpkgs/overlays.nix` defines `flake.overlays = { additions; modifications; unstable-packages; stable-packages; }`.
-- Overlays are applied in `modules/nixos/nix-settings.nix` (nixpkgs.overlays) and in `modules/configurations/home-manager.nix` (per-system pkgs for standalone HM).
+- `modules/nixpkgs/overlays.nix` defines `flake.overlays = { additions; unstable-packages; stable-packages; }` and `flake.baseOverlays` — the shared overlay set (the three flake overlays + hermes-agent + hyprland) applied by every nixpkgs instantiation: `modules/nixos/nix-settings.nix` (NixOS), `modules/darwin/base.nix` (darwin), and `modules/configurations/home-manager.nix` (standalone HM). Reference `config.flake.baseOverlays` instead of re-listing overlays.
 - Custom packages live in `modules/nixpkgs/_pkgs.nix`.
-- Fix overlays in `modules/nixpkgs/_fixes/`.
 
 ### Ollama Model Tiers
 - Base service: `flake.modules.nixos.ollama` (gemma4:e2b for resource-constrained hosts).

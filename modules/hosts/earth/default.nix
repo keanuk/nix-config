@@ -1,8 +1,9 @@
-{ config, inputs, ... }:
+{ config, ... }:
 let
   inherit (config.flake.modules.nixos)
     base
     hardware
+    intel
     pc
     rtw88
     systemd-boot
@@ -21,6 +22,7 @@ in
     imports = [
       base
       hardware
+      intel
       pc
       rtw88
       systemd-boot
@@ -32,9 +34,6 @@ in
       keanu
       home-manager
       nfs-data
-      inputs.nixos-hardware.nixosModules.common-cpu-intel
-      inputs.nixos-hardware.nixosModules.common-pc
-      inputs.nixos-hardware.nixosModules.common-pc-ssd
       ./_disko-configuration.nix
       ./_hardware-configuration.nix
     ];

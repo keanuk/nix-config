@@ -26,7 +26,7 @@
       }
     );
     default = { };
-    description = "NixOS configurations using the stable (25.11) nixpkgs channel — used for VPS hosts.";
+    description = "NixOS configurations using the stable (26.05) nixpkgs channel — used for VPS hosts.";
   };
 
   config.flake.nixosConfigurations = lib.mapAttrs (

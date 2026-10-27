@@ -17,18 +17,7 @@ let
     };
   };
 
-  baseOverlays =
-    with config.flake.overlays;
-    [
-      unstable-packages
-      stable-packages
-      additions
-    ]
-    ++ [
-      inputs.hermes-agent.overlays.default
-      inputs.hyprland.overlays.hyprland-packages
-      inputs.hyprland.overlays.hyprland-extras
-    ];
+  baseOverlays = config.flake.baseOverlays;
 
   mkUnstable =
     _name: cfg:
@@ -39,10 +28,6 @@ let
         config = {
           allowUnfree = true;
           allowImportFromDerivation = true;
-          # TODO: remove when ente-photos updates to newer electron
-          permittedInsecurePackages = [
-            "electron-41.10.6"
-          ];
         };
       };
     in
@@ -80,7 +65,7 @@ in
     homeManager-stable = lib.mkOption {
       type = lib.types.lazyAttrsOf homeConfigSubmodule;
       default = { };
-      description = "Standalone home-manager configurations using the stable (25.11) channel.";
+      description = "Standalone home-manager configurations using the stable (26.05) channel.";
     };
   };
 

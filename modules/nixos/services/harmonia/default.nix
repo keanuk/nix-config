@@ -1,4 +1,7 @@
-{ inputs, ... }:
+{ config, inputs, ... }:
+let
+  d = config.domains;
+in
 {
   flake.modules.nixos.harmonia =
     { config, ... }:
@@ -12,7 +15,7 @@
       services.harmonia-dev.cache = {
         enable = true;
         signKeyPaths = [ config.sops.secrets.harmonia-signing-key.path ];
-        settings.bind = "127.0.0.1:5000";
+        settings.bind = "127.0.0.1:${toString d.services.cache.backendPort}";
       };
 
       nix.settings.allowed-users = [ "harmonia" ];

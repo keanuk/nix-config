@@ -138,7 +138,7 @@
           "nanosaur2"
           "otto-matic"
           "shattered-pixel-dungeon"
-          "superTuxKart"
+          "supertuxkart"
           "the-battle-for-wesnoth"
           "xonotic"
         ];

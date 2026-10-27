@@ -1,21 +1,11 @@
-{ config, inputs, ... }:
-let
-  baseOverlays =
-    with config.flake.overlays;
-    [
-      unstable-packages
-      stable-packages
-      additions
-    ]
-    ++ [ inputs.hermes-agent.overlays.default ];
-in
+{ config, ... }:
 {
   flake.modules.darwin.base = _: {
     # Disabled for Determinate Nix
     nix.enable = false;
 
     nixpkgs = {
-      overlays = baseOverlays;
+      overlays = config.flake.baseOverlays;
       config = {
         allowUnfree = true;
       };

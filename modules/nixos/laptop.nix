@@ -1,5 +1,5 @@
 {
-  # smartd and openssh opts itself into laptop from its own file.
+  # smartd and openssh opt themselves into laptop from their own files.
   flake.modules.nixos.laptop = {
     services = {
       openssh.openFirewall = false;

@@ -1,8 +1,4 @@
-{
-  config,
-  inputs,
-  ...
-}:
+{ config, ... }:
 let
   inherit (config.flake.modules.nixos)
     base
@@ -48,10 +44,6 @@ in
         fs
         home-manager
         nfs-data
-        inputs.nixos-hardware.nixosModules.common-cpu-amd
-        inputs.nixos-hardware.nixosModules.common-gpu-amd
-        inputs.nixos-hardware.nixosModules.common-pc
-        inputs.nixos-hardware.nixosModules.common-pc-ssd
         ./_hardware-configuration.nix
       ];
 

@@ -1,7 +1,15 @@
+{ inputs, ... }:
 {
   flake.modules.nixos.amd =
     { pkgs, lib, ... }:
     {
+      imports = [
+        inputs.nixos-hardware.nixosModules.common-cpu-amd
+        inputs.nixos-hardware.nixosModules.common-gpu-amd
+        inputs.nixos-hardware.nixosModules.common-pc
+        inputs.nixos-hardware.nixosModules.common-pc-ssd
+      ];
+
       boot.kernelParams = [ "amdgpu.exp_hw_support=1" ];
 
       services = {

@@ -1,4 +1,4 @@
-{ config, inputs, ... }:
+{ config, ... }:
 let
   inherit (config.flake.modules.nixos)
     base
@@ -14,7 +14,6 @@ let
     home-manager-stable
     github-runner
     harmonia
-    system-packages
     ;
 in
 {
@@ -35,11 +34,6 @@ in
         home-manager-stable
         github-runner
         harmonia
-        system-packages
-        inputs.nixos-hardware.nixosModules.common-cpu-amd
-        inputs.nixos-hardware.nixosModules.common-gpu-amd
-        inputs.nixos-hardware.nixosModules.common-pc
-        inputs.nixos-hardware.nixosModules.common-pc-ssd
         ./_disko-btrfs.nix
         ./_hardware-configuration.nix
         ./_raid-configuration.nix
@@ -47,9 +41,8 @@ in
         ./_github-runner.nix
       ];
 
-      # Mirror beehive's per-service ordering: every service that needs
-      # /data waits for the RAID array to come online first and cleanly stops
-      # before /data unmounts on shutdown.
+      # Every service that needs /data waits for the RAID array to come online
+      # first and cleanly stops before /data unmounts on shutdown.
       systemd.services =
         lib.genAttrs
           [
@@ -95,7 +88,7 @@ in
           "10.19.5.10"
           "100.91.10.104"
           "192.168.15.5"
-          "cloud.oranos.org"
+          "${config.domains.services.cloud.subdomain}.${config.domains.primary}"
         ];
       };
 

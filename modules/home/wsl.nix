@@ -15,6 +15,5 @@ in
       dev
       opencode
     ];
-
   };
 }

@@ -1,4 +1,7 @@
 { config, ... }:
+let
+  d = config.domains;
+in
 {
   flake.modules.nixos.immich =
     {
@@ -18,7 +21,7 @@
         # web access goes through the Authelia proxy.
         openFirewall = true;
         host = "0.0.0.0";
-        port = 2283;
+        port = d.services.photos.backendPort;
         mediaLocation = lib.mkDefault "/data/immich";
       };
 

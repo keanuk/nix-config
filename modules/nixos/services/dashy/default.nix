@@ -1,4 +1,8 @@
 { config, ... }:
+let
+  d = config.domains;
+  url = svc: "https://${d.services.${svc}.subdomain}.${d.primary}";
+in
 {
   flake.modules.nixos.dashy =
     { pkgs, ... }:
@@ -32,7 +36,7 @@
                   title = "Home Assistant";
                   description = "Home Automation";
                   icon = "hl-home-assistant";
-                  url = "https://home.oranos.org";
+                  url = url "home";
                 }
               ];
             }
@@ -44,31 +48,31 @@
                   title = "Sonarr";
                   description = "TV Shows";
                   icon = "hl-sonarr";
-                  url = "https://sonarr.oranos.org";
+                  url = url "sonarr";
                 }
                 {
                   title = "Radarr";
                   description = "Movies";
                   icon = "hl-radarr";
-                  url = "https://radarr.oranos.org";
+                  url = url "radarr";
                 }
                 {
                   title = "Lidarr";
                   description = "Music";
                   icon = "hl-lidarr";
-                  url = "https://lidarr.oranos.org";
+                  url = url "lidarr";
                 }
                 {
                   title = "Prowlarr";
                   description = "Indexers";
                   icon = "hl-prowlarr";
-                  url = "https://prowlarr.oranos.org";
+                  url = url "prowlarr";
                 }
                 {
                   title = "Bazarr";
                   description = "Subtitles";
                   icon = "hl-bazarr";
-                  url = "https://bazarr.oranos.org";
+                  url = url "bazarr";
                 }
               ];
             }
@@ -80,25 +84,25 @@
                   title = "Nextcloud";
                   description = "Cloud Storage";
                   icon = "hl-nextcloud";
-                  url = "https://cloud.oranos.org";
+                  url = url "cloud";
                 }
                 {
                   title = "Forgejo";
                   description = "Source Code";
                   icon = "hl-gitea";
-                  url = "https://git.oranos.org";
+                  url = url "git";
                 }
                 {
                   title = "VSCode";
                   description = "Code Editor";
                   icon = "hl-visual-studio-code";
-                  url = "https://code.oranos.org";
+                  url = url "code";
                 }
                 {
                   title = "Open WebUI";
                   description = "AI Chat";
                   icon = "fas fa-robot";
-                  url = "https://chat.oranos.org";
+                  url = url "chat";
                 }
               ];
             }
@@ -110,13 +114,13 @@
                   title = "Cockpit";
                   description = "Server Admin";
                   icon = "hl-cockpit";
-                  url = "https://cockpit.oranos.org";
+                  url = url "cockpit";
                 }
                 {
                   title = "Authelia";
                   description = "Authentication";
                   icon = "hl-authelia";
-                  url = "https://auth.oranos.org";
+                  url = url "auth";
                 }
               ];
             }
@@ -130,7 +134,7 @@
           listen = [
             {
               addr = "127.0.0.1";
-              port = 8082;
+              port = d.services.dashy.backendPort;
             }
           ];
         };

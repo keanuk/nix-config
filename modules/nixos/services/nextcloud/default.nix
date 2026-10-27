@@ -1,4 +1,8 @@
 { config, ... }:
+let
+  d = config.domains;
+  cloudDomain = "${d.services.cloud.subdomain}.${d.primary}";
+in
 {
   flake.modules.nixos.nextcloud =
     {
@@ -36,7 +40,7 @@
             "10.19.5.10"
             "100.91.10.104"
             "192.168.15.5"
-            "cloud.oranos.org"
+            cloudDomain
           ];
           trusted_proxies = [
             "127.0.0.1"

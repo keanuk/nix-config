@@ -15,10 +15,8 @@
       environment.systemPackages = with pkgs; [
         cachix
         home-manager
-        hwdata
         lsof
         pass
-        pciutils
       ];
     };
 

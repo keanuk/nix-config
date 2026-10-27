@@ -1,7 +1,7 @@
 { config, ... }:
 {
   flake.modules.homeManager.node =
-    { pkgs, ... }:
+    { pkgs, lib, ... }:
     {
       home.packages = with pkgs; [
         angular-language-server

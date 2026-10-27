@@ -1,4 +1,7 @@
 { config, ... }:
+let
+  d = config.domains;
+in
 {
   flake.modules.nixos.openvscode-server =
     { pkgs, lib, ... }:
@@ -9,7 +12,7 @@
         user = lib.mkDefault "keanu";
         group = lib.mkDefault "users";
         serverDataDir = lib.mkDefault "/home/keanu/.openvscode-server";
-        port = 3000;
+        port = d.services.code.backendPort;
         # No connection token, so only the local Authelia proxy may reach it.
         host = "127.0.0.1";
         withoutConnectionToken = true;

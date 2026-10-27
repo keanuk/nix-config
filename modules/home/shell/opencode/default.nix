@@ -5,122 +5,133 @@
       pkgs,
       lib,
       config,
+      options,
       ...
     }:
     let
-      noctaliaEnabled = config.programs.noctalia.enable or false;
+      noctaliaEnabled = config.theme.noctaliaManaged;
     in
     {
       programs.opencode =
         lib.mkIf (!(pkgs.stdenv.hostPlatform.isx86_64 && pkgs.stdenv.hostPlatform.isDarwin))
-          {
-            enable = true;
-            package = pkgs.unstable.opencode;
-            enableMcpIntegration = true;
-            web.enable = true;
+          (
+            lib.mkMerge [
+              {
+                enable = true;
+                package = pkgs.unstable.opencode;
+                enableMcpIntegration = true;
+                web.enable = true;
 
-            settings = {
-              model = "opencode-go/kimi-k3";
-              autoshare = false;
-              autoupdate = false;
+                settings = {
+                  model = "opencode-go/kimi-k3";
+                  autoshare = false;
+                  autoupdate = false;
 
-              mcp = {
-                nixos = {
-                  type = "local";
-                  enabled = true;
-                  command = if pkgs.stdenv.hostPlatform.isLinux then "uvx" else "${pkgs.uv}/bin/uvx";
-                  args = [ "mcp-nixos" ];
-                };
-                context7 = {
-                  type = "remote";
-                  enabled = true;
-                  url = "https://mcp.context7.com/mcp";
-                };
-                github =
-                  lib.mkIf
-                    (pkgs.stdenv.hostPlatform.isLinux || lib.hasAttrByPath [ "sops" "secrets" "github-token" ] config)
-                    {
+                  mcp = {
+                    nixos = {
                       type = "local";
                       enabled = true;
-                      command = pkgs.writeShellScript "opencode-mcp-github" ''
-                        export GITHUB_PERSONAL_ACCESS_TOKEN="$(cat ${
-                          if pkgs.stdenv.hostPlatform.isLinux then
-                            "/run/secrets/github-token"
-                          else
-                            config.sops.secrets.github-token.path
-                        })"
-                        exec ${pkgs.uv}/bin/uvx mcp-server-github
-                      '';
-                      args = [ ];
+                      command = if pkgs.stdenv.hostPlatform.isLinux then "uvx" else "${pkgs.uv}/bin/uvx";
+                      args = [ "mcp-nixos" ];
                     };
-                fetch = {
-                  type = "local";
-                  enabled = true;
-                  command = if pkgs.stdenv.hostPlatform.isLinux then "uvx" else "${pkgs.uv}/bin/uvx";
-                  args = [ "mcp-server-fetch" ];
+                    context7 = {
+                      type = "remote";
+                      enabled = true;
+                      url = "https://mcp.context7.com/mcp";
+                    };
+                    github =
+                      lib.mkIf
+                        (pkgs.stdenv.hostPlatform.isLinux || lib.hasAttrByPath [ "sops" "secrets" "github-token" ] config)
+                        {
+                          type = "local";
+                          enabled = true;
+                          command = pkgs.writeShellScript "opencode-mcp-github" ''
+                            export GITHUB_PERSONAL_ACCESS_TOKEN="$(cat ${
+                              if pkgs.stdenv.hostPlatform.isLinux then
+                                "/run/secrets/github-token"
+                              else
+                                config.sops.secrets.github-token.path
+                            })"
+                            exec ${pkgs.uv}/bin/uvx mcp-server-github
+                          '';
+                          args = [ ];
+                        };
+                    fetch = {
+                      type = "local";
+                      enabled = true;
+                      command = if pkgs.stdenv.hostPlatform.isLinux then "uvx" else "${pkgs.uv}/bin/uvx";
+                      args = [ "mcp-server-fetch" ];
+                    };
+                    playwright = {
+                      type = "local";
+                      enabled = true;
+                      command =
+                        if pkgs.stdenv.hostPlatform.isLinux then
+                          pkgs.writeShellScript "opencode-mcp-playwright" ''
+                            export PLAYWRIGHT_BROWSERS_PATH=${pkgs.playwright-driver}
+                            exec ${pkgs.uv}/bin/uvx mcp-playwright
+                          ''
+                        else
+                          "${pkgs.uv}/bin/uvx";
+                      args = if pkgs.stdenv.hostPlatform.isLinux then [ ] else [ "mcp-playwright" ];
+                    };
+                  };
                 };
-                playwright = {
-                  type = "local";
-                  enabled = true;
-                  command =
-                    if pkgs.stdenv.hostPlatform.isLinux then
-                      pkgs.writeShellScript "opencode-mcp-playwright" ''
-                        export PLAYWRIGHT_BROWSERS_PATH=${pkgs.playwright-driver}
-                        exec ${pkgs.uv}/bin/uvx mcp-playwright
-                      ''
-                    else
-                      "${pkgs.uv}/bin/uvx";
-                  args = if pkgs.stdenv.hostPlatform.isLinux then [ ] else [ "mcp-playwright" ];
+
+                extraPackages = [
+                  pkgs.uv
+                  pkgs.playwright
+                ];
+
+                context = ./context/default.md;
+
+                agents = {
+                  architect = ./agents/architect.md;
+                  coder = ./agents/coder.md;
+                  debugger = ./agents/debugger.md;
+                  documentation = ./agents/documentation.md;
+                  explainer = ./agents/explainer.md;
+                  reviewer = ./agents/reviewer.md;
+                  tester = ./agents/tester.md;
                 };
-              };
-            };
 
-            extraPackages = [
-              pkgs.uv
-              pkgs.playwright
-            ];
+                commands = {
+                  changelog = ./commands/changelog.md;
+                  commit = ./commands/commit.md;
+                  explain = ./commands/explain.md;
+                  fix-issue = ./commands/fix-issue.md;
+                  implement = ./commands/implement.md;
+                  pr = ./commands/pr.md;
+                  refactor = ./commands/refactor.md;
+                  test = ./commands/test.md;
+                };
 
-            tui = {
+                # TODO: enable when tools work again
+                # currently causes issue that prevents opencode from working
+                # Last-checked: 2026-10-26
+                # tools = {
+                #   git-blame = ./tools/git-blame.ts;
+                #   git-diff = ./tools/git-diff.ts;
+                #   git-log = ./tools/git-log.ts;
+                #   grep-search = ./tools/grep-search.ts;
+                #   just-run = ./tools/just-run.ts;
+                #   nix-check = ./tools/nix-check.ts;
+                #   nix-eval = ./tools/nix-eval.ts;
+                #   nix-lint = ./tools/nix-lint.ts;
+                # };
+              }
+              # OpenCode 2 replaced tui.json with cli.json; HM unstable has `cli`
+              # (and a deprecated `tui` that warns when set), HM stable (26.05)
+              # only has `tui` — prefer `cli`, fall back to `tui`.
               # Noctalia renders ~/.config/opencode/themes/matugen.json from the wallpaper.
-              theme = if noctaliaEnabled then "matugen" else "system";
-            };
-
-            context = ./context/default.md;
-
-            agents = {
-              architect = ./agents/architect.md;
-              coder = ./agents/coder.md;
-              debugger = ./agents/debugger.md;
-              documentation = ./agents/documentation.md;
-              explainer = ./agents/explainer.md;
-              reviewer = ./agents/reviewer.md;
-              tester = ./agents/tester.md;
-            };
-
-            commands = {
-              changelog = ./commands/changelog.md;
-              commit = ./commands/commit.md;
-              explain = ./commands/explain.md;
-              fix-issue = ./commands/fix-issue.md;
-              implement = ./commands/implement.md;
-              pr = ./commands/pr.md;
-              refactor = ./commands/refactor.md;
-              test = ./commands/test.md;
-            };
-
-            # TODO: enable when tools work again
-            # currently causes issue that prevents opencode from working
-            # tools = {
-            #   git-blame = ./tools/git-blame.ts;
-            #   git-diff = ./tools/git-diff.ts;
-            #   git-log = ./tools/git-log.ts;
-            #   grep-search = ./tools/grep-search.ts;
-            #   just-run = ./tools/just-run.ts;
-            #   nix-check = ./tools/nix-check.ts;
-            #   nix-eval = ./tools/nix-eval.ts;
-            #   nix-lint = ./tools/nix-lint.ts;
-            # };
-          };
+              (lib.optionalAttrs (options.programs.opencode ? cli) {
+                cli.theme = if noctaliaEnabled then "matugen" else "system";
+              })
+              (lib.optionalAttrs (!(options.programs.opencode ? cli) && (options.programs.opencode ? tui)) {
+                tui.theme = if noctaliaEnabled then "matugen" else "system";
+              })
+            ]
+          );
     };
 
   flake.modules.homeManager = {

@@ -10,6 +10,10 @@
         settings = ./noctalia.toml;
       };
 
+      # Tell every other app role (defined in home/base.nix) to prefer
+      # noctalia-rendered themes over their static fallbacks.
+      theme.noctaliaManaged = true;
+
       home.packages = with pkgs; [
         adw-gtk3
         papirus-icon-theme

@@ -1,5 +1,5 @@
 {
-  # smartd and openssh opts itself into pc from its own file.
+  # smartd and openssh opt themselves into pc from their own files.
   flake.modules.nixos.pc = {
     services.openssh.openFirewall = false;
     hardware.i2c.enable = true;
