@@ -47,7 +47,9 @@ modules/
 │   ├── users/                       # keanu, kimmy
 │   ├── virtualization.nix           # podman + oci-containers
 │   └── fixes/                       # workaround roles: ath11k, fwupd-signed-efi,
-│                                    #   network-manager-wait-online, nixarr-autobrr-dasel-v3, rtw88
+│                                    #   network-manager-wait-online, nixarr-autobrr-dasel-v3,
+│                                    #   nixarr-py-jellyfin-hash, rtw88,
+│                                    #   transmission-apparmor-lock
 ├── darwin/                          # flake.modules.darwin.<role>
 │   ├── base.nix, packages.nix
 │   ├── homebrew.nix
