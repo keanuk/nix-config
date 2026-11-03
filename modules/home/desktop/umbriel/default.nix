@@ -76,7 +76,7 @@
           };
 
           appearance = {
-            prefer_no_csd = true;
+            prefer_no_csd = false;
             border_width = 2;
             corner_radius = 20;
             blur = {
