@@ -8,6 +8,7 @@ let
     lanzaboote
     desktop
     niri
+    umbriel
     noctalia
     btrfs
     ollama
@@ -27,6 +28,7 @@ in
       lanzaboote
       desktop
       niri
+      umbriel
       noctalia
       btrfs
       ollama

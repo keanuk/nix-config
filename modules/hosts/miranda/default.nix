@@ -8,6 +8,7 @@ let
     laptop
     desktop
     niri
+    umbriel
     noctalia
     btrfs
     keanu
@@ -24,6 +25,7 @@ in
       laptop
       desktop
       niri
+      umbriel
       noctalia
       btrfs
       keanu

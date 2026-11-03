@@ -252,6 +252,7 @@ font_family = "sans-serif"
 lang = "de"
 launch_apps_as_systemd_services = true
 niri_overview_type_to_launch_enabled = true
+umbriel_overview_type_to_launch_enabled = true
 offline_mode = false
 panel_anchor_bar = "default"
 password_style = "default"
@@ -343,7 +344,8 @@ wallpaper_scheme = "vibrant"
         "qt",
         "scroll",
         "starship",
-        "sway"
+        "sway",
+        "umbriel"
     ]
     community_ids = [
         "antigravity",

@@ -7,6 +7,7 @@ let
     systemd-boot
     desktop
     niri
+    umbriel
     noctalia
     btrfs
     keanu
@@ -24,6 +25,7 @@ in
       systemd-boot
       desktop
       niri
+      umbriel
       noctalia
       btrfs
       keanu

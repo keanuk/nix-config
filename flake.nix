@@ -11,6 +11,7 @@
       "https://keanu.cachix.org"
       "https://nix-community.cachix.org"
       "https://noctalia.cachix.org"
+      "https://umbriel.cachix.org"
       "https://niri.cachix.org"
       "https://hyprland.cachix.org"
     ];
@@ -18,6 +19,7 @@
       "keanu.cachix.org-1:bnYEu6tJzXfwM5JkEhc90uEjR7cAHwaa4fwHRCYdFGg="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+      "umbriel.cachix.org-1:JfNq/2yg2S6D6z4Z2dVSZrZlDPQTKtexB6GAVLD98nw="
       "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
     ];
@@ -135,6 +137,10 @@
     noctalia.url = "github:noctalia-dev/noctalia";
 
     noctalia-greeter.url = "github:noctalia-dev/noctalia-greeter";
+
+    # Deliberately not following nixpkgs: builds cached on umbriel.cachix.org
+    # are produced against upstream's own nixpkgs pin on the cachix branch.
+    umbriel.url = "github:noctalia-dev/umbriel/cachix";
 
     wrapper-modules = {
       url = "github:BirdeeHub/nix-wrapper-modules";

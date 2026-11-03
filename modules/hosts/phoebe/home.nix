@@ -6,6 +6,7 @@ let
       gaming
       noctalia
       niri
+      umbriel
     ];
     home.stateVersion = "25.11";
   };

@@ -8,6 +8,7 @@ let
     laptop
     desktop
     niri
+    umbriel
     noctalia
     btrfs
     ollama
@@ -29,6 +30,7 @@ in
         laptop
         desktop
         niri
+        umbriel
         noctalia
         btrfs
         ollama

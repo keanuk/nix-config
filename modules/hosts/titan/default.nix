@@ -9,6 +9,7 @@ let
     rtw88
     desktop
     niri
+    umbriel
     noctalia
     btrfs
     ollama
@@ -34,6 +35,7 @@ in
         rtw88
         desktop
         niri
+        umbriel
         noctalia
         btrfs
         ollama

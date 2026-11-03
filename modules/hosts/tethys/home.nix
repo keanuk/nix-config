@@ -5,6 +5,7 @@ let
       desktop-linux
       noctalia
       niri
+      umbriel
     ];
     home.stateVersion = "23.05";
   };

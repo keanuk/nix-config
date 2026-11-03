@@ -9,6 +9,7 @@ let
     systemd-boot
     desktop
     niri
+    umbriel
     noctalia
     btrfs
     ollama
@@ -28,6 +29,7 @@ in
       systemd-boot
       desktop
       niri
+      umbriel
       noctalia
       btrfs
       ollama
