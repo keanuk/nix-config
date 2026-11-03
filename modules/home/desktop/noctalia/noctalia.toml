@@ -25,7 +25,7 @@ order = [ "default" ]
     end = [
         "privacy",
         "tray",
-        "wallhaven_2",
+        "wallhaven",
         "clipboard",
         "input_volume",
         "output_volume",
@@ -106,7 +106,7 @@ show_running = true
 smart_auto_hide = true
 
 [idle]
-pre_action_fade_seconds = 15
+pre_action_fade_seconds = 20
 
     [idle.behavior.lock]
     action = "lock"
@@ -252,7 +252,6 @@ font_family = "sans-serif"
 lang = "de"
 launch_apps_as_systemd_services = true
 niri_overview_type_to_launch_enabled = true
-umbriel_overview_type_to_launch_enabled = true
 offline_mode = false
 panel_anchor_bar = "default"
 password_style = "default"
@@ -264,6 +263,7 @@ shared_gl_context = true
 show_location = true
 telemetry_enabled = true
 time_format = "{:%H:%M}"
+umbriel_overview_type_to_launch_enabled = true
 
     [shell.animation]
     enabled = true
@@ -343,7 +343,6 @@ wallpaper_scheme = "vibrant"
         "niri",
         "qt",
         "scroll",
-        "starship",
         "sway",
         "umbriel"
     ]
@@ -355,6 +354,7 @@ wallpaper_scheme = "vibrant"
         "pi-agent",
         "pear-desktop",
         "ytm-player",
+        "chromium-based",
         "ungoogled-chromium",
         "zen-browser",
         "discord",
@@ -378,12 +378,15 @@ wallpaper_scheme = "vibrant"
         "obs",
         "thunderbird",
         "zellij",
+        "cosmic",
+        "gruvbox-plus-icons",
         "hyprtoolkit",
         "papirus-icons",
         "bat",
         "fzf",
         "konsole",
         "lazygit",
+        "starship",
         "tmux",
         "yazi"
     ]
