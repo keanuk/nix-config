@@ -1,6 +1,7 @@
 {
   flake.modules.homeManager.desktop =
     {
+      config,
       pkgs,
       inputs,
       ...
@@ -48,7 +49,9 @@
         nextcloud-client
         obs-studio
         opencode-claude-auth
-        opencode-desktop
+        (opencode-desktop.override {
+          opencode = config.programs.opencode.package;
+        })
         papers
         plex-desktop
         plexamp
