@@ -338,7 +338,8 @@
             "Mod+Left" = "window-focus-left";
             "Mod+Right" = "window-focus-right";
             "Mod+Ctrl+Left" = "window-focus-left";
-            "Mod+Ctrl+Right" = "window-focus-right";            "Mod+Up" = "window-focus-up";
+            "Mod+Ctrl+Right" = "window-focus-right";
+            "Mod+Up" = "window-focus-up";
             "Mod+Down" = "window-focus-down";
             "Mod+H" = "window-focus-left";
             "Mod+J" = "window-focus-down";
