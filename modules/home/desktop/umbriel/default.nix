@@ -219,6 +219,7 @@
               action = "spawn noctalia msg session lock";
               repeat = false;
             };
+            "Mod+Tab" = "spawn noctalia msg window-switcher";
             "Alt+Tab" = "spawn noctalia msg window-switcher";
             "Print" = {
               action = "spawn noctalia msg screenshot-fullscreen";
@@ -336,7 +337,8 @@
             # Focus and movement
             "Mod+Left" = "window-focus-left";
             "Mod+Right" = "window-focus-right";
-            "Mod+Up" = "window-focus-up";
+            "Mod+Ctrl+Left" = "window-focus-left";
+            "Mod+Ctrl+Right" = "window-focus-right";            "Mod+Up" = "window-focus-up";
             "Mod+Down" = "window-focus-down";
             "Mod+H" = "window-focus-left";
             "Mod+J" = "window-focus-down";
