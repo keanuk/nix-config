@@ -13,7 +13,7 @@ in
         # posthog/default.nix), which makes pkgs.unstable.open-webui unevaluable.
         # Removal condition: switch back to pkgs.unstable.open-webui once posthog
         # builds against mcp 2.
-        # Last-checked: 2026-10-26
+        # Last-checked: 2026-11-08
         package = pkgs.stable.open-webui;
         # Exposed on the tailnet for direct use (open-webui has its own login);
         # web access goes through the Authelia proxy.

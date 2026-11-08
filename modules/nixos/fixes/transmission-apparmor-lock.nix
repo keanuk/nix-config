@@ -3,7 +3,7 @@
 #   file lock (`k`) on `.config/transmission-daemon/lock` at startup and exits after
 #   25s if `file_lock` is denied by AppArmor.
 # Status: active
-# Last-checked: 2026-11-01
+# Last-checked: 2026-11-08
 # Removal condition: Remove when nixpkgs' `nixos/modules/services/torrent/transmission.nix`
 #   grants `k` (e.g. `rwk`) on `${cfg.home}/${settingsDir}/**` in
 #   `security.apparmor.includes."local/bin.transmission-daemon"`.
