@@ -6,7 +6,7 @@
 #   `pkgs.stable.jellyfin` so the Jellyfin server can stay on unstable without
 #   breaking `nixarr-py` evaluation.
 # Status: active
-# Last-checked: 2026-11-08
+# Last-checked: 2026-11-09
 # Removal condition: Remove if nixarr stops coupling `nixarr-py` to a hardcoded
 #   per-version hash table or when `nixarr.jellyfin.package` no longer uses unstable.
 { config, inputs, ... }:

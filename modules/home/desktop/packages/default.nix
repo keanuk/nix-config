@@ -1,7 +1,6 @@
 {
   flake.modules.homeManager.desktop =
     {
-      config,
       pkgs,
       inputs,
       ...
@@ -49,9 +48,7 @@
         nextcloud-client
         obs-studio
         opencode-claude-auth
-        (opencode-desktop.override {
-          opencode = config.programs.opencode.package;
-        })
+        opencode-desktop
         papers
         plex-desktop
         plexamp
@@ -64,7 +61,8 @@
         proton-vpn
         rawtherapee
         rnote
-        rustdesk-flutter
+        # TODO: re-enable when build succeeds
+        # rustdesk-flutter
         seahorse
         shortwave
         shotwell
