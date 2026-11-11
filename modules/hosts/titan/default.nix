@@ -62,7 +62,7 @@ in
       services.displayManager.noctalia-greeter = {
         passwordless-sync-users = [ "keanu" ];
         settings = {
-          session.default = "niri";
+          session.default = "umbriel";
           user.default = "keanu";
           output = {
             layout = "DP-2:0,0; DP-1:1080,0";
