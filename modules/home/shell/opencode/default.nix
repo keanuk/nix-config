@@ -18,7 +18,7 @@
             lib.mkMerge [
               {
                 enable = true;
-                package = lib.mkDefault pkgs.unstable.opencode;
+                package = pkgs.unstable.opencode;
                 enableMcpIntegration = true;
                 web.enable = true;
 
