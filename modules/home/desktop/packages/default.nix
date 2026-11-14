@@ -61,8 +61,7 @@
         proton-vpn
         rawtherapee
         rnote
-        # TODO: re-enable when build succeeds
-        # rustdesk-flutter
+        rustdesk-flutter
         seahorse
         shortwave
         shotwell

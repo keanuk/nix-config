@@ -18,7 +18,6 @@
         supertuxkart
         wesnoth
         xonotic
-        zeroad
       ];
     };
 }

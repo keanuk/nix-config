@@ -38,9 +38,5 @@
       inputs.hermes-agent.overlays.default
       inputs.hyprland.overlays.hyprland-packages
       inputs.hyprland.overlays.hyprland-extras
-    ]
-    ++ [
-      # Workaround overlays first, each points back to its fix module
-      (import ../home/fixes/lutris-gnome-desktop-rrscreen/_overlay.nix)
     ];
 }
