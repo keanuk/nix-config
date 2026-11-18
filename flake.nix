@@ -138,6 +138,8 @@
 
     noctalia-greeter.url = "github:noctalia-dev/noctalia-greeter";
 
+    luciole.url = "github:noctalia-dev/luciole";
+
     # Deliberately not following nixpkgs: builds cached on umbriel.cachix.org
     # are produced against upstream's own nixpkgs pin on the cachix branch.
     umbriel.url = "github:noctalia-dev/umbriel/cachix";

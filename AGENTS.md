@@ -68,7 +68,7 @@ modules/
 │   ├── impermanence.nix
 │   ├── darwin.nix, darwin-packages.nix    # darwin-specific apps + packages
 │   ├── shell/                       # shell role (and neovim, nh, nushell, zsh opt-in roles)
-│   ├── desktop/                     # desktop role with 22 apps (and pass, cosmic, gnome, hyprland, gaming, appearance roles)
+│   ├── desktop/                     # desktop apps (and pass, cosmic, gnome, hyprland, gaming, appearance roles)
 │   ├── dev/                         # dev role with language toolchains
 │   ├── services/hermes/             # option-driven hermes role (programs.hermesSecrets.*)
 │   └── fixes/                       # registry placeholder
@@ -116,6 +116,7 @@ Currently:
 - `server` auto-includes: `authelia`, `cloudflared`, `cockpit`, `comin`, `forgejo`, `dashy`, `home-assistant`, `immich`, `nextcloud`, `nixarr`, `ollama`, `openssh`, `openvscode-server`, `open-webui`, `smartd`, `vscode-server`.
 - `pc` and `laptop` auto-include: `smartd`, `openssh`.
 - `lanzaboote` auto-includes: `fwupd-signed-efi` (fix; makes capsule updates work under Secure Boot).
+- `homeManager.noctalia` auto-includes: `luciole`.
 
 Roles that *don't* auto-opt-in (host imports them explicitly): the desktop environment roles (`cosmic`, `gnome`, `pantheon`, `plasma`, `hyprland`), `desktop`, `gaming`, `lanzaboote`, `systemd-boot`, `vps-grub`, `hardware`, `amd`, `intel`, `wsl`, `vps`, `static-website`, `fs`, `swapfile`, `preservation`, `ephemeral-bcachefs`, `ephemeral-luks-btrfs`, `rtw88`, `nfs-data`, `home-manager`, `home-manager-stable`, `keanu`, `kimmy`, `btrfs`, `ollama-medium`, `ollama-high`.
 
