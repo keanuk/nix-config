@@ -87,7 +87,7 @@ pinned = [
     "org.squidowl.halloy",
     "org.gnome.Maps",
     "ente-desktop",
-    "org.gnome.Nautilus",
+    "dev.noctalia.luciole",
     "standard-notes",
     "proton-pass",
     "dev.zed.Zed",
