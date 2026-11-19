@@ -24,7 +24,7 @@ modules/
 │   ├── home-manager.nix             # configurations.homeManager + homeManager-stable
 │   └── deploy-rs.nix                # derives flake.deploy.nodes from isVps=true entries
 ├── nixpkgs/
-│   ├── overlays.nix                 # flake.overlays = { additions, unstable-packages, stable-packages } + flake.baseOverlays
+│   ├── overlays.nix                 # flake.overlays = { additions, unstable-packages, stable-packages, default } + options.nixpkgs.baseOverlays
 │   └── _pkgs.nix                    # custom package definitions (referenced by additions overlay)
 ├── secrets/
 │   ├── nixos.nix                    # flake.modules.nixos.sops
@@ -59,22 +59,22 @@ modules/
 │   └── fixes.nix
 ├── home/                            # flake.modules.homeManager.<role>
 │   ├── base.nix                     # base role (shell opts into it from its own file)
-│   ├── home-manager-self.nix        # autoUpgrade (flake-based)
-│   ├── desktop-linux.nix            # profile: base + desktop + cosmic + gnome (Linux desktop)
-│   ├── darwin-profile.nix           # profile: base + darwin (Darwin)
+│   ├── home-manager-self.nix        # autoUpgrade (standalone HM only; not used on NixOS-managed HM hosts)
+│   ├── desktop-linux.nix            # profile: base + desktop + noctalia + niri + umbriel + zellij (Linux desktop)
+│   ├── darwin-profile.nix           # profile: base + darwin + zellij (Darwin)
 │   ├── vps-profile.nix              # profile: base only (VPS)
 │   ├── wsl.nix                      # WSL profile
 │   ├── server.nix                   # server-oriented role
 │   ├── impermanence.nix
 │   ├── darwin.nix, darwin-packages.nix    # darwin-specific apps + packages
-│   ├── shell/                       # shell role (and neovim, nh, nushell, zsh opt-in roles)
-│   ├── desktop/                     # desktop apps (and pass, cosmic, gnome, hyprland, gaming, appearance roles)
+│   ├── shell/                       # shell + shell-workstation + helix-lsp (and neovim, nh, nushell, zsh opt-in roles)
+│   ├── desktop/                     # named app roles opting into desktop (and pass, cosmic, gnome, hyprland, gaming, appearance roles)
 │   ├── dev/                         # dev role with language toolchains
 │   ├── services/hermes/             # option-driven hermes role (programs.hermesSecrets.*)
 │   └── fixes/                       # registry placeholder
 └── hosts/<hostname>/                # per-host composition
     ├── default.nix                  # composes roles via with config.flake.modules.nixos / darwin
-    ├── home.nix                     # writes home-manager.users.<name> + standalone homeConfigurations
+    ├── home.nix                     # writes configurations.<class>.<host>.homeUsers.<user> (auto-wires HM + standalone homeConfigurations)
     ├── _hardware-configuration.nix  # auto-generated; underscore-prefix to skip import-tree
     ├── _disko-configuration.nix     # disko config; underscore-prefix
     ├── sops.nix                     # per-host sops secrets
@@ -112,20 +112,20 @@ Each feature decides which composite role(s) it belongs to from its own file. Th
 Multiple files writing `flake.modules.nixos.base = X` are merged via deferredModule semantics — each definition becomes one entry in `base.imports`. A feature can opt into multiple parents (e.g. `smartd` opts into `pc`, `laptop`, *and* `server`). Hosts that want a feature stand-alone import it directly by its plain role name.
 
 Currently:
-- `base` auto-includes: `nix-settings`, `system-packages`, `sops`, `apparmor`, `tailscale`, `fuse`, `nh`, `nix-ld`, `virtualization`.
-- `server` auto-includes: `authelia`, `cloudflared`, `cockpit`, `comin`, `forgejo`, `dashy`, `home-assistant`, `immich`, `nextcloud`, `nixarr`, `ollama`, `openssh`, `openvscode-server`, `open-webui`, `smartd`, `vscode-server`.
-- `pc` and `laptop` auto-include: `smartd`, `openssh`.
-- `vps` auto-includes: `openssh`, `vscode-server`.
+- `base` auto-includes: `nix-settings`, `system-packages`, `sops`, `apparmor`, `tailscale`, `fuse`, `nh`, `nix-ld`.
+- `server` auto-includes: `authelia`, `cloudflared`, `cockpit`, `comin`, `forgejo`, `dashy`, `home-assistant`, `immich`, `nextcloud`, `nixarr`, `ollama`, `openssh`, `openvscode-server`, `open-webui`, `smartd`, `virtualization`, `vscode-server`.
+- `pc` and `laptop` auto-include: `smartd`, `openssh`, `virtualization`.
+- `vps` auto-includes: `openssh`.
 - `desktop` auto-includes: `evolution`, `gamescope`, `steam`, `geoclue2`, `udev`.
 - `lanzaboote` auto-includes: `fwupd-signed-efi` (fix; makes capsule updates work under Secure Boot).
 - `homeManager.noctalia` auto-includes: `luciole`.
 
-Roles that *don't* auto-opt-in (host imports them explicitly): the desktop environment roles (`niri`, `umbriel`, `noctalia`, `cosmic`, `gnome`, `pantheon`, `plasma`, `hyprland`), `desktop`, `lanzaboote`, `systemd-boot`, `vps-grub`, `hardware`, `amd`, `intel`, `cellular`, `wsl`, `vps`, `static-website`, `fs`, `swapfile`, `preservation`, `ephemeral-bcachefs`, `ephemeral-luks-btrfs`, `rtw88`, `nfs-data`, `home-manager`, `home-manager-stable`, `keanu`, `kimmy`, `btrfs`, `ollama-medium`, `ollama-high`, `github-runner`, `harmonia`.
+Roles that *don't* auto-opt-in (host imports them explicitly): the desktop environment roles (`niri`, `umbriel`, `noctalia`, `cosmic`, `gnome`, `pantheon`, `plasma`, `hyprland`), `desktop`, `lanzaboote`, `systemd-boot`, `vps-grub`, `hetzner-vps`, `hardware`, `amd`, `intel`, `cellular`, `wsl`, `vps`, `static-website`, `fs`, `swapfile`, `preservation`, `ephemeral-bcachefs`, `ephemeral-luks-btrfs`, `rtw88`, `nfs-data`, `home-manager`, `home-manager-stable`, `keanu`, `kimmy`, `btrfs`, `ollama-medium`, `ollama-high`, `github-runner`, `harmonia`.
 
 ### Configuration Output
-- `flake.nixosConfigurations` is built from `configurations.nixos.<host>.module` (unstable) and `configurations.nixos-stable.<host>.module` (stable channel — VPS hosts).
+- `flake.nixosConfigurations` is built from `configurations.nixos.<host>.module` (unstable) and `configurations.nixos-stable.<host>.module` (stable channel — VPS hosts and ursa).
 - `flake.darwinConfigurations` is built from `configurations.darwin.<host>.module`.
-- `flake.homeConfigurations."<user>@<host>"` is built from `configurations.homeManager.<key>` (unstable) and `configurations.homeManager-stable.<key>` (stable, VPS).
+- `flake.homeConfigurations."<user>@<host>"` is auto-derived from `configurations.{nixos,nixos-stable,darwin}.<host>.homeUsers.<user>` (and also supports manual entries in `configurations.homeManager` / `configurations.homeManager-stable`).
 - `flake.deploy.nodes.<host>` is auto-derived from `configurations.nixos-stable.<host>` entries with `isVps = true`.
 
 ### Stable vs Unstable
@@ -145,7 +145,7 @@ Roles that *don't* auto-opt-in (host imports them explicitly): the desktop envir
 - Service modules read `config.domains` at flake-parts scope and capture values via closure into the inner deferredModule (avoids specialArgs threading).
 
 ### Overlays
-- `modules/nixpkgs/overlays.nix` defines `flake.overlays = { additions; unstable-packages; stable-packages; }` and `flake.baseOverlays` — the shared overlay set (the three flake overlays + hermes-agent + hyprland) applied by every nixpkgs instantiation: `modules/nixos/nix-settings.nix` (NixOS), `modules/darwin/base.nix` (darwin), and `modules/configurations/home-manager.nix` (standalone HM). Reference `config.flake.baseOverlays` instead of re-listing overlays.
+- `modules/nixpkgs/overlays.nix` defines `flake.overlays = { additions; unstable-packages; stable-packages; default; }` and `options.nixpkgs.baseOverlays` — the shared overlay set applied by every nixpkgs instantiation: `modules/nixos/nix-settings.nix` (NixOS), `modules/darwin/base.nix` (darwin), and `modules/configurations/home-manager.nix` (standalone HM). Reference `config.nixpkgs.baseOverlays` instead of re-listing overlays.
 - Custom packages live in `modules/nixpkgs/_pkgs.nix`.
 
 ### Ollama Model Tiers
@@ -203,7 +203,7 @@ Roles that *don't* auto-opt-in (host imports them explicitly): the desktop envir
 1. Create `modules/hosts/<hostname>/default.nix` writing to `configurations.nixos.<hostname>.module` (or `nixos-stable` for VPS, `darwin` for macOS).
 2. Compose roles via `imports = with config.flake.modules.nixos; [ ... ];`.
 3. Copy `hardware-configuration.nix` (and any disko config) to the host folder with an `_` prefix.
-4. Create `modules/hosts/<hostname>/home.nix` writing both `configurations.<class>.<host>.module.home-manager.users.<user>` and `configurations.homeManager."<user>@<host>"`.
+4. Create `modules/hosts/<hostname>/home.nix` writing `configurations.<class>.<host>.homeUsers.<user>` (automatically wires both `home-manager.users.<user>` and standalone `homeConfigurations."<user>@<host>"`).
 5. For VPS: set `isVps = true; deploy = { hostname = "..."; sshUser = "..."; };` and `staticWebsite = { domain = "..."; webRoot = "..."; };`.
 
 ### Linting

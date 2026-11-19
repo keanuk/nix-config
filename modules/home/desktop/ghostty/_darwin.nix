@@ -1,22 +1,14 @@
-# Darwin-specific Ghostty configuration
+# Darwin-specific Ghostty overrides layered on top of homeManager.ghostty.
 #
 # On macOS, Ghostty is installed via Homebrew (see darwin/homebrew.nix),
-# so we set package = null to skip the Nix package installation.
-{ config, lib, ... }:
+# so we set package = null to manage only the configuration.
+{ config, ... }:
 {
   programs.ghostty = {
-    enable = true;
     package = null;
-    enableBashIntegration = true;
-    enableFishIntegration = true;
-    enableZshIntegration = true;
     installBatSyntax = false;
     installVimSyntax = false;
     settings = {
-      theme = "dark:Catppuccin Mocha,light:Catppuccin Latte";
-      font-size = lib.mkDefault 13;
-      font-family = "RobotoMono Nerd Font";
-      background-blur = lib.mkDefault true;
       command = "/etc/profiles/per-user/${config.home.username}/bin/fish --login --interactive";
       shell-integration = "fish";
       background-opacity = 0.7;

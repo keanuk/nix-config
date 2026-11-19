@@ -12,10 +12,10 @@
           module = lib.mkOption {
             type = lib.types.deferredModule;
           };
-          darwinInput = lib.mkOption {
-            type = lib.types.str;
-            default = "darwin";
-            description = "The flake input representing nix-darwin to use.";
+          homeUsers = lib.mkOption {
+            type = lib.types.lazyAttrsOf lib.types.deferredModule;
+            default = { };
+            description = "Home Manager user modules wired into both home-manager.users and standalone homeConfigurations.";
           };
         };
       }
@@ -26,12 +26,14 @@
 
   config.flake.darwinConfigurations = lib.mapAttrs (
     _name:
-    { module, darwinInput }:
-    let
-      darwinLib = inputs.${darwinInput} or inputs.darwin;
-    in
-    darwinLib.lib.darwinSystem {
-      modules = [ module ];
+    { module, homeUsers }:
+    inputs.darwin.lib.darwinSystem {
+      modules = [
+        module
+      ]
+      ++ lib.optional (homeUsers != { }) {
+        home-manager.users = homeUsers;
+      };
       specialArgs = { inherit inputs; };
     }
   ) config.configurations.darwin;

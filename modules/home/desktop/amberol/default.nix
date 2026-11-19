@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.homeManager.desktop =
+  flake.modules.homeManager.amberol =
     { lib, pkgs, ... }:
     {
       services.amberol = {
@@ -9,4 +10,6 @@
         package = lib.mkDefault pkgs.amberol;
       };
     };
+
+  flake.modules.homeManager.desktop = config.flake.modules.homeManager.amberol;
 }

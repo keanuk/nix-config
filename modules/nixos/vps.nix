@@ -1,6 +1,6 @@
 _: {
   flake.modules.nixos.vps =
-    { lib, pkgs, ... }:
+    { lib, ... }:
     {
       swapDevices = [
         {
@@ -33,23 +33,12 @@ _: {
           dates = lib.mkForce "daily";
           options = lib.mkForce "--delete-older-than 3d";
         };
-        optimise = {
-          automatic = true;
-          dates = [ "weekly" ];
-        };
       };
-
-      virtualisation = {
-        podman.enable = lib.mkForce false;
-      };
-
-      environment.systemPackages = with pkgs; [
-        glibcLocales
-      ];
 
       security = {
-        audit.enable = lib.mkForce false;
-        auditd.enable = lib.mkForce false;
+        # Required by deploy-rs (sshUser = "keanu", user = "root") for
+        # non-interactive activation. CI deploy keys must use the unprivileged
+        # staticWebsite.deployAuthorizedKeys user, never keanu.
         sudo-rs.wheelNeedsPassword = false;
       };
 
@@ -76,9 +65,12 @@ _: {
 
       time.timeZone = "UTC";
 
-      i18n.defaultLocale = lib.mkForce "en_US.UTF-8";
-      i18n.extraLocaleSettings = lib.mkForce {
-        LC_ALL = "en_US.UTF-8";
+      i18n = {
+        defaultLocale = lib.mkForce "en_US.UTF-8";
+        extraLocales = lib.mkForce [ ];
+        extraLocaleSettings = lib.mkForce {
+          LC_ALL = "en_US.UTF-8";
+        };
       };
     };
 }

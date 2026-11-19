@@ -1,4 +1,4 @@
-name: Nix Linting
+name: Nix Linting & Evaluation
 
 on:
   pull_request:
@@ -6,8 +6,15 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  statix:
+  lint-and-eval:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -19,5 +26,14 @@ jobs:
       - name: Enable Magic Nix Cache
         uses: DeterminateSystems/magic-nix-cache-action@v14
 
+      - name: Check formatting
+        run: nix fmt -- --fail-on-change
+
       - name: Run statix
         run: nix run nixpkgs#statix -- check .
+
+      - name: Run deadnix
+        run: nix run nixpkgs#deadnix -- --fail .
+
+      - name: Evaluate flake
+        run: nix flake check --no-build --accept-flake-config

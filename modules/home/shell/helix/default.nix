@@ -1,59 +1,69 @@
+{ config, ... }:
 {
-  flake.modules.homeManager.shell =
-    {
-      pkgs,
-      lib,
-      config,
-      ...
-    }:
-    let
-      noctaliaEnabled = config.theme.noctaliaManaged;
-    in
-    {
-      programs.helix = {
-        enable = true;
-        package = pkgs.helix;
-        defaultEditor = true;
-        settings = {
-          theme = lib.mkDefault (if noctaliaEnabled then "noctalia" else "catppuccin_mocha");
-          editor = {
-            auto-save = true;
-            bufferline = "multiple";
-            color-modes = true;
-            cursorline = true;
-            cursorcolumn = false;
-            cursor-shape = {
-              insert = "bar";
-              normal = "block";
-              select = "underline";
-            };
-            file-picker = {
-              hidden = false;
-              deduplicate-links = false;
-            };
-            lsp = {
-              display-inlay-hints = true;
-              display-messages = true;
-            };
-            scrolloff = 10;
-            statusline = {
-              mode = {
-                normal = "NORMAL";
-                insert = "INSERT";
-                select = "SELECT";
+  flake.modules.homeManager = {
+    helix =
+      {
+        pkgs,
+        lib,
+        config,
+        ...
+      }:
+      let
+        noctaliaEnabled = config.theme.noctaliaManaged;
+      in
+      {
+        programs.helix = {
+          enable = true;
+          package = pkgs.helix;
+          defaultEditor = true;
+          settings = {
+            theme = lib.mkDefault (if noctaliaEnabled then "noctalia" else "catppuccin_mocha");
+            editor = {
+              auto-save = true;
+              bufferline = "multiple";
+              color-modes = true;
+              cursorline = true;
+              cursorcolumn = false;
+              cursor-shape = {
+                insert = "bar";
+                normal = "block";
+                select = "underline";
               };
+              file-picker = {
+                hidden = false;
+                deduplicate-links = false;
+              };
+              lsp = {
+                display-inlay-hints = true;
+                display-messages = true;
+              };
+              scrolloff = 10;
+              statusline = {
+                mode = {
+                  normal = "NORMAL";
+                  insert = "INSERT";
+                  select = "SELECT";
+                };
+              };
+              true-color = true;
             };
-            true-color = true;
-          };
-          keys = {
-            insert = { };
-            normal = {
-              space.space = "file_picker";
+            keys = {
+              insert = { };
+              normal = {
+                space.space = "file_picker";
+              };
+              select = { };
             };
-            select = { };
           };
         };
-        languages = {
+      };
+
+    # Heavy language servers opt into `dev` instead of `shell` so minimal VPS
+    # hosts do not pull .NET/Node.js/Rust/Go/Python LSP closures.
+    helix-lsp =
+      { pkgs, ... }:
+      {
+        programs.helix.languages = {
           language-server = {
             bash-language-server = {
               command = "${pkgs.bash-language-server}/bin/bash-language-server";
@@ -148,5 +158,8 @@
           ];
         };
       };
-    };
+
+    shell = config.flake.modules.homeManager.helix;
+    dev = config.flake.modules.homeManager.helix-lsp;
+  };
 }

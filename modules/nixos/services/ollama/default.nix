@@ -12,11 +12,11 @@
         services.ollama = {
           enable = true;
           package = lib.mkDefault pkgs.unstable.ollama-cpu;
-          # Exposed on the tailnet for direct use from phone/other hosts;
-          # ollama itself has no auth, but the network is private.
+          # Reachable over the tailnet (tailscale0 is trusted in services/tailscale);
+          # keep the firewall closed on LAN/public WiFi since ollama has no auth.
           host = lib.mkDefault "0.0.0.0";
           port = lib.mkDefault 11434;
-          openFirewall = lib.mkDefault true;
+          openFirewall = lib.mkDefault false;
           user = "ollama";
           group = "ollama";
           home = lib.mkDefault "/var/lib/ollama";

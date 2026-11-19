@@ -9,6 +9,8 @@
       ...
     }:
     {
+      sops.secrets.hotspot-password = { };
+
       services = {
         hostapd = {
           enable = true;

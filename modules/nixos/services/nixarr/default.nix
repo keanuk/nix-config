@@ -38,6 +38,7 @@
           ];
         };
 
+        # Keep Plex/Jellyfin open for LAN media players (TVs/Apple TV) not on Tailscale.
         plex = {
           enable = true;
           package = pkgs.unstable.plex;
@@ -59,14 +60,14 @@
           enable = true;
           host = "0.0.0.0";
           package = pkgs.unstable.audiobookshelf;
-          openFirewall = true;
+          openFirewall = false;
         };
 
         shelfmark = {
           enable = true;
           host = "0.0.0.0";
           package = pkgs.unstable.shelfmark;
-          openFirewall = true;
+          openFirewall = false;
         };
 
         autobrr = {
@@ -77,31 +78,31 @@
         bazarr = {
           enable = true;
           package = pkgs.unstable.bazarr;
-          openFirewall = true;
+          openFirewall = false;
         };
 
         lidarr = {
           enable = true;
           package = pkgs.unstable.lidarr;
-          openFirewall = true;
+          openFirewall = false;
         };
 
         prowlarr = {
           enable = true;
           package = pkgs.unstable.prowlarr;
-          openFirewall = true;
+          openFirewall = false;
         };
 
         radarr = {
           enable = true;
           package = pkgs.unstable.radarr;
-          openFirewall = true;
+          openFirewall = false;
         };
 
         sonarr = {
           enable = true;
           package = pkgs.unstable.sonarr;
-          openFirewall = true;
+          openFirewall = false;
         };
 
         recyclarr = {
@@ -114,7 +115,7 @@
         anchorr = {
           enable = false;
           package = pkgs.unstable.anchorr;
-          openFirewall = true;
+          openFirewall = false;
         };
       };
 

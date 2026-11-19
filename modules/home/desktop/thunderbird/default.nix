@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.homeManager.desktop =
+  flake.modules.homeManager.thunderbird =
     { pkgs, ... }:
     {
       programs.thunderbird = {
@@ -12,4 +13,6 @@
         };
       };
     };
+
+  flake.modules.homeManager.desktop = config.flake.modules.homeManager.thunderbird;
 }

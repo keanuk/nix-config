@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.homeManager.desktop =
+  flake.modules.homeManager.distrobox =
     { pkgs, ... }:
     {
       programs.distrobox = {
@@ -24,4 +25,6 @@
         };
       };
     };
+
+  flake.modules.homeManager.desktop = config.flake.modules.homeManager.distrobox;
 }

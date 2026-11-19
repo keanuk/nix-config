@@ -12,6 +12,11 @@
           module = lib.mkOption {
             type = lib.types.deferredModule;
           };
+          homeUsers = lib.mkOption {
+            type = lib.types.lazyAttrsOf lib.types.deferredModule;
+            default = { };
+            description = "Home Manager user modules wired into both home-manager.users and standalone homeConfigurations.";
+          };
           isVps = lib.mkOption {
             type = lib.types.bool;
             default = false;
@@ -32,7 +37,12 @@
   config.flake.nixosConfigurations = lib.mapAttrs (
     _name: cfg:
     inputs.nixpkgs-stable.lib.nixosSystem {
-      modules = [ cfg.module ];
+      modules = [
+        cfg.module
+      ]
+      ++ lib.optional (cfg.homeUsers != { }) {
+        home-manager.users = cfg.homeUsers;
+      };
       specialArgs = { inherit inputs; };
     }
   ) config.configurations.nixos-stable;

@@ -3,6 +3,10 @@
   flake.modules.nixos.nextdns-resolved =
     { config, ... }:
     {
+      sops.secrets.nextdns_id = {
+        mode = "0400";
+      };
+
       # Create a systemd service that generates resolved.conf with NextDNS settings
       # by reading the profile ID from sops secret at runtime
       systemd.services.nextdns-resolved-config = {

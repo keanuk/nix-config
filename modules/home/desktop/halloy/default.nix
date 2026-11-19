@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.homeManager.desktop =
+  flake.modules.homeManager.halloy =
     {
       pkgs,
       lib,
@@ -10,7 +11,7 @@
         enable = true;
         package = lib.mkDefault pkgs.halloy;
         settings = {
-          theme = lib.mkDefault {
+          theme = {
             light = lib.mkDefault "catppuccin-latte";
             dark = lib.mkDefault "catppuccin-mocha";
           };
@@ -60,4 +61,6 @@
         };
       };
     };
+
+  flake.modules.homeManager.desktop = config.flake.modules.homeManager.halloy;
 }

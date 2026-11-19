@@ -6,6 +6,10 @@
       ...
     }:
     {
+      sops.secrets.user-kimmy-password = {
+        neededForUsers = true;
+      };
+
       users.users.kimmy = {
         isNormalUser = true;
         uid = 1001;

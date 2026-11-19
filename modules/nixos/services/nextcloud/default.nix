@@ -48,11 +48,6 @@ in
           ];
         };
       };
-
-      networking.firewall.allowedTCPPorts = [
-        80
-        443
-      ];
     };
 
   flake.modules.nixos.server = config.flake.modules.nixos.nextcloud;

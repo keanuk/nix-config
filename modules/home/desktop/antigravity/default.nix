@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.homeManager.desktop =
+  flake.modules.homeManager.antigravity =
     { pkgs, ... }:
     {
       programs.antigravity = {
@@ -19,4 +20,6 @@
         };
       };
     };
+
+  flake.modules.homeManager.desktop = config.flake.modules.homeManager.antigravity;
 }

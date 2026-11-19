@@ -8,8 +8,15 @@
   options.configurations.nixos = lib.mkOption {
     type = lib.types.lazyAttrsOf (
       lib.types.submodule {
-        options.module = lib.mkOption {
-          type = lib.types.deferredModule;
+        options = {
+          module = lib.mkOption {
+            type = lib.types.deferredModule;
+          };
+          homeUsers = lib.mkOption {
+            type = lib.types.lazyAttrsOf lib.types.deferredModule;
+            default = { };
+            description = "Home Manager user modules wired into both home-manager.users and standalone homeConfigurations.";
+          };
         };
       }
     );
@@ -19,9 +26,14 @@
 
   config.flake.nixosConfigurations = lib.mapAttrs (
     _name:
-    { module }:
+    { module, homeUsers }:
     inputs.nixpkgs.lib.nixosSystem {
-      modules = [ module ];
+      modules = [
+        module
+      ]
+      ++ lib.optional (homeUsers != { }) {
+        home-manager.users = homeUsers;
+      };
       specialArgs = { inherit inputs; };
     }
   ) config.configurations.nixos;

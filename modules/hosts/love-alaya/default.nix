@@ -2,7 +2,7 @@
 let
   inherit (config.flake.modules.nixos)
     base
-    vps-grub
+    hetzner-vps
     static-website
     keanu
     home-manager-stable
@@ -18,12 +18,10 @@ in
     module = {
       imports = [
         base
-        vps-grub
+        hetzner-vps
         static-website
         keanu
         home-manager-stable
-        ./_hardware-configuration.nix
-        ./_disko-configuration.nix
       ];
 
       nixpkgs.hostPlatform = "x86_64-linux";

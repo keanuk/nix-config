@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.homeManager.desktop =
+  flake.modules.homeManager.discord =
     { pkgs, ... }:
     {
       programs.discord = {
@@ -7,4 +8,6 @@
         package = pkgs.discord;
       };
     };
+
+  flake.modules.homeManager.desktop = config.flake.modules.homeManager.discord;
 }

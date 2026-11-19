@@ -4,6 +4,7 @@ let
     base
     hardware
     intel
+    pc
     systemd-boot
     desktop
     niri
@@ -14,6 +15,7 @@ let
     swapfile
     fs
     home-manager
+    nfs-data
     ;
 in
 {
@@ -22,6 +24,7 @@ in
       base
       hardware
       intel
+      pc
       systemd-boot
       desktop
       niri
@@ -32,6 +35,7 @@ in
       swapfile
       fs
       home-manager
+      nfs-data
       ./_hardware-configuration.nix
     ];
 

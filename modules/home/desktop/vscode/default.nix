@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.homeManager.desktop =
+  flake.modules.homeManager.vscode =
     { pkgs, ... }:
     {
       programs.vscode = {
@@ -19,4 +20,6 @@
         };
       };
     };
+
+  flake.modules.homeManager.desktop = config.flake.modules.homeManager.vscode;
 }

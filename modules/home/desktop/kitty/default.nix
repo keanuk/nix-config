@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.homeManager.desktop =
+  flake.modules.homeManager.kitty =
     {
       pkgs,
       lib,
@@ -18,4 +19,6 @@
         extraConfig = lib.optionalString noctaliaEnabled "include themes/noctalia.conf";
       };
     };
+
+  flake.modules.homeManager.desktop = config.flake.modules.homeManager.kitty;
 }

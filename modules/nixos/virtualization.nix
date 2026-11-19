@@ -24,5 +24,11 @@
       ];
     };
 
-  flake.modules.nixos.base = config.flake.modules.nixos.virtualization;
+  # Opt into desktop/workstation/server roles rather than base so minimal VPSes
+  # do not pull podman/kubernetes/kind/arion closures.
+  flake.modules.nixos = {
+    pc = config.flake.modules.nixos.virtualization;
+    laptop = config.flake.modules.nixos.virtualization;
+    server = config.flake.modules.nixos.virtualization;
+  };
 }

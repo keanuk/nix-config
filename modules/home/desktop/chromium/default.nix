@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.homeManager.desktop =
+  flake.modules.homeManager.chromium =
     { pkgs, ... }:
     {
       programs.chromium = {
@@ -7,4 +8,6 @@
         package = pkgs.google-chrome;
       };
     };
+
+  flake.modules.homeManager.desktop = config.flake.modules.homeManager.chromium;
 }

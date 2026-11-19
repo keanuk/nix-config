@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.homeManager.desktop =
+  flake.modules.homeManager.element-desktop =
     { pkgs, ... }:
     {
       programs.element-desktop = {
@@ -7,4 +8,6 @@
         package = pkgs.element-desktop;
       };
     };
+
+  flake.modules.homeManager.desktop = config.flake.modules.homeManager.element-desktop;
 }

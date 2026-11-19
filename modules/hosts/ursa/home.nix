@@ -1,9 +1,8 @@
 { config, ... }:
-let
-  keanuHome = {
+{
+  configurations.nixos-stable.ursa.homeUsers.keanu = {
     imports = with config.flake.modules.homeManager; [
       base
-      home-manager-self
       server
       hermes
     ];
@@ -19,13 +18,5 @@ let
       homeDirectory = "/home/keanu";
       stateVersion = "26.05";
     };
-  };
-in
-{
-  configurations.nixos-stable.ursa.module.home-manager.users.keanu = keanuHome;
-
-  configurations.homeManager-stable."keanu@ursa" = {
-    system = "x86_64-linux";
-    module = keanuHome;
   };
 }

@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.homeManager.desktop =
+  flake.modules.homeManager.firefox =
     { pkgs, config, ... }:
     {
       programs.firefox = {
@@ -12,4 +13,6 @@
       home.file.".mozilla/firefox".source =
         config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/mozilla/firefox";
     };
+
+  flake.modules.homeManager.desktop = config.flake.modules.homeManager.firefox;
 }

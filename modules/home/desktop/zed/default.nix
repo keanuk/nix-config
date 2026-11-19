@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.homeManager.desktop =
+  flake.modules.homeManager.zed =
     {
       pkgs,
       lib,
@@ -248,4 +249,6 @@
         userKeymaps = [ ];
       };
     };
+
+  flake.modules.homeManager.desktop = config.flake.modules.homeManager.zed;
 }

@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.homeManager.desktop =
+  flake.modules.homeManager.ollama =
     { pkgs, ... }:
     {
       services.ollama = {
@@ -9,4 +10,6 @@
         acceleration = null;
       };
     };
+
+  flake.modules.homeManager.desktop = config.flake.modules.homeManager.ollama;
 }

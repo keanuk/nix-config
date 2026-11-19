@@ -248,6 +248,14 @@ in
         recommendedOptimisation = true;
         recommendedGzipSettings = true;
 
+        appendHttpConfig = ''
+          # Restore real client IP from cloudflared tunnel so Authelia's
+          # regulation sees the actual caller rather than 127.0.0.1.
+          set_real_ip_from 127.0.0.1;
+          set_real_ip_from ::1;
+          real_ip_header CF-Connecting-IP;
+        '';
+
         virtualHosts = {
           # Authelia portal - no auth required
           "${authDomain}" = {
@@ -263,22 +271,6 @@ in
               extraConfig = ''
                 proxy_set_header X-Forwarded-Proto https;
               '';
-            };
-          };
-
-          # Internal authelia verification endpoints
-          "authelia-internal" = {
-            listen = [
-              {
-                addr = "127.0.0.1";
-                port = 9093;
-              }
-            ];
-            locations."/api/verify" = {
-              proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/verify";
-            };
-            locations."/api/authz" = {
-              proxyPass = "http://127.0.0.1:${toString autheliaPort}/api/authz";
             };
           };
         }

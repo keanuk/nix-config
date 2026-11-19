@@ -12,7 +12,8 @@
           text = ''
             # Ploopy A+ Trackball (VIA config via usevia.app in Chrome/WebHID)
             KERNEL=="hidraw*", ATTRS{idVendor}=="5043", ATTRS{idProduct}=="81db", TAG+="uaccess"
-            # Stadia controller USB
+            # Stadia controller USB + HID (scoped to product 9400 so other Google HID devices like Titan keys are untouched)
+            KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="18d1", ATTRS{idProduct}=="9400", MODE="0660", TAG+="uaccess"
             SUBSYSTEMS=="usb", ATTRS{idVendor}=="18d1", ATTRS{idProduct}=="9400", MODE="0660", TAG+="uaccess"
             # USB Serial / ESP32 / Arduino / Microcontroller flashing rules
             SUBSYSTEM=="tty", KERNEL=="ttyACM[0-9]*", GROUP="dialout", MODE="0660", TAG+="uaccess"
@@ -49,8 +50,6 @@
         ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0d28", MODE="0666"
         # Flashloader
         KERNEL=="hidraw*", ATTRS{idVendor}=="15a2", MODE="0666"
-        # Controller
-        KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="18d1", MODE="0666"
       '';
     };
   };

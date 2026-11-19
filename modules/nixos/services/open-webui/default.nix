@@ -15,9 +15,9 @@ in
         # builds against mcp 2.
         # Last-checked: 2026-11-14
         package = pkgs.stable.open-webui;
-        # Exposed on the tailnet for direct use (open-webui has its own login);
+        # Reachable over the tailnet (tailscale0 is trusted) for direct use;
         # web access goes through the Authelia proxy.
-        openFirewall = true;
+        openFirewall = false;
         host = "0.0.0.0";
         port = d.services.chat.backendPort;
       };

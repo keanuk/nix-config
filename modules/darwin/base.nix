@@ -5,7 +5,7 @@
     nix.enable = false;
 
     nixpkgs = {
-      overlays = config.flake.baseOverlays;
+      overlays = config.nixpkgs.baseOverlays;
       config = {
         allowUnfree = true;
         allowImportFromDerivation = true;

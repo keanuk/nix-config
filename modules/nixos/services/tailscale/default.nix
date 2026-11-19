@@ -6,7 +6,12 @@
       services.tailscale = {
         enable = true;
         package = pkgs.unstable.tailscale;
+        openFirewall = true;
       };
+
+      # Trust the tailnet interface so private services (SSH, Ollama, homelab
+      # apps) stay unreachable on LAN/public WiFi without per-port firewall holes.
+      networking.firewall.trustedInterfaces = [ "tailscale0" ];
     };
 
   # tailscale opts itself into the base role.

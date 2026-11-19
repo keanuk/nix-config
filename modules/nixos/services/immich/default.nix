@@ -17,9 +17,9 @@ in
       services.immich = {
         enable = true;
         package = pkgs.unstable.immich;
-        # Exposed on the tailnet for the mobile app (immich has its own login);
+        # Reachable over the tailnet (tailscale0 is trusted) for the mobile app;
         # web access goes through the Authelia proxy.
-        openFirewall = true;
+        openFirewall = false;
         host = "0.0.0.0";
         port = d.services.photos.backendPort;
         mediaLocation = lib.mkDefault "/data/immich";

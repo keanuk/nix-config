@@ -16,7 +16,7 @@ in
       services.cockpit = {
         enable = true;
         package = pkgs.cockpit;
-        openFirewall = true;
+        openFirewall = false;
         port = d.services.cockpit.backendPort;
         settings = {
           WebService = {

@@ -19,6 +19,5 @@ in
       };
 
       nix.settings.allowed-users = [ "harmonia" ];
-      nix.settings.trusted-users = [ "harmonia" ];
     };
 }

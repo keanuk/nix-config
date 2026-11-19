@@ -1,13 +1,13 @@
 { config, ... }:
 {
   flake.modules.nixos.steam =
-    { pkgs, ... }:
+    { lib, pkgs, ... }:
     {
       programs.steam = {
         enable = true;
         package = pkgs.steam;
         gamescopeSession.enable = true;
-        remotePlay.openFirewall = true;
+        remotePlay.openFirewall = lib.mkDefault false;
         protontricks = {
           enable = true;
           package = pkgs.protontricks;

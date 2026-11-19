@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.homeManager.desktop =
+  flake.modules.homeManager.ptyxis =
     { pkgs, ... }:
     {
       programs.ptyxis = {
@@ -7,4 +8,6 @@
         package = pkgs.ptyxis;
       };
     };
+
+  flake.modules.homeManager.desktop = config.flake.modules.homeManager.ptyxis;
 }

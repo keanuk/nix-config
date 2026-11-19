@@ -1,12 +1,7 @@
 { config, ... }:
-let
-  keanuHome = {
-    imports = with config.flake.modules.homeManager; [
-      desktop-linux
-      noctalia
-      niri
-      umbriel
-    ];
+{
+  configurations.nixos.beehive.homeUsers.keanu = {
+    imports = [ config.flake.modules.homeManager.desktop-linux ];
     xdg.configFile = {
       "niri/outputs.kdl".text = ''
         output "LG Electronics LG TV SSCR2 0x01010101" {
@@ -19,13 +14,5 @@ let
       '';
     };
     home.stateVersion = "26.11";
-  };
-in
-{
-  configurations.nixos.beehive.module.home-manager.users.keanu = keanuHome;
-
-  configurations.homeManager."keanu@beehive" = {
-    system = "x86_64-linux";
-    module = keanuHome;
   };
 }

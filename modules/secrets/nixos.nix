@@ -22,16 +22,9 @@ in
           github-token = {
             owner = config.users.users.keanu.name;
           };
-          nextdns_id = {
-            mode = "0444";
-          };
           user-keanu-password = {
             neededForUsers = true;
           };
-          user-kimmy-password = {
-            neededForUsers = true;
-          };
-          hotspot-password = { };
           ollama_api_key = {
             owner = config.users.users.keanu.name;
           };

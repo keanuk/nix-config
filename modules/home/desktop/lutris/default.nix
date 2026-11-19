@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  flake.modules.homeManager.desktop =
+  flake.modules.homeManager.lutris =
     {
       pkgs,
       ...
@@ -17,4 +18,6 @@
         ];
       };
     };
+
+  flake.modules.homeManager.desktop = config.flake.modules.homeManager.lutris;
 }
