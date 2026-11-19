@@ -23,7 +23,14 @@
 
   config.perSystem =
     { system, ... }:
+    let
+      matchingNodes = lib.filterAttrs (
+        name: _: config.flake.nixosConfigurations.${name}.pkgs.stdenv.hostPlatform.system == system
+      ) (config.flake.deploy.nodes or { });
+    in
     {
-      checks = inputs.deploy-rs.lib.${system}.deployChecks config.flake.deploy;
+      checks = lib.optionalAttrs (matchingNodes != { }) (
+        inputs.deploy-rs.lib.${system}.deployChecks (config.flake.deploy // { nodes = matchingNodes; })
+      );
     };
 }

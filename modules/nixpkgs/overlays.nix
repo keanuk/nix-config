@@ -36,7 +36,19 @@
     ]
     ++ [
       inputs.hermes-agent.overlays.default
-      inputs.hyprland.overlays.hyprland-packages
-      inputs.hyprland.overlays.hyprland-extras
+      (
+        final: prev:
+        if prev.stdenv.hostPlatform.isLinux then
+          inputs.hyprland.overlays.hyprland-packages final prev
+        else
+          { }
+      )
+      (
+        final: prev:
+        if prev.stdenv.hostPlatform.isLinux then
+          inputs.hyprland.overlays.hyprland-extras final prev
+        else
+          { }
+      )
     ];
 }
