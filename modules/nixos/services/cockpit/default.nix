@@ -2,6 +2,7 @@
 let
   d = config.domains;
   cockpitDomain = "${d.services.cockpit.subdomain}.${d.primary}";
+  cockpitPort = toString d.services.cockpit.backendPort;
 in
 {
   flake.modules.nixos.cockpit =
@@ -19,7 +20,7 @@ in
         port = d.services.cockpit.backendPort;
         settings = {
           WebService = {
-            Origins = lib.mkForce "https://localhost:9090 https://${config.networking.hostName}:9090 wss://${config.networking.hostName}:9090 https://${cockpitDomain} wss://${cockpitDomain}";
+            Origins = lib.mkForce "https://localhost:${cockpitPort} https://${config.networking.hostName}:${cockpitPort} wss://${config.networking.hostName}:${cockpitPort} https://${cockpitDomain} wss://${cockpitDomain}";
           };
         };
       };

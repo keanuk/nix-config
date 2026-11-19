@@ -12,7 +12,7 @@
           enable = true;
           extraGSettingsOverrides = ''
             [org.gnome.system]
-            location='true'
+            location=true
           '';
         };
       };

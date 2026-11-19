@@ -17,7 +17,7 @@ Use this skill when the user asks any of:
 
 ```bash
 # Basic search (returns titles, URLs, and snippets)
-ddgr --np --np -n 5 "search query here"
+ddgr --np -n 5 "search query here"
 
 # News search
 ddgr --np -n 5 --news "topic"

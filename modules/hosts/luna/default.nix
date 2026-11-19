@@ -13,7 +13,6 @@ let
     ollama
     ollama-medium
     keanu
-    fs
     home-manager
     cellular
     nfs-data
@@ -34,7 +33,6 @@ in
       ollama
       ollama-medium
       keanu
-      fs
       home-manager
       cellular
       nfs-data

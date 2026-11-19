@@ -34,13 +34,13 @@ modules/
 │   ├── system-packages.nix          # base packages (everyone needs this)
 │   ├── base.nix                     # main NixOS base role (features opt into it from their own files)
 │   ├── pc.nix, laptop.nix, vps.nix, vps-grub.nix, wsl.nix, amd.nix, intel.nix
-│   ├── hardware.nix                 # hardware-firmware, autoUpgrade
+│   ├── hardware.nix                 # firmware, fwupd, plymouth, hardware tools
 │   ├── lanzaboote.nix, systemd-boot.nix
 │   ├── fs.nix, swapfile.nix, preservation.nix
 │   ├── ephemeral-bcachefs.nix, ephemeral-luks-btrfs.nix
 │   ├── home-manager.nix             # HM-as-NixOS-module (unstable + stable variants)
 │   ├── desktop/                     # desktop role (default.nix, fonts, packages) + active DE roles
-│   │                                #   (niri, noctalia) + inactive DEs kept for later (cosmic, gnome,
+│   │                                #   (niri, umbriel, noctalia) + inactive DEs kept for later (cosmic, gnome,
 │   │                                #   pantheon, plasma, hyprland)
 │   ├── programs/                    # prog roles: fuse, nh, nix-ld, evolution, gamescope, steam
 │   ├── services/                    # one directory per service (46 total), each with default.nix
@@ -115,10 +115,12 @@ Currently:
 - `base` auto-includes: `nix-settings`, `system-packages`, `sops`, `apparmor`, `tailscale`, `fuse`, `nh`, `nix-ld`, `virtualization`.
 - `server` auto-includes: `authelia`, `cloudflared`, `cockpit`, `comin`, `forgejo`, `dashy`, `home-assistant`, `immich`, `nextcloud`, `nixarr`, `ollama`, `openssh`, `openvscode-server`, `open-webui`, `smartd`, `vscode-server`.
 - `pc` and `laptop` auto-include: `smartd`, `openssh`.
+- `vps` auto-includes: `openssh`, `vscode-server`.
+- `desktop` auto-includes: `evolution`, `gamescope`, `steam`, `geoclue2`, `udev`.
 - `lanzaboote` auto-includes: `fwupd-signed-efi` (fix; makes capsule updates work under Secure Boot).
 - `homeManager.noctalia` auto-includes: `luciole`.
 
-Roles that *don't* auto-opt-in (host imports them explicitly): the desktop environment roles (`cosmic`, `gnome`, `pantheon`, `plasma`, `hyprland`), `desktop`, `gaming`, `lanzaboote`, `systemd-boot`, `vps-grub`, `hardware`, `amd`, `intel`, `wsl`, `vps`, `static-website`, `fs`, `swapfile`, `preservation`, `ephemeral-bcachefs`, `ephemeral-luks-btrfs`, `rtw88`, `nfs-data`, `home-manager`, `home-manager-stable`, `keanu`, `kimmy`, `btrfs`, `ollama-medium`, `ollama-high`.
+Roles that *don't* auto-opt-in (host imports them explicitly): the desktop environment roles (`niri`, `umbriel`, `noctalia`, `cosmic`, `gnome`, `pantheon`, `plasma`, `hyprland`), `desktop`, `lanzaboote`, `systemd-boot`, `vps-grub`, `hardware`, `amd`, `intel`, `cellular`, `wsl`, `vps`, `static-website`, `fs`, `swapfile`, `preservation`, `ephemeral-bcachefs`, `ephemeral-luks-btrfs`, `rtw88`, `nfs-data`, `home-manager`, `home-manager-stable`, `keanu`, `kimmy`, `btrfs`, `ollama-medium`, `ollama-high`, `github-runner`, `harmonia`.
 
 ### Configuration Output
 - `flake.nixosConfigurations` is built from `configurations.nixos.<host>.module` (unstable) and `configurations.nixos-stable.<host>.module` (stable channel — VPS hosts).
@@ -139,7 +141,7 @@ Roles that *don't* auto-opt-in (host imports them explicitly): the desktop envir
 - Default sops file is resolved via `_module.args.rootPath` set in `flake.nix`.
 
 ### Centralized Domain Config
-- `modules/meta/domains.nix` defines `options.domains` — primary domain, auth domain, email, and 21 service entries (subdomain, ports, requiresAuth, etc.).
+- `modules/meta/domains.nix` defines `options.domains` — primary domain, auth domain, email, and 20 service entries (subdomain, ports, requiresAuth, etc.).
 - Service modules read `config.domains` at flake-parts scope and capture values via closure into the inner deferredModule (avoids specialArgs threading).
 
 ### Overlays

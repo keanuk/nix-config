@@ -127,7 +127,7 @@
         gtk.enable = true;
       };
 
-      # The session binary (flake niri from the NixOS module) reads
+      # The session binary (pkgs.niri from the NixOS module) reads
       # ~/.config/niri/config.kdl; the wrapped package above only generates and
       # validates the shared base config included here.
       # noctalia.kdl is written by noctalia's theme templates when present.

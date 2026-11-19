@@ -1,7 +1,8 @@
 { lib, config, ... }:
 let
   notBroken = pkg: !(pkg.meta.broken or false);
-  isDistributable = pkg: (pkg.meta.license or { redistributable = true; }).redistributable;
+  isDistributable =
+    pkg: lib.all (l: l.redistributable or true) (lib.toList (pkg.meta.license or [ ]));
   hasPlatform = sys: pkg: lib.elem sys (pkg.meta.platforms or [ sys ]);
   filterValidPkgs =
     sys: pkgs:

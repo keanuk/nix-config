@@ -29,7 +29,12 @@
               nix
               home-manager
               git
+              just
               nix-output-monitor
+
+              deadnix
+              nixfmt-tree
+              statix
 
               sops
               ssh-to-age
@@ -61,7 +66,7 @@
         ];
         haskell = mkDevenv [
           {
-            packages = with pkgs; [ ];
+            packages = [ ];
             languages.haskell.enable = true;
             languages.haskell.stack.enable = true;
           }
@@ -124,7 +129,7 @@
         ];
         python = mkDevenv [
           {
-            packages = with pkgs; [ python313Packages.python-lsp-server ];
+            packages = with pkgs; [ python3Packages.python-lsp-server ];
             languages.python.enable = true;
           }
         ];

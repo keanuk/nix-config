@@ -84,7 +84,7 @@
               echo "Fetching runner registration token from GitHub API..."
 
               PAT=$(${pkgs.coreutils}/bin/cat "${cfg.tokenFile}")
-              API_URL="https://api.github.com/repos/keanuk/nix-config/actions/runners/registration-token"
+              API_URL="https://api.github.com/repos/${lib.removeSuffix "/" (lib.removePrefix "https://github.com/" cfg.url)}/actions/runners/registration-token"
 
               # Fetch a fresh registration token (expires in 1 hour)
               RESPONSE=$(${pkgs.curl}/bin/curl -sS -w "\n%{http_code}" -X POST \

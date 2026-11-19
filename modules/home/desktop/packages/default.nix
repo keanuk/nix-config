@@ -1,10 +1,7 @@
+{ inputs, ... }:
 {
   flake.modules.homeManager.desktop =
-    {
-      pkgs,
-      inputs,
-      ...
-    }:
+    { pkgs, ... }:
     {
       home.packages = with pkgs.unstable; [
         android-studio

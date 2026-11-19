@@ -7,7 +7,6 @@ let
     server
     lanzaboote
     btrfs
-    ollama
     ollama-medium
     ollama-high
     keanu
@@ -27,7 +26,6 @@ in
         server
         lanzaboote
         btrfs
-        ollama
         ollama-medium
         ollama-high
         keanu

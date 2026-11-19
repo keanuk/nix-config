@@ -38,7 +38,7 @@ in
     disk = {
       nvme1tb = {
         type = "disk";
-        # 1 TB NVMe — secondary pool member. REPLACE with real by-id.
+        # 1 TB NVMe — secondary pool member.
         device = "/dev/disk/by-id/nvme-Inland_QN450_NVMe_SSD_IB26AB1000P00252";
         content = {
           type = "gpt";
@@ -67,7 +67,6 @@ in
       nvme2tb = {
         type = "disk";
         # 2 TB NVMe — primary pool member (ESP + TPM2-unlocked LUKS root).
-        # REPLACE with real by-id.
         device = "/dev/disk/by-id/nvme-KLEVV_CRAS_C910G_M.2_NVMe_SSD_2TB_2025100302007085";
         content = {
           type = "gpt";

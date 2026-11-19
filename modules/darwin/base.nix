@@ -8,6 +8,7 @@
       overlays = config.flake.baseOverlays;
       config = {
         allowUnfree = true;
+        allowImportFromDerivation = true;
       };
     };
   };

@@ -1,4 +1,3 @@
-all_cores := `case "$(uname -s)" in Linux) nproc;; Darwin) sysctl -n hw.logicalcpu;; esac`
 current_hostname := `hostname -s`
 current_username := `whoami`
 backup_ext := `date +%Y%m%d-%H%M`
@@ -6,6 +5,17 @@ backup_ext := `date +%Y%m%d-%H%M`
 # List recipes
 default:
     @just --list --unsorted
+
+# Format Nix files with nixfmt-tree
+fmt:
+    @echo "Nix 󱄅 Formatting"
+    nix fmt
+
+# Lint Nix files with statix and deadnix
+lint:
+    @echo "Nix 󱄅 Linting"
+    nix run nixpkgs#statix -- check .
+    nix run nixpkgs#deadnix -- --fail .
 
 # Validate flake evaluation and run checks
 check:
@@ -68,13 +78,14 @@ build-host hostname=current_hostname:
         --option extra-substituters https://install.determinate.systems \
         --option extra-trusted-public-keys cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM=; \
     else \
-      echo "Unsupported OS: $(uname)"; \
+      echo "Unsupported OS: $(uname)" >&2; \
+      exit 1; \
     fi
 
 # Switch OS configuration
 switch-host hostname=current_hostname:
     @if [ "$(uname)" = "Linux" ]; then \
-      echo "NixOS  Switching: {{ hostname }}"; \
+      echo "NixOS  Switching: {{ hostname }}"; \
       nh os switch . --hostname "{{ hostname }}" -- \
         --option extra-substituters https://install.determinate.systems \
         --option extra-trusted-public-keys cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM=; \
@@ -84,7 +95,8 @@ switch-host hostname=current_hostname:
         --option extra-substituters https://install.determinate.systems \
         --option extra-trusted-public-keys cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM=; \
     else \
-      echo "Unsupported OS: $(uname)"; \
+      echo "Unsupported OS: $(uname)" >&2; \
+      exit 1; \
     fi
 
 # Deploy a VPS host via deploy-rs
@@ -101,19 +113,22 @@ deploy-all:
 
 # Push current host's system closure to Cachix
 cachix-push-host hostname=current_hostname:
-    @if [ "$(uname)" = "Linux" ]; then \
+    @set -euo pipefail; \
+    if [ "$(uname)" = "Linux" ]; then \
       echo "Cachix 󰅡 Pushing NixOS closure: {{ hostname }}"; \
       nix build --no-link --print-out-paths ".#nixosConfigurations.{{ hostname }}.config.system.build.toplevel" | cachix push keanu; \
     elif [ "$(uname)" = "Darwin" ]; then \
       echo "Cachix 󰅡 Pushing nix-darwin closure: {{ hostname }}"; \
       nix build --no-link --print-out-paths ".#darwinConfigurations.{{ hostname }}.system" | cachix push keanu; \
     else \
-      echo "Unsupported OS: $(uname)"; \
+      echo "Unsupported OS: $(uname)" >&2; \
+      exit 1; \
     fi
 
 # Push current home configuration closure to Cachix
 cachix-push-home username=current_username hostname=current_hostname:
     @echo "Cachix 󰅡 Pushing Home closure: {{ username }}@{{ hostname }}"
+    @set -euo pipefail; \
     nix build --no-link --print-out-paths '.#homeConfigurations."{{ username }}@{{ hostname }}".activationPackage' | cachix push keanu
 
 # Push both host and home closures to Cachix
@@ -152,10 +167,14 @@ authelia-hash password:
 # Export and update noctalia.toml from active Noctalia configuration
 noctalia-update:
     @echo "Noctalia 🎨 Exporting noctalia.toml from active Noctalia configuration"
-    @if command -v noctalia >/dev/null 2>&1; then \
-      noctalia config export > modules/home/desktop/noctalia/noctalia.toml; \
+    @set -euo pipefail; \
+    if command -v noctalia >/dev/null 2>&1; then \
+      tmp=$(mktemp); \
+      trap 'rm -f "$tmp"' EXIT; \
+      noctalia config export > "$tmp"; \
+      mv "$tmp" modules/home/desktop/noctalia/noctalia.toml; \
       echo "Successfully updated modules/home/desktop/noctalia/noctalia.toml"; \
     else \
-      echo "Error: noctalia binary not found in PATH."; \
+      echo "Error: noctalia binary not found in PATH." >&2; \
       exit 1; \
     fi

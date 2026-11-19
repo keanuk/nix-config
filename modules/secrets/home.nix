@@ -26,10 +26,10 @@ in
       # Persist the GitHub token into nix.conf so `nix flake update` (and any
       # non-interactive caller: just, nh, scripts) authenticates the github:
       # fetcher via access-tokens instead of hitting the 60 req/hr anon limit.
-      home.activation.nix-github-access-token = lib.mkIf (config.sops.secrets ? github-token) (
-        lib.hm.dag.entryAfter [ "sops-nix" ] ''
-          tokenPath=${config.sops.secrets.github-token.path}
-          for i in $(seq 1 30); do
+      home.activation.nix-github-access-token = lib.hm.dag.entryAfter [ "sops-nix" ] ''
+        if [[ ! -v DRY_RUN ]]; then
+          tokenPath="${config.sops.secrets.github-token.path}"
+          for _ in $(seq 1 30); do
             [ -f "$tokenPath" ] && break
             sleep 1
           done
@@ -39,9 +39,9 @@ in
           if [ ! -f "$tokenPath" ]; then
             echo "warning: github-token secret not available; skipping nix.conf access-tokens" >&2
           else
-            token=$(cat "$tokenPath")
-            confDir=${config.xdg.configHome}/nix
-            confFile=$confDir/nix.conf
+            token=$(tr -d '\n\r' < "$tokenPath")
+            confDir="${config.xdg.configHome}/nix"
+            confFile="$confDir/nix.conf"
             mkdir -p "$confDir"
             tmp=$(mktemp)
             {
@@ -50,20 +50,20 @@ in
               fi
               printf 'access-tokens = github.com=%s\n' "$token"
             } > "$tmp"
+            chmod 600 "$tmp"
             mv "$tmp" "$confFile"
-            chmod 600 "$confFile"
           fi
-        ''
-      );
+        fi
+      '';
 
       # Export OLLAMA_API_KEY into the user session so GUI-launched apps
       # (Zed's ollama integration reads it from env per its docs) inherit it
       # without relying on an interactive shell. Darwin: GUI apps inherit env
       # from launchd, so populate it via launchctl.
-      home.activation.ollama-api-key-env = lib.mkIf (config.sops.secrets ? ollama_api_key) (
-        lib.hm.dag.entryAfter [ "sops-nix" ] ''
-          secretPath=${config.sops.secrets.ollama_api_key.path}
-          for i in $(seq 1 30); do
+      home.activation.ollama-api-key-env = lib.hm.dag.entryAfter [ "sops-nix" ] ''
+        if [[ ! -v DRY_RUN ]]; then
+          secretPath="${config.sops.secrets.ollama_api_key.path}"
+          for _ in $(seq 1 30); do
             [ -f "$secretPath" ] && break
             sleep 1
           done
@@ -73,7 +73,7 @@ in
           if [ ! -f "$secretPath" ]; then
             echo "warning: ollama_api_key secret not available; skipping OLLAMA_API_KEY export" >&2
           else
-            key=$(cat "$secretPath" | tr -d '\n\r')
+            key=$(tr -d '\n\r' < "$secretPath")
             ${
               if pkgs.stdenv.hostPlatform.isDarwin then
                 ''
@@ -90,13 +90,14 @@ in
                     fi
                     printf 'OLLAMA_API_KEY=%s\n' "$key"
                   } > "$tmp"
+                  chmod 600 "$tmp"
                   mv "$tmp" "$envDir/ollama-api-key.conf"
-                  chmod 600 "$envDir/ollama-api-key.conf"
+                  export OLLAMA_API_KEY="$key"
                   systemctl --user import-environment OLLAMA_API_KEY 2>/dev/null || true
                 ''
             }
           fi
-        ''
-      );
+        fi
+      '';
     };
 }

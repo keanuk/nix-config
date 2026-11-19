@@ -74,7 +74,7 @@ _: {
         useDHCP = lib.mkDefault true;
       };
 
-      time.timeZone = lib.mkOverride 49 "UTC";
+      time.timeZone = "UTC";
 
       i18n.defaultLocale = lib.mkForce "en_US.UTF-8";
       i18n.extraLocaleSettings = lib.mkForce {

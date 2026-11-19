@@ -2,9 +2,8 @@
 #
 # On macOS, Ghostty is installed via Homebrew (see darwin/homebrew.nix),
 # so we set package = null to skip the Nix package installation.
-{ lib, ... }:
+{ config, lib, ... }:
 {
-
   programs.ghostty = {
     enable = true;
     package = null;
@@ -18,16 +17,9 @@
       font-size = lib.mkDefault 13;
       font-family = "RobotoMono Nerd Font";
       background-blur = lib.mkDefault true;
-      command = "/etc/profiles/per-user/keanu/bin/fish --login --interactive";
+      command = "/etc/profiles/per-user/${config.home.username}/bin/fish --login --interactive";
       shell-integration = "fish";
       background-opacity = 0.7;
     };
-  };
-
-  programs.zellij = {
-    enableBashIntegration = lib.mkForce false;
-    enableFishIntegration = lib.mkForce false;
-    enableZshIntegration = lib.mkForce false;
-    exitShellOnExit = lib.mkForce false;
   };
 }

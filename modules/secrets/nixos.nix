@@ -38,28 +38,30 @@ in
         };
       };
 
-      # Wire the decrypted github-token into each user's nix.conf so the
+      # Wire the decrypted github-token into keanu's nix.conf so the
       # github: flake fetcher authenticates (access-tokens) instead of hitting
       # GitHub's 60 req/hr anonymous limit during `nix flake update` / nh / etc.
       # Per-user nix.conf is writable and not determinate-managed, unlike
       # /etc/nix/nix.custom.conf (a read-only store symlink).
       system.activationScripts.nix-github-access-token =
         let
-          humanUsers = lib.filterAttrs (_: u: u.isNormalUser && u.home != null) config.users.users;
-          userEntries = lib.mapAttrsToList (n: u: "${n}\t${u.home}") humanUsers;
+          owner = config.users.users.keanu;
         in
         lib.stringAfter (lib.optional (!config.sops.useSystemdActivation) "setupSecrets") ''
-          tokenPath=${config.sops.secrets.github-token.path}
+          tokenPath="${config.sops.secrets.github-token.path}"
           # Bail to warn-only: an exit here aborts the whole activate script in the initrd chroot before /run/current-system is symlinked, breaking systemd switch_root (do NOT restore exit 0).
           if [ ! -f "$tokenPath" ]; then
             echo "warning: github-token secret not available; skipping nix.conf access-tokens" >&2
           else
-            token=$(cat "$tokenPath")
-            while IFS=$'\t' read -r user home; do
-              [ -d "$home" ] || continue
+            token=$(tr -d '\n\r' < "$tokenPath")
+            user="${owner.name}"
+            home="${owner.home}"
+            if [ -d "$home" ]; then
+              uid=$(id -u "$user" 2>/dev/null || echo 0)
+              gid=$(id -g "$user" 2>/dev/null || echo 0)
               confDir="$home/.config/nix"
               confFile="$confDir/nix.conf"
-              mkdir -p "$confDir"
+              install -d -o "$uid" -g "$gid" "$home/.config" "$confDir"
               tmp=$(mktemp)
               {
                 if [ -f "$confFile" ]; then
@@ -67,37 +69,35 @@ in
                 fi
                 printf 'access-tokens = github.com=%s\n' "$token"
               } > "$tmp"
-              uid=$(id -u "$user" 2>/dev/null || echo 0)
-              gid=$(id -g "$user" 2>/dev/null || echo 0)
               chown "$uid:$gid" "$tmp"
+              chmod 600 "$tmp"
               mv "$tmp" "$confFile"
-              chmod 600 "$confFile"
-            done <<USERS
-          ${lib.concatStringsSep "\n" userEntries}
-          USERS
+            fi
           fi
         '';
 
-      # Surface OLLAMA_API_KEY into each user's systemd-user environment.d so
+      # Surface OLLAMA_API_KEY into keanu's systemd-user environment.d so
       # GUI-launched apps (Zed's ollama integration is the consumer here; it
       # reads OLLAMA_API_KEY from env per the Zed docs) inherit it without
       # needing an interactive shell.
       system.activationScripts.ollama-api-key-env =
         let
-          humanUsers = lib.filterAttrs (_: u: u.isNormalUser && u.home != null) config.users.users;
-          userEntries = lib.mapAttrsToList (n: u: "${n}\t${u.home}") humanUsers;
+          owner = config.users.users.keanu;
         in
         lib.stringAfter (lib.optional (!config.sops.useSystemdActivation) "setupSecrets") ''
-          secretPath=${config.sops.secrets.ollama_api_key.path}
+          secretPath="${config.sops.secrets.ollama_api_key.path}"
           # Bail to warn-only: an exit here aborts the whole activate script in the initrd chroot before /run/current-system is symlinked, breaking systemd switch_root (do NOT restore exit 0).
           if [ ! -f "$secretPath" ]; then
             echo "warning: ollama_api_key secret not available; skipping environment.d injection" >&2
           else
-            key=$(cat "$secretPath" | tr -d '\n\r')
-            while IFS=$'\t' read -r user home; do
-              [ -d "$home" ] || continue
+            key=$(tr -d '\n\r' < "$secretPath")
+            user="${owner.name}"
+            home="${owner.home}"
+            if [ -d "$home" ]; then
+              uid=$(id -u "$user" 2>/dev/null || echo 0)
+              gid=$(id -g "$user" 2>/dev/null || echo 0)
               envDir="$home/.config/environment.d"
-              mkdir -p "$envDir"
+              install -d -o "$uid" -g "$gid" "$home/.config" "$envDir"
               tmp=$(mktemp)
               {
                 if [ -f "$envDir/ollama-api-key.conf" ]; then
@@ -105,14 +105,10 @@ in
                 fi
                 printf 'OLLAMA_API_KEY=%s\n' "$key"
               } > "$tmp"
-              uid=$(id -u "$user" 2>/dev/null || echo 0)
-              gid=$(id -g "$user" 2>/dev/null || echo 0)
               chown "$uid:$gid" "$tmp"
+              chmod 600 "$tmp"
               mv "$tmp" "$envDir/ollama-api-key.conf"
-              chmod 600 "$envDir/ollama-api-key.conf"
-            done <<USERS
-          ${lib.concatStringsSep "\n" userEntries}
-          USERS
+            fi
           fi
         '';
     };

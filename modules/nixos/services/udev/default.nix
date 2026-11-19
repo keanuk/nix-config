@@ -7,11 +7,24 @@
     services.udev = {
       packages = [
         (pkgs.writeTextFile {
-          name = "ploopy-udev-rules";
-          destination = "/lib/udev/rules.d/60-ploopy.rules";
+          name = "local-uaccess-udev-rules";
+          destination = "/lib/udev/rules.d/60-local-uaccess.rules";
           text = ''
             # Ploopy A+ Trackball (VIA config via usevia.app in Chrome/WebHID)
             KERNEL=="hidraw*", ATTRS{idVendor}=="5043", ATTRS{idProduct}=="81db", TAG+="uaccess"
+            # Stadia controller USB
+            SUBSYSTEMS=="usb", ATTRS{idVendor}=="18d1", ATTRS{idProduct}=="9400", MODE="0660", TAG+="uaccess"
+            # USB Serial / ESP32 / Arduino / Microcontroller flashing rules
+            SUBSYSTEM=="tty", KERNEL=="ttyACM[0-9]*", GROUP="dialout", MODE="0660", TAG+="uaccess"
+            SUBSYSTEM=="tty", KERNEL=="ttyUSB[0-9]*", GROUP="dialout", MODE="0660", TAG+="uaccess"
+            # ESP32 / Espressif native USB CDC
+            SUBSYSTEM=="tty", ATTRS{idVendor}=="303a", GROUP="dialout", MODE="0660", TAG+="uaccess"
+            # WCH CH340/CH341
+            SUBSYSTEM=="tty", ATTRS{idVendor}=="1a86", GROUP="dialout", MODE="0660", TAG+="uaccess"
+            # Silicon Labs CP210x
+            SUBSYSTEM=="tty", ATTRS{idVendor}=="10c4", GROUP="dialout", MODE="0660", TAG+="uaccess"
+            # FTDI
+            SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", GROUP="dialout", MODE="0660", TAG+="uaccess"
           '';
         })
       ];
@@ -28,7 +41,7 @@
          KEYBOARD_KEY_c02a0=prog2
       '';
 
-      # Stadia conroller fixes
+      # Stadia controller fixes
       extraRules = ''
         # SDP protocol
         KERNEL=="hidraw*", ATTRS{idVendor}=="1fc9", MODE="0666"
@@ -38,18 +51,6 @@
         KERNEL=="hidraw*", ATTRS{idVendor}=="15a2", MODE="0666"
         # Controller
         KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="18d1", MODE="0666"
-        SUBSYSTEMS=="usb", ATTRS{idVendor}=="18d1", ATTRS{idProduct}=="9400", MODE="0660", TAG+="uaccess"
-        # USB Serial / ESP32 / Arduino / Microcontroller flashing rules
-        SUBSYSTEM=="tty", KERNEL=="ttyACM[0-9]*", GROUP="dialout", MODE="0660", TAG+="uaccess"
-        SUBSYSTEM=="tty", KERNEL=="ttyUSB[0-9]*", GROUP="dialout", MODE="0660", TAG+="uaccess"
-        # ESP32 / Espressif native USB CDC
-        SUBSYSTEM=="tty", ATTRS{idVendor}=="303a", GROUP="dialout", MODE="0660", TAG+="uaccess"
-        # WCH CH340/CH341
-        SUBSYSTEM=="tty", ATTRS{idVendor}=="1a86", GROUP="dialout", MODE="0660", TAG+="uaccess"
-        # Silicon Labs CP210x
-        SUBSYSTEM=="tty", ATTRS{idVendor}=="10c4", GROUP="dialout", MODE="0660", TAG+="uaccess"
-        # FTDI
-        SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", GROUP="dialout", MODE="0660", TAG+="uaccess"
       '';
     };
   };

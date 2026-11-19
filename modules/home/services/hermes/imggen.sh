@@ -31,14 +31,22 @@ EOF
   exit 0
 }
 
+require_arg() {
+  if [[ $# -lt 2 ]]; then
+    echo "Error: option '$1' requires an argument." >&2
+    echo "Run 'imggen --help' for usage." >&2
+    exit 1
+  fi
+}
+
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --model)     MODEL="$2";      shift 2 ;;
-    --size)      SIZE="$2";       shift 2 ;;
-    --quality)   QUALITY="$2";    shift 2 ;;
-    --output)    OUTPUT="$2";     shift 2 ;;
-    --output-dir) OUTPUT_DIR="$2"; shift 2 ;;
-    -h|--help)   usage ;;
+    --model)      require_arg "$@"; MODEL="$2";      shift 2 ;;
+    --size)       require_arg "$@"; SIZE="$2";       shift 2 ;;
+    --quality)    require_arg "$@"; QUALITY="$2";    shift 2 ;;
+    --output)     require_arg "$@"; OUTPUT="$2";     shift 2 ;;
+    --output-dir) require_arg "$@"; OUTPUT_DIR="$2"; shift 2 ;;
+    -h|--help)    usage ;;
     -*)
       echo "Error: unknown option '$1'" >&2
       echo "Run 'imggen --help' for usage." >&2
@@ -86,7 +94,12 @@ if [[ -z "$OUTPUT" ]]; then
   OUTPUT="${OUTPUT_DIR}/${TIMESTAMP}-${SLUG}.png"
 fi
 
-JSON_PROMPT="$(printf '%s' "$PROMPT" | jq -Rs .)"
+PAYLOAD="$(jq -n \
+  --arg model "$MODEL" \
+  --arg prompt "$PROMPT" \
+  --arg size "$SIZE" \
+  --arg quality "$QUALITY" \
+  '{model: $model, prompt: $prompt, size: $size, quality: $quality}')"
 
 echo "Generating image..." >&2
 echo "  Model:   $MODEL" >&2
@@ -98,12 +111,7 @@ RESPONSE="$(curl -s -w "\n%{http_code}" \
   "https://api.openai.com/v1/images/generations" \
   -H "Authorization: Bearer ${OPENAI_API_KEY}" \
   -H "Content-Type: application/json" \
-  -d "{
-    \"model\": \"${MODEL}\",
-    \"prompt\": ${JSON_PROMPT},
-    \"size\": \"${SIZE}\",
-    \"quality\": \"${QUALITY}\"
-  }")"
+  -d "$PAYLOAD")"
 
 HTTP_CODE="$(echo "$RESPONSE" | tail -n1)"
 BODY="$(echo "$RESPONSE" | sed '$d')"

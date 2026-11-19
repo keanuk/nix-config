@@ -8,7 +8,7 @@ let
   homeConfigSubmodule = lib.types.submodule {
     options = {
       system = lib.mkOption {
-        type = lib.types.str;
+        type = lib.types.enum config.systems;
         description = "System architecture for this home-manager configuration.";
       };
       module = lib.mkOption {
@@ -17,12 +17,12 @@ let
     };
   };
 
-  baseOverlays = config.flake.baseOverlays;
+  inherit (config.flake) baseOverlays;
 
-  mkUnstable =
-    _name: cfg:
+  mkHomeConfig =
+    nixpkgsInput: hmInput: _name: cfg:
     let
-      pkgs = import inputs.nixpkgs {
+      pkgs = import nixpkgsInput {
         inherit (cfg) system;
         overlays = baseOverlays;
         config = {
@@ -31,25 +31,7 @@ let
         };
       };
     in
-    inputs.home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = [ cfg.module ];
-      extraSpecialArgs = { inherit inputs; };
-    };
-
-  mkStable =
-    _name: cfg:
-    let
-      pkgs = import inputs.nixpkgs-stable {
-        inherit (cfg) system;
-        overlays = baseOverlays;
-        config = {
-          allowUnfree = true;
-          allowImportFromDerivation = true;
-        };
-      };
-    in
-    inputs.home-manager-stable.lib.homeManagerConfiguration {
+    hmInput.lib.homeManagerConfiguration {
       inherit pkgs;
       modules = [ cfg.module ];
       extraSpecialArgs = { inherit inputs; };
@@ -70,6 +52,12 @@ in
   };
 
   config.flake.homeConfigurations =
-    (lib.mapAttrs mkUnstable config.configurations.homeManager)
-    // (lib.mapAttrs mkStable config.configurations.homeManager-stable);
+    let
+      unstable = lib.mapAttrs (mkHomeConfig inputs.nixpkgs inputs.home-manager) config.configurations.homeManager;
+      stable = lib.mapAttrs (mkHomeConfig inputs.nixpkgs-stable inputs.home-manager-stable) config.configurations.homeManager-stable;
+      overlap = lib.attrNames (lib.intersectAttrs unstable stable);
+    in
+    assert lib.assertMsg (overlap == [ ])
+      "Duplicate homeConfigurations keys in both homeManager and homeManager-stable: ${lib.concatStringsSep ", " overlap}";
+    unstable // stable;
 }
